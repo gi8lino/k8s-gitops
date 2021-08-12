@@ -1,0 +1,26 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-nextcloud
+  namespace: nextcloud
+spec:
+  selector: app == 'nextcloud'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+      destination:
+        ports:
+          - 80
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: job == 'nextcloud-cron'
+      destination:
+        ports:
+          - 80

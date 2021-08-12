@@ -1,0 +1,17 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-plex
+  namespace: media
+spec:
+  selector: app == 'plex'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 80
+          - 443

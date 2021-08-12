@@ -1,0 +1,95 @@
+{
+    "semanticCommits": "enabled",
+    "dependencyDashboard": true,
+    "separateMajorMinor": false,
+    "assignees": [
+        "gi8lino"
+    ],
+    "regexManagers": [
+        {
+            "fileMatch": [
+                "(apps|base|infra)\/(.+\/)*helmrelease\\.yaml$"
+            ],
+            "matchStrings": [
+                "registryUrl=(?<registryUrl>.*?)\\s +chart: (?<depName>.*?)\\n +version: (?<currentValue>.*)"
+            ],
+            "datasourceTemplate": [
+                "helm"
+            ]
+        },
+        {
+            "fileMatch": [
+                "crds\\/k8up\\/kustomization\\.yaml$"
+            ],
+            "matchStrings": [
+                "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*\\/(?<currentValue>.*?)\\/"
+            ]
+        },
+        {
+            "fileMatch": [
+                "crds\\/kube-prometheus-stack\\/crds\\.yaml$"
+            ],
+            "matchStrings": [
+                "registryUrl=(?<registryUrl>.*)\\s.*tag: (?<depName>.*)-(?<currentValue>.*)"
+            ],
+            "datasourceTemplate": [
+                "helm"
+            ]
+        },
+        {
+            "fileMatch": [
+                "crds\\/traefik\\/crds\\.yaml$"
+            ],
+            "matchStrings": [
+                "registryUrl=(?<registryUrl>.*) chart=(?<depName>.*)\\s.*tag: v(?<currentValue>.*)"
+            ],
+            "datasourceTemplate": [
+                "helm"
+            ]
+        }
+    ],
+    "kubernetes": {
+        "fileMatch": [
+            "(infra\/traefik\/forward-auth|apps|base)\/(.*\/)*.+\\.yaml"
+        ]
+    },
+    "packageRules": [
+        {
+            "matchDatasources": [
+                "docker",
+                "helm",
+                "github-releases",
+                "github-tags"
+            ],
+            "matchUpdateTypes": [
+                "patch",
+                "minor",
+                "major"
+            ],
+            "labels": [
+                "renovate/{{datasource}}",
+                "dep/{{updateType}}"
+            ],
+            "enabled": true
+        },
+        {
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchPackagePatterns": [
+                "^ghcr.io/linuxserver/(tautulli|plex|sabnzbd|nzbhydra2)"
+            ],
+            "versioning": "loose"
+        },
+        {
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchPackagePatterns": [
+                "^ghcr.io/linuxserver/(son|rad)arr"
+            ],
+            "versioning": "loose",
+            "allowedVersions": "!/5\\.14/"
+        }
+    ]
+}

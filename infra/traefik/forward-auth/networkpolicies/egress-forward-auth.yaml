@@ -1,0 +1,17 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-forward-auth
+  namespace: traefik
+spec:
+  selector: app == 'forward-auth'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: app.kubernetes.io/instance == 'traefik'
+        ports:
+          - 8443

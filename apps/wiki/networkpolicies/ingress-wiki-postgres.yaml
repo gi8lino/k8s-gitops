@@ -1,0 +1,18 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-wiki-postgres
+  namespace: wiki
+spec:
+  selector: app == 'wiki-postgres'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: app == 'wiki'
+      destination:
+        ports:
+          - 5432

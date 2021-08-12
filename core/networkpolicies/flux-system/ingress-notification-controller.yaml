@@ -1,0 +1,29 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-notification-controller
+  namespace: flux-system
+spec:
+  selector: app == 'notification-controller'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: >-
+          app == 'kustomize-controller' ||
+          app == 'source-controller' ||
+          app == 'helm-controller'
+      destination:
+        ports:
+          - 9090
+    - action: Allow
+      protocol: TCP
+      source:
+        namespaceSelector: projectcalico.org/name == 'monitoring'
+        selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
+      destination:
+        ports:
+          - 8080

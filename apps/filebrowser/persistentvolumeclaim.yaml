@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: filebrowser-db
+  namespace: filebrowser
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nvme
+  resources:
+    requests:
+      storage: 3Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: filebrowser-data
+  namespace: filebrowser
+  annotations:
+    k8up.syn.tools/backup: "true"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: hdd
+  resources:
+    requests:
+      storage: 300Gi

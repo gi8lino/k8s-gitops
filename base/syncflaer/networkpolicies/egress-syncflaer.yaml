@@ -1,0 +1,23 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-syncflaer
+  namespace: syncflaer
+spec:
+  selector: job == 'syncflaer'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 443
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+        ports:
+          - 8443

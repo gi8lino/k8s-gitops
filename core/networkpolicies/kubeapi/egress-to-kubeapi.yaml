@@ -1,0 +1,17 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: GlobalNetworkPolicy
+metadata:
+  name: egress-to-kubeapi
+spec:
+  selector: all()
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - ${HOST_IP}/32
+        ports:
+          - 6443

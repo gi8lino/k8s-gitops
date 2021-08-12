@@ -1,0 +1,18 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-sabnzbd
+  namespace: media
+spec:
+  selector: app == 'sabnzbd'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 80   # docker-mods
+          - 443  # download nzb's if send with button on newz-complex
+          - 563  # usenet

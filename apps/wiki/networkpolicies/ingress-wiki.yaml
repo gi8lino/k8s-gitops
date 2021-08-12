@@ -1,0 +1,19 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-wiki
+  namespace: wiki
+spec:
+  selector: app == 'wiki'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+      destination:
+        ports:
+          - 3000

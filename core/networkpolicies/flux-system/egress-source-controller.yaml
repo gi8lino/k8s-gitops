@@ -1,0 +1,22 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-source-controller
+  namespace: flux-system
+spec:
+  selector: app == 'source-controller'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: app == 'notification-controller'
+        ports:
+          - 9090
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 443

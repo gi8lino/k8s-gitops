@@ -1,0 +1,18 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-forward-auth
+  namespace: traefik
+spec:
+  selector: app == 'forward-auth'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: app.kubernetes.io/instance == 'traefik'
+      destination:
+        ports:
+          - 4181

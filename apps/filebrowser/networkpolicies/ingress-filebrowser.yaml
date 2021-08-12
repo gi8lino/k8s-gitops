@@ -1,0 +1,19 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-filebrowser
+  namespace: filebrowser
+spec:
+  selector: app == 'filebrowser'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+      destination:
+        ports:
+          - 80

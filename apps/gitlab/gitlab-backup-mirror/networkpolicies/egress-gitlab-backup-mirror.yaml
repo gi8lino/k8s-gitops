@@ -1,0 +1,33 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-gitlab-backup-mirror
+  namespace: gitlab
+spec:
+  selector: job == 'gitlab-backup-mirror'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'minio'
+        selector: app.kubernetes.io/instance == 'minio'
+        ports:
+          - 9000
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'monitoring'
+        selector: app == 'prometheus-pushgateway'
+        ports:
+          - 9091
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: >-
+          release == 'gitlab' &&
+          app == 'minio'
+        ports:
+          - 9000

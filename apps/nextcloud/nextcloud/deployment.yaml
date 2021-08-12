@@ -1,0 +1,146 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextcloud
+  namespace: nextcloud
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextcloud
+      component: fpm-nginx
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nextcloud
+        component: fpm-nginx
+    spec:
+      initContainers:
+        - name: wait-for-redis
+          image: busybox:1.33.1
+          command:
+            - sh
+            - -c
+            - |
+              echo 'Waiting for Redis to become ready...'
+              until printf "." && nc -z -w 2 nextcloud-redis.nextcloud.svc.cluster.local 6379; do
+                  sleep 2;
+              done;
+              echo 'Redis OK ✓'
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+        - name: wait-for-database
+          image: busybox:1.33.1
+          command:
+            - sh
+            - -c
+            - |
+              echo 'Waiting for PostgreSQL to become ready...'
+              until printf "." && nc -z -w 2 nextcloud-postgres.nextcloud.svc.cluster.local 5432; do
+                  sleep 2;
+              done;
+              echo 'PostgreSQL OK ✓'
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: nginx
+          image: nginx:1.21.1-alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: nginx-config
+              subPath: nginx.conf
+            - mountPath: /var/www/html
+              name: app-data
+              readOnly: true
+            - mountPath: /var/www/html/data
+              name: user-data
+              readOnly: true
+          startupProbe:
+            httpGet:
+              path: /status.php
+              port: 80
+              httpHeaders:
+                - name: Host
+                  value: cloud.${BASE_DOMAIN}
+            initialDelaySeconds: 10
+            failureThreshold: 30
+            timeoutSeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /status.php
+              port: 80
+              httpHeaders:
+                - name: Host
+                  value: cloud.${BASE_DOMAIN}
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+        - name: nextcloud
+          image: nextcloud:22.1.0-fpm-alpine
+          env:
+            - name: POSTGRES_DB
+              value: nextcloud
+            - name: POSTGRES_HOST
+              value: nextcloud-postgres.nextcloud.svc.cluster.local
+            - name: NEXTCLOUD_TRUSTED_DOMAINS
+              value: cloud.${BASE_DOMAIN}
+            - name: TRUSTED_PROXIES
+              value: http://traefik.traefik.svc.cluster.local
+            - name: OVERWRITEPROTOCOL
+              value: https
+            - name: REDIS_HOST
+              value: nextcloud-redis.nextcloud.svc.cluster.local
+            - name: TZ
+              value: Europe/Zurich
+            - name: DEFAULT_PHONE_REGION
+              value: CH
+          envFrom:
+            - secretRef:
+                name: nextcloud-mail-settings
+            - secretRef:
+                name: nextcloud-postgres
+          volumeMounts:
+            - name: app-data
+              mountPath: /var/www/html
+            - name: user-data
+              mountPath: /var/www/html/data
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: app-data
+          persistentVolumeClaim:
+            claimName: nextcloud-app-data
+        - name: user-data
+          persistentVolumeClaim:
+            claimName: nextcloud-user-data
+        - name: nginx-config
+          configMap:
+            name: nextcloud-nginx-config

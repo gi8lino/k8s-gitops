@@ -1,0 +1,146 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
+      chart: kube-prometheus-stack
+      version: 17.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+      interval: 5m
+  values:
+    alertmanager:
+      config:
+        global:
+          resolve_timeout: 10m
+          slack_api_url: ${SLACK_URL}
+        receivers:
+          - name: blackhole
+          - name: healthchecks
+            webhook_configs:
+              - send_resolved: true
+                url: ${MONITORING_HEALTHCHECKS_URL}
+          - name: slack
+            slack_configs:
+              - channel: '#k3s'
+                send_resolved: true
+                text: |2-
+                  {{ range .Alerts }}
+                    *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+                    *Description:* {{ .Annotations.description }}
+                    *Details:*
+                    {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+                    {{ end }}
+                  {{ end }}
+                title: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing
+                  | len }}{{ end }}] Monitoring Event Notification'
+        route:
+          group_by:
+            - job
+          group_interval: 5m
+          group_wait: 90s
+          receiver: slack
+          repeat_interval: 2h
+          routes:
+            - match_re:
+                alertname: KubeHpaMaxedOut|KubeHpaReplicasMismatch
+              receiver: blackhole
+            - match:
+                alertname: Watchdog
+              receiver: healthchecks
+            - receiver: slack
+      ingress:
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: allow-lan-only@file,traefik-forward-auth@kubernetescrd
+        enabled: true
+        hosts:
+          - alertmanager.local.${BASE_DOMAIN}
+        ingressClassName: traefik
+        pathType: Prefix
+        paths:
+          - /
+    defaultRules:
+      rules:
+        etcd: false
+        kubeScheduler: false
+        kubernetesResources: false
+    grafana:
+      grafana.ini:
+        auth:
+          disable_login_form: true
+          oauth_auto_login: true
+        auth.basic:
+          enabled: false
+        auth.generic_oauth:
+          allow_sign_up: true
+          auth_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/auth
+          enabled: true
+          name: ${BASE_DOMAIN} SSO
+          scopes: openid profile email
+          signout_redirect_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/logout?redirect_uri=https://grafana.local.${BASE_DOMAIN}/login
+          token_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/token
+        server:
+          root_url: https://grafana.local.${BASE_DOMAIN}
+      ingress:
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: allow-lan-only@file
+        enabled: true
+        hosts:
+          - grafana.local.${BASE_DOMAIN}
+        ingressClassName: traefik
+        pathType: Prefix
+        paths:
+          - /
+      persistence:
+        annotations:
+          k8up.syn.tools/backup: "true"
+        enabled: true
+        storageClassName: nvme
+      plugins:
+        - grafana-piechart-panel
+    kubeControllerManager:
+      enabled: false
+    kubeEtcd:
+      enabled: false
+    kubeProxy:
+      enabled: false
+    kubeScheduler:
+      enabled: false
+    prometheus:
+      ingress:
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: allow-lan-only@file,traefik-forward-auth@kubernetescrd
+        enabled: true
+        hosts:
+          - prometheus.local.${BASE_DOMAIN}
+        ingressClassName: traefik
+        pathType: Prefix
+        paths:
+          - /
+      prometheusSpec:
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+    prometheus-node-exporter:
+      extraArgs:
+        - --collector.filesystem.ignored-mount-points=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
+  valuesFrom:
+    - kind: Secret
+      name: kube-prometheus-stack-helm-values
+      optional: false
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip

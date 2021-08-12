@@ -1,0 +1,39 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-gitlab
+  namespace: gitlab
+spec:
+  selector: >-
+    release == 'gitlab' ||
+    release == 'gitlab-runner'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: >-
+          release == 'gitlab' ||
+          release == 'gitlab-runner'
+    - action: Allow
+      protocol: UDP
+      destination:
+        selector: >-
+          release == 'gitlab' ||
+          release == 'gitlab-runner'
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+        ports:
+          - 8443
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 80
+          - 443
+          - 587

@@ -1,0 +1,25 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-coredns
+  namespace: kube-system
+spec:
+  selector: k8s-app == 'kube-dns'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - ${DNS_IP}/32
+        ports:
+          - 53
+    - action: Allow
+      protocol: UDP
+      destination:
+        nets:
+          - ${DNS_IP}/32
+        ports:
+          - 53

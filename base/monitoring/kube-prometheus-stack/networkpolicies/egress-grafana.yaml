@@ -1,0 +1,29 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-grafana
+  namespace: monitoring
+spec:
+  selector: app.kubernetes.io/name == 'grafana'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
+        ports:
+          - 9090
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+        ports:
+          - 8443
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 443

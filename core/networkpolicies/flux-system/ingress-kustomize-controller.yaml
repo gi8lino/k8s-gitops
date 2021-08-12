@@ -1,0 +1,19 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-kustomize-controller
+  namespace: flux-system
+spec:
+  selector: app == 'kustomize-controller'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        namespaceSelector: projectcalico.org/name == 'monitoring'
+        selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
+      destination:
+        ports:
+          - 8080

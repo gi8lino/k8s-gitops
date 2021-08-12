@@ -1,0 +1,28 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-sabnzbd
+  namespace: media
+spec:
+  selector: app == 'sabnzbd'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+      destination:
+        ports:
+          - 8080
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: >-
+          app == 'sonarr' ||
+          app == 'radarr'
+      destination:
+        ports:
+          - 8080

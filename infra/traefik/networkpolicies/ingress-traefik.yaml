@@ -1,0 +1,47 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-traefik
+  namespace: traefik
+spec:
+  selector: app.kubernetes.io/instance == 'traefik'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: >-
+          networkset == 'cloudflare' ||
+          networkset == 'lan'
+      destination:
+        ports:
+          - 8443
+    - action: Allow
+      protocol: UDP
+      source:
+        selector: >-
+          networkset == 'cloudflare' ||
+          networkset == 'lan'
+      destination:
+        ports:
+          - 8443
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: networkset == 'lan'
+      destination:
+        ports:
+          - 2222
+          - 8000
+          - 9000
+    - action: Allow
+      protocol: UDP
+      source:
+        selector: networkset == 'lan'
+      destination:
+        ports:
+          - 2222
+          - 8000
+          - 9000

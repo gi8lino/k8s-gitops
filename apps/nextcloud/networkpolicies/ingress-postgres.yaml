@@ -1,0 +1,22 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-nextcloud-postgres
+  namespace: nextcloud
+spec:
+  selector: >-
+    app == 'nextcloud' &&
+    component == 'postgres'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: >-
+          app == 'nextcloud' &&
+          component == 'fpm-nginx'
+      destination:
+        ports:
+          - 5432

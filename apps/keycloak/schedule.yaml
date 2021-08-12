@@ -1,0 +1,19 @@
+---
+apiVersion: backup.appuio.ch/v1alpha1
+kind: Schedule
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  backend:
+    s3:
+      bucket: keycloak
+  backup:
+    schedule: "0 1 * * *"
+  check:
+    schedule: "0 7 * * *"
+  prune:
+    retention:
+      keepDaily: 1
+      keepLast: 3
+    schedule: "0 5 * * *"

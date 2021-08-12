@@ -1,0 +1,53 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: gitlab-backup-mirror
+  namespace: gitlab
+spec:
+  schedule: '0 2 * * *'
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            job: gitlab-backup-mirror
+        spec:
+          containers:
+            - name: gitlab-backup-mirror
+              image: ghcr.io/containeroo/mirrio:2.1.1
+              env:
+                - name: TZ
+                  value: Europe/Zurich
+                - name: SOURCE_URL
+                  value: http://gitlab-minio-svc.gitlab.svc.cluster.local:9000
+                - name: SOURCE_BUCKET
+                  value: gitlab-backups
+                - name: SOURCE_ACCESSKEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: accesskey
+                      name: gitlab-minio-secret
+                - name: SOURCE_SECRETKEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: secretkey
+                      name: gitlab-minio-secret
+                - name: DESTINATION_URL
+                  value: http://minio.minio.svc.cluster.local:9000
+                - name: DESTINATION_BUCKET
+                  value: gitlab
+                - name: JOB_NAME
+                  value: gitlab-minio-secret
+                - name: RETENTION
+                  value: 7d0h0m
+                - name: PUSHGATEWAY_URL
+                  value: http://prometheus-pushgateway.monitoring.svc.cluster.local:9091
+              envFrom:
+                - secretRef:
+                    name: gitlab-minio-secret
+          restartPolicy: Never
+          automountServiceAccountToken: false

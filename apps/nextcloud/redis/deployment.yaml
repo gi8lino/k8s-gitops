@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextcloud-redis
+  namespace: nextcloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextcloud
+      component: redis
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nextcloud
+        component: redis
+    spec:
+      containers:
+        - name: nextcloud-redis
+          image: redis:6.2.5-alpine
+          env:
+            - name: TZ
+              value: Europe/Zurich
+          ports:
+            - containerPort: 6379
+          startupProbe:
+            tcpSocket:
+              port: 6379
+            failureThreshold: 30
+            periodSeconds: 2
+          livenessProbe:
+            tcpSocket:
+              port: 6379
+            failureThreshold: 2
+            timeoutSeconds: 5
+            periodSeconds: 30
+      restartPolicy: Always
+      automountServiceAccountToken: false
