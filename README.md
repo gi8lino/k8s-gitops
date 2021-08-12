@@ -73,7 +73,7 @@ export FLUX_KEY_FP=AB675CE4CC64251G3S9AE1DAA88ARRTY2C009E2D
 update fingerprint in `.sops.yaml`
 
 ```bash
-envsubst < .sops.template > ./.sops.yaml
+envsubst < ./.tmpl/.sops.template > ./.sops.yaml
 ```
 
 ## :leftwards_arrow_with_hook:&nbsp; Install pre-commit Hooks
