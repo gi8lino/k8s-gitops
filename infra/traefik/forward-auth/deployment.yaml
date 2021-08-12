@@ -1,0 +1,89 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forward-auth
+  namespace: traefik
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forward-auth
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: forward-auth
+    spec:
+      initContainers:
+        - name: wait-for-keycloak
+          image: busybox:1.33.1
+          command:
+            - sh
+            - -c
+            - |
+              echo 'Waiting for Keycloak to become ready...'
+              until printf "." && wget --no-check-certificate --quiet --spider https://sso.${BASE_DOMAIN}/auth/realms/master; do
+                  sleep 2;
+              done;
+              echo 'Keycloak OK ✓'
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: forward-auth
+          image: thomseddon/traefik-forward-auth:2.2.0
+          env:
+            - name: CONFIG
+              value: /rules/config.ini
+            - name: COOKIE_DOMAIN
+              value: ${BASE_DOMAIN}
+            - name: DEFAULT_PROVIDER
+              value: oidc
+            - name: AUTH_HOST
+              value: fw-auth.${BASE_DOMAIN}
+            - name: PROVIDERS_OIDC_ISSUER_URL
+              value: https://sso.${BASE_DOMAIN}/auth/realms/master
+            - name: TZ
+              value: Europe/Zurich
+          envFrom:
+            - secretRef:
+                name: forward-auth
+          ports:
+            - containerPort: 4181
+          volumeMounts:
+            - name: rules
+              mountPath: /rules
+          startupProbe:
+            tcpSocket:
+              port: 4181
+            failureThreshold: 30
+            timeoutSeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            tcpSocket:
+              port: 4181
+            failureThreshold: 2
+            timeoutSeconds: 10
+            periodSeconds: 30
+      volumes:
+        - name: rules
+          secret:
+            secretName: forward-auth-rules
+            items:
+              - key: rules
+                path: config.ini
+      restartPolicy: Always
+      automountServiceAccountToken: false

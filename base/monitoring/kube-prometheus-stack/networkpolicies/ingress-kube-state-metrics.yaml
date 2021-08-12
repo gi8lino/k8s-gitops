@@ -1,0 +1,18 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-kube-state-metrics
+  namespace: monitoring
+spec:
+  selector: app.kubernetes.io/name == 'kube-state-metrics'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
+      destination:
+        ports:
+          - 8080

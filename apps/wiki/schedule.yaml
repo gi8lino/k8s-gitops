@@ -1,0 +1,19 @@
+---
+apiVersion: backup.appuio.ch/v1alpha1
+kind: Schedule
+metadata:
+  name: wiki
+  namespace: wiki
+spec:
+  backend:
+    s3:
+      bucket: wiki
+  backup:
+    schedule: "0 1 * * *"
+  check:
+    schedule: "0 3 * * *"
+  prune:
+    retention:
+      keepDaily: 1
+      keepLast: 3
+    schedule: "0 2 * * *"

@@ -1,0 +1,7 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - minio-egress-traefik.yaml
+  - egress-to-minio.yaml
+  - ingress-minio.yaml

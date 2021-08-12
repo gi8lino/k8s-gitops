@@ -1,0 +1,33 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: nextcloud-cron
+  namespace: nextcloud
+spec:
+  suspend: false
+  schedule: "*/5 * * * *"
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            job: nextcloud-cron
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: nextcloud-cron
+              image: busybox:1.33.1
+              command:
+                - wget
+              args:
+                - --no-check-certificate
+                - --quiet
+                - --spider
+                - --header
+                - "Host: cloud.${BASE_DOMAIN}"
+                - http://nextcloud.nextcloud.svc.cluster.local/cron.php
+          automountServiceAccountToken: false

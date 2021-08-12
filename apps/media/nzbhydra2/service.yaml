@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nzbhydra2
+  namespace: media
+spec:
+  ports:
+    - port: 5076
+      targetPort: 5076
+  selector:
+    app: nzbhydra2
+  type: ClusterIP

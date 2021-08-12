@@ -1,0 +1,35 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-minio
+  namespace: minio
+spec:
+  selector: app.kubernetes.io/instance == 'minio'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+      destination:
+        ports:
+          - 9000
+    - action: Allow
+      protocol: TCP
+      source:
+        namespaceSelector: projectcalico.org/name == 'gitlab'
+        selector: job == 'gitlab-backup-mirror'
+      destination:
+        ports:
+          - 9000
+    - action: Allow
+      protocol: TCP
+      source:
+        namespaceSelector: k8up == 'backup-enabled'
+        selector: has(job-name)
+      destination:
+        ports:
+          - 9000

@@ -1,0 +1,33 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-renovate
+  namespace: renovate
+spec:
+  selector: job == 'renovate'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 80
+          - 443
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+        ports:
+          - 2222
+          - 8443
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: >-
+          app == 'renovate' &&
+          component == 'redis'
+        ports:
+          - 6379

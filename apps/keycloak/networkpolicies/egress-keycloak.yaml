@@ -1,0 +1,26 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-keycloak
+  namespace: keycloak
+spec:
+  selector: >-
+    app == 'keycloak' &&
+    component == 'keycloak'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: >-
+          app == 'keycloak' &&
+          component == 'postgres'
+        ports:
+          - 5432
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 587

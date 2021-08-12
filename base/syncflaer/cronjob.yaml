@@ -1,0 +1,37 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: syncflaer
+  namespace: syncflaer
+spec:
+  suspend: false
+  schedule: '*/3 * * * *'
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 1
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            job: syncflaer
+        spec:
+          containers:
+            - name: syncflaer
+              image: ghcr.io/containeroo/syncflaer:5.1.1
+              args:
+                - --debug
+              envFrom:
+                - secretRef:
+                    name: syncflaer
+              volumeMounts:
+                - mountPath: /config.yml
+                  name: config
+                  subPath: config.yml
+          restartPolicy: Never
+          automountServiceAccountToken: false
+          volumes:
+            - name: config
+              configMap:
+                name: syncflaer

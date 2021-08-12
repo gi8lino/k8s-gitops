@@ -1,0 +1,19 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-helm-controller
+  namespace: flux-system
+spec:
+  selector: app == 'helm-controller'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: >-
+          app == 'notification-controller' ||
+          app == 'source-controller'
+        ports:
+          - 9090

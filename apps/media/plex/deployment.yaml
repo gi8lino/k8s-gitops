@@ -1,0 +1,78 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  namespace: media
+  labels:
+    app: plex
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: plex
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      containers:
+        - name: plex
+          image: ghcr.io/linuxserver/plex:1.24.0.4930-ab6e1a058-ls68
+          env:
+            - name: TZ
+              value: Europe/Zurich
+            - name: PGID
+              value: "2000"
+            - name: PUID
+              value: "2000"
+            - name: VERSION
+              value: latest
+          ports:
+            - containerPort: 32400
+          startupProbe:
+            httpGet:
+              path: /web/index.html
+              port: 32400
+            initialDelaySeconds: 15
+            failureThreshold: 60
+            timeoutSeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /web/index.html
+              port: 32400
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+          resources:
+            limits:
+              gpu.intel.com/i915: 1
+          volumeMounts:
+            - name: data
+              mountPath: /config
+            - name: backup
+              mountPath: /backup
+            - name: transcode
+              mountPath: /transcode
+            - name: media
+              mountPath: /media
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: plex-data
+        - name: backup
+          persistentVolumeClaim:
+            claimName: plex-backup
+        - name: transcode
+          emptyDir:
+            medium: Memory
+        - name: media
+          hostPath:
+            path: /mnt/storage
+            type: Directory

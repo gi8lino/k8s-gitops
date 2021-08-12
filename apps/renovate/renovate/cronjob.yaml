@@ -1,0 +1,79 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: renovate
+  namespace: renovate
+  labels:
+    app: renovate
+    component: job
+spec:
+  schedule: '*/15 * * * *'
+  failedJobsHistoryLimit: 4
+  successfulJobsHistoryLimit: 1
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            job: renovate
+        spec:
+          initContainers:
+            - name: wait-for-redis
+              image: busybox:1.33.1
+              command:
+                - sh
+                - -c
+                - |
+                  echo 'Waiting for Redis to become ready...'
+                  until printf "." && nc -z -w 2 renovate-redis.renovate.svc.cluster.local 6379; do
+                      sleep 2;
+                  done;
+                  echo 'Redis OK ✓'
+              securityContext:
+                allowPrivilegeEscalation: false
+                runAsUser: 1000
+                runAsGroup: 1000
+                runAsNonRoot: true
+              resources:
+                requests:
+                  cpu: 10m
+                  memory: 16Mi
+                limits:
+                  cpu: 10m
+                  memory: 16Mi
+          containers:
+            - name: renovate
+              image: renovate/renovate:25.71.1
+              env:
+                - name: LOG_LEVEL
+                  value: debug
+                - name: RENOVATE_AUTODISCOVER
+                  value: "true"
+                - name: RENOVATE_CONFIG_FILE
+                  value: /renovate/config.json
+                - name: RENOVATE_ONBOARDING
+                  value: "false"
+                - name: RENOVATE_PLATFORM
+                  value: gitlab
+                - name: RENOVATE_REDIS_URL
+                  value: redis://renovate-redis.renovate.svc.cluster.local
+              envFrom:
+                - secretRef:
+                    name: renovate
+              volumeMounts:
+                - name: renovate-ssh
+                  mountPath: '/home/ubuntu/.ssh'
+                  readOnly: true
+                - name: renovate-config
+                  mountPath: /renovate/
+          restartPolicy: Never
+          automountServiceAccountToken: false
+          volumes:
+            - name: renovate-config
+              configMap:
+                name: renovate-config
+            - name: renovate-ssh
+              secret:
+                secretName: renovate-ssh

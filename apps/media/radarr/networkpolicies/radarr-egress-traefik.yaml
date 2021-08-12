@@ -1,0 +1,18 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: radarr-egress-traefik
+  namespace: traefik
+spec:
+  selector: app.kubernetes.io/instance == 'traefik'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'media'
+        selector: app == 'radarr'
+        ports:
+          - 7878

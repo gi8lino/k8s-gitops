@@ -1,0 +1,16 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-alertmanager
+  namespace: monitoring
+spec:
+  selector: app == 'alertmanager'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 443

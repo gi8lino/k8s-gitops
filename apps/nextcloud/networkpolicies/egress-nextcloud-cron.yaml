@@ -1,0 +1,19 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-nextcloud-cron
+  namespace: nextcloud
+spec:
+  selector: job == 'nextcloud-cron'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: >-
+          app == 'nextcloud' &&
+          component == 'fpm-nginx'
+        ports:
+          - 80

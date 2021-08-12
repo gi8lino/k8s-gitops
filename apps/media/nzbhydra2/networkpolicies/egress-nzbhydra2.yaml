@@ -1,0 +1,16 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-nzbhydra2
+  namespace: media
+spec:
+  selector: app == 'nzbhydra2'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 443

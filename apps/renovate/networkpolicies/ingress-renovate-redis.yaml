@@ -1,0 +1,20 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-renovate-redis
+  namespace: renovate
+spec:
+  selector: >-
+    app == 'renovate' &&
+    component == 'redis'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: job == 'renovate'
+      destination:
+        ports:
+          - 6379

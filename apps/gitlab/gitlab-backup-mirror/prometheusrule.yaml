@@ -1,0 +1,17 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: mirrio
+  namespace: monitoring
+spec:
+  groups:
+    - name: mirrio
+      rules:
+        - alert: mirrIOSyncError
+          annotations:
+            description: The mirrIO job {{ $labels.instance }} failed.
+            summary: mirrIO sync failed.
+          expr: mirrio_sync_failed > 0
+          labels:
+            severity: warning

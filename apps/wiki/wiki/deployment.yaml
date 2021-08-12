@@ -1,0 +1,83 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wiki
+  namespace: wiki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wiki
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: wiki
+    spec:
+      initContainers:
+        - name: wait-for-database
+          image: busybox:1.33.1
+          command:
+            - sh
+            - -c
+            - |
+              echo 'Waiting for PostgreSQL to become ready...'
+              until printf "." && nc -z -w 2 wiki-postgres.wiki.svc.cluster.local 5432; do
+                  sleep 2;
+              done;
+              echo 'PostgreSQL OK ✓'
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: wiki
+          image: requarks/wiki:2.5.201
+          env:
+            - name: DB_TYPE
+              value: postgres
+            - name: DB_HOST
+              value: wiki-postgres.wiki.svc.cluster.local
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: postgres
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: wiki-postgres
+                  key: POSTGRES_PASSWORD
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: wiki-postgres
+                  key: POSTGRES_USER
+          ports:
+            - containerPort: 3000
+          startupProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            failureThreshold: 30
+            timeoutSeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+      restartPolicy: Always
+      automountServiceAccountToken: false

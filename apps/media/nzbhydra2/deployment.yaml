@@ -1,0 +1,64 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nzbhydra2
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nzbhydra2
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nzbhydra2
+    spec:
+      containers:
+        - name: nzbhydra2
+          image: ghcr.io/linuxserver/nzbhydra2:v3.15.1-ls28
+          env:
+            - name: PGID
+              value: "2000"
+            - name: PUID
+              value: "2000"
+            - name: TZ
+              value: Europe/Zurich
+          ports:
+            - containerPort: 5076
+          startupProbe:
+            httpGet:
+              path: /actuator/health/livenessState
+              port: 5076
+            initialDelaySeconds: 10
+            failureThreshold: 30
+            timeoutSeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/readinessState
+              port: 5076
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+          volumeMounts:
+            - name: data
+              mountPath: /config
+            - name: downloads
+              mountPath: /downloads
+            - name: backup
+              mountPath: /backup
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: nzbhydra2-data
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: nzbhydra2-downloads
+        - name: backup
+          persistentVolumeClaim:
+            claimName: nzbhydra2-backup

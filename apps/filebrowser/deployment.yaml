@@ -1,0 +1,69 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filebrowser
+  namespace: filebrowser
+  labels:
+    app: filebrowser
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: filebrowser
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: filebrowser
+    spec:
+      containers:
+        - name: filebrowser
+          image: filebrowser/filebrowser:v2.11.0-alpine
+          env:
+            - name: TZ
+              value: Europe/Zurich
+          ports:
+            - containerPort: 80
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            failureThreshold: 30
+            timeoutSeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+          volumeMounts:
+            - name: data
+              mountPath: /srv
+            - name: db
+              mountPath: /db
+            - name: filebrowser-config
+              mountPath: .filebrowser.json
+              subPath: filebrowser.json
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: filebrowser-data
+        - name: db
+          persistentVolumeClaim:
+            claimName: filebrowser-db
+        - configMap:
+            items:
+              - key: filebrowser.json
+                path: filebrowser.json
+            name: filebrowser-config
+          name: filebrowser-config
