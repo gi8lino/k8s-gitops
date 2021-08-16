@@ -19,7 +19,7 @@ spec:
   values:
     nfs:
       mountOptions:
-        - nfsvers=4
+        - nfsvers=3
         - rw
     storageClass:
       archiveOnDelete: true
