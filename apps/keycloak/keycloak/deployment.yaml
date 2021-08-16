@@ -86,14 +86,14 @@ spec:
               memory: 1024Mi
           startupProbe:
             httpGet:
-              path: /auth/realms/master
+              path: /auth
               port: 8080
             initialDelaySeconds: 30
             failureThreshold: 30
             periodSeconds: 3
           livenessProbe:
             httpGet:
-              path: /auth/realms/master
+              path: /auth/
               port: 8080
             failureThreshold: 2
             periodSeconds: 30
