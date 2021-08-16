@@ -31,8 +31,6 @@ spec:
     logs:
       general:
         level: INFO
-      access:
-        enabled: true
     persistence:
       enabled: true
       path: /certs
