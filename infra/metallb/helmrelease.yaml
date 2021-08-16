@@ -5,7 +5,7 @@ metadata:
   name: metallb
   namespace: metallb
 spec:
-  interval: 10m
+  interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://metallb.github.io/metallb
