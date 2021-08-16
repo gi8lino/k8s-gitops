@@ -38,7 +38,7 @@ spec:
       storageClass: nvme
     pilot:
       dashboard: false
-      enabled: true
+      enabled: false
       token: ${TRAEFIK_PILOT_TOKEN}
     ports:
       gitlab-ssh:
