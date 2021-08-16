@@ -13,7 +13,6 @@ resources:
   - metallb.yaml
   - local-path-provisioner.yaml
   - syncflaer.yaml
-  - namespace.yaml
   - media.yaml
   - traefik.yaml
   - kubernetes-dashboard.yaml
