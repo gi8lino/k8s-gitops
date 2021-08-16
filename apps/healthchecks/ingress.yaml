@@ -1,0 +1,22 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: healthchecks
+  namespace: healthchecks
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: allow-lan-only@file
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: healthchecks.local.${BASE_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: healthchecks
+                port:
+                  number: 8000

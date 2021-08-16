@@ -1,0 +1,120 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthchecks
+  namespace: healthchecks
+  labels:
+    app: healthchecks
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: healthchecks
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: healthchecks
+    spec:
+      initContainers:
+        - name: truncate-local-settings-py
+          image: busybox:1.33.1
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - '[ -f /config/local_settings.py ] && rm -f /config/local_settings.py'
+          volumeMounts:
+            - mountPath: /config
+              name: healthchecks-data
+      containers:
+        - name: healthchecks
+          image: ghcr.io/linuxserver/healthchecks:v1.22.0-ls96
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Europe/Zurich
+            - name: PGID
+              value: "2000"
+            - name: PUID
+              value: "2000"
+            - name: SITE_NAME
+              value: Healthchecks
+            - name: DEBUG
+              value: "False"
+            - name: REGISTRATION_OPEN
+              value: "False"
+            - name: REGENERATE_SETTINGS
+              value: "True"
+            - name: DOCKER_MODS
+              value: linuxserver/mods:universal-cron
+          envFrom:
+            - secretRef:
+                name: healthchecks-config
+            - secretRef:
+                name: healthchecks-superuser
+            - secretRef:
+                name: healthchecks-mail-settings
+          ports:
+            - containerPort: 8000
+          startupProbe:
+            exec:
+              command:
+                - bash
+                - -c
+                - /app/healthchecks/startup
+            initialDelaySeconds: 30
+            failureThreshold: 30
+            timeoutSeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /api/v1/status/
+              port: 8000
+            initialDelaySeconds: 30
+            failureThreshold: 5
+            periodSeconds: 30
+          volumeMounts:
+            - mountPath: /config
+              name: healthchecks-data
+            - mountPath: /etc/periodic/weekly/prunes
+              name: prunes
+              subPath: prunes
+            - mountPath: /app/healthchecks/startup
+              name: startup
+              subPath: startup
+          resources:
+            requests:
+              memory: 256Mi
+              cpu: 100m
+            limits:
+              memory: 256Mi
+              cpu: 100m
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: healthchecks-data
+          persistentVolumeClaim:
+            claimName: healthchecks-data
+        - name: healthchecks-prunes
+          secret:
+            secretName: healthchecks-prunes
+        - name: prunes
+          configMap:
+            name: prunes
+            items:
+              - key: prunes
+                path: prunes
+            defaultMode: 0755
+        - name: startup
+          configMap:
+            name: startup
+            items:
+              - key: startup
+                path: startup
+            defaultMode: 0755
