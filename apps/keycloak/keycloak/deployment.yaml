@@ -89,7 +89,7 @@ spec:
               path: /auth
               port: 8080
             initialDelaySeconds: 30
-            failureThreshold: 30
+            failureThreshold: 60
             periodSeconds: 3
           livenessProbe:
             httpGet:
