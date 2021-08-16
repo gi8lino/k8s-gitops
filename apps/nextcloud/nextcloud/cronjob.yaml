@@ -5,7 +5,7 @@ metadata:
   name: nextcloud-cron
   namespace: nextcloud
 spec:
-  suspend: false
+  suspend: true
   schedule: "*/5 * * * *"
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
