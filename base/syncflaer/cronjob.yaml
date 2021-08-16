@@ -5,7 +5,7 @@ metadata:
   name: syncflaer
   namespace: syncflaer
 spec:
-  suspend: false
+  suspend: true
   schedule: '*/3 * * * *'
   failedJobsHistoryLimit: 3
   successfulJobsHistoryLimit: 1
