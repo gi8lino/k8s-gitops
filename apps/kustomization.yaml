@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - nextcloud
   - gitlab
+  - healthchecks
   - kubernetes-dashboard
   - wiki
   - filebrowser

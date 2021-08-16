@@ -1,0 +1,18 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-healthchecks
+  namespace: healthchecks
+spec:
+  selector: app == 'healthchecks'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 80  # docker-mods
+          - 443
+          - 587

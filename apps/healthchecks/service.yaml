@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthchecks
+  namespace: healthchecks
+spec:
+  ports:
+    - port: 8000
+      targetPort: 8000
+  selector:
+    app: healthchecks
+  type: ClusterIP

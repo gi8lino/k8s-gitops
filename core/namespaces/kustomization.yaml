@@ -19,3 +19,4 @@ resources:
   - wiki.yaml
   - minio.yaml
   - monitoring.yaml
+  - healthchecks.yaml
