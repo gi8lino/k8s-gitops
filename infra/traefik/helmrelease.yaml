@@ -30,16 +30,14 @@ spec:
         enabled: false
     logs:
       general:
-        level: DEBUG
+        level: INFO
+      access:
+        enabled: true
     persistence:
       enabled: true
       path: /certs
       size: 128Mi
       storageClass: nvme
-    pilot:
-      dashboard: false
-      enabled: false
-      token: ${TRAEFIK_PILOT_TOKEN}
     ports:
       gitlab-ssh:
         expose: true
