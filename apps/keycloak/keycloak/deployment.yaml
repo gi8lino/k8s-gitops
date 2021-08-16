@@ -93,7 +93,7 @@ spec:
             periodSeconds: 3
           livenessProbe:
             httpGet:
-              path: /auth/
+              path: /auth
               port: 8080
             failureThreshold: 2
             periodSeconds: 30
