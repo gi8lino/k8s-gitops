@@ -67,3 +67,10 @@ spec:
         ports:
           - 9100
           - 10250
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'reloader'
+        selector: app == 'reloader-reloader'
+        ports:
+          - 9090
