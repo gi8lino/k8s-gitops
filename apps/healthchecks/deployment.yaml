@@ -88,6 +88,9 @@ spec:
             - name: startup
               mountPath: /app/healthchecks/startup
               subPath: startup
+            - name: logo
+              mountPath: /app/healthchecks/static/img/logo.png
+              subPath: logo.png
           resources:
             requests:
               memory: 256Mi
@@ -107,14 +110,12 @@ spec:
         - name: prunes
           configMap:
             name: prunes
-            items:
-              - key: prunes
-                path: prunes
             defaultMode: 0755
         - name: startup
           configMap:
             name: startup
-            items:
-              - key: startup
-                path: startup
             defaultMode: 0755
+        - name: logo
+          configMap:
+            name: logo
+            defaultMode: 0655
