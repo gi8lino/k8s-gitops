@@ -107,8 +107,14 @@ spec:
         - name: prunes
           configMap:
             name: prunes
+            items:
+              - key: prunes
+                path: prunes
             defaultMode: 0755
         - name: startup
           configMap:
             name: startup
+            items:
+              - key: startup
+                path: startup
             defaultMode: 0755
