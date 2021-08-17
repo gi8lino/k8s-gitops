@@ -65,8 +65,8 @@ spec:
         nets:
           - ${HOST_IP}/32
         ports:
-          - 9100
-          - 10250
+          - 9100   # node-exporter
+          - 10250  # kubelet
     - action: Allow
       protocol: TCP
       destination:
