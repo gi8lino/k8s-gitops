@@ -4,6 +4,8 @@ kind: ConfigMap
 metadata:
   name: prunes
   namespace: healthchecks
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 data:
   prunes: |
     #!/usr/bin/env bash
@@ -39,6 +41,8 @@ kind: ConfigMap
 metadata:
   name: startup
   namespace: healthchecks
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 data:
   startup: |
     #!/usr/bin/env bash
