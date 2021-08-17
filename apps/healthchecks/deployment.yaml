@@ -88,9 +88,6 @@ spec:
             - name: startup
               mountPath: /app/healthchecks/startup
               subPath: startup
-            - name: logo
-              mountPath: /app/healthchecks/static/img/logo.png
-              subPath: logo.png
           resources:
             requests:
               memory: 256Mi
@@ -114,8 +111,4 @@ spec:
         - name: startup
           configMap:
             name: startup
-            defaultMode: 0755
-        - name: logo
-          configMap:
-            name: logo
             defaultMode: 0755
