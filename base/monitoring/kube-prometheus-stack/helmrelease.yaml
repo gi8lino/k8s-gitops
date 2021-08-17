@@ -68,11 +68,11 @@ spec:
         pathType: Prefix
         paths:
           - /
-    defaultRules:
-      rules:
-        etcd: false
-        kubeScheduler: false
-        kubernetesResources: false
+  defaultRules:
+    rules:
+      etcd: false
+      kubeScheduler: false
+      kubernetesResources: false
     grafana:
       grafana.ini:
         auth:
