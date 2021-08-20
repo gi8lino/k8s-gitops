@@ -39,7 +39,6 @@ spec:
     pilot:
       dashboard: false
       enabled: true
-      token: ${TRAEFIK_PILOT_TOKEN}
     ports:
       metrics: null
       gitlab-ssh:
@@ -73,9 +72,6 @@ spec:
   valuesFrom:
     - kind: Secret
       name: traefik-helm-values
-      optional: false
-    - kind: Secret
-      name: traefik-pilot-token
       optional: false
   install:
     crds: Skip
