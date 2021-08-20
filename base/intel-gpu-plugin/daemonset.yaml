@@ -19,7 +19,7 @@ spec:
         kubernetes.io/arch: amd64
       containers:
         - name: intel-gpu-plugin
-          image: intel/intel-gpu-plugin:devel@sha256:0a5f4b3a63cd5268ed9b1411bd10c95353d390ce0731596530ebd99b233d388c
+          image: intel/intel-gpu-plugin:devel@sha256:694e6a9201eddba6a702ec67ba5952194cca213cecc201e3335fa3bef6dcc877
           env:
             - name: NODE_NAME
               valueFrom:
