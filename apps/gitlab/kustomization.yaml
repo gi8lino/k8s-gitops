@@ -5,4 +5,3 @@ resources:
   - gitlab
   - gitlab-backup-mirror
   - gitlab-runner
-  - secret.yaml
