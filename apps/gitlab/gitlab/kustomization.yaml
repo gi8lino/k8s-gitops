@@ -5,3 +5,4 @@ resources:
   - networkpolicies
   - ingress.yaml
   - ingressroutetcp.yaml
+  - secret.yaml
