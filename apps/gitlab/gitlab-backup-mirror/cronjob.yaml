@@ -41,13 +41,13 @@ spec:
                 - name: DESTINATION_BUCKET
                   value: gitlab
                 - name: JOB_NAME
-                  value: gitlab-minio-secret
+                  value: gitlab-backup-mirror
                 - name: RETENTION
                   value: 7d0h0m
                 - name: PUSHGATEWAY_URL
                   value: http://prometheus-pushgateway.monitoring.svc.cluster.local:9091
               envFrom:
                 - secretRef:
-                    name: gitlab-minio-secret
+                    name: gitlab-backup-mirror
           restartPolicy: Never
           automountServiceAccountToken: false
