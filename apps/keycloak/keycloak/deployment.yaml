@@ -44,7 +44,7 @@ spec:
               memory: 32Mi
       containers:
         - name: keycloak
-          image: quay.io/keycloak/keycloak:15.0.1
+          image: quay.io/keycloak/keycloak:15.0.2
           env:
             - name: DB_ADDR
               value: keycloak-postgres.keycloak.svc.cluster.local
