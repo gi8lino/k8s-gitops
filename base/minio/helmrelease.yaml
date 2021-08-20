@@ -24,7 +24,6 @@ spec:
         value: Europe/Zurich
     ingress:
       annotations:
-        kubernetes.io/ingress.class: traefik
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: allow-lan-only@file
       enabled: true
@@ -33,3 +32,13 @@ spec:
       storageClass: backup
     secretKey:
       password: ${MINIO_SECRETKEY}
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          - target:
+              kind: Ingress
+              name: minio
+            patch:
+              - op: add
+                path: /spec/ingressClassName
+                value: traefik
