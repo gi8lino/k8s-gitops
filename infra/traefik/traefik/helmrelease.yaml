@@ -20,11 +20,11 @@ spec:
     deployment:
       annotations:
         reloader.stakater.com/auto: "true"
-    globalArguments: []
+    globalArguments: null
     ingressClass:
       enabled: true
-      isDefaultClass: true
       fallbackApiVersion: v1
+      isDefaultClass: true
     ingressRoute:
       dashboard:
         enabled: false
@@ -36,7 +36,10 @@ spec:
       path: /certs
       size: 128Mi
       storageClass: nvme
+    pilot:
+      dashboard: false
     ports:
+      metrics: null
       gitlab-ssh:
         expose: true
         exposedPort: 22
@@ -63,6 +66,8 @@ spec:
       - mountPath: /data
         name: traefik-config
         type: configMap
+    metrics:
+      prometheus: null
   valuesFrom:
     - kind: Secret
       name: traefik-helm-values
