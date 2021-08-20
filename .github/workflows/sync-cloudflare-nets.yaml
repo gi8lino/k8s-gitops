@@ -17,10 +17,10 @@ jobs:
         run: |
           wget -O /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.11.2/yq_linux_amd64
           chmod +x /tmp/yq
-          /tmp/yq eval --inplace '.spec.nets = []' infra/traefik/networkpolicies/cloudflare-networkset.yaml
-          curl -sS https://www.cloudflare.com/ips-v4 | sort | xargs -rn 1 -I{} /tmp/yq eval --inplace '.spec.nets += "{}"' infra/traefik/networkpolicies/cloudflare-networkset.yaml
-          file=$(/tmp/yq eval --prettyPrint infra/traefik/networkpolicies/cloudflare-networkset.yaml)
-          echo -e "---\n${file}" > infra/traefik/networkpolicies/cloudflare-networkset.yaml
+          /tmp/yq eval --inplace '.spec.nets = []' infra/traefik/traefik/networkpolicies/cloudflare-networkset.yaml
+          curl -sS https://www.cloudflare.com/ips-v4 | sort | xargs -rn 1 -I{} /tmp/yq eval --inplace '.spec.nets += "{}"' infra/traefik/traefik/networkpolicies/cloudflare-networkset.yaml
+          file=$(/tmp/yq eval --prettyPrint infra/traefik/traefik/networkpolicies/cloudflare-networkset.yaml)
+          echo -e "---\n${file}" > infra/traefik/traefik/networkpolicies/cloudflare-networkset.yaml
 
       - name: Create pull request for cloudflare network range update
         uses: peter-evans/create-pull-request@v3
@@ -32,7 +32,7 @@ jobs:
           signoff: true
           committer: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
-          assignees: "gi8lino"
+          assignees: "rxbn"
           commit-message: "update cloudflare network ranges"
           body: |
             Cloudflare IP ranges: https://www.cloudflare.com/ips/
