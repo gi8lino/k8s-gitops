@@ -2,7 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - gitlab
-  - gitlab-backup-mirror
-  - gitlab-runner
-  - secret.yaml
+  - networkpolicies
+  - ingress.yaml
+  - ingressroutetcp.yaml
