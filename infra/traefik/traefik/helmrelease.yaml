@@ -46,6 +46,8 @@ spec:
         exposedPort: 22
         port: 2222
         protocol: TCP
+      traefik:
+        expose: true
       web:
         redirectTo: websecure
       websecure:
