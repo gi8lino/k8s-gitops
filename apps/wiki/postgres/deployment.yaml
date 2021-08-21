@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       annotations:
-        k8up.syn.tools/backupcommand: pg_dumpall -U postgres -h 127.0.0.1
+        k8up.syn.tools/backupcommand: pg_dumpall -U wikijs -h 127.0.0.1
       labels:
         app: wiki-postgres
     spec:
