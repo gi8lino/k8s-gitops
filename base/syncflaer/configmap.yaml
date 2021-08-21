@@ -13,9 +13,7 @@ data:
 
     traefikInstances:
       - name: k3s
-        url: https://traefik.local.${BASE_DOMAIN}
-        customRequestHeaders:
-          Forward-Auth-Token: env:FORWARD_AUTH_TOKEN
+        url: http://traefik.traefik.svc.cluster.local:9000
         ignoredRules:
           - local.${BASE_DOMAIN}
           - dev.${BASE_DOMAIN}
