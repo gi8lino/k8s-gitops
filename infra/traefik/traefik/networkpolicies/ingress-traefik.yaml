@@ -35,7 +35,6 @@ spec:
         ports:
           - 2222
           - 8000
-          - 9000
     - action: Allow
       protocol: UDP
       source:
@@ -44,4 +43,3 @@ spec:
         ports:
           - 2222
           - 8000
-          - 9000
