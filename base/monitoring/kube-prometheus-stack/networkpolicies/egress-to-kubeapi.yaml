@@ -2,10 +2,10 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-notification-controller
-  namespace: flux-system
+  name: egress-to-kubeapi
+  namespace: monitoring
 spec:
-  selector: app == 'notification-controller'
+  selector: all()
   types:
     - Egress
   egress:
@@ -16,8 +16,3 @@ spec:
           - ${HOST_IP}/32
         ports:
           - 6443
-    - action: Allow
-      protocol: TCP
-      destination:
-        ports:
-          - 443
