@@ -1,0 +1,15 @@
+---
+version: "3"
+
+tasks:
+  k:
+    desc: Run generate_kustomizations.sh script
+    cmds:
+      - ./hack/generate_kustomizations.sh
+    silent: true
+
+  s:
+    desc: Run generate_secret_templates.sh script
+    cmds:
+      - pushd hack && ./generate_secret_templates.sh && popd
+    silent: true

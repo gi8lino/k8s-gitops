@@ -1,0 +1,7 @@
+---
+version: "3"
+
+includes:
+  flux: .taskfiles/flux.yml
+  pre-commit: .taskfiles/pre-commit.yml
+  hack: .taskfiles/hack.yml
