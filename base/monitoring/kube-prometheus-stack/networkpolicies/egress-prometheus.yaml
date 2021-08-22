@@ -67,6 +67,7 @@ spec:
         ports:
           - 9100   # node-exporter
           - 10250  # kubelet
+          - 6443   # kube api
     - action: Allow
       protocol: TCP
       destination:
