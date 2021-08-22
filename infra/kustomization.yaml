@@ -5,5 +5,4 @@ resources:
   - local-path-provisioner
   - nfs-subdir-external-provisioner
   - metallb
-  - monitoring
   - traefik
