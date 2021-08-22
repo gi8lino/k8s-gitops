@@ -9,6 +9,7 @@ resources:
   - egress-grafana.yaml
   - prometheus-egress-traefik.yaml
   - ingress-alertmanager.yaml
+  - egress-to-kubeapi.yaml
   - grafana-egress-traefik.yaml
   - egress-alertmanager.yaml
   - egress-prometheus.yaml
