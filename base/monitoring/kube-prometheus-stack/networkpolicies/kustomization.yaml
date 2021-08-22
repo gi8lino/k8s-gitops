@@ -3,13 +3,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ingress-grafana.yaml
+  - egress-kube-state-metrics.yaml
   - ingress-kube-state-metrics.yaml
   - ingress-kube-prometheus-stack-operator.yaml
   - ingress-prometheus.yaml
+  - egress-kube-prometheus-stack-operator.yaml
   - egress-grafana.yaml
   - prometheus-egress-traefik.yaml
   - ingress-alertmanager.yaml
-  - egress-to-kubeapi.yaml
   - grafana-egress-traefik.yaml
   - egress-alertmanager.yaml
   - egress-prometheus.yaml

@@ -2,10 +2,10 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-to-kubeapi
+  name: egress-kube-state-metrics
   namespace: monitoring
 spec:
-  selector: all()
+  selector: app.kubernetes.io/name == 'kube-state-metrics'
   types:
     - Egress
   egress:
