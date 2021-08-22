@@ -5,5 +5,4 @@ resources:
   - flux-system
   - metrics-server
   - deny_all
-  - kubeapi
   - coredns
