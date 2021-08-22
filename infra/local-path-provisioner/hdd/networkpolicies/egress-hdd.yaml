@@ -1,10 +1,11 @@
 ---
 apiVersion: crd.projectcalico.org/v1
-kind: GlobalNetworkPolicy
+kind: NetworkPolicy
 metadata:
-  name: egress-to-kubeapi
+  name: egress-hdd
+  namespace: local-path-provisioner
 spec:
-  selector: all()
+  selector: app.kubernetes.io/instance == 'hdd'
   types:
     - Egress
   egress:

@@ -8,6 +8,9 @@ spec:
   backupCommand: /app/k8s-pre-backup -s
   fileExtension: .tgz
   pod:
+    metadata:
+      labels:
+        job: cluster-resources-backup
     spec:
       containers:
         - name: cluster-resources-backup
