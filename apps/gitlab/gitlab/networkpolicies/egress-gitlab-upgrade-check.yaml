@@ -5,7 +5,7 @@ metadata:
   name: egress-gitlab-upgrade-check
   namespace: gitlab
 spec:
-  selector: job-name starts with 'gitlab-gitlab-upgrade-check'
+  selector: job-name contains 'gitlab-upgrade-check'
   types:
     - Egress
   egress:
