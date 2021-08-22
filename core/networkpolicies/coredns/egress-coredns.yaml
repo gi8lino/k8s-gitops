@@ -13,6 +13,13 @@ spec:
       protocol: TCP
       destination:
         nets:
+          - ${HOST_IP}/32
+        ports:
+          - 6443
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
           - ${DNS_IP}/32
         ports:
           - 53
