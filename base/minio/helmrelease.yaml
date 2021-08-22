@@ -47,5 +47,5 @@ spec:
               name: minio
             patch:
               - op: add
-                path: /spec/shareProcessNamespace
+                path: /spec/template/spec/shareProcessNamespace
                 value: true
