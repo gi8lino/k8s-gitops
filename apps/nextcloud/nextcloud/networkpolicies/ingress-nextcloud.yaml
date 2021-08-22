@@ -5,7 +5,9 @@ metadata:
   name: ingress-nextcloud
   namespace: nextcloud
 spec:
-  selector: app == 'nextcloud'
+  selector: >-
+    app == 'nextcloud' &&
+    component == 'fpm-nginx'
   types:
     - Ingress
   ingress:
