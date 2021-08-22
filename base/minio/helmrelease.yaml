@@ -42,3 +42,10 @@ spec:
               - op: add
                 path: /spec/ingressClassName
                 value: traefik
+          - target:
+              kind: Deployment
+              name: minio
+            patch:
+              - op: add
+                path: /spec/shareProcessNamespace
+                value: true
