@@ -1,0 +1,18 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-calico-kube-controllers
+  namespace: kube-system
+spec:
+  selector: k8s-app == 'calico-kube-controllers'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - ${HOST_IP}/32
+        ports:
+          - 6443
