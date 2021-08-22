@@ -16,6 +16,11 @@ spec:
         name: traefik
         namespace: flux-system
       interval: 5m
+  dependsOn:
+    - name: metallb
+      namespace: metallb
+    - name: nvme
+      namespace: local-path-provisioner
   values:
     deployment:
       annotations:
