@@ -1,10 +1,11 @@
 ---
 apiVersion: crd.projectcalico.org/v1
-kind: GlobalNetworkPolicy
+kind: NetworkPolicy
 metadata:
-  name: egress-to-kubeapi
+  name: egress-gitlab-runner
+  namespace: gitlab
 spec:
-  selector: all()
+  selector: release == 'gitlab-runner'
   types:
     - Egress
   egress:
