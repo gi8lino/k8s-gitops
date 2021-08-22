@@ -1,0 +1,18 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-gitlab-upgrade-check-pod
+  namespace: gitlab
+spec:
+  selector: job-name starts with 'gitlab-upgrade-check-pod'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - ${HOST_IP}/32
+        ports:
+          - 6443
