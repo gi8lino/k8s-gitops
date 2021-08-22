@@ -2,10 +2,10 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-gitlab-upgrade-check-pod
+  name: egress-gitlab-upgrade-check
   namespace: gitlab
 spec:
-  selector: job-name starts with 'gitlab-upgrade-check-pod'
+  selector: job-name starts with 'gitlab-upgrade-check'
   types:
     - Egress
   egress:
