@@ -16,3 +16,10 @@ spec:
           - ${HOST_IP}/32
         ports:
           - 10250
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - ${HOST_IP}/32
+        ports:
+          - 6443
