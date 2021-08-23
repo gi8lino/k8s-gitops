@@ -29,10 +29,10 @@ function process_folder {
 
   echo "${KUSTOMIZATION_TEMPLATE}" > kustomization.yaml
 
-
   for folder in $folders; do
     echo "  - ${folder#./}" >> kustomization.yaml
   done
+
   for file in $files; do
     echo "  - ${file#./}" >> kustomization.yaml
   done
