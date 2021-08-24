@@ -14,5 +14,5 @@ spec:
       destination:
         ports:
           - 80   # docker-mods
-          - 443  # download nzb's if send with button on newz-complex
+          - 443  # docker-mods
           - 563  # usenet
