@@ -5,7 +5,7 @@ metadata:
   name: filebrowser-config
   namespace: filebrowser
 data:
-  filebrowser.json: |-
+  .filebrowser.json: |-
     {
       "port": 80,
       "baseURL": "https://filebrowser.local.${BASE_DOMAIN}",
