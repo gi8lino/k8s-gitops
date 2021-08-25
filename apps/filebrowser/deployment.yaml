@@ -64,4 +64,4 @@ spec:
         - name: config
           configMap:
             name: filebrowser-config
-            defaultMode: 0655
+            defaultMode: 0644
