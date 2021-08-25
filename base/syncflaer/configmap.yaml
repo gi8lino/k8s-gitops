@@ -12,7 +12,7 @@ data:
         webhookURL: env:SLACK_WEBHOOK_URL
 
     traefikInstances:
-      - name: k3s
+      - name: kubernetes
         url: http://traefik.traefik.svc.cluster.local:9000
         ignoredRules:
           - local.${BASE_DOMAIN}
