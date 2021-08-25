@@ -19,7 +19,7 @@ spec:
     communications:
       slack:
         enabled: true
-        channel: k3s
+        channel: kubernetes
     config:
       recommendations: false
       settings:
