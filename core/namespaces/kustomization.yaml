@@ -7,6 +7,7 @@ resources:
   - reloader.yaml
   - renovate.yaml
   - gitlab.yaml
+  - botkube.yaml
   - nfs-subdir-external-provisioner.yaml
   - nextcloud.yaml
   - filebrowser.yaml

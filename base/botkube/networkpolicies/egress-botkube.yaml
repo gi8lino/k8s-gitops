@@ -1,0 +1,23 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-botkube
+  namespace: botkube
+spec:
+  selector: app == 'botkube'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 443
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - ${HOST_IP}/32
+        ports:
+          - 6443
