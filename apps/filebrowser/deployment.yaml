@@ -24,8 +24,6 @@ spec:
       containers:
         - name: filebrowser
           image: filebrowser/filebrowser:v2.11.0-alpine
-          command:
-            - --auth.method=noauth
           env:
             - name: TZ
               value: Europe/Zurich
