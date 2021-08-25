@@ -11,7 +11,7 @@ data:
       "baseURL": "",
       "address": "",
       "log": "stdout",
-      "database": "/db/database.db",
+      "database": "/db/filebrowser.db",
       "root": "/srv",
       "auth.method": "noaut"
     }
