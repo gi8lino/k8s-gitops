@@ -50,8 +50,8 @@ spec:
             - name: db
               mountPath: /db
             - name: config
-              mountPath: /.filebrowser.json
-              subPath: /.filebrowser.json
+              mountPath: .filebrowser.json
+              subPath: .filebrowser.json
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
