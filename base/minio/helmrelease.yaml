@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: minio
-      version: 7.1.8
+      version: 7.1.9
       sourceRef:
         kind: HelmRepository
         name: bitnami
