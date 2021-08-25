@@ -8,8 +8,8 @@ data:
   .filebrowser.json: |-
     {
       "port": 80,
-      "baseURL": "https://filebrowser.local.${BASE_DOMAIN}",
-      "address": "localhost",
+      "baseURL": "",
+      "address": "",
       "log": "stdout",
       "database": "/db/filebrowser.db",
       "root": "/srv",
