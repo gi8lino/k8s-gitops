@@ -49,9 +49,9 @@ spec:
               mountPath: /srv
             - name: db
               mountPath: /db
-            - name: filebrowser-config
-              mountPath: .filebrowser.json
-              subPath: filebrowser.json
+            - name: config
+              mountPath: /.filebrowser.json
+              subPath: /.filebrowser.json
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -61,9 +61,7 @@ spec:
         - name: db
           persistentVolumeClaim:
             claimName: filebrowser-db
-        - configMap:
-            items:
-              - key: filebrowser.json
-                path: filebrowser.json
+        - name: config
+          configMap:
             name: filebrowser-config
-          name: filebrowser-config
+            defaultMode: 0655
