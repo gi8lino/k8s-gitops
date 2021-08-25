@@ -25,14 +25,6 @@ spec:
       settings:
         clustername: ${BASE_DOMAIN/./-}
       resources:
-        - name: v1/pods
-          namespaces:
-            include:
-              - all
-          events:
-            - create
-            - delete
-            - error
         - name: v1/services
           namespaces:
             include:
