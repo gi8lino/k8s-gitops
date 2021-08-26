@@ -26,3 +26,10 @@ spec:
           - 80
           - 443
           - 587
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+        ports:
+          - 8443  # oidc
