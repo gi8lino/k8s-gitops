@@ -5,7 +5,9 @@ metadata:
   name: ingress-wiki
   namespace: wiki
 spec:
-  selector: app == 'wiki'
+  selector: >-
+    app == 'wiki' &&
+    component == 'wiki'
   types:
     - Ingress
   ingress:

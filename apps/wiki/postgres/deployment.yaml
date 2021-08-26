@@ -4,13 +4,17 @@ kind: Deployment
 metadata:
   name: wiki-postgres
   namespace: wiki
+  labels:
+    app: wiki
+    component: postgres
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wiki-postgres
+      app: wiki
+      component: postgres
   strategy:
     type: Recreate
   template:
@@ -18,7 +22,8 @@ spec:
       annotations:
         k8up.syn.tools/backupcommand: pg_dumpall -U wikijs -h 127.0.0.1
       labels:
-        app: wiki-postgres
+        app: wiki
+        component: postgres
     spec:
       containers:
         - name: wiki-postgres

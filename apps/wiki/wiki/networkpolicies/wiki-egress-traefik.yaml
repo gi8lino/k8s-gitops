@@ -13,6 +13,8 @@ spec:
       protocol: TCP
       destination:
         namespaceSelector: projectcalico.org/name == 'wiki'
-        selector: app == 'wiki'
+        selector: >-
+          app == 'wiki' &&
+          component == 'wiki'
         ports:
           - 3000

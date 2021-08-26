@@ -5,14 +5,18 @@ metadata:
   name: ingress-wiki-postgres
   namespace: wiki
 spec:
-  selector: app == 'wiki-postgres'
+  selector: >-
+    app == 'wiki' &&
+    component == 'postgres'
   types:
     - Ingress
   ingress:
     - action: Allow
       protocol: TCP
       source:
-        selector: app == 'wiki'
+        selector: >-
+          app == 'wiki' &&
+          component == 'wiki'
       destination:
         ports:
           - 5432

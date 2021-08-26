@@ -2,6 +2,4 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - egress-wiki.yaml
-  - ingress-wiki.yaml
-  - wiki-egress-traefik.yaml
+  - ingress-wiki-postgres.yaml
