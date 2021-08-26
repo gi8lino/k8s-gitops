@@ -4,6 +4,9 @@ kind: Deployment
 metadata:
   name: keycloak
   namespace: keycloak
+  labels:
+    app: keycloak
+    component: keycloak
 spec:
   replicas: 1
   selector:
