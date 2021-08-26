@@ -5,14 +5,18 @@ metadata:
   name: egress-wiki
   namespace: wiki
 spec:
-  selector: app == 'wiki'
+  selector: >-
+    app == 'wiki' &&
+    component == 'wiki'
   types:
     - Egress
   egress:
     - action: Allow
       protocol: TCP
       destination:
-        selector: app == 'wiki-postgres'
+        selector: >-
+          app == 'wiki' &&
+          component == 'postgres'
         ports:
           - 5432
     - action: Allow
@@ -22,10 +26,3 @@ spec:
           - 80
           - 443
           - 587
-    - action: Allow
-      protocol: TCP
-      destination:
-        namespaceSelector: projectcalico.org/name == 'traefik'
-        selector: app.kubernetes.io/instance == 'traefik'
-        ports:
-          - 8443
