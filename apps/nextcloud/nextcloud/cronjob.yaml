@@ -16,6 +16,8 @@ spec:
         metadata:
           labels:
             job: nextcloud-cron
+          annotations:
+            botkube.io/disable: "true"
         spec:
           restartPolicy: Never
           containers:
