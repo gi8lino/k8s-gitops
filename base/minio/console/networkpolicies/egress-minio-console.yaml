@@ -1,0 +1,19 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-minio-console
+  namespace: minio
+spec:
+  selector: >-
+    app == 'minio' &&
+    component == 'console'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: app.kubernetes.io/instance == 'minio'
+        ports:
+          - 9000

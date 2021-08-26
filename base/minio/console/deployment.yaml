@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-console
+  namespace: minio
+  labels:
+    app: minio
+    component: console
+spec:
+  revisionHistoryLimit: 3
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: minio
+      component: console
+  template:
+    metadata:
+      labels:
+        app: minio
+        component: console
+    spec:
+      containers:
+        - name: minio-console
+          image: "minio/console:v0.7.4"
+          imagePullPolicy: IfNotPresent
+          args:
+            - server
+          env:
+            - name: CONSOLE_MINIO_SERVER
+              value: http://minio.minio.svc.cluster.local:9000
+            - name: TZ
+              value: Europe/Zurich
+          envFrom:
+            - secretRef:
+                name: minio-console
+          ports:
+            - containerPort: 9090
+          startupProbe:
+            tcpSocket:
+              port: 9090
+            initialDelaySeconds: 0
+            failureThreshold: 30
+            timeoutSeconds: 1
+            periodSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: 9090
+            initialDelaySeconds: 0
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 30
