@@ -33,3 +33,12 @@ spec:
       destination:
         ports:
           - 9000
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: >-
+          app == 'minio' &&
+          component == 'console'
+      destination:
+        ports:
+          - 9000
