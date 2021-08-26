@@ -4,6 +4,9 @@ kind: Deployment
 metadata:
   name: keycloak-postgres
   namespace: keycloak
+  labels:
+    app: keycloak
+    component: postgres
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
