@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: forward-auth
   namespace: traefik
-  label:
+  labels:
     app: forward-auth
   annotations:
     reloader.stakater.com/auto: "true"
