@@ -4,6 +4,9 @@ kind: Deployment
 metadata:
   name: wiki-postgres
   namespace: wiki
+  labels:
+    app: wiki
+    component: postgres
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
