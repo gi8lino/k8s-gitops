@@ -4,6 +4,9 @@ kind: CronJob
 metadata:
   name: gitlab-backup-mirror
   namespace: gitlab
+  labels:
+    app: gitlab-backup-mirror
+    component: job
 spec:
   schedule: '0 2 * * *'
   failedJobsHistoryLimit: 1
