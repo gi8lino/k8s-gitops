@@ -8,7 +8,18 @@
     "regexManagers": [
         {
             "fileMatch": [
-                "(apps|base|infra)\/(.+\/)*helmrelease\\.yaml$"
+                ".github\\/workflows\\/sync-cloudflare-nets\\.yaml$"
+            ],
+            "matchStrings": [
+                "depName=(?<depName>.*)\\s.*\\/(?<currentValue>.*?)/"
+            ],
+            "datasourceTemplate": [
+                "github-releases"
+            ]
+        },
+        {
+            "fileMatch": [
+                "(apps|base|infra)/(.+/)*helmrelease\\.yaml$"
             ],
             "matchStrings": [
                 "registryUrl=(?<registryUrl>.*?)\\s +chart: (?<depName>.*?)\\n +version: (?<currentValue>.*)"
