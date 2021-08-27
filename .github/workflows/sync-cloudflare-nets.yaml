@@ -16,7 +16,7 @@ jobs:
       - name: Process YAML
         run: |
           # renovate depName=mikefarah/yq
-          wget -O /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.11.2/yq_linux_amd64
+          wget -O /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.12.1/yq_linux_amd64
           chmod +x /tmp/yq
           /tmp/yq eval --inplace '.spec.nets = []' infra/traefik/traefik/networkpolicies/cloudflare-networkset.yaml
           curl -sS https://www.cloudflare.com/ips-v4 | sort | xargs -rn 1 -I{} /tmp/yq eval --inplace '.spec.nets += "{}"' infra/traefik/traefik/networkpolicies/cloudflare-networkset.yaml
