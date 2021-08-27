@@ -29,12 +29,10 @@ function process_folder {
 
   echo "${KUSTOMIZATION_TEMPLATE}" > kustomization.yaml
 
-  for folder in $folders; do
-    echo "  - ${folder#./}" >> kustomization.yaml
-  done
+  resources="${folders} ${files}"
 
-  for file in $files; do
-    echo "  - ${file#./}" >> kustomization.yaml
+  for resource in $resources; do
+    echo "  - ${resource#./}" >> kustomization.yaml
   done
 
   [[ -z "${folders}" ]] && popd && return
