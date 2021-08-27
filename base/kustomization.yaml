@@ -5,7 +5,6 @@ resources:
   - reloader
   - syncflaer
   - minio
-  - botkube
   - intel-gpu-plugin
   - k8up
   - monitoring
