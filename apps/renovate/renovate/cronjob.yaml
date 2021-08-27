@@ -19,8 +19,6 @@ spec:
         metadata:
           labels:
             job: renovate
-          annotations:
-            botkube.io/disable: "true"
         spec:
           initContainers:
             - name: wait-for-redis
