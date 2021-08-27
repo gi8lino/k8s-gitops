@@ -59,7 +59,4 @@ spec:
     - kind: HelmRelease
       namespace: minio
       name: "*"
-    - kind: HelmRelease
-      namespace: botkube
-      name: "*"
   suspend: false

@@ -29,8 +29,6 @@ spec:
             image = "alpine:latest"
             [runners.kubernetes.pod_labels]
               gitlab-runner = "ci-job"
-            [runners.kubernetes.pod_annotations]
-              "botkube.io/disable" = "true"
           [runners.feature_flags]
             FF_GITLAB_REGISTRY_HELPER_IMAGE = true
       locked: false

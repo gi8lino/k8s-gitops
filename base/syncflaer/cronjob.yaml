@@ -16,8 +16,6 @@ spec:
         metadata:
           labels:
             job: syncflaer
-          annotations:
-            botkube.io/disable: "true"
         spec:
           containers:
             - name: syncflaer
