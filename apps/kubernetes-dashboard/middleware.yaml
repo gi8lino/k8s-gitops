@@ -1,10 +1,41 @@
----
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: kubernetes-dashboard-auth
-  namespace: kubernetes-dashboard
+    name: kubernetes-dashboard-auth
+    namespace: kubernetes-dashboard
 spec:
-  headers:
-    customRequestHeaders:
-      Authorization: Bearer ${KUBERNETES_DASHBOARD_TOKEN}
+    headers:
+        customRequestHeaders:
+            Authorization: ENC[AES256_GCM,data:cLXcZL4IbjAakCvnvM0PgYnHnshmJk3Fxe6AvNc6m2tygoSYwK3bO2auTlRF/XsjtP5mGiVTpAb/E86rdA/H5TPeTGlfsBm/AiCoggWWaMBEsx8IMxZFEiLamlUBH1QMlcrvsNJvSz0/CYs8hJsU3DQtzc0va0NIE4y9ONHITP+woycHG/6poX1OhONdxvQWnTuk+R8ms91OByPrhZ3IT1+auLfxhZAi0Nq38wSV3f4D+CEsvHFN6QtqBTRhUWLWciKzVBnQTfOaUX6lDotS1tlURGX8PPCZpzreQEZs0bSTGnDUob2mOiMeQzUQYelPYftVw/M1xc6Eca+0IupTtDtEwTfCPgut3mQkdyklve55Pj3IYXDnXnNXReXFJ++rHJOK8lFYHehph0x6IbDkhJXXLhtbT+ZlSbnzHsSTK5NV6bGV22zGCWkLDS8A7/5ahSqgmQ12IINo6wh08m/DlYAkaa9BThiRRtg1GRYy9JXDuJSAQo8anuGnrx1lfP6khkzZEk6n0i5yR0/BZDBmPyYeL1jruoyWTJ9eRmNKgjjjF8YzRcSWgaM25xiIIGidest9xaMXPe1GgQi4NBn+ca8BwLEr2dY591aWDCgKPzB2iYgc9uAIxFiTzX9aTPmujnnGxCsCbdzJQlEc+4ZHK7c3K3newd7CK9rsATeP2kjJLjslRXBIggH+p9QRzOoFNkrFlTcR0JP7tDZhQsQQ9ZtGo/+rzks7iSf1dmfOREnKlNBbgf3++02k98Q3462aq5Elpcbz2i3UB0f8mI3sXmtXYeb9obdKNVtSJcH6ODt5fWlG2i2Vcvq6Gi0PERBc9oHdQJIMh3Ic0/gVQc3PN6LtXc2Nh0gJ7eAOxr5lN5sjELvu1FE0INAP8yDWJdLg5OVTYF6TfD79w3hB+lhCw8xzG+NxpdbLyp4OEPnkIkCP7ojEJhgGtRikgcT3Ss07GBwf3ymUgc4P0YpBnLsk/c/E7a/eKBK26iXR+7W/XbR0yV0EJLxwaJBHCSY71xvmbtlpG+Q8F/OJxp2mIYM09VhxYLa7OEu151LlRLMUqQWekFxYkt4unUXibh4qYlzIgYC3/s3qxOKjRDorPuNQ4RMDT/1KF+nc/Esz/euNDr7d813Bx+z6mN7pFRRSAQR+DPPh7G+pfnOQprknZZ6EZhQM8ckIJzhxl1UUuCli1YTHRXE7UOnel5M3FAryl8Mra5wM5SObVGx+SiTlBcQBCwGinNOFPEtKOuofUj6DnwRe4RTM8Hufo6Q=,iv:GwegY1/SAL8XXDe/tcNpXQAvKSA20AeW3/eWRN+TcLg=,tag:6i0BcN+2GA2iL5VStEqwUw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2021-08-29T21:39:18Z"
+    mac: ENC[AES256_GCM,data:Xp2jeTS5MEvWLDsECyv6a6+vjjByjEzjZBEnjHd0cU2XlM7NFlifeh1BdUU/5M2Dhb+xyCkNRovjvHt3dku05nxdq0/7FePPFaIB5sdSFh4VBX2KHywEmQpn47oP6daBXLT8W+OjC/ryEXj4Yz2jaT1sc/cJXcEZG4p6jpOpBNc=,iv:OKrr8MEEw+aeVGd2VEL42MsNsA45w2+ysJ+qq8OaNpM=,tag:eI/hn+OsWOPJQTLfS+Ms4A==,type:str]
+    pgp:
+        - created_at: "2021-08-29T21:39:18Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7YwainPAAneAQ//WSDlTULJY0f7B8o1+bFyBl1eg6uO+LSxCecX/ITY4B1L
+            vTZfQ0ivIw+ZXpnbD6Q58sGUO3pXuR25m/wjoPRi1Fa4sJsuWIiU1UW1ybtC1e9A
+            ToxmHLtUnng+zHilM58qst+OoejwAcuBEq23fVNjp679DOyoZ9gFHodSG2X5/qfl
+            q24l6rj2VWkuOorDr7+LhXUslYNiB1mJihQJKyYXADRyfUPBG/JCy3wI1BswtNTR
+            n6elDrmtcOEc+3J+oU0yyarhmTn/YOWKNkeA1O/E2twQBua/YMoK9giU8XH55wnk
+            rTGA1dr0Fd30XlWkGL6MeiThGxq2QKbD7Ikzwwd5Qb7zI1okagdJo8c4n24eRcmk
+            YAdrlKwnsZ1yN+/IvqXNuoxnd7ayPkGjYt8OcVPzsyeTGBaCcYq8w1Z++rrryYy3
+            tWvZlYGUOxHUrXOVAeNmxgUbJHZHyGWNJWYmI+BBWN7FpX/5BvpoO9uHgmNte/9W
+            O0y1QjqgjYU0UwPzuwGaNnpsTOgKNGFS/UulK4QVSVmNw0QE5Hw+Dytx/Ehhycoc
+            2Lv9F0fcB0HUxuCFrFqIA1OhQkuKlzVbpV64GFhs2c3k183x4YEFyFAD2Ad+9l9Q
+            6kK4K2LGBKn9ByMvuuJ3WHMkCE4UfM8whQvZJSxoEzdSFzJkcX1kbmoek5zfQInU
+            ZgEJAhUBr7P6JPW8DST575IXRWKfu/4cKH0/6ASCDjIKO5KuqS+WDl6kpCx84L4b
+            X+M0Mq9nV/ic0RHEbESfAKu+qpNty+kl1zH5b4OEMekdskWcbkcTNTbD8tih6CQx
+            IfXOIIHm7Q==
+            =8EOp
+            -----END PGP MESSAGE-----
+          fp: E1D9FD40F6E4DCC09AF2A11BBA5567601F464823
+    encrypted_regex: ^(data|stringData|customRequestHeaders)$
+    version: 3.7.1
