@@ -1,0 +1,10 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: kubernetes-dashboard-auth
+  namespace: kubernetes-dashboard
+spec:
+  headers:
+    customRequestHeaders:
+      Authorization: Bearer ${KUBERNETES_DASHBOARD_TOKEN}

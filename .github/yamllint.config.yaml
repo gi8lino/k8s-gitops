@@ -2,6 +2,7 @@
 ignore: |
   secret.yaml
   cluster-secrets.yaml
+  apps/kubernetes-dashboard/middleware.yaml
 extends: default
 rules:
   truthy:
