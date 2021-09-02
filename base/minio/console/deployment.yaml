@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: minio-console
-          image: minio/console:v0.9.5
+          image: minio/console:v0.9.6
           imagePullPolicy: IfNotPresent
           args:
             - server
