@@ -5,7 +5,7 @@ metadata:
   name: ingress-elasticsearch
   namespace: cloudflare
 spec:
-  selector: app.kubernetes.io/instance == 'elasticsearch'
+  selector: app == 'elasticsearch'
   types:
     - Ingress
   ingress:

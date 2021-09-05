@@ -5,7 +5,6 @@ resources:
   - infracloudio.yaml
   - gitlab.yaml
   - nfs-subdir-external-provisioner.yaml
-  - elastic.yaml
   - prometheus-community.yaml
   - metallb.yaml
   - bitnami.yaml
