@@ -28,7 +28,7 @@ data:
     ELASTIC_FQDN=${ELASTIC_FQDN%/}  # remove ending slash
     MINUTES=${MINUTES:-60}
 
-    [ -n "${MINUTES##*[!0-9]*}" ] && echo "MINUTES must be INT" && exit 1
+    [ -n "${MINUTES##*[0-9]*}" ] && echo "MINUTES must be INT" && exit 1
 
     start_date=$(date -d "today -${MINUTES} minutes" +'%Y-%m-%dT%H:%M:%SZ')
     end_date=$(date +'%Y-%m-%dT%H:%M:%SZ')
