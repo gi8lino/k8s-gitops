@@ -69,6 +69,12 @@ spec:
           token_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/token
         server:
           root_url: https://grafana.local.${BASE_DOMAIN}
+      additionalDataSources:
+        - name: elasticsearch
+          type: elasticsearch
+          access: proxy
+          url: http://elasticsearch.cloudflare.svc.cluster.local:9200
+          database: cloudflare_fw_events
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
