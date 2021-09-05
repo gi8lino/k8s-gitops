@@ -23,7 +23,7 @@ spec:
     ingress:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: allow-lan-only@file,traefik-forward-auth@kubernetescrd,kubernetes-dashboard-kubernetes-dashboard-auth@kubernetescrd
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd,kubernetes-dashboard-kubernetes-dashboard-auth@kubernetescrd
       enabled: true
       hosts:
         - dash.local.${BASE_DOMAIN}

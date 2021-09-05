@@ -39,7 +39,7 @@ spec:
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: allow-lan-only@file,traefik-forward-auth@kubernetescrd
+          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
         enabled: true
         hosts:
           - alertmanager.local.${BASE_DOMAIN}
@@ -108,7 +108,7 @@ spec:
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: allow-lan-only@file,traefik-forward-auth@kubernetescrd
+          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
         enabled: true
         hosts:
           - prometheus.local.${BASE_DOMAIN}
