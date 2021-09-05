@@ -6,6 +6,7 @@ resources:
   - gitlab
   - healthchecks
   - kubernetes-dashboard
+  - cloudflare
   - wiki
   - filebrowser
   - keycloak

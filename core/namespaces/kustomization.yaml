@@ -11,6 +11,7 @@ resources:
   - nextcloud.yaml
   - filebrowser.yaml
   - metallb.yaml
+  - cloudflare.yaml
   - local-path-provisioner.yaml
   - syncflaer.yaml
   - media.yaml

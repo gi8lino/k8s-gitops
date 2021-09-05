@@ -1,0 +1,87 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflare-fw-sync
+  namespace: cloudflare
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
+data:
+  cloudflare: |
+    #!/bin/bash
+    set -o errexit
+
+    [ -z "${ZONE_ID}" ] && echo "ZONE_ID is not set!" && exit 1
+    [ -z "${GLOBAL_KEY}" ] && echo "GLOBAL_KEY is not set!" && exit 1
+    [ -z "${EMAIL}" ] && echo "EMAIL is not set!" && exit 1
+
+    INDEX_NAME=${INDEX_NAME:-cloudflare_fw_events}
+    ELASTIC_FQND=${ELASTIC_FQND:-http://localhost:9200}
+    ELASTIC_FQND=${ELASTIC_FQND%/}  # remove ending slash
+
+    back_seconds=60*60*24  # 24 hours
+    end_epoch=$(date +'%s')
+    let start_epoch=$end_epoch-$back_seconds
+
+    start_date=$(date -d="@$start_epoch" +'%Y-%m-%dT%H:%M:%SZ')
+    end_date=$(date -d="@$end_epoch" +'%Y-%m-%dT%H:%M:%SZ')
+
+    PAYLOAD='{ "query":
+      "query {
+        viewer {
+          zones(filter: { zoneTag: $zoneTag }) {
+          firewallEventsAdaptive(
+            filter: $filter
+            limit: 10000
+            orderBy: [datetime_DESC, rayName_DESC]
+          ) {
+              action
+              ruleId
+              rayName
+              clientAsn
+              clientCountryName
+              clientIP
+              clientRequestPath
+              clientRequestHTTPHost
+              clientRequestQuery
+              clientRefererHost
+              clientRequestScheme
+              edgeResponseStatus
+              originResponseStatus
+              datetime
+              source
+              userAgent
+            }
+          }
+        }
+      }",'
+
+    PAYLOAD="$PAYLOAD
+      \"variables\": {
+        \"zoneTag\": \"$ZoneID\",
+        \"filter\": {
+          \"datetime_gt\": \"$start_date\",
+          \"datetime_leq\": \"$end_date\"
+        }
+      }
+    }"
+
+    response=$(curl \
+      --request POST \
+      --header "Content-Type: application/json" \
+      --header "X-Auth-Email: ${EMAIL}" \
+      --header "X-Auth-key: ${GLOBAL_KEY}" \
+      --data "$(echo $PAYLOAD)" \
+      https://api.cloudflare.com/client/v4/graphql/)
+
+    jq .[] <<< $response
+
+    response=$(curl \
+      --silent \
+      --show-error \
+      --request POST \
+      --header "Content-Type: application/x-ndjson" \
+      --data-binary @<(jq -c '.data.viewer.zones[0].firewallEventsAdaptive[] | {"index":{"_id": .rayName}},  .' <<< ${response}) \
+      ${ELASTIC_FQND}/${INDEX_NAME}/_bulk)
+
+    [ $(jq .errors <<< ${response}) != false ] && jq <<< "${response}" && exit 1

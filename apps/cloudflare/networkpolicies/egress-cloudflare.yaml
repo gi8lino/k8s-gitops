@@ -1,0 +1,23 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-cloudflare
+  namespace: cloudflare
+spec:
+  selector: job == 'cloudflare-fw-sync'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 80
+          - 443
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: app.kubernetes.io/instance == 'elasticsearch'
+        ports:
+          - 9200
