@@ -60,7 +60,7 @@ spec:
         auth.basic:
           enabled: false
         auth.generic_oauth:
-          allow_sign_up: true
+          allow_sign_up: false
           auth_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/auth
           enabled: true
           name: ${BASE_DOMAIN} SSO
