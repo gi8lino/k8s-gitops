@@ -93,7 +93,7 @@
                 "^ghcr.io\\/linuxserver\\/(son|rad)arr"
             ],
             "versioning": "loose",
-            "allowedVersions": "!\\/5\\.14\\/"
+            "allowedVersions": "!/5\\.14/"
         }
     ]
 }
