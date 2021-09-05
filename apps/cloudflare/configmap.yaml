@@ -92,4 +92,4 @@ data:
       --data-binary @<(jq -c '.data.viewer.zones[0].firewallEventsAdaptive[] | {"index":{"_id": .rayName}},  .' <<< ${response}) \
       ${ELASTIC_FQDN}/${INDEX_NAME}/_bulk)
 
-    [ $(jq .errors <<< ${response}) != false ] && jq <<< "${response}" && exit 1
+    jq . <<< ${response}
