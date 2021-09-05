@@ -1,4 +1,5 @@
 {
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "semanticCommits": "enabled",
     "dependencyDashboard": true,
     "separateMajorMinor": false,
@@ -13,9 +14,7 @@
             "matchStrings": [
                 "depName=(?<depName>.*)\\s.*\\/(?<currentValue>.*?)\\/"
             ],
-            "datasourceTemplate": [
-                "github-releases"
-            ]
+            "datasourceTemplate": "github-releases"
         },
         {
             "fileMatch": [
@@ -24,9 +23,7 @@
             "matchStrings": [
                 "registryUrl=(?<registryUrl>.*?)\\s +chart: (?<depName>.*?)\\n +version: (?<currentValue>.*)"
             ],
-            "datasourceTemplate": [
-                "helm"
-            ]
+            "datasourceTemplate": "helm"
         },
         {
             "fileMatch": [
@@ -43,9 +40,7 @@
             "matchStrings": [
                 "registryUrl=(?<registryUrl>.*)\\s.*tag: (?<depName>.*)-(?<currentValue>.*)"
             ],
-            "datasourceTemplate": [
-                "helm"
-            ]
+            "datasourceTemplate": "helm"
         },
         {
             "fileMatch": [
@@ -54,9 +49,7 @@
             "matchStrings": [
                 "registryUrl=(?<registryUrl>.*) chart=(?<depName>.*)\\s.*tag: v(?<currentValue>.*)"
             ],
-            "datasourceTemplate": [
-                "helm"
-            ]
+            "datasourceTemplate": "helm"
         }
     ],
     "kubernetes": {
