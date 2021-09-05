@@ -1,0 +1,42 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: headers-default
+  namespace: traefik
+spec:
+  headers:
+    sslRedirect: true
+    browserXssFilter: true
+    contentTypeNosniff: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 15552000
+    customFrameOptionsValue: SAMEORIGIN
+    customResponseHeaders:
+      X-Robots-Tag: none,noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: allow-lan-only
+  namespace: traefik
+spec:
+  ipWhiteList:
+    sourceRange:
+      - ${LAN_NETWORK_RANGE}
+      - ${POD_NETWORK_RANGE}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: cf-real-ip
+  namespace: traefik
+spec:
+  plugin:
+    duplicateheader:
+      source: Cf-Connecting-Ip
+      destination:
+        - X-Forwarded-For
+        - X-Real-Ip
