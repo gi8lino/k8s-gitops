@@ -1,0 +1,46 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cloudflare-cron
+  namespace: cloudflare
+spec:
+  suspend: false
+  schedule: "*/5 * * * *"
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            job: cloudflare-fw-sync
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: cloudflare-cron
+              image: everpeace/curl-jq
+              command:
+                - bash
+              args:
+                - -c
+                - /tmp/cloudflare
+              env:
+                - name: ELASTIC_FQND
+                  value: http://elasticsearch.cloudflare.svc.cluster.local:9200
+                - name: INDEX_NAME
+                  value: cloudflare_fw_events
+              envFrom:
+                - secretRef:
+                    name: cloudflare-credentials
+          volumeMounts:
+            - name: cloudflare
+              mountPath: /tmp/cloudflare
+              subPath: cloudflare
+          automountServiceAccountToken: false
+      volumes:
+        - name: cloudflare
+          configMap:
+            name: cloudflare-fw-sync
+            defaultMode: 0755

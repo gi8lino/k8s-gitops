@@ -1,0 +1,18 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-elasticsearch
+  namespace: cloudflare
+spec:
+  selector: app.kubernetes.io/instance == 'elasticsearch'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: job == 'cloudflare-fw-sync'
+      destination:
+        ports:
+          - 9200
