@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://helm.elastic.co
       chart: elasticsearch
-      version: 8.0.0-SNAPSHOT
+      version: 7.14.0
       sourceRef:
         kind: HelmRepository
         name: elastic
