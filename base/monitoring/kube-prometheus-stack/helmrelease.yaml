@@ -78,6 +78,7 @@ spec:
               access: proxy
               url: http://elasticsearch.cloudflare.svc.cluster.local:9200
               database: cloudflare_fw_events
+              version: 7.10+
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
