@@ -18,6 +18,7 @@ data:
   cloudflare: |
     #!/bin/bash
     set -o errexit
+    set -o nounset
 
     [ -z "${ZONE_ID}" ] && echo "ZONE_ID is not set!" && exit 1
     [ -z "${GLOBAL_KEY}" ] && echo "GLOBAL_KEY is not set!" && exit 1
