@@ -82,7 +82,7 @@ data:
       --data "$(echo $PAYLOAD)" \
       https://api.cloudflare.com/client/v4/graphql/)
 
-    jq .[] <<< $response
+    jq . <<< $response  # show response output
 
     response=$(curl \
       --silent \
