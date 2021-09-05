@@ -87,14 +87,8 @@ spec:
         - name: merge-subtitles
           configMap:
             name: merge-subtitles
-            items:
-              - key: merge_subtitles.sh
-                path: merge_subtitles.sh
             defaultMode: 0755
         - name: startup
           configMap:
             name: sabnzbd-startup
-            items:
-              - key: startup
-                path: startup
             defaultMode: 0755
