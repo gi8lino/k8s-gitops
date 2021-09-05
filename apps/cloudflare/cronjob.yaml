@@ -34,10 +34,10 @@ spec:
               envFrom:
                 - secretRef:
                     name: cloudflare-credentials
-          volumeMounts:
-            - name: cloudflare
-              mountPath: /tmp/cloudflare
-              subPath: cloudflare
+              volumeMounts:
+                - name: cloudflare
+                  mountPath: /tmp/cloudflare
+                  subPath: cloudflare
           automountServiceAccountToken: false
       volumes:
         - name: cloudflare
