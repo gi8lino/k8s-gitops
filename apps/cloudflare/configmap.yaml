@@ -26,13 +26,12 @@ data:
     INDEX_NAME=${INDEX_NAME:-cloudflare_fw_events}
     ELASTIC_FQND=${ELASTIC_FQND:-http://localhost:9200}
     ELASTIC_FQND=${ELASTIC_FQND%/}  # remove ending slash
+    MINUTES=${MINUTES:-60}
 
-    back_seconds=60*60*24  # 24 hours
-    end_epoch=$(date +'%s')
-    let start_epoch=$end_epoch-$back_seconds
+    [ -n "${MINUTES##*[!0-9]*}" ] && echo "MINUTES must be INT" && exit 1
 
-    start_date=$(date -d="@$start_epoch" +'%Y-%m-%dT%H:%M:%SZ')
-    end_date=$(date -d="@$end_epoch" +'%Y-%m-%dT%H:%M:%SZ')
+    start_date=$(date -d "today -${MINUTES} minutes" +'%Y-%m-%dT%H:%M:%SZ')
+    end_date=$(date +'%Y-%m-%dT%H:%M:%SZ')
 
     PAYLOAD='{ "query":
       "query {
