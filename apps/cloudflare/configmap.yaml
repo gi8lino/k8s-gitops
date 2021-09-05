@@ -24,8 +24,8 @@ data:
     [ -z "${EMAIL}" ] && echo "EMAIL is not set!" && exit 1
 
     INDEX_NAME=${INDEX_NAME:-cloudflare_fw_events}
-    ELASTIC_FQND=${ELASTIC_FQND:-http://localhost:9200}
-    ELASTIC_FQND=${ELASTIC_FQND%/}  # remove ending slash
+    ELASTIC_FQDN=${ELASTIC_FQDN:-http://localhost:9200}
+    ELASTIC_FQDN=${ELASTIC_FQDN%/}  # remove ending slash
     MINUTES=${MINUTES:-60}
 
     [ -n "${MINUTES##*[!0-9]*}" ] && echo "MINUTES must be INT" && exit 1
@@ -89,6 +89,6 @@ data:
       --request POST \
       --header "Content-Type: application/x-ndjson" \
       --data-binary @<(jq -c '.data.viewer.zones[0].firewallEventsAdaptive[] | {"index":{"_id": .rayName}},  .' <<< ${response}) \
-      ${ELASTIC_FQND}/${INDEX_NAME}/_bulk)
+      ${ELASTIC_FQDN}/${INDEX_NAME}/_bulk)
 
     [ $(jq .errors <<< ${response}) != false ] && jq <<< "${response}" && exit 1
