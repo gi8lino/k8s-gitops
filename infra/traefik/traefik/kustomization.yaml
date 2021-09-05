@@ -5,5 +5,5 @@ resources:
   - networkpolicies
   - ingress.yaml
   - helmrelease.yaml
-  - configmap.yaml
+  - middleware.yaml
   - secret.yaml
