@@ -1,3 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: elastic-config
+  namespace: cloudflare
+data:
+  elasticsearch.yaml: |
+    discovery.type: single-node
 ---
 apiVersion: v1
 kind: ConfigMap

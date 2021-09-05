@@ -18,6 +18,6 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        selector: app.kubernetes.io/instance == 'elasticsearch'
+        selector: app == 'elasticsearch'
         ports:
           - 9200
