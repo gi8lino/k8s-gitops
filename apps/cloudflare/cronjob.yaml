@@ -17,7 +17,6 @@ spec:
           labels:
             job: cloudflare-fw-sync
         spec:
-          restartPolicy: Never
           containers:
             - name: cloudflare-cron
               image: everpeace/curl-jq
@@ -39,8 +38,9 @@ spec:
                   mountPath: /tmp/cloudflare
                   subPath: cloudflare
           automountServiceAccountToken: false
-      volumes:
-        - name: cloudflare
-          configMap:
-            name: cloudflare-fw-sync
-            defaultMode: 0755
+          restartPolicy: Never
+          volumes:
+            - name: cloudflare
+              configMap:
+                name: cloudflare-fw-sync
+                defaultMode: 0755
