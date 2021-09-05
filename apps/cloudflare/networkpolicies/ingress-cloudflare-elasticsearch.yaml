@@ -16,3 +16,11 @@ spec:
       destination:
         ports:
           - 9200
+    - action: Allow
+      protocol: TCP
+      source:
+        namespaceSelector: projectcalico.org/name == 'monitoring'
+        selector: app.kubernetes.io/name == 'grafana'
+      destination:
+        ports:
+          - 9200

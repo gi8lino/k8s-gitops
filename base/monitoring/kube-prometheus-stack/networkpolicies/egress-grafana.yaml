@@ -34,3 +34,10 @@ spec:
           - ${HOST_IP}/32
         ports:
           - 6443
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'cloudflare'
+        selector: app == 'elasticsearch'
+        ports:
+          - 9200
