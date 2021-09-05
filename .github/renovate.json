@@ -11,7 +11,7 @@
                 ".github\\/workflows\\/sync-cloudflare-nets\\.yaml$"
             ],
             "matchStrings": [
-                "depName=(?<depName>.*)\\s.*\\/(?<currentValue>.*?)/"
+                "depName=(?<depName>.*)\\s.*\\/(?<currentValue>.*?)\\/"
             ],
             "datasourceTemplate": [
                 "github-releases"
@@ -19,7 +19,7 @@
         },
         {
             "fileMatch": [
-                "(apps|base|infra)/(.+/)*helmrelease\\.yaml$"
+                "(apps|base|infra)\\/(.+\\/)*helmrelease\\.yaml$"
             ],
             "matchStrings": [
                 "registryUrl=(?<registryUrl>.*?)\\s +chart: (?<depName>.*?)\\n +version: (?<currentValue>.*)"
@@ -61,7 +61,7 @@
     ],
     "kubernetes": {
         "fileMatch": [
-            "(infra\/traefik\/forward-auth|apps|base)\/(.*\/)*.+\\.yaml"
+            "(infra\\/traefik\\/forward-auth|apps|base)\\/(.*\\/)*.+\\.yaml"
         ]
     },
     "packageRules": [
@@ -88,7 +88,7 @@
                 "docker"
             ],
             "matchPackagePatterns": [
-                "^ghcr.io/linuxserver/(tautulli|plex|sabnzbd|nzbhydra2)"
+                "^ghcr.io\\/linuxserver\\/(tautulli|plex|sabnzbd|nzbhydra2)"
             ],
             "versioning": "loose"
         },
@@ -97,10 +97,10 @@
                 "docker"
             ],
             "matchPackagePatterns": [
-                "^ghcr.io/linuxserver/(son|rad)arr"
+                "^ghcr.io\\/linuxserver\\/(son|rad)arr"
             ],
             "versioning": "loose",
-            "allowedVersions": "!/5\\.14/"
+            "allowedVersions": "!\\/5\\.14\\/"
         }
     ]
 }
