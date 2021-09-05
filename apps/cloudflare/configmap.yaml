@@ -65,7 +65,7 @@ data:
 
     PAYLOAD="$PAYLOAD
       \"variables\": {
-        \"zoneTag\": \"$ZoneID\",
+        \"zoneTag\": \"$ZONE_ID\",
         \"filter\": {
           \"datetime_gt\": \"$start_date\",
           \"datetime_leq\": \"$end_date\"
