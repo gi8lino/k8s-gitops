@@ -33,9 +33,6 @@ spec:
       - --providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDRESS_POOL%/*}
       - --experimental.plugins.duplicateheader.modulename=github.com/containeroo/duplicateheader
       - --experimental.plugins.duplicateheader.version=v1.0.15
-    deployment:
-      annotations:
-        reloader.stakater.com/auto: "true"
     globalArguments: null
     ingressClass:
       enabled: true
