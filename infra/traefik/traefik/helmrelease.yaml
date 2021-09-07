@@ -21,13 +21,11 @@ spec:
       namespace: metallb
     - name: nvme
       namespace: local-path-provisioner
+    - name: cert-manager
+      namespace: cert-manager
   values:
     additionalArguments:
       - --api.insecure=true
-      - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
-      - --certificatesresolvers.cloudflare.acme.email=${EMAIL}
-      - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1:53,1.0.0.1:53
-      - --certificatesresolvers.cloudflare.acme.storage=/certs/acme.json
       - --entrypoints.websecure.http.middlewares=traefik-default-headers@kubernetescrd,traefik-cf-real-ip@kubernetescrd
       - --serverstransport.insecureskipverify
       - --providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDRESS_POOL%/*}
@@ -65,14 +63,13 @@ spec:
         redirectTo: websecure
       websecure:
         tls:
-          certResolver: cloudflare
-          domains:
-            - main: ${BASE_DOMAIN}
-              sans:
-                - '*.${BASE_DOMAIN}'
-                - '*.local.${BASE_DOMAIN}'
-                - '*.dev.${BASE_DOMAIN}'
           enabled: true
+          options: default
+    tlsOptions:
+      default:
+        minVersion: VersionTLS12
+        maxVersion: VersionTLS13
+        sniStrict: true
     service:
       annotations:
         metallb.universe.tf/address-pool: traefik
