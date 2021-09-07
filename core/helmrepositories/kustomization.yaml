@@ -9,6 +9,7 @@ resources:
   - metallb.yaml
   - bitnami.yaml
   - stakater.yaml
+  - jetstack.yaml
   - traefik.yaml
   - kubernetes-dashboard.yaml
   - containeroo.yaml

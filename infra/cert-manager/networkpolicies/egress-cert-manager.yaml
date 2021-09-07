@@ -1,0 +1,29 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-cert-manager
+  namespace: cert-manager
+spec:
+  selector: app.kubernetes.io/instance == 'cert-manager'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - ${HOST_IP}/32
+        ports:
+          - 6443  # kube api
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 53
+          - 443
+    - action: Allow
+      protocol: UDP
+      destination:
+        ports:
+          - 53
