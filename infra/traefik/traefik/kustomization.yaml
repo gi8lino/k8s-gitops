@@ -6,4 +6,5 @@ resources:
   - ingress.yaml
   - helmrelease.yaml
   - middleware.yaml
+  - tlsstore.yaml
   - secret.yaml
