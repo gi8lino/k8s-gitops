@@ -27,7 +27,7 @@ These directories are not tracked by Flux but are useful nonetheless:
 
 :round_pushpin: Using SOPS with GnuPG allows to encrypt and decrypt secrets.
 
-Create a Flux GPG Key and export the fingerprint
+Create a GPG Key for Flux:
 
 ```sh
 export GPG_TTY=$(tty)
@@ -42,7 +42,11 @@ Subkey-Length: 4096
 Expire-Date: 0
 Name-Real: ${FLUX_KEY_NAME}
 EOF
+```
 
+Show the just created Flux GPG Key and export the fingerprint:
+
+```sh
 gpg --list-secret-keys "${FLUX_KEY_NAME}"
 # pub   rsa4096 2021-03-11 [SC]
 #       AB675CE4CC64251G3S9AE1DAA88ARRTY2C009E2D
@@ -52,10 +56,16 @@ gpg --list-secret-keys "${FLUX_KEY_NAME}"
 export FLUX_KEY_FP=AB675CE4CC64251G3S9AE1DAA88ARRTY2C009E2D
 ```
 
-Update fingerprint in `.sops.yaml`
+Create/update `.sops.yaml`:
 
 ```bash
-envsubst < ./.tmpl/.sops.template > ./.sops.yaml
+cat << EOF > .sops.yaml
+---
+creation_rules:
+  - encrypted_regex: ^(data|stringData|customRequestHeaders)$
+    pgp: ${FLUX_KEY_FP}
+
+EOF
 ```
 
 ## :leftwards_arrow_with_hook:&nbsp; Install pre-commit Hooks
@@ -79,9 +89,10 @@ pre-commit install --hook-type pre-commit
       --namespace=flux-system \
       --from-file=sops.asc=/dev/stdin
   ```
-5. Apply cluster-settings.yaml  
+5. Update `cluster-secrets.yaml` with your settings
+6. Apply `cluster-settings.yaml`  
    `kubectl apply -f core/cluster-settings.yaml`
-6. Bootstrap cluster  
+7. Bootstrap cluster  
    ```bash
    kubectl apply --kustomize=./core/flux-system
    ```
