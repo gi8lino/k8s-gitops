@@ -35,6 +35,15 @@
         },
         {
             "fileMatch": [
+                "crds\\/cert-manager\\/kustomization.yaml$"
+            ],
+            "matchStrings": [
+                "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\\s.*\\/(?<currentValue>.*?)\\/"
+            ],
+            "datasourceTemplate": "helm"
+        },
+        {
+            "fileMatch": [
                 "crds\\/kube-prometheus-stack\\/crds\\.yaml$"
             ],
             "matchStrings": [

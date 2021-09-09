@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - local-path-provisioner
   - nfs-subdir-external-provisioner
+  - cert-manager
   - metallb
   - traefik
