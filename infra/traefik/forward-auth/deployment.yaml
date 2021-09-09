@@ -80,6 +80,7 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 10
             periodSeconds: 30
+          resources: {}
       volumes:
         - name: rules
           secret:
