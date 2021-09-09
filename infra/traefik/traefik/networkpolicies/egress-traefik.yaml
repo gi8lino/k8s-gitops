@@ -12,13 +12,6 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        nets:
-          - ${HOST_IP}/32
-        ports:
-          - 6443  # kube api
-    - action: Allow
-      protocol: TCP
-      destination:
         ports:
           - 53
           - 443
@@ -27,3 +20,10 @@ spec:
       destination:
         ports:
           - 53
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - ${HOST_IP}/32
+        ports:
+          - 6443
