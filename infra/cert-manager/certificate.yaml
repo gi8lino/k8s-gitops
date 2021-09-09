@@ -1,0 +1,17 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ${BASE_DOMAIN/./-}
+  namespace: traefik
+spec:
+  secretName: ${BASE_DOMAIN/./-}
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  commonName: ${BASE_DOMAIN}
+  dnsNames:
+    - ${BASE_DOMAIN}
+    - "*.${BASE_DOMAIN}"
+    - "*.local.${BASE_DOMAIN}"
+    - "*.dev.${BASE_DOMAIN}"

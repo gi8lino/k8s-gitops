@@ -2,10 +2,10 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-source-controller
-  namespace: flux-system
+  name: egress-cert-manager
+  namespace: cert-manager
 spec:
-  selector: app == 'source-controller'
+  selector: app.kubernetes.io/instance == 'cert-manager'
   types:
     - Egress
   egress:
@@ -15,15 +15,25 @@ spec:
         nets:
           - ${HOST_IP}/32
         ports:
-          - 6443  # kube api
-    - action: Allow
-      protocol: TCP
-      destination:
-        selector: app == 'notification-controller'
-        ports:
-          - 9090
+          - 6443
     - action: Allow
       protocol: TCP
       destination:
         ports:
           - 443
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - 1.1.1.1
+          - 1.0.0.1
+        ports:
+          - 53
+    - action: Allow
+      protocol: UDP
+      destination:
+        nets:
+          - 1.1.1.1
+          - 1.0.0.1
+        ports:
+          - 53

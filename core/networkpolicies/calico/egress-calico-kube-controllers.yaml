@@ -15,4 +15,4 @@ spec:
         nets:
           - ${HOST_IP}/32
         ports:
-          - 6443
+          - 6443  # kube api

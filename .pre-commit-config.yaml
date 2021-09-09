@@ -37,3 +37,5 @@ repos:
           - GlobalNetworkPolicy
           - --ignore-kind
           - ClusterPolicy
+          - --ignore-kind
+          - ClusterIssuer

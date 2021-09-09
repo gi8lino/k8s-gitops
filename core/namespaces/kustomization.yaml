@@ -15,6 +15,7 @@ resources:
   - local-path-provisioner.yaml
   - syncflaer.yaml
   - media.yaml
+  - cert-manager.yaml
   - traefik.yaml
   - kubernetes-dashboard.yaml
   - wiki.yaml
