@@ -90,7 +90,7 @@
                 "docker"
             ],
             "matchPackagePatterns": [
-                "^ghcr.io\\/linuxserver\\/(tautulli|plex|sabnzbd|nzbhydra2)"
+                "^ghcr.io\\/linuxserver\\/(ombi|plex|sabnzbd)"
             ],
             "versioning": "loose"
         },
@@ -104,5 +104,8 @@
             "versioning": "loose",
             "allowedVersions": "!/5\\.14/"
         }
-    ]
+    ],
+    "pre-commit": {
+        "enabled": true
+    }
 }
