@@ -2,18 +2,17 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-minio-console
-  namespace: minio
+  name: minio-egress-traefik
+  namespace: traefik
 spec:
-  selector: >-
-    app == 'minio' &&
-    component == 'console'
+  selector: app.kubernetes.io/instance == 'traefik'
   types:
     - Egress
   egress:
     - action: Allow
       protocol: TCP
       destination:
+        namespaceSelector: projectcalico.org/name == 'minio'
         selector: app.kubernetes.io/instance == 'minio'
         ports:
-          - 9000
+          - 9001
