@@ -32,10 +32,6 @@ spec:
       storageClass: backup
     secretKey:
       password: ${MINIO_SECRETKEY}
-    livenessProbe:
-      enabled: false
-    readinessProbe:
-      enabled: false
   postRenderers:
     - kustomize:
         patchesJson6902:
