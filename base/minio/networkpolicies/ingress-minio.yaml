@@ -16,7 +16,7 @@ spec:
         selector: app.kubernetes.io/instance == 'traefik'
       destination:
         ports:
-          - 9000
+          - 9001
     - action: Allow
       protocol: TCP
       source:
@@ -30,15 +30,6 @@ spec:
       source:
         namespaceSelector: k8up == 'backup-enabled'
         selector: has(job-name)
-      destination:
-        ports:
-          - 9000
-    - action: Allow
-      protocol: TCP
-      source:
-        selector: >-
-          app == 'minio' &&
-          component == 'console'
       destination:
         ports:
           - 9000
