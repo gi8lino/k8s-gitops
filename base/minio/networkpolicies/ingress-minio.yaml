@@ -16,7 +16,7 @@ spec:
         selector: app.kubernetes.io/instance == 'traefik'
       destination:
         ports:
-          - 9001
+          - 9000
     - action: Allow
       protocol: TCP
       source:
