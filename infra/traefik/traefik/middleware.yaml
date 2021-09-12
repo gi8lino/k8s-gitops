@@ -6,7 +6,6 @@ metadata:
   namespace: traefik
 spec:
   headers:
-    sslRedirect: true
     browserXssFilter: true
     contentTypeNosniff: true
     forceSTSHeader: true
