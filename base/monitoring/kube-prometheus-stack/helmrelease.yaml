@@ -55,8 +55,8 @@ spec:
     grafana:
       grafana.ini:
         auth:
-          disable_login_form: true
-          oauth_auto_login: true
+          disable_login_form: false
+          oauth_auto_login: false
         auth.basic:
           enabled: false
         auth.generic_oauth:
