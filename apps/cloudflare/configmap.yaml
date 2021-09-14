@@ -82,7 +82,15 @@ data:
       --data "$(echo $PAYLOAD)" \
       https://api.cloudflare.com/client/v4/graphql/)
 
-    jq . <<< $response  # show response output
+    jq . <<< "${response}"  # show response output
+
+    [ -n "$(jq '.errors[]?' <<< ${response})" ] && \
+      echo "ERROR: cannot get CloudFlare firewall events" && \
+      exit 1
+
+    [ -z "$(jq '.data.viewer.zones[0].firewallEventsAdaptive[]?' <<< ${response})" ] && \
+      echo "INFO: no firewall events found" && \
+      exit 0
 
     response=$(curl \
       --silent \
@@ -92,4 +100,4 @@ data:
       --data-binary @<(jq -c '.data.viewer.zones[0].firewallEventsAdaptive[] | {"index":{"_id": .rayName}},  .' <<< ${response}) \
       ${ELASTIC_FQDN}/${INDEX_NAME}/_bulk)
 
-    jq . <<< ${response}
+    jq . <<< ${response}  # show response output
