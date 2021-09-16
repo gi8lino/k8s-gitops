@@ -74,6 +74,8 @@ data:
     }"
 
     response=$(curl \
+      --silent \
+      --show-error \
       --request POST \
       --header "Content-Type: application/json" \
       --header "Authorization: Bearer ${AUTH_TOKEN}" \
