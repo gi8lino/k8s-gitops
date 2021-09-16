@@ -21,11 +21,10 @@ data:
     set -o nounset
 
     [ -z "${ZONE_ID}" ] && echo "ZONE_ID is not set!" && exit 1
-    [ -z "${GLOBAL_KEY}" ] && echo "GLOBAL_KEY is not set!" && exit 1
-    [ -z "${EMAIL}" ] && echo "EMAIL is not set!" && exit 1
+    [ -z "${AUTH_TOKEN}" ] && echo "AUTH_TOKEN is not set!" && exit 1
 
     INDEX_NAME=${INDEX_NAME:-cloudflare_fw_events}
-    ELASTIC_FQDN=${ELASTIC_FQDN:-http://localhost:9200}
+    ELASTIC_FQDN=${ELASTIC_FQDN:-http://elasticsearch.cloudflare.svc.cluster.local:9200}
     ELASTIC_FQDN=${ELASTIC_FQDN%/}  # remove ending slash
     MINUTES=${MINUTES:-60}
 
@@ -77,8 +76,7 @@ data:
     response=$(curl \
       --request POST \
       --header "Content-Type: application/json" \
-      --header "X-Auth-Email: ${EMAIL}" \
-      --header "X-Auth-key: ${GLOBAL_KEY}" \
+      --header "Authorization: Bearer ${AUTH_TOKEN}" \
       --data "$(echo $PAYLOAD)" \
       https://api.cloudflare.com/client/v4/graphql/)
 
