@@ -74,7 +74,7 @@ data:
       }
     }"
 
-    [ "$DEBUG" -eq "true" ] && echo ${PAYLOAD}
+    [ "$DEBUG" == "true" ] && echo ${PAYLOAD}
 
     response=$(curl \
       --silent \
@@ -85,7 +85,7 @@ data:
       --data "$(echo $PAYLOAD)" \
       https://api.cloudflare.com/client/v4/graphql/)
 
-    [ "$DEBUG" -eq "true" ] && jq . <<< "${response}"  # show response output
+    [ "$DEBUG" == "true" ] && jq . <<< "${response}"  # show response output
 
     [ -n "$(jq '.errors[]?' <<< ${response})" ] && \
       echo "ERROR: cannot get CloudFlare firewall events" && \
@@ -103,7 +103,7 @@ data:
       --data-binary @<(jq -c '.data.viewer.zones[0].firewallEventsAdaptive[] | {"index":{"_id": .rayName}},  .' <<< ${response}) \
       ${ELASTIC_FQDN}/${INDEX_NAME}/_bulk)
 
-    [ "$DEBUG" -eq "true" ] && jq . <<< ${response}  # show response output
+    [ "$DEBUG" == "true" ] && jq . <<< ${response}  # show response output
 
 ---
 apiVersion: v1
