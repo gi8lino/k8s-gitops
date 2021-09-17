@@ -34,12 +34,19 @@ spec:
                 - secretRef:
                     name: cloudflare-credentials
               volumeMounts:
+                - name: elasticsearch-pipeline
+                  mountPath: /tmp/elasticsearch-pipeline
+                  subPath: elasticsearch-pipeline
                 - name: cloudflare
                   mountPath: /tmp/cloudflare
                   subPath: cloudflare
           automountServiceAccountToken: false
           restartPolicy: Never
           volumes:
+            - name: elasticsearch-pipeline
+              configMap:
+                name: elasticsearch-pipeline
+                defaultMode: 0755
             - name: cloudflare
               configMap:
                 name: cloudflare-fw-sync

@@ -101,3 +101,33 @@ data:
       ${ELASTIC_FQDN}/${INDEX_NAME}/_bulk)
 
     jq . <<< ${response}  # show response output
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: elasticsearch-pipeline
+  namespace: cloudflare
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
+data:
+  elasticsearch-pipeline: |
+    #!/bin/bash
+    set -o errexit
+    set -o nounset
+
+    INDEX_NAME=${INDEX_NAME:-cloudflare_fw_events}
+    ELASTIC_FQDN=${ELASTIC_FQDN:-http://elasticsearch.cloudflare.svc.cluster.local:9200}
+    ELASTIC_FQDN=${ELASTIC_FQDN%/}  # remove ending slash
+
+    curl -X PUT "${ELASTIC_FQDN}/_ingest/pipeline/user_agent?pretty" -H 'Content-Type: application/json' -d'
+    {
+      "description" : "Add user agent information",
+      "processors" : [
+        {
+          "user_agent" : {
+            "field" : "userAgent"
+          }
+        }
+      ]
+    }
+    '
