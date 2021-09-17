@@ -23,6 +23,7 @@ data:
     [ -z "${ZONE_ID}" ] && echo "ZONE_ID is not set!" && exit 1
     [ -z "${AUTH_TOKEN}" ] && echo "AUTH_TOKEN is not set!" && exit 1
 
+    DEBUG=${DEBUG:-false}
     INDEX_NAME=${INDEX_NAME:-cloudflare_fw_events}
     ELASTIC_FQDN=${ELASTIC_FQDN:-http://elasticsearch.cloudflare.svc.cluster.local:9200}
     ELASTIC_FQDN=${ELASTIC_FQDN%/}  # remove ending slash
