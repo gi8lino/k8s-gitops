@@ -24,9 +24,11 @@ spec:
   values:
     additionalArguments:
       - --api.insecure=true
-      - --entrypoints.websecure.http.middlewares=traefik-default-headers@kubernetescrd
+      - --entrypoints.websecure.http.middlewares=traefik-default-headers@kubernetescrd,traefik-cf-real-ip@kubernetescrd
       - --serverstransport.insecureskipverify
       - --providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDRESS_POOL%/*}
+      - --experimental.plugins.duplicateheader.modulename=github.com/containeroo/duplicateheader
+      - --experimental.plugins.duplicateheader.version=v1.0.15
     globalArguments: null
     env:
       - name: TZ
@@ -43,7 +45,7 @@ spec:
         level: INFO
     pilot:
       dashboard: false
-      enabled: false
+      enabled: true
     ports:
       gitlab-ssh:
         expose: true
