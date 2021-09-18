@@ -36,19 +36,12 @@ spec:
                 - secretRef:
                     name: cloudflare-credentials
               volumeMounts:
-                - name: elastic-pipeline
-                  mountPath: /tmp/elastic-pipeline
-                  subPath: elastic-pipeline
                 - name: cloudflare
                   mountPath: /tmp/cloudflare
                   subPath: cloudflare
           automountServiceAccountToken: false
           restartPolicy: Never
           volumes:
-            - name: elastic-pipeline
-              configMap:
-                name: elastic-pipeline
-                defaultMode: 0755
             - name: cloudflare
               configMap:
                 name: cloudflare-fw-sync

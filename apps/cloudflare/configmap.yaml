@@ -74,9 +74,10 @@ data:
       }
     }"
 
-    [ "$DEBUG" == "true" ] && echo ${PAYLOAD}
+    [ "$DEBUG" == "true" ] && \
+      echo "DEBUG: Cloudflare payload query: ${PAYLOAD}"
 
-    response=$(curl \
+    cf_response=$(curl \
       --silent \
       --show-error \
       --request POST \
@@ -85,53 +86,56 @@ data:
       --data "$(echo $PAYLOAD)" \
       https://api.cloudflare.com/client/v4/graphql/)
 
-    [ "$DEBUG" == "true" ] && jq . <<< "${response}"  # show response output
-
-    [ -n "$(jq '.errors[]?' <<< ${response})" ] && \
-      echo "ERROR: cannot get CloudFlare firewall events" && \
+    [ -n "$(jq '.errors[]?' <<< ${cf_response})" ] && \
+      echo "ERROR: cannot get Cloudflare firewall events. $(jq '.errors[]' <<< ${cf_response})" && \
       exit 1
 
-    [ -z "$(jq '.data.viewer.zones[0].firewallEventsAdaptive[]?' <<< ${response})" ] && \
+    [ -z "$(jq '.data.viewer.zones[0].firewallEventsAdaptive[]?' <<< ${cf_response})" ] && \
       echo "INFO: no firewall events found" && \
       exit 0
 
-    response=$(curl \
+    # check if pipeline for user agent exists
+    pipeline_response=$(curl \
+      --silent \
+      --show-error \
+      --write-out "%{http_code}" \
+      --output /dev/null \
+      ${ELASTIC_FQDN}/_ingest/pipeline/user_agent?pretty)
+
+    [ "$DEBUG" == "true" ] && \
+      echo "DEBUG: user agent response: $(jq . <<< ${pipeline_response})"
+
+    if [ "${pipeline_response}" == 404 ]; then
+      query='{
+              "description": "Add user agent information",
+              "processors": [
+                {
+                  "user_agent": {
+                    "field": "userAgent"
+                  }
+                }
+              ]
+            }'
+      pipeline_response=$(curl \
+        --silent \
+        --show-error \
+        --header "Content-Type: application/json" \
+        --request PUT \
+        --data "$(echo $query)" \
+        "${ELASTIC_FQDN}/_ingest/pipeline/user_agent?pretty")
+
+      [ "$(jq '.acknowledged?' <<< ${pipeline_response})" != true ] && \
+        echo "ERROR: cannot create pipeline. $(jq '.error' <<< ${pipeline_response})" && \
+        exit 1
+    fi
+
+    elastic_response=$(curl \
       --silent \
       --show-error \
       --request POST \
       --header "Content-Type: application/x-ndjson" \
-      --data-binary @<(jq -c '.data.viewer.zones[0].firewallEventsAdaptive[] | {"index":{"_id": .rayName}},  .' <<< ${response}) \
-      ${ELASTIC_FQDN}/${INDEX_NAME}/_bulk)
+      --data-binary @<(jq -c '.data.viewer.zones[0].firewallEventsAdaptive[] | {"index":{"_id": .rayName}},  .' <<< ${cf_response}) \
+      ${ELASTIC_FQDN}/${INDEX_NAME}/_bulk?pipeline=user_agent)
 
-    [ "$DEBUG" == "true" ] && jq . <<< ${response}  # show response output
-
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: elastic-pipeline
-  namespace: cloudflare
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
-data:
-  elastic-pipeline: |
-    #!/bin/bash
-    set -o errexit
-    set -o nounset
-
-    INDEX_NAME=${INDEX_NAME:-cloudflare_fw_events}
-    ELASTIC_FQDN=${ELASTIC_FQDN:-http://elasticsearch.cloudflare.svc.cluster.local:9200}
-    ELASTIC_FQDN=${ELASTIC_FQDN%/}  # remove ending slash
-
-    curl -X PUT "${ELASTIC_FQDN}/_ingest/pipeline/user_agent?pretty" -H 'Content-Type: application/json' -d'
-    {
-      "description" : "Add user agent information",
-      "processors" : [
-        {
-          "user_agent" : {
-            "field" : "userAgent"
-          }
-        }
-      ]
-    }
-    '
+    [ "$DEBUG" == "true" ] && \
+      echo "DEBUG: elasticsearch response: $(jq . <<< ${elastic_response})"
