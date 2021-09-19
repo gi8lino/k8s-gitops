@@ -26,6 +26,8 @@ spec:
                 - -c
                 - /tmp/cloudflare
               env:
+                - name: TZ
+                  value: Europe/Zurich
                 - name: ELASTIC_FQDN
                   value: http://elasticsearch.cloudflare.svc.cluster.local:9200
                 - name: INDEX_NAME
