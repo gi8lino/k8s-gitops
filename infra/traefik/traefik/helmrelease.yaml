@@ -40,7 +40,7 @@ spec:
         enabled: false
     logs:
       general:
-        level: DEBUG
+        level: INFO
     pilot:
       dashboard: false
       enabled: true
