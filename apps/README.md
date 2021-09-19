@@ -4,6 +4,7 @@ This directory contains all other common applications.
 
 ## Contents
 
+- **cloudflare** get Cloudflare firewall events and store them in Elasticsearch
 - **filebrowser** browse files from the web
 - **gitlab** contains gitlab-backup-mirror (MirrIO) and gitlab-runner
 - **keycloak** single-sign-on
