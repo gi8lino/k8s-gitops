@@ -26,17 +26,3 @@ spec:
     sourceRange:
       - ${LAN_NETWORK_RANGE}
       - ${POD_NETWORK_RANGE}
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: cf-real-ip
-  namespace: traefik
-spec:
-  plugin:
-    duplicateheader:
-      debug: true
-      source: Cf-Connecting-Ip
-      destination:
-        - X-Forwarded-For
-        - X-Real-Ip
