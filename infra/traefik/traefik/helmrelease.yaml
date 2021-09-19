@@ -24,11 +24,9 @@ spec:
   values:
     additionalArguments:
       - --api.insecure=true
-      - --entrypoints.websecure.http.middlewares=traefik-default-headers@kubernetescrd,traefik-cf-real-ip@kubernetescrd
+      - --entrypoints.websecure.http.middlewares=traefik-default-headers@kubernetescrd
       - --serverstransport.insecureskipverify
       - --providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDRESS_POOL%/*}
-      - --experimental.plugins.duplicateheader.modulename=github.com/containeroo/duplicateheader
-      - --experimental.plugins.duplicateheader.version=v1.0.26
     globalArguments: null
     env:
       - name: TZ
