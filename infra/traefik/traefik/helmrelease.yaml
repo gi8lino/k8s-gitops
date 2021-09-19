@@ -28,7 +28,7 @@ spec:
       - --serverstransport.insecureskipverify
       - --providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDRESS_POOL%/*}
       - --experimental.plugins.duplicateheader.modulename=github.com/containeroo/duplicateheader
-      - --experimental.plugins.duplicateheader.version=v1.0.20
+      - --experimental.plugins.duplicateheader.version=v1.0.21
     globalArguments: null
     env:
       - name: TZ
