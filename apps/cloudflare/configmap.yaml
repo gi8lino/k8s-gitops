@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: elastic-config
+  name: elasticsearch-config
   namespace: cloudflare
 data:
   elasticsearch.yaml: |
@@ -10,7 +10,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cloudflare-fw-sync
+  name: cloudflare-fw-events-fetch
   namespace: cloudflare
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
