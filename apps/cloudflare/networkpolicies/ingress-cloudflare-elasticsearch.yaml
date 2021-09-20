@@ -12,9 +12,7 @@ spec:
     - action: Allow
       protocol: TCP
       source:
-        selector: >-
-          job == 'cloudflare-fw-events-fetch' ||
-          job == 'elasticsearch-curator'
+        selector: job == 'cloudflare-fw-events-fetch'
       destination:
         ports:
           - 9200
