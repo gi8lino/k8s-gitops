@@ -2,47 +2,6 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: elasticsearch-curator
-  namespace: cloudflare
-spec:
-  suspend: false
-  schedule: "0 1 * * *"
-  concurrencyPolicy: Forbid
-  failedJobsHistoryLimit: 1
-  successfulJobsHistoryLimit: 1
-  jobTemplate:
-    spec:
-      template:
-        metadata:
-          labels:
-            job: elasticsearch-curator
-        spec:
-          containers:
-            - name: elasticsearch-curator
-              image: docker.io/bitnami/elasticsearch-curator:5.8.4-debian-10-r117
-              command:
-                - curator
-              args:
-                - --config
-                - /etc/es-curator/config.yml
-                - /etc/es-curator/action_file.yml
-              env:
-                - name: TZ
-                  value: Europe/Zurich
-              volumeMounts:
-                - name: config
-                  mountPath: /etc/es-curator
-          automountServiceAccountToken: false
-          restartPolicy: Never
-          volumes:
-            - name: config
-              configMap:
-                name: elasticsearch-curator
-                defaultMode: 0755
----
-apiVersion: batch/v1
-kind: CronJob
-metadata:
   name: cloudflare-cron
   namespace: cloudflare
 spec:
