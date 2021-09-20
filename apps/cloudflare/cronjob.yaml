@@ -32,8 +32,6 @@ spec:
                   value: http://elasticsearch.cloudflare.svc.cluster.local:9200
                 - name: INDEX_NAME
                   value: cloudflare_fw_events
-                - name: MINUTES
-                  value: "180"
                 - name: DEBUG
                   value: "true"
               envFrom:
