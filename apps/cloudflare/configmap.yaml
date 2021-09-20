@@ -165,6 +165,7 @@ data:
           continue_if_exception: False
           disable_action: False
           ignore_empty_list: True
+          indices: cloudflare_fw_events
         filters:
         - filtertype: age
           source: name
