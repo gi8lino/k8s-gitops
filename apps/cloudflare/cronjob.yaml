@@ -15,7 +15,7 @@ spec:
       template:
         metadata:
           labels:
-            job: cloudflare-fw-sync
+            job: cloudflare-fw-events-fetch
         spec:
           containers:
             - name: cloudflare-cron
@@ -48,5 +48,5 @@ spec:
           volumes:
             - name: cloudflare
               configMap:
-                name: cloudflare-fw-sync
+                name: cloudflare-fw-events-fetch
                 defaultMode: 0755
