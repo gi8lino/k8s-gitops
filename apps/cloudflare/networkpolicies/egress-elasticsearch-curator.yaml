@@ -2,19 +2,13 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-cloudflare
+  name: egress-elasticsearch-curator
   namespace: cloudflare
 spec:
-  selector: job == 'cloudflare-fw-events-fetch'
+  selector: job == 'elasticsearch-curator'
   types:
     - Egress
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        ports:
-          - 80
-          - 443
     - action: Allow
       protocol: TCP
       destination:
