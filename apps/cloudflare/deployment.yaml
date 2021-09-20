@@ -38,7 +38,7 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /usr/share/elasticsearch/data
-            - name: elastic-config
+            - name: config
               mountPath: /etc/elasticsearch/elasticsearch.yaml
               subPath: elasticsearch.yaml
           resources:
@@ -52,6 +52,6 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: elasticsearch-data
-        - name: elastic-config
+        - name: config
           configMap:
-            name: elastic-config
+            name: elasticsearch-config
