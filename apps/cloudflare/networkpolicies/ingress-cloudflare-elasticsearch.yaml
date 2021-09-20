@@ -12,7 +12,9 @@ spec:
     - action: Allow
       protocol: TCP
       source:
-        selector: job == 'cloudflare-fw-sync'
+        selector: >-
+          job == 'cloudflare-fw-events-fetch' ||
+          job == 'elasticsearch-curator'
       destination:
         ports:
           - 9200
