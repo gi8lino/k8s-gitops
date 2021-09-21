@@ -28,10 +28,6 @@ spec:
               env:
                 - name: TZ
                   value: Europe/Zurich
-                - name: ELASTIC_FQDN
-                  value: http://elasticsearch.cloudflare.svc.cluster.local:9200
-                - name: INDEX_NAME
-                  value: cloudflare_fw_events
                 - name: DEBUG
                   value: "true"
               envFrom:
