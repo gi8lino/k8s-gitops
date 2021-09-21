@@ -14,7 +14,8 @@ You can set following environment variables to override the default behavior of 
 | `DEBUG`                             | output curl responses                                                                | false                |
 | `INDEX_NAME`                        | name of elasticsearch index to add firewall events                                   | cloudflare_fw_events |
 | `ELASTIC_FQDN`                      | FQDN of elasticsearch                              | http://elasticsearch.cloudflare.svc.cluster.local:9200 |
-| `MINUTES`                           | Minutes to subtract from `now`                                                       | 60                   |
+| `END_DATE`                          | end date of time range to fetch Cloudflare firewall events                           | today                |
+| `MINUTES`                           | Minutes to subtract from `END_DATE`. Will be used as start date of time range to fetch Cloudflare firewall events                                                                                     | 60                   |
 
 ## Grafana dashboard
 
