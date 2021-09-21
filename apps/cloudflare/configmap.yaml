@@ -89,7 +89,7 @@ data:
       https://api.cloudflare.com/client/v4/graphql/)
 
     [ -n "$(jq '.errors[]?' <<< ${cf_response})" ] && \
-      echo "ERROR: cannot get Cloudflare firewall events. $(jq '.errors[]' <<< ${cf_response})" && \
+      echo "ERROR: cannot get Cloudflare firewall events. $(jq '.errors[]?' <<< ${cf_response})" && \
       exit 1
 
     [ -z "$(jq '.data.viewer.zones[0].firewallEventsAdaptive[]?' <<< ${cf_response})" ] && \
@@ -127,7 +127,7 @@ data:
         "${ELASTIC_FQDN}/_ingest/pipeline/user_agent?pretty")
 
       [ "$(jq '.acknowledged?' <<< ${pipeline_response})" != true ] && \
-        echo "ERROR: cannot create pipeline. $(jq '.error' <<< ${pipeline_response})" && \
+        echo "ERROR: cannot create pipeline. $(jq '.error?' <<< ${pipeline_response})" && \
         exit 1
     fi
 
