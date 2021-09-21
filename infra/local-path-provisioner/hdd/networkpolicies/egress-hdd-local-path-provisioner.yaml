@@ -2,10 +2,10 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-nvme
+  name: egress-hdd-local-path-provisioner
   namespace: local-path-provisioner
 spec:
-  selector: app.kubernetes.io/instance == 'nvme'
+  selector: app.kubernetes.io/instance == 'hdd'
   types:
     - Egress
   egress:
