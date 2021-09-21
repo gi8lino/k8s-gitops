@@ -20,8 +20,8 @@ data:
     set -o errexit
     set -o nounset
 
-    [ -z "${ZONE_ID}" ] && echo "ZONE_ID is not set!" && exit 1
-    [ -z "${AUTH_TOKEN}" ] && echo "AUTH_TOKEN is not set!" && exit 1
+    [ -z "${ZONE_ID}" ] && echo "ERROR: ZONE_ID is not set!" && exit 1
+    [ -z "${AUTH_TOKEN}" ] && echo "ERROR: AUTH_TOKEN is not set!" && exit 1
 
     DEBUG=${DEBUG:-false}
     INDEX_NAME=${INDEX_NAME:-cloudflare_fw_events}
