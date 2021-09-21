@@ -2,12 +2,10 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-nfs-subdir-external-provisioner
-  namespace: nfs-subdir-external-provisioner
+  name: egress-nvme-local-path-provisioner
+  namespace: local-path-provisioner
 spec:
-  selector: >-
-    app == 'nfs-subdir-external-provisioner' &&
-    release == 'backup'
+  selector: app.kubernetes.io/instance == 'nvme'
   types:
     - Egress
   egress:
