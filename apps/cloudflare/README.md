@@ -22,3 +22,25 @@ You can set following environment variables to override the default behavior of 
 You can find an example of a Grafana Dashboard here:
 
 https://raw.githubusercontent.com/gi8lino/grafana-dashboards/master/Cloudflare-Firewall-Events.json
+
+## load old Cloudflare data
+
+In Cloudflare free-plan time range can be maximum 1440 minutes and go maxium 14 days back.
+The script will create for each of day of the last past 14 days a cronjob.
+
+```bash
+for ((i=1;i<=14;i++)); do
+  TODAY=$(date --date today +'%Y-%m-%d %H:%M:%S')
+  MINUTES=$(( ${i} * 1440 ))
+  end_date=$(date --date "${TODAY} ${MINUTES} minutes ago" +'%Y-%m-%dT%H:%M:%SZ')
+  job_name=manual-cloudflare-cron-$(date --date "${TODAY} ${MINUTES} minutes ago" +'%Y-%m-%d')
+
+  kubectl create job \
+    --namespace=cloudflare \
+    --from=cronjob/cloudflare-cron ${job_name} \
+    --dry-run=client \
+    -ojson | \
+  jq ".spec.template.spec.containers[0].env += [{ \"name\": \"END_DATE\", value: \"${end_date}\" }]" | \
+  kubectl apply -f -
+done
+```
