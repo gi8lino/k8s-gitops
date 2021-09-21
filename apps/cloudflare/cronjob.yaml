@@ -34,8 +34,6 @@ spec:
                   value: cloudflare_fw_events
                 - name: DEBUG
                   value: "true"
-                - name: MINUTES
-                  value: "240"
               envFrom:
                 - secretRef:
                     name: cloudflare-credentials
