@@ -32,7 +32,8 @@ spec:
             - secretRef:
                 name: nextcloud-postgres
           ports:
-            - containerPort: 5432
+            - name: postgres
+              containerPort: 5432
           startupProbe:
             exec:
               command:

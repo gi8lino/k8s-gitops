@@ -64,19 +64,20 @@ spec:
             - secretRef:
                 name: forward-auth
           ports:
-            - containerPort: 4181
+            - name: forward-auth
+              containerPort: 4181
           volumeMounts:
             - name: rules
               mountPath: /rules
           startupProbe:
             tcpSocket:
-              port: 4181
+              port: forward-auth
             failureThreshold: 30
             timeoutSeconds: 3
             periodSeconds: 3
           livenessProbe:
             tcpSocket:
-              port: 4181
+              port: forward-auth
             failureThreshold: 2
             timeoutSeconds: 10
             periodSeconds: 30

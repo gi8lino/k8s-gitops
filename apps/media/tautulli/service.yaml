@@ -7,7 +7,7 @@ metadata:
 spec:
   ports:
     - port: 8181
-      targetPort: 8181
+      targetPort: http
   selector:
     app: tautulli
   type: ClusterIP

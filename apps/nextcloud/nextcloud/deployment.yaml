@@ -71,7 +71,8 @@ spec:
         - name: nginx
           image: nginx:1.21.3-alpine
           ports:
-            - containerPort: 80
+            - name: http
+              containerPort: 80
           volumeMounts:
             - mountPath: /etc/nginx/nginx.conf
               name: nginx-config
@@ -85,7 +86,7 @@ spec:
           startupProbe:
             httpGet:
               path: /status.php
-              port: 80
+              port: http
               httpHeaders:
                 - name: Host
                   value: cloud.${BASE_DOMAIN}
@@ -96,7 +97,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /status.php
-              port: 80
+              port: http
               httpHeaders:
                 - name: Host
                   value: cloud.${BASE_DOMAIN}

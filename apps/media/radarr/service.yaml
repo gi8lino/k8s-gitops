@@ -7,7 +7,7 @@ metadata:
 spec:
   ports:
     - port: 7878
-      targetPort: 7878
+      targetPort: http
   selector:
     app: radarr
   type: ClusterIP
