@@ -19,4 +19,4 @@ spec:
               service:
                 name: forward-auth
                 port:
-                  number: 4181
+                  name: forward-auth
