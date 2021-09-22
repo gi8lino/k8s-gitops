@@ -7,7 +7,7 @@ metadata:
 spec:
   ports:
     - port: 4181
-      targetPort: 4181
+      targetPort: forward-auth
   selector:
     app: forward-auth
   type: ClusterIP
