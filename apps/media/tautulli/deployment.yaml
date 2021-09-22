@@ -31,11 +31,12 @@ spec:
             - name: PUID
               value: "2000"
           ports:
-            - containerPort: 8181
+            - name: http
+              containerPort: 8181
           startupProbe:
             httpGet:
               path: /status
-              port: 8181
+              port: http
             initialDelaySeconds: 20
             failureThreshold: 30
             timeoutSeconds: 3
@@ -43,7 +44,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /status
-              port: 8181
+              port: http
             initialDelaySeconds: 20
             failureThreshold: 5
             timeoutSeconds: 3

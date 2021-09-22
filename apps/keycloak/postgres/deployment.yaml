@@ -35,7 +35,8 @@ spec:
             - secretRef:
                 name: keycloak-postgres
           ports:
-            - containerPort: 5432
+            - name: postgres
+              containerPort: 5432
           resources:
             requests:
               cpu: 50m

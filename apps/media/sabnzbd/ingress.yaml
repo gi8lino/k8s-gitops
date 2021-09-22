@@ -19,4 +19,4 @@ spec:
               service:
                 name: sabnzbd
                 port:
-                  number: 8080
+                  name: http

@@ -34,7 +34,8 @@ spec:
             - name: DOCKER_MODS
               value: containeroo/docker-mods:sabnzbd-nzbnotify|containeroo/docker-mods:sabnzbd-mkvtoolnix
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
           startupProbe:
             exec:
               command:
@@ -47,7 +48,7 @@ spec:
             periodSeconds: 3
           livenessProbe:
             tcpSocket:
-              port: 8080
+              port: http
             failureThreshold: 2
             timeoutSeconds: 5
             periodSeconds: 30

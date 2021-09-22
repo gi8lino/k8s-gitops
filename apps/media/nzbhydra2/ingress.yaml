@@ -19,4 +19,4 @@ spec:
               service:
                 name: nzbhydra2
                 port:
-                  number: 5076
+                  name: http
