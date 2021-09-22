@@ -25,15 +25,16 @@ spec:
             - name: TZ
               value: Europe/Zurich
           ports:
-            - containerPort: 6379
+            - name: redis
+              containerPort: 6379
           startupProbe:
             tcpSocket:
-              port: 6379
+              port: redis
             failureThreshold: 30
             periodSeconds: 2
           livenessProbe:
             tcpSocket:
-              port: 6379
+              port: redis
             failureThreshold: 2
             timeoutSeconds: 5
             periodSeconds: 30

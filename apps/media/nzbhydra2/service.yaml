@@ -7,7 +7,7 @@ metadata:
 spec:
   ports:
     - port: 5076
-      targetPort: 5076
+      targetPort: http
   selector:
     app: nzbhydra2
   type: ClusterIP
