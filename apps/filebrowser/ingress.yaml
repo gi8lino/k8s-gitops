@@ -19,4 +19,4 @@ spec:
               service:
                 name: filebrowser
                 port:
-                  number: 80
+                  name: http
