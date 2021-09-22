@@ -34,7 +34,8 @@ spec:
             - name: transport.host
               value: localhost
           ports:
-            - containerPort: 9200
+            - name: elastic
+              containerPort: 9200
           volumeMounts:
             - name: data
               mountPath: /usr/share/elasticsearch/data
