@@ -82,6 +82,8 @@ data:
     cf_response=$(curl \
       --silent \
       --show-error \
+      --max-time 10 \
+      --retry 3 \
       --request POST \
       --header "Content-Type: application/json" \
       --header "Authorization: Bearer ${AUTH_TOKEN}" \
@@ -100,6 +102,8 @@ data:
     pipeline_response=$(curl \
       --silent \
       --show-error \
+      --max-time 5 \
+      --retry 3 \
       --write-out "%{http_code}" \
       --output /dev/null \
       ${ELASTIC_FQDN}/_ingest/pipeline/user_agent?pretty)
@@ -121,6 +125,8 @@ data:
       pipeline_response=$(curl \
         --silent \
         --show-error \
+        --max-time 5 \
+        --retry 3 \
         --header "Content-Type: application/json" \
         --request PUT \
         --data "$(echo $query)" \
@@ -134,6 +140,8 @@ data:
     elastic_response=$(curl \
       --silent \
       --show-error \
+      --max-time 10 \
+      --retry 5 \
       --request POST \
       --header "Content-Type: application/x-ndjson" \
       --data-binary @<(jq -c '.data.viewer.zones[0].firewallEventsAdaptive[] | {"index":{"_id": .rayName}},  .' <<< ${cf_response}) \
