@@ -6,7 +6,8 @@ metadata:
   namespace: media
 spec:
   ports:
-    - port: 8181
+    - name: http
+      port: 8181
       targetPort: http
   selector:
     app: tautulli
