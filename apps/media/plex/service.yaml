@@ -6,7 +6,8 @@ metadata:
   namespace: media
 spec:
   ports:
-    - port: 32400
+    - name: http
+      port: 32400
       targetPort: http
   selector:
     app: plex

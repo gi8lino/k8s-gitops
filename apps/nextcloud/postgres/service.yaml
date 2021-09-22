@@ -6,7 +6,8 @@ metadata:
   namespace: nextcloud
 spec:
   ports:
-    - port: 5432
+    - name: postgres
+      port: 5432
       targetPort: postgres
   selector:
     app: nextcloud

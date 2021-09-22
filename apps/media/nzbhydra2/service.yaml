@@ -6,7 +6,8 @@ metadata:
   namespace: media
 spec:
   ports:
-    - port: 5076
+    - name: http
+      port: 5076
       targetPort: http
   selector:
     app: nzbhydra2
