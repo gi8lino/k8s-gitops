@@ -30,7 +30,7 @@ spec:
               value: Europe/Zurich
           ports:
             - name: http
-              containerPort: http
+              containerPort: 5076
           startupProbe:
             httpGet:
               path: /actuator/health/livenessState
