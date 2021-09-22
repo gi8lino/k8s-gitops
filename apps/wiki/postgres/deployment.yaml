@@ -35,7 +35,8 @@ spec:
             - name: TZ
               value: Europe/Zurich
           ports:
-            - containerPort: 5432
+            - name: postgres
+              containerPort: 5432
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data

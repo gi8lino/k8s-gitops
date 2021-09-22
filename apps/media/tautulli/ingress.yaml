@@ -19,4 +19,4 @@ spec:
               service:
                 name: tautulli
                 port:
-                  number: 8181
+                  name: http

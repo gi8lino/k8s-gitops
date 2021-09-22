@@ -7,7 +7,7 @@ metadata:
 spec:
   ports:
     - port: 8989
-      targetPort: 8989
+      targetPort: http
   selector:
     app: sonarr
   type: ClusterIP

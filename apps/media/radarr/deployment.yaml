@@ -30,17 +30,18 @@ spec:
             - name: PUID
               value: "2000"
           ports:
-            - containerPort: 7878
+            - name: http
+              containerPort: 7878
           startupProbe:
             tcpSocket:
-              port: 7878
+              port: http
             initialDelaySeconds: 5
             failureThreshold: 30
             timeoutSeconds: 3
             periodSeconds: 3
           livenessProbe:
             tcpSocket:
-              port: 7878
+              port: http
             failureThreshold: 5
             timeoutSeconds: 3
             periodSeconds: 30
