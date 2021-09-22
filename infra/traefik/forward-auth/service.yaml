@@ -6,7 +6,8 @@ metadata:
   namespace: traefik
 spec:
   ports:
-    - port: 4181
+    - name: forward-auth
+      port: 4181
       targetPort: forward-auth
   selector:
     app: forward-auth
