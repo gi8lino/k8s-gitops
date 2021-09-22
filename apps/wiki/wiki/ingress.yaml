@@ -18,4 +18,4 @@ spec:
               service:
                 name: wiki
                 port:
-                  number: 3000
+                  name: http

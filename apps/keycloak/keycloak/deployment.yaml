@@ -79,18 +79,19 @@ spec:
             - secretRef:
                 name: keycloak
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
           startupProbe:
             httpGet:
               path: /auth
-              port: 8080
+              port: http
             initialDelaySeconds: 30
             failureThreshold: 60
             periodSeconds: 3
           livenessProbe:
             httpGet:
               path: /auth
-              port: 8080
+              port: http
             failureThreshold: 2
             periodSeconds: 30
       restartPolicy: Always

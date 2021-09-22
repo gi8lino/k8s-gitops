@@ -32,11 +32,12 @@ spec:
             - name: VERSION
               value: latest
           ports:
-            - containerPort: 32400
+            - name: http
+              containerPort: 32400
           startupProbe:
             httpGet:
               path: /web/index.html
-              port: 32400
+              port: http
             initialDelaySeconds: 15
             failureThreshold: 60
             timeoutSeconds: 3
@@ -44,7 +45,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /web/index.html
-              port: 32400
+              port: http
             failureThreshold: 2
             timeoutSeconds: 3
             periodSeconds: 30
