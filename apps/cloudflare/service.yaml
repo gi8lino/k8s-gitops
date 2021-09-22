@@ -6,7 +6,8 @@ metadata:
   namespace: cloudflare
 spec:
   ports:
-    - port: 9200
+    - name: elastic
+      port: 9200
       targetPort: 9200
       protocol: TCP
   selector:

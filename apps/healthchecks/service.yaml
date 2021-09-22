@@ -6,7 +6,8 @@ metadata:
   namespace: healthchecks
 spec:
   ports:
-    - port: 8000
+    - name: http
+      port: 8000
       targetPort: http
   selector:
     app: healthchecks
