@@ -31,7 +31,7 @@ spec:
           routes:
             - receiver: blackhole
               matchers:
-              - "alertname = KubeHpaMaxedOut,KubeHpaReplicasMismatch"
+                - alertname = KubeHpaMaxedOut or KubeHpaReplicasMismatch
             - receiver: healthchecks
               matchers:
                 - alertname = Watchdog
