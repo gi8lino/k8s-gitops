@@ -56,7 +56,7 @@ spec:
       defaultDashboardsTimezone: browser
       grafana.ini:
         auth:
-          disable_login_form: false
+          disable_login_form: true
           oauth_auto_login: true
         auth.basic:
           enabled: false
