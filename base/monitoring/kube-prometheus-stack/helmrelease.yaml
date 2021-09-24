@@ -26,7 +26,7 @@ spec:
             - job
           group_interval: 5m
           group_wait: 90s
-          receiver: slack
+          receiver: slack  # default receiver
           repeat_interval: 2h
           routes:
             - receiver: blackhole
@@ -35,6 +35,7 @@ spec:
             - receiver: healthchecks
               matchers:
                 - alertname = Watchdog
+            - receiver: slack
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
