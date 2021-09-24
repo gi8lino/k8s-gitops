@@ -29,8 +29,8 @@ spec:
           receiver: slack
           repeat_interval: 2h
           routes:
-            - match_re:
-                alertname: KubeHpaMaxedOut|KubeHpaReplicasMismatch
+            - matchers:
+              - alertname = KubeHpaMaxedOut,KubeHpaReplicasMismatch
               receiver: blackhole
             - match:
                 alertname: Watchdog
