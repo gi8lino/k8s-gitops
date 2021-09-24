@@ -26,10 +26,23 @@ https://raw.githubusercontent.com/gi8lino/grafana-dashboards/master/Cloudflare-F
 ## load old Cloudflare data
 
 In Cloudflare free-plan time range can be maximum 1440 minutes and go maxium 14 days back.
+
+### one day back
+
+kubectl create job \
+    --namespace=cloudflare \
+    --from=cronjob/cloudflare-cron manual-cron-one-day-back \
+    --dry-run=client \
+    -ojson | \
+  jq ".spec.template.spec.containers[0].env += [{ \"name\": \"MINUTES\", value: \"1440\" }]" | \
+  kubectl apply -f -
+
+### 14 days back
+
 The script will create for each of day of the last past 14 days a cronjob.
 
 ```bash
-for ((i=1;i<=14;i++)); do
+for ((i=1;i<=2;i++)); do
   TODAY=$(date --date today +'%Y-%m-%d %H:%M:%S')
   MINUTES=$(( ${i} * 1440 ))
   end_date=$(date --date "${TODAY} ${MINUTES} minutes ago" +'%Y-%m-%dT%H:%M:%SZ')
