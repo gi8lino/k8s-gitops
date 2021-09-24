@@ -27,7 +27,7 @@ data:
     INDEX_NAME=${INDEX_NAME:-cloudflare_fw_events}
     ELASTIC_FQDN=${ELASTIC_FQDN:-http://elasticsearch.cloudflare.svc.cluster.local:9200}
     ELASTIC_FQDN=${ELASTIC_FQDN%/}  # remove ending slash
-    MINUTES=${MINUTES:-60}
+    MINUTES=${MINUTES:-180}
     [ -n "${MINUTES##*[0-9]*}" ] && \
       echo "MINUTES must be INT" && \
       exit 1
