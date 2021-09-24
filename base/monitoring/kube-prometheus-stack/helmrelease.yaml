@@ -29,13 +29,12 @@ spec:
           receiver: slack
           repeat_interval: 2h
           routes:
-            - matchers:
+            - receiver: blackhole
+              matchers:
               - alertname = KubeHpaMaxedOut,KubeHpaReplicasMismatch
-              receiver: blackhole
-            - match:
-                alertname: Watchdog
-              receiver: healthchecks
-            - receiver: slack
+            - receiver: healthchecks
+              matchers:
+                - alertname = Watchdog
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
