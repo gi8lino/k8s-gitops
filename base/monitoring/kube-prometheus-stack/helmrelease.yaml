@@ -65,9 +65,10 @@ spec:
           auth_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/auth
           enabled: true
           name: ${BASE_DOMAIN} SSO
-          scopes: openid profile email
+          scopes: openid profile email roles
           signout_redirect_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/logout?redirect_uri=https://grafana.local.${BASE_DOMAIN}/login
           token_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/token
+          role_attribute_path: contains(realm_access.roles[*], 'admin') && 'Admin' || contains(realm_access.roles[*], 'editor') && 'Editor' || 'Viewer'
         server:
           root_url: https://grafana.local.${BASE_DOMAIN}
       ingress:
