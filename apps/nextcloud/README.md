@@ -19,7 +19,7 @@ URL Target of the IdP where the SP will send the Autentification Request Message
 URL Location of the IdP where the SP will needs the SLO Request --> `https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/saml`  
 Public X.509 certificate of the Idp --> Keycloak --> `Realm Setting` --> `Keys` --> `Certificate`  
 
-__Attribute mapping__
+__Attribute mapping__  
 Attribute to map the displayname to --> `username`  
 Attribute to map the email address to --> `email`  
 Attribute to map the quota to --> `nextcloudquota`  
@@ -30,7 +30,7 @@ click on `Download metadata XML`
 goto `Clients` --> `Create`  
 Import `metadata.xml`  
 
-__settings__
+__settings:__  
 define a `Name`  
 Include AuthnStatement --> `ON`  
 Sign Documents --> `ON`  
@@ -83,7 +83,7 @@ Configure --> Clinet Scopes --> role_list --> tab `Mappers` --> click on `edit` 
 
 ### nextcloud (part 2)
 
-__Service Provider Data__
+__Service Provider Data__  
 `X.509 certificate of the Service Provider` = `Keycloak` --> `Clients` --> `Nextcloud` --> `SAML Key` --> `Certificate`  
 `Private key of the Service Provider` = `Keycloak` --> `Clients` --> `Nextcloud` --> `SAML Key` --> `Private Key`
 
@@ -91,11 +91,11 @@ __Security settings__
 
 ![nextcloud-security-settings.png](.img/nextcloud-security-settings.png)
 
-*Signatures and encryption offered:*
+*Signatures and encryption offered*  
 Indicates whether the `<samlp:AuthnRequest>` messages sent by this SP will be signed. [Metadata of the SP will offer this info] --> `ON`  
 Indicates whether the `<samlp:logoutRequest>` messages sent by this SP will be signed --> `ON`  
 Indicates whether the `<samlp:logoutResponse>` messages sent by this SP will be signed. --> `ON`
 
-*Signatures and encryption required:*
+*Signatures and encryption required*  
 Indicates a requirement for the `<samlp:Response>`, `<samlp:LogoutRequest>` and `<samlp:LogoutResponse>` elements received by this SP to be signed. --> `ON`  
 Indicates a requirement for the `<saml:Assertion>` elements received by this SP to be signed. [Metadata of the SP will offer this info] --> `ON`
