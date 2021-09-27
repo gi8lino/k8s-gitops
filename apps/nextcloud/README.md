@@ -23,6 +23,7 @@ __Attribute mapping__
 Attribute to map the displayname to --> `username`  
 Attribute to map the email address to --> `email`  
 Attribute to map the quota to --> `nextcloudquota`  
+Attribute to map the user goups --> `roles`  
 click on `Download metadata XML`
 
 ### keycloak
@@ -84,8 +85,8 @@ Configure --> Clinet Scopes --> role_list --> tab `Mappers` --> click on `edit` 
 ### nextcloud (part 2)
 
 __Service Provider Data__  
-`X.509 certificate of the Service Provider` = `Keycloak` --> `Clients` --> `Nextcloud` --> `SAML Key` --> `Certificate`  
-`Private key of the Service Provider` = `Keycloak` --> `Clients` --> `Nextcloud` --> `SAML Key` --> `Private Key`
+`X.509 certificate of the Service Provider` --> `Keycloak` --> `Clients` --> `Nextcloud` --> `SAML Key` --> `Certificate`  
+`Private key of the Service Provider` --> `Keycloak` --> `Clients` --> `Nextcloud` --> `SAML Key` --> `Private Key`
 
 __Security settings__
 
