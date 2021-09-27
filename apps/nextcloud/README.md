@@ -23,7 +23,7 @@ __Attribute mapping__
 Attribute to map the displayname to --> `username`  
 Attribute to map the email address to --> `email`  
 Attribute to map the quota to --> `nextcloudquota`  
-Attribute to map the user goups --> `roles`  
+Attribute to map the users goups to --> `roles`  
 click on `Download metadata XML`
 
 ### keycloak
