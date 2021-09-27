@@ -19,13 +19,6 @@ spec:
                 name: gitlab-webservice-default
                 port:
                   number: 8181
-          - path: /admin/sidekiq/
-            pathType: Prefix
-            backend:
-              service:
-                name: gitlab-webservice-default
-                port:
-                  number: 8080
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
