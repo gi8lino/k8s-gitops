@@ -81,17 +81,19 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+            - name: admin
+              containerPort: 9990
           startupProbe:
             httpGet:
               path: /health
-              port: 9990
+              port: admin
             initialDelaySeconds: 30
             failureThreshold: 60
             periodSeconds: 3
           livenessProbe:
             httpGet:
               path: /health
-              port: 9990
+              port: admin
             failureThreshold: 2
             periodSeconds: 30
       restartPolicy: Always
