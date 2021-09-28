@@ -73,6 +73,8 @@ spec:
               value: INFO
             - name: PROXY_ADDRESS_FORWARDING
               value: "true"
+            - name: KEYCLOAK_STATISTICS
+              value: all
             - name: TZ
               value: Europe/Zurich
           envFrom:
@@ -81,17 +83,19 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+            - name: management
+              containerPort: 9990
           startupProbe:
             httpGet:
-              path: /auth
-              port: http
+              path: /health
+              port: management
             initialDelaySeconds: 30
             failureThreshold: 60
             periodSeconds: 3
           livenessProbe:
             httpGet:
-              path: /auth
-              port: http
+              path: /health/live
+              port: management
             failureThreshold: 2
             periodSeconds: 30
       restartPolicy: Always
