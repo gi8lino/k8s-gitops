@@ -35,6 +35,7 @@ spec:
             - match:
                 alertname: Watchdog
               receiver: healthchecks
+              repeat_interval: 15m
             - receiver: slack
       ingress:
         annotations:
