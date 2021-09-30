@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wallabag
+  labels:
+    app: wallabag
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: wallabag
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wallabag
+    spec:
+      containers:
+        - name: wallabag
+          image: wallabag/wallabag:2.3.8
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Europe/Zurich
+            - name: SYMFONY__ENV__DOMAIN_NAME
+              value: https://links.${BASE_DOMAIN}
+            - name: SYMFONY__ENV__SERVER_NAME
+              value: wallabag
+            - name: SYMFONY__ENV__FOSUSER_REGISTRATION
+              value: "False"
+            - name: SYMFONY__ENV__FOSUSER_CONFIRMATION
+              value: "False"
+            - name: SYMFONY__ENV__SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: synfony-env-secret
+                  key: synfony-secret
+          resources: {}
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - mountPath: /var/www/wallabag/data
+              name: wallabag-data
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+            failureThreshold: 30
+            timeoutSeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: wallabag-data
+          persistentVolumeClaim:
+            claimName: wallabag-data

@@ -12,6 +12,7 @@ resources:
   - filebrowser.yaml
   - metallb.yaml
   - cloudflare.yaml
+  - wallabag.yaml
   - local-path-provisioner.yaml
   - syncflaer.yaml
   - media.yaml
