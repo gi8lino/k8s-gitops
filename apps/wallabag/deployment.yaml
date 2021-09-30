@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: wallabag
-          image: wallabag/wallabag:2.3.8
+          image: wallabag/wallabag:2.4.2
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
