@@ -44,20 +44,6 @@ spec:
           volumeMounts:
             - mountPath: /var/www/wallabag/data
               name: wallabag-data
-          startupProbe:
-            httpGet:
-              path: /
-              port: http
-            failureThreshold: 30
-            timeoutSeconds: 3
-            periodSeconds: 3
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-            failureThreshold: 2
-            timeoutSeconds: 3
-            periodSeconds: 30
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
