@@ -27,7 +27,7 @@ spec:
             - name: TZ
               value: Europe/Zurich
             - name: SYMFONY__ENV__DOMAIN_NAME
-              value: https://links.${BASE_DOMAIN}
+              value: https://wallabag.${BASE_DOMAIN}
             - name: SYMFONY__ENV__SERVER_NAME
               value: wallabag
             - name: SYMFONY__ENV__FOSUSER_REGISTRATION
