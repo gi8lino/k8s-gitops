@@ -73,16 +73,6 @@ spec:
           ports:
             - name: http
               containerPort: 80
-          volumeMounts:
-            - mountPath: /etc/nginx/nginx.conf
-              name: nginx-config
-              subPath: nginx.conf
-            - mountPath: /var/www/html
-              name: app-data
-              readOnly: true
-            - mountPath: /var/www/html/data
-              name: user-data
-              readOnly: true
           startupProbe:
             httpGet:
               path: /status.php
@@ -104,6 +94,16 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 3
             periodSeconds: 30
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: nginx-config
+              subPath: nginx.conf
+            - mountPath: /var/www/html
+              name: app-data
+              readOnly: true
+            - mountPath: /var/www/html/data
+              name: user-data
+              readOnly: true
         - name: nextcloud
           image: nextcloud:22.1.1-fpm-alpine
           env:
