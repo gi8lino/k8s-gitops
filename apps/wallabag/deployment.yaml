@@ -33,11 +33,9 @@ spec:
               value: "False"
             - name: SYMFONY__ENV__FOSUSER_CONFIRMATION
               value: "False"
-            - name: SYMFONY__ENV__SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: synfony-env-secret
-                  key: synfony-secret
+          envFrom:
+            - secretRef:
+                name: wallabag-symfony
           resources: {}
           ports:
             - name: http
