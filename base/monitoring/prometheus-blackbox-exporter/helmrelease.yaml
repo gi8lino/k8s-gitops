@@ -34,7 +34,7 @@ spec:
         - name: google
           url: https://google.com
         - name: home
-          url: https://${BASE_DOMAIN}
+          url: https://git.${BASE_DOMAIN}
     prometheusRule:
       enabled: true
       rules:
