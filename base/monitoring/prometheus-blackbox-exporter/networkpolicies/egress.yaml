@@ -2,10 +2,10 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-prometheus-pushgateway
+  name: egress-prometheus-blackbox-exporter
   namespace: monitoring
 spec:
-  selector: app == 'prometheus-pushgateway'
+  selector: app == 'prometheus-blackbox-exporter'
   types:
     - Egress
   egress:
