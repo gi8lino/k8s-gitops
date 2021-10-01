@@ -17,9 +17,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    extraEnv:
-      - name: TZ
-        value: Europe/Zurich
     serviceMonitor:
       enabled: true
       targets:
