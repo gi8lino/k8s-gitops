@@ -52,7 +52,7 @@ spec:
             - name: DB_ADDR
               value: keycloak-postgres.keycloak.svc.cluster.local
             - name: DB_DATABASE
-              value: postgres
+              value: keycloak
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
