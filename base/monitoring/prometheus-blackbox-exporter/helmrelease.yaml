@@ -24,8 +24,8 @@ spec:
     serviceMonitor:
       enabled: true
       targets:
-        - name: home
-          url: https://${BASE_DOMAIN}
+        - name: google
+          url: https://google.io
           module: icmp
     prometheusRule:
       enabled: true
