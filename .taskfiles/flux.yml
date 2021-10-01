@@ -17,23 +17,47 @@ tasks:
   hr:
     desc: List all Helm Releases
     cmds:
-      - flux get hr -A
+      - flux get helmrelease --all-namespaces
     silent: true
 
   hs:
     desc: List all Helm sources
     cmds:
-      - flux get sources helm -A
+      - flux get sources helm --all-namespaces
     silent: true
 
   hc:
     desc: List all Helm charts
     cmds:
-      - flux get sources chart -A
+      - flux get sources chart --all-namespaces
+    silent: true
+
+  sh:
+    desc: Suspend Helm release -- ARGS
+    cmds:
+      - flux suspend helmrelease -- {{.CLI_ARGS}}
+    silent: true
+
+  rh:
+    desc: Resume Helm release -- ARGS
+    cmds:
+      - flux resume helmrelease -- {{.CLI_ARGS}}
     silent: true
 
   k:
     desc: List all Kustomizations
     cmds:
-      - flux get kustomizations -A
+      - flux get kustomizations --all-namespaces
+    silent: true
+
+  sk:
+    desc: Suspend kustomization -- ARGS
+    cmds:
+      - flux suspend kustomization {{.CLI_ARGS}}
+    silent: true
+
+  rk:
+    desc: Resume kustomization -- ARGS
+    cmds:
+      - flux resume kustomization {{.CLI_ARGS}}
     silent: true
