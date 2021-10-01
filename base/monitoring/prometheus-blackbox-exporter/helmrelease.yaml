@@ -25,6 +25,8 @@ spec:
           interval: 12h
     prometheusRule:
       enabled: true
+      additionalLabels:
+        app: prometheus-blackbox-exporter
       rules:
         - alert: SSLCertExpiringSoon
           expr: probe_ssl_earliest_cert_expiry{job="blackbox"} - time() < 86400 * 30
