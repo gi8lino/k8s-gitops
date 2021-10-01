@@ -26,7 +26,6 @@ spec:
       targets:
         - name: home
           url: https://${BASE_DOMAIN}
-          interval: 12h
           module: icmp
     prometheusRule:
       enabled: true
