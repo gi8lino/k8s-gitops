@@ -18,6 +18,13 @@ spec:
       interval: 5m
   values:
     allowIcmp: true
+    config:
+      modules:
+        icmp:
+          prober: icmp
+          timeout: 30s
+          icmp:
+            preferred_ip_protocol: "ip4"
     pod:
       labels:
         app: prometheus-blackbox-exporter
@@ -26,6 +33,9 @@ spec:
       targets:
         - name: google
           url: https://google.com
+          module: icmp
+        - name: home
+          url: https://${BASE_DOMAIN}
           module: icmp
     prometheusRule:
       enabled: true
