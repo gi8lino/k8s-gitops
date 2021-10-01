@@ -35,7 +35,6 @@ spec:
           url: https://google.com
         - name: home
           url: https://${BASE_DOMAIN}
-          module: icmp
     prometheusRule:
       enabled: true
       rules:
