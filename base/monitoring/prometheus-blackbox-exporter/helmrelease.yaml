@@ -39,7 +39,7 @@ spec:
       rules:
         - alert: SSLCertExpiringSoon
           annotations:
-            message: The certificate for {{ $labels.instance }} expires within the next 30 days.
+            message: The certificate for {{"{{ $labels.instance }}"}} expires within the next 30 days.
           expr: probe_ssl_earliest_cert_expiry{job="prometheus-blackbox-exporter"} - time() < 86400 * 30
           labels:
             severity: warning
