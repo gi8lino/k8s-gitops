@@ -49,7 +49,7 @@ spec:
               command:
                 - /bin/sh
                 - -c
-                - exec pg_isready -U "$POSTGRES_USER" --dbname=postgres -h 127.0.0.1 -p 5432
+                - exec pg_isready -U "$POSTGRES_USER" --dbname=keycloak -h 127.0.0.1 -p 5432
             initialDelaySeconds: 5
             failureThreshold: 30
             periodSeconds: 3
@@ -58,7 +58,7 @@ spec:
               command:
                 - /bin/sh
                 - -c
-                - exec pg_isready -U "$POSTGRES_USER" --dbname=postgres -h 127.0.0.1 -p 5432
+                - exec pg_isready -U "$POSTGRES_USER" --dbname=keycloak -h 127.0.0.1 -p 5432
             failureThreshold: 2
             timeoutSeconds: 5
             periodSeconds: 30
