@@ -17,6 +17,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    allowIcmp: true
     pod:
       labels:
         app: prometheus-blackbox-exporter
@@ -26,6 +27,7 @@ spec:
         - name: home
           url: https://${BASE_DOMAIN}
           interval: 12h
+          module: icmp
     prometheusRule:
       enabled: true
       rules:
