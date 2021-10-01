@@ -17,28 +17,30 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    allowIcmp: true
-    config:
-      modules:
-        icmp:
-          prober: icmp
-          timeout: 30s
-          icmp:
-            preferred_ip_protocol: "ip4"
     pod:
       labels:
         app: prometheus-blackbox-exporter
     serviceMonitor:
       enabled: true
+      defaults:
+        interval: 12h
+        scrapeTimeout: 30s
       targets:
-        - name: google
-          url: https://google.com
-        - name: home
-          url: https://git.${BASE_DOMAIN}
+        - name: basedomain
+          url: https://${BASE_DOMAIN}
+        - name: pihole
+          url: https://pihole.local.${BASE_DOMAIN}
+        - name: tools
+          url: https://tools.${BASE_DOMAIN}
+        - name: diskstation
+          url: https://ds.local.${BASE_DOMAIN}
     prometheusRule:
       enabled: true
       rules:
         - alert: SSLCertExpiringSoon
+          annotations:
+            description: The certificate for {{ $labels.instance }} expires within the next 30 days.
+            summary: Certificate expires soon
           expr: probe_ssl_earliest_cert_expiry{job="prometheus-blackbox-exporter"} - time() < 86400 * 30
           labels:
             severity: warning
