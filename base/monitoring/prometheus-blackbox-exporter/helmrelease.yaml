@@ -20,7 +20,7 @@ spec:
     serviceMonitor:
       enabled: true
       targets:
-        - name: base domain
+        - name: base_domain
           url: ${BASE_DOMAIN}
           interval: 12h
     prometheusRule:
