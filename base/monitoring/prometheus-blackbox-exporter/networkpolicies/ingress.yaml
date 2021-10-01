@@ -5,14 +5,14 @@ metadata:
   name: ingress-blackbox-exporter
   namespace: monitoring
 spec:
-  selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
+  selector: app == 'prometheus-blackbox-exporter'
   types:
     - Ingress
   ingress:
     - action: Allow
       protocol: TCP
       source:
-        selector: app == 'prometheus-blackbox-exporter'
+        selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
       destination:
         ports:
           - 9115
