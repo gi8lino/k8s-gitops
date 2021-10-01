@@ -23,7 +23,6 @@ spec:
         app: prometheus-blackbox-exporter
     serviceMonitor:
       enabled: true
-      scheme: https
       targets:
         - name: google
           url: google.io
