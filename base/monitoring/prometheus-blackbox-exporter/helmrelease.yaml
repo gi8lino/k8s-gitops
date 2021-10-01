@@ -33,7 +33,6 @@ spec:
       targets:
         - name: google
           url: https://google.com
-          module: icmp
         - name: home
           url: https://${BASE_DOMAIN}
           module: icmp
@@ -41,7 +40,7 @@ spec:
       enabled: true
       rules:
         - alert: SSLCertExpiringSoon
-          expr: probe_ssl_earliest_cert_expiry{job="blackbox"} - time() < 86400 * 30
+          expr: probe_ssl_earliest_cert_expiry{job="prometheus-blackbox-exporter"} - time() < 86400 * 30
           labels:
             severity: warning
           for: 10m
