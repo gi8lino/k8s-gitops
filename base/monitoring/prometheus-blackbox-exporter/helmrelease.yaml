@@ -23,16 +23,16 @@ spec:
     serviceMonitor:
       enabled: true
       defaults:
-        interval: 1m
+        interval: 1h
         scrapeTimeout: 30s
         follow_redirects: false
       targets:
         - name: basedomain
-          url: https://${BASE_DOMAIN}
+          url: https://sso.${BASE_DOMAIN}
         - name: pihole
           url: https://pihole.local.${BASE_DOMAIN}
         - name: tools
-          url: https://tools.${BASE_DOMAIN}
+          url: https://traefik.tools.${BASE_DOMAIN}
         - name: diskstation
           url: https://ds.local.${BASE_DOMAIN}
     prometheusRule:
