@@ -24,7 +24,8 @@ spec:
       enabled: true
       defaults:
         interval: 12h
-        scrapeTimeout: 30s
+        scrapeTimeout: 30s$
+        follow_redirects: false
       targets:
         - name: basedomain
           url: https://${BASE_DOMAIN}
