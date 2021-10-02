@@ -107,6 +107,11 @@ spec:
         pathType: Prefix
         paths:
           - /
+      prometheusSpec:
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
     prometheus-node-exporter:
       extraArgs:
         - --collector.filesystem.ignored-mount-points=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
