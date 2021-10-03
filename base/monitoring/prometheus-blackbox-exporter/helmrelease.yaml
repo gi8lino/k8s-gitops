@@ -45,4 +45,3 @@ spec:
             severity: warning
           annotations:
             summary: SSL certificate will expire soon on (instance {{"{{ $labels.instance }}"}})
-            description: SSL certificate expires in 30 days\nVALUE = {{"{{ $value }}"}}
