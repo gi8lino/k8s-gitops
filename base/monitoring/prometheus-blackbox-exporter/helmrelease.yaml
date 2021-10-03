@@ -26,7 +26,7 @@ spec:
         interval: 15m
         scrapeTimeout: 30s
         follow_redirects: false
-      relablings:
+      metricRelabelings:
         - source_labels: [__address__]
           target_label: __param_target
         - source_labels: [__param_target]
