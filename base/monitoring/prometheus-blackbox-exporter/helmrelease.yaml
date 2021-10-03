@@ -35,6 +35,13 @@ spec:
           url: https://traefik.tools.${BASE_DOMAIN}
         - name: diskstation
           url: https://ds.local.${BASE_DOMAIN}
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
     prometheusRule:
       enabled: true
       rules:
@@ -44,5 +51,5 @@ spec:
           labels:
             severity: warning
           annotations:
-            summary: "The certificate for {{ \"{{ $labels.instance }}\" }} expires within the next 30 days"
+            summary: "The certificate for {{ \"{{ $labels.instance }}\" }} expires in {{ \"{{ $value | humanizeDuration }}\" }}"
             description: "SSL certificate expires in 30 days\n VALUE = {{ \"{{ $value }}\" }}\n LABELS: {{ \"{{ $labels }}\" }}"
