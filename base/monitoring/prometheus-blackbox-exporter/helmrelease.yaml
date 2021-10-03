@@ -26,6 +26,13 @@ spec:
         interval: 15m
         scrapeTimeout: 30s
         follow_redirects: false
+      relablings:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
       targets:
         - name: ${BASE_DOMAIN}
           url: https://sso.${BASE_DOMAIN}
@@ -37,13 +44,6 @@ spec:
           url: https://ds.local.${BASE_DOMAIN}
     prometheusRule:
       enabled: true
-      relabel_configs:
-        - source_labels: [__address__]
-          target_label: __param_target
-        - source_labels: [__param_target]
-          target_label: instance
-        - target_label: __address__
-          replacement: prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
       rules:
         - alert: SSLCertExpiringSoon
           expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 30
