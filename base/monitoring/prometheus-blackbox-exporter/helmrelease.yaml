@@ -23,7 +23,7 @@ spec:
     serviceMonitor:
       enabled: true
       defaults:
-        interval: 1h
+        interval: 15m
         scrapeTimeout: 30s
         follow_redirects: false
       targets:
@@ -38,10 +38,11 @@ spec:
     prometheusRule:
       enabled: true
       rules:
-        - alert: SSLCertExpiringSoon
-          annotations:
-            message: The certificate for {{"{{ $labels.instance }}"}} expires within the next 30 days.
-          expr: probe_ssl_earliest_cert_expiry{job="prometheus-blackbox-exporter"} - time() < 86400 * 30
+        - alert: Ssl Cert Will Expire in 30 days
+          expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 30
+          for: 5m
           labels:
             severity: warning
-          for: 10m
+          annotations:
+            message: SSL certificate will expire soon on (instance {{"{{ $labels.instance }}"}})
+            description: "SSL certificate expires in 30 days\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
