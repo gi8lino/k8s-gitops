@@ -38,10 +38,10 @@ spec:
     prometheusRule:
       enabled: true
       rules:
-        - alert: Ssl Cert Will Expire in 30 days
+        - alert: SSLCertExpiringSoon
           expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 30
           for: 5m
           labels:
             severity: warning
           annotations:
-            summary: The certificate for {{"{{ $labels.instance }}"}} expires within the next 30 days.
+            summary: SSL certificate will expire soon on (instance {{"{{ $labels.instance }}"}})
