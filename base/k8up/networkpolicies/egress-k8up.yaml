@@ -24,7 +24,7 @@ metadata:
 spec:
   selector: >-
     job-name contains 'backup' ||
-    job-name contains 'prune'  ||
+    job-name contains 'prune' ||
     job-name contains 'check'
   types:
     - Egress
