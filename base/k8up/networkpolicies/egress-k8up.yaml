@@ -23,9 +23,9 @@ metadata:
   name: egress-k8up-jobs-to-kube-api
 spec:
   selector:
-    job-name contains backup ||
-    job-name contains prune  ||
-    job-name contains check
+    job-name contains 'backup' ||
+    job-name contains 'prune'  ||
+    job-name contains 'check'
   types:
     - Egress
   egress:
