@@ -10,4 +10,3 @@ spec:
     trustForwardHeader: true
     authResponseHeaders:
       - "X-Forwarded-User"
-      - "X-Forwarded-Email"
