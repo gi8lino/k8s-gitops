@@ -21,17 +21,6 @@ spec:
       labels:
         app: healthchecks
     spec:
-      initContainers:
-        - name: truncate-local-settings-py
-          image: busybox:1.34.0
-          imagePullPolicy: IfNotPresent
-          command:
-            - sh
-            - -c
-            - '[ -f /config/local_settings.py ] && rm -f /config/local_settings.py || exit 0'
-          volumeMounts:
-            - mountPath: /config
-              name: healthchecks-data
       containers:
         - name: healthchecks
           image: ghcr.io/linuxserver/healthchecks:v1.22.0-ls102
