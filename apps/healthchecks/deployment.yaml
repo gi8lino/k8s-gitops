@@ -70,7 +70,7 @@ spec:
               command:
                 - bash
                 - -c
-                - /app/scripts/startup
+                - /app/healthchecks/startup
             initialDelaySeconds: 30
             failureThreshold: 90
             timeoutSeconds: 5
@@ -89,7 +89,7 @@ spec:
               mountPath: /etc/periodic/weekly/prunes
               subPath: prunes
             - name: startup
-              mountPath: /app/scripts/startup
+              mountPath: /app/healthchecks/startup
               subPath: startup
             - name: logo
               mountPath: /app/healthchecks/static/img/logo.png
@@ -121,4 +121,4 @@ spec:
         - name: logo
           configMap:
             name: logo
-            defaultMode: 0655
+            defaultMode: 0765
