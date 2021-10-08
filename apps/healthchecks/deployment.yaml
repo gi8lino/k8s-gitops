@@ -71,8 +71,8 @@ spec:
                 - bash
                 - -c
                 - /app/scripts/startup
-            initialDelaySeconds: 10
-            failureThreshold: 30
+            initialDelaySeconds: 30
+            failureThreshold: 90
             timeoutSeconds: 5
             periodSeconds: 3
           livenessProbe:
