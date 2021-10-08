@@ -35,7 +35,7 @@
         },
         {
             "fileMatch": [
-                "crds\\/cert-manager\\/kustomization.yaml$"
+                "crds\\/cert-manager\\/kustomization\\.yaml$"
             ],
             "matchStrings": [
                 "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\\s.*\\/(?<currentValue>.*?)\\/"
