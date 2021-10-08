@@ -7,6 +7,7 @@
         "gi8lino"
     ],
     "regexManagers": [
+        // dependencies for sync-cloudflare-nets
         {
             "fileMatch": [
                 ".github\\/workflows\\/sync-cloudflare-nets\\.yaml$"
@@ -16,6 +17,7 @@
             ],
             "datasourceTemplate": "github-releases"
         },
+        // helm releases for apps, base & infra
         {
             "fileMatch": [
                 "(apps|base|infra)\\/(.+\\/)*helmrelease\\.yaml$"
@@ -25,6 +27,7 @@
             ],
             "datasourceTemplate": "helm"
         },
+        // crd releases for k8up
         {
             "fileMatch": [
                 "crds\\/k8up\\/kustomization\\.yaml$"
@@ -33,6 +36,7 @@
                 "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*\\/(?<currentValue>.*?)\\/"
             ]
         },
+        // crd releases for cert-manager
         {
             "fileMatch": [
                 "crds\\/cert-manager\\/kustomization\\.yaml$"
@@ -42,6 +46,7 @@
             ],
             "datasourceTemplate": "helm"
         },
+        // crd releases for kube-prometheus-stack
         {
             "fileMatch": [
                 "crds\\/kube-prometheus-stack\\/crds\\.yaml$"
@@ -51,6 +56,7 @@
             ],
             "datasourceTemplate": "helm"
         },
+        // crd releases for traefik
         {
             "fileMatch": [
                 "crds\\/traefik\\/crds\\.yaml$"
@@ -61,6 +67,7 @@
             "datasourceTemplate": "helm"
         }
     ],
+    // image releases for traefik-forward-auth, apps & base
     "kubernetes": {
         "fileMatch": [
             "(infra\\/traefik\\/forward-auth|apps|base)\\/(.*\\/)*.+\\.yaml"
@@ -85,6 +92,7 @@
             ],
             "enabled": true
         },
+        // special versioning for linuxserver.io images
         {
             "matchDatasources": [
                 "docker"
