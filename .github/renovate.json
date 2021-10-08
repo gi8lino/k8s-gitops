@@ -90,7 +90,7 @@
                 "docker"
             ],
             "matchPackagePatterns": [
-                "^ghcr.io\\/linuxserver\\/(ombi|plex|sabnzbd)"
+                "^ghcr.io\\/linuxserver\\/(tautulli|plex|sabnzbd|nzbhydra2|healthchecks)"
             ],
             "versioning": "loose"
         },
