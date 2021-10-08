@@ -34,7 +34,7 @@ spec:
               name: healthchecks-data
       containers:
         - name: healthchecks
-          image: ghcr.io/linuxserver/healthchecks:v1.22.0-ls96
+          image: ghcr.io/linuxserver/healthchecks:v1.22.0-ls102
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
@@ -70,7 +70,7 @@ spec:
               command:
                 - bash
                 - -c
-                - /app/healthchecks/startup
+                - /app/scripts/startup
             initialDelaySeconds: 10
             failureThreshold: 30
             timeoutSeconds: 5
@@ -89,7 +89,7 @@ spec:
               mountPath: /etc/periodic/weekly/prunes
               subPath: prunes
             - name: startup
-              mountPath: /app/healthchecks/startup
+              mountPath: /app/scripts/startup
               subPath: startup
             - name: logo
               mountPath: /app/healthchecks/static/img/logo.png
