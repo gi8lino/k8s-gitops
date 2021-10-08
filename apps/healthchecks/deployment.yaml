@@ -72,7 +72,7 @@ spec:
               command:
                 - bash
                 - -c
-                - /app/scripts/startup
+                - /scripts/startup
             initialDelaySeconds: 30
             failureThreshold: 90
             timeoutSeconds: 5
@@ -91,7 +91,7 @@ spec:
               mountPath: /etc/periodic/weekly/prunes
               subPath: prunes
             - name: startup
-              mountPath: /app/scripts/startup
+              mountPath: /scripts/startup
               subPath: startup
           resources:
             requests:
