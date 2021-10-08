@@ -92,7 +92,7 @@
             "matchPackagePatterns": [
                 "^lscr.io\\/linuxserver\\/(tautulli|plex|sabnzbd|nzbhydra2|healthchecks)"
             ],
-            "versioning": "loose"
+            "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(.*-ls)?(?<build>\\d+)$"
         },
         {
             "matchDatasources": [
