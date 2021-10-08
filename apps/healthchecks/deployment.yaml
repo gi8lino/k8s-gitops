@@ -53,6 +53,8 @@ spec:
               value: "False"
             - name: REGENERATE_SETTINGS
               value: "True"
+            - name: SITE_LOGO_URL
+              value: https://healthchecks.io/static/img/logo-full.svg
             - name: DOCKER_MODS
               value: linuxserver/mods:universal-cron
           envFrom:
@@ -70,7 +72,7 @@ spec:
               command:
                 - bash
                 - -c
-                - /app/healthchecks/startup
+                - /app/scripts/startup
             initialDelaySeconds: 30
             failureThreshold: 90
             timeoutSeconds: 5
@@ -89,11 +91,8 @@ spec:
               mountPath: /etc/periodic/weekly/prunes
               subPath: prunes
             - name: startup
-              mountPath: /app/healthchecks/startup
+              mountPath: /app/scripts/startup
               subPath: startup
-            - name: logo
-              mountPath: /app/healthchecks/static/img/logo.png
-              subPath: logo.png
           resources:
             requests:
               memory: 256Mi
@@ -118,7 +117,3 @@ spec:
           configMap:
             name: startup
             defaultMode: 0755
-        - name: logo
-          configMap:
-            name: logo
-            defaultMode: 0765
