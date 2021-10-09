@@ -38,14 +38,14 @@ spec:
           - target:
               kind: Ingress
               name: minio
-            patch:
+            patch: |-
               - op: add
                 path: /spec/ingressClassName
                 value: traefik
           - target:
               kind: Deployment
               name: minio
-            patch:
+            patch: |-
               - op: add
                 path: /spec/template/spec/shareProcessNamespace
                 value: true
