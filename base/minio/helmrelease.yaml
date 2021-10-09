@@ -34,18 +34,18 @@ spec:
       password: ${MINIO_SECRETKEY}
   postRenderers:
     - kustomize:
-        patches:
+        patchesJson6902:
           - target:
               kind: Ingress
               name: minio
-            patch: |-
+            patch:
               - op: add
                 path: /spec/ingressClassName
                 value: traefik
           - target:
               kind: Deployment
               name: minio
-            patch: |-
+            patch:
               - op: add
                 path: /spec/template/spec/shareProcessNamespace
                 value: true
