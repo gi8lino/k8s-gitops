@@ -34,7 +34,7 @@ spec:
       password: ${MINIO_SECRETKEY}
   postRenderers:
     - kustomize:
-        patchesJson6902:
+        patches:
           - target:
               kind: Ingress
               name: minio
