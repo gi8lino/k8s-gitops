@@ -53,6 +53,8 @@ spec:
               value: "False"
             - name: REGENERATE_SETTINGS
               value: "True"
+            - name: REMOTE_USER_HEADER
+              value: HTTP_X_CUSTOM_EMAIL
             - name: SITE_LOGO_URL
               value: https://healthchecks.io/static/img/logo-full.svg
             - name: DOCKER_MODS

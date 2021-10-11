@@ -6,6 +6,7 @@ resources:
   - deployment.yaml
   - ingress.yaml
   - service.yaml
+  - middleware.yaml
   - schedule.yaml
   - configmap.yaml
   - secret.yaml
