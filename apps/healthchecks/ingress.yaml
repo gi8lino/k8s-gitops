@@ -6,7 +6,7 @@ metadata:
   namespace: healthchecks
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd,healthchecks-remote-user-header@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
