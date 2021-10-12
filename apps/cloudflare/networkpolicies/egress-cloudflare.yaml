@@ -21,3 +21,11 @@ spec:
         selector: app == 'elasticsearch'
         ports:
           - 9200
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'healthchecks'
+        selector:
+          app == 'healthchecks'
+        ports:
+          - 8000
