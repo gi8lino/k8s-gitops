@@ -12,6 +12,13 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+        ports:
+          - 8443
+    - action: Allow
+      protocol: TCP
+      destination:
         ports:
           - 80
           - 443
