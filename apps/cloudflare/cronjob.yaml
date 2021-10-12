@@ -32,7 +32,7 @@ spec:
                   value: "true"
               envFrom:
                 - secretRef:
-                    name: cloudflare-credentials
+                    name: cloudflare-fw-events-fetch-vars
               volumeMounts:
                 - name: cloudflare
                   mountPath: /tmp/cloudflare
