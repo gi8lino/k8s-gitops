@@ -77,7 +77,7 @@ spec:
             providers:
               - name: default
                 orgId: 1
-                folder: "flux"
+                folder: ""
                 type: file
                 disableDeletion: false
                 editable: true
@@ -90,6 +90,12 @@ spec:
               datasource: Prometheus
             flux-control-plane:
               url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
+              datasource: Prometheus
+            cloudflare-fw-events:
+              url: https://raw.githubusercontent.com/gi8lino/k8s-gitops/master/apps/cloudflare/Cloudflare-Firewall-Events.json
+              datasource: Elasticsearch
+            SSL-Certificate-Monitor:
+              url: https://raw.githubusercontent.com/gi8lino/k8s-gitops/master/base/monitoring/prometheus-blackbox-exporter/SSL-Certificate-Monitor.json
               datasource: Prometheus
       ingress:
         annotations:
