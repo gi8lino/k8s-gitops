@@ -69,6 +69,14 @@ spec:
           role_attribute_path: contains(realm_access.roles[*], 'admin') && 'Admin' || contains(realm_access.roles[*], 'editor') && 'Editor' || 'Viewer'
         server:
           root_url: https://grafana.local.${BASE_DOMAIN}
+      dashboards:
+        default:
+          flux-cluster:
+            url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
+            datasource: Prometheus
+          flux-control-plane:
+            url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
+            datasource: Prometheus
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
