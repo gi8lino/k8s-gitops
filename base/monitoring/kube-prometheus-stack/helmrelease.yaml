@@ -52,6 +52,8 @@ spec:
         kubernetesResources: false
     grafana:
       defaultDashboardsTimezone: browser
+      analytics:
+        check_for_updates: false
       grafana.ini:
         auth:
           disable_login_form: true
@@ -69,6 +71,26 @@ spec:
           role_attribute_path: contains(realm_access.roles[*], 'admin') && 'Admin' || contains(realm_access.roles[*], 'editor') && 'Editor' || 'Viewer'
         server:
           root_url: https://grafana.local.${BASE_DOMAIN}
+        dashboardProviders:
+          dashboardproviders.yaml:
+            apiVersion: 1
+            providers:
+              - name: default
+                orgId: 1
+                folder: ""
+                type: file
+                disableDeletion: false
+                editable: true
+                options:
+                  path: /var/lib/grafana/dashboards/default
+        dashboards:
+          general:
+            flux-cluster:
+              url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
+              datasource: Prometheus
+            flux-control-plane:
+              url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
+              datasource: Prometheus
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
