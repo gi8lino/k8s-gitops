@@ -42,7 +42,7 @@ kubectl create job \
 The script will create for each of day of the last past 14 days a cronjob.
 
 ```bash
-for ((i=1;i<=2;i++)); do
+for ((i=1;i<=14;i++)); do
   TODAY=$(date --date today +'%Y-%m-%d %H:%M:%S')
   MINUTES=$(( ${i} * 1440 ))
   end_date=$(date --date "${TODAY} ${MINUTES} minutes ago" +'%Y-%m-%dT%H:%M:%SZ')
