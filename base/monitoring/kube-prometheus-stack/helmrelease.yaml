@@ -51,7 +51,6 @@ spec:
         kubeScheduler: false
         kubernetesResources: false
     grafana:
-      defaultDashboardsTimezone: browser
       grafana.ini:
         auth:
           disable_login_form: true
