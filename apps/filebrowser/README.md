@@ -8,7 +8,7 @@ exec into container:
 kubectl exec -ti -n filebrowser $(kubectl get pods -l app=filebrowser -ojsonpath='{..metadata.name}') -- ash
 ```
 
-create new user(s):
+create new admin user:
 
 ```bash
 ./filebrowser users add email@gmail.com <PASSWORD> --perm.admin
