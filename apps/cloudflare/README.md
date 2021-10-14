@@ -21,7 +21,7 @@ You can set following environment variables to override the default behavior of 
 
 You can find an example of a Grafana Dashboard here:
 
-https://raw.githubusercontent.com/gi8lino/grafana-dashboards/master/Cloudflare-Firewall-Events.json
+https://raw.githubusercontent.com/gi8lino/grafana-dashboards/master/cloudflare-fw/Cloudflare-Firewall-Events.json
 
 ## load old Cloudflare data
 
