@@ -591,7 +591,9 @@
   "refresh": "",
   "schemaVersion": 30,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "cloudflare"
+  ],
   "templating": {
     "list": []
   },
@@ -603,5 +605,5 @@
   "timezone": "",
   "title": "Cloudflare Firewall events",
   "uid": "BTVdHsSnk",
-  "version": 6
+  "version": 7
 }
