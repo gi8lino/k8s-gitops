@@ -48,7 +48,7 @@
       }
     ]
   },
-  "description": "OpenAdvices first published Dahsboard: Just one Table Widget to display the Certificate and Connection Status from HTTPS Connections that are Monitored with Prometheus.",
+  "description": "Just one Table Widget to display the Certificate and Connection Status from HTTPS Connections that are Monitored with Prometheus.",
   "editable": true,
   "gnetId": 13230,
   "graphTooltip": 0,
@@ -567,7 +567,9 @@
   "refresh": "",
   "schemaVersion": 30,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "cloudflare"
+  ],
   "templating": {
     "list": []
   },
@@ -579,5 +581,5 @@
   "timezone": "",
   "title": "SSL Certificate Monitor",
   "uid": "r8eWoHpGz",
-  "version": 4
+  "version": 6
 }
