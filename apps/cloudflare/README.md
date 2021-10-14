@@ -16,6 +16,7 @@ You can set following environment variables to override the default behavior of 
 | `ELASTIC_FQDN`                      | FQDN of elasticsearch                              | http://elasticsearch.cloudflare.svc.cluster.local:9200 |
 | `END_DATE`                          | end date of time range to fetch Cloudflare firewall events                           | today                |
 | `MINUTES`                           | Minutes to subtract from `END_DATE`. Will be used as start date of time range to fetch Cloudflare firewall events                                                                                     | 60                   |
+| `HEALTHCHECKS_URL`                  | ping healthchecks after the firewall events are fetched and stored in elasticsearch  | NONE                 |
 
 ## Grafana dashboard
 
