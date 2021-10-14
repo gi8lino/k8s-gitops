@@ -13,5 +13,6 @@ data:
       "log": "stdout",
       "database": "/db/filebrowser.db",
       "root": "/srv",
-      "auth.method": "noaut"
+      "auth.method": "proxy",
+      "auth.header": "X-Forwarded-User"
     }
