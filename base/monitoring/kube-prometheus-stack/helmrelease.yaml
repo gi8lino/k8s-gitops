@@ -84,7 +84,7 @@ spec:
                 options:
                   path: /var/lib/grafana/dashboards/default
         dashboards:
-          general:
+          default:
             flux-cluster:
               url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
               datasource: Prometheus
