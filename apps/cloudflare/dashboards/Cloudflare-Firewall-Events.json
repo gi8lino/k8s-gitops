@@ -1,40 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_CLOUDFLARE",
-      "label": "cloudflare",
-      "description": "display Cloudflare firewall events",
-      "type": "datasource",
-      "pluginId": "elasticsearch",
-      "pluginName": "Elasticsearch"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "datasource",
-      "id": "elasticsearch",
-      "name": "Elasticsearch",
-      "version": "1.0.0"
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "8.1.5"
-    },
-    {
-      "type": "panel",
-      "id": "piechart",
-      "name": "Pie chart",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -60,7 +24,7 @@
   "links": [],
   "panels": [
     {
-      "datasource": "${DS_CLOUDFLARE}",
+      "datasource": "cloudflare",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -138,7 +102,7 @@
       "type": "piechart"
     },
     {
-      "datasource": "${DS_CLOUDFLARE}",
+      "datasource": "cloudflare",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -242,7 +206,7 @@
       "type": "piechart"
     },
     {
-      "datasource": "${DS_CLOUDFLARE}",
+      "datasource": "cloudflare",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -320,7 +284,7 @@
       "type": "piechart"
     },
     {
-      "datasource": "${DS_CLOUDFLARE}",
+      "datasource": "cloudflare",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -604,5 +568,5 @@
   "timezone": "",
   "title": "Cloudflare Firewall eventss",
   "uid": "BTVdHsSnks",
-  "version": 2
+  "version": 1
 }
