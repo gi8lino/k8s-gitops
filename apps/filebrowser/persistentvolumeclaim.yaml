@@ -18,7 +18,7 @@ metadata:
   name: filebrowser-data
   namespace: filebrowser
   annotations:
-    k8up.io/backup: "true"
+    k8up.syn.tools/backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce

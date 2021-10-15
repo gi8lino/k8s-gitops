@@ -18,7 +18,7 @@ metadata:
   name: nzbhydra2-data
   namespace: media
   annotations:
-    k8up.io/backup: "true"
+    k8up.syn.tools/backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce
@@ -33,7 +33,7 @@ metadata:
   name: nzbhydra2-downloads
   namespace: media
   annotations:
-    k8up.io/backup: "true"
+    k8up.syn.tools/backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce

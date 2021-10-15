@@ -17,9 +17,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    image:
-      repository: k8up-io/k8up
-      tag: v2.0.0
     k8up:
       timezone: Europe/Zurich
     metrics:
