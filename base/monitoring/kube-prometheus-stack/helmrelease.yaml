@@ -75,35 +75,12 @@ spec:
           role_attribute_path: contains(realm_access.roles[*], 'admin') && 'Admin' || contains(realm_access.roles[*], 'editor') && 'Editor' || 'Viewer'
         server:
           root_url: https://grafana.local.${BASE_DOMAIN}
-      dashboardProviders:
-        dashboardproviders.yaml:
-          apiVersion: 1
-          providers:
-            - name: default
-              orgId: 1
-              folder: ""
-              type: file
-              disableDeletion: false
-              editable: true
-              options:
-                path: /var/lib/grafana/dashboards/default
-      dashboards:
-        default:
-          flux-cluster:
-            url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
-            datasource: Prometheus
-          flux-control-plane:
-            url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
-            datasource: Prometheus
-          SSL-Certificate-Monitor:
-            url: https://raw.githubusercontent.com/gi8lino/k8s-gitops/master/base/monitoring/prometheus-blackbox-exporter/dashboards/SSL-Certificate-Monitor.json
-            datasource: Prometheus
-          Blackbox-Exporter-Quick-Overview:
-            url: https://raw.githubusercontent.com/gi8lino/k8s-gitops/master/base/monitoring/prometheus-blackbox-exporter/dashboards/Blackbox-Exporter-Quick-Overview.json
-            datasource: Prometheus
-          cloudflare-fw-events:
-            url: https://raw.githubusercontent.com/gi8lino/k8s-gitops/master/apps/cloudflare/dashboards/Cloudflare-Firewall-Events.json
-            datasource: Elasticsearch
+      sidecar:
+        dashboards:
+          enabled: true
+          labelValue: enabled
+          searchNamespace: ALL
+          resource: configmap
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
