@@ -19,7 +19,7 @@ data:
   cloudflare-elasticsearch.yaml: |-
     apiVersion: 1
     datasources:
-      - name: cloudflare_elasticsearch
+      - name: cloudflare
         type: elasticsearch
         url: http://elasticsearch.cloudflare.svc.cluster.local:9200
         access: direct
