@@ -9,3 +9,21 @@ resources:
   - configmap.yaml
   - secret.yaml
   - persistentvolumeclaim.yaml
+
+configMapGenerator:
+  - name: grafana-dashboard-cloudflare-firewall-events
+    files:
+      - dashboards/Cloudflare-Firewall-Events.json
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+patches:
+  - target:
+      kind: ConfigMap
+      name: grafana-dashboard-cloudflare-firewall-events
+    patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: enabled
