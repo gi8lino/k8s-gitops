@@ -24,8 +24,8 @@ data:
         url: http://elasticsearch.cloudflare.svc.cluster.local:9200
         access: direct
         database: cloudflare_fw_events
-        jsonData: |-
-          timeField: "@datetime"
+        jsonData:
+          timeField: "datetime"
           esVersion: "7.10+"
           isDefault: "false"
 ---
