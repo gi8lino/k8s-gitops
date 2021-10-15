@@ -78,7 +78,6 @@ spec:
       sidecar:
         dashboards:
           enabled: true
-          labelValue: enabled
           searchNamespace: ALL
           resource: configmap
       ingress:
