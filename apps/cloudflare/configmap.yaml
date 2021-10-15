@@ -26,7 +26,7 @@ data:
         database: cloudflare_fw_events
         jsonData:
           timeField: "datetime"
-          esVersion: "70"
+          esVersion: 70
           isDefault: "false"
 ---
 apiVersion: v1
