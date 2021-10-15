@@ -14,7 +14,7 @@ metadata:
   name: elasticsearch-grafana-datasource
   namespace: cloudflare
   labels:
-    grafana_datasource: enabled
+    grafana_datasource: "1"
 data:
   cloudflare-elasticsearch.yaml: |-
     apiVersion: 1
