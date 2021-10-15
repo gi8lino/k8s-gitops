@@ -4,3 +4,34 @@ kind: Kustomization
 resources:
   - podmonitor.yaml
   - prometheusrule.yaml
+
+configMapGenerator:
+  - name: grafana-dashboard-flux-cluster
+    namespace: flux-system
+    files:
+      - https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
+  - name: grafana-dashboard-flux-control-plane
+    namespace: flux-system
+    files:
+      - https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+patches:
+  - target:
+      kind: ConfigMap
+      name: grafana-dashboard-flux-cluster
+    patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: enabled
+  - target:
+      kind: ConfigMap
+      name: grafana-dashboard-flux-control-plane
+    patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: enabled
