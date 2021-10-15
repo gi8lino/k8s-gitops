@@ -51,6 +51,8 @@ spec:
         kubeScheduler: false
         kubernetesResources: false
     grafana:
+      envFromSecret: kube-prometheus-stack-grafana-auth
+      adminPassword: $__env{GRAFANA_ADMIN_PASSWORD}
       defaultDashboardsTimezone: browser
       analytics:
         check_for_updates: false
@@ -61,9 +63,11 @@ spec:
         auth.basic:
           enabled: false
         auth.generic_oauth:
+          enabled: true
           allow_sign_up: false
           auth_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/auth
-          enabled: true
+          client_id: $__env{GRAFANA_AUTH_CLIENT_ID}
+          client_secret: $__env{GRAFANA_AUTH_CLIENT_SECRET}
           name: ${BASE_DOMAIN} SSO
           scopes: openid profile email roles
           signout_redirect_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/logout?redirect_uri=https://grafana.local.${BASE_DOMAIN}/login
