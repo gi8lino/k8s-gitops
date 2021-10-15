@@ -5,7 +5,7 @@ metadata:
   name: egress-cluster-resources-backup
   namespace: k8up
 spec:
-  selector: k8up.syn.tools/preBackupPod == 'cluster-resources-backup'
+  selector: k8up.io/preBackupPod == 'cluster-resources-backup'
   types:
     - Egress
   egress:
