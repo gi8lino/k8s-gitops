@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_ELASTICSEARCH",
-      "label": "Elasticsearch",
+      "name": "DS_CLOUDFLARE",
+      "label": "cloudflare",
       "description": "",
       "type": "datasource",
       "pluginId": "elasticsearch",
@@ -61,7 +61,7 @@
   "links": [],
   "panels": [
     {
-      "datasource": "${DS_ELASTICSEARCH}",
+      "datasource": "${DS_CLOUDFLARE}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -139,7 +139,7 @@
       "type": "piechart"
     },
     {
-      "datasource": "${DS_ELASTICSEARCH}",
+      "datasource": "${DS_CLOUDFLARE}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -243,7 +243,7 @@
       "type": "piechart"
     },
     {
-      "datasource": "${DS_ELASTICSEARCH}",
+      "datasource": "${DS_CLOUDFLARE}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -321,7 +321,7 @@
       "type": "piechart"
     },
     {
-      "datasource": "${DS_ELASTICSEARCH}",
+      "datasource": "${DS_CLOUDFLARE}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -603,7 +603,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Cloudflare Firewall events",
-  "uid": "BTVdHsSnk",
-  "version": 7
+  "title": "Cloudflare Firewall eventss",
+  "uid": "BTVdHsSnks",
+  "version": 1
 }
