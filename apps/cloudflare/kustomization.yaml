@@ -12,6 +12,7 @@ resources:
 
 configMapGenerator:
   - name: grafana-dashboard-cloudflare-firewall-events
+    namespace: monitoring
     files:
       - dashboards/Cloudflare-Firewall-Events.json
 
