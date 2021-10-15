@@ -94,6 +94,12 @@ spec:
           SSL-Certificate-Monitor:
             url: https://raw.githubusercontent.com/gi8lino/k8s-gitops/master/base/monitoring/prometheus-blackbox-exporter/SSL-Certificate-Monitor.json
             datasource: Prometheus
+          Blackbox-Exporter-Quick-Overview:
+            url: https://raw.githubusercontent.com/gi8lino/k8s-gitops/master/base/monitoring/prometheus-blackbox-exporter/Blackbox-Exporter-Quick-Overview.json
+            datasource: Prometheus
+          cloudflare-fw-events:
+            url: https://raw.githubusercontent.com/gi8lino/k8s-gitops/master/apps/cloudflare/Cloudflare-Firewall-Events.json
+            datasource: Elasticsearch
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
