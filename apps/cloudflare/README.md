@@ -24,7 +24,7 @@ Add `dashboards/Cloudflare-Firewall-Events.json` to grafana for a nice dashboard
 
 __Attention__
 
-the datasource must have the name "cloudflare"!
+you must have a elasticsearch datasource named "cloudflare"!
 
 ## load old Cloudflare data
 
