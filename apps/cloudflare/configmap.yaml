@@ -22,7 +22,7 @@ data:
       - name: cloudflare
         type: elasticsearch
         url: http://elasticsearch.cloudflare.svc.cluster.local:9200
-        access: direct
+        access: Server
         database: cloudflare_fw_events
         jsonData:
           timeField: "datetime"
