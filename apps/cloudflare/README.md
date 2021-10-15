@@ -20,7 +20,7 @@ You can set following environment variables to override the default behavior of 
 
 ## Grafana dashboard
 
-Add `Cloudflare-Firewall-Events.json` to grafana for a nice dashboard
+Add `dashboards/Cloudflare-Firewall-Events.json` to grafana for a nice dashboard
 
 ## load old Cloudflare data
 

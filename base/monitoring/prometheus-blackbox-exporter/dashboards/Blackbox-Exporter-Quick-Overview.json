@@ -725,7 +725,7 @@
   "style": "dark",
   "tags": [
     "blackbox",
-    "prometheus"
+    "ssl"
   ],
   "templating": {
     "list": [
