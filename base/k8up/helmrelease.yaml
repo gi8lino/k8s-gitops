@@ -10,7 +10,6 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.appuio.ch
       chart: k8up
-      version: 1.1.0
       sourceRef:
         kind: HelmRepository
         name: appuio
