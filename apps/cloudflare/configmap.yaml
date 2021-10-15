@@ -11,7 +11,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: grafana-datasource
+  name: elasticsearch-grafana-datasource
   namespace: cloudflare
   labels:
     grafana_datasource: enabled
