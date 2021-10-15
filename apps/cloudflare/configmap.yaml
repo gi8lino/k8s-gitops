@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -6,6 +7,23 @@ metadata:
 data:
   elasticsearch.yaml: |
     discovery.type: single-node
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasource
+  namespace: cloudflare
+  label:
+    grafana_datasource: true
+data:
+  name: Elasticsearch
+  type: elasticsearch
+  url: http://elasticsearch.cloudflare.svc.cluster.local:9200
+  access: direct
+  esVersion: 7.10+
+  isDefault: "false"
+  database: cloudflare_fw_events
+  timeField: datetime
 ---
 apiVersion: v1
 kind: ConfigMap
