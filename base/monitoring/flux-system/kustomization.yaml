@@ -13,7 +13,7 @@ configMapGenerator:
   - name: grafana-dashboard-flux-control-plane
     namespace: flux-system
     files:
-      - dashboards/control-plane.json
+      - dashboards/controle-plane.json
 
 generatorOptions:
   disableNameSuffixHash: true
