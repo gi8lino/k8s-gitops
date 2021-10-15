@@ -81,7 +81,6 @@ spec:
           labelValue: enabled
           searchNamespace: ALL
           resource: configmap
-          defaultFolderName: custom
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
