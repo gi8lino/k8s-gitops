@@ -3,7 +3,7 @@
     {
       "name": "DS_CLOUDFLARE",
       "label": "cloudflare",
-      "description": "",
+      "description": "display Cloudflare firewall events",
       "type": "datasource",
       "pluginId": "elasticsearch",
       "pluginName": "Elasticsearch"
@@ -605,5 +605,5 @@
   "timezone": "",
   "title": "Cloudflare Firewall eventss",
   "uid": "BTVdHsSnks",
-  "version": 1
+  "version": 2
 }
