@@ -14,7 +14,7 @@ metadata:
   name: grafana-datasource
   namespace: cloudflare
   labels:
-    grafana_datasource: true
+    grafana_datasource: enabled
 data:
   name: Elasticsearch
   type: elasticsearch
