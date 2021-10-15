@@ -13,7 +13,7 @@ kind: ConfigMap
 metadata:
   name: grafana-datasource
   namespace: cloudflare
-  label:
+  labels:
     grafana_datasource: true
 data:
   name: Elasticsearch
