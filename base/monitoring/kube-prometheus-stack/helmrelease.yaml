@@ -80,6 +80,10 @@ spec:
           enabled: true
           searchNamespace: ALL
           resource: configmap
+        datasources:
+          enabled: true
+          searchNamespace: ALL
+          resource: configmap
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
