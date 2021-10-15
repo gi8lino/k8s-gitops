@@ -22,9 +22,7 @@ You can set following environment variables to override the default behavior of 
 
 Add `dashboards/Cloudflare-Firewall-Events.json` to grafana for a nice dashboard.
 
-__Attention__
-
-you must have a elasticsearch datasource named "cloudflare"!
+:warning: you must have a elasticsearch datasource named `cloudflare`!
 
 ## load old Cloudflare data
 
