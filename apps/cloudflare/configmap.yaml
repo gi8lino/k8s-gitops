@@ -25,7 +25,7 @@ data:
         access: direct
         database: cloudflare_fw_events
         jsonData: |-
-          timeField: "datetime"
+          timeField: "@datetime"
           esVersion: "7.10+"
           isDefault: "false"
 ---
