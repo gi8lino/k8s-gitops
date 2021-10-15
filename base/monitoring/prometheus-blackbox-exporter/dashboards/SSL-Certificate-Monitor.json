@@ -568,7 +568,8 @@
   "schemaVersion": 30,
   "style": "dark",
   "tags": [
-    "cloudflare"
+    "blackbox",
+    "ssl"
   ],
   "templating": {
     "list": []
