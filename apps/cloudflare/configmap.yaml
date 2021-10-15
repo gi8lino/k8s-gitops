@@ -16,14 +16,18 @@ metadata:
   labels:
     grafana_datasource: enabled
 data:
-  name: Elasticsearch
-  type: elasticsearch
-  url: http://elasticsearch.cloudflare.svc.cluster.local:9200
-  access: direct
-  esVersion: 7.10+
-  isDefault: "false"
-  database: cloudflare_fw_events
-  timeField: datetime
+  cloudflare-elasticsearch.yaml: |-
+    apiVersion: 1
+    datasources:
+      - name: cloudflare-elasticsearch
+        type: elasticsearch
+        url: http://elasticsearch.cloudflare.svc.cluster.local:9200
+        access: direct
+        database: cloudflare_fw_events
+        jsonData: |-
+          timeField: datetime
+          esVersion: 7.10+
+          isDefault: "false"
 ---
 apiVersion: v1
 kind: ConfigMap
