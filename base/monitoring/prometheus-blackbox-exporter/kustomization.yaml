@@ -4,3 +4,34 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
+
+configMapGenerator:
+  - name: grafana-dashboard-blackbox-exporter-quick-overview
+    namespace: monitoring
+    files:
+      - dashboards/Blackbox-Exporter-Quick-Overview.json
+  - name: grafana-dashboard-ssl-certificate-monitor
+    namespace: monitoring
+    files:
+      - dashboards/SSL-Certificate-Monitor.json
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+patches:
+  - target:
+      kind: ConfigMap
+      name: grafana-dashboard-blackbox-exporter-quick-overview
+    patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: enabled
+  - target:
+      kind: ConfigMap
+      name: grafana-dashboard-ssl-certificate-monitor
+    patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: enabled
