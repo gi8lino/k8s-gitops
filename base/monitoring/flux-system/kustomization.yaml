@@ -9,11 +9,11 @@ configMapGenerator:
   - name: grafana-dashboard-flux-cluster
     namespace: flux-system
     files:
-      - https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
+      - dashboards/cluster.json
   - name: grafana-dashboard-flux-control-plane
     namespace: flux-system
     files:
-      - https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
+      - dashboards/control-plane.json
 
 generatorOptions:
   disableNameSuffixHash: true
