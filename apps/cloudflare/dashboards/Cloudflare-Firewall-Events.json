@@ -32,6 +32,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -131,20 +132,108 @@
               "type": "count"
             }
           ],
-          "query": "",
+          "query": "action=block",
           "refId": "A",
+          "timeField": "datetime"
+        },
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "clientCountryName.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "1",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "action.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "action=allow",
+          "refId": "B",
+          "timeField": "datetime"
+        },
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "clientCountryName.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "1",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "action.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "1",
+                "size": "10"
+              },
+              "type": "terms"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "action=jschallenge",
+          "refId": "C",
           "timeField": "datetime"
         }
       ],
       "title": "World map by action",
       "transformations": [
         {
+          "id": "seriesToColumns",
+          "options": {
+            "byField": "clientCountryName.keyword"
+          }
+        },
+        {
           "id": "organize",
           "options": {
-            "excludeByName": {},
+            "excludeByName": {
+              "action.keyword 1": true,
+              "action.keyword 2": true,
+              "action.keyword 3": true
+            },
             "indexByName": {},
             "renameByName": {
-              "action.keyword": "Action",
+              "Count 1": "Block",
+              "Count 2": "Allow",
+              "Count 3": "JS Challenge",
+              "action.keyword 1": "",
+              "action.keyword 3": "",
               "clientCountryName.keyword": "Country"
             }
           }
