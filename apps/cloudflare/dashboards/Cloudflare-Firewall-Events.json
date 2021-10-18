@@ -109,7 +109,7 @@
               "settings": {
                 "min_doc_count": "1",
                 "order": "desc",
-                "orderBy": "_count",
+                "orderBy": "1",
                 "size": "10"
               },
               "type": "terms"
@@ -120,7 +120,7 @@
               "settings": {
                 "min_doc_count": "1",
                 "order": "desc",
-                "orderBy": "_term",
+                "orderBy": "1",
                 "size": "10"
               },
               "type": "terms"
@@ -156,7 +156,7 @@
               "settings": {
                 "min_doc_count": "1",
                 "order": "desc",
-                "orderBy": "_term",
+                "orderBy": "1",
                 "size": "10"
               },
               "type": "terms"
@@ -786,5 +786,5 @@
   "timezone": "",
   "title": "Cloudflare Firewall eventss",
   "uid": "BTVdHsSnks",
-  "version": 1
+  "version": 2
 }
