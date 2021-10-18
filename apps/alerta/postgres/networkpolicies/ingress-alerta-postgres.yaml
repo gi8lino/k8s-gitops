@@ -1,0 +1,22 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-alerta-postgres
+  namespace: alerta
+spec:
+  selector: >-
+    app == 'alerta' &&
+    component == 'postgres'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: >-
+          app == 'alerta' &&
+          component == 'alerta'
+      destination:
+        ports:
+          - 5432

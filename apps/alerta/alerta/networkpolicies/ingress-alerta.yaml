@@ -1,0 +1,21 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-alerta
+  namespace: alerta
+spec:
+  selector: >-
+    app == 'alerta' &&
+    component == 'alerta'
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+      destination:
+        ports:
+          - 8080

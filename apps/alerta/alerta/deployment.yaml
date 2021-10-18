@@ -1,0 +1,80 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alerta
+  namespace: alerta
+  labels:
+    app: alerta
+    component: alerta
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alerta
+      component: alerta
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: alerta
+        component: alerta
+    spec:
+      initContainers:
+        - name: wait-for-database
+          image: busybox:1.34.0
+          command:
+            - sh
+            - -c
+            - |
+              echo 'Waiting for PostgreSQL to become ready...'
+              until printf "." && nc -z -w 2 alerta-postgres.alerta.svc.cluster.local 5432; do
+                  sleep 2;
+              done;
+              echo 'PostgreSQL OK ✓'
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: alerta
+          image: alerta/alerta-web:8.5.0
+          env:
+            - name: AUTH_REQUIRED
+              value: "True"
+            - name: ADMIN_USERS
+              value: admin
+            - name: BASE_URL
+              value: alerta.local.${BASE_DOMAIN}
+          envFrom:
+            - secretRef:
+                name: alerta-settings
+          ports:
+            - name: http
+              containerPort: 8080
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            failureThreshold: 30
+            timeoutSeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+      restartPolicy: Always
+      automountServiceAccountToken: false

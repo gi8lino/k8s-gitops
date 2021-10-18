@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alerta-postgres
+  namespace: alerta
+  labels:
+    app: alerta
+    component: postgres
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alerta
+      component: postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        k8up.syn.tools/backupcommand: pg_dumpall -U alerta -h 127.0.0.1
+      labels:
+        app: alerta
+        component: postgres
+    spec:
+      containers:
+        - name: alerta-postgres
+          image: postgres:14.0-alpine
+          envFrom:
+            - secretRef:
+                name: alerta-postgres
+          env:
+            - name: TZ
+              value: Europe/Zurich
+          ports:
+            - name: postgres
+              containerPort: 5432
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+          startupProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - exec pg_isready -U "$POSTGRES_USER" --dbname=alerta -h 127.0.0.1 -p 5432
+            initialDelaySeconds: 5
+            failureThreshold: 30
+            periodSeconds: 2
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - exec pg_isready -U "$POSTGRES_USER" --dbname=alerta -h 127.0.0.1 -p 5432
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: alerta-postgres-data

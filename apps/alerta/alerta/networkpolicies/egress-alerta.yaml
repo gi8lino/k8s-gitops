@@ -1,0 +1,35 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-alerta
+  namespace: alerta
+spec:
+  selector: >-
+    app == 'alerta' &&
+    component == 'alerta'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: >-
+          app == 'alerta' &&
+          component == 'postgres'
+        ports:
+          - 5432
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+          - 80
+          - 443
+          - 587
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+        ports:
+          - 8443  # oidc

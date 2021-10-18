@@ -9,6 +9,7 @@ resources:
   - kubernetes-dashboard
   - cloudflare
   - wiki
+  - alerta
   - filebrowser
   - keycloak
   - renovate
