@@ -25,6 +25,135 @@
   "panels": [
     {
       "datasource": "cloudflare",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 10
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 16,
+        "x": 0,
+        "y": 0
+      },
+      "id": 16,
+      "options": {
+        "basemap": {
+          "config": {},
+          "type": "osm-standard"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "color": {
+                "fixed": "dark-green"
+              },
+              "fillOpacity": 0.4,
+              "shape": "circle",
+              "showLegend": true,
+              "size": {
+                "fixed": 5,
+                "max": 15,
+                "min": 1
+              }
+            },
+            "location": {
+              "gazetteer": "public/gazetteer/countries.json",
+              "lookup": "clientCountryName.keyword",
+              "mode": "lookup"
+            },
+            "type": "markers"
+          }
+        ],
+        "view": {
+          "id": "coords",
+          "lat": 0,
+          "lon": 0,
+          "shared": false,
+          "zoom": 1.03
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "clientCountryName.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "action.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "",
+          "refId": "A",
+          "timeField": "datetime"
+        }
+      ],
+      "title": "World map by action",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "action.keyword": "Action",
+              "clientCountryName.keyword": "Country"
+            }
+          }
+        }
+      ],
+      "type": "geomap"
+    },
+    {
+      "datasource": "cloudflare",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -42,12 +171,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
-        "w": 24,
-        "x": 0,
+        "h": 9,
+        "w": 8,
+        "x": 16,
         "y": 0
       },
-      "id": 8,
+      "id": 12,
       "options": {
         "displayLabels": [
           "value"
@@ -76,8 +205,8 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "clientRequestHTTPHost.keyword",
-              "id": "3",
+              "field": "clientCountryName.keyword",
+              "id": "2",
               "settings": {
                 "min_doc_count": "0",
                 "order": "desc",
@@ -98,7 +227,7 @@
           "timeField": "datetime"
         }
       ],
-      "title": "Top blocked requested hosts",
+      "title": "Top blocked by Country",
       "type": "piechart"
     },
     {
@@ -145,10 +274,10 @@
         ]
       },
       "gridPos": {
-        "h": 9,
-        "w": 11,
+        "h": 10,
+        "w": 12,
         "x": 0,
-        "y": 12
+        "y": 9
       },
       "id": 14,
       "options": {
@@ -224,12 +353,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 13,
-        "x": 11,
-        "y": 12
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 9
       },
-      "id": 12,
+      "id": 8,
       "options": {
         "displayLabels": [
           "value"
@@ -258,8 +387,8 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "clientCountryName.keyword",
-              "id": "2",
+              "field": "clientRequestHTTPHost.keyword",
+              "id": "3",
               "settings": {
                 "min_doc_count": "0",
                 "order": "desc",
@@ -280,7 +409,7 @@
           "timeField": "datetime"
         }
       ],
-      "title": "Top blocked by Country",
+      "title": "Top blocked requested hosts",
       "type": "piechart"
     },
     {
@@ -440,7 +569,7 @@
         "h": 17,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 19
       },
       "id": 10,
       "options": {
