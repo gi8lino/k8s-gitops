@@ -102,6 +102,7 @@ spec:
         storageClassName: nvme
       plugins:
         - grafana-piechart-panel
+        - grafana-worldmap-panel
     kubeControllerManager:
       enabled: false
     kubeEtcd:
