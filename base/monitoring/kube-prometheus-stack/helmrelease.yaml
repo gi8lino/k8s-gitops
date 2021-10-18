@@ -24,7 +24,7 @@ spec:
       config:
         global:
           resolve_timeout: 10m
-          slack_api_url_file: /etc/alertmanager/secrets/slack_api_url
+          #slack_api_url_file: /etc/alertmanager/secrets/slack_api_url
         route:
           group_by:
             - job
