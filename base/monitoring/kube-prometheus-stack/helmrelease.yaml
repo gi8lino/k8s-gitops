@@ -18,9 +18,13 @@ spec:
       interval: 5m
   values:
     alertmanager:
+      alertmanagerSpec:
+        secrets:
+          - kube-prometheus-stack-alertmanager-settings
       config:
         global:
           resolve_timeout: 10m
+          slack_api_url_file: /etc/alertmanager/secrets/slack_api_url
         route:
           group_by:
             - job
