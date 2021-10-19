@@ -9,31 +9,24 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:"
 
-declare -a BASE_FOLDERS
-
-BASE_FOLDERS+=("apps")
-BASE_FOLDERS+=("base")
-BASE_FOLDERS+=("core")
-BASE_FOLDERS+=("crds")
-BASE_FOLDERS+=("infra")
+BASE_FOLDERS=("apps" "base" "core" "crds" "infra")
+IGNORE_FOLDERS=(".img" "dashboards")
 
 function process_folder {
   pushd "${1}"
 
-  folders=$(find . -type d -maxdepth 1 -mindepth 1)
-  files=$(find . -type f -maxdepth 1 -mindepth 1 -name "*.yaml" -not -name "kustomization.yaml")
+  readarray -d '' folders < <(find . -type d -maxdepth 1 -mindepth 1 $(printf "! -name %s " ${IGNORE_FOLDERS[@]}) -execdir printf '%s\n' {} + )
+  readarray -d '' files < <(find . -type f -maxdepth 1 -mindepth 1 -name "*.yaml" -not -name "kustomization.yaml" -execdir printf '%s\n' {} + )
 
   [[ -z "${files}" && -z "${folders}" ]] && popd && return
 
-  [[ -f "kustomization.yaml" ]] && rm -f kustomization.yaml
-
-  echo "${KUSTOMIZATION_TEMPLATE}" > kustomization.yaml
+  [[ ! -f "kustomization.yaml" ]] && \
+    echo "${KUSTOMIZATION_TEMPLATE}" > kustomization.yaml
 
   resources="${folders} ${files}"
+  resources=$(printf '"%s", ' ${resources[@]})
 
-  for resource in $resources; do
-    echo "  - ${resource#./}" >> kustomization.yaml
-  done
+  yq eval --inplace ".resources = [ ${resources%,*} ]" kustomization.yaml
 
   [[ -z "${folders}" ]] && popd && return
 
