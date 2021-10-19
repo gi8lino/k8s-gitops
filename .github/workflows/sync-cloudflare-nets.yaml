@@ -18,11 +18,9 @@ jobs:
           # renovate depName=mikefarah/yq
           wget -O /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.13.4/yq_linux_amd64
           chmod +x /tmp/yq
-          /tmp/yq eval --inplace '.spec.nets = []' infra/traefik/traefik/networkpolicies/cloudflare-networkset.yaml
-          curl -sS https://www.cloudflare.com/ips-v4 | sort | xargs -rn 1 -I{} /tmp/yq eval --inplace '.spec.nets += "{}"' infra/traefik/traefik/networkpolicies/cloudflare-networkset.yaml
-          file=$(/tmp/yq eval --prettyPrint infra/traefik/traefik/networkpolicies/cloudflare-networkset.yaml)
-          echo -e "---\n${file}" > infra/traefik/traefik/networkpolicies/cloudflare-networkset.yaml
-
+          readarray -d '' nets < <(curl -sS https://www.cloudflare.com/ips-v4 | sort)
+          nets=$(printf '"%s", ' ${nets[@]})  # add quotes and commas for yq
+          /tmp/yq eval --inplace ".spec.nets = [ ${nets%,*} ]" infra/traefik/traefik/networkpolicies/cloudflare-networkset.yaml
       - name: Create pull request for cloudflare network range update
         uses: peter-evans/create-pull-request@v3
         with:
