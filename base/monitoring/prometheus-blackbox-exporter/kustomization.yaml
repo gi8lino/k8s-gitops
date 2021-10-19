@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
-
 configMapGenerator:
   - name: grafana-dashboard-blackbox-exporter-quick-overview
     namespace: monitoring
@@ -14,10 +13,8 @@ configMapGenerator:
     namespace: monitoring
     files:
       - dashboards/SSL-Certificate-Monitor.json
-
 generatorOptions:
   disableNameSuffixHash: true
-
 patches:
   - target:
       kind: ConfigMap

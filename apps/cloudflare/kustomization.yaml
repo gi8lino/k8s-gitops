@@ -9,16 +9,13 @@ resources:
   - configmap.yaml
   - secret.yaml
   - persistentvolumeclaim.yaml
-
 configMapGenerator:
   - name: grafana-dashboard-cloudflare-firewall-events
     namespace: cloudflare
     files:
       - dashboards/Cloudflare-Firewall-Events.json
-
 generatorOptions:
   disableNameSuffixHash: true
-
 patches:
   - target:
       kind: ConfigMap
