@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - podmonitor.yaml
   - prometheusrule.yaml
-
 configMapGenerator:
   - name: grafana-dashboard-flux-cluster
     namespace: flux-system
@@ -14,10 +13,8 @@ configMapGenerator:
     namespace: flux-system
     files:
       - dashboards/controle-plane.json
-
 generatorOptions:
   disableNameSuffixHash: true
-
 patches:
   - target:
       kind: ConfigMap
