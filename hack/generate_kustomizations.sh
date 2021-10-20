@@ -31,8 +31,8 @@ function process_folder {
   [[ ! -f "kustomization.yaml" ]] && \
     echo "${KUSTOMIZATION_TEMPLATE}" > kustomization.yaml
 
-  resources="${folders} ${files}"
-  resources=$(printf '"%s", ' ${resources[@]})
+  resources="${folders} ${files}"  # merge arrays
+  resources=$(printf '"%s", ' ${resources[@]})  # add quotes to values and convert array to a string, separated by comma
 
   yq eval \
       --inplace \
