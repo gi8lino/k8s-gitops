@@ -4,6 +4,9 @@ kind: Deployment
 metadata:
   name: nextcloud-postgres
   namespace: nextcloud
+  labels:
+    app: nextcloud
+    component: postgres
   annotations:
     reloader.stakater.com/auto: "true"
 spec:

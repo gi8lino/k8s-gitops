@@ -4,6 +4,9 @@ kind: CronJob
 metadata:
   name: nextcloud-cron
   namespace: nextcloud
+  labels:
+    app: nextcloud
+    component: job
 spec:
   suspend: false
   schedule: "*/5 * * * *"

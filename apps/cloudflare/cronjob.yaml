@@ -4,6 +4,9 @@ kind: CronJob
 metadata:
   name: cloudflare-cron
   namespace: cloudflare
+  labels:
+    app: elasticsearch
+    component: job
 spec:
   suspend: false
   schedule: "*/5 * * * *"
