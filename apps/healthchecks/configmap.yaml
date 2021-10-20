@@ -34,6 +34,8 @@ data:
     python3 /app/healthchecks/manage.py prunetokenbucket
     python3 /app/healthchecks/manage.py pruneflips
 
+    python3 -c 'import os; import sqlite3; con = sqlite3.connect(os.getenv("DB_NAME", "sqlite"), isolation_level=None); con.execute("VACUUM"); con.close()'
+
     send_healthchecks
 ---
 apiVersion: v1
