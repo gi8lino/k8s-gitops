@@ -40,3 +40,6 @@ spec:
               - op: add
                 path: /spec/ingressClassName
                 value: traefik
+              - op: replace
+                path: apiVersion
+                value: networking.k8s.io/v1
