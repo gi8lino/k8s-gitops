@@ -4,6 +4,9 @@ kind: CronJob
 metadata:
   name: syncflaer
   namespace: syncflaer
+  labels:
+    app: syncflaer
+    component: job
 spec:
   suspend: false
   schedule: '*/3 * * * *'
