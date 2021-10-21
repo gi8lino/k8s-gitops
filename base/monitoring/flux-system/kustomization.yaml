@@ -23,7 +23,7 @@ patches:
       - op: add
         path: "/metadata/labels"
         value:
-          grafana_dashboard: enabled
+          grafana_dashboard: "1"
   - target:
       kind: ConfigMap
       name: grafana-dashboard-flux-control-plane
@@ -31,4 +31,4 @@ patches:
       - op: add
         path: "/metadata/labels"
         value:
-          grafana_dashboard: enabled
+          grafana_dashboard: "1"
