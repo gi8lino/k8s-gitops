@@ -22,4 +22,4 @@ spec:
               service:
                 name: prometheus-pushgateway
                 port:
-                  name: metrics
+                  name: http
