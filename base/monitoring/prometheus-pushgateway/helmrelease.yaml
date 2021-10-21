@@ -30,13 +30,3 @@ spec:
     serviceMonitor:
       enabled: true
       namespace: monitoring
-  postRenderers:
-    - kustomize:
-        patchesJson6902:
-          - target:
-              kind: Ingress
-              name: prometheus-pushgateway
-            patch:
-              - op: add
-                path: /spec/ingressClassName
-                value: traefik
