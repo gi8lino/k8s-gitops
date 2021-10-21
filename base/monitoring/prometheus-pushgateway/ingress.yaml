@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pushgateway
+  namespace: monitoring
+  labels:
+    app: prometheus-pushgateway
+    release: pushgateway
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: pushgateway.local.${BASE_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pushgateway-prometheus-pushgateway
+                port:
+                  name: metrics

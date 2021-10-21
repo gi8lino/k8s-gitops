@@ -24,7 +24,7 @@ spec:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
-      enabled: true
+      enabled: false
       hosts:
         - pushgateway.local.${BASE_DOMAIN}
     serviceMonitor:
@@ -40,10 +40,3 @@ spec:
               - op: add
                 path: /spec/ingressClassName
                 value: traefik
-          - target:
-              kind: Ingress
-              name: prometheus-pushgateway
-            patch:
-              - op: replace
-                path: /apiVersion
-                value: networking.k8s.io/v1
