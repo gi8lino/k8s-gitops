@@ -20,6 +20,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: pushgateway-prometheus-pushgateway
+                name: prometheus-pushgateway
                 port:
                   name: metrics
