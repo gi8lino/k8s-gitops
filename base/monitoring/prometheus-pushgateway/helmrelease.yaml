@@ -40,3 +40,10 @@ spec:
               - op: add
                 path: /spec/ingressClassName
                 value: traefik
+          - target:
+              kind: Ingress
+              name: prometheus-pushgateway
+            patch:
+              - op: replace
+                path: /apiVersion
+                value: networking.k8s.io/v1
