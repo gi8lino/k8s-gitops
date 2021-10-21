@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: pushgateway
+  name: prometheus-pushgateway
   namespace: monitoring
   labels:
     app: prometheus-pushgateway
