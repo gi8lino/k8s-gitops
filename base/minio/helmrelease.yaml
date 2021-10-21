@@ -17,31 +17,24 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    accessKey:
-      password: ${MINIO_ACCESSKEY}
+    auth:
+      rootUser: ${MINIO_ACCESSKEY}
+      rootPassword: ${MINIO_SECRETKEY}
     extraEnv:
       - name: TZ
         value: Europe/Zurich
     ingress:
+      enabled: true
+      ingressClassName: traefik
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
-      enabled: true
       hostname: minio.local.${BASE_DOMAIN}
     persistence:
       storageClass: backup
-    secretKey:
-      password: ${MINIO_SECRETKEY}
   postRenderers:
     - kustomize:
         patchesJson6902:
-          - target:
-              kind: Ingress
-              name: minio
-            patch:
-              - op: add
-                path: /spec/ingressClassName
-                value: traefik
           - target:
               kind: Deployment
               name: minio
