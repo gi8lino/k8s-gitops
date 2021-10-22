@@ -11,5 +11,5 @@ tasks:
   s:
     desc: Run generate_secret_templates.sh script
     cmds:
-      - pushd hack && ./generate_secret_templates.sh && popd
+      - ./hack/generate_secret_templates.sh
     silent: true
