@@ -51,25 +51,24 @@ while [ $# -gt 0 ]; do
 done
 
 function process_folder {
-  [ ! -d "${1}" ] && \
-    printf "${RED}ERROR${NOFORMAT} folder '${1}' not found!\n" && \
+  local directory="${1}"
+  [ ! -d "${directory}" ] && \
+    printf "${RED}ERROR${NOFORMAT} folder '${directory}' not found!\n" && \
     return
 
-  pushd "${1}" > /dev/null
-  printf "${GREEN}PROCESSING${NOFORMAT} $(pwd)\n"
+  printf "${GREEN}PROCESSING${NOFORMAT} ${directory}\n"
 
   [ -n "${IGNORE_FOLDERS}" ] && \
-    readarray -d '' folders < <(find . -type d -maxdepth 1 -mindepth 1 $(printf "! -name %s " ${IGNORE_FOLDERS[@]}) -execdir printf '%s\n' {} +) ||
-    readarray -d '' folders < <(find . -type d -maxdepth 1 -mindepth 1 -execdir printf '%s\n' {} +)
-  readarray -d '' files < <(find . -type f -maxdepth 1 -mindepth 1 -name "*.yaml" -not -name "kustomization.yaml" -execdir printf '%s\n' {} +)
+    readarray -d '' folders < <(find "${directory}" -type d -maxdepth 1 -mindepth 1 $(printf "! -name %s " ${IGNORE_FOLDERS[@]}) -execdir printf '%s\n' {} +) ||
+    readarray -d '' folders < <(find "${directory}" -type d -maxdepth 1 -mindepth 1 -execdir printf '%s\n' {} +)
+
+  readarray -d '' files < <(find "${directory}" -type f -maxdepth 1 -mindepth 1 -name "*.yaml" -not -name "kustomization.yaml" -execdir printf '%s\n' {} +)
 
   [[ -z "${files}" && -z "${folders}" ]] && \
-    popd > /dev/null && \
     return
 
-  [[ ! -f "kustomization.yaml" ]] && \
-    printf "${GREEN}INFO${NOFORMAT} create '${KUSTOMIZATION_TEMPLATE}'\n" && \
-    echo "${KUSTOMIZATION_TEMPLATE}" > kustomization.yaml
+  [[ ! -f "${directory}/kustomization.yaml" ]] && \
+    echo "${KUSTOMIZATION_TEMPLATE}" > "${directory}/kustomization.yaml"
 
   resources="${folders} ${files}"  # merge arrays
   resources=$(printf '"%s", ' ${resources[@]})  # add quotes to values and convert array to a string, separated by comma
@@ -77,17 +76,14 @@ function process_folder {
   yq eval \
       --inplace \
       ".resources = [ ${resources%,*} ]" \
-      kustomization.yaml
+      "${directory}/kustomization.yaml"
 
   [[ -z "${folders}" ]] && \
-    popd > /dev/null && \
     return
 
   for folder in ${folders}; do
-    process_folder "${folder}"
+    process_folder "${directory}/${folder}"
   done
-
-  popd > /dev/null
 }
 
 [ -z "${BASE_FOLDERS}" ] && \
@@ -95,7 +91,7 @@ function process_folder {
   exit 1
 
 for base_folder in "${BASE_FOLDERS[@]}"; do
-  process_folder "${base_folder}"
+  process_folder "$(pwd)/${base_folder}"
 done
 
 git checkout -- core/flux-system/kustomization.yaml
