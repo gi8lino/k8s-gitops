@@ -37,6 +37,7 @@ while [ $# -gt 0 ]; do
     case $key in
         -i|--ignore-folders)
         IFS=',' read -r -a IGNORE_FOLDERS <<< "$2"
+        unset IFS
         shift
         shift
         ;;
@@ -52,6 +53,7 @@ done
 
 function process_folder {
   local directory="${1}"
+
   [ ! -d "${directory}" ] && \
     printf "${RED}ERROR${NOFORMAT} folder '${directory}' not found!\n" && \
     return
@@ -59,10 +61,25 @@ function process_folder {
   printf "${GREEN}PROCESSING${NOFORMAT} ${directory}\n"
 
   [ -n "${IGNORE_FOLDERS}" ] && \
-    readarray -d '' folders < <(find "${directory}" -type d -maxdepth 1 -mindepth 1 $(printf "! -name %s " ${IGNORE_FOLDERS[@]}) -execdir printf '%s\n' {} +) ||
-    readarray -d '' folders < <(find "${directory}" -type d -maxdepth 1 -mindepth 1 -execdir printf '%s\n' {} +)
+    readarray -d '' folders < <(find "${directory}" \
+                                      -type d \
+                                      -maxdepth 1 \
+                                      -mindepth 1 \
+                                      $(printf "! -name %s " ${IGNORE_FOLDERS[@]}) \
+                                      -execdir printf '%s\n' {} +) ||
+    readarray -d '' folders < <(find "${directory}" \
+                                      -type d \
+                                      -maxdepth 1 \
+                                      -mindepth 1 \
+                                      -execdir printf '%s\n' {} +)
 
-  readarray -d '' files < <(find "${directory}" -type f -maxdepth 1 -mindepth 1 -name "*.yaml" -not -name "kustomization.yaml" -execdir printf '%s\n' {} +)
+  readarray -d '' files < <(find "${directory}" \
+                                  -type f \
+                                  -maxdepth 1 \
+                                  -mindepth 1 \
+                                  -name "*.yaml" \
+                                  -not -name "kustomization.yaml" \
+                                  -execdir printf '%s\n' {} +)
 
   [[ -z "${files}" && -z "${folders}" ]] && \
     return
@@ -75,7 +92,7 @@ function process_folder {
 
   yq eval \
       --inplace \
-      ".resources = [ ${resources%,*} ]" \
+      ".resources = [ ${resources%,*} ]"  `# remove ending comma` \
       "${directory}/kustomization.yaml"
 
   [[ -z "${folders}" ]] && \
