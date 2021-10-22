@@ -14,8 +14,8 @@ Usage: generate_secret_template.sh [-f|--force]
 Generates 'secret.template' files for SOPS-encrypted Kubernetes secrets.
 Unencrypted secret will be automatically decrypted!
 
--f, --force                         override existing templates
--h, --help                          display this help and exit
+-f, --force         override existing templates
+-h, --help          display this help and exit
 \n"
     exit 0
 }
