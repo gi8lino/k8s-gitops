@@ -2,9 +2,10 @@
 
 set -o errexit
 
-[[ ! "${PWD}" =~ "k8s-gitops/hack" ]] && \
-  echo "please cd to the 'hack' folder and run the script from there!" && \
-  exit 1
+NOFORMAT='\033[0m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
 
 ShowHelp() {
     printf "
@@ -32,7 +33,7 @@ while [ $# -gt 0 ]; do
         ;;
         *)  # unknown option
         printf "%s\n" \
-           "$(basename $BASH_SOURCE): invalid option -- '$1'" \
+           "${RED}ERROR${NOFORMAT} $(basename $BASH_SOURCE): invalid option -- '$1'" \
            "Try '$(basename $BASH_SOURCE) --help' for more information."
         exit 1
         ;;
@@ -43,7 +44,7 @@ secrets=$(grep \
               --files-with-matches \
               --recursive \
               --regexp "^kind: Secret$" \
-              --exclude="*.template" ..)
+              --exclude="*.template" *)
 
 for secret in ${secrets}; do
   filepath=$(dirname "${secret}")
@@ -54,13 +55,13 @@ for secret in ${secrets}; do
     rm -f ${secret_template_name}
 
   [[ -f ${secret_template_name} ]] && \
-    echo "secret template '${secret_template_name}' already exists" && \
+    printf "${ORANGE}WARN${NOFORMAT} secret template '${secret_template_name}' already exists\n" && \
     continue
 
   # encrypt secret if necessary
   grep --quiet --regexp "ENC.AES256" "${secret}" || sops --encrypt --in-place "${secret}" 2> /dev/null
 
-  echo "creating secret template '${secret_template_name}'"
+  printf "${GREEN}INFO${NOFORMAT} creating secret template '${secret_template_name}'\n"
   printf '%s\n' > ${secret_template_name} "$(yq eval '.stringData[] = ""' <(sops --decrypt ${secret}))"
 
 done

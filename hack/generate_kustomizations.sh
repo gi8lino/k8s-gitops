@@ -2,17 +2,15 @@
 
 set -o errexit
 
-[[ "${PWD}" =~ "k8s-gitops/hack" ]] && \
-  echo "please cd to the root folder and run the script from there!" && \
-  exit 1
-
 KUSTOMIZATION_TEMPLATE="---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:"
 
 NOFORMAT='\033[0m'
+RED='\033[0;31m'
 GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
 
 ShowHelp() {
     printf "
@@ -53,8 +51,12 @@ while [ $# -gt 0 ]; do
 done
 
 function process_folder {
+  [ ! -d "${1}" ] && \
+    printf "${RED}ERROR${NOFORMAT} folder '${1}' not found!\n" && \
+    return
+
   pushd "${1}" > /dev/null
-  printf "processing: ${GREEN}$(pwd)${NOFORMAT}\n"
+  printf "${GREEN}PROCESSING${NOFORMAT} $(pwd)\n"
 
   readarray -d '' folders < <(find . -type d -maxdepth 1 -mindepth 1 $(printf "! -name %s " ${IGNORE_FOLDERS[@]}) -execdir printf '%s\n' {} +)
   readarray -d '' files < <(find . -type f -maxdepth 1 -mindepth 1 -name "*.yaml" -not -name "kustomization.yaml" -execdir printf '%s\n' {} +)
@@ -64,6 +66,7 @@ function process_folder {
     return
 
   [[ ! -f "kustomization.yaml" ]] && \
+    printf "${GREEN}INFO${NOFORMAT} create '${KUSTOMIZATION_TEMPLATE}'\n" && \
     echo "${KUSTOMIZATION_TEMPLATE}" > kustomization.yaml
 
   resources="${folders} ${files}"  # merge arrays
@@ -85,8 +88,8 @@ function process_folder {
   popd > /dev/null
 }
 
-[ -z "${BASE_FOLDERS[@]}" ] && \
-  echo "ERROR: no base folder given!" && \
+[ -z "${BASE_FOLDERS}" ] && \
+  printf "${RED}ERROR${NOFORMAT} no base folder given!\n" && \
   exit 1
 
 for base_folder in "${BASE_FOLDERS[@]}"; do
