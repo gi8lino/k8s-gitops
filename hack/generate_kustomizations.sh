@@ -58,7 +58,9 @@ function process_folder {
   pushd "${1}" > /dev/null
   printf "${GREEN}PROCESSING${NOFORMAT} $(pwd)\n"
 
-  readarray -d '' folders < <(find . -type d -maxdepth 1 -mindepth 1 $(printf "! -name %s " ${IGNORE_FOLDERS[@]}) -execdir printf '%s\n' {} +)
+  [ -n "${IGNORE_FOLDERS}" ] && \
+    readarray -d '' folders < <(find . -type d -maxdepth 1 -mindepth 1 $(printf "! -name %s " ${IGNORE_FOLDERS[@]}) -execdir printf '%s\n' {} +) ||
+    readarray -d '' folders < <(find . -type d -maxdepth 1 -mindepth 1 -execdir printf '%s\n' {} +)
   readarray -d '' files < <(find . -type f -maxdepth 1 -mindepth 1 -name "*.yaml" -not -name "kustomization.yaml" -execdir printf '%s\n' {} +)
 
   [[ -z "${files}" && -z "${folders}" ]] && \
