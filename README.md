@@ -56,7 +56,7 @@ gpg --list-secret-keys "${FLUX_KEY_NAME}"
 Export the fingerprint of the just created Flux GPG Key to the variable `FLUX_KEY_FP`:
 
 ```sh
-export FLUX_KEY_FP=$(gpg --list-secret-keys "${FLUX_KEY_NAME}" | sed -n '/sec/{n;s/^[ \t]*//;p;}')
+export FLUX_KEY_FP=$(gpg --list-secret-keys "${FLUX_KEY_NAME}" | sed -n '/sec/{n;s/^\s*\s//;p;}')
 ```
 
 Check if the exported fingerprint was extracted correctly:
