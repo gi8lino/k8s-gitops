@@ -11,11 +11,46 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:"
 
-BASE_FOLDERS=("apps" "base" "core" "crds" "infra")
-IGNORE_FOLDERS=(".img" "dashboards")
-
 NOFORMAT='\033[0m'
 GREEN='\033[0;32m'
+
+ShowHelp() {
+    printf "
+Usage: generate_kustomizations.sh [-i|--ignore-folders \"FOLDER, ...\"]
+                                  | [-h|--help]
+                                  FOLDER [FOLDER ...]
+
+Iterates recursively over each FOLDER and generates or updates
+resources in the corresponding 'kustomization.yaml' files.
+
+positional arguments:
+FOLDER [FOLDER ...]                      one or more directories to iterate over recursively
+
+optional parameters:
+-i, --ignore-folders \"[Folder] ...\"      folders which should be skipped
+                                         list of strings, separatet by a comma (case sensitive!)
+-h, --help                               display this help and exit
+\n"
+    exit 0
+}
+
+while [ $# -gt 0 ]; do
+    key="$1"
+    case $key in
+        -i|--ignore-folders)
+        IFS=',' read -r -a IGNORE_FOLDERS <<< "$2"
+        shift
+        shift
+        ;;
+        -h|--help)
+        ShowHelp
+        ;;
+        *)
+        BASE_FOLDERS+=("$key")
+        shift
+        ;;
+    esac
+done
 
 function process_folder {
   pushd "${1}" > /dev/null
@@ -49,6 +84,10 @@ function process_folder {
 
   popd > /dev/null
 }
+
+[ -z "${BASE_FOLDERS[@]}" ] && \
+  echo "ERROR: no base folder given!" && \
+  exit 1
 
 for base_folder in "${BASE_FOLDERS[@]}"; do
   process_folder "${base_folder}"
