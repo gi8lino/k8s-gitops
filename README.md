@@ -44,7 +44,7 @@ Name-Real: ${FLUX_KEY_NAME}
 EOF
 ```
 
-Show the just created Flux GPG Key and export the fingerprint:
+Show the just created Flux GPG Key:
 
 ```sh
 gpg --list-secret-keys "${FLUX_KEY_NAME}"
@@ -53,7 +53,17 @@ gpg --list-secret-keys "${FLUX_KEY_NAME}"
 # uid           [ultimate] Home cluster (Flux) <k8s-at-home@gmail.com>
 # sub   rsa4096 2021-03-11 [E]
 
-export FLUX_KEY_FP=AB675CE4CC64251G3S9AE1DAA88ARRTY2C009E2D
+Export the fingerprint of the just created Flux GPG Key to the variable `FLUX_KEY_FP`:
+
+```sh
+export FLUX_KEY_FP=$(gpg --list-secret-keys "${FLUX_KEY_NAME}" | sed -n '/sec/{n;s/^[ \t]*//;p;}')
+```
+
+Check if the exported fingerprint was extracted correctly:
+
+```sh
+echo ${FLUX_KEY_FP}
+# AB675CE4CC64251G3S9AE1DAA88ARRTY2C009E2D
 ```
 
 Create/update `.sops.yaml`:
