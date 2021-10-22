@@ -5,7 +5,7 @@ tasks:
   k:
     desc: Run generate_kustomizations.sh script
     cmds:
-      - ./hack/generate_kustomizations.sh
+      - ./hack/generate_kustomizations.sh apps base core crds infra --ignore-folders ".img,dashboards"
     silent: true
 
   s:
