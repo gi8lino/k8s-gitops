@@ -55,7 +55,7 @@ for secret in ${secrets}; do
     rm -f ${secret_template_name}
 
   [[ -f ${secret_template_name} ]] && \
-    printf "${ORANGE}WARN${NOFORMAT} secret template '${secret_template_name}' already exists\n" && \
+    printf "${ORANGE}INFO${NOFORMAT} secret template '${secret_template_name}' already exists\n" && \
     continue
 
   # encrypt secret if necessary
