@@ -24,7 +24,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: hajimari
+        ingressClassName: traefik
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
