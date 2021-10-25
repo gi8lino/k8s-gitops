@@ -25,6 +25,9 @@ spec:
       main:
         enabled: true
         ingressClassName: hajimari
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
         hosts:
           - host: hajimari.local.${BASE_DOMAIN}
             paths:
