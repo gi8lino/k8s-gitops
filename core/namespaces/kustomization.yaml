@@ -17,7 +17,6 @@ resources:
   - syncflaer.yaml
   - media.yaml
   - cert-manager.yaml
-  - hajimari.yaml
   - traefik.yaml
   - kubernetes-dashboard.yaml
   - wiki.yaml
