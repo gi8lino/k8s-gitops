@@ -10,6 +10,7 @@ resources:
   - bitnami.yaml
   - stakater.yaml
   - jetstack.yaml
+  - hajimari.yaml
   - traefik.yaml
   - kubernetes-dashboard.yaml
   - containeroo.yaml

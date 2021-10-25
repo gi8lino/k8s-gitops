@@ -10,6 +10,7 @@ resources:
   - cloudflare
   - wiki
   - filebrowser
+  - hajimari
   - keycloak
   - renovate
   - media
