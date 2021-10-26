@@ -46,3 +46,8 @@ spec:
           annotations:
             summary: "The certificate for {{ \"{{ $labels.instance }}\" }} expires within the next 30 days"
             description: "SSL certificate expires in 30 days\n VALUE = {{ \"{{ $value }}\" }}\n LABELS: {{ \"{{ $labels }}\" }}"
+  valuesFrom:
+    - kind: Secret
+      name: prometheus-blackbox-exporter-helm-values-targets
+      optional: true
+      targetPath: serviceMonitor.targets
