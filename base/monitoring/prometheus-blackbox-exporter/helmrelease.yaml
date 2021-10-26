@@ -49,5 +49,5 @@ spec:
   valuesFrom:
     - kind: Secret
       name: prometheus-blackbox-exporter-helm-values-targets
-      targetPath: serviceMonitor
-      ValuesKey: targets
+      targetPath: serviceMonitor.targets
+      valuesKey: targets
