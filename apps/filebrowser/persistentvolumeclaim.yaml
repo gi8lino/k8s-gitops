@@ -10,7 +10,7 @@ spec:
   storageClassName: nvme
   resources:
     requests:
-      storage: 3Gi
+      storage: 128Mi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -25,4 +25,4 @@ spec:
   storageClassName: hdd
   resources:
     requests:
-      storage: 300Gi
+      storage: 400Gi
