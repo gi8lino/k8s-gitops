@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - networkpolicies
   - clusterrole.yaml
+  - clusterrolebinding.yaml
+  - prebackuppod.yaml
   - schedule.yaml
   - serviceaccount.yaml
-  - prebackuppod.yaml
-  - clusterrolebinding.yaml

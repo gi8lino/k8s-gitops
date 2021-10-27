@@ -2,24 +2,24 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - cert-manager.yaml
+  - cloudflare.yaml
+  - filebrowser.yaml
+  - gitlab.yaml
+  - healthchecks.yaml
   - k8up.yaml
   - keycloak.yaml
-  - reloader.yaml
-  - renovate.yaml
-  - gitlab.yaml
-  - nfs-subdir-external-provisioner.yaml
-  - nextcloud.yaml
-  - filebrowser.yaml
-  - metallb.yaml
-  - cloudflare.yaml
-  - wallabag.yaml
-  - local-path-provisioner.yaml
-  - syncflaer.yaml
-  - media.yaml
-  - cert-manager.yaml
-  - traefik.yaml
   - kubernetes-dashboard.yaml
-  - wiki.yaml
+  - local-path-provisioner.yaml
+  - media.yaml
+  - metallb.yaml
   - minio.yaml
   - monitoring.yaml
-  - healthchecks.yaml
+  - nextcloud.yaml
+  - nfs-subdir-external-provisioner.yaml
+  - reloader.yaml
+  - renovate.yaml
+  - syncflaer.yaml
+  - traefik.yaml
+  - wallabag.yaml
+  - wiki.yaml

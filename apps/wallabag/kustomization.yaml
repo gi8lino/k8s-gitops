@@ -5,7 +5,7 @@ resources:
   - networkpolicies
   - deployment.yaml
   - ingress.yaml
-  - service.yaml
+  - persistentvolumeclaim.yaml
   - schedule.yaml
   - secret.yaml
-  - persistentvolumeclaim.yaml
+  - service.yaml

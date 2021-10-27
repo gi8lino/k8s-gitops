@@ -5,5 +5,5 @@ resources:
   - networkpolicies
   - deployment.yaml
   - ingress.yaml
-  - service.yaml
   - persistentvolumeclaim.yaml
+  - service.yaml
