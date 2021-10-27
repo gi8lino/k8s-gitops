@@ -8,8 +8,7 @@ metadata:
     app: elasticsearch
     component: job
 spec:
-  suspend: false
-  schedule: "*/5 * * * *"
+  schedule: CRON_TZ=Europe/Zurich */5 * * * *
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
