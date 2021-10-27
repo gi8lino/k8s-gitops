@@ -39,4 +39,4 @@ spec:
             description: "SSL certificate expires in 30 days\n VALUE = {{ \"{{ $value }}\" }}\n LABELS: {{ \"{{ $labels }}\" }}"
   valuesFrom:
     - kind: Secret
-      name: prometheus-blackbox-exporter-helm-values-targets
+      name: prometheus-blackbox-exporter-helm-values
