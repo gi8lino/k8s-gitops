@@ -8,8 +8,7 @@ metadata:
     app: syncflaer
     component: job
 spec:
-  suspend: false
-  schedule: '*/3 * * * *'
+  schedule: CRON_TZ=Europe/Zurich */3 * * * *
   failedJobsHistoryLimit: 3
   successfulJobsHistoryLimit: 1
   concurrencyPolicy: Forbid

@@ -8,7 +8,7 @@ metadata:
     app: gitlab-backup-mirror
     component: job
 spec:
-  schedule: '0 2 * * *'
+  schedule: CRON_TZ=Europe/Zurich 0 2 * * *
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
