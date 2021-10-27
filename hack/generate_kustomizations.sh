@@ -66,12 +66,12 @@ function process_folder {
                                       -maxdepth 1 \
                                       -mindepth 1 \
                                       $(printf "! -name %s " ${IGNORE_FOLDERS[@]}) \
-                                      -execdir printf '%s\n' {} +) ||
+                                      -execdir printf '%s\n' {} + | sort) ||
     readarray -d '' folders < <(find "${directory}" \
                                       -type d \
                                       -maxdepth 1 \
                                       -mindepth 1 \
-                                      -execdir printf '%s\n' {} +)
+                                      -execdir printf '%s\n' {} + | sort)
 
   readarray -d '' files < <(find "${directory}" \
                                   -type f \
@@ -79,7 +79,7 @@ function process_folder {
                                   -mindepth 1 \
                                   -name "*.yaml" \
                                   -not -name "kustomization.yaml" \
-                                  -execdir printf '%s\n' {} +)
+                                  -execdir printf '%s\n' {} + | sort)
 
   [[ -z "${files}" && -z "${folders}" ]] && \
     return
