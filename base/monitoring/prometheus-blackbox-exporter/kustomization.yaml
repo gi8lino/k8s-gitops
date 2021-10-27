@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
-  - secret.yaml
 configMapGenerator:
   - name: grafana-dashboard-blackbox-exporter-quick-overview
     namespace: monitoring

@@ -26,6 +26,15 @@ spec:
         interval: 5m
         scrapeTimeout: 30s
         follow_redirects: false
+      targets:
+        - name: ${BASE_DOMAIN}
+          url: https://sso.${BASE_DOMAIN}
+        - name: pihole
+          url: https://pihole.local.${BASE_DOMAIN}
+        - name: tools
+          url: https://traefik.tools.${BASE_DOMAIN}
+        - name: diskstation
+          url: https://ds.local.${BASE_DOMAIN}
     prometheusRule:
       enabled: true
       rules:
@@ -37,6 +46,3 @@ spec:
           annotations:
             summary: "The certificate for {{ \"{{ $labels.instance }}\" }} expires within the next 30 days"
             description: "SSL certificate expires in 30 days\n VALUE = {{ \"{{ $value }}\" }}\n LABELS: {{ \"{{ $labels }}\" }}"
-  valuesFrom:
-    - kind: Secret
-      name: prometheus-blackbox-exporter-helm-values
