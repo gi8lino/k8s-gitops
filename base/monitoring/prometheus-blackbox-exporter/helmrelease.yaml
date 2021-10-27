@@ -23,7 +23,7 @@ spec:
     serviceMonitor:
       enabled: true
       defaults:
-        interval: 5m
+        interval: 15m
         scrapeTimeout: 30s
         follow_redirects: false
       targets:
