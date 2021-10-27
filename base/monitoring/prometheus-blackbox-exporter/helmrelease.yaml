@@ -26,15 +26,6 @@ spec:
         interval: 5m
         scrapeTimeout: 30s
         follow_redirects: false
-      targets:
-        - name: ${BASE_DOMAIN}
-          url: https://sso.${BASE_DOMAIN}
-        - name: pihole
-          url: https://pihole.local.${BASE_DOMAIN}
-        - name: tools
-          url: https://traefik.tools.${BASE_DOMAIN}
-        - name: diskstation
-          url: https://ds.local.${BASE_DOMAIN}
     prometheusRule:
       enabled: true
       rules:
@@ -49,5 +40,3 @@ spec:
   valuesFrom:
     - kind: Secret
       name: prometheus-blackbox-exporter-helm-values-targets
-      optional: true
-      targetPath: serviceMonitor.targets
