@@ -23,7 +23,7 @@ spec:
     serviceMonitor:
       enabled: true
       defaults:
-        interval: 15m
+        interval: 5m
         scrapeTimeout: 30s
         follow_redirects: false
       targets:
@@ -50,3 +50,4 @@ spec:
     - kind: Secret
       name: prometheus-blackbox-exporter-helm-values-targets
       optional: true
+      targetPath: serviceMonitor.targets
