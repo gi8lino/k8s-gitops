@@ -33,7 +33,7 @@ while [ $# -gt 0 ]; do
         ;;
         *)  # unknown option
         printf "%s\n" \
-           "${RED}ERROR${NOFORMAT} $(basename $BASH_SOURCE): invalid option -- '$1'" \
+           "${RED}[ERROR]${NOFORMAT} $(basename $BASH_SOURCE): invalid option -- '$1'" \
            "Try '$(basename $BASH_SOURCE) --help' for more information."
         exit 1
         ;;
@@ -55,13 +55,13 @@ for secret in ${secrets}; do
     rm -f ${secret_template_name}
 
   [[ -f ${secret_template_name} ]] && \
-    printf "${ORANGE}INFO${NOFORMAT} secret template '${secret_template_name}' already exists\n" && \
+    printf "${ORANGE}[INFO ]${NOFORMAT} secret template '${secret_template_name}' already exists\n" && \
     continue
 
   # encrypt secret if necessary
   grep --quiet --regexp "ENC.AES256" "${secret}" || sops --encrypt --in-place "${secret}" 2> /dev/null
 
-  printf "${GREEN}INFO${NOFORMAT} creating secret template '${secret_template_name}'\n"
+  printf "${GREEN}[INFO ]${NOFORMAT} creating secret template '${secret_template_name}'\n"
   printf '%s\n' > ${secret_template_name} "$(yq eval '.stringData[] = ""' <(sops --decrypt ${secret}))"
 
 done
