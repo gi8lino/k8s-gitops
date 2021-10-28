@@ -55,10 +55,10 @@ function process_folder {
   local directory="${1}"
 
   [ ! -d "${directory}" ] && \
-    printf "${RED}ERROR${NOFORMAT} folder '${directory}' not found!\n" && \
+    printf "${RED}[ERROR     ]${NOFORMAT} folder '${directory}' not found!\n" && \
     return
 
-  printf "${GREEN}PROCESSING${NOFORMAT} ${directory}\n"
+  printf "${GREEN}[PROCESSING]${NOFORMAT} ${directory}\n"
 
   [ -n "${IGNORE_FOLDERS}" ] && \
     readarray -d '' folders < <(find "${directory}" \
@@ -104,7 +104,7 @@ function process_folder {
 }
 
 [ -z "${BASE_FOLDERS}" ] && \
-  printf "${RED}ERROR${NOFORMAT} no base folder given!\n" && \
+  printf "${RED}[ERROR     ]${NOFORMAT} no base folder given!\n" && \
   exit 1
 
 for base_folder in "${BASE_FOLDERS[@]}"; do
@@ -112,3 +112,5 @@ for base_folder in "${BASE_FOLDERS[@]}"; do
 done
 
 git checkout -- core/flux-system/kustomization.yaml
+
+printf "${GREEN}[INFO      ]${NOFORMAT} finished!\n"
