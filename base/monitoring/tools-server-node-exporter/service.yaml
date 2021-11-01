@@ -5,7 +5,7 @@ metadata:
   name: tools-server-node-exporter
   namespace: monitoring
   labels:
-    externalService: tools-server-node-exporter
+    job: tools-server-node-exporter
 spec:
   ports:
     - name: metrics
