@@ -18,13 +18,6 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        namespaceSelector: projectcalico.org/name == 'k8up'
-        selector: app.kubernetes.io/instance == 'k8up'
-        ports:
-          - 8080
-    - action: Allow
-      protocol: TCP
-      destination:
         selector: app == 'prometheus-pushgateway'
         ports:
           - 9091
@@ -56,35 +49,9 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        namespaceSelector: projectcalico.org/name == 'flux-system'
-        ports:
-          - 8080
-    - action: Allow
-      protocol: TCP
-      destination:
         nets:
           - ${HOST_IP}/32
         ports:
           - 6443   # kube api
           - 9100   # node-exporter
           - 10250  # kubelet
-    - action: Allow
-      protocol: TCP
-      destination:
-        namespaceSelector: projectcalico.org/name == 'reloader'
-        selector: app == 'reloader-reloader'
-        ports:
-          - 9090
-    - action: Allow
-      protocol: TCP
-      destination:
-        selector: app == 'prometheus-blackbox-exporter'
-        ports:
-          - 9115
-    - action: Allow
-      protocol: TCP
-      destination:
-        nets:
-          - 10.0.0.3/32  # pihole exporter
-        ports:
-          - 9617

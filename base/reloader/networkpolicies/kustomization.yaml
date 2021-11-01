@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - egress-reloader.yaml
   - ingress-reloader.yaml
+  - reloader-egress-prometheus.yaml
