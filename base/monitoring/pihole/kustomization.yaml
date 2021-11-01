@@ -6,7 +6,7 @@ resources:
   - service.yaml
   - servicemonitor.yaml
 configMapGenerator:
-  - name: pihole-metrics
+  - name: grafana-dashboard-pihole-metrics
     namespace: monitoring
     files:
       - dashboards/pihole-metrics.json
@@ -15,7 +15,7 @@ generatorOptions:
 patches:
   - target:
       kind: ConfigMap
-      name: pihole-metrics
+      name: grafana-dashboard-pihole-metrics
     patch: |-
       - op: add
         path: "/metadata/labels"
@@ -23,7 +23,7 @@ patches:
           grafana_dashboard: "1"
   - target:
       kind: ConfigMap
-      name: pihole-metrics
+      name: grafana-dashboard-pihole-metrics
     patch: |-
       - op: add
         path: "/metadata/annotations"
