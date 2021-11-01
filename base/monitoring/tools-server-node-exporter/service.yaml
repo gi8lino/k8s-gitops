@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: tools-server
+  name: tools-server-node-exporter
   namespace: monitoring
   labels:
-    externalService: tools-server
+    externalService: tools-server-node-exporter
 spec:
   ports:
     - name: metrics

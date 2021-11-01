@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: tools-server
+  name: tools-server-node-exporter
   namespace: monitoring
 spec:
   endpoints:
@@ -13,4 +13,4 @@ spec:
       - monitoring
   selector:
     matchLabels:
-      externalService: tools-server
+      externalService: tools-server-node-exporter
