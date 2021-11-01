@@ -132,8 +132,9 @@ spec:
           - job_name: node-exporter
             static_configs:
               - targets:
-                  - 10.0.0.3:9100
-                  - 10.0.0.4:9100
+                  - 10.0.0.3:9100  # node_exporter
+                  - 10.0.0.4:9100  # node_exporter
+                  - 10.0.0.4:9323  # docker
     prometheus-node-exporter:
       extraArgs:
         - --collector.filesystem.ignored-mount-points=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
