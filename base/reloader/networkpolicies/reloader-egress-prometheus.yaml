@@ -1,0 +1,18 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: reloader-egress-prometheus
+  namespace: monitoring
+spec:
+  selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        namespaceSelector: projectcalico.org/name == 'reloader'
+        selector: app == 'reloader-reloader'
+        ports:
+          - 9090

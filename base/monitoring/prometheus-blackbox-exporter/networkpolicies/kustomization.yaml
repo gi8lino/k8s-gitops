@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - egress-prometheus-blackbox-exporter.yaml
   - ingress-blackbox-exporter.yaml
+  - prometheus-blackbox-exporter-egress-prometheus.yaml

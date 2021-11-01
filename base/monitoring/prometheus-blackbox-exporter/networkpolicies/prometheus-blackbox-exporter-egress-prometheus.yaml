@@ -1,0 +1,17 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: prometheus-blackbox-exporter-egress-prometheus
+  namespace: monitoring
+spec:
+  selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
+  types:
+    - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: app == 'prometheus-blackbox-exporter'
+        ports:
+          - 9115
