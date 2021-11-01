@@ -81,3 +81,10 @@ spec:
         selector: app == 'prometheus-blackbox-exporter'
         ports:
           - 9115
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - 10.0.0.3/32  # pihole exporter
+        ports:
+          - 9617
