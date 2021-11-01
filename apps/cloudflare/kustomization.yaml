@@ -24,4 +24,4 @@ patches:
       - op: add
         path: "/metadata/labels"
         value:
-          grafana_dashboard:  "1"
+          grafana_dashboard: "1"
