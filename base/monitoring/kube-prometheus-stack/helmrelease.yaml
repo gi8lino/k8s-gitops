@@ -129,7 +129,7 @@ spec:
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         additionalScrapeConfigs:
-          - job_name: node_exporter
+          - job_name: node-exporter
             static_configs:
               - targets:
                   - 10.0.0.3:9100
