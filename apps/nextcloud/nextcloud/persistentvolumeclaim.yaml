@@ -5,7 +5,7 @@ metadata:
   name: nextcloud-app-data
   namespace: nextcloud
   annotations:
-    k8up.syn.tools/backup: "true"
+    k8up.io/backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce
@@ -20,7 +20,7 @@ metadata:
   name: nextcloud-user-data
   namespace: nextcloud
   annotations:
-    k8up.syn.tools/backup: "true"
+    k8up.io/backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce

@@ -97,7 +97,7 @@ spec:
           - /
       persistence:
         annotations:
-          k8up.syn.tools/backup: "true"
+          k8up.io/backup: "true"
         enabled: true
         storageClassName: nvme
       plugins:
