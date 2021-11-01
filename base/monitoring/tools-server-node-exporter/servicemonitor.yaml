@@ -13,4 +13,4 @@ spec:
       - monitoring
   selector:
     matchLabels:
-      externalService: tools-server-node-exporter
+      job: tools-server-node-exporter

@@ -5,7 +5,7 @@ metadata:
   name: pihole-server-node-exporter
   namespace: monitoring
   labels:
-    externalService: pihole-server-node-exporter
+    job: pihole-server-node-exporter
 spec:
   ports:
     - name: metrics
