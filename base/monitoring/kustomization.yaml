@@ -7,3 +7,4 @@ resources:
   - pihole-exporter
   - prometheus-blackbox-exporter
   - prometheus-pushgateway
+  - tools-server
