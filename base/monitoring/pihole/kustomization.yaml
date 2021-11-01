@@ -21,3 +21,11 @@ patches:
         path: "/metadata/labels"
         value:
           grafana_dashboard:  "1"
+  - target:
+      kind: ConfigMap
+      name: pihole-metrics
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
