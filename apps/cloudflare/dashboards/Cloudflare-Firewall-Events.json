@@ -19,9 +19,11 @@
     ]
   },
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "datasource": "cloudflare",
@@ -665,7 +667,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.1.5",
+      "pluginVersion": "8.2.1",
       "targets": [
         {
           "alias": "",
@@ -770,7 +772,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 30,
+  "schemaVersion": 31,
   "style": "dark",
   "tags": [
     "cloudflare"
@@ -786,5 +788,5 @@
   "timezone": "",
   "title": "Cloudflare Firewall events",
   "uid": "BTVdHsSnks",
-  "version": 2
+  "version": 1
 }
