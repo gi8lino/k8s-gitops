@@ -23,18 +23,14 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 14282,
   "graphTooltip": 0,
-  "id": 1516,
-  "iteration": 1635881638119,
+  "id": 1520,
+  "iteration": 1635894083743,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -90,7 +86,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_usage_seconds_total{instance=~\"$host\",name=~\"$container\",name=~\".+\"}[5m])) by (name) *100",
+          "exemplar": true,
+          "expr": "sum(rate(container_cpu_usage_seconds_total{instance=~\"$host:$port\",name=~\"$container\",name=~\".+\"}[5m])) by ($orderBy) *100  ",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}}",
@@ -117,7 +114,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:606",
+          "$hashKey": "object:606",
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -126,7 +123,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:607",
+          "$hashKey": "object:607",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -143,10 +140,6 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -202,7 +195,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(container_memory_rss{instance=~\"$host\",name=~\"$container\",name=~\".+\"}) by (name)",
+          "exemplar": true,
+          "expr": "sum(container_memory_rss{instance=~\"$host:$port\",name=~\"$container\",name=~\".+\"}) by ($orderBy)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}}",
@@ -229,7 +223,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:606",
+          "$hashKey": "object:606",
           "format": "bytes",
           "label": null,
           "logBase": 1,
@@ -238,7 +232,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:607",
+          "$hashKey": "object:607",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -296,7 +290,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(container_memory_cache{instance=~\"$host\",name=~\"$container\",name=~\".+\"}) by (name)",
+          "exemplar": true,
+          "expr": "sum(container_memory_cache{instance=~\"$host:$port\",name=~\"$container\",name=~\".+\"}) by ($orderBy)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}}",
@@ -323,7 +318,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:606",
+          "$hashKey": "object:606",
           "format": "bytes",
           "label": null,
           "logBase": 1,
@@ -332,7 +327,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:607",
+          "$hashKey": "object:607",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -349,10 +344,6 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -411,7 +402,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(container_network_receive_bytes_total{instance=~\"$host\",name=~\"$container\",name=~\".+\"}[5m])) by (name)",
+          "exemplar": true,
+          "expr": "sum(rate(container_network_receive_bytes_total{instance=~\"$host:$port\",name=~\"$container\",name=~\".+\"}[5m])) by ($orderBy)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}}",
@@ -438,7 +430,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:674",
+          "$hashKey": "object:674",
           "format": "Bps",
           "label": null,
           "logBase": 1,
@@ -447,7 +439,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:675",
+          "$hashKey": "object:675",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -505,7 +497,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(container_network_transmit_bytes_total{instance=~\"$host\",name=~\"$container\",name=~\".+\"}[5m])) by (name)",
+          "exemplar": true,
+          "expr": "sum(rate(container_network_transmit_bytes_total{instance=~\"$host:$port\",name=~\"$container\",name=~\".+\"}[5m])) by ($orderBy)",
           "interval": "",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -531,7 +524,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:832",
+          "$hashKey": "object:832",
           "format": "Bps",
           "label": null,
           "logBase": 1,
@@ -540,7 +533,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:833",
+          "$hashKey": "object:833",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -557,10 +550,6 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -652,7 +641,8 @@
       "pluginVersion": "8.2.1",
       "targets": [
         {
-          "expr": "(time() - container_start_time_seconds{instance=~\"$host\",name=~\"$container\",name=~\".+\"})/86400",
+          "exemplar": true,
+          "expr": "(time() - container_start_time_seconds{instance=~\"$host:$port\",name=~\"$container\",name=~\".+\"})/86400",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -712,8 +702,8 @@
         "allValue": ".*",
         "current": {
           "selected": true,
-          "text": "10.0.0.4:8080",
-          "value": "10.0.0.4:8080"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": "Prometheus",
         "definition": "label_values({__name__=~\"container.*\"},instance)",
@@ -727,16 +717,43 @@
         "options": [],
         "query": {
           "query": "label_values({__name__=~\"container.*\"},instance)",
-          "refId": "Prometheus-host-Variable-Query"
+          "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/([^:]+):.*/",
         "skipUrlSync": false,
         "sort": 5,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": null,
+        "definition": "label_values({__name__=~\"container.*\",instance=~\"$host:.*\"},instance)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "port",
+        "multi": false,
+        "name": "port",
+        "options": [],
+        "query": {
+          "query": "label_values({__name__=~\"container.*\",instance=~\"$host:.*\"},instance)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/[^:]+:(.*)/",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
       },
       {
         "allValue": ".*",
@@ -746,7 +763,7 @@
           "value": "$__all"
         },
         "datasource": "Prometheus",
-        "definition": "label_values({__name__=~\"container.*\", instance=~\"$host\"},name)",
+        "definition": "label_values({__name__=~\"container.*\", instance=~\"$host\"},container)",
         "description": null,
         "error": null,
         "hide": 0,
@@ -756,8 +773,8 @@
         "name": "container",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"container.*\", instance=~\"$host\"},name)",
-          "refId": "Prometheus-container-Variable-Query"
+          "query": "label_values({__name__=~\"container.*\", instance=~\"$host\"},container)",
+          "refId": "StandardVariableQuery"
         },
         "refresh": 1,
         "regex": "",
@@ -767,6 +784,37 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "container",
+          "value": "container"
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "order by",
+        "multi": false,
+        "name": "orderBy",
+        "options": [
+          {
+            "selected": false,
+            "text": "name",
+            "value": "name"
+          },
+          {
+            "selected": true,
+            "text": "container",
+            "value": "container"
+          }
+        ],
+        "query": "name,container",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -777,6 +825,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Cadvisor exporter",
-  "uid": "pMEd7m0Mz",
-  "version": 1
+  "uid": "opstVfFnk",
+  "version": 2
 }
