@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: tools-server-exporter-egress-prometheus
+  name: tools-server-node-exporter-egress-prometheus
   namespace: monitoring
 spec:
   selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
@@ -15,5 +15,4 @@ spec:
         nets:
           - 10.0.0.4/32
         ports:
-          - 9100  # prometheus node_exporter
-          - 8080  # cadvisor
+          - 9100  # prometheus node-exporter
