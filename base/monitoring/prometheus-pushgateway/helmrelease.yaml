@@ -21,7 +21,14 @@ spec:
       - name: TZ
         value: Europe/Zurich
     ingress:
-      enabled: false
+      enabled: true
+      className: traefik
+      pathType: Prefix
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+      hosts:
+        - pushgateway.local.gi8.dev
     serviceMonitor:
       enabled: true
       namespace: monitoring
