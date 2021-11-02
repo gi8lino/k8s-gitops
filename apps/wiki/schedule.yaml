@@ -5,6 +5,8 @@ metadata:
   name: wiki
   namespace: wiki
 spec:
+  podSecurityContext:
+    runAsUser: 0
   backend:
     s3:
       bucket: wiki

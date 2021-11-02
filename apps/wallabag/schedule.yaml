@@ -5,6 +5,8 @@ metadata:
   name: wallabag
   namespace: wallabag
 spec:
+  podSecurityContext:
+    runAsUser: 0
   backend:
     s3:
       bucket: wallabag

@@ -5,6 +5,8 @@ metadata:
   name: keycloak
   namespace: keycloak
 spec:
+  podSecurityContext:
+    runAsUser: 0
   backend:
     s3:
       bucket: keycloak
