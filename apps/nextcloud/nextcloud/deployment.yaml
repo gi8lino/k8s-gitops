@@ -131,7 +131,7 @@ spec:
             - name: LOGFILE
               value: ''
             - name: LOGLEVEL
-              value: "3"
+              value: "2"
           envFrom:
             - secretRef:
                 name: nextcloud-mail-settings
