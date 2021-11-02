@@ -23,8 +23,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 10242,
   "graphTooltip": 0,
-  "id": 1481,
-  "iteration": 1635866065707,
+  "id": 1499,
+  "iteration": 1635882259163,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -20928,13 +20928,15 @@
     "list": [
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "node-exporter",
+          "value": "node-exporter"
+        },
         "datasource": "Prometheus",
         "definition": "",
         "description": null,
-        "error": {
-          "message": "Datasource named Prometheus was not found"
-        },
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Job",
@@ -20956,13 +20958,15 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "k3s.srv.gi8.dev",
+          "value": "k3s.srv.gi8.dev"
+        },
         "datasource": "Prometheus",
         "definition": "",
         "description": null,
-        "error": {
-          "message": "Datasource named Prometheus was not found"
-        },
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Host:",
@@ -20984,13 +20988,15 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "10.0.0.9",
+          "value": "10.0.0.9"
+        },
         "datasource": "Prometheus",
         "definition": "",
         "description": null,
-        "error": {
-          "message": "Datasource named Prometheus was not found"
-        },
+        "error": null,
         "hide": 2,
         "includeAll": false,
         "label": "Host:",
@@ -21012,13 +21018,15 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "9100",
+          "value": "9100"
+        },
         "datasource": "Prometheus",
         "definition": "",
         "description": null,
-        "error": {
-          "message": "Datasource named Prometheus was not found"
-        },
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Port",
