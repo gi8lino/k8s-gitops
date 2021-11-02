@@ -5,6 +5,8 @@ metadata:
   name: media
   namespace: media
 spec:
+  podSecurityContext:
+    runAsUser: 0
   backend:
     s3:
       bucket: media
