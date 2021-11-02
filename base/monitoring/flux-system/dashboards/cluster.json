@@ -22,7 +22,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1635759877200,
+  "id": 1505,
+  "iteration": 1635882223248,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -383,10 +384,6 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -625,10 +622,6 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
