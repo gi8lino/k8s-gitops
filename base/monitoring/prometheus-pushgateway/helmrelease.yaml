@@ -26,7 +26,7 @@ spec:
       pathType: Prefix
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
       hosts:
         - pushgateway.local.${BASE_DOMAIN}
     serviceMonitor:
