@@ -9,11 +9,11 @@ spec:
     s3:
       bucket: media
   backup:
-    schedule: "0 1 * * *"
+    schedule: 0 1 * * *
   check:
-    schedule: "0 7 * * *"
+    schedule: 0 7 * * *
   prune:
     retention:
       keepDaily: 1
       keepLast: 3
-    schedule: "0 5 * * *"
+    schedule: 0 5 * * *
