@@ -126,12 +126,6 @@ spec:
               value: Europe/Zurich
             - name: DEFAULT_PHONE_REGION
               value: CH
-            - name: NC_LOG_TYPE
-              value: SYSLOG
-            - name: NC_LOGFILE
-              value: ""
-            - name: NC_LOGLEVEL
-              value: "2"
           envFrom:
             - secretRef:
                 name: nextcloud-mail-settings
