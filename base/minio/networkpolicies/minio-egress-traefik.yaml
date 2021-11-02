@@ -15,4 +15,5 @@ spec:
         namespaceSelector: projectcalico.org/name == 'minio'
         selector: app.kubernetes.io/instance == 'minio'
         ports:
-          - 9001
+          - 9000  # minio-api
+          - 9001  # minio-console
