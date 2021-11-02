@@ -128,8 +128,8 @@ spec:
               value: CH
             - name: LOG_TYPE
               value: syslog
-            - name: LOGFILE
-              value: ''
+            - name: LOG_FILE
+              value: ""
             - name: LOGLEVEL
               value: "2"
           envFrom:
