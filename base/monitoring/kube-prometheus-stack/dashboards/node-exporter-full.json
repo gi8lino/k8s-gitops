@@ -24,7 +24,7 @@
   "gnetId": 10242,
   "graphTooltip": 0,
   "id": 1499,
-  "iteration": 1635882259163,
+  "iteration": 1635884949423,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -20923,7 +20923,9 @@
   "refresh": false,
   "schemaVersion": 31,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "node-exporter-mixin"
+  ],
   "templating": {
     "list": [
       {
@@ -21080,5 +21082,5 @@
   "timezone": "browser",
   "title": "Node Exporter Full with Node Name",
   "uid": "INJNK-Fnk",
-  "version": 1
+  "version": 2
 }
