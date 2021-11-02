@@ -126,11 +126,11 @@ spec:
               value: Europe/Zurich
             - name: DEFAULT_PHONE_REGION
               value: CH
-            - name: LOG_TYPE
-              value: syslog
-            - name: LOG_FILE
+            - name: NC_LOG_TYPE
+              value: SYSLOG
+            - name: NC_LOGFILE
               value: ""
-            - name: LOGLEVEL
+            - name: NC_LOGLEVEL
               value: "2"
           envFrom:
             - secretRef:
