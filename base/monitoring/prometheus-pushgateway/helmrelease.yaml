@@ -28,7 +28,7 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
       hosts:
-        - pushgateway.local.gi8.dev
+        - pushgateway.local.${BASE_DOMAIN}
     serviceMonitor:
       enabled: true
       namespace: monitoring
