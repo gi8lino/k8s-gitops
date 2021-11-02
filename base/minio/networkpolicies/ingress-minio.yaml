@@ -16,7 +16,8 @@ spec:
         selector: app.kubernetes.io/instance == 'traefik'
       destination:
         ports:
-          - 9001
+          - 9000  # minio-api
+          - 9001  # minio-console
     - action: Allow
       protocol: TCP
       source:
