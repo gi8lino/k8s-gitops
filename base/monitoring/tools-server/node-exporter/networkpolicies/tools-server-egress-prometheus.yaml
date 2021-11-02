@@ -16,4 +16,4 @@ spec:
           - 10.0.0.4/32
         ports:
           - 9100  # prometheus node_exporter
-          - 9323  # docker metrics
+          - 8080  # cadvisor
