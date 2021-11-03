@@ -1265,11 +1265,7 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "pihole.local.gi8.dev",
-          "value": "pihole.local.gi8.dev"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "label_values(pihole_ads_blocked_today, hostname)",
         "description": null,
