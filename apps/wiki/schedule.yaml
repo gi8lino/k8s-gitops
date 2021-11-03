@@ -19,3 +19,5 @@ spec:
       keepDaily: 1
       keepLast: 3
     schedule: 0 2 * * *
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
