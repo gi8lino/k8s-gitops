@@ -23,8 +23,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 10242,
   "graphTooltip": 0,
-  "id": 1499,
-  "iteration": 1635884949423,
+  "id": null,
+  "iteration": 1635948462126,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -20930,11 +20930,7 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "node-exporter",
-          "value": "node-exporter"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "",
         "description": null,
@@ -20960,11 +20956,7 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "k3s.srv.gi8.dev",
-          "value": "k3s.srv.gi8.dev"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "",
         "description": null,
@@ -20990,11 +20982,7 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "10.0.0.9",
-          "value": "10.0.0.9"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "",
         "description": null,
@@ -21020,11 +21008,7 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "9100",
-          "value": "9100"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "",
         "description": null,
@@ -21082,5 +21066,5 @@
   "timezone": "browser",
   "title": "Node Exporter Full with Node Name",
   "uid": "INJNK-Fnk",
-  "version": 2
+  "version": 3
 }
