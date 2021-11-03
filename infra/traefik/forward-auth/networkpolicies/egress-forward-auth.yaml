@@ -14,4 +14,4 @@ spec:
       destination:
         selector: app.kubernetes.io/instance == 'traefik'
         ports:
-          - 8443
+          - 8443  # to access load balancer (https://sso.${BASE_DOMAIN})

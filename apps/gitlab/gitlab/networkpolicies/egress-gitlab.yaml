@@ -29,7 +29,7 @@ spec:
         namespaceSelector: projectcalico.org/name == 'traefik'
         selector: app.kubernetes.io/instance == 'traefik'
         ports:
-          - 8443
+          - 8443  # to access load balancer (https://git.${BASE_DOMAIN})
     - action: Allow
       protocol: TCP
       destination:
