@@ -21,6 +21,11 @@ spec:
       labels:
         app: filebrowser
     spec:
+      securityContext:
+        runAsUser: 2000
+        runAsGroup: 2000
+        fsGroup: 2000
+        fsGroupChangePolicy: "OnRootMismatch"
       containers:
         - name: filebrowser
           image: filebrowser/filebrowser:v2.11.0-alpine
@@ -53,6 +58,7 @@ spec:
             - name: config
               mountPath: .filebrowser.json
               subPath: .filebrowser.json
+          resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
