@@ -15,4 +15,4 @@ spec:
         namespaceSelector: projectcalico.org/name == 'kubernetes-dashboard'
         selector: app.kubernetes.io/instance == 'kubernetes-dashboard'
         ports:
-          - 8443
+          - 8443  # regular ingress port
