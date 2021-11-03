@@ -23,7 +23,7 @@ spec:
     spec:
       securityContext:
         fsGroup: 2000
-        fsGroupChangePolicy: "OnRootMismatch"
+        fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: filebrowser
           image: filebrowser/filebrowser:v2.11.0-alpine
