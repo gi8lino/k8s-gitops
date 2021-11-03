@@ -17,5 +17,7 @@ spec:
   prune:
     retention:
       keepDaily: 2
-      keepLast: 10
+      keepLast: 14
     schedule: 10 */12 * * *
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
