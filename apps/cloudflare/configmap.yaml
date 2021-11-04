@@ -73,9 +73,8 @@ data:
       healthchecks 1 && \
       exit 1
 
-    END_DATE=${END_DATE:-$(date --date today +'%Y-%m-%d %H:%M:%S')}
-    start_date=$(date --date "${END_DATE} ${MINUTES} minutes ago" +'%Y-%m-%dT%H:%M:%SZ')
-    end_date=$(date --date "${END_DATE}" +'%Y-%m-%dT%H:%M:%SZ')
+    start_date=$(date --date "${MINUTES} minutes ago" +'%Y-%m-%dT%H:%M:%SZ')
+    end_date=$(date +'%Y-%m-%dT%H:%M:%SZ')
 
     PAYLOAD='{ "query":
       "query {
