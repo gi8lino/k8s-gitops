@@ -5,13 +5,14 @@ metadata:
   name: filebrowser-config
   namespace: filebrowser
 data:
-  .filebrowser.yaml: |-
-    ---
-    port: 80
-    baseURL: filebrowser.local.${BASE_DOMAIN}
-    address: ''
-    log: stdout
-    database: /db/filebrowser.db
-    root: /data
-    auth.method: proxy
-    auth.header: X-Forwarded-User
+  .filebrowser.json: |-
+     {
+       "port": 80,
+       "baseURL": "filebrowser.local.${BASE_DOMAIN}",
+       "address": "",
+       "log": "stdout",
+       "database": "/db/filebrowser.db",
+       "root": "/srv",
+       "auth.method": "proxy",
+       "auth.header": "X-Forwarded-User"
+     }
