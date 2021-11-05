@@ -3,7 +3,7 @@ ignore: |
   secret.yaml
   cluster-secrets.yaml
   apps/kubernetes-dashboard/middleware.yaml
-  apps/nextcloud/README.md
+  *.md
 extends: default
 rules:
   truthy:
