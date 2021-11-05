@@ -22,10 +22,3 @@ spec:
           app == 'healthchecks'
         ports:
           - 8000
-    - action: Allow
-      protocol: TCP
-      destination:
-        nets:
-          - ${HOST_IP}/32
-        ports:
-          - 6443   # kube api
