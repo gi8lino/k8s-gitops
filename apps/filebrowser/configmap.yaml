@@ -12,7 +12,7 @@ data:
        "address": "",
        "log": "stdout",
        "database": "/db/filebrowser.db",
-       "root": "/srv",
+       "root": "/data",
        "auth.method": "proxy",
        "auth.header": "X-Forwarded-User"
      }
