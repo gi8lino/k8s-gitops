@@ -7,12 +7,25 @@ then update following config:
 
 ```yaml
 alertmanager:
-    route:
-      routes:
-        - receiver: slack
-          mute_time_intervals:
-            - business_hours
-            - weekend
+  mute_time_intervals:
+    - name: business_hours
+      time_intervals:
+        - weekdays: ['monday:friday']
+          times:
+            - start_time: 00:00
+              end_time: 07:30
+    - name: weekend
+      time_intervals:
+        - weekdays: ['saturday','sunday']
+          times:
+            - start_time: 00:00
+              end_time: 09:00
+  route:
+    routes:
+      - receiver: slack
+        mute_time_intervals:
+          - business_hours
+          - weekend
 ```
 
 ## :hugs:&nbsp; Thanks
