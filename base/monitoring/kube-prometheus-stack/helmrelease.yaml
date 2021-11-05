@@ -87,7 +87,7 @@ spec:
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
         enabled: true
         hosts:
           - grafana.local.${BASE_DOMAIN}
