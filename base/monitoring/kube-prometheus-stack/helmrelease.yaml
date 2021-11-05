@@ -28,12 +28,6 @@ spec:
                 times:
                   - start_time: 07:30
                     end_time: 23:00
-          - name: weekend
-            time_intervals:
-              - weekdays: ['saturday:sunday']
-                times:
-                  - start_time: 09:00
-                    end_time: 23:30
         route:
           group_by:
             - job
@@ -49,7 +43,6 @@ spec:
             - receiver: slack
               mute_time_intervals:
                 - business_hours
-                - weekend
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
@@ -80,7 +73,7 @@ spec:
           enabled: false
         auth.generic_oauth:
           enabled: true
-          allow_sign_up: true
+          allow_sign_up: false
           auth_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/auth
           client_id: $__env{GRAFANA_AUTH_CLIENT_ID}
           client_secret: $__env{GRAFANA_AUTH_CLIENT_SECRET}
