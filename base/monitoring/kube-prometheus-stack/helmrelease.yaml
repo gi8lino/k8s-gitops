@@ -26,8 +26,16 @@ spec:
             time_intervals:
               - weekdays: ['monday:friday']
                 times:
-                  - start_time: 07:30
-                    end_time: 23:00
+                  - start_time: 23:00
+                    end_time: 00:00
+                  - start_time: 00:00
+                    end_time: 07:30
+          - name: weekend
+            time_intervals:
+              - weekdays: ['saturday:sunday']
+                times:
+                  - start_time: 00:00
+                    end_time: 07:30
         route:
           group_by:
             - job
@@ -41,8 +49,6 @@ spec:
                 alertname: Watchdog
               repeat_interval: 15m
             - receiver: slack
-              mute_time_intervals:
-                - business_hours
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
