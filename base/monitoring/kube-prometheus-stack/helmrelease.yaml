@@ -33,7 +33,7 @@ spec:
               - weekdays: ['saturday:sunday']
                 times:
                   - start_time: 00:00
-                    end_time: 07:30
+                    end_time: 09:00
         route:
           group_by:
             - job
