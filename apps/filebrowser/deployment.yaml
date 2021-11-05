@@ -51,7 +51,8 @@ spec:
             - name: db
               mountPath: /db
             - name: config
-              mountPath: /etc/filebrowser/.filebrowser.yaml
+              mountPath: .filebrowser.yaml
+              subPath: .filebrowser.yaml
           resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false
