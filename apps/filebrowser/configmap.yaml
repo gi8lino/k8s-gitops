@@ -9,7 +9,7 @@ data:
      {
        "port": 80,
        "baseURL": "filebrowser.local.${BASE_DOMAIN}",
-       "address": "",
+       "address": "https://filebrowser.local.${BASE_DOMAIN}",
        "log": "stdout",
        "database": "/db/filebrowser.db",
        "root": "/data",
