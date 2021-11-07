@@ -57,7 +57,7 @@ spec:
                 summary: "SMART has reported failures a drive on {{$hostname}}"
     promtail:
       config:
-        lokiAddress: http://loki.monitoring.svc.cluster.local/loki/api/v1/push
+        lokiAddress: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
         snippets:
           extraScrapeConfigs: |
             - job_name: journal
