@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: kubernetes-dashboard-egress-traefik
+  name: traefik-egress-healthchecks
   namespace: traefik
 spec:
   selector: app.kubernetes.io/instance == 'traefik'
@@ -12,7 +12,7 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        namespaceSelector: projectcalico.org/name == 'kubernetes-dashboard'
-        selector: app.kubernetes.io/instance == 'kubernetes-dashboard'
+        namespaceSelector: projectcalico.org/name == 'healthchecks'
+        selector: app == 'healthchecks'
         ports:
-          - 8443  # regular ingress port
+          - 8000

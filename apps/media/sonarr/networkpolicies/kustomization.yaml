@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - egress-sonarr.yaml
   - ingress-sonarr.yaml
-  - sonarr-egress-traefik.yaml
+  - traefik-egress-sonarr.yaml

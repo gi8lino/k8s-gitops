@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: sabnzbd-egress-traefik
+  name: traefik-egress-nextcloud
   namespace: traefik
 spec:
   selector: app.kubernetes.io/instance == 'traefik'
@@ -12,7 +12,9 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        namespaceSelector: projectcalico.org/name == 'media'
-        selector: app == 'sabnzbd'
+        namespaceSelector: projectcalico.org/name == 'nextcloud'
+        selector: >-
+          app == 'nextcloud' &&
+          component == 'fpm-nginx'
         ports:
-          - 8080
+          - 80

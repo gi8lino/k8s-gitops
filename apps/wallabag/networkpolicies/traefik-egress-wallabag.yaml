@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: whoami-egress-traefik
+  name: traefik-egress-wallabag
   namespace: traefik
 spec:
   selector: app.kubernetes.io/instance == 'traefik'
@@ -12,7 +12,7 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        namespaceSelector: projectcalico.org/name == 'whoami'
-        selector: app == 'whoami'
+        namespaceSelector: projectcalico.org/name == 'wallabag'
+        selector: app == 'wallabag'
         ports:
           - 80

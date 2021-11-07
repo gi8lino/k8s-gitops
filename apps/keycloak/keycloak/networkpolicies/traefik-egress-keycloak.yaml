@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: sonarr-egress-traefik
+  name: traefik-egress-keycloak
   namespace: traefik
 spec:
   selector: app.kubernetes.io/instance == 'traefik'
@@ -12,7 +12,9 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        namespaceSelector: projectcalico.org/name == 'media'
-        selector: app == 'sonarr'
+        namespaceSelector: projectcalico.org/name == 'keycloak'
+        selector: >-
+          app == 'keycloak' &&
+          component == 'keycloak'
         ports:
-          - 8989
+          - 8080

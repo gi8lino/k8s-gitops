@@ -2,7 +2,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - egress-to-prometheus-pushgateway.yaml
   - ingress-prometheus-pushgateway.yaml
+  - k8up-jobs-egress-prometheus-pushgateway.yaml
   - prometheus-egress-prometheus-pushgateway.yaml
-  - prometheus-pushgateway-egress-traefik.yaml
+  - traefik-egress-prometheus-pushgateway.yaml

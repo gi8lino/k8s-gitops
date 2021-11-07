@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - egress-wallabag.yaml
   - ingress-wallabag.yaml
-  - wallabag-egress-traefik.yaml
+  - traefik-egress-wallabag.yaml

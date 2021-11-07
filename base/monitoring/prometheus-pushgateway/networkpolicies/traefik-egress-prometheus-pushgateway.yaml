@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-traefik-tautulli
+  name: traefik-egress-prometheus-pushgateway
   namespace: traefik
 spec:
   selector: app.kubernetes.io/instance == 'traefik'
@@ -12,7 +12,7 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        namespaceSelector: projectcalico.org/name == 'media'
-        selector: app == 'tautulli'
+        namespaceSelector: projectcalico.org/name == 'monitoring'
+        selector: app == 'prometheus-pushgateway'
         ports:
-          - 8181
+          - 9091

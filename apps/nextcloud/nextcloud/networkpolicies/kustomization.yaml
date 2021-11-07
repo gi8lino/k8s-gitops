@@ -5,4 +5,4 @@ resources:
   - egress-nextcloud-cron.yaml
   - egress-nextcloud.yaml
   - ingress-nextcloud.yaml
-  - nextcloud-egress-traefik.yaml
+  - traefik-egress-nextcloud.yaml

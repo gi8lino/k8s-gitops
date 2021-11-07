@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - egress-keycloak.yaml
   - ingress-keycloak.yaml
-  - keycloak-egress-traefik.yaml
+  - traefik-egress-keycloak.yaml
