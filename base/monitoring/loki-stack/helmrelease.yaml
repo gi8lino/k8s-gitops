@@ -56,8 +56,18 @@ spec:
               annotations:
                 summary: "SMART has reported failures a drive on {{$hostname}}"
     promtail:
+      enabled: false
       snippets:
         extraScrapeConfigs: |
+          - job_name: syslog
+            syslog:
+              listen_address: 0.0.0.0:1514
+              label_structured_data: true
+              labels:
+                job: "syslog"
+            relabel_configs:
+            - source_labels: ['__syslog_message_hostname']
+              target_label: 'hostname'
           - job_name: journal
             journal:
               path: /var/log/journal
@@ -69,6 +79,14 @@ spec:
                 target_label: 'unit'
               - source_labels: ['__journal__hostname']
                 target_label: hostname
+      extraPorts:
+        syslog:
+          name: syslog
+          containerPort: 1514
+          service:
+            type: LoadBalancer
+            externalIPs:
+              - "${HOST_IP}"
       extraVolumes:
         - name: journal
           hostPath:
