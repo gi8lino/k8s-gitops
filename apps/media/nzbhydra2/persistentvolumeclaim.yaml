@@ -26,18 +26,3 @@ spec:
   resources:
     requests:
       storage: 100Mi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nzbhydra2-downloads
-  namespace: media
-  annotations:
-    k8up.io/backup: "true"
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: nvme
-  resources:
-    requests:
-      storage: 100Mi
