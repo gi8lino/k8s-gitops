@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: pihole-exporter-egress-prometheus
+  name: prometheus-egress-tools-server-cadvisor-exporter
   namespace: monitoring
 spec:
   selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
@@ -13,6 +13,6 @@ spec:
       protocol: TCP
       destination:
         nets:
-          - 10.0.0.3/32
+          - 10.0.0.4/32
         ports:
-          - 9617
+          - 8080  # cadvisor
