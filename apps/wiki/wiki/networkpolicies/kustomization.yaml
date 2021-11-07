@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - egress-wiki.yaml
   - ingress-wiki.yaml
-  - wiki-egress-traefik.yaml
+  - traefik-egress-wiki.yaml

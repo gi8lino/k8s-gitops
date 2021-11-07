@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - egress-sabnzbd.yaml
   - ingress-sabnzbd.yaml
-  - sabnzbd-egress-traefik.yaml
+  - traefik-egress-sabnzbd.yaml

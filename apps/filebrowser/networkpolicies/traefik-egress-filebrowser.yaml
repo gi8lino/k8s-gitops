@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: minio-egress-traefik
+  name: traefik-egress-filebrowser
   namespace: traefik
 spec:
   selector: app.kubernetes.io/instance == 'traefik'
@@ -12,8 +12,7 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        namespaceSelector: projectcalico.org/name == 'minio'
-        selector: app.kubernetes.io/instance == 'minio'
+        namespaceSelector: projectcalico.org/name == 'filebrowser'
+        selector: app == 'filebrowser'
         ports:
-          - 9000  # minio-api
-          - 9001  # minio-console
+          - 80

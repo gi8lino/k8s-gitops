@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - egress-plex.yaml
   - ingress-plex.yaml
-  - plex-egress-traefik.yaml
+  - traefik-egress-plex.yaml

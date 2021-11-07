@@ -5,4 +5,4 @@ resources:
   - egress-minio.yaml
   - egress-to-minio.yaml
   - ingress-minio.yaml
-  - minio-egress-traefik.yaml
+  - traefik-egress-minio.yaml

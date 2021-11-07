@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - egress-nzbhydra2.yaml
   - ingress-nzbhydra2.yaml
-  - nzbhydra2-egress-traefik.yaml
+  - traefik-egress-nzbhydra2.yaml

@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - egress-kubernetes-dashboard.yaml
   - ingress-kubernetes-dashboard.yaml
-  - kubernetes-dashboard-egress-traefik.yaml
+  - traefik-egress-kubernetes-dashboard.yaml

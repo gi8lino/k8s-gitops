@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: gitlab-egress-traefik
+  name: traefik-egress-gitlab
   namespace: traefik
 spec:
   selector: app.kubernetes.io/instance == 'traefik'

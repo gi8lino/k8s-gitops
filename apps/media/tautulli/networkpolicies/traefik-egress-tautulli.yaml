@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: plex-egress-traefik
+  name: traefik-egress-tautulli
   namespace: traefik
 spec:
   selector: app.kubernetes.io/instance == 'traefik'
@@ -13,6 +13,6 @@ spec:
       protocol: TCP
       destination:
         namespaceSelector: projectcalico.org/name == 'media'
-        selector: app == 'plex'
+        selector: app == 'tautulli'
         ports:
-          - 32400
+          - 8181

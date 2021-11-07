@@ -5,5 +5,5 @@ resources:
   - egress-gitlab-shared-secrets-job.yaml
   - egress-gitlab-upgrade-check.yaml
   - egress-gitlab.yaml
-  - gitlab-egress-traefik.yaml
   - ingress-gitlab.yaml
+  - traefik-egress-gitlab.yaml

@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: forward-auth-egress-traefik
+  name: traefik-egress-sabnzbd
   namespace: traefik
 spec:
   selector: app.kubernetes.io/instance == 'traefik'
@@ -12,6 +12,7 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        selector: app == 'forward-auth'
+        namespaceSelector: projectcalico.org/name == 'media'
+        selector: app == 'sabnzbd'
         ports:
-          - 4181
+          - 8080

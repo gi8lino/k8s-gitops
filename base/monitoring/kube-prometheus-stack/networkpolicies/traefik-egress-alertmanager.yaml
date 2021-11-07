@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: alertmanager-egress-traefik
+  name: traefik-egress-alertmanager
   namespace: traefik
 spec:
   selector: app.kubernetes.io/instance == 'traefik'

@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - alertmanager-egress-healthchecks.yaml
   - egress-healthchecks.yaml
-  - healthchecks-egress-traefik.yaml
   - ingress-healthchecks.yaml
+  - traefik-egress-healthchecks.yaml

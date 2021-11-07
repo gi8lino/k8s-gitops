@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - egress-radarr.yaml
   - ingress-radarr.yaml
-  - radarr-egress-traefik.yaml
+  - traefik-egress-plex.yaml
