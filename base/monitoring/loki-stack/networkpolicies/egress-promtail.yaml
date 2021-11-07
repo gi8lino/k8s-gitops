@@ -14,18 +14,5 @@ spec:
       destination:
         selector: app == 'loki'
         ports:
-          - 3100
-    - action: Allow
-      protocol: TCP
-      destination:
-        nets:
-          - ${HOST_IP}
-        ports:
-          - 1514  # rsyslog
-    - action: Allow
-      protocol: UDP
-      destination:
-        nets:
-          - ${HOST_IP}
-        ports:
-          - 1514  # rsyslog
+          - 3100  # loki
+          - 3101  # loki-promtail-headless
