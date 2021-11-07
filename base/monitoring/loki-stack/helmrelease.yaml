@@ -57,20 +57,6 @@ spec:
                 summary: "SMART has reported failures a drive on {{$hostname}}"
     promtail:
       enabled: true
-      extraVolumes:
-        - name: journal
-          hostPath:
-            path: /var/log/journal
-        - name: pods
-          hostPath:
-            path: /var/log/pods
-      extraVolumeMounts:
-        - name: journal
-          mountPath: /var/log/journal
-          readOnly: true
-        - name: pods
-          mountPath: /var/log/pods
-          readOnly: true
       serviceMonitor:
         enabled: true
   install:
