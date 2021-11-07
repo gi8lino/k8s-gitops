@@ -2,15 +2,16 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-alertmanager
+  name: prometheus-egress-prometheus-pushgateway
   namespace: monitoring
 spec:
-  selector: app == 'alertmanager'
+  selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
   types:
     - Egress
   egress:
     - action: Allow
       protocol: TCP
       destination:
+        selector: app == 'prometheus-pushgateway'
         ports:
-          - 443
+          - 9091

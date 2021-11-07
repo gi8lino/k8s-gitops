@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: egress-alertmanager
+  name: alertmanager-egress-healthchecks
   namespace: monitoring
 spec:
   selector: app == 'alertmanager'
@@ -12,5 +12,8 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
+        namespaceSelector: projectcalico.org/name == 'healthchecks'
+        selector:
+          app == 'healthchecks'
         ports:
-          - 443
+          - 8000
