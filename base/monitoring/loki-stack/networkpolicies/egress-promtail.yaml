@@ -22,3 +22,10 @@ spec:
           - ${HOST_IP}
         ports:
           - 1514  # rsyslog
+    - action: Allow
+      protocol: UDP
+      destination:
+        nets:
+          - ${HOST_IP}
+        ports:
+          - 1514  # rsyslog
