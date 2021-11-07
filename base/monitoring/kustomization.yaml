@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - flux-system
   - kube-prometheus-stack
+  - loki-stack
   - pihole-server
   - prometheus-blackbox-exporter
   - prometheus-pushgateway
