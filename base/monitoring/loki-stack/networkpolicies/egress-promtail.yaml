@@ -15,3 +15,10 @@ spec:
         selector: app == 'loki'
         ports:
           - 3100
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - ${HOST_IP}
+        ports:
+          - 1514  # rsyslog
