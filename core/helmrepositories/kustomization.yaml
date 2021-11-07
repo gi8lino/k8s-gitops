@@ -6,6 +6,7 @@ resources:
   - bitnami.yaml
   - containeroo.yaml
   - gitlab.yaml
+  - grafana.yaml
   - infracloudio.yaml
   - jetstack.yaml
   - kubernetes-dashboard.yaml
