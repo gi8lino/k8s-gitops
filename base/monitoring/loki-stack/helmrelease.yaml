@@ -29,14 +29,7 @@ spec:
       enabled: false
     loki:
       ingress:
-        enabled: true
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
-        hosts:
-          - host: loki.local.${BASE_DOMAIN}
-            paths:
-              - /
+        enabled: false
       ruler:
         storage:
           type: local
@@ -92,13 +85,3 @@ spec:
     crds: Skip
   upgrade:
     crds: Skip
-  postRenderers:
-    - kustomize:
-        patchesJson6902:
-          - target:
-              kind: Ingress
-              name: loki
-            patch:
-              - op: add
-                path: /spec/ingressClassName
-                value: traefik
