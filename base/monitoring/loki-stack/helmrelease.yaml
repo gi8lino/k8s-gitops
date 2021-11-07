@@ -56,7 +56,7 @@ spec:
               annotations:
                 summary: "SMART has reported failures a drive on {{$hostname}}"
     promtail:
-      enabled: false
+      enabled: true
       snippets:
         extraScrapeConfigs: |
           - job_name: syslog
