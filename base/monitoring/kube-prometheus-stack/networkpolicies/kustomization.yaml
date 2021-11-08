@@ -14,6 +14,7 @@ resources:
   - ingress-kube-prometheus-stack-operator.yaml
   - ingress-kube-state-metrics.yaml
   - ingress-prometheus.yaml
+  - prometheus-egress-loki-servicemonitors.yaml
   - traefik-egress-alertmanager.yaml
   - traefik-egress-grafana.yaml
   - traefik-egress-prometheus.yaml
