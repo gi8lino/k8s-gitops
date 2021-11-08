@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
+  - ingress.yaml
   - prometheusrule.yaml
