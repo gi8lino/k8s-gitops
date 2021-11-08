@@ -16,5 +16,4 @@ spec:
         selector: app.kubernetes.io/instance == 'traefik'
       destination:
         ports:
-          - 3100  # loki-promtail
           - 3101  # loki-promtail-headless

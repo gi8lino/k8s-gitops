@@ -17,6 +17,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: promtail
+                name: loki-promtail-headless
                 port:
                   name: http-metrics
