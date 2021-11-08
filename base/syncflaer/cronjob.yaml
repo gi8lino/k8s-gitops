@@ -21,7 +21,7 @@ spec:
         spec:
           containers:
             - name: syncflaer
-              image: ghcr.io/containeroo/syncflaer:5.1.4
+              image: ghcr.io/containeroo/syncflaer:5.1.5
               args:
                 - --debug
               envFrom:
