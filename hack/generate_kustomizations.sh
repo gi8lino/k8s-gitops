@@ -58,6 +58,10 @@ function process_folder {
     printf "${RED}[ERROR     ]${NOFORMAT} folder '${directory}' not found!\n" && \
     return
 
+  [[ "${directory})" == *"core/flux-system"* ]] && \
+    printf "${ORANGE}[SKIPPING  ]${NOFORMAT} ${directory}\n" && \
+    return
+
   printf "${GREEN}[PROCESSING]${NOFORMAT} ${directory}\n"
 
   [ -n "${IGNORE_FOLDERS}" ] && \
@@ -110,7 +114,5 @@ function process_folder {
 for base_folder in "${BASE_FOLDERS[@]}"; do
   process_folder "$(pwd)/${base_folder}"
 done
-
-git checkout -- core/flux-system/kustomization.yaml
 
 printf "${GREEN}[INFO      ]${NOFORMAT} finished!\n"
