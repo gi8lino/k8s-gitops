@@ -12,6 +12,14 @@ spec:
     - action: Allow
       protocol: TCP
       source:
+        namespaceSelector: projectcalico.org/name == 'traefik'
+        selector: app.kubernetes.io/instance == 'traefik'
+      destination:
+        ports:
+          - 3101  # loki-promtail-headless
+    - action: Allow
+      protocol: TCP
+      source:
         namespaceSelector: projectcalico.org/name == 'monitoring'
         selector: app.kubernetes.io/name == 'grafana'
       destination:
