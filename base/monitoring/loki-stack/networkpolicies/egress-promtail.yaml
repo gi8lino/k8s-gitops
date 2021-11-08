@@ -16,3 +16,10 @@ spec:
         ports:
           - 3100  # loki
           - 3101  # loki-promtail-headless
+    - action: Allow
+      protocol: TCP
+      destination:
+        nets:
+          - ${HOST_IP}/32
+        ports:
+          - 6443  # kube api

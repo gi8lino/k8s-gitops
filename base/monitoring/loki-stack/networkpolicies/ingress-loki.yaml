@@ -18,11 +18,3 @@ spec:
         ports:
           - 3100  # loki
           - 3101  # loki-promtail-headless
-    - action: Allow
-      protocol: TCP
-      source:
-        selector: app == 'promtail'
-      destination:
-        ports:
-          - 3100  # loki
-          - 3101  # loki-promtail-headless
