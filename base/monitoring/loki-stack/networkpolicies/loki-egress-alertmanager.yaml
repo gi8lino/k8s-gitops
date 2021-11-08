@@ -12,6 +12,7 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
+        namespaceSelector: projectcalico.org/name == 'monitoring'
         selector: app == 'alertmanager'
         ports:
           - 9093

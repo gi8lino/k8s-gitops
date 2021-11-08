@@ -20,7 +20,8 @@ spec:
     - action: Allow
       protocol: TCP
       source:
+        namespaceSelector: projectcalico.org/name == 'monitoring'
         selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
       destination:
         ports:
-          - 3101
+          - 3101  # prometheus service monitor => loki
