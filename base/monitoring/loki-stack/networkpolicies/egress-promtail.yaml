@@ -14,7 +14,7 @@ spec:
       destination:
         selector: app == 'loki'
         ports:
-          - 3100  # loki
+          - 3100
     - action: Allow
       protocol: TCP
       destination:
