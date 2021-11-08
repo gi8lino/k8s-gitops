@@ -15,4 +15,4 @@ spec:
         namespaceSelector: projectcalico.org/name == 'monitoring'
         selector: app == 'promtail'
         ports:
-          - 3101
+          - 3101  # loki-promtail-headless
