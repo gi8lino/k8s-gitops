@@ -7,16 +7,16 @@ resources:
   - ingress.yaml
   - prometheusrule.yaml
 configMapGenerator:
-  - name: Logging-Dashboard-via-Loki
+  - name: logging-dashboard-via-loki
     namespace: monitoring
     files:
-      - dashboards/node-exporter-full.json
+      - dashboards/logging-dashboard-via-loki.json
 generatorOptions:
   disableNameSuffixHash: true
 patches:
   - target:
       kind: ConfigMap
-      name: Logging-Dashboard-via-Loki
+      name: logging-dashboard-via-loki
     patch: |-
       - op: add
         path: "/metadata/labels"
@@ -24,7 +24,7 @@ patches:
           grafana_dashboard: "1"
   - target:
       kind: ConfigMap
-      name: Logging-Dashboard-via-Loki
+      name: logging-dashboard-via-loki
     patch: |-
       - op: add
         path: "/metadata/annotations"
