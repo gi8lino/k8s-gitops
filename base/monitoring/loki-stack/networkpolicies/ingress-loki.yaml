@@ -17,4 +17,3 @@ spec:
       destination:
         ports:
           - 3100  # loki
-          - 3101  # loki-promtail-headless
