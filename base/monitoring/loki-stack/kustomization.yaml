@@ -6,3 +6,27 @@ resources:
   - helmrelease.yaml
   - ingress.yaml
   - prometheusrule.yaml
+configMapGenerator:
+  - name: Logging-Dashboard-via-Loki
+    namespace: monitoring
+    files:
+      - dashboards/node-exporter-full.json
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - target:
+      kind: ConfigMap
+      name: Logging-Dashboard-via-Loki
+    patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: "1"
+  - target:
+      kind: ConfigMap
+      name: Logging-Dashboard-via-Loki
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
