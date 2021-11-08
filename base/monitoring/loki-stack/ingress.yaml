@@ -19,4 +19,4 @@ spec:
               service:
                 name: loki-promtail-headless
                 port:
-                  name: http-metrics
+                  number: 3101
