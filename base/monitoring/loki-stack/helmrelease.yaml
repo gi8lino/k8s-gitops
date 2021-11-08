@@ -57,19 +57,20 @@ spec:
                 summary: "SMART has reported failures a drive on {{$hostname}}"
     promtail:
       enabled: true
-      snippets:
-        extraScrapeConfigs: |
-          - job_name: journal
-            journal:
-              path: /var/log/journal
-              max_age: 12h
-              labels:
-                job: systemd-journal
-            relabel_configs:
-              - source_labels: ['__journal__systemd_unit']
-                target_label: 'unit'
-              - source_labels: ['__journal__hostname']
-                target_label: 'hostname'
+      config:
+        snippets:
+          extraScrapeConfigs: |
+            - job_name: journal
+              journal:
+                path: /var/log/journal
+                max_age: 12h
+                labels:
+                  job: systemd-journal
+              relabel_configs:
+                - source_labels: ['__journal__systemd_unit']
+                  target_label: 'unit'
+                - source_labels: ['__journal__hostname']
+                  target_label: 'hostname'
       extraVolumes:
         - name: journal
           hostPath:
