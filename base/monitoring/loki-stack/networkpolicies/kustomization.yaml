@@ -6,3 +6,4 @@ resources:
   - grafana-egress-loki.yaml
   - ingress-loki.yaml
   - loki-egress-alertmanager.yaml
+  - traefik-egress-promtail.yaml
