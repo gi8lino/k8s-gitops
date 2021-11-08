@@ -49,3 +49,15 @@ spec:
           - 6443   # kube api
           - 9100   # node-exporter
           - 10250  # kubelet
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: app == 'promtail'
+        ports:
+          - 3101
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: app == 'loki'
+        ports:
+          - 3100
