@@ -25,3 +25,10 @@ spec:
       destination:
         ports:
           - 3100
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
+      destination:
+        ports:
+          - 3100

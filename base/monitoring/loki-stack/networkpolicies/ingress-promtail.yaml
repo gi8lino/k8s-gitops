@@ -17,3 +17,10 @@ spec:
       destination:
         ports:
           - 3101  # loki-promtail-headless
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
+      destination:
+        ports:
+          - 3101
