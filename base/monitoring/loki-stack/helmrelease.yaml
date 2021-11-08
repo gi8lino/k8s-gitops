@@ -69,6 +69,42 @@ spec:
               target_label: 'unit'
             - source_labels: ['__journal__hostname']
               target_label: 'hostname'
+        - job_name: kubernetes-pods-name
+          pipeline_stages:
+            - cri: {}
+          kubernetes_sd_configs:
+            - role: pod
+          relabel_configs:
+            - source_labels: [__meta_kubernetes_namespace]
+              action: drop
+              regex: kube-system
+        - job_name: kubernetes-pods-direct-controllers
+          pipeline_stages:
+            - cri: {}
+          kubernetes_sd_configs:
+            - role: pod
+          relabel_configs:
+            - source_labels: [__meta_kubernetes_namespace]
+              action: drop
+              regex: kube-system
+        - job_name: kubernetes-pods-indirect-controller
+          pipeline_stages:
+            - cri: {}
+          kubernetes_sd_configs:
+            - role: pod
+          relabel_configs:
+            - source_labels: [__meta_kubernetes_namespace]
+              action: drop
+              regex: kube-system
+        - job_name: kubernetes-pods-static
+          pipeline_stages:
+            - cri: {}
+          kubernetes_sd_configs:
+            - role: pod
+          relabel_configs:
+            - source_labels: [__meta_kubernetes_namespace]
+              action: drop
+              regex: kube-system
       extraVolumes:
         - name: journal
           hostPath:
