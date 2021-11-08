@@ -2,10 +2,10 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: ingress-loki
+  name: ingress-promtail
   namespace: monitoring
 spec:
-  selector: app == 'loki'
+  selector: app == 'promtail'
   types:
     - Ingress
   ingress:
