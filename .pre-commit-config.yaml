@@ -39,6 +39,8 @@ repos:
           - ClusterPolicy
           - --ignore-kind
           - ClusterIssuer
+          - --ignore-kind
+          - CiliumClusterwideNetworkPolicy
       - id: forbidden_pattern
         args:
           - --forbidden-pattern
