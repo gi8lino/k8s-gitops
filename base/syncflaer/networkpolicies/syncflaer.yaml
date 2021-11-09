@@ -21,10 +21,6 @@ spec:
       toPorts:
         - ports:
             - port: "443"
-          rules:
-            http:
-              - method: GET
-                path: "/client/v4/"
     - toFQDNs:
         - matchName: api.ipify.org
       toPorts:
@@ -45,25 +41,13 @@ spec:
       toPorts:
         - ports:
             - port: "443"
-          rules:
-            http:
-              - method: GET
-                path: "/ip"
     - toFQDNs:
         - matchName: ipecho.net
       toPorts:
         - ports:
             - port: "443"
-          rules:
-            http:
-              - method: GET
-                path: "/plain"
     - toFQDNs:
         - matchName: myip.is
       toPorts:
         - ports:
             - port: "443"
-          rules:
-            http:
-              - method: GET
-                path: "/ip"
