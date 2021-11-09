@@ -16,4 +16,4 @@ spec:
         selector: job == 'syncflaer'
       destination:
         ports:
-          - 9000
+          - 9000  # traefik api
