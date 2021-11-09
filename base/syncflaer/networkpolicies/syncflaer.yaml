@@ -41,7 +41,7 @@ spec:
         - ports:
             - port: "443"
     - toFQDNs:
-        - matchName: ifconfig.me/
+        - matchName: ifconfig.me
       toPorts:
         - ports:
             - port: "443"
