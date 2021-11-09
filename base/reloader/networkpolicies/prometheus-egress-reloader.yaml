@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: k8up-egress-prometheus
+  name: prometheus-egress-reloader
   namespace: monitoring
 spec:
   endpointSelector:
@@ -11,8 +11,8 @@ spec:
     egress:
       - toServices:
           - k8sService:
-              serviceName: k8up
-              namespace: k8up
+              serviceName: reloader-reloader
+              namespace: reloader
         toPorts:
           - ports:
-              - port: "8080"
+              - port: "9090"

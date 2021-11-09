@@ -1,19 +1,20 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: traefik-egress-minio
   namespace: traefik
 spec:
-  selector: app.kubernetes.io/instance == 'traefik'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        namespaceSelector: projectcalico.org/name == 'minio'
-        selector: app.kubernetes.io/instance == 'minio'
-        ports:
-          - 9000  # minio-api
-          - 9001  # minio-console
+    - toServices:
+        - k8sService:
+            serviceName: minio
+            namespace: minio
+      toPorts:
+        - ports:
+            - port: "9000"  # minio-api
+        - ports:
+            - port: "9001"  # minio-console
