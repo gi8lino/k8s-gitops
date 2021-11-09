@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: reloader-egress-prometheus
+  name: prometheus-egress-reloader
   namespace: monitoring
 spec:
   selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
