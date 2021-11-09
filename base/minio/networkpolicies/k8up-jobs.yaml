@@ -10,16 +10,16 @@ spec:
     matchExpressions:
       - key: job-name
         operator: Exists
-    egress:
-      - toServices:
-          - k8sService:
-              serviceName: minio
-              namespace: minio
-        toPorts:
-          - ports:
-              - port: "9000"
-      - toEntities:
-          - host
-        toPorts:
-          - ports:
-              - port: "6443"  # kube-api
+  egress:
+    - toServices:
+        - k8sService:
+            serviceName: minio
+            namespace: minio
+      toPorts:
+        - ports:
+            - port: "9000"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443"  # kube-api
