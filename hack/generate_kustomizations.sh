@@ -19,8 +19,7 @@ Usage: generate_kustomizations.sh [-i|--ignore-folders \"FOLDER, ...\"]
                                   FOLDER [FOLDER ...]
 
 Iterates recursively over each FOLDER and generates or updates
-resources in the corresponding 'kustomization.yaml' files.
-It will not iterate over './core/flux-system'!
+#resources in the corresponding 'kustomization.yaml' files.
 
 positional arguments:
 FOLDER [FOLDER ...]                      one or more directories to iterate over recursively
@@ -28,17 +27,23 @@ FOLDER [FOLDER ...]                      one or more directories to iterate over
 optional parameters:
 -i, --ignore-folders \"[Folder] ...\"      folders which should be skipped
                                          list of strings, separatet by a comma (case sensitive!)
+-f, --flux-system-folder                 skip updating flux-system kustomization.yaml
 -h, --help                               display this help and exit
 \n"
     exit 0
 }
 
 while [ $# -gt 0 ]; do
-    key="$1"
+    key="${1}"
     case $key in
         -i|--ignore-folders)
-        IFS=',' read -r -a IGNORE_FOLDERS <<< "$2"
+        IFS=',' read -r -a IGNORE_FOLDERS <<< "${2}"
         unset IFS
+        shift
+        shift
+        ;;
+        -f|--flux-system-folder)
+        FLUX_FOLDER="${2}"
         shift
         shift
         ;;
@@ -46,7 +51,7 @@ while [ $# -gt 0 ]; do
         ShowHelp
         ;;
         *)
-        BASE_FOLDERS+=("$key")
+        BASE_FOLDERS+=("${key}")
         shift
         ;;
     esac
@@ -59,24 +64,25 @@ function process_folder {
     printf "${RED}[ERROR     ]${NOFORMAT} folder '${directory}' not found!\n" && \
     return
 
-  [[ "${directory})" == *"core/flux-system"* ]] && \
+  [[ "${directory})" == *"${FLUX_FOLDER}"* ]] && \
     printf "${ORANGE}[SKIPPING  ]${NOFORMAT} ${directory}\n" && \
     return
 
   printf "${GREEN}[PROCESSING]${NOFORMAT} ${directory}\n"
 
-  [ -n "${IGNORE_FOLDERS}" ] && \
-    readarray -d '' folders < <(find "${directory}" \
-                                      -type d \
-                                      -maxdepth 1 \
-                                      -mindepth 1 \
-                                      $(printf "! -name %s " ${IGNORE_FOLDERS[@]}) \
-                                      -execdir printf '%s\n' {} + | sort) ||
-    readarray -d '' folders < <(find "${directory}" \
-                                      -type d \
-                                      -maxdepth 1 \
-                                      -mindepth 1 \
-                                      -execdir printf '%s\n' {} + | sort)
+  readarray -d '' folders < <(find "${directory}" \
+                                    -type d \
+                                    -maxdepth 1 \
+                                    -mindepth 1 \
+                                    -execdir printf '%s\n' {} + | sort)
+
+  for folder in ${folders[@]}; do
+    for ignore_folder in ${IGNORE_FOLDERS[@]}; do
+      [[ "${directory}/${folder}" =~ "${ignore_folder}" ]] && \
+        printf "${ORANGE}[SKIPPING  ]${NOFORMAT} ${directory}/${folder}\n" && \
+        folders=( "${folders[@]/"${folder}"}" )  # remove skipped folder from list of folders
+    done
+  done
 
   readarray -d '' files < <(find "${directory}" \
                                   -type f \

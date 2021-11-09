@@ -16,7 +16,6 @@ Usage: generate_kustomizations.sh [-i|--ignore-folders "FOLDER, ..."]
 
 Iterates recursively over each FOLDER and generates or updates
 resources in the corresponding 'kustomization.yaml' files.
-It will not iterate over './core/flux-system'!
 
 positional arguments:
 FOLDER [FOLDER ...]                      one or more directories to iterate over recursively
@@ -24,6 +23,7 @@ FOLDER [FOLDER ...]                      one or more directories to iterate over
 optional parameters:
 -i, --ignore-folders "[Folder] ..."      folders which should be skipped
                                          list of strings, separatet by a comma (case sensitive!)
+-f, --flux-system-folder                 skip updating flux-system kustomization.yaml
 -h, --help                               display this help and exit
 ```
 
