@@ -2,7 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - ciliumnetworkpolicy.yaml
   - egress-nextcloud-cron.yaml
-  - egress-nextcloud.yaml
-  - ingress-nextcloud.yaml
   - traefik-egress-nextcloud.yaml
