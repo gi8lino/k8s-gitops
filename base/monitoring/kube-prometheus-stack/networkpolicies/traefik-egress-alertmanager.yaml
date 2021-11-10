@@ -13,6 +13,6 @@ spec:
       protocol: TCP
       destination:
         namespaceSelector: projectcalico.org/name == 'monitoring'
-        selector: app == 'alertmanager'
+        selector: app.kubernetes.io/name == 'alertmanager'
         ports:
           - 9093
