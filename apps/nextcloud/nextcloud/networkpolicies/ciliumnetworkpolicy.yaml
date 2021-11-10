@@ -1,0 +1,69 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: nextcloud
+  namespace: nextcloud
+spec:
+  endpointSelector:
+    matchLabels:
+      app: nextcloud
+      component: nginx-fpm
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "80"
+    - fromEndpoints:
+        - matchLabels:
+            app: nextcloud
+            component: cronjob
+            io.kubernetes.pod.namespace: nextcloud
+      toPorts:
+        - ports:
+            - port: "80"
+  egress:
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: nextcloud
+                component: postgres
+            namespace: nextcloud
+      toPorts:
+        - ports:
+            - port: "5432"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: nextcloud
+                component: redis
+            namespace: nextcloud
+      toPorts:
+        - ports:
+            - port: "6379"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app.kubernetes.io/instance: traefik
+            namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8443"  # to access load balancer (https://sso.${BASE_DOMAIN})
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "80"
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: smtp.google.com
+      toPorts:
+        - ports:
+            - port: "465"

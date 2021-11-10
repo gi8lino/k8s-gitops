@@ -1,0 +1,20 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: nextcloud-postgres
+  namespace: nextcloud
+spec:
+  endpointSelector:
+    matchLabels:
+      app: nextcloud
+      component: postgres
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: nextcloud
+            component: fpm-nginx
+            io.kubernetes.pod.namespace: nextcloud
+      toPorts:
+        - ports:
+            - port: "5432"
