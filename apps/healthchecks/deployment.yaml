@@ -34,7 +34,7 @@ spec:
               name: healthchecks-data
       containers:
         - name: healthchecks
-          image: lscr.io/linuxserver/healthchecks:v1.23.1-ls104
+          image: lscr.io/linuxserver/healthchecks:v1.24.0-ls104
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
