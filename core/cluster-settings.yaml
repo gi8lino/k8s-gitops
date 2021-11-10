@@ -5,7 +5,6 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
-  HOST_IP: 10.0.0.9
   DNS_IP: 10.0.0.3
   METALLB_TRAEFIK_ADDRESS_POOL: 10.0.0.120/32
   METALLB_DEFAULT_ADDRESS_POOL: 10.0.0.110-10.0.0.115
