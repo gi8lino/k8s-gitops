@@ -30,8 +30,8 @@ spec:
           repeat_interval: 2h
           routes:
             - receiver: healthchecks
-              match:
-                alertname: Watchdog
+              matchers:
+                - alertname = Watchdog
               repeat_interval: 15m
             - receiver: slack
       ingress:
