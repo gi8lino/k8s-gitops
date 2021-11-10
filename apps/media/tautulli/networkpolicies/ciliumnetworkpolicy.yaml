@@ -1,0 +1,33 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: tautulli
+  namespace: media
+spec:
+  endpointSelector:
+    matchLabels:
+      app: tautulli
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8080"
+  egress:
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "443"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: plex
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "32400"

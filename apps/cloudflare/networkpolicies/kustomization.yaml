@@ -2,6 +2,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - egress-cloudflare.yaml
+  - cloudflare.yaml
   - grafana-egress-cloudflare.yaml
-  - ingress-cloudflare-elasticsearch.yaml

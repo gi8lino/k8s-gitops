@@ -1,12 +1,13 @@
+---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: healthchecks
-  namespace: healthchecks
+  name: sabnzbd
+  namespace: media
 spec:
   endpointSelector:
     matchLabels:
-      app: healthchecks
+      app: sabnzbd
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -14,22 +15,32 @@ spec:
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
-            - port: "8000"
-    - fromEndpoints:  # allow push from alertmanager directly to healthchecks (watchdog)
+            - port: "8080"
+    - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
-            io.kubernetes.pod.namespace: monitoring
+            app: sonarr
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
-            - port: "8000"
-    - fromEndpoints:  # allow push from cloudflare-cron directly to healthchecks
+            - port: "8080"
+    - fromEndpoints:
         - matchLabels:
-            job: cloudflare-fw-events-fetch
-            io.kubernetes.pod.namespace: cloudflare
+            app: radarr
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
-            - port: "8000"
+            - port: "8080"
   egress:
+    - toFQDNs:
+        - matchName: ${USENET_INDEXER_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: ${USENET_PROVIDER_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "563"
     - toFQDNs:  # curl/jq
         - matchName: dl-cdn.alpinelinux.org
       toPorts:
@@ -45,8 +56,3 @@ spec:
       toPorts:
         - ports:
             - port: "443"
-    - toFQDNs:
-        - matchName: smtp.google.com
-      toPorts:
-        - ports:
-            - port: "587"

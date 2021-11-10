@@ -17,4 +17,4 @@ spec:
             namespace: healthchecks
       toPorts:
         - ports:
-            - port: "80000"
+            - port: "8000"
