@@ -39,6 +39,10 @@ repos:
           - ClusterPolicy
           - --ignore-kind
           - ClusterIssuer
+          - --ignore-kind
+          - ClusterRole
+          - --ignore-kind
+          - ClusterRoleBinding
       - id: forbidden_pattern
         args:
           - --forbidden-pattern
