@@ -1,0 +1,40 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: promtail
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app: promtail
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "3101"  # loki-promtail-headless
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "3101"  # prometheus service monitor => loki
+  egress:
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443"  # kube api
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: loki
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "3100"

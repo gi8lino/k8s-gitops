@@ -1,0 +1,42 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: wiki
+  namespace: wiki
+spec:
+  endpointSelector:
+    matchLabels:
+      app: wiki
+      component: wiki
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "3000"
+  egress:
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app.kubernetes.io/instance: traefik
+            namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8443"  # oidc
+    - toEndpoints:
+        - matchLabels:
+            app: wiki
+            component: postgres
+            io.kubernetes.pod.namespace: wiki
+      toPorts:
+        - ports:
+            - port: "5432"
+    - toFQDNs:
+        - matchName: smtp.google.com
+      toPorts:
+        - ports:
+            - port: "587"
