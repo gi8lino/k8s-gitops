@@ -12,7 +12,7 @@ spec:
     - action: Allow
       protocol: TCP
       destination:
-        selector: app == 'alertmanager'
+        selector: app.kubernetes.io/name == 'alertmanager'
         ports:
           - 9093
     - action: Allow

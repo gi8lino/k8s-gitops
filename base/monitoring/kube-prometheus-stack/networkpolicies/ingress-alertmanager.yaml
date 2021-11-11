@@ -5,7 +5,7 @@ metadata:
   name: ingress-alertmanager
   namespace: monitoring
 spec:
-  selector: app == 'alertmanager'
+  selector: app.kubernetes.io/name == 'alertmanager'
   types:
     - Ingress
   ingress:
