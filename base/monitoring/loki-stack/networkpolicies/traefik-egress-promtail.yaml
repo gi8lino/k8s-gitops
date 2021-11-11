@@ -11,7 +11,7 @@ spec:
   egress:
     - toServices:
         - k8sService:
-            serviceName: promtail
+            serviceName: loki-promtail-headless
             namespace: monitoring
       toPorts:
         - ports:

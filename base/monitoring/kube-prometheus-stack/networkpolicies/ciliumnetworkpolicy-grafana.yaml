@@ -1,0 +1,53 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: grafana
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "3000"
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "3000"
+  egress:
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9090"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app.kubernetes.io/instance: traefik
+            namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8443"  # oidc
+    - toFQDNs:
+        - matchName: grafana.com
+      toPorts:
+        - ports:
+            - port: "443"  # dashboards
