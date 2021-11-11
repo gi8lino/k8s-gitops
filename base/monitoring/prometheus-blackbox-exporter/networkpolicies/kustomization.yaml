@@ -2,6 +2,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - egress-prometheus-blackbox-exporter.yaml
-  - ingress-blackbox-exporter.yaml
+  - ciliumnetworkpolicy.yaml
   - prometheus-blackbox-exporter-egress-prometheus.yaml

@@ -1,18 +1,16 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
-  name: prometheus-egress-tools-server-node-exporter
+  name: prometheus-egress-pihole-node-exporter
   namespace: monitoring
 spec:
-  selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        nets:
-          - 10.0.0.4/32
-        ports:
-          - 9100  # prometheus node-exporter
+    - toCIDRSet:
+        - cidr: 10.0.0.4/32
+      toPorts:
+        - ports:
+            - port: "9100"  # prometheus node exporter
