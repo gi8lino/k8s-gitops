@@ -11,7 +11,7 @@ spec:
   egress:
     - toServices:
         - k8sService:
-            serviceName: loki
+            serviceName: loki-headless
             namespace: monitoring
       toPorts:
         - ports:
