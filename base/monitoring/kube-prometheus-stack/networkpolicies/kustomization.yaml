@@ -2,14 +2,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ciliumnetworkpolicy-alertmanager.yaml
-  - ciliumnetworkpolicy-grafana.yaml
-  - ciliumnetworkpolicy-kube-prometheus-stack-operator.yaml
-  - ciliumnetworkpolicy-kube-state-metrics.yaml
-  - ciliumnetworkpolicy-prometheus.yaml
+  - alertmanager.yaml
   - egress-kube-prometheus-stack-admission-create-job.yaml
   - egress-kube-prometheus-stack-admission-patch-job.yaml
+  - grafana.yaml
+  - kube-prometheus-stack-operator.yaml
+  - kube-state-metrics.yaml
   - prometheus-egress-loki-servicemonitors.yaml
+  - prometheus.yaml
   - traefik-egress-alertmanager.yaml
   - traefik-egress-grafana.yaml
   - traefik-egress-prometheus.yaml

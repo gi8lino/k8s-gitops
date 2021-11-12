@@ -2,7 +2,7 @@
 apiVersion: crd.projectcalico.org/v1
 kind: NetworkPolicy
 metadata:
-  name: syncflaer-ingress-traefik
+  name: traefik-ingress-syncflaer
   namespace: traefik
 spec:
   selector: app.kubernetes.io/instance == 'traefik'

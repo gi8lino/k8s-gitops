@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: blackbox-exporter
+  name: prometheus-blackbox-exporter
   namespace: monitoring
 spec:
   endpointSelector:
