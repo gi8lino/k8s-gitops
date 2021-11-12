@@ -6,8 +6,7 @@ metadata:
   namespace: gitlab
 spec:
   selector: >-
-    release == 'gitlab' ||
-    release == 'gitlab-runner'
+    release == 'gitlab'
   types:
     - Egress
   egress:
