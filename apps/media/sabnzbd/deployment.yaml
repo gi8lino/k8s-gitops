@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: sabnzbd
-          image: lscr.io/linuxserver/sabnzbd:3.4.2-ls45
+          image: lscr.io/linuxserver/sabnzbd:3.4.2-ls46
           env:
             - name: TZ
               value: Europe/Zurich
