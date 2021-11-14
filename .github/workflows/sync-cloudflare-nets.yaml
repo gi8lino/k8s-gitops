@@ -31,7 +31,7 @@ jobs:
           signoff: true
           committer: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
-          assignees: "rxbn"
+          assignees: "gi8lino"
           commit-message: "update cloudflare network ranges"
           body: |
             Cloudflare IP ranges: https://www.cloudflare.com/ips/
