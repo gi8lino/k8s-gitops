@@ -28,7 +28,7 @@ jobs:
           signoff: true
           committer: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
-          assignees: "rxbn"
+          assignees: "gi8lino"
           commit-message: "chore(deps): update renovate annotations"
           body: |
             Update HelmReleases in order for Renovate to pick up new versions of Helm charts
