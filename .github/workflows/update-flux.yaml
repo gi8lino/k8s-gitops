@@ -36,7 +36,7 @@ jobs:
           signoff: true
           committer: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
-          assignees: "rxbn"
+          assignees: "gi8lino"
           commit-message: "chore(deps): update flux components to ${{ steps.update.outputs.flux_version }}"
           body: |
             Release notes: https://github.com/fluxcd/flux2/releases/tag/${{ steps.update.outputs.flux_version }}
