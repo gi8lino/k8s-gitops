@@ -43,6 +43,8 @@ repos:
           - ClusterRole
           - --ignore-kind
           - ClusterRoleBinding
+          - --ignore-kind
+          - CiliumClusterwideNetworkPolicy
       - id: forbidden_pattern
         args:
           - --forbidden-pattern
