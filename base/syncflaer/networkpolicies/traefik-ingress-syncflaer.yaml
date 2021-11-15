@@ -1,19 +1,18 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: traefik-ingress-syncflaer
   namespace: traefik
 spec:
-  selector: app.kubernetes.io/instance == 'traefik'
-  types:
-    - Ingress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik
   ingress:
-    - action: Allow
-      protocol: TCP
-      source:
-        namespaceSelector: projectcalico.org/name == 'syncflaer'
-        selector: job == 'syncflaer'
-      destination:
-        ports:
-          - 9000  # traefik api
+    - fromEndpoints:
+        - matchLabels:
+            job: syncflaer
+            io.kubernetes.pod.namespace: syncflaer
+      toPorts:
+        - ports:
+            - port: "9000"  # traefik api
