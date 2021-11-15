@@ -1,0 +1,38 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: nzbhydra2
+  namespace: media
+spec:
+  endpointSelector:
+    matchLabels:
+      app: nzbhydra2
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "5076"
+    - fromEndpoints:
+        - matchLabels:
+            app: sonarr
+            io.kubernetes.pod.namespace: media
+      toPorts:
+        - ports:
+            - port: "5076"
+    - fromEndpoints:
+        - matchLabels:
+            app: radarr
+            io.kubernetes.pod.namespace: media
+      toPorts:
+        - ports:
+            - port: "5076"
+  egress:
+    - toFQDNs:
+        - matchName: ${USENET_INDEXER_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "443"

@@ -1,18 +1,20 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: grafana-egress-cloudflare
   namespace: monitoring
 spec:
-  selector: app.kubernetes.io/name == 'grafana'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: grafana
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        namespaceSelector: projectcalico.org/name == 'cloudflare'
-        selector: app == 'elasticsearch'
-        ports:
-          - 9200
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: elasticsearch
+            namespace: cloudflare
+      toPorts:
+        - ports:
+            - port: "9200"

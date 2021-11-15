@@ -1,0 +1,39 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: renovate
+  namespace: renovate
+spec:
+  endpointSelector:
+    matchLabels:
+      job: renovate
+  egress:
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "80"
+        - ports:
+            - port: "443"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: renovate
+                component: redis
+            namespace: renovate
+      toPorts:
+        - ports:
+            - port: "6379"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app.kubernetes.io/instance: traefik
+            namespace: traefik
+      toPorts:
+        - ports:
+            - port: "2222"  # to access load balancer (git@git.${BASE_DOMAIN}:path/to/repo.git)
+        - ports:
+            - port: "8443"  # to access load balancer (https://git.${BASE_DOMAIN})

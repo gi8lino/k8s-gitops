@@ -1,18 +1,20 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: traefik-egress-plex
   namespace: traefik
 spec:
-  selector: app.kubernetes.io/instance == 'traefik'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        namespaceSelector: projectcalico.org/name == 'media'
-        selector: app == 'plex'
-        ports:
-          - 32400
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: plex
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "32400"

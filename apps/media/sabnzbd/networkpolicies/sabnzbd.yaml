@@ -1,0 +1,58 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: sabnzbd
+  namespace: media
+spec:
+  endpointSelector:
+    matchLabels:
+      app: sabnzbd
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8080"
+    - fromEndpoints:
+        - matchLabels:
+            app: sonarr
+            io.kubernetes.pod.namespace: media
+      toPorts:
+        - ports:
+            - port: "8080"
+    - fromEndpoints:
+        - matchLabels:
+            app: radarr
+            io.kubernetes.pod.namespace: media
+      toPorts:
+        - ports:
+            - port: "8080"
+  egress:
+    - toFQDNs:
+        - matchName: ${USENET_INDEXER_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: ${USENET_PROVIDER_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "563"
+    - toFQDNs:  # curl/jq
+        - matchName: dl-cdn.alpinelinux.org
+      toPorts:
+        - ports:
+            - port: "80"
+    - toFQDNs:  # docker-mods
+        - matchName: github.com
+      toPorts:
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: hooks.slack.com
+      toPorts:
+        - ports:
+            - port: "443"

@@ -1,17 +1,20 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
-  name: traefik-egress-forward-auth
+  name: traefik-egress-wallabag
   namespace: traefik
 spec:
-  selector: app.kubernetes.io/instance == 'traefik'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        selector: app == 'forward-auth'
-        ports:
-          - 4181
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: forward-auth
+            namespace: traefik
+      toPorts:
+        - ports:
+            - port: "4181"

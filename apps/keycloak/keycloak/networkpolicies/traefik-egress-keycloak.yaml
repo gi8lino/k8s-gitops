@@ -1,20 +1,21 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: traefik-egress-keycloak
   namespace: traefik
 spec:
-  selector: app.kubernetes.io/instance == 'traefik'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        namespaceSelector: projectcalico.org/name == 'keycloak'
-        selector: >-
-          app == 'keycloak' &&
-          component == 'keycloak'
-        ports:
-          - 8080
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: keycloak
+                component: keycloak
+            namespace: keycloak
+      toPorts:
+        - ports:
+            - port: "8080"
