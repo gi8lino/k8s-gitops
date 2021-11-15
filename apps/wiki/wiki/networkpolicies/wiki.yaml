@@ -36,7 +36,7 @@ spec:
         - ports:
             - port: "5432"
     - toFQDNs:
-        - matchName: smtp.google.com
+        - matchName: ${SMTP_DOMAIN}
       toPorts:
         - ports:
             - port: "587"
