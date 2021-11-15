@@ -1,0 +1,19 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: renovate
+  namespace: renovate
+spec:
+  endpointSelector:
+    matchLabels:
+      app: renovate
+      component: redis
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            job: renovate
+            io.kubernetes.pod.namespace: renovate
+      toPorts:
+        - ports:
+            - port: "6379"

@@ -1,18 +1,16 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: egress-gitlab-upgrade-check
   namespace: gitlab
 spec:
-  selector: job-name starts with 'gitlab-gitlab-upgrade-check'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      job-name: gitlab-gitlab-upgrade-check*
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        nets:
-          - ${HOST_IP}/32
-        ports:
-          - 6443  # kube api
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443"  # kube api

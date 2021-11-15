@@ -1,18 +1,18 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: traefik-egress-alertmanager
   namespace: traefik
 spec:
-  selector: app.kubernetes.io/instance == 'traefik'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        namespaceSelector: projectcalico.org/name == 'monitoring'
-        selector: app.kubernetes.io/name == 'alertmanager'
-        ports:
-          - 9093
+    - toServices:
+        - k8sService:
+            serviceName: kube-prometheus-stack-alertmanager
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9093"

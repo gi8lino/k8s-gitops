@@ -1,0 +1,51 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: sonarr
+  namespace: media
+spec:
+  endpointSelector:
+    matchLabels:
+      app: sonarr
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8989"
+  egress:
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "443"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: nzbhydra2
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "5076"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: plex
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "32400"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: sabnzbd
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "8080"

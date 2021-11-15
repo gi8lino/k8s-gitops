@@ -1,19 +1,20 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: alertmanager-egress-healthchecks
   namespace: monitoring
 spec:
-  selector: app.kubernetes.io/name == 'alertmanager'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: alertmanager
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        namespaceSelector: projectcalico.org/name == 'healthchecks'
-        selector:
-          app == 'healthchecks'
-        ports:
-          - 8000
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: healthchecks
+            namespace: healthchecks
+      toPorts:
+        - ports:
+            - port: "8000"

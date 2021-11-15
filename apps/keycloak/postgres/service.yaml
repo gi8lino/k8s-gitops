@@ -4,6 +4,9 @@ kind: Service
 metadata:
   name: keycloak-postgres
   namespace: keycloak
+  labels:
+    app: keycloak
+    component: postgres
 spec:
   ports:
     - name: postgres
