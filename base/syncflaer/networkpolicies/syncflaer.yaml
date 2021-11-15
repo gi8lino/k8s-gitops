@@ -1,0 +1,53 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: syncflaer
+  namespace: syncflaer
+spec:
+  endpointSelector:
+    matchLabels:
+      job: syncflaer
+  egress:
+    - toServices:
+        - k8sService:
+            serviceName: traefik
+            namespace: traefik
+      toPorts:
+        - ports:
+            - port: "9000"  # traefik api
+    - toFQDNs:
+        - matchName: api.cloudflare.com
+      toPorts:
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: api.ipify.org
+      toPorts:
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: checkip.amazonaws.com
+      toPorts:
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: hooks.slack.com
+      toPorts:
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: ifconfig.me
+      toPorts:
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: ipecho.net
+      toPorts:
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: myip.is
+      toPorts:
+        - ports:
+            - port: "443"

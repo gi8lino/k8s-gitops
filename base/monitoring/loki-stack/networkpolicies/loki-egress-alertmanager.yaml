@@ -1,18 +1,17 @@
----
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: loki-egress-alertmanager
   namespace: monitoring
 spec:
-  selector: app == 'loki'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app: loki
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        namespaceSelector: projectcalico.org/name == 'monitoring'
-        selector: app.kubernetes.io/name == 'alertmanager'
-        ports:
-          - 9093
+    - toServices:
+        - k8sService:
+            serviceName: kube-prometheus-stack-alertmanager
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9093"

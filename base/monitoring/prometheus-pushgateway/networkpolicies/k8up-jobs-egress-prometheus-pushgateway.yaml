@@ -1,18 +1,22 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: GlobalNetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
 metadata:
   name: k8up-jobs-egress-prometheus-pushgateway
 spec:
-  namespaceSelector: k8up == 'backup-enabled'
-  selector: has(job-name)
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      io.kubernetes.pod.namespace.labels.k8up: backup-enabled
+    matchExpressions:
+      - key: job-name
+        operator: Exists
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        namespaceSelector: projectcalico.org/name == 'monitoring'
-        selector: app == 'prometheus-pushgateway'
-        ports:
-          - 9091
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: prometheus-pushgateway
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9091"

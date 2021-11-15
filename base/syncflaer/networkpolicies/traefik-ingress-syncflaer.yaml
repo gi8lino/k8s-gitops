@@ -1,0 +1,18 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: traefik-ingress-syncflaer
+  namespace: traefik
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            job: syncflaer
+            io.kubernetes.pod.namespace: syncflaer
+      toPorts:
+        - ports:
+            - port: "9000"  # traefik api

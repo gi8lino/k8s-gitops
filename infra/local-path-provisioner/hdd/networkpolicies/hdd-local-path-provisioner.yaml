@@ -1,0 +1,16 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: hdd-local-path-provisioner
+  namespace: local-path-provisioner
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: hdd
+  egress:
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443"  # kube api
