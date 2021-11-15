@@ -1,0 +1,42 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: minio
+  namespace: minio
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: minio
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "9000"
+        - ports:
+            - port: "9001"
+    - fromEndpoints:
+        - matchLabels:
+            job: gitlab-backup-mirror
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
+    - fromEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace.labels.k8up: backup-enabled
+          matchExpressions:
+            - key: job-name
+              operator: Exists
+      toPorts:
+        - ports:
+            - port: "9000"
+  egress:
+    - toFQDNs:
+        - matchName: dl.minio.io
+      toPorts:
+        - ports:
+            - port: "443"

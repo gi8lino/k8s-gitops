@@ -1,0 +1,15 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: cluster-resources-backup
+  namespace: k8up
+spec:
+  endpointSelector:
+    matchLabels:
+      k8up.io/preBackupPod: cluster-resources-backup
+  egress:
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443"  # kube-api

@@ -2,9 +2,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - egress-promtail.yaml
   - grafana-egress-loki.yaml
-  - ingress-loki.yaml
-  - ingress-promtail.yaml
   - loki-egress-alertmanager.yaml
+  - loki.yaml
+  - promtail.yaml
   - traefik-egress-promtail.yaml

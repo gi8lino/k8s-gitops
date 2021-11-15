@@ -6,7 +6,7 @@ metadata:
   namespace: nextcloud
   labels:
     app: nextcloud
-    component: job
+    component: cronjob
 spec:
   schedule: CRON_TZ=Europe/Zurich */5 * * * *
   concurrencyPolicy: Forbid
@@ -17,7 +17,8 @@ spec:
       template:
         metadata:
           labels:
-            job: nextcloud-cron
+            app: nextcloud
+            component: cronjob
         spec:
           restartPolicy: Never
           containers:

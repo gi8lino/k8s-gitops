@@ -1,0 +1,37 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: gitlab
+  namespace: gitlab
+spec:
+  endpointSelector:
+    matchLabels:
+      release: gitlab
+  ingress:
+    - fromEndpoints:
+        - {}
+  egress:
+    - toEndpoints:
+        - {}
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app.kubernetes.io/instance: traefik'
+            namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8443"
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "80"
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: smtp.gmail.com
+      toPorts:
+        - ports:
+            - port: "587"

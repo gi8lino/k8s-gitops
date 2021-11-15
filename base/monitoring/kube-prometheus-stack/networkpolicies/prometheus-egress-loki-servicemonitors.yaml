@@ -1,23 +1,29 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: prometheus-egress-loki-stack
   namespace: monitoring
 spec:
-  selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        selector: app == 'promtail'
-        ports:
-          - 3101
-    - action: Allow
-      protocol: TCP
-      destination:
-        selector: app == 'loki'
-        ports:
-          - 3100
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: loki
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "3100"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: promtail
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "3101"

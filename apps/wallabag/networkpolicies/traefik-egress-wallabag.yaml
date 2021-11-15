@@ -1,18 +1,20 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: traefik-egress-wallabag
   namespace: traefik
 spec:
-  selector: app.kubernetes.io/instance == 'traefik'
-  types:
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik
   egress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        namespaceSelector: projectcalico.org/name == 'wallabag'
-        selector: app == 'wallabag'
-        ports:
-          - 80
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: wallabag
+            namespace: wallabag
+      toPorts:
+        - ports:
+            - port: "80"

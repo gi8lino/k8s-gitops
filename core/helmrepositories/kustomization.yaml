@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - appuio.yaml
   - bitnami.yaml
+  - cilium.yaml
   - containeroo.yaml
   - gitlab.yaml
   - grafana.yaml

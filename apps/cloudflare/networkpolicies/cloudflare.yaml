@@ -1,0 +1,48 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: cloudflare
+  namespace: cloudflare
+spec:
+  endpointSelector:
+    matchLabels:
+      job: cloudflare-fw-events-fetch
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            job: cloudflare-fw-events-fetch
+            io.kubernetes.pod.namespace: cloudflare
+      toPorts:
+        - ports:
+            - port: "9200"
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: grafana
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9200"
+  egress:
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: elasticsearch
+            namespace: cloudflare
+      toPorts:
+        - ports:
+            - port: "9200"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: healthchecks
+            namespace: healthchecks
+      toPorts:
+        - ports:
+            - port: "8000"
+    - toFQDNs:
+        - matchName: api.cloudflare.com
+      toPorts:
+        - ports:
+            - port: "443"
