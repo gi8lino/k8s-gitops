@@ -91,7 +91,7 @@ Add `export BASE_DOMAIN=example.com` to your `.bashrc`, `.zprofile` or `.zshrc`.
 ## :wrench:&nbsp; Initial Deployment
 
 1. Install [K3s](https://k3s.io)
-2. Install [Calico](https://docs.projectcalico.org/getting-started/kubernetes/)
+2. Install [cilium](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default)
 3. Create `flux-system` namespace  
    `kubectl create namespace flux-system`
 4. Add the Flux GPG key in-order for Flux to decrypt SOPS secrets  
