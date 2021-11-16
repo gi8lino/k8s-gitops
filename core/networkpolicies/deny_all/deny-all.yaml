@@ -1,10 +1,11 @@
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: GlobalNetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
 metadata:
   name: deny-all
 spec:
-  selector: all()
-  types:
-    - Ingress
-    - Egress
+  endpointSelector: {}
+  ingress:
+    - {}
+  egress:
+    - {}
