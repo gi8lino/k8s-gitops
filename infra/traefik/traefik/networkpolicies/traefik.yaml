@@ -105,7 +105,7 @@ spec:
       toPorts:
         - ports:
             - port: "53"
-              protocol: ALL
+              protocol: ANY
           rules:
             dns:
               - matchPattern: "*"
