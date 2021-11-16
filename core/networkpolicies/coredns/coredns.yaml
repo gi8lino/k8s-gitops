@@ -14,7 +14,7 @@ spec:
       toPorts:
         - ports:
             - port: "53"
-              protocol: ALL
+              protocol: ANY
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
@@ -33,4 +33,4 @@ spec:
       toPorts:
         - ports:
             - port: "53"
-              protocol: ALL
+              protocol: ANY
