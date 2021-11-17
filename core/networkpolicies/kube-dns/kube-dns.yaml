@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: core-dns
+  name: kube-dns
   namespace: kube-system
 spec:
   endpointSelector:
@@ -14,7 +14,10 @@ spec:
       toPorts:
         - ports:
             - port: "53"
-              protocol: ALL
+              protocol: ANY
+          rules:
+            dns:
+              - matchPattern: "*"
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
@@ -33,4 +36,4 @@ spec:
       toPorts:
         - ports:
             - port: "53"
-              protocol: ALL
+              protocol: ANY

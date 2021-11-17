@@ -105,7 +105,7 @@ spec:
       toPorts:
         - ports:
             - port: "53"
-              protocol: UDP
+              protocol: ANY
           rules:
             dns:
               - matchPattern: "*"
@@ -113,4 +113,4 @@ spec:
         - host
       toPorts:
         - ports:
-            - port: "6443"
+            - port: "6443"  # kube api
