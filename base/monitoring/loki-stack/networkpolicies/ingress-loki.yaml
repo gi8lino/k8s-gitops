@@ -12,7 +12,6 @@ spec:
     - action: Allow
       protocol: TCP
       source:
-        namespaceSelector: projectcalico.org/name == 'monitoring'
         selector: app.kubernetes.io/name == 'grafana'
       destination:
         ports:
@@ -20,7 +19,6 @@ spec:
     - action: Allow
       protocol: TCP
       source:
-        namespaceSelector: projectcalico.org/name == 'monitoring'
         selector: app.kubernetes.io/instance == 'kube-prometheus-stack-prometheus'
       destination:
         ports:
