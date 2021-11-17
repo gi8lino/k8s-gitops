@@ -11,7 +11,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace.labels.projectcalico.org/name: flux-system
+            io.kubernetes.pod.namespace: flux-system
       toPorts:
         - ports:
             - port: "8080"
