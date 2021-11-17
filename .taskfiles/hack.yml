@@ -13,3 +13,9 @@ tasks:
     cmds:
       - ./hack/generate_secret_templates.sh
     silent: true
+
+  c:
+    desc: Run cleanup_k8up_jobs.sh script
+    cmds:
+      - ./hack/cleanup_k8up_jobs.sh
+    silent: true
