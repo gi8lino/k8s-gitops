@@ -94,6 +94,14 @@ spec:
             - source_labels: [__meta_kubernetes_namespace]
               action: drop
               regex: kube-system
+      extraVolumes:
+        - name: pods
+          hostPath:
+            path: /var/log/pods
+      extraVolumeMounts:
+        - name: pods
+          mountPath: /var/log/pods
+          readOnly: true
       serviceMonitor:
         enabled: true
   install:
