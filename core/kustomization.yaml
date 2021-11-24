@@ -6,7 +6,6 @@ resources:
   - helmrepositories
   - kustomizations
   - namespaces
-  - networkpolicies
   - notifications
   - cluster-secrets.yaml
   - cluster-settings.yaml
