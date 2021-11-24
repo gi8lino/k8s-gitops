@@ -57,6 +57,16 @@ spec:
                 summary: "SMART has reported failures a drive on {{$hostname}}"
     promtail:
       enabled: true
+      config:
+        snippets:
+          pipelineStages:
+            - regex:
+                expression: "^(?s)(?P<time>\\S+?) (?P<stream>stdout|stderr) (?P<flags>\\S+?) (?P<content>.*)$"
+            - output:
+                source: content
+            - replace:
+                expression: "()\\z"
+                replace: " \n"
       extraScrapeConfigs:
         - job_name: kubernetes-pods-name
           pipeline_stages:
