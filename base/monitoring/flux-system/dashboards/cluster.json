@@ -22,8 +22,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 181,
-  "iteration": 1637765589415,
+  "id": 153,
+  "iteration": 1637766423468,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -390,10 +390,6 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -634,10 +630,6 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -861,7 +853,7 @@
             "$__all"
           ]
         },
-        "datasource": "$DS_PROMETHEUS",
+        "datasource": "Prometheus",
         "definition": "label_values(gotk_reconcile_condition, namespace)",
         "description": null,
         "error": null,
@@ -940,5 +932,5 @@
   "timezone": "",
   "title": "Flux Cluster Stats",
   "uid": "flux-cluster",
-  "version": 1
+  "version": 2
 }
