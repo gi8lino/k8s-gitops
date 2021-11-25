@@ -2,30 +2,41 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: cert-manager
+  name: cert-manager-controller
   namespace: cert-manager
 spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: cert-manager
+      app.kubernetes.io/name: cert-manager
+      app.kubernetes.io/component: controller
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: monitoring
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
+      toPorts:
+        - ports:
+            - port: "9402"
+              protocol: TCP
   egress:
     - toEntities:
         - host
       toPorts:
         - ports:
             - port: "6443"  # kube-api
+              protocol: TCP
     - toFQDNs:
-        - matchPattern: "*.api.letsencrypt.org"
+        - matchName: acme-v02.api.letsencrypt.org
       toPorts:
         - ports:
             - port: "443"
-    - toCIDRSet:
-        - cidr: 1.0.0.1/32
+              protocol: TCP
+    - toCIDR:
+        - 1.1.1.1/32
+        - 1.0.0.1/32
       toPorts:
         - ports:
             - port: "53"
-    - toCIDRSet:
-        - cidr: 1.1.1.1/32
-      toPorts:
-        - ports:
-            - port: "53"
+              protocol: TCP
