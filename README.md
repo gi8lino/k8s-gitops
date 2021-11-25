@@ -103,9 +103,11 @@ Add `export BASE_DOMAIN=example.com` to your `.bashrc`, `.zprofile` or `.zshrc`.
       --from-file=sops.asc=/dev/stdin
   ```
 5. Update `cluster-secrets.yaml` with your settings
-6. Apply `cluster-settings.yaml`  
-   `kubectl apply -f core/cluster-settings.yaml`
-7. Bootstrap cluster  
+6. Apply `cluster-settings.yaml`
+   ```bash
+   kubectl apply -f core/cluster-settings.yaml
+   ```
+7. Bootstrap cluster
    ```bash
    kubectl apply --kustomize=./core/flux-system
    ```
