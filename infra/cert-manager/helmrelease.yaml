@@ -25,7 +25,10 @@ spec:
       - --dns01-recursive-nameservers=1.1.1.1:53
       - --dns01-recursive-nameservers-only
     prometheus:
-      enabled: false
+      enabled: true
+      servicemonitor:
+        enabled: true
+        namespace: monitoring
     podDnsPolicy: None
     podDnsConfig:
       nameservers:
