@@ -93,8 +93,10 @@ Add `export BASE_DOMAIN=example.com` to your `.bashrc`, `.zprofile` or `.zshrc`.
 
 1. Install [K3s](https://k3s.io)
 2. Install [cilium](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default)
-3. Create `flux-system` namespace  
-   `kubectl create namespace flux-system`
+3. Create `flux-system` namespace
+   ```bash
+   kubectl create namespace flux-system
+   ```
 4. Add the Flux GPG key in-order for Flux to decrypt SOPS secrets  
   ```bash
   gpg --export-secret-keys --armor "${FLUX_KEY_FP}" |
