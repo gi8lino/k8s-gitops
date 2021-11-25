@@ -97,7 +97,7 @@ Add `export BASE_DOMAIN=example.com` to your `.bashrc`, `.zprofile` or `.zshrc`.
    ```bash
    kubectl create namespace flux-system
    ```
-4. Add the Flux GPG key in-order for Flux to decrypt SOPS secrets  
+4. Add the Flux GPG key in-order for Flux to decrypt SOPS secrets
   ```bash
   gpg --export-secret-keys --armor "${FLUX_KEY_FP}" |
   kubectl create secret generic sops-gpg \
