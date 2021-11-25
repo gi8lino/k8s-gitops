@@ -5,4 +5,5 @@ resources:
   - certificate.yaml
   - clusterissuer.yaml
   - helmrelease.yaml
+  - prometheusrule.yaml
   - secret.yaml
