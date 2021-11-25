@@ -7,6 +7,7 @@ spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: traefik
+      app.kubernetes.io/name: traefik
   ingress:
     - fromCIDRSet:
         - cidr: 103.21.244.0/22
