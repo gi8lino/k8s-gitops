@@ -52,6 +52,7 @@ gpg --list-secret-keys "${FLUX_KEY_NAME}"
 #       AB675CE4CC64251G3S9AE1DAA88ARRTY2C009E2D
 # uid           [ultimate] Home cluster (Flux) <k8s-at-home@gmail.com>
 # sub   rsa4096 2021-03-11 [E]
+```
 
 Export the fingerprint of the just created Flux GPG Key to the variable `FLUX_KEY_FP`:
 
