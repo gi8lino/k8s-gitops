@@ -7,3 +7,4 @@ resources:
 patchesStrategicMerge:
   - sops.yaml
   - kustomize-controller.yaml
+  - source-controller.yaml
