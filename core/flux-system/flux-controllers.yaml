@@ -25,4 +25,4 @@ spec:
         - name: manager
           resources:
             limits:
-              memory: 2Gi
+              memory: 3Gi
