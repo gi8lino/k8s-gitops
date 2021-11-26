@@ -6,4 +6,4 @@ resources:
   - gotk-sync.yaml
 patchesStrategicMerge:
   - sops.yaml
-  - source-controller.yaml
+  - flux-controllers.yaml
