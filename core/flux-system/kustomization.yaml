@@ -5,5 +5,5 @@ resources:
   - gotk-components.yaml
   - gotk-sync.yaml
 patchesStrategicMerge:
-  - gotk-sops.yaml
-  - gotk-manager.yaml
+  - sops.yaml
+  - kustomize-controller.yaml
