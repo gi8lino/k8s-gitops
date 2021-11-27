@@ -11,11 +11,8 @@ spec:
       app.kubernetes.io/name: traefik
   egress:
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: keycloak
-                component: keycloak
+        - k8sService:
+            serviceName: keycloak
             namespace: keycloak
       toPorts:
         - ports:
