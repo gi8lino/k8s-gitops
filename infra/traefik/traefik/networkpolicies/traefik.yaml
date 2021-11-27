@@ -44,7 +44,11 @@ spec:
             - port: "8443" # regular ingress port
             - port: "2222" # to access load balancer (git@git.${BASE_DOMAIN}:path/to/repo.git)
             - port: "8000" # traefik http port (for redirect to 8443)
-  egress:
+    - fromEntities:
+        - cluster
+      toPorts:
+        - ports:
+            - port: "8443" # regular ingress port
     - toEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: kube-system
