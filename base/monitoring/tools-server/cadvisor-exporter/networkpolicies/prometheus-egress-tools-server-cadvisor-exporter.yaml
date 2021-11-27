@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: prometheus-egress-pihole-node-exporter
+  name: prometheus-egress-tools-server-cadvisor-exporter
   namespace: monitoring
 spec:
   endpointSelector:
