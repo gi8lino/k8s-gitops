@@ -49,6 +49,7 @@ spec:
             - port: "9090"
     - toFQDNs:
         - matchName: grafana.com
+        - matchName: storage.googleapis.com  # grafana plugin archive
       toPorts:
         - ports:
             - port: "443"  # dashboards
