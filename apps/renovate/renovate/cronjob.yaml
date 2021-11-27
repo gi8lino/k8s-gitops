@@ -17,7 +17,8 @@ spec:
       template:
         metadata:
           labels:
-            job: renovate
+            app: renovate
+            component: job
         spec:
           initContainers:
             - name: wait-for-redis

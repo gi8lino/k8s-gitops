@@ -28,11 +28,8 @@ spec:
         - ports:
             - port: "443"
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: renovate
-                component: redis
+        - k8sService:
+            serviceName: renovate-redis
             namespace: renovate
       toPorts:
         - ports:
