@@ -1,0 +1,39 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: plex
+  namespace: media
+spec:
+  endpointSelector:
+    matchLabels:
+      app: plex
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+      toPorts:
+        - ports:
+            - port: "32400"
+    - fromEndpoints:
+        - matchLabels:
+            app: sonarr
+            io.kubernetes.pod.namespace: media
+        - matchLabels:
+            app: radarr
+            io.kubernetes.pod.namespace: media
+        - matchLabels:
+            app: tautulli
+            io.kubernetes.pod.namespace: media
+      toPorts:
+        - ports:
+            - port: "32400"
+  egress:
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "80"
+        - ports:
+            - port: "443"
