@@ -11,8 +11,10 @@ spec:
       app.kubernetes.io/name: traefik
   egress:
     - toServices:
-        - k8sService:
-            serviceName: nzbhydra2
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: nzbhydra2
             namespace: media
       toPorts:
         - ports:
