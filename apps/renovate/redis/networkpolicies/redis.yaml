@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: renovate
+  name: redis
   namespace: renovate
 spec:
   endpointSelector:
