@@ -39,3 +39,9 @@ spec:
       toPorts:
         - ports:
             - port: "8443"  # to access load balancer (https://sso.${BASE_DOMAIN})
+    - toFQDNs:
+        - matchName: sso.${BASE_DOMAIN}  # to access load balancer (https://sso.${BASE_DOMAIN})
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: "TCP"
