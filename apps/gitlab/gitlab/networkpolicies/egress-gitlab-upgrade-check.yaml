@@ -7,7 +7,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      job-name: gitlab-gitlab-upgrade-check*
+      job-name: gitlab-gitlab-upgrade-check
   egress:
     - toEntities:
         - host
