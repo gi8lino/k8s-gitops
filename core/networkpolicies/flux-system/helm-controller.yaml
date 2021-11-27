@@ -1,0 +1,47 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: helm-controller
+  namespace: flux-system
+spec:
+  endpointSelector:
+    matchLabels:
+      app: helm-controller
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "8080"
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443"  # kube api
+    - toServices:
+        - k8sService:
+            serviceName: source-controller
+            namespace: flux-system
+      toPorts:
+        - ports:
+            - port: "9090"
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "443"
