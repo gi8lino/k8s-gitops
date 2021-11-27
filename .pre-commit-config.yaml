@@ -34,9 +34,7 @@ repos:
       - id: namespaced
         args:
           - --ignore-kind
-          - GlobalNetworkPolicy
-          - --ignore-kind
-          - ClusterPolicy
+          - CiliumClusterwideNetworkPolicy
           - --ignore-kind
           - ClusterIssuer
           - --ignore-kind
