@@ -32,6 +32,17 @@ spec:
         - ports:
             - port: "5076"
   egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
     - toFQDNs:
         - matchName: ${USENET_INDEXER_DOMAIN}
       toPorts:
