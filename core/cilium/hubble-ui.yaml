@@ -1,0 +1,31 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: hubble-ui
+  namespace: kube-system
+spec:
+  endpointSelector:
+    matchLabels:
+      k8s-app: hubble-ui
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8081"
+  egress:
+    - toServices:
+        - k8sService:
+            serviceName: hubble-relay
+      toPorts:
+        - ports:
+            - port: "4245"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443"
