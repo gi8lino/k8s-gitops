@@ -1,0 +1,44 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: gitlab-backup-mirror
+  namespace: gitlab
+spec:
+  endpointSelector:
+    matchLabels:
+      job: gitlab-backup-mirror
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEndpoints:
+        - matchLabels:
+            release: gitlab
+            app: minio
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
+    - toServices:
+        - k8sService:
+            serviceName: minio
+            namespace: minio
+      toPorts:
+        - ports:
+            - port: "9000"
+    - toServices:
+        - k8sService:
+            serviceName: prometheus-pushgateway
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9091"
