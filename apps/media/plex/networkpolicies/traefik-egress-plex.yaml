@@ -11,10 +11,8 @@ spec:
       app.kubernetes.io/name: traefik
   egress:
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: plex
+        - k8sService:
+            serviceName: plex
             namespace: media
       toPorts:
         - ports:

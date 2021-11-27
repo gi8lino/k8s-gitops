@@ -11,10 +11,8 @@ spec:
       app.kubernetes.io/name: traefik
   egress:
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: tautulli
+        - k8sService:
+            serviceName: tautulli
             namespace: media
       toPorts:
         - ports:

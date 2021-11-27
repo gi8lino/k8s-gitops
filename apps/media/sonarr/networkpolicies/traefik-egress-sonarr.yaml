@@ -10,10 +10,8 @@ spec:
       app.kubernetes.io/instance: traefik
   egress:
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: sonarr
+        - k8sService:
+            serviceName: sonarr
             namespace: media
       toPorts:
         - ports:

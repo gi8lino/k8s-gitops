@@ -11,11 +11,8 @@ spec:
       app.kubernetes.io/name: traefik
   egress:
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: nextcloud
-                component: fpm-nginx
+        - k8sService:
+            serviceName: nextcloud
             namespace: nextcloud
       toPorts:
         - ports:
