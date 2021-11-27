@@ -23,4 +23,4 @@ spec:
             namespace: kube-system
       toPorts:
         - ports:
-            - port: "80"
+            - port: "8081"
