@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: nextcloud-redis
+  name: redis
   namespace: nextcloud
 spec:
   endpointSelector:
@@ -13,7 +13,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             app: nextcloud
-            component: nginx-fpm
+            component: fpm-nginx
       toPorts:
         - ports:
             - port: "6379"

@@ -8,7 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       app: nextcloud
-      component: nginx-fpm
+      component: fpm-nginx
   ingress:
     - fromEndpoints:
         - matchLabels:

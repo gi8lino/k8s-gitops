@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: nextcloud-cron
+  name: cron-egress-nextcloud
   namespace: nextcloud
 spec:
   endpointSelector:
@@ -15,7 +15,7 @@ spec:
             selector:
               matchLabels:
                 app: nextcloud
-                component: nginx-fptm
+                component: fpm-nginx
             namespace: nextcloud
       toPorts:
         - ports:
