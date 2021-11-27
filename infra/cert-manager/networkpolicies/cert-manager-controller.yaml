@@ -25,7 +25,7 @@ spec:
         - host
       toPorts:
         - ports:
-            - port: "6443"
+            - port: "6443"  # kube-api
               protocol: TCP
     - toFQDNs:
         - matchName: acme-v02.api.letsencrypt.org
