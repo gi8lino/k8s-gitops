@@ -9,30 +9,39 @@ spec:
     matchLabels:
       release: gitlab-runner
   egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
     - toEntities:
         - host
       toPorts:
         - ports:
-            - port: "6443"  # to access load balancer (https://git.${BASE_DOMAIN})
+            - port: "6443"
     - toServices:
         - k8sServiceSelector:
             selector:
               matchLabels:
                 release: gitlab
             namespace: gitlab
-    - toServices:
-        - k8sService:
-            serviceName: traefik
-            namespace: traefik
-      toPorts:
-        - ports:
-            - port: "8443"  # oidc
     - toEntities:
         - world
       toPorts:
         - ports:
             - port: "80"
             - port: "443"
+    - toFQDNs:
+        - matchName: sso.${BASE_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "443"  # oidc: to access load balancer (https://sso.${BASE_DOMAIN})
     - toFQDNs:
         - matchName: ${SMTP_DOMAIN}
       toPorts:
