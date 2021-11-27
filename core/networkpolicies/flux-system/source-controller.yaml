@@ -47,10 +47,10 @@ spec:
       toPorts:
         - ports:
             - port: "6443"
-    - toEndpoints:
-        - matchLabels:
-            app: notification-controller
-            io.kubernetes.pod.namespace: flux-system
+    - toServices:
+        - k8sService:
+            serviceName: notification-controller
+            namespace: flux-system
       toPorts:
         - ports:
             - port: "9090"
