@@ -5,3 +5,4 @@ resources:
   - cert-manager-cainjector.yaml
   - cert-manager-controller.yaml
   - cert-manager-webhook.yaml
+  - prometheus-egress-cert-manager.yaml
