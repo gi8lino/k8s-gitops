@@ -65,7 +65,6 @@ spec:
       toPorts:
         - ports:
             - port: "80"
-        - ports:
             - port: "443"
     - toFQDNs:
         - matchName: ${SMTP_DOMAIN}
