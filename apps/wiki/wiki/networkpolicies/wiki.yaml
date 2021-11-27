@@ -40,11 +40,13 @@ spec:
       toPorts:
         - ports:
             - port: "8443"  # oidc
-    - toEndpoints:
-        - matchLabels:
-            app: wiki
-            component: postgres
-            io.kubernetes.pod.namespace: wiki
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: wiki
+                component: postgres
+            namespace: wiki
       toPorts:
         - ports:
             - port: "5432"
