@@ -1,0 +1,25 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: wallabag
+  namespace: wallabag
+spec:
+  endpointSelector:
+    matchLabels:
+      app: wallabag
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "80"
+  egress:
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "80"
+            - port: "443"
