@@ -12,7 +12,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: traefik
-            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
             - port: "32400"
@@ -20,9 +20,17 @@ spec:
         - matchLabels:
             app: sonarr
             io.kubernetes.pod.namespace: media
+      toPorts:
+        - ports:
+            - port: "32400"
+    - fromEndpoints:
         - matchLabels:
             app: radarr
             io.kubernetes.pod.namespace: media
+      toPorts:
+        - ports:
+            - port: "32400"
+    - fromEndpoints:
         - matchLabels:
             app: tautulli
             io.kubernetes.pod.namespace: media
