@@ -47,15 +47,13 @@ spec:
       toPorts:
         - ports:
             - port: "9090"
-    - toServices:
-        - k8sService:
-            serviceName: traefik
-            namespace: traefik
-      toPorts:
-        - ports:
-            - port: "8443"  # oidc
     - toFQDNs:
         - matchName: grafana.com
       toPorts:
         - ports:
             - port: "443"  # dashboards
+    - toFQDNs:
+        - matchName: sso.${BASE_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "443"  # oidc: to access load balancer (https://sso.${BASE_DOMAIN})

@@ -34,16 +34,6 @@ spec:
         - k8sServiceSelector:
             selector:
               matchLabels:
-                app.kubernetes.io/instance: traefik
-                app.kubernetes.io/name: traefik
-            namespace: traefik
-      toPorts:
-        - ports:
-            - port: "8443"  # oidc
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
                 app: wiki
                 component: postgres
             namespace: wiki
@@ -55,3 +45,8 @@ spec:
       toPorts:
         - ports:
             - port: "587"
+    - toFQDNs:
+        - matchName: sso.${BASE_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "443"  # oidc: to access load balancer (https://sso.${BASE_DOMAIN})
