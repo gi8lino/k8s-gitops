@@ -1,0 +1,51 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: radarr
+  namespace: media
+spec:
+  endpointSelector:
+    matchLabels:
+      app: radarr
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "7878"
+  egress:
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "443"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: nzbhydra2
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "5076"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: plex
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "32400"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: sabnzbd
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "8080"
