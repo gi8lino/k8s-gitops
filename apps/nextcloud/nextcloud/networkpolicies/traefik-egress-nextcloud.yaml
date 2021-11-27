@@ -1,0 +1,21 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: traefik-egress-nextcloud
+  namespace: traefik
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik
+  egress:
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: nextcloud
+                component: fpm-nginx
+            namespace: nextcloud
+      toPorts:
+        - ports:
+            - port: "80"

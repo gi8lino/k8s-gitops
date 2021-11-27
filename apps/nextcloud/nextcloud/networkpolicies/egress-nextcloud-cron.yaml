@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: nextcloud-cron
+  namespace: nextcloud
+spec:
+  endpointSelector:
+    matchLabels:
+      app: nextcloud
+      component: cronjob
+  egress:
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: nextcloud
+                component: nginx-fptm
+            namespace: nextcloud
+      toPorts:
+        - ports:
+            - port: "80"
