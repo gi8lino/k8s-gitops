@@ -1,0 +1,20 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: postgres
+  namespace: wiki
+spec:
+  endpointSelector:
+    matchLabels:
+      app: wiki
+      component: postgres
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: wiki
+            component: wiki
+            io.kubernetes.pod.namespace: wiki
+      toPorts:
+        - ports:
+            - port: "5432"
