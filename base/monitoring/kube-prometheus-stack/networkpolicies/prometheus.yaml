@@ -61,3 +61,10 @@ spec:
       toPorts:
         - ports:
             - port: "10250"
+    - toServices:
+        - k8sService:
+            serviceName: kube-prometheus-stack-grafana
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "3000"
