@@ -1,0 +1,16 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-pihole-node-exporter
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+  egress:
+    - toCIDRSet:
+        - cidr: 192.168.0.4/32
+      toPorts:
+        - ports:
+            - port: "8080"
