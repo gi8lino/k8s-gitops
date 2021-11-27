@@ -8,6 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: minio
+      app.kubernetes.io/name: minio
   ingress:
     - fromEndpoints:
         - matchLabels:
