@@ -12,7 +12,8 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            job: renovate
+            app: renovate
+            component: job
             io.kubernetes.pod.namespace: renovate
       toPorts:
         - ports:
