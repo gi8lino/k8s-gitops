@@ -48,9 +48,9 @@ spec:
         - ports:
             - port: "8080"
     - toEndpoints:
-        - matchLabels:
-            app: kube-prometheus-stack-operator
-            io.kubernetes.pod.namespace: monitoring
+        - k8sService:
+            serviceName: kube-prometheus-stack-operator
+            namespace: monitoring
       toPorts:
         - ports:
             - port: "10250"
