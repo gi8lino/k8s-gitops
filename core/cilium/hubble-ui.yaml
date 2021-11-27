@@ -16,7 +16,7 @@ spec:
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
-            - port: "8081"
+            - port: "80"
   egress:
     - toServices:
         - k8sService:
