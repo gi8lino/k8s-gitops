@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-resources-backup
+  namespace: k8up
+data:
+  known-to-fail: |-
+    .+mutators
+    .+reviews
+    .+validators
+    bindings
+    deploymentconfigrollbacks
+    imagesignatures
+    imagestreamimages
+    imagestreamimports
+    imagestreammappings
+    mutations
+    projectrequests
+    useridentitymappings
+    validations
+  must-exist: |-
+    configmaps
+    daemonsets
+    deployments
+    endpoints
+    horizontalpodautoscalers
+    ingresses
+    jobs
+    limitranges
+    namespaces
+    nodes
+    persistentvolumeclaims
+    persistentvolumes
+    replicasets
+    resourcequotas
+    roles
+    secrets
+    serviceaccounts
+    services
+    statefulsets

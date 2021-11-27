@@ -5,17 +5,34 @@ metadata:
   name: cluster-resources-backup
   namespace: k8up
 spec:
-  backupCommand: /app/k8s-pre-backup -s
-  fileExtension: .tgz
+  backupCommand: /usr/local/bin/dump-objects -sd /data
+  fileExtension: .tar.gz
   pod:
-    metadata:
-      labels:
-        job: cluster-resources-backup
     spec:
       containers:
         - name: cluster-resources-backup
-          image: docker.io/vshn/k8s-object-backup:v0.0.2
+          image: projectsyn/k8s-object-dumper:v0.2.3
+          imagePullPolicy: IfNotPresent
           command:
-            - sleep
-            - "3600"
+            - tail
+            - -f
+            - /dev/null
+          env:
+            - name: HOME
+              value: /home/dumper
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /home/dumper
+              name: home
+            - mountPath: /usr/local/share/k8s-object-dumper
+              name: config
       serviceAccountName: cluster-resources-backup
+      volumes:
+        - name: data
+          emptyDir: {}
+        - name: home
+          emptyDir: {}
+        - name: config
+          configMap:
+            name: cluster-resources-backup
