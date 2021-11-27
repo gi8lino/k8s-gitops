@@ -28,9 +28,18 @@ spec:
         - host
       toPorts:
         - ports:
-            - port: "6443"   # kube api
-            - port: "9100"   # node-exporter
-            - port: "10250"  # kubelet
+            - port: "6443"
+            - port: "9100"
+            - port: "10250"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                k8s-app: kube-dns
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9153"
     - toServices:
         - k8sService:
             serviceName: kube-prometheus-stack-alertmanager
@@ -52,10 +61,3 @@ spec:
       toPorts:
         - ports:
             - port: "10250"
-    - toServices:
-        - matchLabels:
-            k8s-app: kube-dns
-            io.kubernetes.pod.namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "9153"
