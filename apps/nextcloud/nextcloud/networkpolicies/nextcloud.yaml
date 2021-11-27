@@ -52,13 +52,11 @@ spec:
       toPorts:
         - ports:
             - port: "6379"
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app.kubernetes.io/instance: traefik
-                app.kubernetes.io/name: traefik
-            namespace: traefik
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
             - port: "8443"  # to access load balancer (https://sso.${BASE_DOMAIN})
