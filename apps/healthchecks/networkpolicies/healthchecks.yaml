@@ -1,0 +1,66 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: healthchecks
+  namespace: healthchecks
+spec:
+  endpointSelector:
+    matchLabels:
+      app: healthchecks
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8000"
+    - fromEndpoints:  # allow push from alertmanager directly to healthchecks (watchdog)
+        - matchLabels:
+            app.kubernetes.io/name: alertmanager
+            app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "8000"
+    - fromEndpoints:  # allow push from cloudflare-cron directly to healthchecks
+        - matchLabels:
+            job: cloudflare-fw-events-fetch
+            io.kubernetes.pod.namespace: cloudflare
+      toPorts:
+        - ports:
+            - port: "8000"
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toFQDNs:  # curl/jq
+        - matchName: dl-cdn.alpinelinux.org
+      toPorts:
+        - ports:
+            - port: "80"
+    - toFQDNs:  # docker-mods
+        - matchName: github.com
+      toPorts:
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: hooks.slack.com
+      toPorts:
+        - ports:
+            - port: "443"
+    - toFQDNs:
+        - matchName: ${SMTP_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "587"
