@@ -30,6 +30,14 @@ spec:
             - port: "9236"
     - fromEndpoints:
         - matchLabels:
+            app: gitlab-shell
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "8075"
+    - fromEndpoints:
+        - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
             app.kubernetes.io/name: prometheus
             io.kubernetes.pod.namespace: monitoring
