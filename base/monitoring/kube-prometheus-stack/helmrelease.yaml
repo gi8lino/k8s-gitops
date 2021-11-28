@@ -64,7 +64,7 @@ spec:
           enabled: false
         auth.generic_oauth:
           enabled: true
-          allow_sign_up: true
+          allow_sign_up: false
           auth_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/auth
           client_id: $__env{GRAFANA_AUTH_CLIENT_ID}
           client_secret: $__env{GRAFANA_AUTH_CLIENT_SECRET}
