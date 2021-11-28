@@ -4,6 +4,7 @@ kind: CiliumClusterwideNetworkPolicy
 metadata:
   name: k8up-jobs-egress-prometheus-pushgateway
 spec:
+  description: "allow k8up jobs to send metrics to pushgateway"
   endpointSelector:
     matchLabels:
       k8s:io.kubernetes.pod.namespace.labels.k8up: backup-enabled
