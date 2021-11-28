@@ -56,5 +56,3 @@ spec:
         - ports:
             - port: "80"
             - port: "443"
-            - port: "1900"
-              protocol: UDP
