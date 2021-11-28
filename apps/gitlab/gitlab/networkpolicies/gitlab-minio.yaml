@@ -26,3 +26,14 @@ spec:
       toPorts:
         - ports:
             - port: "9000"
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: webservice
+            release: gitlab
+      toPorts:
+        - ports:
+            - port: "35850"
+            - port: "35852"
+            - port: "35924"
+            - port: "35930"
