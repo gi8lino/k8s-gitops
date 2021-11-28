@@ -7,10 +7,13 @@ spec:
   endpointSelector:
     matchLabels:
       app: kube-prometheus-stack-operator
+      release: kube-prometheus-stack
+      app.kubernetes.io/instance: kube-prometheus-stack
   ingress:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
             io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:

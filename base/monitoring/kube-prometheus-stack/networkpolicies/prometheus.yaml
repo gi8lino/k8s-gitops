@@ -7,16 +7,13 @@ spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+      app.kubernetes.io/name: prometheus
   ingress:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: traefik
             app.kubernetes.io/name: traefik
             io.kubernetes.pod.namespace: traefik
-      toPorts:
-        - ports:
-            - port: "9090"
-    - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/name: grafana
             io.kubernetes.pod.namespace: monitoring
