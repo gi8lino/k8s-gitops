@@ -8,7 +8,13 @@ spec:
   endpointSelector:
     matchLabels:
       gitlab-runner: ci-job
+      release: gitlab
   egress:
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "443"
     - toEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: kube-system
@@ -20,19 +26,3 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app.kubernetes.io/instance: traefik
-            namespace: traefik
-      toPorts:
-        - ports:
-            - port: "8443"  # to access load balancer (https://git.${BASE_DOMAIN})
-    - toEntities:
-        - world
-      toPorts:
-        - ports:
-            - port: "80"
-        - ports:
-            - port: "443"

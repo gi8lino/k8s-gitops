@@ -4,5 +4,10 @@ kind: Kustomization
 resources:
   - egress-gitlab-shared-secrets-job.yaml
   - egress-gitlab-upgrade-check.yaml
-  - gitlab.yaml
+  - gitlab-minio.yaml
+  - gitlab-postgres.yaml
+  - gitlab-redis.yaml
+  - gitlab-registry.yaml
+  - gitlab-sidekiq.yaml
+  - gitlab-webservice.yaml
   - traefik-egress-gitlab.yaml

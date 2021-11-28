@@ -1,0 +1,62 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: gitlab-webservice
+  namespace: gitlab
+spec:
+  endpointSelector:
+    matchLabels:
+      app: webservice
+      release: gitlab
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8181"
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: minio
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: postgresql
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "5432"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: redis
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "6379"
