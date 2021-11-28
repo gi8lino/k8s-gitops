@@ -1,0 +1,28 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: gitlab-redis
+  namespace: gitlab
+spec:
+  endpointSelector:
+    matchLabels:
+      app: redis
+      release: gitlab
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: webservice
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "6379"
+    - fromEndpoints:
+        - matchLabels:
+            app: sidekiq
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "6379"

@@ -1,0 +1,28 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: gitlab-minio
+  namespace: gitlab
+spec:
+  endpointSelector:
+    matchLabels:
+      app: minio
+      release: gitlab
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: webservice
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
+    - fromEndpoints:
+        - matchLabels:
+            app: sidekiq
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"

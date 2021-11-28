@@ -7,7 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      release: gitlab-runner
+      app: runner
+      release: gitlab
   egress:
     - toEndpoints:
         - matchLabels:
@@ -21,29 +22,12 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "443"
+    - toEntities:
         - host
       toPorts:
         - ports:
             - port: "6443"
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                release: gitlab
-            namespace: gitlab
-    - toEntities:
-        - world
-      toPorts:
-        - ports:
-            - port: "80"
-            - port: "443"
-    - toFQDNs:
-        - matchName: sso.${BASE_DOMAIN}
-      toPorts:
-        - ports:
-            - port: "443"  # oidc: to access load balancer (https://sso.${BASE_DOMAIN})
-    - toFQDNs:
-        - matchName: ${SMTP_DOMAIN}
-      toPorts:
-        - ports:
-            - port: "587"
