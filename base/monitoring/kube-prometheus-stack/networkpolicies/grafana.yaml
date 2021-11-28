@@ -1,3 +1,4 @@
+---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
@@ -51,7 +52,7 @@ spec:
         - matchName: grafana.com             # grafana
         - matchName: storage.googleapis.com  # grafana plugin archive
         - matchName: sso.${BASE_DOMAIN}      # oidc: to access load balancer (https://sso.${BASE_DOMAIN})
-        - machtName: raw.githubusercontent.com
+        - matchName: raw.githubusercontent.com
       toPorts:
         - ports:
             - port: "443"
