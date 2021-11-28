@@ -62,6 +62,7 @@ spec:
         - matchName: codeload.github.com
         - matchName: pypi.org
         - matchName: api.github.com
+        - matchName: files.pythonhosted.org
       toPorts:
         - ports:
             - port: "443"
