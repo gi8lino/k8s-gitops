@@ -11,10 +11,8 @@ spec:
       app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
   egress:
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: healthchecks
+        - k8sService:
+            serviceName: healthchecks
             namespace: healthchecks
       toPorts:
         - ports:

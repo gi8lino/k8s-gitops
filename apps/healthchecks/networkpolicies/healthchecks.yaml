@@ -49,12 +49,8 @@ spec:
       toPorts:
         - ports:
             - port: "80"
-    - toFQDNs:  # docker-mods
-        - matchName: github.com
-      toPorts:
-        - ports:
-            - port: "443"
     - toFQDNs:
+        - matchName: github.com # docker-mods
         - matchName: hooks.slack.com
       toPorts:
         - ports:
