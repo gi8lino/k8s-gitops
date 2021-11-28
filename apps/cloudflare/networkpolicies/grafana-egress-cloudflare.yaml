@@ -11,10 +11,8 @@ spec:
       app.kubernetes.io/name: grafana
   egress:
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: elasticsearch
+        - k8sService:
+            serviceName: elasticsearch
             namespace: cloudflare
       toPorts:
         - ports:
