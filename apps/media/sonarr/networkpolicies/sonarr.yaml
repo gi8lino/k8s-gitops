@@ -33,7 +33,7 @@ spec:
         - matchName: thexem.info
         - matchName: services.sonarr.tv
         - matchName: skyhook.sonarr.tv
-        - matchName: artworks.thetvb.com
+        - matchName: artworks.thetvdb.com
       toPorts:
         - ports:
             - port: "443"
