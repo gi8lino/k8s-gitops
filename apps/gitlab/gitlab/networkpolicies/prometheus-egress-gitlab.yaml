@@ -8,16 +8,25 @@ spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+      app.kubernetes.io/name: prometheus
   egress:
     - toEndpoints:
         - matchLabels:
             app: sidekiq
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "80"
+    - toEndpoints:
         - matchLabels:
             app: webservice
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "80"
+    - toEndpoints:
         - matchLabels:
             app: gitaly
             release: gitlab
