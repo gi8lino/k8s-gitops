@@ -28,8 +28,9 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toEntities:
-        - world
+    - toFQDNs:
+        - matchName: image.tmdb.org
+        - matchName: radarrapi.servarr.com
       toPorts:
         - ports:
             - port: "443"
