@@ -21,16 +21,19 @@ spec:
             selector:
               matchLabels:
                 app: sidekiq
+                release: gitlab
             namespace: gitlab
         - k8sServiceSelector:
             selector:
               matchLabels:
                 app: gitaly
+                release: gitlab
             namespace: gitlab
         - k8sServiceSelector:
             selector:
               matchLabels:
                 app: webservice
+                release: gitlab
             namespace: gitlab
       toPorts:
         - ports:
