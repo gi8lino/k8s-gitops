@@ -48,7 +48,7 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
-        - matchName: dl.minio.io
+        - matchName: dl.min.io
       toPorts:
         - ports:
             - port: "443"
