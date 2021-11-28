@@ -2,12 +2,12 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: gitlab-postresql
+  name: gitlab-postgresql
   namespace: gitlab
 spec:
   endpointSelector:
     matchLabels:
-      app: postresql
+      app: postgresql
       release: gitlab
   ingress:
     - fromEndpoints:
