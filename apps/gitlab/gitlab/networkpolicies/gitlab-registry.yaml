@@ -18,3 +18,11 @@ spec:
       toPorts:
         - ports:
             - port: "5001"
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: minio
+            release: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"

@@ -26,6 +26,30 @@ spec:
       toPorts:
         - ports:
             - port: "9000"
+    - fromEndpoints:
+        - matchLabels:
+            app: registry
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
+    - fromEndpoints:
+        - matchLabels:
+            app: toolbox
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
+    - fromEndpoints:
+        - matchLabels:
+            app: gitlab-backup-mirror
+            component: job
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
   egress:
     - toEndpoints:
         - matchLabels:
