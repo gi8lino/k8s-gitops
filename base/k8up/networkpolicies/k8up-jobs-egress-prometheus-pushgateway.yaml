@@ -13,10 +13,8 @@ spec:
         operator: Exists
   egress:
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: prometheus-pushgateway
+        - k8sService:
+            serviceName: prometheus-pushgateway
             namespace: monitoring
       toPorts:
         - ports:
