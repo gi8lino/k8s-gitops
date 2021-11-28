@@ -59,6 +59,7 @@ spec:
         - matchName: github.com  # docker-mods
         - matchName: hooks.slack.com
         - matchName: raw.githubusercontent.com
+        - matchName: auth.docker.io
       toPorts:
         - ports:
             - port: "443"
