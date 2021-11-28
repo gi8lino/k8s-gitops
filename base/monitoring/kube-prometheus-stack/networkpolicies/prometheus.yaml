@@ -29,6 +29,7 @@ spec:
       toPorts:
         - ports:
             - port: "6443"
+            - port: "6942"
             - port: "9100"
             - port: "10250"
     - toServices:
