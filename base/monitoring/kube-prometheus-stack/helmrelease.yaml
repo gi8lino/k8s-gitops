@@ -138,9 +138,6 @@ spec:
             static_configs:
               - targets:
                   - 192.168.0.4:8080
-          - job_name: 'kubernetes-pods'
-            kubernetes_sd_configs:
-              - role: pod
     prometheus-node-exporter:
       extraArgs:
         - --collector.filesystem.ignored-mount-points=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
