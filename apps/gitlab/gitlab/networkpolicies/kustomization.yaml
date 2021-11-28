@@ -9,6 +9,7 @@ resources:
   - gitlab-postgresql.yaml
   - gitlab-redis.yaml
   - gitlab-registry.yaml
+  - gitlab-shell.yaml
   - gitlab-sidekiq.yaml
   - gitlab-toolbox.yaml
   - gitlab-webservice.yaml
