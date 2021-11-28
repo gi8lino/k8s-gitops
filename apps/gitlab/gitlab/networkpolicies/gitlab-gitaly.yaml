@@ -44,3 +44,14 @@ spec:
       toPorts:
         - ports:
             - port: "80"
+  egress:
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: webservice
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "8181"
