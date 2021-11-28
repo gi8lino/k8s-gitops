@@ -54,6 +54,7 @@ spec:
         - matchName: hooks.slack.com
         - matchName: ghcr.io
         - matchName: raw.githubusercontent.com
+        - matchName: pkg-containers.githubusercontent.com
       toPorts:
         - ports:
             - port: "443"
