@@ -19,3 +19,12 @@ spec:
         - ports:
             - port: "8075"
             - port: "9236"
+    - fromEndpoints:
+        - matchLabels:
+            app: sidekiq
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "8075"
+            - port: "9236"
