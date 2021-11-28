@@ -55,5 +55,5 @@ spec:
       toPorts:
         - ports:
             - port: "80"
-        - ports:
             - port: "443"
+            - port: "1900"
