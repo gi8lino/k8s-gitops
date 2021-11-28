@@ -29,8 +29,9 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toEntities:
-        - world
+    - toFQDNs:
+        - matchName: thexem.info
+        - matchName: services.sonarr.tv
       toPorts:
         - ports:
             - port: "443"
