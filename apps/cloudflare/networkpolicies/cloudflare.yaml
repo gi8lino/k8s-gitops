@@ -17,6 +17,7 @@ spec:
             - port: "9200"
     - fromEndpoints:
         - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack
             app.kubernetes.io/name: grafana
             io.kubernetes.pod.namespace: monitoring
       toPorts:
@@ -35,19 +36,15 @@ spec:
             dns:
               - matchPattern: "*"
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: elasticsearch
+        - k8sService:
+            serviceName: elasticsearch
             namespace: cloudflare
       toPorts:
         - ports:
             - port: "9200"
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: healthchecks
+        - k8sService:
+            serviceName: healthchecks
             namespace: healthchecks
       toPorts:
         - ports:
