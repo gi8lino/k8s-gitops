@@ -7,11 +7,13 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: prometheus-blackbox-exporter
+      pp.kubernetes.io/name: prometheus-blackbox-exporter
+      app.kubernetes.io/instance: prometheus-blackbox-exporter
   ingress:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
             io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
@@ -28,31 +30,10 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app.kubernetes.io/instance: traefk
-            namespace: traefik
-      toPorts:
-        - ports:
-            - port: "8443"  # to access load balancer (https://sso.${BASE_DOMAIN})
     - toFQDNs:
         - matchName: ds.local.${BASE_DOMAIN}
-      toPorts:
-        - ports:
-            - port: "443"
-    - toFQDNs:
         - matchName: pihole.local.${BASE_DOMAIN}
-      toPorts:
-        - ports:
-            - port: "443"
-    - toFQDNs:
         - matchName: sso.${BASE_DOMAIN}
-      toPorts:
-        - ports:
-            - port: "443"
-    - toFQDNs:
         - matchName: traefik.local.${BASE_DOMAIN}
       toPorts:
         - ports:

@@ -7,15 +7,14 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
       app.kubernetes.io/name: alertmanager
   ingress:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
             io.kubernetes.pod.namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "9093"
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: traefik
