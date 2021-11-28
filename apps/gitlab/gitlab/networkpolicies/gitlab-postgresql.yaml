@@ -38,6 +38,24 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: webservice
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "57398"
+            - port: "57320"
+            - port: "57396"
+            - port: "57390"
+            - port: "57322"
+            - port: "55018"
+            - port: "55018"
+            - port: "57394"
+            - port: "57392"
     - toEntities:
         - world
       toPorts:
@@ -69,3 +87,6 @@ spec:
             - port: "60300"
             - port: "60296"
             - port: "60284"
+            - port: "56440"
+            - port: "56430"
+            - port: "56442"
