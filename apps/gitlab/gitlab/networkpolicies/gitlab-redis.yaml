@@ -18,10 +18,6 @@ spec:
       toPorts:
         - ports:
             - port: "6379"
-            - port: "41690"
-            - port: "42406"
-            - port: "43104"
-            - port: "47208"
     - fromEndpoints:
         - matchLabels:
             app: sidekiq
@@ -30,3 +26,17 @@ spec:
       toPorts:
         - ports:
             - port: "6379"
+  egress:
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: webservice
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "41690"
+            - port: "42406"
+            - port: "43104"
+            - port: "47208"
