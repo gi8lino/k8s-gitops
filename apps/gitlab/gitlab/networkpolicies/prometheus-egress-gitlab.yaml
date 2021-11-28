@@ -10,13 +10,6 @@ spec:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus
   egress:
     - toServices:
-        - k8sService:
-            serviceName: gitlab-gitlab-sidekiq
-            namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "80"
-    - toServices:
         - k8sServiceSelector:
             selector:
               matchLabels:
