@@ -35,28 +35,22 @@ spec:
         - ports:
             - port: "443"
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: nzbhydra2
+        - k8sService:
+            serviceName: nzbhydra2
             namespace: media
       toPorts:
         - ports:
             - port: "5076"
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: plex
+        - k8sService:
+            serviceName: plex
             namespace: media
       toPorts:
         - ports:
             - port: "32400"
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: sabnzbd
+        - k8sService:
+            serviceName: sabnzbd
             namespace: media
       toPorts:
         - ports:
