@@ -34,6 +34,7 @@ spec:
         - matchName: services.sonarr.tv
         - matchName: skyhook.sonarr.tv
         - matchName: artworks.thetvdb.com
+        - matchName: hooks.slack.com
       toPorts:
         - ports:
             - port: "443"
