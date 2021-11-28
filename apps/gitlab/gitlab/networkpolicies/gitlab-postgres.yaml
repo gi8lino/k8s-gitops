@@ -26,3 +26,30 @@ spec:
       toPorts:
         - ports:
             - port: "5432"
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "35736"
+            - port: "56072"
+            - port: "57946"
+            - port: "57940"
+            - port: "57942"
+            - port: "57944"
+            - port: "51540"
+            - port: "51558"
+            - port: "41322"
+            - port: "41326"
+            - port: "57938"
