@@ -91,4 +91,3 @@ spec:
       toPorts:
         - ports:
             - port: "8075"
-            - port: "9236"

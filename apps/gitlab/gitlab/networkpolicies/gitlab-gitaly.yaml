@@ -18,7 +18,6 @@ spec:
       toPorts:
         - ports:
             - port: "8075"
-            - port: "9236"
     - fromEndpoints:
         - matchLabels:
             app: sidekiq
@@ -27,7 +26,6 @@ spec:
       toPorts:
         - ports:
             - port: "8075"
-            - port: "9236"
     - fromEndpoints:
         - matchLabels:
             app: gitlab-shell
