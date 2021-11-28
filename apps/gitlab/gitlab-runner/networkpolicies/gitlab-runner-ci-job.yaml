@@ -10,11 +10,6 @@ spec:
       gitlab-runner: ci-job
       release: gitlab
   egress:
-    - toEntities:
-        - world
-      toPorts:
-        - ports:
-            - port: "443"
     - toEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: kube-system
@@ -26,3 +21,8 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "443"
