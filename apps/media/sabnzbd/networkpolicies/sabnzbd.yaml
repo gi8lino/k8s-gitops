@@ -60,6 +60,7 @@ spec:
         - matchName: hooks.slack.com
         - matchName: raw.githubusercontent.com
         - matchName: auth.docker.io
+        - matchName: production.cloudflare.docker.com
       toPorts:
         - ports:
             - port: "443"
