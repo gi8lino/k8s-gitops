@@ -45,37 +45,3 @@ spec:
                 app: webservice
                 release: gitlab
             namespace: gitlab
-    - toEntities:
-        - world
-      toPorts:
-        - ports:
-            - port: "35736"
-            - port: "56072"
-            - port: "57946"
-            - port: "57940"
-            - port: "57942"
-            - port: "57944"
-            - port: "51540"
-            - port: "51558"
-            - port: "41322"
-            - port: "41326"
-            - port: "57938"
-            - port: "39508"
-            - port: "43312"
-            - port: "39416"
-            - port: "43132"
-            - port: "37430"
-            - port: "43910"
-            - port: "43928"
-            - port: "37426"
-            - port: "37384"
-            - port: "37428"
-            - port: "50148"
-            - port: "50134"
-            - port: "60216"
-            - port: "60300"
-            - port: "60296"
-            - port: "60284"
-            - port: "56440"
-            - port: "56430"
-            - port: "56442"
