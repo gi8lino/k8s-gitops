@@ -1,0 +1,42 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: gitlab-shell
+  namespace: gitlab
+spec:
+  endpointSelector:
+    matchLabels:
+      app: gitlab-shell
+      release: gitlab
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "2222"
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: webservice
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "8181"
