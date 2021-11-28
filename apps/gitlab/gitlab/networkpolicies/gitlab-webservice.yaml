@@ -22,6 +22,7 @@ spec:
         - matchLabels:
             app: minio
             release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "35850"
