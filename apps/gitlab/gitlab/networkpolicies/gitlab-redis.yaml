@@ -18,6 +18,10 @@ spec:
       toPorts:
         - ports:
             - port: "6379"
+            - port: "41690"
+            - port: "42406"
+            - port: "43104"
+            - port: "47208"
     - fromEndpoints:
         - matchLabels:
             app: sidekiq
