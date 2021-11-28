@@ -15,12 +15,6 @@ spec:
             app: redis
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "38608"
-            - port: "38616"
-            - port: "38612"
-            - port: "38648"
   egress:
     - toEndpoints:
         - matchLabels:
