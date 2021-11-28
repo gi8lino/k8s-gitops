@@ -7,7 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      job: renovate
+      app: renovate
+      component: job
   egress:
     - toEndpoints:
         - matchLabels:
