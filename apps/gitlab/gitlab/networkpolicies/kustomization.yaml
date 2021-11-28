@@ -5,7 +5,7 @@ resources:
   - egress-gitlab-shared-secrets-job.yaml
   - egress-gitlab-upgrade-check.yaml
   - gitlab-minio.yaml
-  - gitlab-postgres.yaml
+  - gitlab-postgresql.yaml
   - gitlab-redis.yaml
   - gitlab-registry.yaml
   - gitlab-sidekiq.yaml
