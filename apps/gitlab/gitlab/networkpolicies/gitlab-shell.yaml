@@ -40,3 +40,13 @@ spec:
       toPorts:
         - ports:
             - port: "8181"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: gitaly
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "8075"
