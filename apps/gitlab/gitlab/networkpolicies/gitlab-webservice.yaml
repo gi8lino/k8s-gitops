@@ -40,6 +40,11 @@ spec:
             - port: "42406"
             - port: "43104"
             - port: "47208"
+    - fromEndpoints:
+        - matchLabels:
+            app: postgresql
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
   egress:
     - toEndpoints:
         - matchLabels:
