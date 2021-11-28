@@ -32,6 +32,8 @@ spec:
     - toFQDNs:
         - matchName: thexem.info
         - matchName: services.sonarr.tv
+        - matchName: skyhook.sonarr.tv
+        - matchName: artworks.thetvb.com
       toPorts:
         - ports:
             - port: "443"
