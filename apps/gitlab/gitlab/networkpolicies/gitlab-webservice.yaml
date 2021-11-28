@@ -19,6 +19,14 @@ spec:
         - ports:
             - port: "8080"
             - port: "8181"
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "80"
   egress:
     - toEndpoints:
         - matchLabels:
