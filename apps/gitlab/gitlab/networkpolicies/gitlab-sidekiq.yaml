@@ -9,12 +9,6 @@ spec:
     matchLabels:
       app: sidekiq
       release: gitlab
-  ingress:
-    - fromEndpoints:
-        - matchLabels:
-            app: redis
-            release: gitlab
-            io.kubernetes.pod.namespace: gitlab
   egress:
     - toEndpoints:
         - matchLabels:

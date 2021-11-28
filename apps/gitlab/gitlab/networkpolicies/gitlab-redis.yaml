@@ -26,18 +26,3 @@ spec:
       toPorts:
         - ports:
             - port: "6379"
-  egress:
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: webservice
-                release: gitlab
-            namespace: gitlab
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: sidekiq
-                release: gitlab
-            namespace: gitlab
