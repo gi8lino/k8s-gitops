@@ -31,11 +31,8 @@ spec:
             dns:
               - matchPattern: "*"
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: keycloak
-                component: postgres
+        - k8sService:
+            serviceName: keycloak-postgres
             namespace: keycloak
       toPorts:
         - ports:
