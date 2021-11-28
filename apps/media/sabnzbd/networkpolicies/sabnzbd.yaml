@@ -50,6 +50,8 @@ spec:
             - port: "563"
     - toFQDNs:  # curl/jq
         - matchName: dl-cdn.alpinelinux.org
+        - matchName: archive.ubuntu.com
+        - matchName: ppa.launchpad.net
       toPorts:
         - ports:
             - port: "80"
