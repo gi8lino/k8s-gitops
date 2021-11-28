@@ -1,0 +1,37 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-gitlab
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+  egress:
+    - toServices:
+        - k8sService:
+            serviceName: gitlab-gitlab-sidekiq
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "80"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: sidekiq
+            namespace: gitlab
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: gitaly
+            namespace: gitlab
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: webservice
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "80"
