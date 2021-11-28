@@ -34,12 +34,6 @@ spec:
                 app: webservice
                 release: gitlab
             namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "41690"
-            - port: "42406"
-            - port: "43104"
-            - port: "47208"
     - toServices:
         - k8sServiceSelector:
             selector:
@@ -47,9 +41,3 @@ spec:
                 app: sidekiq
                 release: gitlab
             namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "38608"
-            - port: "38616"
-            - port: "38612"
-            - port: "38648"
