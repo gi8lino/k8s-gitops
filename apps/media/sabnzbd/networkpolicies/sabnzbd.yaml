@@ -61,6 +61,7 @@ spec:
         - matchName: raw.githubusercontent.com
         - matchName: auth.docker.io
         - matchName: production.cloudflare.docker.com
+        - matchName: codeload.github.com
       toPorts:
         - ports:
             - port: "443"
