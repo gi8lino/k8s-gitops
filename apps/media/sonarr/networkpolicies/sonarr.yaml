@@ -38,6 +38,11 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+    - toFQDNs:
+        - matchName: thexem.info
+      toPorts:
+        - ports:
+            - port: "80"
     - toServices:
         - k8sService:
             serviceName: nzbhydra2
