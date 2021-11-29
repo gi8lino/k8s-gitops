@@ -91,3 +91,13 @@ spec:
       toPorts:
         - ports:
             - port: "8075"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: registry
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "5000"
