@@ -30,11 +30,11 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
-        - matchName: thexem.info
-        - matchName: services.sonarr.tv
-        - matchName: skyhook.sonarr.tv
         - matchName: artworks.thetvdb.com
         - matchName: hooks.slack.com
+        - matchName: services.sonarr.tv
+        - matchName: skyhook.sonarr.tv
+        - matchName: thexem.info
       toPorts:
         - ports:
             - port: "443"

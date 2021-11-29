@@ -29,12 +29,12 @@ spec:
             - port: "9000"  # traefik api
     - toFQDNs:
         - matchName: api.cloudflare.com
+        - matchName: api.ipify.org
+        - matchName: checkip.amazonaws.com
         - matchName: hooks.slack.com
         - matchName: ifconfig.me
         - matchName: ipecho.net
         - matchName: myip.is
-        - matchName: checkip.amazonaws.com
-        - matchName: api.ipify.org
       toPorts:
         - ports:
             - port: "443"
