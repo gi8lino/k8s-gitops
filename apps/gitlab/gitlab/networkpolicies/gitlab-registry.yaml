@@ -23,6 +23,10 @@ spec:
             app: webservice
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
+        - matchLabels:
+            app: registry
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "5000"

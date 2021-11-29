@@ -44,6 +44,16 @@ spec:
         - k8sServiceSelector:
             selector:
               matchLabels:
+                app: registry
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "5000"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
                 app: postgresql
                 release: gitlab
             namespace: gitlab
