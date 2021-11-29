@@ -24,7 +24,7 @@ spec:
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
         - matchLabels:
-            app: registry
+            app: sidekiq
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
       toPorts:
