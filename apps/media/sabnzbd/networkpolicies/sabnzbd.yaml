@@ -55,14 +55,14 @@ spec:
         - ports:
             - port: "80"
     - toFQDNs:
-        - matchName: hooks.slack.com
-        - matchName: raw.githubusercontent.com
-        - matchName: auth.docker.io
-        - matchName: production.cloudflare.docker.com
-        - matchName: codeload.github.com
-        - matchName: pypi.org
         - matchName: api.github.com
+        - matchName: auth.docker.io
+        - matchName: codeload.github.com
         - matchName: files.pythonhosted.org
+        - matchName: hooks.slack.com
+        - matchName: production.cloudflare.docker.com
+        - matchName: pypi.org
+        - matchName: raw.githubusercontent.com
       toPorts:
         - ports:
             - port: "443"

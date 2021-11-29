@@ -46,11 +46,11 @@ spec:
         - ports:
             - port: "9090"
     - toFQDNs:
-        - matchName: grafana.net             # grafana dashboards
         - matchName: grafana.com             # grafana dashboards
-        - matchName: storage.googleapis.com  # grafana plugin archive
-        - matchName: sso.${BASE_DOMAIN}      # oidc: to access load balancer (https://sso.${BASE_DOMAIN})
+        - matchName: grafana.net             # grafana dashboards
         - matchName: raw.githubusercontent.com
+        - matchName: sso.${BASE_DOMAIN}      # oidc: to access load balancer (https://sso.${BASE_DOMAIN})
+        - matchName: storage.googleapis.com  # grafana plugin archive
       toPorts:
         - ports:
             - port: "443"

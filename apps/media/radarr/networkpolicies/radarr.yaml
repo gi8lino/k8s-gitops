@@ -29,9 +29,9 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
+        - matchName: hooks.slack.com
         - matchName: image.tmdb.org
         - matchName: radarrapi.servarr.com
-        - matchName: hooks.slack.com
       toPorts:
         - ports:
             - port: "443"
