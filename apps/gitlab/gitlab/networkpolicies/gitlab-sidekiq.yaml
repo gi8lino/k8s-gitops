@@ -70,3 +70,8 @@ spec:
       toPorts:
         - ports:
             - port: "8075"
+    - toFQDNs:
+        - matchName: hooks.slack.com
+      toPorts:
+        - ports:
+            - port: "443"
