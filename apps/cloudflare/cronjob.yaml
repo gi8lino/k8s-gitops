@@ -21,7 +21,7 @@ spec:
         spec:
           containers:
             - name: cloudflare-cron
-              image: ghcr.io/containeroo/alpine-toolbox:1.5.0
+              image: ghcr.io/containeroo/alpine-toolbox:1.6.2
               command:
                 - bash
               args:
