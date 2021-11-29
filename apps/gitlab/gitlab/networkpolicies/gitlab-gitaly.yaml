@@ -15,20 +15,16 @@ spec:
             app: webservice
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "8075"
-    - fromEndpoints:
         - matchLabels:
             app: sidekiq
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "8075"
-    - fromEndpoints:
         - matchLabels:
             app: gitlab-shell
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+        - matchLabels:
+            app: toolbox
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
       toPorts:
