@@ -61,3 +61,8 @@ spec:
       toPorts:
         - ports:
             - port: "8075"
+    - toFQDNs:
+        - matchName: gitlab-minio.local.${BASE_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "443"
