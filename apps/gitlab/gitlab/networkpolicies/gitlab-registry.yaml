@@ -18,3 +18,11 @@ spec:
       toPorts:
         - ports:
             - port: "5001"
+    - fromEndpoints:
+        - matchLabels:
+            app: webservice
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "5000"
