@@ -7,8 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: minio
-      component: migrations
+      app: migrations
+      release: gitlab
   egress:
     - toEndpoints:
         - matchLabels:
