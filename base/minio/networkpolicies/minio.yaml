@@ -24,8 +24,8 @@ spec:
             job: gitlab-backup-mirror
             io.kubernetes.pod.namespace: gitlab
         - matchLabels:
-          io.kubernetes.pod.namespace: healthchecks
-          k8upjob: "true"
+            io.kubernetes.pod.namespace: healthchecks
+            k8upjob: "true"
         - matchLabels:
             io.kubernetes.pod.namespace: filebrowser
             k8upjob: "true"
