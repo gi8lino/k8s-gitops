@@ -25,15 +25,6 @@ spec:
       toPorts:
         - ports:
             - port: "9000"
-    - fromRequires:
-        - matchLabels:
-            io.kubernetes.pod.namespace.labels.k8up: backup-enabled
-        - matchExpressions:
-            - key: job-name
-              operator: Exists
-      toPorts:
-        - ports:
-            - port: "9000"
   egress:
     - toEndpoints:
         - matchLabels:
