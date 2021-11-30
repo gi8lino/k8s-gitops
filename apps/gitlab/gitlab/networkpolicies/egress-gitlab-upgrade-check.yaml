@@ -7,9 +7,9 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-    component: create-buckets
-    app: minio
-    release: gitlab
+      component: create-buckets
+      app: minio
+      release: gitlab
   egress:
     - toEndpoints:
         - matchLabels:
