@@ -26,9 +26,20 @@ spec:
         - ports:
             - port: "9000"
     - fromEndpoints:
-        - matchExpressions:
-            - key: job-name
-              operator: Exists
+        - matchLabels:
+            io.kubernetes.pod.namespace: healthchecks
+        - matchLabels:
+            io.kubernetes.pod.namespace: filebrowser
+        - matchLabels:
+            io.kubernetes.pod.namespace: k8up
+        - matchLabels:
+            io.kubernetes.pod.namespace: media
+        - matchLabels:
+            io.kubernetes.pod.namespace: nextcloud
+        - matchLabels:
+            io.kubernetes.pod.namespace: wallabag
+        - matchLabels:
+            io.kubernetes.pod.namespace: wiki
       toPorts:
         - ports:
             - port: "9000"
