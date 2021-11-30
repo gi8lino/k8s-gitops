@@ -1,0 +1,33 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: egress-gitlab-create-buckets
+  namespace: gitlab
+spec:
+  endpointSelector:
+    matchLabels:
+      component: migrations
+      app: minio
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: postgres
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "5432"
