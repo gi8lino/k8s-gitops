@@ -8,7 +8,6 @@ spec:
   endpointSelector:
     matchLabels:
       app: migrations
-      component: app
       release: gitlab
   egress:
     - toEndpoints:
