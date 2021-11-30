@@ -4,8 +4,6 @@ kind: Kustomization
 resources:
   - egress-gitlab-create-buckets.yaml
   - egress-gitlab-migrations.yaml
-  - egress-gitlab-shared-secrets-job.yaml
-  - egress-gitlab-upgrade-check.yaml
   - gitlab-gitaly.yaml
   - gitlab-minio.yaml
   - gitlab-postgresql.yaml
