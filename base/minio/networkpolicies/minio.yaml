@@ -17,8 +17,15 @@ spec:
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
-            - port: "9000"
-            - port: "9001"
+            - port: "9000"  # minio-api
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "9001"  # minio-console
     - fromEndpoints:
         - matchLabels:
             job: gitlab-backup-mirror
