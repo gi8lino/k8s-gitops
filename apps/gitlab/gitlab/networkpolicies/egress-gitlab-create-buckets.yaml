@@ -7,8 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      component: create-buckets
       app: minio
+      component: create-buckets
   egress:
     - toEndpoints:
         - matchLabels:
