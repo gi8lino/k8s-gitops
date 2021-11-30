@@ -23,24 +23,9 @@ spec:
         - matchLabels:
             job: gitlab-backup-mirror
             io.kubernetes.pod.namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "9000"
     - fromEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: healthchecks
-        - matchLabels:
-            io.kubernetes.pod.namespace: filebrowser
-        - matchLabels:
-            io.kubernetes.pod.namespace: k8up
-        - matchLabels:
-            io.kubernetes.pod.namespace: media
-        - matchLabels:
-            io.kubernetes.pod.namespace: nextcloud
-        - matchLabels:
-            io.kubernetes.pod.namespace: wallabag
-        - matchLabels:
-            io.kubernetes.pod.namespace: wiki
+            k8upjob: "true"
       toPorts:
         - ports:
             - port: "9000"
