@@ -31,4 +31,4 @@ spec:
             namespace: gitlab
       toPorts:
         - ports:
-            - port: "8181"
+            - port: "9000"
