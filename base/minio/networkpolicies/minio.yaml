@@ -23,7 +23,7 @@ spec:
             job: gitlab-backup-mirror
             io.kubernetes.pod.namespace: gitlab
         - matchLabels:
-            io.kubernetes.pod.namespace.labels.k8up: backup-enabled
+            "k8s:io.kubernetes.pod.namespace.labels.k8up: backup-enabled"
       toPorts:
         - ports:
             - port: "9000"
