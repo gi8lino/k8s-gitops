@@ -25,6 +25,7 @@ spec:
             io.kubernetes.pod.namespace: gitlab
     - fromEndpoints:
         - matchLabels:
+            io.kubernetes.pod.namespace: k8up
             k8upjob: "true"
       toPorts:
         - ports:
