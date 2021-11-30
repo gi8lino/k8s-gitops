@@ -35,6 +35,11 @@ spec:
             app: gitlab-backup-mirror
             component: job
             io.kubernetes.pod.namespace: gitlab
+    - fromEndpoints:
+        - matchLabels:
+            app: minio
+            component: create-buckets
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "9000"
