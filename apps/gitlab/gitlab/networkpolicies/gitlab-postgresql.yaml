@@ -28,6 +28,11 @@ spec:
             app: toolbox
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
+    - fromEndpoints:
+        - matchLabels:
+            app: migrations
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "5432"
