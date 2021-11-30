@@ -28,10 +28,6 @@ spec:
                 app: postgres
                 release: gitlab
             namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "5432"
-    - toServices:
         - k8sServiceSelector:
             selector:
               matchLabels:
