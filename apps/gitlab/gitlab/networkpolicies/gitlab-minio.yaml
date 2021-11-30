@@ -15,32 +15,26 @@ spec:
             app: webservice
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
-    - fromEndpoints:
         - matchLabels:
             app: sidekiq
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
-    - fromEndpoints:
         - matchLabels:
             app: registry
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
-    - fromEndpoints:
         - matchLabels:
             app: toolbox
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
-    - fromEndpoints:
         - matchLabels:
             app: gitlab-backup-mirror
             component: job
             io.kubernetes.pod.namespace: gitlab
-    - fromEndpoints:
         - matchLabels:
             app: minio
             component: create-buckets
             io.kubernetes.pod.namespace: gitlab
-    - fromEndpoints:
         - matchLabels:
             app: migrations
             io.kubernetes.pod.namespace: gitlab
