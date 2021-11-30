@@ -20,6 +20,7 @@ spec:
     auth:
       rootUser: ${MINIO_ACCESSKEY}
       rootPassword: ${MINIO_SECRETKEY}
+    defaultBuckets: terraform-states
     extraEnv:
       - name: TZ
         value: Europe/Zurich
