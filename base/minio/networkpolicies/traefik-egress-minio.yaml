@@ -10,10 +10,11 @@ spec:
       app.kubernetes.io/instance: traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: minio
-            namespace: minio
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: minio
+            app.kubernetes.io/name: minio
+            io.kubernetes.pod.namespace: minio
       toPorts:
         - ports:
             - port: "9000"  # minio-api
