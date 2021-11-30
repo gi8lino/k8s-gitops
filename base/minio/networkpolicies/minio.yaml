@@ -23,9 +23,26 @@ spec:
         - matchLabels:
             job: gitlab-backup-mirror
             io.kubernetes.pod.namespace: gitlab
-    - fromEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace.labels.k8up: backup-enabled
+          io.kubernetes.pod.namespace: healthchecks
+          k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: filebrowser
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: k8up
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: media
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: nextcloud
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: wallabag
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: wiki
             k8upjob: "true"
       toPorts:
         - ports:

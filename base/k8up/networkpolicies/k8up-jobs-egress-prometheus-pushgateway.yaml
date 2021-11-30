@@ -8,9 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       io.kubernetes.pod.namespace.labels.k8up: backup-enabled
-    matchExpressions:
-      - key: job-name
-        operator: Exists
+      k8upjob: "true"
   egress:
     - toServices:
         - k8sService:
