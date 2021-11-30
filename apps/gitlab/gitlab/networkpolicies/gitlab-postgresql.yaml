@@ -30,8 +30,8 @@ spec:
             io.kubernetes.pod.namespace: gitlab
     - fromEndpoints:
         - matchLabels:
-            app: migrations
-            release: gitlab
+            app: minio
+            component: migrations
             io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
