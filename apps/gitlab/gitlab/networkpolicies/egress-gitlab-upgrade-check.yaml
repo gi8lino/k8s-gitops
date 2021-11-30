@@ -6,9 +6,10 @@ metadata:
   namespace: gitlab
 spec:
   endpointSelector:
-    matchExpressions:
-      - key: job-name
-        operator: Exists
+    matchLabels:
+    component: create-buckets
+    app: minio
+    release: gitlab
   egress:
     - toEndpoints:
         - matchLabels:
