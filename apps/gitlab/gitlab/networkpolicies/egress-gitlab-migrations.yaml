@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: egress-gitlab-create-buckets
+  name: egress-gitlab-migrations
   namespace: gitlab
 spec:
   endpointSelector:
