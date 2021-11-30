@@ -27,7 +27,6 @@ spec:
             selector:
               matchLabels:
                 app: postgres
-                component: app
                 release: gitlab
             namespace: gitlab
       toPorts:
@@ -38,7 +37,6 @@ spec:
             selector:
               matchLabels:
                 app: redis
-                component: app
                 release: gitlab
             namespace: gitlab
       toPorts:
@@ -49,7 +47,6 @@ spec:
             selector:
               matchLabels:
                 app: minio
-                component: app
                 release: gitlab
             namespace: gitlab
       toPorts:

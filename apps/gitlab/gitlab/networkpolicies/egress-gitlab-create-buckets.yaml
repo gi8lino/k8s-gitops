@@ -27,7 +27,6 @@ spec:
             selector:
               matchLabels:
                 app: minio
-                component: app
                 release: gitlab
             namespace: gitlab
       toPorts:
