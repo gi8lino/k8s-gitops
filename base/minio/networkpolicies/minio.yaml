@@ -31,6 +31,9 @@ spec:
           matchExpressions:
             - key: job-name
               operator: Exists
+      toPorts:
+        - ports:
+            - port: "9000"
   egress:
     - toEndpoints:
         - matchLabels:
