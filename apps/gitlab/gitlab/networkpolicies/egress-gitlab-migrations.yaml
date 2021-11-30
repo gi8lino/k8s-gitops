@@ -31,3 +31,13 @@ spec:
       toPorts:
         - ports:
             - port: "5432"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: redis
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "5432"
