@@ -8,6 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       app: migrations
+      component: app
       release: gitlab
   egress:
     - toEndpoints:
@@ -26,6 +27,7 @@ spec:
             selector:
               matchLabels:
                 app: postgres
+                component: app
                 release: gitlab
             namespace: gitlab
       toPorts:
@@ -36,8 +38,20 @@ spec:
             selector:
               matchLabels:
                 app: redis
+                component: app
                 release: gitlab
             namespace: gitlab
       toPorts:
         - ports:
             - port: "6379"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: minio
+                component: app
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
