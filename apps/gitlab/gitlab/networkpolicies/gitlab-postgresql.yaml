@@ -27,6 +27,11 @@ spec:
             app: migrations
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
+        - matchLabels:
+            app: gitlab
+            job-name: gitlab-gitlab-upgrade-check
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "5432"
