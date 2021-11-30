@@ -8,6 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       app: minio
+      component: app
       release: gitlab
   ingress:
     - fromEndpoints:
