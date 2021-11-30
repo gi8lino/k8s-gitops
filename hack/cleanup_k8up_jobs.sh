@@ -11,7 +11,7 @@ ShowHelp() {
     printf "
 Usage: cleanup_k8up_jobs.sh [-h|--help]
 
-Searches for pods in the current namespace with status 'Terminating' and label
+Searches for pods in all namespaces with status 'Terminating' and label
 'job-name', delete the related job and remove the finalizer of the pod so
 the pod will be deleted.
 
@@ -35,15 +35,17 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-readarray -d '' pods < <(kubectl get pods | awk '$3=="Terminating" {print $1}')
+readarray -d '' pods < <(kubectl get pods --no-headers --all-namespaces | awk '$3!="Terminating" {print $1"|"$2}')
 
-for pod in ${pods[@]}; do
-  job_name=$(kubectl get pod "${pod}" -ojsonpath='{.metadata.labels.job-name}')
+for entry in ${pods[@]}; do
+  IFS='|' read -r pod namespace <<<"$entry"
+
+  job_name=$(kubectl get pod "${pod}" --namespace "${namespace}" -ojsonpath='{.metadata.labels.job-name}')
 
   [ -z "${job_name}" ] && \
-    printf "${ORANGE}[SKIPPING  ]${NOFORMAT} pod '${pod}' seems not be created from cronjob\n" && \
+    printf "${ORANGE}[SKIPPING  ]${NOFORMAT} pod '${namespace}/${pod}' seems not be created from cronjob\n" && \
     continue
 
   printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl delete job ${job_name})"
-  printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl patch pod ${pod} --patch='{"metadata":{"finalizers":null}}')"
+  printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl patch pod ${pod} --namespace "${namespace}" --patch='{"metadata":{"finalizers":null}}')"
 done
