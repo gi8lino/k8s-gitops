@@ -22,9 +22,10 @@ spec:
         - matchLabels:
             job: gitlab-backup-mirror
             io.kubernetes.pod.namespace: gitlab
-    - matchExpressions:
-        - key: job-name
-          operator: Exists
+    - fromEndpoints:
+        - matchExpressions:
+            - key: job-name
+              operator: Exists
       toPorts:
         - ports:
             - port: "9000"
