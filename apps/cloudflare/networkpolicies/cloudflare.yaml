@@ -6,11 +6,13 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      job: cloudflare-fw-events-fetch
+      app: elasticsearch
+      component: database
   ingress:
     - fromEndpoints:
         - matchLabels:
-            job: cloudflare-fw-events-fetch
+            app: elasticsearch
+            component: job
             io.kubernetes.pod.namespace: cloudflare
       toPorts:
         - ports:

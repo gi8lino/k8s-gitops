@@ -27,7 +27,8 @@ spec:
             - port: "8000"
     - fromEndpoints:  # allow push from cloudflare-cron directly to healthchecks
         - matchLabels:
-            job: cloudflare-fw-events-fetch
+            app: elasticsearch
+            component: job
             io.kubernetes.pod.namespace: cloudflare
       toPorts:
         - ports:

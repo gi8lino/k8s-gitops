@@ -6,6 +6,7 @@ metadata:
   namespace: cloudflare
   labels:
     app: elasticsearch
+    component: database
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
@@ -14,12 +15,14 @@ spec:
   selector:
     matchLabels:
       app: elasticsearch
+      component: database
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app: elasticsearch
+        component: database
     spec:
       containers:
         - name: elasticsearch
