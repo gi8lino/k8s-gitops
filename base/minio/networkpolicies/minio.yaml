@@ -21,7 +21,8 @@ spec:
             - port: "9001"  # minio-console
     - fromEndpoints:
         - matchLabels:
-            job: gitlab-backup-mirror
+            app: gitlab-backup-mirror
+            component: job
             io.kubernetes.pod.namespace: gitlab
         - matchLabels:
             io.kubernetes.pod.namespace: healthchecks

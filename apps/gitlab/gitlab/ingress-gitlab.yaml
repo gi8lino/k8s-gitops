@@ -62,7 +62,8 @@ spec:
             - port: "9000"
     - fromEndpoints:
         - matchLabels:
-            job: gitlab-backup-mirror
+            app: gitlab-backup-mirror
+            component: job
             io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
