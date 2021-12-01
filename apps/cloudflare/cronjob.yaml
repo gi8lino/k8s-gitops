@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: cloudflare-cron
+  name: cloudflare-cron-periodic
   namespace: cloudflare
   labels:
     app: elasticsearch
@@ -21,7 +21,7 @@ spec:
             component: job
         spec:
           containers:
-            - name: cloudflare-cron
+            - name: cloudflare-cron-periodic
               image: ghcr.io/containeroo/alpine-toolbox:1.6.4
               command:
                 - bash
@@ -37,7 +37,7 @@ spec:
                 - secretRef:
                     name: cloudflare-credentials
                 - secretRef:
-                    name: healthchecks-url-daily
+                    name: healthchecks-url-periodic
               volumeMounts:
                 - name: cloudflare
                   mountPath: /tmp/cloudflare
@@ -72,7 +72,7 @@ spec:
             component: job
         spec:
           containers:
-            - name: cloudflare-cron
+            - name: cloudflare-cron-daily
               image: ghcr.io/containeroo/alpine-toolbox:1.6.4
               command:
                 - bash
