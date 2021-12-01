@@ -1,11 +1,26 @@
 # hack Directory
 
-This directory contains useful scripts that are mostly bodgy at best.
+This directory contains useful scripts.
 
 ## Contents
 
+- **cleanup_k8up_jobs.sh** cleanup stucked k8up jobs
 - **generate_kustomizations.sh** generates `kustomization.yaml` files
 - **generate_secret_template.sh** generates `secret.template` files for SOPS-encrypted Kubernetes secrets
+
+## cleanup_k8up_jobs
+
+```console
+Usage: cleanup_k8up_jobs.sh [-A|--all-namespaces]
+                            [-h|--help]
+
+Searches for pods in current namespace with status 'Terminating' and label
+'k8upjob', delete the related job and remove the finalizer of the pod so
+the pod will be deleted.
+
+-A, --all-namespaces   search in all namespaces for pod with status 'Terminating'
+-h, --help             display this help and exit
+```
 
 ## generate_kustomizations
 

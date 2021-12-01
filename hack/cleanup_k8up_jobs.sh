@@ -9,20 +9,27 @@ ORANGE='\033[0;33m'
 
 ShowHelp() {
     printf "
-Usage: cleanup_k8up_jobs.sh [-h|--help]
+Usage: cleanup_k8up_jobs.sh [-A|--all-namespaces]
+                            [-h|--help]
 
-Searches for pods in all namespaces with status 'Terminating' and label
-'job-name', delete the related job and remove the finalizer of the pod so
+Searches for pods in current namespace with status 'Terminating' and label
+'k8upjob', delete the related job and remove the finalizer of the pod so
 the pod will be deleted.
 
--h, --help          display this help and exit
+-A, --all-namespaces   search in all namespaces for pod with status 'Terminating'
+-h, --help             display this help and exit
 \n"
     exit 0
 }
 
+ALLNAMESPACES=""
 while [ $# -gt 0 ]; do
     key="${1}"
     case $key in
+        -A|--all-namespaces)
+        ALLNAMESPACES="--all-namespaces"
+        shift
+        ;;
         -h|--help)
         ShowHelp
         ;;
@@ -35,17 +42,11 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-readarray -d '' pods < <(kubectl get pods --no-headers --all-namespaces | awk '$3!="Terminating" {print $1"|"$2}')
+readarray -d '' pods < <(kubectl get pods ${ALLNAMESPACES} --field-selector=status.phase=Terminating --output=jsonpath='{range .items[?(.metadata.labels.k8upjob)]}{.metadata.namespace}{"|"}{.metadata.name} {end}')
 
 for entry in ${pods[@]}; do
-  IFS='|' read -r pod namespace <<<"$entry"
+  IFS='|' read -r namespace pod <<<"$entry"
 
-  job_name=$(kubectl get pod "${pod}" --namespace "${namespace}" -ojsonpath='{.metadata.labels.job-name}')
-
-  [ -z "${job_name}" ] && \
-    printf "${ORANGE}[SKIPPING  ]${NOFORMAT} pod '${namespace}/${pod}' seems not be created from cronjob\n" && \
-    continue
-
-  printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl delete job ${job_name})"
+  printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl delete job --namespace "${namespace}" ${job_name})"
   printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl patch pod ${pod} --namespace "${namespace}" --patch='{"metadata":{"finalizers":null}}')"
 done
