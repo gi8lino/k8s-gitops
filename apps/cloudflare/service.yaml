@@ -12,4 +12,5 @@ spec:
       protocol: TCP
   selector:
     app: elasticsearch
+    component: database
   type: LoadBalancer

@@ -17,7 +17,8 @@ spec:
       template:
         metadata:
           labels:
-            job: cloudflare-fw-events-fetch
+            app: elasticsearch
+            component: job
         spec:
           containers:
             - name: cloudflare-cron
