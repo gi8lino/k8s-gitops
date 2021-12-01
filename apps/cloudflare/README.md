@@ -1,6 +1,6 @@
 # Cloudflare Firewall Events
 
-Fetches Cloudflare Firewall events for the configured time period (defaults from (now minus 60 minutes) until now) and store them in a Elasticsearch database.
+Fetches Cloudflare Firewall events for the configured time period (defaults from (now minus 6 minutes) until now) and store them in a Elasticsearch database.
 
 You have to pass an Cloudflare API token to the cronjob.
 To create an API token see [here](https://developers.cloudflare.com/analytics/graphql-api/getting-started/authentication/api-token-auth)
@@ -9,14 +9,14 @@ To create an API token see [here](https://developers.cloudflare.com/analytics/gr
 
 You can set following environment variables to override the default behavior of the script:
 
-| parameter                           | description                                                                          | default              |
-| :---------------------------------- | :----------------------------------------------------------------------------------- | :------------------- |
-| `DEBUG`                             | output curl responses                                                                | false                |
-| `INDEX_NAME`                        | name of elasticsearch index to add firewall events                                   | cloudflare_fw_events |
-| `ELASTIC_FQDN`                      | FQDN of elasticsearch                              | http://elasticsearch.cloudflare.svc.cluster.local:9200 |
-| `END_DATE`                          | end date of time range to fetch Cloudflare firewall events                           | today                |
-| `MINUTES`                           | Minutes to subtract from `END_DATE`. Will be used as start date of time range to fetch Cloudflare firewall events                                                                                     | 60                   |
-| `HEALTHCHECKS_URL`                  | ping healthchecks after the firewall events are fetched and stored in elasticsearch  | NONE                 |
+| parameter                           | description                                                                                                       | default                                                |
+| :---------------------------------- | :---------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------- |
+| `DEBUG`                             | output curl responses                                                                                             | false                                                  |
+| `INDEX_NAME`                        | name of elasticsearch index to add firewall events                                                                | cloudflare_fw_events                                   |
+| `ELASTIC_FQDN`                      | FQDN of elasticsearch                                                                                             | http://elasticsearch.cloudflare.svc.cluster.local:9200 |
+| `END_DATE`                          | end date of time range to fetch Cloudflare firewall events                                                        | today                                                  |
+| `MINUTES`                           | Minutes to subtract from `END_DATE`. Will be used as start date of time range to fetch Cloudflare firewall events | 6                                                      |
+| `HEALTHCHECKS_URL`                  | ping healthchecks after the firewall events are fetched and stored in elasticsearch                               | NONE                                                   |
 
 ## Grafana dashboard
 
@@ -33,7 +33,7 @@ In Cloudflare free-plan time range can be maximum 1440 minutes and go maxium 14 
 kubectl create job \
     --namespace=cloudflare \
     --from=cronjob/cloudflare-cron manual-cron-one-day-back \
-    --dry-run=client \
+    --dry-run=client \****
     -ojson | \
   jq ".spec.template.spec.containers[0].env += [{ \"name\": \"MINUTES\", value: \"1440\" }]" | \
   kubectl apply -f -
