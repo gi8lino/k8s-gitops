@@ -17,7 +17,8 @@ spec:
       template:
         metadata:
           labels:
-            job: gitlab-backup-mirror
+            app: gitlab-backup-mirror
+            component: job
         spec:
           containers:
             - name: gitlab-backup-mirror
