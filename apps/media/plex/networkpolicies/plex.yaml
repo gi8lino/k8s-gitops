@@ -39,6 +39,7 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
+        - matchName: plex.tv
         - matchPattern: "*.plex.tv"
       toPorts:
         - ports:
