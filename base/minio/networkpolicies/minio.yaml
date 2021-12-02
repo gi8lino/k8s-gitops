@@ -24,9 +24,14 @@ spec:
             app: gitlab-backup-mirror
             component: job
             io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
+    - fromEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: healthchecks
+            io.cilium.k8s.namespace.labels.k8up: backup-enabled
             k8upjob: "true"
+    - fromEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: filebrowser
             k8upjob: "true"
@@ -48,9 +53,6 @@ spec:
         - matchLabels:
             io.kubernetes.pod.namespace: wiki
             k8upjob: "true"
-      toPorts:
-        - ports:
-            - port: "9000"
   egress:
     - toEndpoints:
         - matchLabels:
