@@ -43,3 +43,8 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+    - toFQDNs:
+        - matchPattern: "*.plexapp.com"
+      toPorts:
+        - ports:
+            - port: "80"
