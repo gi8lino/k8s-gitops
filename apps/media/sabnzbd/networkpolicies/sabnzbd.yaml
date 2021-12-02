@@ -63,6 +63,7 @@ spec:
         - matchName: production.cloudflare.docker.com
         - matchName: pypi.org
         - matchName: raw.githubusercontent.com
+        - matchName: ${USENET_INDEXER_DOMAIN}
       toPorts:
         - ports:
             - port: "443"
