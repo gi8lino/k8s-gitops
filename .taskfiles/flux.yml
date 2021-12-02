@@ -6,58 +6,70 @@ tasks:
     desc: Sync flux-system with the Git Repository
     cmds:
       - flux reconcile source git flux-system
-    silent: true
+    silent: false
 
   all:
     desc: Print the statuses of all resources
     cmds:
       - flux get all
-    silent: true
+    silent: false
 
   hr:
     desc: List all Helm Releases
     cmds:
       - flux get helmrelease --all-namespaces
-    silent: true
+    silent: false
 
   hs:
     desc: List all Helm sources
     cmds:
       - flux get sources helm --all-namespaces
-    silent: true
+    silent: false
 
   hc:
     desc: List all Helm charts
     cmds:
       - flux get sources chart --all-namespaces
-    silent: true
+    silent: false
 
   sh:
     desc: Suspend Helm release -- ARGS
     cmds:
       - flux suspend helmrelease -- {{.CLI_ARGS}}
-    silent: true
+    silent: false
 
   rh:
     desc: Resume Helm release -- ARGS
     cmds:
       - flux resume helmrelease -- {{.CLI_ARGS}}
-    silent: true
+    silent: false
 
   k:
     desc: List all Kustomizations
     cmds:
       - flux get kustomizations --all-namespaces
-    silent: true
+    silent: false
 
   sk:
     desc: Suspend kustomization -- ARGS
     cmds:
       - flux suspend kustomization {{.CLI_ARGS}}
-    silent: true
+    silent: false
 
   rk:
     desc: Resume kustomization -- ARGS
     cmds:
       - flux resume kustomization {{.CLI_ARGS}}
-    silent: true
+    silent: false
+
+  rck:
+    desc: Reconsile kustomization -- ARGS
+    cmds:
+      - flux reconcile kustomization {{.CLI_ARGS}} --with-source
+    silent: false
+
+  rch:
+    desc: Reconsile helmrelease -- ARGS
+    cmds:
+      - flux reconcile helmrelease {{.CLI_ARGS}} --with-source
+    silent: false
