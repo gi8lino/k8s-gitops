@@ -41,7 +41,7 @@ spec:
     - toFQDNs:
         - matchName: plex.tv
         - matchPattern: "*.plex.tv"
-        - matchPatterN: "*.plex.bz"
+        - matchPattern: "*.plex.bz"
       toPorts:
         - ports:
             - port: "443"
