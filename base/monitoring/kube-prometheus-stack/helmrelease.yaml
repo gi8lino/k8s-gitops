@@ -140,7 +140,7 @@ spec:
                   - 192.168.0.4:8080
     prometheus-node-exporter:
       extraArgs:
-        - --collector.filesystem.ignored-mount-points=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
+        - --collector.filesystem.mount-points-exclude=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
         - --collector.textfile.directory=/run/prometheus
       extraHostVolumeMounts:
         - name: node-exporter-textfile-collector-scripts
