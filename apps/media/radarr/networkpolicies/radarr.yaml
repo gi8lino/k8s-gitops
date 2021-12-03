@@ -32,6 +32,7 @@ spec:
         - matchName: hooks.slack.com
         - matchName: image.tmdb.org
         - matchName: radarrapi.servarr.com
+        - matchName: radarr.servarr.com
       toPorts:
         - ports:
             - port: "443"
