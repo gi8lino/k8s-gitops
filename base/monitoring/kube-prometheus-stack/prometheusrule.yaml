@@ -1,0 +1,31 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: apt-packages
+  namespace: monitoring
+spec:
+  groups:
+    - name: apt-packages
+      rules:
+        - alert: NodeRebootRequired
+          annotations:
+            description: Node {{ $labels.nodename }} needs to reboot.
+            summary: Reboot needed.
+          expr: node_reboot_required * on(instance) group_left(nodename) (node_uname_info) > 0
+          labels:
+            severity: warning
+        - alert: NodePackageUpdatesAvailable
+          annotations:
+            description: Updates for {{ $labels.nodename }} available.
+            summary: Updates available.
+          expr: apt_upgrades_pending * on(instance) group_left(nodename) (node_uname_info) > 0
+          labels:
+            severity: warning
+        - alert: NodeAutoremovePackagePending
+          annotations:
+            description: Autoremove packages for {{ $labels.nodename }} possible.
+            summary: Autoremove packages possible.
+          expr: apt_autoremove_pending * on(instance) group_left(nodename) (node_uname_info) > 0
+          labels:
+            severity: warning

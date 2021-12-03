@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
+  - prometheusrule.yaml
   - secret.yaml
 configMapGenerator:
   - name: grafana-dashboard-node-exporter-full
