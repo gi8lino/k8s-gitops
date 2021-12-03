@@ -32,7 +32,7 @@ In Cloudflare free-plan time range can be maximum 1440 minutes and go maxium 14 
 
 kubectl create job \
     --namespace=cloudflare \
-    --from=cronjob/cloudflare-cron manual-cron-one-day-back \
+    --from=cronjob/cloudflare-cron-periodic manual-cron-one-day-back \
     --dry-run=client \****
     -ojson | \
   jq ".spec.template.spec.containers[0].env += [{ \"name\": \"MINUTES\", value: \"1440\" }]" | \
@@ -47,11 +47,11 @@ for ((i=1;i<=14;i++)); do
   TODAY=$(date --date today +'%Y-%m-%d %H:%M:%S')
   MINUTES=$(( ${i} * 1440 ))
   end_date=$(date --date "${TODAY} ${MINUTES} minutes ago" +'%Y-%m-%dT%H:%M:%SZ')
-  job_name=manual-cloudflare-cron-$(date --date "${TODAY} ${MINUTES} minutes ago" +'%Y-%m-%d')
+  job_name=manual-cloudflare-cron-periodic-$(date --date "${TODAY} ${MINUTES} minutes ago" +'%Y-%m-%d')
 
   kubectl create job \
     --namespace=cloudflare \
-    --from=cronjob/cloudflare-cron ${job_name} \
+    --from=cronjob/cloudflare-cron-periodic ${job_name} \
     --dry-run=client \
     -ojson | \
   jq ".spec.template.spec.containers[0].env += [{ \"name\": \"END_DATE\", value: \"${end_date}\" }]" | \
