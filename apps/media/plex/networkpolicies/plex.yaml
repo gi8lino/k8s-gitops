@@ -42,6 +42,7 @@ spec:
         - matchName: plex.tv
         - matchPattern: "*.plex.tv"
         - matchName: image.tmdb.org
+        - matchName: me.plexapp.com
       toPorts:
         - ports:
             - port: "443"
