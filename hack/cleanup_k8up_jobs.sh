@@ -22,12 +22,11 @@ the pod will be deleted.
     exit 0
 }
 
-ALLNAMESPACES=""
 while [ $# -gt 0 ]; do
     key="${1}"
     case $key in
         -A|--all-namespaces)
-        ALLNAMESPACES="--all-namespaces"
+        ALLNAMESPACES="all-namespaces"
         shift
         ;;
         -h|--help)
@@ -42,11 +41,25 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-readarray -d '' pods < <(kubectl get pods ${ALLNAMESPACES} --field-selector=status.phase=Terminating --output=jsonpath='{range .items[?(.metadata.labels.k8upjob)]}{.metadata.namespace}{"|"}{.metadata.name} {end}')
+[ -n "${ALLNAMESPACES}" ] && \
+  readarray -d '' namespaces < <(kubectl get ns -ojsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}')
 
-for entry in ${pods[@]}; do
-  IFS='|' read -r namespace pod <<<"$entry"
+[ -z "${namespaces}" ] && \
+  readarray -d '' namespaces < <(kubectl config view --minify --output 'jsonpath={..namespace}')
 
-  printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl delete job --namespace "${namespace}" ${job_name})"
-  printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl patch pod ${pod} --namespace "${namespace}" --patch='{"metadata":{"finalizers":null}}')"
+for namespace in ${namespaces[@]}; do
+  readarray -d '' pods < <(kubectl get pods --ignore-not-found --no-headers --namespace ${namespace} | awk '$3=="Terminating" {print $1}')
+
+  [ -z "${pods[@]}" ] && \
+    continue
+
+  for pod in ${pods[*]}; do
+    job_name=$(kubectl get pod "${pod}" --namespace "${namespace}" -ojsonpath='{.metadata.labels.job-name}')
+
+    [ -z "${job_name}" ] && \
+      continue
+
+    printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl delete job --namespace "${namespace}" ${job_name})"
+    printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl patch pod ${pod} --namespace "${namespace}" --patch='{"metadata":{"finalizers":null}}')"
+  done
 done
