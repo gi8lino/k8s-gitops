@@ -41,6 +41,7 @@ spec:
     - toFQDNs:
         - matchName: plex.tv
         - matchPattern: "*.plex.tv"
+        - matchName: image.tmdb.org
       toPorts:
         - ports:
             - port: "443"
