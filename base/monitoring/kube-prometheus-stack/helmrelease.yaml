@@ -95,11 +95,6 @@ spec:
         pathType: Prefix
         paths:
           - /
-      persistence:
-        annotations:
-          k8up.io/backup: "true"
-        enabled: true
-        storageClassName: nvme
       plugins:
         - grafana-piechart-panel
         - grafana-worldmap-panel
