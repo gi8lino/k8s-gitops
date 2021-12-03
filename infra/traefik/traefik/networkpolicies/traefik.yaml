@@ -40,16 +40,16 @@ spec:
         - ${LAN_NETWORK_RANGE}
       toPorts:
         - ports:
-            - port: "8443" # regular ingress port
             - port: "2222" # to access load balancer (git@git.${BASE_DOMAIN}:path/to/repo.git)
             - port: "8000" # traefik http port (for redirect to 8443)
+            - port: "8443" # regular ingress port
     - fromEntities:
         - cluster
       toPorts:
         - ports:
-            - port: "8443" # regular ingress port
             - port: "2222" # to access load balancer (git@git.${BASE_DOMAIN}:path/to/repo.git)
             - port: "8000" # traefik http port (for redirect to 8443)
+            - port: "8443" # regular ingress port
   egress:
     - toEndpoints:
         - matchLabels:
