@@ -142,9 +142,11 @@ spec:
       extraArgs:
         - --collector.filesystem.ignored-mount-points=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
         - --collector.textfile.directory=/run/prometheus
-      configmaps:
+      extraHostVolumeMounts:
         - name: node-exporter-textfile-collector-scripts
+          hostPath: /run/prometheus
           mountPath: /run/prometheus
+          readOnly: true
   valuesFrom:
     - kind: Secret
       name: kube-prometheus-stack-helm-values
