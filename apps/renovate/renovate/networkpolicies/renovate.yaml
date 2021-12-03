@@ -34,12 +34,8 @@ spec:
       toPorts:
         - ports:
             - port: "6379"
-    - toEndpoints:
-        - matchLabels:
-            app.kubernetes.io/instance: traefik
-            app.kubernetes.io/name: traefik
-            io.kubernetes.pod.namespace: traefik
+    - toFQDNs:
+        - matchName: git.${BASE_DOMAIN}
       toPorts:
         - ports:
-            - port: "2222"  # to access load balancer (git@git.${BASE_DOMAIN}:path/to/repo.git)
-            - port: "8443"  # to access load balancer (https://git.${BASE_DOMAIN})
+            - port: "22"
