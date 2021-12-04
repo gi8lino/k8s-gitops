@@ -16,7 +16,7 @@ spec:
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
-            - port: "9292"
+            - port: "80"
     - fromEndpoints:
         - matchLabels:
             app: kustomize-controller
