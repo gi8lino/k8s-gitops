@@ -19,3 +19,9 @@ tasks:
     cmds:
       - ./hack/cleanup_k8up_jobs.sh
     silent: true
+
+  ca:
+    desc: Run cleanup_k8up_jobs.sh script
+    cmds:
+      - ./hack/cleanup_k8up_jobs.sh --all-namespaces
+    silent: true
