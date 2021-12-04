@@ -11,4 +11,3 @@ resources:
   - webhook
   - cluster-secrets.yaml
   - cluster-settings.yaml
-  - github-token-secret.yaml
