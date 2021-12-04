@@ -64,7 +64,7 @@ spec:
             - port: "6443"  # kube api
     - toFQDNs:
         - matchName: hooks.slack.com
-        - matchPattern: "*.github.com"
+        - matchName: api.github.com
       toPorts:
         - ports:
             - port: "443"
