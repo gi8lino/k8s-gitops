@@ -28,3 +28,16 @@ spec:
   resources:
     requests:
       storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nextcloud-backup
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: backup
+  resources:
+    requests:
+      storage: 10Gi

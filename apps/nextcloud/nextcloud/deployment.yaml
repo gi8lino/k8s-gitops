@@ -138,6 +138,8 @@ spec:
               mountPath: /var/www/html
             - name: user-data
               mountPath: /var/www/html/data
+            - name: backup
+              mountPath: /backup
             - mountPath: /usr/local/etc/php-fpm.d/www.conf
               name: fpm-config
               subPath: www.conf
@@ -150,6 +152,9 @@ spec:
         - name: user-data
           persistentVolumeClaim:
             claimName: nextcloud-user-data
+        - name: backup
+          persistentVolumeClaim:
+            claimName: nextcloud-backup
         - name: nginx-config
           configMap:
             name: nextcloud-nginx-config
