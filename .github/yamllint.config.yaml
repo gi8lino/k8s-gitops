@@ -2,6 +2,7 @@
 ignore: |
   secret.yaml
   cluster-secrets.yaml
+  github-token-secret.yaml
   apps/kubernetes-dashboard/middleware.yaml
   README.md
 extends: default
