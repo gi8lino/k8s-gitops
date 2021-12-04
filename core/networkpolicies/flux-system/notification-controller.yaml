@@ -11,6 +11,14 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "80"
+    - fromEndpoints:
+        - matchLabels:
             app: kustomize-controller
             io.kubernetes.pod.namespace: flux-system
       toPorts:
@@ -56,6 +64,7 @@ spec:
             - port: "6443"  # kube api
     - toFQDNs:
         - matchName: hooks.slack.com
+        - matchPattern: "*.github.com"
       toPorts:
         - ports:
             - port: "443"

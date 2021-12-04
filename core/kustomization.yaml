@@ -8,5 +8,7 @@ resources:
   - namespaces
   - networkpolicies
   - notifications
+  - webhook
   - cluster-secrets.yaml
   - cluster-settings.yaml
+  - github-token-secret.yaml
