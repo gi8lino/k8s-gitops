@@ -16,4 +16,4 @@ spec:
             namespace: flux-system
       toPorts:
         - ports:
-            - port: "80"
+            - port: "9292"
