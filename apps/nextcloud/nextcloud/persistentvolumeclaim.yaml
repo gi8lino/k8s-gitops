@@ -33,7 +33,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nextcloud-backup
-  namespace: media
+  namespace: nextcloud
 spec:
   accessModes:
     - ReadWriteOnce
