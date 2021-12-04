@@ -139,7 +139,7 @@ spec:
             - name: user-data
               mountPath: /var/www/html/data
             - name: backup
-              mountPath: /backup
+              mountPath: /nfs
             - mountPath: /usr/local/etc/php-fpm.d/www.conf
               name: fpm-config
               subPath: www.conf
