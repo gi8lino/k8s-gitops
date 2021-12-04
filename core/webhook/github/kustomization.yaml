@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ingress.yaml
   - receiver.yaml
-  - secrets.yaml
+  - secret.yaml
