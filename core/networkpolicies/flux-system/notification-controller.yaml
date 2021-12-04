@@ -16,22 +16,14 @@ spec:
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
-            - port: "80"
+            - port: "9292"
     - fromEndpoints:
         - matchLabels:
             app: kustomize-controller
             io.kubernetes.pod.namespace: flux-system
-      toPorts:
-        - ports:
-            - port: "9090"
-    - fromEndpoints:
         - matchLabels:
             app: source-controller
             io.kubernetes.pod.namespace: flux-system
-      toPorts:
-        - ports:
-            - port: "9090"
-    - fromEndpoints:
         - matchLabels:
             app: helm-controller
             io.kubernetes.pod.namespace: flux-system
