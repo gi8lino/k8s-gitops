@@ -1,0 +1,47 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: github
+  namespace: flux-system
+spec:
+  providerRef:
+    name: github
+  eventSeverity: info
+  eventSources:
+    - kind: Kustomization
+      name: "*"
+    - kind: HelmRelease
+      namespace: cert-manager
+      name: "*"
+    - kind: HelmRelease
+      namespace: gitlab
+      name: "*"
+    - kind: HelmRelease
+      namespace: k8up
+      name: "*"
+    - kind: HelmRelease
+      namespace: kubernetes-dashboard
+      name: "*"
+    - kind: HelmRelease
+      namespace: local-path-provisioner
+      name: "*"
+    - kind: HelmRelease
+      namespace: metallb
+      name: "*"
+    - kind: HelmRelease
+      namespace: minio
+      name: "*"
+    - kind: HelmRelease
+      namespace: monitoring
+      name: "*"
+    - kind: HelmRelease
+      namespace: nfs-subdir-external-provisioner
+      name: "*"
+    - kind: HelmRelease
+      namespace: reloader
+      name: "*"
+    - kind: HelmRelease
+      namespace: traefik
+      name: "*"
+  suspend: false
