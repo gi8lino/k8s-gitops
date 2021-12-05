@@ -15,10 +15,6 @@ spec:
             app.kubernetes.io/instance: traefik
             app.kubernetes.io/name: traefik
             io.kubernetes.pod.namespace: traefik
-      toPorts:
-        - ports:
-            - port: "80"
-    - fromEndpoints:
         - matchLabels:
             app: nextcloud
             component: cronjob
