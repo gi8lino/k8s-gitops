@@ -39,12 +39,12 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
-        - matchName: plex.tv
-        - matchPattern: "*.plex.tv"
-        - matchName: metadata.provider.plex.tv
+        - matchName: assets.fanart.tv
         - matchName: image.tmdb.org
         - matchName: me.plexapp.com
-        - matchName: assets.fanart.tv
+        - matchName: metadata.provider.plex.tv
+        - matchName: plex.tv
+        - matchPattern: "*.plex.tv"
       toPorts:
         - ports:
             - port: "443"
