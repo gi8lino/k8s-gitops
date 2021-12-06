@@ -44,6 +44,7 @@ spec:
         - matchName: metadata.provider.plex.tv
         - matchName: image.tmdb.org
         - matchName: me.plexapp.com
+        - matchName: assets.fanart.tv
       toPorts:
         - ports:
             - port: "443"
