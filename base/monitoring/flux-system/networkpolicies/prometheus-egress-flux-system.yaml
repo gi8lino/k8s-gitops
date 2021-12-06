@@ -1,0 +1,28 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-flux-system
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+      app.kubernetes.io/name: prometheus
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: helm-controller
+            io.kubernetes.pod.namespace: flux-system
+        - matchLabels:
+            app: notification-controller
+            io.kubernetes.pod.namespace: flux-system
+        - matchLabels:
+            app: source-controller
+            io.kubernetes.pod.namespace: flux-system
+        - matchLabels:
+            app: kustomize-controller
+            io.kubernetes.pod.namespace: flux-system
+      toPorts:
+        - ports:
+            - port: "8080"
