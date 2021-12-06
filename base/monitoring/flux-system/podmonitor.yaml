@@ -4,6 +4,8 @@ kind: PodMonitor
 metadata:
   name: flux-system
   namespace: flux-system
+  labels:
+    app.kubernetes.io/part-of: flux
 spec:
   namespaceSelector:
     matchNames:
@@ -11,6 +13,11 @@ spec:
   selector:
     matchExpressions:
       - key: app
-        operator: Exists
+        operator: In
+        values:
+          - helm-controller
+          - source-controller
+          - kustomize-controller
+          - notification-controller
   podMetricsEndpoints:
-    - port: http-prom
+    - targetPort: http-prom
