@@ -13,11 +13,6 @@ spec:
   selector:
     matchExpressions:
       - key: app
-        operator: In
-        values:
-          - helm-controller
-          - source-controller
-          - kustomize-controller
-          - notification-controller
+        operator: Exists
   podMetricsEndpoints:
     - targetPort: http-prom
