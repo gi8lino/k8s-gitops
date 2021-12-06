@@ -14,4 +14,3 @@ spec:
         operator: Exists
   podMetricsEndpoints:
     - port: http-prom
-    - port: healthz
