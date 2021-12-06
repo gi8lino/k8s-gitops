@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: nzbhydra2
-          image: lscr.io/linuxserver/nzbhydra2:v3.18.1-ls38
+          image: lscr.io/linuxserver/nzbhydra2:v3.18.2-ls38
           env:
             - name: PGID
               value: "2000"
