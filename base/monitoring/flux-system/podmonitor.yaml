@@ -13,5 +13,5 @@ spec:
       - key: app
         operator: Exists
   podMetricsEndpoints:
-    - targetPort: http-prom
-    - targetPort: healthz
+    - port: http-prom
+    - port: healthz
