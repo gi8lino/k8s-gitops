@@ -10,23 +10,10 @@ configMapGenerator:
   - name: grafana-dashboard-pihole-metrics
     namespace: monitoring
     files:
-      - dashboards/pihole-metrics.json
+      - grafana-dashboard-pihole-metrics=https://raw.githubusercontent.com/eko/pihole-exporter/master/grafana/dashboard.json
 generatorOptions:
   disableNameSuffixHash: true
-patches:
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-pihole-metrics
-    patch: |-
-      - op: add
-        path: "/metadata/labels"
-        value:
-          grafana_dashboard: "1"
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-pihole-metrics
-    patch: |-
-      - op: add
-        path: "/metadata/annotations"
-        value:
-          kustomize.toolkit.fluxcd.io/substitute: disabled
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
+  labels:
+    grafana_dashboard: "1"
