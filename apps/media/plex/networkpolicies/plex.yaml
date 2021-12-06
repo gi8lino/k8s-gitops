@@ -41,6 +41,7 @@ spec:
     - toFQDNs:
         - matchName: plex.tv
         - matchPattern: "*.plex.tv"
+        - matchName: metadata.provider.plex.tv
         - matchName: image.tmdb.org
         - matchName: me.plexapp.com
       toPorts:
