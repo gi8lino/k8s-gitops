@@ -9,43 +9,14 @@ configMapGenerator:
   - name: grafana-dashboard-flux-cluster
     namespace: flux-system
     files:
-      - dashboards/cluster.json
+      - flux-cluster-dashboard=https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
   - name: grafana-dashboard-flux-control-plane
     namespace: flux-system
     files:
-      - dashboards/controle-plane.json
+      - flux-control-plane-dashboard=https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
 generatorOptions:
   disableNameSuffixHash: true
-patches:
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-flux-cluster
-    patch: |-
-      - op: add
-        path: "/metadata/labels"
-        value:
-          grafana_dashboard: "1"
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-flux-cluster
-    patch: |-
-      - op: add
-        path: "/metadata/annotations"
-        value:
-          kustomize.toolkit.fluxcd.io/substitute: disabled
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-flux-control-plane
-    patch: |-
-      - op: add
-        path: "/metadata/labels"
-        value:
-          grafana_dashboard: "1"
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-flux-control-plane
-    patch: |-
-      - op: add
-        path: "/metadata/annotations"
-        value:
-          kustomize.toolkit.fluxcd.io/substitute: disabled
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
+  labels:
+    grafana_dashboard: "true"
