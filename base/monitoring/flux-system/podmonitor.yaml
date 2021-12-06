@@ -18,4 +18,4 @@ spec:
           - kustomize-controller
           - notification-controller
   podMetricsEndpoints:
-    - port: http-prom
+    - port: "8080"
