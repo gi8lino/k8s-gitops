@@ -10,6 +10,7 @@ resources:
   - secret.yaml
 configMapGenerator:
   - name: cert-manager-dashboard
+    namespace: cert-manager
     files:
       - cert-manager-dashboard.json=https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
 generatorOptions:
