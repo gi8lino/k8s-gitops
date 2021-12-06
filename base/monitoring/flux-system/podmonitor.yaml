@@ -9,6 +9,13 @@ spec:
     matchNames:
       - flux-system
   selector:
-    matchLabels: {}
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - helm-controller
+          - source-controller
+          - kustomize-controller
+          - notification-controller
   podMetricsEndpoints:
     - targetPort: http-prom
