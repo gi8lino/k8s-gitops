@@ -37,7 +37,7 @@ spec:
               - matchPattern: "*"
     - toFQDNs:
         - matchPattern: "*"
-        - matchName: hooks.slack.com
+        #- matchName: hooks.slack.com
       toPorts:
         - ports:
             - port: "443"
