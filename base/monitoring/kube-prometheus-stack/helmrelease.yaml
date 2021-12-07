@@ -49,7 +49,6 @@ spec:
       rules:
         etcd: false
         kubeScheduler: false
-        kubernetesResources: false
     grafana:
       envFromSecret: kube-prometheus-stack-grafana-settings
       adminPassword: $__env{GRAFANA_ADMIN_PASSWORD}
