@@ -18,7 +18,9 @@ spec:
       toPorts:
         - ports:
             - port: "9000"  # minio-api (for terraform states)
+              protocol: TCP
             - port: "9001"  # minio-console
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app: gitlab-backup-mirror
@@ -51,6 +53,7 @@ spec:
       toPorts:
         - ports:
             - port: "9000"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -68,3 +71,4 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP

@@ -18,6 +18,7 @@ spec:
       toPorts:
         - ports:
             - port: "3000"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -40,13 +41,16 @@ spec:
       toPorts:
         - ports:
             - port: "5432"
+              protocol: TCP
     - toFQDNs:
         - matchName: ${SMTP_DOMAIN}
       toPorts:
         - ports:
             - port: "587"
+              protocol: TCP
     - toFQDNs:
         - matchName: sso.${BASE_DOMAIN}
       toPorts:
         - ports:
             - port: "443"  # oidc: to access load balancer (https://sso.${BASE_DOMAIN})
+              protocol: TCP

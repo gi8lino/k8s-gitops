@@ -17,3 +17,4 @@ spec:
       toPorts:
         - ports:
             - port: "8443"
+              protocol: TCP

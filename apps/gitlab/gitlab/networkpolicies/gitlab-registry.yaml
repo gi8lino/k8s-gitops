@@ -18,6 +18,7 @@ spec:
       toPorts:
         - ports:
             - port: "5001"
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app: webservice
@@ -30,3 +31,4 @@ spec:
       toPorts:
         - ports:
             - port: "5000"
+              protocol: TCP

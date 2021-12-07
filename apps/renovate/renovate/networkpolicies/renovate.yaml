@@ -26,7 +26,9 @@ spec:
       toPorts:
         - ports:
             - port: "80"
+              protocol: TCP
             - port: "443"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: renovate-redis
@@ -34,8 +36,10 @@ spec:
       toPorts:
         - ports:
             - port: "6379"
+              protocol: TCP
     - toFQDNs:
         - matchName: git.${BASE_DOMAIN}
       toPorts:
         - ports:
             - port: "22"
+              protocol: TCP

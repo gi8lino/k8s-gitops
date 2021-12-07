@@ -17,6 +17,7 @@ spec:
       toPorts:
         - ports:
             - port: "8989"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -38,11 +39,13 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP
     - toFQDNs:
         - matchName: thexem.info
       toPorts:
         - ports:
             - port: "80"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: nzbhydra2
@@ -50,6 +53,7 @@ spec:
       toPorts:
         - ports:
             - port: "5076"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: plex
@@ -57,6 +61,7 @@ spec:
       toPorts:
         - ports:
             - port: "32400"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: sabnzbd
@@ -64,3 +69,4 @@ spec:
       toPorts:
         - ports:
             - port: "8080"
+              protocol: TCP

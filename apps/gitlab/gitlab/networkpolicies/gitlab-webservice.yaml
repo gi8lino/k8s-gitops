@@ -18,7 +18,9 @@ spec:
       toPorts:
         - ports:
             - port: "8080"
+              protocol: TCP
             - port: "8181"
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app: gitlab-shell
@@ -31,6 +33,7 @@ spec:
       toPorts:
         - ports:
             - port: "8181"
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
@@ -39,6 +42,7 @@ spec:
       toPorts:
         - ports:
             - port: "80"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -61,6 +65,7 @@ spec:
       toPorts:
         - ports:
             - port: "9000"
+              protocol: TCP
     - toServices:
         - k8sServiceSelector:
             selector:
@@ -71,6 +76,7 @@ spec:
       toPorts:
         - ports:
             - port: "5432"
+              protocol: TCP
     - toServices:
         - k8sServiceSelector:
             selector:
@@ -81,6 +87,7 @@ spec:
       toPorts:
         - ports:
             - port: "6379"
+              protocol: TCP
     - toServices:
         - k8sServiceSelector:
             selector:
@@ -91,6 +98,7 @@ spec:
       toPorts:
         - ports:
             - port: "8075"
+              protocol: TCP
     - toServices:
         - k8sServiceSelector:
             selector:
@@ -101,3 +109,4 @@ spec:
       toPorts:
         - ports:
             - port: "5000"
+              protocol: TCP

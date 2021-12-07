@@ -16,6 +16,7 @@ spec:
       toPorts:
         - ports:
             - port: "8080"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -33,6 +34,7 @@ spec:
       toPorts:
         - ports:
             - port: "6443"  # kube api
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: source-controller
@@ -40,8 +42,10 @@ spec:
       toPorts:
         - ports:
             - port: "9090"
+              protocol: TCP
     - toEntities:
         - world
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP

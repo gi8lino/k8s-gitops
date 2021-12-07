@@ -29,6 +29,7 @@ spec:
       toPorts:
         - ports:
             - port: "9000"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: minio
@@ -36,6 +37,7 @@ spec:
       toPorts:
         - ports:
             - port: "9000"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: prometheus-pushgateway
@@ -43,3 +45,4 @@ spec:
       toPorts:
         - ports:
             - port: "9091"
+              protocol: TCP

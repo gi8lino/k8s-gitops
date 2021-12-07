@@ -17,6 +17,7 @@ spec:
       toPorts:
         - ports:
             - port: "9292"
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app: kustomize-controller
@@ -30,6 +31,7 @@ spec:
       toPorts:
         - ports:
             - port: "9090"
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
@@ -37,6 +39,7 @@ spec:
       toPorts:
         - ports:
             - port: "8080"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -60,3 +63,4 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP

@@ -17,6 +17,7 @@ spec:
       toPorts:
         - ports:
             - port: "8081"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -35,8 +36,10 @@ spec:
       toPorts:
         - ports:
             - port: "4245"
+              protocol: TCP
     - toEntities:
         - host
       toPorts:
         - ports:
-            - port: "6443"
+            - port: "6443"  # kube-api
+              protocol: TCP

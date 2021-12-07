@@ -18,6 +18,7 @@ spec:
       toPorts:
         - ports:
             - port: "9115"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -38,3 +39,4 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP
