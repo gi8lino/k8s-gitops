@@ -19,7 +19,7 @@ jobs:
           chmod +x /tmp/yq
           readarray -d '' nets < <(jq -r '.api[]' <<< $(curl -sS https://api.github.com/meta) | sort)
           nets=$(printf '"%s", ' ${nets[@]})  # add quotes and commas for yq
-          /tmp/yq eval --inplace ".spec.egress[-1].fromCIDR = [ ${nets%,*} ]" core/flux-system/notification-controller.yaml
+          /tmp/yq eval --inplace ".spec.egress[-1].fromCIDR = [ ${nets%,*} ]" core/networkpolicies/flux-system/notification-controller.yaml
       - name: Create pull request for api.github.com network range update
         uses: peter-evans/create-pull-request@v3
         with:
