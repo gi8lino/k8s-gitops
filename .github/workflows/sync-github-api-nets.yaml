@@ -4,7 +4,7 @@ name: Sync api.github.com network ranges
 on: # yamllint disable-line rule:truthy
   workflow_dispatch:
   schedule:
-    - cron: "* */15 * * *"
+    - cron: "* */1 * * *"
 
 jobs:
   sync:
