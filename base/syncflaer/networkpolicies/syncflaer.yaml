@@ -29,7 +29,7 @@ spec:
             - port: "9000"  # traefik api
     - toFQDNs:
         - matchPattern: "*"
-        - matchPattern: "*.cloudflare.com"
+        - matchPattern: api.cloudflare.com
         - matchName: api.ipify.org
         - matchName: checkip.amazonaws.com
         - matchName: hooks.slack.com
