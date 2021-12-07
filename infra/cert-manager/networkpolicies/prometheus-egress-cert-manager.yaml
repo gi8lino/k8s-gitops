@@ -17,3 +17,4 @@ spec:
       toPorts:
         - ports:
             - port: "9402"
+              protocol: TCP

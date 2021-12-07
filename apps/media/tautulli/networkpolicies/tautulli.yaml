@@ -17,6 +17,7 @@ spec:
       toPorts:
         - ports:
             - port: "8181"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -36,8 +37,10 @@ spec:
       toPorts:
         - ports:
             - port: "32400"
+              protocol: TCP
     - toEntities:
         - world
       toPorts:
         - ports:
             - port: "32400"
+              protocol: TCP

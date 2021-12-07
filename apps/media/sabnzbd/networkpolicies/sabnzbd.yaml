@@ -17,6 +17,7 @@ spec:
       toPorts:
         - ports:
             - port: "8080"
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app: sonarr
@@ -24,6 +25,7 @@ spec:
       toPorts:
         - ports:
             - port: "8080"
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app: radarr
@@ -31,6 +33,7 @@ spec:
       toPorts:
         - ports:
             - port: "8080"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -48,12 +51,14 @@ spec:
       toPorts:
         - ports:
             - port: "563"
+              protocol: TCP
     - toFQDNs:  # curl/jq
         - matchName: archive.ubuntu.com
         - matchName: ppa.launchpad.net
       toPorts:
         - ports:
             - port: "80"
+              protocol: TCP
     - toFQDNs:
         - matchName: api.github.com
         - matchName: auth.docker.io
@@ -67,3 +72,4 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP

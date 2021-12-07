@@ -15,9 +15,11 @@ spec:
       toPorts:
         - ports:
             - port: "4245"
+              protocol: TCP
   egress:
     - toEntities:
         - host
       toPorts:
         - ports:
             - port: "4244"
+              protocol: TCP

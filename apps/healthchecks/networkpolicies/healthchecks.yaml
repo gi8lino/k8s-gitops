@@ -17,6 +17,7 @@ spec:
       toPorts:
         - ports:
             - port: "8000"
+              protocol: TCP
     - fromEndpoints:  # allow push from alertmanager directly to healthchecks (watchdog)
         - matchLabels:
             app.kubernetes.io/name: alertmanager
@@ -25,6 +26,7 @@ spec:
       toPorts:
         - ports:
             - port: "8000"
+              protocol: TCP
     - fromEndpoints:  # allow push from cloudflare-cron directly to healthchecks
         - matchLabels:
             app: elasticsearch
@@ -33,6 +35,7 @@ spec:
       toPorts:
         - ports:
             - port: "8000"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -50,6 +53,7 @@ spec:
       toPorts:
         - ports:
             - port: "80"
+              protocol: TCP
     - toFQDNs:
         - matchName: ghcr.io
         - matchName: github.com # docker-mods
@@ -59,8 +63,10 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP
     - toFQDNs:
         - matchName: ${SMTP_DOMAIN}
       toPorts:
         - ports:
             - port: "587"
+              protocol: TCP

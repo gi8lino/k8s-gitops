@@ -17,3 +17,4 @@ spec:
       toPorts:
         - ports:
             - port: "9000"  # traefik api
+              protocol: TCP

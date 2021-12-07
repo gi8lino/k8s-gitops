@@ -26,6 +26,7 @@ spec:
       toPorts:
         - ports:
             - port: "32400"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -48,3 +49,4 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP

@@ -29,6 +29,7 @@ spec:
       toPorts:
         - ports:
             - port: "8443"
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app: forward-auth
@@ -36,20 +37,27 @@ spec:
       toPorts:
         - ports:
             - port: "8443"
+              protocol: TCP
     - fromCIDR:
         - ${LAN_NETWORK_RANGE}
       toPorts:
         - ports:
             - port: "2222" # to access load balancer (git@git.${BASE_DOMAIN}:path/to/repo.git)
+              protocol: TCP
             - port: "8000" # traefik http port (for redirect to 8443)
+              protocol: TCP
             - port: "8443" # regular ingress port
+              protocol: TCP
     - fromEntities:
         - cluster
       toPorts:
         - ports:
             - port: "2222" # to access load balancer (git@git.${BASE_DOMAIN}:path/to/repo.git)
+              protocol: TCP
             - port: "8000" # traefik http port (for redirect to 8443)
+              protocol: TCP
             - port: "8443" # regular ingress port
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -67,3 +75,4 @@ spec:
       toPorts:
         - ports:
             - port: "6443" # kube api
+              protocol: TCP

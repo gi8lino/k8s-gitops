@@ -19,3 +19,4 @@ spec:
       toPorts:
         - ports:
             - port: "9091"
+              protocol: TCP

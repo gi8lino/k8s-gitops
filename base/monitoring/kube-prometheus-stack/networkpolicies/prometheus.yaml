@@ -20,14 +20,15 @@ spec:
       toPorts:
         - ports:
             - port: "9090"
+              protocol: TCP
   egress:
     - toEntities:
         - host
       toPorts:
         - ports:
-            - port: "6443"
-            - port: "9100"
-            - port: "10250"
+            - port: "6443"   # kube-api
+            - port: "9100"   # prometheus node exporter
+            - port: "10250"  # kubelet
     - toServices:
         - k8sServiceSelector:
             selector:
@@ -37,6 +38,7 @@ spec:
       toPorts:
         - ports:
             - port: "9153"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: kube-prometheus-stack-alertmanager
@@ -44,6 +46,7 @@ spec:
       toPorts:
         - ports:
             - port: "9093"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: kube-prometheus-stack-kube-state-metrics
@@ -51,13 +54,15 @@ spec:
       toPorts:
         - ports:
             - port: "8080"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: kube-prometheus-stack-operator
             namespace: monitoring
       toPorts:
         - ports:
-            - port: "10250"
+            - port: "10250"  # kubelet
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: kube-prometheus-stack-grafana
@@ -65,3 +70,4 @@ spec:
       toPorts:
         - ports:
             - port: "3000"
+              protocol: TCP

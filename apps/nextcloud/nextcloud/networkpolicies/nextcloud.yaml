@@ -22,6 +22,7 @@ spec:
       toPorts:
         - ports:
             - port: "80"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -41,6 +42,7 @@ spec:
       toPorts:
         - ports:
             - port: "5432"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: nextcloud-redis
@@ -48,6 +50,7 @@ spec:
       toPorts:
         - ports:
             - port: "6379"
+              protocol: TCP
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: traefik
@@ -56,14 +59,18 @@ spec:
       toPorts:
         - ports:
             - port: "8443"  # to access load balancer (https://sso.${BASE_DOMAIN})
+              protocol: TCP
     - toEntities:
         - world
       toPorts:
         - ports:
             - port: "80"
+              protocol: TCP
             - port: "443"
+              protocol: TCP
     - toFQDNs:
         - matchName: ${SMTP_DOMAIN}
       toPorts:
         - ports:
             - port: "465"
+              protocol: TCP

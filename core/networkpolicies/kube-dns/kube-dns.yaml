@@ -25,12 +25,14 @@ spec:
       toPorts:
         - ports:
             - port: "9153"
+              protocol: TCP
   egress:
     - toEntities:
         - host
       toPorts:
         - ports:
             - port: "6443"  # kube api
+              protocol: TCP
     - toCIDRSet:
         - cidr: ${DNS_IP}/32
       toPorts:

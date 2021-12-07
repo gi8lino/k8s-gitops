@@ -17,6 +17,7 @@ spec:
       toPorts:
         - ports:
             - port: "9200"
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack
@@ -25,6 +26,7 @@ spec:
       toPorts:
         - ports:
             - port: "9200"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -44,6 +46,7 @@ spec:
       toPorts:
         - ports:
             - port: "9200"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: healthchecks
@@ -51,8 +54,10 @@ spec:
       toPorts:
         - ports:
             - port: "8000"
+              protocol: TCP
     - toFQDNs:
         - matchName: api.cloudflare.com
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP

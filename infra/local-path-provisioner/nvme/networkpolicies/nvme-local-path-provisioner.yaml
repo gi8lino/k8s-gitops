@@ -15,3 +15,4 @@ spec:
       toPorts:
         - ports:
             - port: "6443"  # kube api
+              protocol: TCP

@@ -21,6 +21,7 @@ spec:
       toPorts:
         - ports:
             - port: "3000"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
@@ -37,7 +38,8 @@ spec:
         - host
       toPorts:
         - ports:
-            - port: "6443"
+            - port: "6443"  # kube-api
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: kube-prometheus-stack-prometheus
@@ -45,6 +47,7 @@ spec:
       toPorts:
         - ports:
             - port: "9090"
+              protocol: TCP
     - toFQDNs:
         - matchName: grafana.com             # grafana dashboards
         - matchName: grafana.net             # grafana dashboards
@@ -54,3 +57,4 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP

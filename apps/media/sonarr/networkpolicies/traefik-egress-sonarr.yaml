@@ -16,3 +16,4 @@ spec:
       toPorts:
         - ports:
             - port: "8989"
+              protocol: TCP

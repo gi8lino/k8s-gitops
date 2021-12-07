@@ -28,8 +28,10 @@ spec:
       toPorts:
         - ports:
             - port: "9000"
+              protocol: TCP
     - toEntities:
         - host
       toPorts:
         - ports:
             - port: "6443"  # kube-api
+              protocol: TCP

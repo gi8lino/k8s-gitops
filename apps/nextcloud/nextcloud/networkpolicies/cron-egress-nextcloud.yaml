@@ -31,3 +31,4 @@ spec:
       toPorts:
         - ports:
             - port: "80"
+              protocol: TCP

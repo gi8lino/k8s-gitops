@@ -31,6 +31,7 @@ spec:
       toPorts:
         - ports:
             - port: "9000"
+              protocol: TCP
     - toServices:
         - k8sServiceSelector:
             selector:
@@ -41,6 +42,7 @@ spec:
       toPorts:
         - ports:
             - port: "5432"
+              protocol: TCP
     - toServices:
         - k8sServiceSelector:
             selector:
@@ -51,6 +53,7 @@ spec:
       toPorts:
         - ports:
             - port: "6379"
+              protocol: TCP
     - toServices:
         - k8sServiceSelector:
             selector:
@@ -61,8 +64,10 @@ spec:
       toPorts:
         - ports:
             - port: "8075"
+              protocol: TCP
     - toFQDNs:
         - matchName: gitlab-minio.local.${BASE_DOMAIN}
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP
