@@ -36,6 +36,7 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
+        - matchPattern: "*"
         - matchName: hooks.slack.com
       toPorts:
         - ports:
