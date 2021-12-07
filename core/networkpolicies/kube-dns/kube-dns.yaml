@@ -33,8 +33,8 @@ spec:
         - ports:
             - port: "6443"  # kube api
               protocol: TCP
-    - toCIDRSet:
-        - cidr: ${DNS_IP}/32
+    - toCIDR:
+        - ${DNS_IP}/32
       toPorts:
         - ports:
             - port: "53"

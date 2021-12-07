@@ -10,8 +10,8 @@ spec:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus
       app.kubernetes.io/name: prometheus
   egress:
-    - toCIDRSet:
-        - cidr: 192.168.0.3/32
+    - toCIDR:
+        - 192.168.0.3/32
       toPorts:
         - ports:
             - port: "9100"  # prometheus node exporter
