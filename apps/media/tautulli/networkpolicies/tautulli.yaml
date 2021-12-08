@@ -38,9 +38,9 @@ spec:
         - ports:
             - port: "32400"
               protocol: TCP
-    - toEntities:
-        - world
+    - toFQDNs:
+        - matchName: plex.tv
       toPorts:
         - ports:
-            - port: "32400"
+            - port: "443"
               protocol: TCP
