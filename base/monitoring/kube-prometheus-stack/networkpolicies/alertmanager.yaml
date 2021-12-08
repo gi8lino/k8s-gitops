@@ -36,8 +36,8 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toFQDNs:
-        - matchName: hooks.slack.com
+    - toEntities:
+        - world
       toPorts:
         - ports:
             - port: "443"
