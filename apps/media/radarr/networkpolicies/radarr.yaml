@@ -37,6 +37,7 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: nzbhydra2
