@@ -39,7 +39,6 @@ spec:
       toPorts:
         - ports:
             - port: "443"
-              protocol: TCP
     - toFQDNs:
         - matchName: thexem.info
       toPorts:

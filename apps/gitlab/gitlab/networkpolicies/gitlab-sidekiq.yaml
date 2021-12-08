@@ -91,7 +91,6 @@ spec:
       toPorts:
         - ports:
             - port: "443"
-              protocol: TCP
     - toFQDNs:
         - matchName: ${SMTP_DOMAIN}
       toPorts:
