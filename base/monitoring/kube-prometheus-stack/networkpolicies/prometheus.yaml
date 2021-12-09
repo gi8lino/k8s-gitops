@@ -27,9 +27,10 @@ spec:
       toPorts:
         - ports:
             - port: "6443"   # kube-api
-            - port: "9100"   # prometheus node exporter
-            - port: "10250"  # kubelet
             - port: "6942"   # cilium metrics
+            - port: "9100"   # prometheus node exporter
+            - port: "9091"   # hubble metrics
+            - port: "10250"  # kubelet
     - toServices:
         - k8sServiceSelector:
             selector:
