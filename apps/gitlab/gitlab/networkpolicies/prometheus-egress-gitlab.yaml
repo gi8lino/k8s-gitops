@@ -1,0 +1,51 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-gitlab
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+      app.kubernetes.io/name: prometheus
+  egress:
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: gitaly
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+            - port: "9236"
+              protocol: TCP
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: sidekiq
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+            - port: "3807"
+              protocol: TCP
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: webservice
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+            - port: "8080"
+              protocol: TCP
