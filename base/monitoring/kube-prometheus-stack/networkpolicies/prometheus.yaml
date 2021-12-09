@@ -29,6 +29,7 @@ spec:
             - port: "6443"   # kube-api
             - port: "9100"   # prometheus node exporter
             - port: "10250"  # kubelet
+            - port: "6942"   # cilium metrics
     - toServices:
         - k8sServiceSelector:
             selector:
