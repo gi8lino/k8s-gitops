@@ -19,6 +19,8 @@ spec:
         - ports:
             - port: "80"
               protocol: TCP
+            - port: "3807"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
