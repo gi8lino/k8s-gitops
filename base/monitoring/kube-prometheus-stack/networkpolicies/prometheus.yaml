@@ -30,6 +30,7 @@ spec:
             - port: "6942"   # cilium metrics
             - port: "9100"   # prometheus node exporter
             - port: "9091"   # hubble metrics
+            - port: "9095"   # cilium-agent
             - port: "10250"  # kubelet
     - toServices:
         - k8sServiceSelector:
