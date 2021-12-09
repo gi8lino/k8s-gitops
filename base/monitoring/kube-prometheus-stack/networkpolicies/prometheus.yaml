@@ -26,6 +26,7 @@ spec:
         - host
       toPorts:
         - ports:
+            - port: "80"
             - port: "6443"   # kube-api
             - port: "6942"   # cilium metrics
             - port: "9100"   # prometheus node exporter
@@ -73,4 +74,12 @@ spec:
       toPorts:
         - ports:
             - port: "3000"
+              protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: gitlab-webservice-default
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "8080"
               protocol: TCP
