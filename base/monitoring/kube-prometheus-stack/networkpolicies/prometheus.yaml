@@ -23,27 +23,12 @@ spec:
             - port: "9090"
               protocol: TCP
   egress:
-    - toEndpoints:
-        - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
-            k8s-app: kube-dns
-      toPorts:
-        - ports:
-            - port: "53"
-              protocol: UDP
-          rules:
-            dns:
-              - matchPattern: "*"
     - toEntities:
         - host
       toPorts:
         - ports:
-            - port: "80"
             - port: "6443"   # kube-api
-            - port: "6942"   # cilium metrics
             - port: "9100"   # prometheus node exporter
-            - port: "9091"   # hubble metrics
-            - port: "9095"   # cilium-agent
             - port: "10250"  # kubelet
     - toServices:
         - k8sServiceSelector:
@@ -86,12 +71,4 @@ spec:
       toPorts:
         - ports:
             - port: "3000"
-              protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: gitlab-webservice-default
-            namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "8080"
               protocol: TCP
