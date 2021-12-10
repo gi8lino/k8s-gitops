@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - cadvisor-exporter
   - node-exporter
+  - pihole-exporter
