@@ -11,7 +11,7 @@ spec:
       app.kubernetes.io/name: prometheus
   egress:
     - toCIDR:
-        - 192.168.0.4/32
+        - 10.0.0.4/32
       toPorts:
         - ports:
             - port: "8080"
