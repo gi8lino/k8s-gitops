@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: prometheus-egress-pihole-exporter
+  name: prometheus-egress-pihole-node-exporter
   namespace: monitoring
 spec:
   endpointSelector:
@@ -11,8 +11,8 @@ spec:
       app.kubernetes.io/name: prometheus
   egress:
     - toCIDR:
-        - 10.0.0.4/32
+        - 10.0.0.3/32
       toPorts:
         - ports:
-            - port: "9617"
+            - port: "9100"  # prometheus node exporter
               protocol: TCP
