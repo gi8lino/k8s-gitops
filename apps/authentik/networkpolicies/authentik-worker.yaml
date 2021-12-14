@@ -21,6 +21,12 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443"  # kube-api
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: authentik-postgresql
