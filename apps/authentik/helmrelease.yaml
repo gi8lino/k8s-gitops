@@ -20,8 +20,8 @@ spec:
     authentik:
       email:
         host: ${SMTP_DOMAIN}
-        port: 587
-        use_tls: true
+        port: 465
+        use_ssl: true
       postgresql:
         s3_backup:
           access_key: ${MINIO_ACCESSKEY}
