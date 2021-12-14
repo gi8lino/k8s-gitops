@@ -64,14 +64,15 @@ spec:
         auth.generic_oauth:
           enabled: true
           allow_sign_up: true
-          auth_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/auth
+          name: SSO
           client_id: $__env{GRAFANA_AUTH_CLIENT_ID}
           client_secret: $__env{GRAFANA_AUTH_CLIENT_SECRET}
-          name: ${BASE_DOMAIN} SSO
-          scopes: openid profile email roles
-          signout_redirect_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/logout?redirect_uri=https://grafana.local.${BASE_DOMAIN}/login
-          token_url: https://sso.${BASE_DOMAIN}/auth/realms/master/protocol/openid-connect/token
-          role_attribute_path: contains(realm_access.roles[*], 'admin') && 'Admin' || contains(realm_access.roles[*], 'editor') && 'Editor' || 'Viewer'
+          auth_url: https://auth.${BASE_DOMAIN}/application/o/authorize/
+          token_url: https://auth.${BASE_DOMAIN}/application/o/token/
+          api_url: https://auth.${BASE_DOMAIN}/application/o/userinfo/
+          scopes: openid profile email
+          signout_redirect_url: https://auth.${BASE_DOMAIN}/application/o/kubernetes-grafana/end-session/
+          role_attribute_path: contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
         server:
           root_url: https://grafana.local.${BASE_DOMAIN}
       sidecar:
