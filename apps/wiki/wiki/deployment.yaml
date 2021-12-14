@@ -57,6 +57,8 @@ spec:
               value: "5432"
             - name: DB_NAME
               value: wikijs
+            - name: LOGLEVEL
+              value: verbose
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
