@@ -47,6 +47,12 @@ spec:
           - ReadWriteOnce
     redis:
       enabled: true
+      master:
+        persistence:
+          enabled: true
+          storageClass: nvme
+          accessModes:
+            - ReadWriteOnce
   valuesFrom:
     - kind: Secret
       name: authentik-helm-values
