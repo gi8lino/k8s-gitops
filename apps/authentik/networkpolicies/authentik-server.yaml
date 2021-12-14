@@ -38,6 +38,12 @@ spec:
         - ports:
             - port: "465"
               protocol: TCP
+    - toFQDNs:
+        - matchName: hooks.slack.com
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: authentik-postgresql
