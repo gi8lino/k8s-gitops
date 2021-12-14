@@ -9,7 +9,6 @@ resources:
   - gitlab.yaml
   - healthchecks.yaml
   - k8up.yaml
-  - keycloak.yaml
   - kubernetes-dashboard.yaml
   - local-path-provisioner.yaml
   - media.yaml
