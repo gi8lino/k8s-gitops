@@ -12,6 +12,9 @@ spec:
     - kind: Kustomization
       name: "*"
     - kind: HelmRelease
+      namespace: authentik
+      name: "*"
+    - kind: HelmRelease
       namespace: cert-manager
       name: "*"
     - kind: HelmRelease
