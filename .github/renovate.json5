@@ -67,10 +67,10 @@
             "datasourceTemplate": "helm"
         }
     ],
-    // image releases for traefik-forward-auth, apps & base
+    // image releases for apps & base
     "kubernetes": {
         "fileMatch": [
-            "(infra\\/traefik\\/forward-auth|apps|base)\\/(.*\\/)*.+\\.yaml"
+            "(apps|base)\\/(.*\\/)*.+\\.yaml"
         ]
     },
     "packageRules": [
