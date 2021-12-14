@@ -75,7 +75,7 @@ spec:
               path: /
               port: http
             initialDelaySeconds: 10
-            failureThreshold: 30
+            failureThreshold: 90
             timeoutSeconds: 3
             periodSeconds: 3
           livenessProbe:
