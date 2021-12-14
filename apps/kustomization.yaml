@@ -8,7 +8,6 @@ resources:
   - filebrowser
   - gitlab
   - healthchecks
-  - keycloak
   - kubernetes-dashboard
   - media
   - nextcloud
