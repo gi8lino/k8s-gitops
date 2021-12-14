@@ -21,7 +21,7 @@ spec:
       email:
         host: ${SMTP_DOMAIN}
         port: 465
-        use_ssl: false
+        use_tsl: true
       postgresql:
         s3_backup:
           access_key: ${MINIO_ACCESSKEY}
@@ -53,6 +53,9 @@ spec:
           storageClass: nvme
           accessModes:
             - ReadWriteOnce
+    env:
+      AUTHENTIK_ERROR_REPORTING__ENABLED: false
+      AUTHENTIK_DISABLE_UPDATE_CHECK: true
   valuesFrom:
     - kind: Secret
       name: authentik-helm-values
