@@ -1,3 +1,4 @@
+---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
@@ -31,6 +32,12 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toFQDNs:
+        - matchName: ${SMTP_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "465"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: authentik-postgresql
