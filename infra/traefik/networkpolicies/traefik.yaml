@@ -30,14 +30,6 @@ spec:
         - ports:
             - port: "8443"
               protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
-            app: forward-auth
-            io.kubernetes.pod.namespace: traefik
-      toPorts:
-        - ports:
-            - port: "8443"
-              protocol: TCP
     - fromCIDR:
         - ${LAN_NETWORK_RANGE}
       toPorts:
