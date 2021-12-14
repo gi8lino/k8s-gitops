@@ -26,3 +26,14 @@ spec:
     sourceRange:
       - ${LAN_NETWORK_RANGE}
       - ${POD_NETWORK_RANGE}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: authentik-forward-auth
+  namespace: traefik
+spec:
+  forwardAuth:
+    address: http://ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local:9000/akprox/auth/traefik
+    trustForwardHeader: true
+    authResponseHeadersRegex: ^.*$
