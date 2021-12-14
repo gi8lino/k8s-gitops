@@ -54,3 +54,9 @@ spec:
         - ports:
             - port: "443"  # oidc: to access load balancer (https://sso.${BASE_DOMAIN})
               protocol: TCP
+    - toFQDNs:
+        - matchName: graph.requarks.io
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
