@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sabnzbd-api
+  namespace: media
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`sabnzbd.${BASE_DOMAIN}`) && PathPrefix(`/api`) && Query(`apikey=${SABNZBD_API_KEY}`)
+      kind: Rule
+      services:
+        - name: sabnzbd
+          port: 8080
