@@ -36,7 +36,7 @@ spec:
       http:
         paths:
           - path: /ping
-            pathType: Prefix
+            pathType: Exact
             backend:
               service:
                 name: healthchecks
