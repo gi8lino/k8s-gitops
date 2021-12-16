@@ -46,6 +46,7 @@ spec:
         - matchName: metadata.provider.plex.tv
         - matchName: plex.tv
         - matchPattern: "*.plex.tv"
+        - matchName: thetvdb.com
       toPorts:
         - ports:
             - port: "443"
