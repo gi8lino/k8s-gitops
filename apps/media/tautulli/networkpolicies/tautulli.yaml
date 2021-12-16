@@ -40,6 +40,7 @@ spec:
               protocol: TCP
     - toFQDNs:
         - matchName: plex.tv
+        - matchName: tautulli.com
       toPorts:
         - ports:
             - port: "443"
