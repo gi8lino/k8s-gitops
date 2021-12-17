@@ -3,6 +3,7 @@
     "semanticCommits": "enabled",
     "dependencyDashboard": true,
     "separateMajorMinor": false,
+    "timezone": "Europe/Zurich",
     "assignees": [
         "gi8lino"
     ],
