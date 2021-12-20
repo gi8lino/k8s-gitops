@@ -8,7 +8,6 @@ metadata:
     app: tautulli
 spec:
   replicas: 1
-  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: tautulli
