@@ -72,3 +72,11 @@ spec:
         - ports:
             - port: "3000"
               protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: ak-outpost-authentik-embedded-outpost
+            namespace: authentik
+      toPorts:
+        - ports:
+            - port: "9300"
+              protocol: TCP

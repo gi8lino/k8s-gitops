@@ -20,6 +20,15 @@ spec:
         - ports:
             - port: "9000"
               protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9300"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
