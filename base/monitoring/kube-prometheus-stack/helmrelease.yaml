@@ -103,9 +103,13 @@ spec:
     kubeEtcd:
       enabled: false
     kubeProxy:
-      enabled: false
+      enabled: true
+      endpoints:
+        - ${HOST_IP}
     kubeScheduler:
-      enabled: false
+      enabled: true
+      endpoints:
+        - ${HOST_IP}
     prometheus:
       ingress:
         annotations:
