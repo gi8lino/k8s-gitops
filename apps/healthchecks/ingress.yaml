@@ -20,25 +20,3 @@ spec:
                 name: healthchecks
                 port:
                   name: http
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: healthchecks-ping
-  namespace: healthchecks
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
-spec:
-  ingressClassName: traefik
-  rules:
-    - host: healthchecks.local.${BASE_DOMAIN}
-      http:
-        paths:
-          - path: /ping
-            pathType: Prefix
-            backend:
-              service:
-                name: healthchecks
-                port:
-                  name: http
