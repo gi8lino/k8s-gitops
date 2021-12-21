@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
-  - middleware.yaml
   - secret.yaml
