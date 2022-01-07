@@ -28,5 +28,3 @@ data:
       zoneNames:
         - ${BASE_DOMAIN}
       deleteGrace: 5
-      defaults:
-        proxied: true
