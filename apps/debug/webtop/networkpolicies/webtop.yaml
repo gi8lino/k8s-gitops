@@ -1,0 +1,11 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: webtop
+  namespace: webtop
+spec:
+  endpointSelector:
+    matchLabels:
+      app: webtop
+  podSelector: {}
