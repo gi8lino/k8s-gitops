@@ -8,7 +8,6 @@ spec:
   endpointSelector:
     matchLabels:
       app: webtop
-  egress: {}
   ingress:
     - fromEndpoints:
         - matchLabels:
