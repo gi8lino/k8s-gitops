@@ -22,5 +22,6 @@ resources:
   - syncflaer.yaml
   - traefik.yaml
   - wallabag.yaml
+  - webtop.yaml
   - whoami.yaml
   - wiki.yaml
