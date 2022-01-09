@@ -27,6 +27,12 @@ spec:
           ports:
             - name: http
               containerPort: 3000
-          resources: {}
+          resources:
+            requests:
+              memory: 1024Mi
+              cpu: 500m
+            limits:
+              memory: 1024Mi
+              cpu: 500m
       restartPolicy: Always
       automountServiceAccountToken: false
