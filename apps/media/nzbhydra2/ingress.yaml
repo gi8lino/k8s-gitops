@@ -6,11 +6,11 @@ metadata:
   namespace: media
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
-    - host: hydra.local.${BASE_DOMAIN}
+    - host: hydra.${BASE_DOMAIN}
       http:
         paths:
           - path: /
