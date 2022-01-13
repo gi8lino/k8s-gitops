@@ -29,10 +29,10 @@ spec:
               containerPort: 3000
           resources:
             requests:
-              memory: 1024Mi
-              cpu: 500m
+              memory: 4096Mi
+              cpu: 1000m
             limits:
-              memory: 1024Mi
-              cpu: 500m
+              memory: 4096Mi
+              cpu: 1000m
       restartPolicy: Always
       automountServiceAccountToken: false
