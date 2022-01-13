@@ -28,6 +28,13 @@
             ],
             "datasourceTemplate": "helm"
         },
+        // authentik releases
+        {
+              "fileMatch": ["apps\\/authentik\\/helmrelease\\.yaml$"],
+              "matchStrings": [
+                  "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*tag: (?<currentValue>.*)"
+              ]
+        },
         // crd releases for k8up
         {
             "fileMatch": [
