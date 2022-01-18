@@ -34,7 +34,7 @@
           "matchStrings": [
             "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*tag: (?<currentValue>.*)"
           ]
-        }
+        },
         // crd releases for k8up
         {
             "fileMatch": [
