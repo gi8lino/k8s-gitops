@@ -17,6 +17,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      # renovate: datasource=docker depName=ghcr.io/goauthentik/server
+      tag: 2021.12.5
     authentik:
       log_level: info
       email:
