@@ -7,6 +7,8 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "filmstrip"
 spec:
   ingressClassName: traefik
   rules:
