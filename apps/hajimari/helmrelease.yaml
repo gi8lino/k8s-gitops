@@ -24,7 +24,8 @@ spec:
     hajimari:
       defaultEnable: true
       name: "giotto"
-      namespaceSelector: {}
+      namespaceSelector:
+        any: true
     ingress:
       main:
         enabled: true
