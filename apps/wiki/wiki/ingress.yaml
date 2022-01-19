@@ -6,6 +6,8 @@ metadata:
   namespace: wiki
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "crosshairs-question"
 spec:
   ingressClassName: traefik
   rules:
