@@ -7,6 +7,7 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
+    hajimari.io/icon: "arrow-decision"
 spec:
   ingressClassName: traefik
   rules:

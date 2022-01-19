@@ -54,6 +54,7 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
+          hajimari.io/icon: "alert"
         enabled: true
         hosts:
           - alertmanager.local.${BASE_DOMAIN}
@@ -103,6 +104,7 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+          hajimari.io/icon: "chart-scatter-plot-hexbin"
         enabled: true
         hosts:
           - grafana.local.${BASE_DOMAIN}
@@ -148,6 +150,7 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
+          hajimari.io/icon: "chart-scatter-plot-hexbin"
         enabled: true
         hosts:
           - prometheus.local.${BASE_DOMAIN}
