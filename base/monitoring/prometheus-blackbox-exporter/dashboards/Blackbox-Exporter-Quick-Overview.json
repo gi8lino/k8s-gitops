@@ -23,20 +23,18 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 11529,
   "graphTooltip": 0,
-  "id": 1501,
-  "iteration": 1635882118074,
+  "id": 10,
+  "iteration": 1642602101338,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "custom": {
-            "align": null,
             "displayMode": "auto"
           },
           "decimals": 2,
@@ -61,23 +59,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Time"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 155
-              },
-              {
-                "id": "unit",
-                "value": "dateTimeAsIso"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value"
+              "options": "Value #A"
             },
             "properties": [
               {
@@ -93,8 +75,7 @@
                 "value": "color-background"
               },
               {
-                "id": "custom.align",
-                "value": null
+                "id": "custom.align"
               },
               {
                 "id": "thresholds",
@@ -117,66 +98,6 @@
                 }
               }
             ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "endpoint"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 86
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "instance"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 281
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "namespace"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 133
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "target"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 131
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "1=UP, 0=DOWN"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 117
-              }
-            ]
           }
         ]
       },
@@ -189,18 +110,31 @@
       "id": 103,
       "links": [],
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.2.1",
-      "repeat": null,
+      "pluginVersion": "8.3.3",
       "repeatDirection": "h",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "probe_success",
           "format": "table",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -210,8 +144,10 @@
           "id": "organize",
           "options": {
             "excludeByName": {
+              "Time": true,
               "__name__": true,
               "container": true,
+              "endpoint": true,
               "job": true,
               "namespace": true,
               "pod": true,
@@ -229,7 +165,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "decimals": 0,
       "fill": 0,
       "fillGradient": 0,
@@ -260,7 +199,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -278,9 +217,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Bare Metal Server Probes (Up/Down) - Historic",
       "tooltip": {
         "shared": true,
@@ -289,9 +226,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -299,35 +234,26 @@
         {
           "decimals": 0,
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "custom": {
-            "align": null,
             "displayMode": "auto"
           },
           "decimals": 2,
@@ -352,23 +278,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Time"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "dateTimeAsIso"
-              },
-              {
-                "id": "custom.width",
-                "value": 185
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value"
+              "options": "Value #A"
             },
             "properties": [
               {
@@ -408,18 +318,6 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "endpoint"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 86
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
               "options": "instance"
             },
             "properties": [
@@ -440,18 +338,6 @@
                 "value": 149
               }
             ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Time Left"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 199
-              }
-            ]
           }
         ]
       },
@@ -464,15 +350,28 @@
       "id": 109,
       "links": [],
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "probe_ssl_earliest_cert_expiry-time()",
           "format": "table",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -484,7 +383,9 @@
           "id": "organize",
           "options": {
             "excludeByName": {
+              "Time": true,
               "container": true,
+              "endpoint": true,
               "job": true,
               "namespace": true,
               "pod": true,
@@ -504,7 +405,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -534,7 +438,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -552,9 +456,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "DNS Lookup",
       "tooltip": {
         "shared": true,
@@ -563,33 +465,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -597,7 +490,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -627,7 +523,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -645,9 +541,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Probe Duration",
       "tooltip": {
         "shared": true,
@@ -656,38 +550,29 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     }
   ],
   "refresh": "",
-  "schemaVersion": 31,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [
     "blackbox",
@@ -704,8 +589,6 @@
           "text": "auto",
           "value": "$__auto_interval_interval"
         },
-        "description": null,
-        "error": null,
         "hide": 2,
         "label": "Interval",
         "name": "interval",
@@ -820,5 +703,6 @@
   "timezone": "",
   "title": "Blackbox Exporter Quick Overview",
   "uid": "xtkCtBkiz",
-  "version": 1
+  "version": 1,
+  "weekStart": ""
 }
