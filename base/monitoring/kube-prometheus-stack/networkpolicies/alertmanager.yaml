@@ -15,7 +15,6 @@ spec:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
             app.kubernetes.io/name: prometheus
             io.kubernetes.pod.namespace: monitoring
-    - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: traefik
             app.kubernetes.io/name: traefik
