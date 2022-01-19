@@ -11,6 +11,7 @@ spec:
     - interval: 60s
       path: /metrics
       targetPort: metrics
+  jobLabel: kthxbye
   namespaceSelector:
     matchNames:
       - monitoring
