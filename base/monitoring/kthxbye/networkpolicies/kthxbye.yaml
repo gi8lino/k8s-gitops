@@ -1,0 +1,30 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: kthxbye
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app: kthxbye
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toServices:
+        - k8sService:
+            serviceName: kube-prometheus-stack-alertmanager
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9093"
+              protocol: TCP

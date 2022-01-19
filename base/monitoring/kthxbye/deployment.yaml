@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kthxbye
+  namespace: monitoring
+  labels:
+    app: kthxbye
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kthxbye
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: kthxbye
+    spec:
+      containers:
+        - name: kthxbye
+          image: ghcr.io/prymitive/kthxbye:v0.14
+          args:
+            - "-alertmanager.uri=http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093"
+            - "-interval=60s"
+          ports:
+            - name: metrics
+              containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+      automountServiceAccountToken: false
