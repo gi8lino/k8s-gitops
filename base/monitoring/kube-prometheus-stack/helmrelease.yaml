@@ -18,22 +18,22 @@ spec:
       interval: 5m
   values:
     alertmanager:
-      mute_time_intervals:
-        - name: business_hours
-          time_intervals:
-            - weekdays: ['monday:friday']
-              times:
-                - start_time: 00:00
-                  end_time: 07:30
-        - name: weekend
-          time_intervals:
-            - weekdays: ['saturday', 'sunday']
-              times:
-                - start_time: 00:00
-                  end_time: 09:00
       config:
         global:
           resolve_timeout: 10m
+        mute_time_intervals:
+          - name: business_hours
+            time_intervals:
+              - weekdays: ['monday:friday']
+                times:
+                  - start_time: 00:00
+                    end_time: 07:30
+          - name: weekend
+            time_intervals:
+              - weekdays: ['saturday', 'sunday']
+                times:
+                  - start_time: 00:00
+                    end_time: 09:00
         route:
           group_by:
             - job
