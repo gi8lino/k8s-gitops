@@ -24,6 +24,7 @@ spec:
           args:
             - -alertmanager.uri=http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
             - -interval=60s
+            - -extend-by=60m
           ports:
             - name: metrics
               containerPort: 8080
