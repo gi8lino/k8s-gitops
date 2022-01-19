@@ -32,11 +32,8 @@ spec:
             dns:
               - matchPattern: "*"
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: wiki
-                component: postgres
+        - k8sService:
+            serviceName: wiki-postgres
             namespace: wiki
       toPorts:
         - ports:
