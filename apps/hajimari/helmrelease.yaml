@@ -17,6 +17,8 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    podAnnotations:
+      reloader.stakater.com/auto: "true"
     image:
       tag: v0.2.0
     env:
@@ -24,7 +26,8 @@ spec:
     hajimari:
       defaultEnable: true
       name: "giotto"
-      namespaceSelector: {}
+      namespaceSelector:
+        any: true
     ingress:
       main:
         enabled: true
