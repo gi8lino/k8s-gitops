@@ -13,6 +13,10 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
+        - matchLabels:
             app: webservice
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
