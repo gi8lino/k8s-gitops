@@ -27,6 +27,12 @@ spec:
           ports:
             - name: metrics
               containerPort: 8080
-          resources: {}
+          resources:
+            requests:
+              memory: 50Mi
+              cpu: 50m
+            limits:
+              memory: 50Mi
+              cpu: 50m
       restartPolicy: Always
       automountServiceAccountToken: false
