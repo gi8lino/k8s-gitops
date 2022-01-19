@@ -11,11 +11,8 @@ spec:
       app.kubernetes.io/name: traefik
   egress:
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: wiki
-                component: wiki
+        - k8sService:
+            serviceName: wiki
             namespace: wiki
       toPorts:
         - ports:
