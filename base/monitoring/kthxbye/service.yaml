@@ -4,6 +4,8 @@ kind: Service
 metadata:
   name: kthxbye
   namespace: monitoring
+  labels:
+    app: kthxbye
 spec:
   ports:
     - name: metrics
