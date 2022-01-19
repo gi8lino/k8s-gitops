@@ -7,7 +7,6 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
-    hajimari.io/enable: "true"
     hajimari.io/icon: "cloud-search"
 spec:
   ingressClassName: traefik
