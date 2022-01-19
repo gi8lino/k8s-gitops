@@ -7,6 +7,7 @@ resources:
   - debug
   - filebrowser
   - gitlab
+  - hajimari
   - healthchecks
   - kubernetes-dashboard
   - media
