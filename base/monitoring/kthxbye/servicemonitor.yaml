@@ -9,7 +9,9 @@ metadata:
 spec:
   endpoints:
     - interval: 60s
-      port: metrics
+      path: /metrics
+      targetPort: metrics
+  jobLabel: kthxbye
   namespaceSelector:
     matchNames:
       - monitoring
