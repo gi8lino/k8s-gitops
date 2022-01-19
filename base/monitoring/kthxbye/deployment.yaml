@@ -22,8 +22,8 @@ spec:
         - name: kthxbye
           image: ghcr.io/prymitive/kthxbye:v0.14
           args:
-            - -alertmanager.uri http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
-            - -interval 60s
+            - -alertmanager.uri=http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
+            - -interval=60s
           ports:
             - name: metrics
               containerPort: 8080
