@@ -33,7 +33,7 @@ In Cloudflare free-plan time range can be maximum 1440 minutes and go maxium 14 
 kubectl create job \
     --namespace=cloudflare \
     --from=cronjob/cloudflare-cron-periodic manual-cron-one-day-back \
-    --dry-run=client \****
+    --dry-run=client \
     -ojson | \
   jq ".spec.template.spec.containers[0].env += [{ \"name\": \"MINUTES\", value: \"1440\" }]" | \
   kubectl apply -f -
