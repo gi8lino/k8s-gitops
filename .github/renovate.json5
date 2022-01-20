@@ -23,7 +23,7 @@
     "flux": {
       "fileMatch": [
         "(apps|base|infra)/.*helmrelease\\.yaml$",
-        "core/helmrepositories/.*\\.yaml)$"
+        "core/helmrepositories/.*\\.yaml$"
       ]
     },
     "regexManagers": [
