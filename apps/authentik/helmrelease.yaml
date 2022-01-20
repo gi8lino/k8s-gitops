@@ -8,7 +8,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.goauthentik.io
       chart: authentik
       version: 5.2.1
       sourceRef:
@@ -18,7 +17,7 @@ spec:
       interval: 5m
   values:
     image:
-      # renovate: datasource=docker depName=ghcr.io/goauthentik/server
+      repository: ghcr.io/goauthentik/server
       tag: 2021.12.5
     authentik:
       log_level: info
