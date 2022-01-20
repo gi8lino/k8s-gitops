@@ -39,9 +39,6 @@ spec:
       namespace: gitlab
       name: "*"
     - kind: HelmRelease
-      namespace: hajimari
-      name: "*"
-    - kind: HelmRelease
       namespace: k8up
       name: "*"
     - kind: HelmRelease

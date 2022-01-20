@@ -8,7 +8,6 @@ resources:
   - gitlab.yaml
   - goauthentik.yaml
   - grafana.yaml
-  - hajimari.yaml
   - infracloudio.yaml
   - jetstack.yaml
   - kubernetes-dashboard.yaml
