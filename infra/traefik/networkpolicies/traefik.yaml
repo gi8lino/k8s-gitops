@@ -68,12 +68,3 @@ spec:
         - ports:
             - port: "6443" # kube api
               protocol: TCP
-    # for pilot
-    #- toFQDNs:
-    #    - matchName: plugin.pilot.traefik.io
-    #    - matchName: instance-info.pilot.traefik.io
-    #    - matchName: github.com
-    #  toPorts:
-    #    - ports:
-    #        - port: "443"
-    #          protocol: TCP
