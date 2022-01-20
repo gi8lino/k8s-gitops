@@ -28,7 +28,7 @@ metadata:
   namespace: whoami
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.middlewares: authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-real-ip@kubernetescrd,authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
