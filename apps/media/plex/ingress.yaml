@@ -6,6 +6,7 @@ metadata:
   namespace: media
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-real-ip@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
