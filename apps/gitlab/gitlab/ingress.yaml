@@ -30,7 +30,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: hub.local.${BASE_DOMAIN}
+    - host: registry.local.${BASE_DOMAIN}
       http:
         paths:
           - path: /
