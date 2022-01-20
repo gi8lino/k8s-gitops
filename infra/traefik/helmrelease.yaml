@@ -26,8 +26,6 @@ spec:
       - --entrypoints.websecure.http.middlewares=traefik-default-headers@kubernetescrd
       - --serverstransport.insecureskipverify
       - --providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDRESS_POOL%/*}
-      - --experimental.plugins.traefik-real-ip.modulename=github.com/soulbalz/traefik-real-ip
-      - --experimental.plugins.traefik-real-ip.version=v1.0.3
     globalArguments: null
     env:
       - name: TZ
@@ -44,7 +42,7 @@ spec:
         level: INFO
     pilot:
       dashboard: false
-      enabled: true
+      enabled: false
     ports:
       gitlab-ssh:
         expose: true
