@@ -26,3 +26,14 @@ spec:
     sourceRange:
       - ${LAN_NETWORK_RANGE}
       - ${POD_NETWORK_RANGE}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: real-ip
+  namespace: traefik
+spec:
+  traefik-real-ip:
+    plugin:
+      traefik-real-ip:
+        excludednets: []
