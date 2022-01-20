@@ -6,7 +6,6 @@ metadata:
   namespace: nextcloud
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    hajimari.io/icon: "cloud-outline"
 spec:
   ingressClassName: traefik
   rules:
