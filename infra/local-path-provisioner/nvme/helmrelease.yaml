@@ -10,7 +10,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.containeroo.ch
       chart: local-path-provisioner
       version: 0.0.21
       sourceRef:

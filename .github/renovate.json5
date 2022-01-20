@@ -7,6 +7,25 @@
     "assignees": [
         "gi8lino"
     ],
+    // container images
+    "kubernetes": {
+        "fileMatch": [
+            "(apps|base|infra)/.*(cronjob|daemonset|deployment|statefulset)\\.yaml$"
+        ]
+    },
+    // container images
+    "helm-values": {
+      "fileMatch": [
+        "(apps|base|infra)/.*helmrelease\\.yaml$"
+      ]
+    },
+    // helm releases
+    "flux": {
+      "fileMatch": [
+        "(apps|base|infra)/.*helmrelease\\.yaml$",
+        "core/helmrepositories/.*\\.yaml)$"
+      ]
+    },
     "regexManagers": [
         // dependencies for sync-cloudflare-nets
         {
@@ -17,23 +36,6 @@
                 "depName=(?<depName>.*)\\s.*\\/(?<currentValue>.*?)\\/"
             ],
             "datasourceTemplate": "github-releases"
-        },
-        // helm releases for apps, base & infra
-        {
-            "fileMatch": [
-                "(apps|base|infra)\\/(.+\\/)*helmrelease\\.yaml$"
-            ],
-            "matchStrings": [
-                "registryUrl=(?<registryUrl>.*?)\\s +chart: (?<depName>.*?)\\n +version: (?<currentValue>.*)"
-            ],
-            "datasourceTemplate": "helm"
-        },
-        // authentik image tag
-        {
-          "fileMatch": ["apps\\/authentik\\/helmrelease\\.yaml$"],
-          "matchStrings": [
-            "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*tag: (?<currentValue>.*)"
-          ]
         },
         // crd releases for k8up
         {
@@ -75,12 +77,6 @@
             "datasourceTemplate": "helm"
         }
     ],
-    // image releases for apps & base
-    "kubernetes": {
-        "fileMatch": [
-            "(apps|base)\\/(.*\\/)*.+\\.yaml"
-        ]
-    },
     "packageRules": [
         {
             "matchDatasources": [
