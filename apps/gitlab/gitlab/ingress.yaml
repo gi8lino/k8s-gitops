@@ -6,8 +6,6 @@ metadata:
   namespace: gitlab
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    hajimari.io/icon: "gitlab"
-    hajimari.io/appName: "gitlab"
 spec:
   ingressClassName: traefik
   rules:
@@ -29,7 +27,6 @@ metadata:
   namespace: gitlab
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    hajimari.io/enable: "false"
 spec:
   ingressClassName: traefik
   rules:
@@ -52,7 +49,6 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
-    hajimari.io/enable: "false"
 spec:
   ingressClassName: traefik
   rules:

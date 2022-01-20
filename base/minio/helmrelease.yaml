@@ -30,7 +30,6 @@ spec:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
-        hajimari.io/icon: "numeric-3-box"
       hostname: minio.local.${BASE_DOMAIN}
     apiIngress:
       enabled: true

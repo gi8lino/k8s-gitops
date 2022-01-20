@@ -7,7 +7,6 @@ resources:
   - cloudflare.yaml
   - filebrowser.yaml
   - gitlab.yaml
-  - hajimari.yaml
   - healthchecks.yaml
   - k8up.yaml
   - kubernetes-dashboard.yaml
