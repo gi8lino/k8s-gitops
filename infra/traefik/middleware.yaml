@@ -33,7 +33,8 @@ metadata:
   name: real-ip
   namespace: traefik
 spec:
-  traefik-real-ip:
-    plugin:
-      traefik-real-ip:
-        excludednets: []
+  plugin:
+    traefik-real-ip:
+      plugin:
+        traefik-real-ip:
+          excludednets: []
