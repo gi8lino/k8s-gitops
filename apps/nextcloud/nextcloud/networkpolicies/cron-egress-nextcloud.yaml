@@ -21,11 +21,13 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - k8sServiceSelector:
-        selector:
-          matchLabels:
-            app: nextcloud
-            component: fpm-nginx
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: nextcloud
+                component: fpm-nginx
+            namespace: nextcloud
       toPorts:
         - ports:
             - port: "80"
