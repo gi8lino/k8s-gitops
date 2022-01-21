@@ -24,7 +24,7 @@ spec:
       email:
         host: ${SMTP_DOMAIN}
         port: 465
-        use_tsl: true
+        use_ssl: true
       postgresql:
         s3_backup:
           access_key: ${MINIO_ACCESSKEY}
