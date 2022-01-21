@@ -11,12 +11,8 @@ data:
       slack:
         webhookURL: env:SLACK_WEBHOOK_URL
 
-    traefikInstances:
-      - name: kubernetes
-        url: http://traefik.traefik.svc.cluster.local:9000
-        ignoredRules:
-          - local.${BASE_DOMAIN}
-          - dev.${BASE_DOMAIN}
+    kubernetes:
+      enabled: true
 
     additionalRecords:
       - name: vpn.${BASE_DOMAIN}
