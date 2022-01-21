@@ -21,7 +21,7 @@ spec:
         spec:
           containers:
             - name: syncflaer
-              image: ghcr.io/containeroo/syncflaer:5.2.0
+              image: ghcr.io/containeroo/syncflaer:5.3.0-rc1
               args:
                 - --debug
               envFrom:
@@ -32,7 +32,7 @@ spec:
                   name: config
                   subPath: config.yml
           restartPolicy: Never
-          automountServiceAccountToken: false
+          serviceAccount: syncflaer
           volumes:
             - name: config
               configMap:
