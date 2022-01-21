@@ -20,13 +20,11 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sService:
-            serviceName: traefik
-            namespace: traefik
+    - toEntities:
+        - host
       toPorts:
         - ports:
-            - port: "9000"  # traefik api
+            - port: "6443"  # kube-api
               protocol: TCP
     - toFQDNs:
         - matchPattern: api.cloudflare.com
