@@ -50,10 +50,11 @@ spec:
                 - business_hours
                 - weekend
       ingress:
+        enabled: true
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
-        enabled: true
+          syncflaer.containeroo.ch/ignore: "true"
         hosts:
           - alertmanager.local.${BASE_DOMAIN}
         ingressClassName: traefik
@@ -99,10 +100,11 @@ spec:
           searchNamespace: ALL
           resource: configmap
       ingress:
+        enabled: true
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
-        enabled: true
+          syncflaer.containeroo.ch/ignore: "true"
         hosts:
           - grafana.local.${BASE_DOMAIN}
         ingressClassName: traefik
@@ -144,10 +146,11 @@ spec:
       enabled: false
     prometheus:
       ingress:
+        enabled: true
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
-        enabled: true
+          syncflaer.containeroo.ch/ignore: "true"
         hosts:
           - prometheus.local.${BASE_DOMAIN}
         ingressClassName: traefik
