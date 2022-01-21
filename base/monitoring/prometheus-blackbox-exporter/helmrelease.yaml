@@ -43,5 +43,5 @@ spec:
           labels:
             severity: warning
           annotations:
-            summary: "The certificate for {{ \"{{ $labels.instance }}\" }} expires within the next 30 days"
+            summary: "SSL certificate {{ \"{{ $labels.instance }}\" }} expires soon"
             description: "SSL certificate will expire in {{ \"{{ $value | humanizeDuration }}\" }} (instance {{ \"{{ $labels.instance }}\" }})"
