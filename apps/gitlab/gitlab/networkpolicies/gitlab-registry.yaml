@@ -17,6 +17,8 @@ spec:
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
+            - port: "5000"
+              protocol: TCP
             - port: "5001"
               protocol: TCP
     - fromEndpoints:
