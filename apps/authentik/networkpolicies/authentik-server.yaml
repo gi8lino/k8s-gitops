@@ -49,6 +49,7 @@ spec:
               protocol: TCP
     - toFQDNs:
         - matchName: hooks.slack.com
+        - matchName: goauthentik.io
       toPorts:
         - ports:
             - port: "443"
