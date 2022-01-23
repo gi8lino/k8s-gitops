@@ -17,7 +17,7 @@ rm -f /db/filebrowser.db
 create new database:
 
 ```bash
-./filebrowser config init --auth.method proxy --auth.header X-Forwarded-Email -c .filebrowser.json -d /db/filebrowser.db
+./filebrowser config init --auth.method proxy --auth.header X-Authentik-Email -c .filebrowser.json -d /db/filebrowser.db
 ```
 
 create new admin user:
