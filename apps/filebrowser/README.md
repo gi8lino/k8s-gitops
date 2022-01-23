@@ -26,6 +26,12 @@ create new admin user:
 ./filebrowser users add email@gmail.com <PASSWORD> --perm.admin
 ```
 
+create additional user:
+
+```bash
+./filebrowser users add email@gmail.com <PASSWORD>
+```
+
 restart deployment:
 
 ```bash
