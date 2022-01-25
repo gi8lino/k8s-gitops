@@ -19,6 +19,19 @@ spec:
         - ports:
             - port: "80"
               protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app: postgres
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "34358"
+              protocol: TCP
+            - port: "43720"
+              protocol: TCP
+            - port: "56404"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
