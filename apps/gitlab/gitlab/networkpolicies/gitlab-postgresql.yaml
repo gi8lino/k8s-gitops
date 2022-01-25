@@ -36,3 +36,30 @@ spec:
         - ports:
             - port: "5432"
               protocol: TCP
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: sidekiq
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "34358"
+              protocol: TCP
+            - port: "43720"
+              protocol: TCP
+            - port: "56404"
+              protocol: TCP
