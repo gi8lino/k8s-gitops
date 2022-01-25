@@ -30,15 +30,6 @@ spec:
         - ports:
             - port: "9000"
               protocol: TCP
-    - toEndpoints:
-        - matchLabels:
-            release: gitlab
-            app: gitaly
-            io.kubernetes.pod.namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "8075"
-              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: minio
