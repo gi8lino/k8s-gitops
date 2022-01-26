@@ -59,7 +59,6 @@ spec:
       rules:
         create: true
     env:
-      AUTHENTIK_ERROR_REPORTING__ENABLED: false
       AUTHENTIK_DISABLE_UPDATE_CHECK: true
   valuesFrom:
     - kind: Secret
