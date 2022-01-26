@@ -23,11 +23,6 @@ spec:
               protocol: TCP
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/component: worker
-            app.kubernetes.io/instance: authentik
-            app.kubernetes.io/name: authentik
-            io.kubernetes.pod.namespace: authentik
-        - matchLabels:
             app: gitlab-backup-mirror
             component: job
             io.kubernetes.pod.namespace: gitlab
@@ -51,6 +46,9 @@ spec:
             k8upjob: "true"
         - matchLabels:
             io.kubernetes.pod.namespace: wiki
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: authentik
             k8upjob: "true"
       toPorts:
         - ports:
