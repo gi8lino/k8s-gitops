@@ -20,7 +20,7 @@ spec:
       repository: ghcr.io/goauthentik/server
       tag: 2022.1.2
     authentik:
-      log_level: info
+      log_level: debug
       email:
         host: ${SMTP_DOMAIN}
         port: 465
