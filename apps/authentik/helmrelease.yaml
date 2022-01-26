@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: ghcr.io/goauthentik/server
-      tag: 2022.1.1
+      tag: 2022.1.2
     authentik:
       log_level: debug
       email:
@@ -42,9 +42,6 @@ spec:
         storageClass: nvme
         accessModes:
           - ReadWriteOnce
-      primary:
-        podAnnotations:
-          k8up.io/backupcommand: "pg_dumpall --dbname=postgresql://postgres:${POSTGRES_POSTGRES_PASSWORD}@127.0.0.1:5432"
     redis:
       enabled: true
       master:
