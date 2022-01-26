@@ -8,10 +8,10 @@ resources:
   - secret.yaml
 patches:
   - target:
-      kind: PersistentVolumeClaim
-      name: data-authentik-postgresql-0
+      kind: statefulsets
+      name: authentik-postgresql
     patch: |-
       - op: add
-        path: "/metadata/annotations"
+        path: "/spec/templates/metadata/annotations"
         value:
           k8up.io/backupcommand: "pg_dumpall -U authentik -h 127.0.0.1"
