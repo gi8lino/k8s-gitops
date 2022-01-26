@@ -62,12 +62,3 @@ spec:
     - kind: Secret
       name: authentik-helm-values
       optional: false
-patches:
-  - target:
-      kind: PersistentVolumeClaim
-      name: data-authentik-postgresql-0
-    patch: |-
-      - op: add
-        path: "/metadata/annotations"
-        value:
-          k8up.io/backupcommand: "pg_dumpall -U authentik -h 127.0.0.1"
