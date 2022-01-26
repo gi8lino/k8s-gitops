@@ -25,12 +25,6 @@ spec:
         host: ${SMTP_DOMAIN}
         port: 465
         use_ssl: true
-      postgresql:
-        s3_backup:
-          access_key: ${MINIO_ACCESSKEY}
-          secret_key: ${MINIO_SECRETKEY}
-          host: http://minio.minio.svc.cluster.local:9000
-          bucket: authentik
     ingress:
       enabled: true
       ingressClassName: traefik
@@ -68,3 +62,12 @@ spec:
     - kind: Secret
       name: authentik-helm-values
       optional: false
+patches:
+  - target:
+      kind: PersistentVolumeClaim
+      name: data-authentik-postgresql-0
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          k8up.io/backupcommand: "pg_dumpall -U authentik -h 127.0.0.1"
