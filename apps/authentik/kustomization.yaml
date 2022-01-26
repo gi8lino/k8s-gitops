@@ -12,6 +12,6 @@ patches:
       name: authentik-postgresql
     patch: |-
       - op: add
-        path: "/spec/templates/metadata/annotations"
+        path: "/spec/template/metadata/annotations"
         value:
           k8up.io/backupcommand: "pg_dumpall -U authentik -h 127.0.0.1"
