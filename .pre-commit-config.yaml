@@ -41,6 +41,10 @@ repos:
           - ClusterRole
           - --ignore-kind
           - ClusterRoleBinding
+          - --ignore-kind
+          - Account
+          - --ignore-kind
+          - IP
       - id: forbidden_pattern
         args:
           - --forbidden-pattern

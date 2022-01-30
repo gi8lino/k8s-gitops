@@ -1,0 +1,11 @@
+---
+apiVersion: cf.containeroo.ch/v1alpha1
+kind: Account
+metadata:
+  name: main
+spec:
+  email: ${EMAIL}
+  globalApiKey:
+    secretRef:
+      name: cloudflare-global-api-key
+      namespace: cloudflare-operator
