@@ -42,10 +42,6 @@ spec:
         storageClass: nvme
         accessModes:
           - ReadWriteOnce
-      primary:
-        podAnnotations:
-          k8up.io/backupcommand: pg_dump --dbname=postgresql://authentik:$POSTGRES_PASSWORD@127.0.0.1:5432
-          k8up.io/file-extension: .sql
     redis:
       enabled: true
       master:
