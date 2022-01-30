@@ -1,0 +1,10 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - networkpolicies
+  - account.yaml
+  - dnsrecord.yaml
+  - helmrelease.yaml
+  - ip.yaml
+  - secret.yaml

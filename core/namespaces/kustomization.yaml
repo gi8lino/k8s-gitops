@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - authentik.yaml
   - cert-manager.yaml
+  - cloudflare-operator.yaml
   - cloudflare.yaml
   - filebrowser.yaml
   - gitlab.yaml

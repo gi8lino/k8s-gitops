@@ -37,10 +37,10 @@
             ],
             "datasourceTemplate": "github-releases"
         },
-        // crd releases for k8up
+        // crd releases for k8up & cloudflare-operator
         {
             "fileMatch": [
-                "crds\\/k8up\\/kustomization\\.yaml$"
+                "crds\\/(k8up|cloudflare-operator)\\/kustomization\\.yaml$"
             ],
             "matchStrings": [
                 "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*\\/(?<currentValue>.*?)\\/"

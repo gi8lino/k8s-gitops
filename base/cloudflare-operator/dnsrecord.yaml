@@ -1,0 +1,27 @@
+---
+apiVersion: cf.containeroo.ch/v1alpha1
+kind: DNSRecord
+metadata:
+  name: ${BASE_DOMAIN/./-}
+  namespace: cloudflare-operator
+spec:
+  name: ${BASE_DOMAIN}
+  type: A
+  ipRef:
+    name: external-ip
+  proxied: true
+  ttl: 1
+  interval: 5m
+---
+apiVersion: cf.containeroo.ch/v1alpha1
+kind: DNSRecord
+metadata:
+  name: vpn-${BASE_DOMAIN/./-}
+  namespace: cloudflare-operator
+spec:
+  name: vpn.${BASE_DOMAIN}
+  type: CNAME
+  content: ${BASE_DOMAIN}
+  proxied: false
+  ttl: 120
+  interval: 5m
