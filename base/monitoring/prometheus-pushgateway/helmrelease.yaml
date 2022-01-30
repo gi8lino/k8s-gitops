@@ -26,7 +26,7 @@ spec:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
-        syncflaer.containeroo.ch/ignore: "true"
+        cf.containeroo.ch/ignore: "true"
       hosts:
         - pushgateway.local.${BASE_DOMAIN}
     serviceMonitor:

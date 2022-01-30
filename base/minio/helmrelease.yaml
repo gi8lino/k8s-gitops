@@ -29,7 +29,7 @@ spec:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
-        syncflaer.containeroo.ch/ignore: "true"
+        cf.containeroo.ch/ignore: "true"
       hostname: minio.local.${BASE_DOMAIN}
     apiIngress:
       enabled: true
@@ -37,7 +37,7 @@ spec:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
-        syncflaer.containeroo.ch/ignore: "true"
+        cf.containeroo.ch/ignore: "true"
       hostname: minio-api.local.${BASE_DOMAIN}
     persistence:
       storageClass: backup
