@@ -37,6 +37,15 @@
             ],
             "datasourceTemplate": "github-releases"
         },
+        {
+          "fileMatch": [
+              ".github/workflows/helm-release-differ\\.yaml$"
+          ],
+          "matchStrings": [
+            "depName=(?<depName>.*)\\s.*version: (?<currentValue>.*)"
+          ],
+          "datasourceTemplate": "github-releases"
+        },
         // crd releases for k8up & cloudflare-operator
         {
             "fileMatch": [

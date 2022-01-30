@@ -121,6 +121,16 @@ kubectl apply -f core/cluster-settings.yaml
 kubectl apply --kustomize=./core/flux-system
 ```
 
+## :robot:&nbsp; Automation
+
+- [Renovate](https://www.whitesourcesoftware.com/free-developer-tools/renovate) is a very useful tool that when configured will start to create PRs in your GitHub repository when Docker images, Helm charts or anything else that can be tracked has a newer version. The configuration for Renovate is located [here](./.github/renovate.json5)
+
+There are also a couple GitHub workflows included in this repository that will help automate some processes.
+
+- [Update Flux](./.github/workflows/update-flux.yaml) - workflow to update Flux components
+- [Sync Cloudflare network ranges](./.github/workflows/sync-cloudflare-nets.yaml) - workflow to update Cloudflare network ranges
+- [Diff HelmReleases on Pull Requests](./.github/workflows/helm-release-differ.yaml) - workflow to add diff to `HelmRelease` pull requests
+
 ## :hugs:&nbsp; Thanks
 
-Thanks to the community at [k8s@home](https://github.com/k8s-at-home) for the awesome templates and the Kubernetes at home logo!
+Huge thanks to the community at [k8s@home](https://github.com/k8s-at-home) for the awesome templates and the Kubernetes at home logo!
