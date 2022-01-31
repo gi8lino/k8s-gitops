@@ -27,7 +27,7 @@ spec:
             - port: "6443"  # kube-api
               protocol: TCP
     - toFQDNs:
-        - matchPattern: api.cloudflare.com
+        - matchName: api.cloudflare.com
         - matchName: api.ipify.org
         - matchName: checkip.amazonaws.com
         - matchName: hooks.slack.com
