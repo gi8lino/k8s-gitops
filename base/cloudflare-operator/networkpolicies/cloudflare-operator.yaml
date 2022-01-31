@@ -2,12 +2,12 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: syncflaer
-  namespace: syncflaer
+  name: cloudflare-operator
+  namespace: cloudflare-operator
 spec:
   endpointSelector:
     matchLabels:
-      job: syncflaer
+      app.kubernetes.io/name: cloudflare-operator
   egress:
     - toEndpoints:
         - matchLabels:
