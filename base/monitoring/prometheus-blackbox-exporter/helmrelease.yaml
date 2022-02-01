@@ -30,6 +30,18 @@ spec:
     pod:
       labels:
         app: prometheus-blackbox-exporter
+    ingress:
+      enabled: true
+      className: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+        cf.containeroo.ch/ignore: "true"
+      hosts:
+        - host: blackbox.local.${BASE_DOMAIN}
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
     serviceMonitor:
       enabled: true
       defaults:
