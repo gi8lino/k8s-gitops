@@ -60,7 +60,3 @@ spec:
           annotations:
             summary: "SSL certificate {{ \"{{ $labels.instance }}\" }} expires soon"
             description: "SSL certificate will expire in {{ \"{{ $value | humanizeDuration }}\" }} (instance {{ \"{{ $labels.instance }}\" }})"
-  valuesFrom:
-    - kind: Secret
-      name: blackbox-exporter-helm-values
-      optional: false
