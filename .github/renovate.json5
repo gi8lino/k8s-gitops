@@ -22,8 +22,8 @@
     // helm releases
     "flux": {
       "fileMatch": [
-        "(apps|base|infra)/.*helmrelease\\.yaml$",
-        "core/helmrepositories/.*\\.yaml$"
+        "((apps|base|infra)/(.+/)*helmrelease\\.yaml$",
+        "core/helmrepositories/.*)\\.yaml$"
       ]
     },
     "regexManagers": [
