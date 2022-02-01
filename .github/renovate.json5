@@ -16,13 +16,17 @@
     // container images
     "helm-values": {
       "fileMatch": [
-        "(apps|base|infra)/.*helmrelease\\.yaml$"
+        "(apps|base|infra)/(.+/).*helmrelease\\.yaml$"
       ]
     },
     // helm releases
     "flux": {
       "fileMatch": [
-        "((apps|base|infra)/(.+/)*helmrelease|core/helmrepositories/.*)\\.yaml$"
+        "(apps|base|infra)/(.+/).*helmrelease\\.yaml$",
+        "core/helmrepositories/.*\\.yaml$"
+      ],
+      "ignorePaths": [
+        "core/flux-system/**"
       ]
     },
     "regexManagers": [
