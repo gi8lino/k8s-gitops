@@ -16,7 +16,15 @@ spec:
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
-            - port: "9292"
+            - port: "9292"  # webhook-receiver
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "8080"
               protocol: TCP
     - fromEndpoints:
         - matchLabels:
@@ -31,14 +39,6 @@ spec:
       toPorts:
         - ports:
             - port: "9090"
-              protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
-            io.kubernetes.pod.namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "8080"
               protocol: TCP
   egress:
     - toEndpoints:
