@@ -16,6 +16,17 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    config:
+      modules:
+        newsnab:
+          prober: http
+          timeout: 5s
+          http:
+            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+            follow_redirects: true
+            preferred_ip_protocol: "ip4"
+            fail_if_body_not_matches_regexp:
+              - ${NEWSNAB_REGEX}
     pod:
       labels:
         app: prometheus-blackbox-exporter
@@ -34,6 +45,10 @@ spec:
           url: https://traefik.tools.${BASE_DOMAIN}
         - name: diskstation
           url: https://ds.local.${BASE_DOMAIN}
+        - name: newsnab
+          url: https://${NEWSNAB_DOMAIN}
+          interval: 120m
+          module: newsnab
     prometheusRule:
       enabled: true
       rules:
@@ -45,3 +60,7 @@ spec:
           annotations:
             summary: "SSL certificate {{ \"{{ $labels.instance }}\" }} expires soon"
             description: "SSL certificate will expire in {{ \"{{ $value | humanizeDuration }}\" }} (instance {{ \"{{ $labels.instance }}\" }})"
+  valuesFrom:
+    - kind: Secret
+      name: blackbox-exporter-helm-values
+      optional: false
