@@ -61,7 +61,7 @@ spec:
             summary: "SSL certificate {{ \"{{ $labels.instance }}\" }} expires soon"
             description: "SSL certificate will expire in {{ \"{{ $value | humanizeDuration }}\" }} (instance {{ \"{{ $labels.instance }}\" }})"
         - alert: Newsnab
-          expr: probe_failed_due_to_regex{taget="newsnab"} > 0
+          expr: probe_failed_due_to_regex{target="newsnab"} > 0
           for: 5m
           labels:
             severity: warning
