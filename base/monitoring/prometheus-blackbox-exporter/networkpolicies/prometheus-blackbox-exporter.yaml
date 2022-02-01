@@ -36,7 +36,7 @@ spec:
         - matchName: pihole.local.${BASE_DOMAIN}
         - matchName: auth.${BASE_DOMAIN}
         - matchName: traefik.local.${BASE_DOMAIN}
-        - matchname: ${NEWSNAB_DOMAIN%/*}
+        - matchName: ${NEWSNAB_DOMAIN%/*}
       toPorts:
         - ports:
             - port: "443"
