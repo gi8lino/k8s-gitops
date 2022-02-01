@@ -47,7 +47,7 @@ spec:
           url: https://ds.local.${BASE_DOMAIN}
         - name: newsnab
           url: https://${NEWSNAB_DOMAIN}
-          interval: 120m
+          interval: 5m
           module: newsnab
     prometheusRule:
       enabled: true
