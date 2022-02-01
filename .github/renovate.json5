@@ -17,6 +17,9 @@
     "helm-values": {
       "fileMatch": [
         "(apps|base|infra)/(.+/).*helmrelease\\.yaml$"
+      ],
+      "ignorePaths": [
+        "core/flux-system/**"
       ]
     },
     // helm releases
