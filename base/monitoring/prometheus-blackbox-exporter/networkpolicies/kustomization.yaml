@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - prometheus-blackbox-exporter.yaml
   - prometheus-egress-prometheus-blackbox-exporter.yaml
+  - traefik-egress-blackbox-exporter.yaml
