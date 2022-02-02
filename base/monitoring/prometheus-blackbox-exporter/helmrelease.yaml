@@ -78,4 +78,5 @@ spec:
           labels:
             severity: warning
           annotations:
-            summary: "{{ \"{{ $labels.instance }}\" }} API is expired"
+            summary: "Newsnab API is expired"
+            description: "Newsnab API for {{ \"{{ $labels.instance }}\" }} is expired"
