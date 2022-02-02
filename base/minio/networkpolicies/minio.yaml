@@ -26,6 +26,11 @@ spec:
             app: gitlab-backup-mirror
             component: job
             io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9001"
+              protocol: TCP
+    - fromEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: healthchecks
             k8upjob: "true"

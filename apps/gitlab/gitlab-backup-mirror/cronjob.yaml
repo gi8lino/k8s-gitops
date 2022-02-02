@@ -41,7 +41,7 @@ spec:
                       key: secretkey
                       name: gitlab-minio-secret
                 - name: DESTINATION_URL
-                  value: http://minio.minio.svc.cluster.local:9000
+                  value: http://minio.minio.svc.cluster.local:9001
                 - name: DESTINATION_BUCKET
                   value: gitlab
                 - name: JOB_NAME
