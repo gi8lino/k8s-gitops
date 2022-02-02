@@ -10,7 +10,7 @@ configMapGenerator:
   - name: grafana-dashboard-node-exporter-full
     namespace: monitoring
     files:
-      - node-exporter-full.json
+      - dashboards/node-exporter-full.json
 generatorOptions:
   disableNameSuffixHash: true
 patches:
