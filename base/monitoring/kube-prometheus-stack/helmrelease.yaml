@@ -114,6 +114,8 @@ spec:
       plugins:
         - grafana-piechart-panel
         - grafana-worldmap-panel
+      serviceMonitor:
+        enabled: true
     kubeControllerManager:
       enabled: true
       endpoints:
