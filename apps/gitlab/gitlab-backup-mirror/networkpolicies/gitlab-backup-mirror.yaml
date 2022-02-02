@@ -28,7 +28,7 @@ spec:
             io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
-            - port: "9000"
+            - port: "9000"  # gitlab uses a old version of minio => port is for web-ui and api
               protocol: TCP
     - toServices:
         - k8sService:
@@ -36,7 +36,7 @@ spec:
             namespace: minio
       toPorts:
         - ports:
-            - port: "9001"
+            - port: "9000"  # minio-api
               protocol: TCP
     - toServices:
         - k8sService:

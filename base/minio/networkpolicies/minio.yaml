@@ -26,11 +26,6 @@ spec:
             app: gitlab-backup-mirror
             component: job
             io.kubernetes.pod.namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "9001"
-              protocol: TCP
-    - fromEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: healthchecks
             k8upjob: "true"
@@ -57,7 +52,7 @@ spec:
             k8upjob: "true"
       toPorts:
         - ports:
-            - port: "9000"
+            - port: "9000"  # minio-api
               protocol: TCP
   egress:
     - toEndpoints:
