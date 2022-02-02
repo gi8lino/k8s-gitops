@@ -27,6 +27,10 @@ spec:
             component: job
             io.kubernetes.pod.namespace: gitlab
         - matchLabels:
+            gitlab-runner: ci-job
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
+        - matchLabels:
             io.kubernetes.pod.namespace: healthchecks
             k8upjob: "true"
         - matchLabels:

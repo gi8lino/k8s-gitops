@@ -21,6 +21,14 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toServices:
+        - k8sService:
+            serviceName: minio
+            namespace: minio
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP
     - toEntities:
         - world
       toPorts:
