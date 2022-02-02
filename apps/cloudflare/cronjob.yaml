@@ -33,6 +33,8 @@ spec:
                   value: Europe/Zurich
                 - name: DEBUG
                   value: "true"
+                - name: MINUTES
+                  value: "60"
               envFrom:
                 - secretRef:
                     name: cloudflare-credentials
