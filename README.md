@@ -9,9 +9,9 @@ Secrets are encrypted and managed with [SOPS](https://github.com/mozilla/sops).
 
 For initial deploy see this manuals:
 
-- [Install pre-commit Hooks](./.docs/precommit.md)
-- [Setting up GnuPG keys](./.docs/gpg.md)
-- [Initial Deployment](./.docs/flux.md)
+- [Install pre-commit Hooks](./.github/docs/precommit.md)
+- [Setting up GnuPG keys](./.github/docs/gpg.md)
+- [Initial Deployment](./.github/docs/flux.md)
 
 ## GitOps
 
@@ -33,7 +33,6 @@ This Git Repository contains the following directories and are ordered below by 
 
 These directories are not tracked by Flux but are useful nonetheless:
 
-- **.docs** directory contains some tips & tricks
 - **.github** directory contains GitHub related files
 - **.taskfiles** directory contains [go-taks](https://github.com/go-task/task) related files
 - **hack** directory contains useful scrips
