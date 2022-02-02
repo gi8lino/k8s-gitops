@@ -10,7 +10,7 @@ configMapGenerator:
   - name: grafana-dashboard-node-exporter-full
     namespace: monitoring
     files:
-      - node-exporter-full.json=https://raw.githubusercontent.com/rfrail3/grafana-dashboards/master/prometheus/node-exporter-full.json
+      - node-exporter-full.json
 generatorOptions:
   disableNameSuffixHash: true
 patches:
