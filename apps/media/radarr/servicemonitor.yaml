@@ -3,7 +3,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: radarr
-  namespace: monitoring
+  namespace: media
 spec:
   endpoints:
     - interval: 3m
