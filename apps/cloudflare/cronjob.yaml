@@ -43,7 +43,7 @@ spec:
               volumeMounts:
                 - name: cloudflare
                   mountPath: /tmp/cloudflare
-                  subPath: cloudflare
+                  subPath: cloudflare-fw-events-fetch
           automountServiceAccountToken: false
           restartPolicy: Never
           volumes:
@@ -80,7 +80,7 @@ spec:
                 - bash
               args:
                 - -c
-                - /tmp/cloudflare
+                - /tmp/cloudflare.sh
               env:
                 - name: TZ
                   value: Europe/Zurich
@@ -95,8 +95,7 @@ spec:
                     name: healthchecks-url-daily
               volumeMounts:
                 - name: cloudflare
-                  mountPath: /tmp/cloudflare
-                  subPath: cloudflare
+                  mountPath: /tmp/
           automountServiceAccountToken: false
           restartPolicy: Never
           volumes:
