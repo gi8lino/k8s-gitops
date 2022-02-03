@@ -3,14 +3,16 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: sonarr
-  namespace: media
+  namespace: monitoring
 spec:
+  endpoints:
+    - interval: 3m
+      path: /metrics
+      targetPort: metrics
+  jobLabel: sonarr
+  namespaceSelector:
+    matchNames:
+      - media
   selector:
     matchLabels:
-      app.kubernetes.io/name: sonarr
-      app.kubernetes.io/instance: sonarr
-  endpoints:
-    - port: metrics
-      interval: 3m
-      scrapeTimeout: 1m
-      path: /metrics
+      app: sonarr
