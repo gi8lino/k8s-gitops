@@ -53,7 +53,7 @@ spec:
                 - bash
                 - -c
                 - curl --fail "localhost:8080/api?mode=status&apikey=`sed
-                  --quiet --regexp-extended 's/^api_key\s\=\s(.*)$/\1/p' /config/sabnzbd.ini"`
+                  --quiet --regexp-extended 's/^api_key\s\=\s(.*)$/\1/p' /config/sabnzbd.ini`"
             failureThreshold: 2
             timeoutSeconds: 5
             periodSeconds: 30
