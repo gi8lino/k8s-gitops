@@ -84,6 +84,13 @@ spec:
           ports:
             - containerPort: 9794
               name: metrics
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: metrics
+            initialDelaySeconds: 10
+            failureThreshold: 2
+            periodSeconds: 30
           volumeMounts:
             - name: data
               mountPath: /config
