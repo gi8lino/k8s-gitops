@@ -3,8 +3,35 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - networkpolicies
-  - configmap.yaml
   - deployment.yaml
   - ingress.yaml
   - persistentvolumeclaim.yaml
   - service.yaml
+configMapGenerator:
+  - name: merge-subtitles
+    namespace: media
+    files:
+      - merge_subtitles.sh
+  - name: sabnzbd-startup
+    namespace: media
+    files:
+      - sabnzbd_startup.sh
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - target:
+      kind: ConfigMap
+      name: grafana-dashboard-cloudflare-firewall-events
+    patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: "1"
+  - target:
+      kind: ConfigMap
+      name: grafana-dashboard-cloudflare-firewall-events
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
