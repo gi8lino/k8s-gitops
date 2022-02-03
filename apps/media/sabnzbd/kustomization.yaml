@@ -35,3 +35,19 @@ patches:
         path: "/metadata/annotations"
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
+  - target:
+      kind: ConfigMap
+      name: merge-subtitles
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+  - target:
+      kind: ConfigMap
+      name: sabnzbd-startup
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
