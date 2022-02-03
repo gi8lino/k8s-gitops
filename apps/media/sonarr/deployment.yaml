@@ -86,7 +86,7 @@ spec:
             httpGet:
               path: /healthz
               port: metrics
-            initialDelaySeconds: 10
+            initialDelaySeconds: 5
             failureThreshold: 2
             periodSeconds: 30
           volumeMounts:
