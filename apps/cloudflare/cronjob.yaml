@@ -83,7 +83,7 @@ spec:
                 - bash
               args:
                 - -c
-                - /tmp/cloudflare.sh
+                - /tmp/cloudflare
               env:
                 - name: TZ
                   value: Europe/Zurich
