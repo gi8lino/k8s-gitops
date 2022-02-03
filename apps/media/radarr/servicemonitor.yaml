@@ -15,4 +15,4 @@ spec:
       - media
   selector:
     matchLabels:
-      app: radarr
+      app: radarr-metrics
