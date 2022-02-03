@@ -38,6 +38,7 @@ spec:
           startupProbe:
             exec:
               command:
+                - /usr/bin/env
                 - bash
                 - -c
                 - /app/sabnzbd/startup
@@ -46,8 +47,12 @@ spec:
             timeoutSeconds: 10
             periodSeconds: 3
           livenessProbe:
-            tcpSocket:
-              port: http
+            exec:
+              command:
+                - /usr/bin/env
+                - bash
+                - -c
+                - curl --fail "localhost:8080/api?mode=status&apikey=$(sed --quiet --regexp-extended 's/^api_key\s\=\s(.*)$/\1/p' /config/sabnzbd.ini)"
             failureThreshold: 2
             timeoutSeconds: 5
             periodSeconds: 30

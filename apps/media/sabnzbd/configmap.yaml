@@ -60,7 +60,7 @@ data:
       exit 1
     fi
 
-    if [ $(curl --write-out '%{http_code}' --silent --output /dev/null http://localhost:8080) != "200" ]; then
+    if [ $(curl --write-out '%{http_code}' --silent --output /dev/null "localhost:8080/api?mode=status&apikey=$(sed --quiet --regexp-extended 's/^api_key\s\=\s(.*)$/\1/p' /config/sabnzbd.ini)") != "200" ]; then
       echo "sabnzbd not ready"
       exit 1
     fi
