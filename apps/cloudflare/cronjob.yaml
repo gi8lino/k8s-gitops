@@ -43,13 +43,16 @@ spec:
               volumeMounts:
                 - name: cloudflare
                   mountPath: /tmp/cloudflare
-                  subPath: cloudflare-fw-events-fetch
+                  subPath: cloudflare
           automountServiceAccountToken: false
           restartPolicy: Never
           volumes:
             - name: cloudflare
               configMap:
                 name: cloudflare-fw-events-fetch
+                items:
+                  - key: cloudflare.sh
+                    path: cloudflare
                 defaultMode: 0755
 ---
 apiVersion: batch/v1
