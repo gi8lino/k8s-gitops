@@ -18,6 +18,8 @@ kind: Service
 metadata:
   name: radarr-metrics
   namespace: media
+  labels:
+    app: radarr-metrics
 spec:
   ports:
     - name: metrics
