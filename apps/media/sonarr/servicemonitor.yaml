@@ -6,9 +6,10 @@ metadata:
   namespace: media
 spec:
   endpoints:
-    - interval: 3m
+    - interval: 5m
       path: /metrics
       targetPort: metrics
+      scrapeTimeout: 3m
   jobLabel: sonarr
   namespaceSelector:
     matchNames:
