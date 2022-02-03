@@ -95,11 +95,15 @@ spec:
                     name: healthchecks-url-daily
               volumeMounts:
                 - name: cloudflare
-                  mountPath: /tmp/
+                  mountPath: /tmp/cloudflare
+                  subPath: cloudflare
           automountServiceAccountToken: false
           restartPolicy: Never
           volumes:
             - name: cloudflare
               configMap:
                 name: cloudflare-fw-events-fetch
+                items:
+                  - key: cloudflare.sh
+                    path: cloudflare
                 defaultMode: 0755
