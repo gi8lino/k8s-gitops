@@ -54,6 +54,8 @@ spec:
             timeoutSeconds: 3
             periodSeconds: 30
           resources:
+            requests:
+              gpu.intel.com/i915: 1
             limits:
               gpu.intel.com/i915: 1
           volumeMounts:
