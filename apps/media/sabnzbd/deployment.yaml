@@ -41,7 +41,7 @@ spec:
                 - /usr/bin/env
                 - bash
                 - -c
-                - /app/sabnzbd/startup
+                - /app/sabnzbd/startup.sh
             initialDelaySeconds: 30
             failureThreshold: 60
             timeoutSeconds: 10
