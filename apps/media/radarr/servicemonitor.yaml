@@ -1,0 +1,18 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: radarr
+  namespace: monitoring
+spec:
+  endpoints:
+    - interval: 3m
+      path: /metrics
+      targetPort: metrics
+  jobLabel: radarr
+  namespaceSelector:
+    matchNames:
+      - media
+  selector:
+    matchLabels:
+      app: radarr

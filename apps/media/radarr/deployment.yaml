@@ -65,6 +65,29 @@ spec:
               mountPath: /dubbed
             - name: downloads
               mountPath: /downloads
+        - name: exporter
+          image: ghcr.io/onedr0p/exportarr:v0.6.2
+          args:
+            - exportarr
+            - radarr
+          env:
+            - name: URL
+              value: http://localhost
+            - name: CONFIG
+              value: /config/config.xml
+            - name: PORT
+              value: "9794"
+            - name: ENABLE_ADDITIONAL_METRICS
+              value: "true"
+            - name: ENABLE_UNKNOWN_QUEUE_ITEMS
+              value: "false"
+          ports:
+            - containerPort: 9794
+              name: metrics
+          volumeMounts:
+            - name: data
+              mountPath: /config
+              readOnly: true
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
