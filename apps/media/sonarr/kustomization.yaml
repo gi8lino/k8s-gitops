@@ -11,6 +11,7 @@ resources:
   - servicemonitor.yaml
 configMapGenerator:
   - name: sonarr-dashboard
+    namespace: media
     files:
       - sonarr-dashboard.json=https://raw.githubusercontent.com/onedr0p/home-ops/main/cluster/apps/media/sonarr/dashboard/dashboard.json
 generatorOptions:

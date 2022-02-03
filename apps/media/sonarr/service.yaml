@@ -18,6 +18,8 @@ kind: Service
 metadata:
   name: sonarr-metrics
   namespace: media
+  labels:
+    app: sonarr-metrics
 spec:
   ports:
     - name: metrics
