@@ -71,6 +71,7 @@ spec:
           startupProbe:
             exec:
               command:
+                - /usr/bin/env
                 - bash
                 - -c
                 - /scripts/startup
