@@ -34,7 +34,7 @@ spec:
                 - name: DEBUG
                   value: "true"
                 - name: MINUTES
-                  value: "60"
+                  value: "120"
               envFrom:
                 - secretRef:
                     name: cloudflare-credentials
