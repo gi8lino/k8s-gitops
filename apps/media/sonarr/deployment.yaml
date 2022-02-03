@@ -70,7 +70,7 @@ spec:
             - sonarr
           env:
             - name: URL
-              value: http://localhost
+              value: http://sonarr.media.svc.cluster.local
             - name: CONFIG
               value: /config/config.xml
             - name: PORT

@@ -72,7 +72,7 @@ spec:
             - radarr
           env:
             - name: URL
-              value: http://localhost
+              value: http://radarr.media.svc.cluster.local
             - name: CONFIG
               value: /config/config.xml
             - name: PORT

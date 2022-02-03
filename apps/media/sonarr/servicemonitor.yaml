@@ -15,4 +15,4 @@ spec:
       - media
   selector:
     matchLabels:
-      app: sonarr
+      app: sonarr-metrics
