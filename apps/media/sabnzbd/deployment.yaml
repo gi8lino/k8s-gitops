@@ -98,6 +98,6 @@ spec:
           configMap:
             name: sabnzbd-startup
             items:
-              - key: startup.sh
+              - key: sabnzbd_startup.sh
                 path: startup
             defaultMode: 0755
