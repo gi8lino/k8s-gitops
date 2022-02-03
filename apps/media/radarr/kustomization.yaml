@@ -6,4 +6,30 @@ resources:
   - deployment.yaml
   - ingress.yaml
   - persistentvolumeclaim.yaml
+  - prometheusrules.yaml
   - service.yaml
+  - servicemonitor.yaml
+configMapGenerator:
+  - name: radarr-dashboard
+    namespace: media
+    files:
+      - radarr-dashboard.json=https://raw.githubusercontent.com/onedr0p/home-ops/main/cluster/apps/media/radarr/dashboard/dashboard.json
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - target:
+      kind: ConfigMap
+      name: radarr-dashboard
+    patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: "1"
+  - target:
+      kind: ConfigMap
+      name: radarr-dashboard
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
