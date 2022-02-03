@@ -9,7 +9,6 @@ spec:
     - interval: 3m
       path: /metrics
       targetPort: metrics
-  jobLabel: radarr
   namespaceSelector:
     matchNames:
       - media
