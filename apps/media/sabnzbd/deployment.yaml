@@ -41,7 +41,7 @@ spec:
                 - /usr/bin/env
                 - bash
                 - -c
-                - /app/sabnzbd/startup.sh
+                - /app/sabnzbd/startup
             initialDelaySeconds: 30
             failureThreshold: 60
             timeoutSeconds: 10
@@ -70,8 +70,8 @@ spec:
               mountPath: /app/sabnzbd/scripts/merge_subtitles.sh
               subPath: merge_subtitles.sh
             - name: startup
-              mountPath: /app/sabnzbd/startup.sh
-              subPath: startup.sh
+              mountPath: /app/sabnzbd/startup
+              subPath: startup
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -97,4 +97,7 @@ spec:
         - name: startup
           configMap:
             name: sabnzbd-startup
+            items:
+              - key: startup.sh
+                path: startup
             defaultMode: 0755
