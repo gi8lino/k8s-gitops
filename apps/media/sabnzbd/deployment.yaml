@@ -70,8 +70,8 @@ spec:
               mountPath: /app/sabnzbd/scripts/merge_subtitles.sh
               subPath: merge_subtitles.sh
             - name: startup
-              mountPath: /app/sabnzbd/startup
-              subPath: startup
+              mountPath: /app/sabnzbd/startup.sh
+              subPath: startup.sh
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
