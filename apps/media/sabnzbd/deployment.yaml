@@ -43,7 +43,7 @@ spec:
                 - -c
                 - /app/sabnzbd/startup
             initialDelaySeconds: 30
-            failureThreshold: 30
+            failureThreshold: 60
             timeoutSeconds: 10
             periodSeconds: 3
           livenessProbe:
