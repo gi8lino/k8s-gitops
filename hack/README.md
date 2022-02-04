@@ -31,6 +31,8 @@ Usage: generate_kustomizations.sh [-i|--ignore-folders "FOLDER, ..."]
 
 Iterates recursively over each FOLDER and generates or updates
 resources in the corresponding 'kustomization.yaml' files.
+If a 'kustomization.yaml' has the key 'patchesStrategicMerge', the corresponding
+'kustomization.yaml' will not be updated.
 
 positional arguments:
 FOLDER [FOLDER ...]                      one or more directories to iterate over recursively
