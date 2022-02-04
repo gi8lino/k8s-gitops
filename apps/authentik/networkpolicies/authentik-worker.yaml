@@ -32,7 +32,7 @@ spec:
         - matchName: ${SMTP_DOMAIN}
       toPorts:
         - ports:
-            - port: "465"
+            - port: "587"
               protocol: TCP
     - toServices:
         - k8sService:
