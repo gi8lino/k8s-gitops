@@ -28,12 +28,6 @@ spec:
         - ports:
             - port: "6443"  # kube-api
               protocol: TCP
-    - toFQDNs:
-        - matchName: ${SMTP_DOMAIN}
-      toPorts:
-        - ports:
-            - port: "587"
-              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: authentik-postgresql
