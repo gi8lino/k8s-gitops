@@ -16,6 +16,7 @@ spec:
           labels:
             app: trash-updater
         spec:
+          restartPolicy: OnFailure
           initContainers:
             - name: render-config
               image: ghcr.io/k8s-at-home/trash-updater:v1.6.6
