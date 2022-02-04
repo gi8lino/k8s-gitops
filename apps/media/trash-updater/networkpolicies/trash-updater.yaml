@@ -1,0 +1,44 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: trash-updater
+  namespace: media
+spec:
+  endpointSelector:
+    matchLabels:
+      app: trash-updater
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toServices:
+        - k8sService:
+            serviceName: sonarr
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "8989"
+              protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: radarr
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "7878"
+              protocol: TCP
+    - toFQDNs:
+        - matchPattern: "*.trash-guides.info"
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
