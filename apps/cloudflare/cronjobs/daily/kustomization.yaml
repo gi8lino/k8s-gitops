@@ -11,12 +11,23 @@ patches:
       name: cloudflare-cron-periodic
     patch: |-
       - op: replace
-        path: "/metadata/name"
+        path: /metadata/name
         value: cloudflare-cron-daily
   - target:
       kind: CronJob
       name: cloudflare-cron-periodic
     patch: |-
       - op: replace
-        path: "/spec/jobTemplate/spec/template/spec/containers/0/name"
+        path: /spec/jobTemplate/spec/template/spec/containers/0/name
         value: cloudflare-cron-daily
+  - target:
+      kind: CronJob
+      name: cloudflare-cron-periodic
+    patch: |-
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom/-
+        value:
+          secretRef:
+            name: healthchecks-url-daily
+      - op: remove
+        path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom/0  # remove healthchecks-url-periodic

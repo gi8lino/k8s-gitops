@@ -37,9 +37,9 @@ spec:
                   value: "120"
               envFrom:
                 - secretRef:
-                    name: cloudflare-credentials
-                - secretRef:
                     name: healthchecks-url-periodic
+                - secretRef:
+                    name: cloudflare-credentials
               volumeMounts:
                 - name: cloudflare
                   mountPath: /tmp/cloudflare
