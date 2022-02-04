@@ -23,8 +23,8 @@ spec:
       log_level: debug
       email:
         host: ${SMTP_DOMAIN}
-        port: 465
-        use_ssl: true
+        port: 587
+        use_tls: true
     ingress:
       enabled: true
       ingressClassName: traefik
