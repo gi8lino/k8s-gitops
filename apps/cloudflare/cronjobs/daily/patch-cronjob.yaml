@@ -1,0 +1,20 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cloudflare-cron-periodic
+  namespace: cloudflare
+spec:
+  schedule: CRON_TZ=Europe/Zurich 0 23 * * *
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: cloudflare-cron-periodic
+              env:
+                - name: MINUTES
+                  value: "1440"
+              envFrom:
+                - secretRef:
+                    name: healthchecks-url-daily
