@@ -47,6 +47,7 @@ spec:
         - matchName: plex.tv
         - matchPattern: "*.plex.tv"
         - matchName: thetvdb.com
+        - matchName: www.themoviedb.org
       toPorts:
         - ports:
             - port: "443"
