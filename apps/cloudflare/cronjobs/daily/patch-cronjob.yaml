@@ -15,6 +15,3 @@ spec:
               env:
                 - name: MINUTES
                   value: "1440"
-              envFrom:
-                - secretRef:
-                    name: healthchecks-url-daily
