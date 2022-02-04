@@ -37,7 +37,7 @@ spec:
             - port: "7878"
               protocol: TCP
     - toFQDNs:
-        - matchPattern: "*.trash-guides.info"
+        - matchName: raw.githubusercontent.com
       toPorts:
         - ports:
             - port: "443"
