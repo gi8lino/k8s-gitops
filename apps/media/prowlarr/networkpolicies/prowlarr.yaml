@@ -1,12 +1,13 @@
+---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: radarr
+  name: prowlarr
   namespace: media
 spec:
   endpointSelector:
     matchLabels:
-      app: radarr
+      app: prowlarr
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -14,23 +15,14 @@ spec:
             app.kubernetes.io/name: traefik
             io.kubernetes.pod.namespace: traefik
         - matchLabels:
-            app: trash-updater
+            app: sonarr
             io.kubernetes.pod.namespace: media
         - matchLabels:
-            app: prowlarr
+            app: radarr
             io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
-            - port: "7878"
-              protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
-            app.kubernetes.io/name: prometheus
-            io.kubernetes.pod.namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "9794"
+            - port: "9696"
               protocol: TCP
   egress:
     - toEndpoints:
@@ -45,43 +37,25 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
-        - matchName: hooks.slack.com
-        - matchName: image.tmdb.org
-        - matchName: radarrapi.servarr.com
-        - matchName: radarr.servarr.com
+        - matchName: ${USENET_INDEXER_DOMAIN}
+        - matchName: api.github.com
       toPorts:
         - ports:
             - port: "443"
               protocol: TCP
     - toServices:
         - k8sService:
-            serviceName: nzbhydra2
+            serviceName: radarr
             namespace: media
       toPorts:
         - ports:
-            - port: "5076"
+            - port: "7878"
               protocol: TCP
     - toServices:
         - k8sService:
-            serviceName: nzbhydra2
+            serviceName: sonarr
             namespace: media
       toPorts:
         - ports:
-            - port: "9696"
-              protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: plex
-            namespace: media
-      toPorts:
-        - ports:
-            - port: "32400"
-              protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: sabnzbd
-            namespace: media
-      toPorts:
-        - ports:
-            - port: "8080"
+            - port: "8989"
               protocol: TCP

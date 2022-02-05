@@ -1,0 +1,62 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowlarr
+  namespace: media
+  labels:
+    app: prowlarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prowlarr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+    spec:
+      containers:
+        - name: prowlarr
+          image: lscr.io/linuxserver/prowlarr:nightly-alpine-0.2.0.1474-ls38
+          env:
+            - name: PGID
+              value: "2000"
+            - name: PUID
+              value: "2000"
+            - name: TZ
+              value: Europe/Zurich
+          ports:
+            - name: http
+              containerPort: 9696
+          startupProbe:
+            httpGet:
+              path: /actuator/health/livenessState
+              port: http
+            initialDelaySeconds: 10
+            failureThreshold: 30
+            timeoutSeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/livenessState
+              port: http
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+          volumeMounts:
+            - name: data
+              mountPath: /config
+            - name: backup
+              mountPath: /config/Backups
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: prowlarr-data
+        - name: backup
+          persistentVolumeClaim:
+            claimName: prowlarr-backup
