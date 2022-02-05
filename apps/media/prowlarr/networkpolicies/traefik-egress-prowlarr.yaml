@@ -16,5 +16,5 @@ spec:
             namespace: media
       toPorts:
         - ports:
-            - port: "5076"
+            - port: "9696"
               protocol: TCP
