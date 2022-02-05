@@ -10,27 +10,27 @@
     // container images
     "kubernetes": {
         "fileMatch": [
-            "(apps|base|infra)/.*(cronjob|daemonset|deployment|statefulset)\\.yaml$"
+            "(apps|base|infra)/.*(cronjob|daemonset|deployment|statefulset)\\.ya?ml$"
         ]
     },
     // container images
     "helm-values": {
       "fileMatch": [
-        "(apps|base|infra)/(.+/).*helmrelease\\.yaml$"
+        "(apps|base|infra)/(.+/).*helmrelease\\.ya?ml$"
       ]
     },
     // helm releases
     "flux": {
       "fileMatch": [
-        "(apps|base|infra)/(.+/).*helmrelease\\.yaml$",
-        "core/helmrepositories/.*\\.yaml$"
+        "(apps|base|infra)/(.+/).*helmrelease\\.ya?ml$",
+        "core/helmrepositories/.*\\.ya?ml$"
       ]
     },
     "regexManagers": [
         // dependencies for sync-cloudflare-nets
         {
             "fileMatch": [
-                ".github/workflows/sync-cloudflare-nets\\.yaml$"
+                ".github/workflows/sync-cloudflare-nets\\.ya?ml$"
             ],
             "matchStrings": [
                 "depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"
@@ -39,7 +39,7 @@
         },
         {
           "fileMatch": [
-              ".github/workflows/helm-release-differ\\.yaml$"
+              ".github/workflows/helm-release-differ\\.ya?ml$"
           ],
           "matchStrings": [
             "depName=(?<depName>.*)\\s.*version: (?<currentValue>.*)"
@@ -49,7 +49,7 @@
         // crd releases for k8up & cloudflare-operator
         {
             "fileMatch": [
-                "crds/(k8up|cloudflare-operator)/kustomization\\.yaml$"
+                "crds/(k8up|cloudflare-operator)/kustomization\\.ya?ml$"
             ],
             "matchStrings": [
                 "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"
@@ -58,7 +58,7 @@
         // crd releases for cert-manager
         {
             "fileMatch": [
-                "crds/cert-manager/kustomization\\.yaml$"
+                "crds/cert-manager/kustomization\\.ya?ml$"
             ],
             "matchStrings": [
                 "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\\s.*/(?<currentValue>.*?)/"
@@ -68,7 +68,7 @@
         // crd releases for kube-prometheus-stack
         {
             "fileMatch": [
-                "crds/kube-prometheus-stack/crds\\.yaml$"
+                "crds/kube-prometheus-stack/crds\\.ya?ml$"
             ],
             "matchStrings": [
                 "registryUrl=(?<registryUrl>.*)\\s.*tag: (?<depName>.*)-(?<currentValue>.*)"
@@ -78,7 +78,7 @@
         // crd releases for traefik
         {
             "fileMatch": [
-                "crds/traefik/crds\\.yaml$"
+                "crds/traefik/crds\\.ya?ml$"
             ],
             "matchStrings": [
                 "registryUrl=(?<registryUrl>.*) chart=(?<depName>.*)\\s.*tag: v(?<currentValue>.*)"
