@@ -55,15 +55,7 @@ spec:
               protocol: TCP
     - toServices:
         - k8sService:
-            serviceName: nzbhydra2
-            namespace: media
-      toPorts:
-        - ports:
-            - port: "5076"
-              protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: nzbhydra2
+            serviceName: prowlarr
             namespace: media
       toPorts:
         - ports:
