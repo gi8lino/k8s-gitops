@@ -64,7 +64,7 @@ spec:
             - name: downloads
               mountPath: /downloads
         - name: exporter
-          image: ghcr.io/onedr0p/exportarr:v0.6.2
+          image: ghcr.io/onedr0p/exportarr:v1.0.0
           args:
             - exportarr
             - sonarr
