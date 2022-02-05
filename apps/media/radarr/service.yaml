@@ -27,4 +27,4 @@ spec:
       targetPort: metrics
   selector:
     app: radarr
-  type: ClusterIP
+  clusterIP: None
