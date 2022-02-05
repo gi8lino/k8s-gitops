@@ -9,7 +9,7 @@ namespace: media
 configMapGenerator:
   - name: trash-updater-config
     files:
-      - trash.yaml
+      - trash.config
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

@@ -26,7 +26,7 @@ spec:
                 - "/bin/bash"
                 - -c
               args:
-                - "envsubst < /config/trash.yaml > /shared/trash.yaml"
+                - "envsubst < /config/trash.config > /shared/trash.yaml"
               volumeMounts:
                 - name: config
                   mountPath: /config
