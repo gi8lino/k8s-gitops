@@ -38,6 +38,7 @@ spec:
               - matchPattern: "*"
     - toFQDNs:
         - matchName: ${USENET_INDEXER_DOMAIN}
+        - matchName: hooks.slack.com
         - matchName: indexers.prowlarr.com
       toPorts:
         - ports:
