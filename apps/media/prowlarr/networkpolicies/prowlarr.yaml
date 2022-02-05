@@ -38,7 +38,7 @@ spec:
               - matchPattern: "*"
     - toFQDNs:
         - matchName: ${USENET_INDEXER_DOMAIN}
-        - matchName: api.github.com
+        - matchName: indexers.prowlarr.com
       toPorts:
         - ports:
             - port: "443"
