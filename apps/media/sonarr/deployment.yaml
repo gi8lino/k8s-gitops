@@ -66,7 +66,6 @@ spec:
         - name: exporter
           image: ghcr.io/onedr0p/exportarr:v0.6.2
           args:
-            - exportarr
             - sonarr
           env:
             - name: URL

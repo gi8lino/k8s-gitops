@@ -27,4 +27,4 @@ spec:
       targetPort: metrics
   selector:
     app: sonarr
-  type: ClusterIP
+  clusterIP: None
