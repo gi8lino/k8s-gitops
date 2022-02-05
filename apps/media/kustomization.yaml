@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - nzbhydra2
   - plex
+  - prowlarr
   - radarr
   - sabnzbd
   - sonarr

@@ -17,6 +17,9 @@ spec:
         - matchLabels:
             app: trash-updater
             io.kubernetes.pod.namespace: media
+        - matchLabels:
+            app: prowlarr
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
             - port: "8989"
@@ -65,6 +68,14 @@ spec:
       toPorts:
         - ports:
             - port: "5076"
+              protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: prowlarr
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "9696"
               protocol: TCP
     - toServices:
         - k8sService:

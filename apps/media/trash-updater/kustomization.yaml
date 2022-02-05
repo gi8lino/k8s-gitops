@@ -5,6 +5,7 @@ resources:
   - networkpolicies
   - cronjob.yaml
   - secret.yaml
+  - trash.yaml
 namespace: media
 configMapGenerator:
   - name: trash-updater-config
