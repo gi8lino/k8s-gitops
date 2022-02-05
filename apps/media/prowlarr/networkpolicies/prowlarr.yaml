@@ -59,3 +59,11 @@ spec:
         - ports:
             - port: "8989"
               protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: sabnzbd
+            namespace: media
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP

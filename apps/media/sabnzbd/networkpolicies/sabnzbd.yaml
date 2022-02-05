@@ -14,6 +14,9 @@ spec:
             app.kubernetes.io/instance: traefik
             app.kubernetes.io/name: traefik
             io.kubernetes.pod.namespace: traefik
+        - matchLabels:
+            app: prowlarr
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
             - port: "8080"
