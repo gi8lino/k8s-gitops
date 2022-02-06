@@ -1,5 +1,28 @@
 # kube-prometheus-stack
 
+## slack notification
+
+### slack app
+
+[create a slack app](https://api.slack.com/apps/)  
+in Slack, `right click` on channel to post from Alertmanager  
+click on `details`  
+click on `integration`  
+click on `Add app`  
+add your `slack app`  
+goto https://api.slack.com/apps  
+click on your `App`  
+Under `Features` click on `Incoming Webhooks`  
+Click on `Add New Webhook to Workspace` and select desired `channel`  
+Copy your `Webhook URL`
+test alert:
+
+```bash
+kubectl exec -ti -n monitoring alertmanager-kube-prometheus-stack-alertmanager-0 -- \
+wget --post-data='[{"labels":{"alertname":"TestAlert1"}}]' localhost:9093/api/v1/alerts
+```
+
+
 ## node exporter textfile collector scripts
 
 ### apt packages
