@@ -7,6 +7,15 @@
     "assignees": [
         "gi8lino"
     ],
+    // ignore flux deps (will be updated separately)
+    "ignoreDeps": [
+      "ghcr.io/fluxcd/helm-controller",
+      "ghcr.io/fluxcd/image-automation-controller",
+      "ghcr.io/fluxcd/image-reflector-controller",
+      "ghcr.io/fluxcd/kustomize-controller",
+      "ghcr.io/fluxcd/notification-controller",
+      "ghcr.io/fluxcd/source-controller"
+    ],
     // container images
     "kubernetes": {
         "fileMatch": [
