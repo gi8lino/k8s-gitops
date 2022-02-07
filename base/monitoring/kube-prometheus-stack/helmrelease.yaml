@@ -51,8 +51,7 @@ spec:
                 - weekend
             - receiver: blackhole
               matchers:
-                - severity = none
-                - severity = info
+                - severity =~ none|info
       ingress:
         enabled: true
         annotations:
