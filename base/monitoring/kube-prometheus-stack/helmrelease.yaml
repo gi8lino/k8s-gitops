@@ -47,6 +47,7 @@ spec:
               repeat_interval: 15m
             - receiver: blackhole
               matchers:
+                - alertname = InfoInhibitor
                 - severity =~ none|info
             - receiver: slack
               mute_time_intervals:
