@@ -48,7 +48,6 @@ spec:
             - receiver: blackhole
               matchers:
                 - alertname = InfoInhibitor
-                - severity =~ none|info
             - receiver: slack
               mute_time_intervals:
                 - business_hours
