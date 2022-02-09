@@ -5,7 +5,7 @@ metadata:
   name: main
 spec:
   email: ${EMAIL}
-  globalApiKey:
+  globalAPIKey:
     secretRef:
       name: cloudflare-global-api-key
       namespace: cloudflare-operator
