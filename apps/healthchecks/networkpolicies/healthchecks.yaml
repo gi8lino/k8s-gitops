@@ -27,15 +27,6 @@ spec:
         - ports:
             - port: "8000"
               protocol: TCP
-    - fromEndpoints:  # allow push from cloudflare-cron directly to healthchecks
-        - matchLabels:
-            app: elasticsearch
-            component: job
-            io.kubernetes.pod.namespace: cloudflare
-      toPorts:
-        - ports:
-            - port: "8000"
-              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
