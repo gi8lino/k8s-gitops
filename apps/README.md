@@ -5,7 +5,6 @@ This directory contains all other common applications.
 ## Contents
 
 - **authentik** single-sign-on
-- **cloudflare** get Cloudflare firewall events and store them in Elasticsearch
 - **debug** tools for debugging the cluster
 - **filebrowser** browse files from the web
 - **gitlab** contains gitlab-backup-mirror (MirrIO), gitlab minio ingress and gitlab-runner
