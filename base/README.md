@@ -9,4 +9,4 @@ This directory contains applications that are useful for cluster operations.
 - **k8up** is a Kubernetes backup operator created by VSHN
 - **minio** s3 compatible object storage for backups created by K8up
 - **monitoring** contains kube-prometheus-stack and prometheus-pushgateway for cluster monitoring
-- **reloader** is a Kubernetes controller to watch changes in `ConfigMap` and `Secret` and do rolling upgrades on Pods with their associated `DeploymentConfigs`, `Deployments`, `Daemonsets` `Statefulsets` and `Rollouts`
+- **reloader** is a Kubernetes controller to watch changes in `ConfigMap` and `Secret` and do rolling upgrades on Pods with their associated `Deployments`, `Daemonsets` `Statefulsets` and `Rollouts`
