@@ -49,8 +49,6 @@ Over WAN, I have port forwarded ports `80` and `443` to the load balancer IP of 
 
 [Cloudflare](https://www.cloudflare.com/) works as a proxy to hide my homes WAN IP and also as a firewall. [Cilium](https://cilium.io) blocks all IPs not originating from the [Cloudflares list of IP ranges](https://www.cloudflare.com/ips/), except the local network range `${LAN_NETWORK_RANGE}`.
 
-🔸 _Cloudflare is also configured to GeoIP block all countries except a few I have whitelisted_
-
 ### Internal DNS
 
 For internal DNS i use the built-in [dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html) of [pihole](https://pi-hole.net) deployed on a raspberry pi.
