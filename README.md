@@ -13,6 +13,8 @@ For initial deploy see this manuals:
 - [Setting up GnuPG keys](./.github/docs/gpg.md)
 - [Initial Deployment](./.github/docs/flux.md)
 
+---
+
 ## GitOps
 
 [Flux](https://github.com/fluxcd/flux2) watches my cluster folder (see `Repository Structure` below) and makes the changes to my cluster based on the YAML manifests.
@@ -36,6 +38,34 @@ These directories are not tracked by Flux but are useful nonetheless:
 - **.github** directory contains GitHub related files
 - **.taskfiles** directory contains [go-taks](https://github.com/go-task/task) related files
 - **hack** directory contains useful scrips
+
+---
+
+## 🌐 DNS
+
+### Ingress Controller
+
+Over WAN, I have port forwarded ports `80` and `443` to the load balancer IP of my ingress controller that's running in my Kubernetes cluster.
+
+[Cloudflare](https://www.cloudflare.com/) works as a proxy to hide my homes WAN IP and also as a firewall. [Cilium](https://cilium.io) blocks all IPs not originating from the [Cloudflares list of IP ranges](https://www.cloudflare.com/ips/), except the local network range `${LAN_NETWORK_RANGE}`.
+
+🔸 _Cloudflare is also configured to GeoIP block all countries except a few I have whitelisted_
+
+### Internal DNS
+
+For internal DNS i use the built-in [dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html) of [pihole](https://pi-hole.net) deployed on a raspberry pi.
+
+For adblocking, I have [pihole](https://pi-hole.net) deployed on a raspberry pi.
+
+### External DNS
+
+[cloudflare-operator](https://github.com/containeroo/cloudflare-operator) is deployed in my cluster and ingresses with the annotation `cf.containeroo.ch/type=CNAME` and `cf.containeroo.ch/content=${BASE_DOMAIN}` will be synced with [Cloudflare](https://www.cloudflare.com/).
+
+### Dynamic DNS
+
+[cloudflare-operator](https://github.com/containeroo/cloudflare-operator) syncs also my external IPv4 address with [Cloudflare](https://www.cloudflare.com/).
+
+---
 
 ## :hugs:&nbsp; Thanks
 
