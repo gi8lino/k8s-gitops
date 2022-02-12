@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: nextcloud-postgres
-          image: postgres:14.1-alpine
+          image: postgres:14.2-alpine
           env:
             - name: TZ
               value: Europe/Zurich
