@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: wiki-postgres
-          image: postgres:14.1-alpine
+          image: postgres:14.2-alpine
           envFrom:
             - secretRef:
                 name: wiki-postgres
