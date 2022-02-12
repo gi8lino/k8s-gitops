@@ -40,8 +40,6 @@ spec:
     logs:
       general:
         level: INFO
-      access:
-        enabled: true
     pilot:
       dashboard: false
       enabled: false
