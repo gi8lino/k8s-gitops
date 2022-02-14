@@ -6,7 +6,7 @@ metadata:
   namespace: monitoring
 spec:
   endpoints:
-    - interval: 30s
+    - interval: 5m
       port: metrics
   namespaceSelector:
     matchNames:
