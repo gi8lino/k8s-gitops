@@ -8,7 +8,7 @@ metadata:
     app: kthxbye
 spec:
   endpoints:
-    - interval: 60s
+    - interval: 5m
       path: /metrics
       targetPort: metrics
   jobLabel: kthxbye
