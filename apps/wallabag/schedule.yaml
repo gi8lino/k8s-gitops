@@ -11,7 +11,7 @@ spec:
     s3:
       bucket: wallabag
   backup:
-    schedule: "0 1,13 * * *"
+    schedule: "20 1,13 * * *"
   check:
     schedule: "0 7 * * *"
   prune:
