@@ -11,9 +11,9 @@ spec:
     s3:
       bucket: filebrowser
   backup:
-    schedule: "0 1,13 * * *"
+    schedule: "00 2,14 * * *"
   check:
-    schedule: "0 7 * * *"
+    schedule: "30 7 * * *"
   prune:
     retention:
       keepDaily: 2
