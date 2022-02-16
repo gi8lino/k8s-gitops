@@ -10,6 +10,15 @@ spec:
       app.kubernetes.io/instance: metallb
       app.kubernetes.io/name: metallb
       app.kubernetes.io/component: controller
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "7472"
+              protocol: TCP
   egress:
     - toEntities:
         - host
