@@ -33,9 +33,3 @@ spec:
     speaker:
       frr:
         enabled: false
-    prometheus:
-      enabled: true
-      prometheusRule:
-        enabled: true
-        bgpSessionDown:
-          enabled: false
