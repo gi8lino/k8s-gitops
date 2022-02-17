@@ -18,6 +18,17 @@ spec:
   values:
     k8up:
       timezone: Europe/Zurich
+      envVars:
+        - name: BACKUP_GLOBALREPOPASSWORD
+          value: ${RESTIC_PASSWORD}
+        - name: BACKUP_GLOBALACCESSKEYID
+          value: ${MINIO_ACCESSKEY}
+        - name: BACKUP_GLOBALSECRETACCESSKEY
+          value: ${MINIO_SECRETKEY}
+        - name: BACKUP_GLOBALS3ENDPOINT
+          value: http://minio.minio.svc.cluster.local:9000
+        - name: BACKUP_PROMURL
+          value: http://prometheus-pushgateway.monitoring.svc.cluster.local:9091
     metrics:
       prometheusRule:
         enabled: true
@@ -25,10 +36,6 @@ spec:
       serviceMonitor:
         enabled: true
         namespace: monitoring
-  valuesFrom:
-    - kind: Secret
-      name: k8up-helm-values
-      optional: false
   install:
     crds: Skip
   upgrade:
