@@ -11,7 +11,7 @@ spec:
     s3:
       bucket: authentik
   backup:
-    schedule: "10 1,13 * * *"
+    schedule: "0 1,13 * * *"
   check:
     schedule: "0 7 * * *"
   prune:
