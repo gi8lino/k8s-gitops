@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: rebuild-index-authentik
+  name: rebuild-restic-index
   namespace: authentik
   labels:
     k8upjob: "true"
@@ -20,7 +20,7 @@ spec:
         spec:
           restartPolicy: Never
           containers:
-            - name: rebuild-index-authentik
+            - name: rebuild-restic-index
               image: ghcr.io/k8up-io/k8up:v2.1.0
               command:
                 - restic
