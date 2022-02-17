@@ -11,7 +11,7 @@ spec:
     s3:
       bucket: healthchecks
   backup:
-    schedule: "15 1,13 * * *"
+    schedule: "0 1,13 * * *"
   check:
     schedule: "0 7 * * *"
   prune:
