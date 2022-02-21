@@ -1,0 +1,31 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cleanup-gitlab-runner
+  namespace: gitlab
+  labels:
+    job: cleanup-gitlab-runner
+spec:
+  schedule: CRON_TZ=Europe/Zurich 0 4 * * *
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            job: cleanup-gitlab-runner
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: cleanup-gitlab-runner
+              image: ghcr.io/containeroo/cleanup-gitlab-runner:1.1.0
+              env:
+                - name: GITLAB_URL
+                  value: git.${BASE_DOMAIN}
+              envFrom:
+                - secretRef:
+                    name: cleanup-gitlab-runner
+          automountServiceAccountToken: false
