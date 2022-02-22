@@ -1,0 +1,49 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: minio-ingress-k8up-jobs
+  namespace: minio
+spec:
+  description: "Allow k8up jobs to connect to minio"
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: minio
+      app.kubernetes.io/name: minio
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: gitlab-backup-mirror
+            component: job
+            io.kubernetes.pod.namespace: gitlab
+        - matchLabels:
+            io.kubernetes.pod.namespace: healthchecks
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: filebrowser
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: k8up
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: mealie
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: media
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: nextcloud
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: wallabag
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: wiki
+            k8upjob: "true"
+        - matchLabels:
+            io.kubernetes.pod.namespace: authentik
+            k8upjob: "true"
+      toPorts:
+        - ports:
+            - port: "9000"  # minio-api
+              protocol: TCP
