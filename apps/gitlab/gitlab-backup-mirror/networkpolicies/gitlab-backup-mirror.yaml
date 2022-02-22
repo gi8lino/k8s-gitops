@@ -5,6 +5,7 @@ metadata:
   name: gitlab-backup-mirror
   namespace: gitlab
 spec:
+  description: "Allow mirrIO to connect to gitlab-minio and minIO and push status to prometheus pushgateway"
   endpointSelector:
     matchLabels:
       app: gitlab-backup-mirror
