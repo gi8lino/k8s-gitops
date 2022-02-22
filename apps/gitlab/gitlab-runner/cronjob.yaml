@@ -24,7 +24,7 @@ spec:
               image: ghcr.io/containeroo/cleanup-gitlab-runner:1.1.0
               env:
                 - name: GITLAB_URL
-                  value: git.${BASE_DOMAIN}
+                  value: http://gitlab-webservice-default.gitlab.svc.cluster.local:8080
               envFrom:
                 - secretRef:
                     name: cleanup-gitlab-runner

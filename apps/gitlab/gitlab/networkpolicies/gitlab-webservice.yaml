@@ -23,6 +23,14 @@ spec:
               protocol: TCP
     - fromEndpoints:
         - matchLabels:
+            job: cleanup-gitlab-runner
+            io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
             app: gitlab-shell
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
