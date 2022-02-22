@@ -38,6 +38,9 @@ spec:
               value: "true"
             - name: RECIPE_DISABLE_AMOUNT
               value: "false"
+          ports:
+            - name: http
+              containerPort: 80
           volumeMounts:
             - mountPath: /app/data
               name: app-data
