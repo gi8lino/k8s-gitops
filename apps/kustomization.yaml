@@ -8,6 +8,7 @@ resources:
   - gitlab
   - healthchecks
   - kubernetes-dashboard
+  - mealie
   - media
   - nextcloud
   - renovate

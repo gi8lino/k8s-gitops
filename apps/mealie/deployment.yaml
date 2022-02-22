@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mealie
+  namespace: mealie
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mealie
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mealie
+    spec:
+      containers:
+        - name: mealie
+          image: hkotel/mealie:v0.5.6
+          env:
+            - name: TZ
+              value: Europe/Zurich
+            - name: PUID
+              value: "2000"
+            - name: PGID
+              value: "2000"
+            - name: RECIPE_PUBLIC
+              value: "false"
+            - name: RECIPE_SHOW_NUTRITION
+              value: "true"
+            - name: RECIPE_SHOW_ASSETS
+              value: "true"
+            - name: RECIPE_LANDSCAPE_VIEW
+              value: "true"
+            - name: RECIPE_DISABLE_COMMENTS
+              value: "true"
+            - name: RECIPE_DISABLE_AMOUNT
+              value: "false"
+          volumeMounts:
+            - mountPath: /app/data
+              name: app-data
+          resources: {}
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: app-data
+          persistentVolumeClaim:
+            claimName: mealie-app-data
