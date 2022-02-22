@@ -10,6 +10,7 @@ This directory contains all other common applications.
 - **gitlab** contains gitlab-backup-mirror (MirrIO), gitlab minio ingress and gitlab-runner
 - **healthchecks** monitoring regularly running tasks such as cron jobs
 - **kubernetes-dashboard** gives an overview on what's running in the cluster
+- **mealie**: is a self hosted recipe book
 - **media** usenet-stack containing plex, prowlarr, radarr, sabnzbd, sonarr and tautulli
 - **nextcloud** self-hosted cloud similar to iCloud
 - **renovate** dependency updater

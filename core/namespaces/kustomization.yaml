@@ -11,6 +11,7 @@ resources:
   - k8up.yaml
   - kubernetes-dashboard.yaml
   - local-path-provisioner.yaml
+  - mealie.yaml
   - media.yaml
   - metallb.yaml
   - minio.yaml
