@@ -1,0 +1,30 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: cleanup-gitlab-runner
+  namespace: gitlab
+spec:
+  endpointSelector:
+    matchLabels:
+      job: cleanup-gitlab-runner
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toServices:
+        - k8sService:
+            serviceName: gitlab-webservice-default
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
