@@ -105,6 +105,14 @@ spec:
           enabled: true
           searchNamespace: ALL
           resource: configmap
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+              - name: Prometheus
+                type: prometheus
+                access: proxy
+                url: http://kube-prometheus-stack-prometheus.monitoring:9090/
+                isDefault: true
       ingress:
         enabled: true
         annotations:
