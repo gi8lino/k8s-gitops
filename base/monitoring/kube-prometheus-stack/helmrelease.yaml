@@ -71,7 +71,6 @@ spec:
     grafana:
       defaultDashboardsTimezone: browser
       envFromSecret: kube-prometheus-stack-grafana-settings
-      adminPassword: $__env{GRAFANA_ADMIN_PASSWORD}
       analytics:
         check_for_updates: false
       grafana.ini:
