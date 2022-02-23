@@ -71,9 +71,9 @@ spec:
     grafana:
       defaultDashboardsTimezone: browser
       envFromSecret: kube-prometheus-stack-grafana-settings
-      analytics:
-        check_for_updates: false
       grafana.ini:
+        analytics:
+          check_for_updates: false
         auth:
           disable_login_form: true
           oauth_auto_login: true
