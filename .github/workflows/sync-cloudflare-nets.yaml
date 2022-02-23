@@ -17,7 +17,7 @@ jobs:
           # renovate depName=mikefarah/yq
           wget -O /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.20.2/yq_linux_amd64
           chmod +x /tmp/yq
-          readarray -d '' nets < <(curl -sS https://www.cloudflare.com/ips-v4 | sort)
+          readarray -d '' nets < <(curl -sS https://www.cloudflare.com/ips-v4/ | sort)
           nets=$(printf '"%s", ' ${nets[@]})  # add quotes and commas for yq
           /tmp/yq eval --inplace ".spec.ingress[0].fromCIDR = [ ${nets%,*} ]" infra/traefik/networkpolicies/traefik.yaml
       - name: Create pull request for cloudflare network range update
