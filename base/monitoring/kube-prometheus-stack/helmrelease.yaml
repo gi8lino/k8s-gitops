@@ -75,8 +75,6 @@ spec:
       analytics:
         check_for_updates: false
       grafana.ini:
-        security:
-          disable_initial_admin_creation: true
         auth:
           disable_login_form: true
           oauth_auto_login: true
