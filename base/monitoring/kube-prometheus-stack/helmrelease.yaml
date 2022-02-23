@@ -97,13 +97,12 @@ spec:
       sidecar:
         dashboards:
           enabled: true
-          searchNamespace: ALL
+          searchNamespace: both
           resource: configmap
         datasources:
           enabled: true
           searchNamespace: ALL
-          resource: configmap
-          skipReload: true
+          resource: both
       ingress:
         enabled: true
         annotations:
