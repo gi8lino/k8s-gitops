@@ -35,7 +35,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: whoami-auth.${BASE_DOMAIN}
+    - host: whoami.${BASE_DOMAIN}
       http:
         paths:
           - path: /
