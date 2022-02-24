@@ -50,6 +50,15 @@ spec:
               protocol: TCP
             - port: "8443" # regular ingress port
               protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: monitoring
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
+      toPorts:
+        - ports:
+            - port: "9100"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:

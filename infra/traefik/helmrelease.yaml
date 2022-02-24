@@ -56,14 +56,11 @@ spec:
       websecure:
         tls:
           enabled: true
-      metrics: null
     service:
       annotations:
         metallb.universe.tf/address-pool: traefik
       spec:
         externalTrafficPolicy: Local
-    metrics:
-      prometheus: null
     experimental:
       plugins:
         enabled: true
