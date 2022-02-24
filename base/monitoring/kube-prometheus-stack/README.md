@@ -73,4 +73,3 @@ fi
 link to original dashboard:
 
 - [node-exporter-full](https://grafana.com/grafana/dashboards/10242)
-- [traefik](https://grafana.com/grafana/dashboards/12250)
