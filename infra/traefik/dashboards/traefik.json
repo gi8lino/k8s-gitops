@@ -64,7 +64,7 @@
       }
     ]
   },
-  "description": "Traefik dashboard (data from prometheus) (based https://grafana.com/grafana/dashboards/12250)",
+  "description": "Traefik dashboard based on https://grafana.com/grafana/dashboards/12250",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 12250,
