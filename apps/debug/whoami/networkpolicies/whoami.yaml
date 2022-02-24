@@ -3,7 +3,7 @@ apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: whoami
-  namespace: whoami
+  namespace: debug
 spec:
   endpointSelector:
     matchLabels:
