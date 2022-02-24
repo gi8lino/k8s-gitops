@@ -42,8 +42,8 @@ spec:
                 - bash
                 - -c
                 - /app/sabnzbd/startup
-            initialDelaySeconds: 30
-            failureThreshold: 60
+            initialDelaySeconds: 10
+            failureThreshold: 90
             timeoutSeconds: 10
             periodSeconds: 3
           livenessProbe:
