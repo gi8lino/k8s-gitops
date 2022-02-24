@@ -6,6 +6,7 @@ resources:
   - helmrelease.yaml
   - ingress.yaml
   - middleware.yaml
+  - podmonitor.yaml
   - prometheus-egress-traefik.yaml
   - secret.yaml
   - tlsstore.yaml
