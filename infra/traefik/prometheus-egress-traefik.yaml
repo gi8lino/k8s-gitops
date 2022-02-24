@@ -1,0 +1,20 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-traefik
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+      app.kubernetes.io/name: prometheus
+  egress:
+    - toServices:
+        - k8sService:
+            serviceName: traefik
+            namespace: traefik
+      toPorts:
+        - ports:
+            - port: "9100"
+              protocol: TCP
