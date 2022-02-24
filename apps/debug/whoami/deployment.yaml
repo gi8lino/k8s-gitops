@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: whoami
-  namespace: whoami
+  namespace: debug
   labels:
     app: whoami
 spec:

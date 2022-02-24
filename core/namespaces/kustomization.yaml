@@ -5,6 +5,7 @@ resources:
   - authentik.yaml
   - cert-manager.yaml
   - cloudflare-operator.yaml
+  - debug.yaml
   - filebrowser.yaml
   - gitlab.yaml
   - healthchecks.yaml
@@ -23,5 +24,4 @@ resources:
   - syncflaer.yaml
   - traefik.yaml
   - wallabag.yaml
-  - whoami.yaml
   - wiki.yaml
