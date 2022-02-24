@@ -120,13 +120,6 @@ spec:
         - grafana-worldmap-panel
       serviceMonitor:
         enabled: true
-    dashboards:
-      default:
-        # Ref: https://grafana.com/grafana/dashboards/12250
-        traefik:
-          gnetId: 12250
-          revision: 1
-          datasource: Prometheus
     kubeControllerManager:
       enabled: true
       endpoints:
