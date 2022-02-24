@@ -12,7 +12,7 @@ resources:
   - tlsstore.yaml
 configMapGenerator:
   - name: grafana-dashboard-traefik
-    namespace: traefik
+    namespace: monitoring
     files:
       - dashboards/traefik.json
 generatorOptions:
