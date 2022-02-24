@@ -56,6 +56,7 @@ spec:
       websecure:
         tls:
           enabled: true
+      metrics: null
     service:
       annotations:
         metallb.universe.tf/address-pool: traefik
@@ -64,6 +65,8 @@ spec:
     experimental:
       plugins:
         enabled: true
+    metrics:
+      prometheus: null
   valuesFrom:
     - kind: Secret
       name: traefik-helm-values
