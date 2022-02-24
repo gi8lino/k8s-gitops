@@ -70,6 +70,7 @@ spec:
         - matchName: hooks.slack.com
         - matchName: production.cloudflare.docker.com
         - matchName: pypi.org
+        - matchName: self-test.sabnzbd.org
         - matchName: raw.githubusercontent.com
         - matchName: ${USENET_INDEXER_DOMAIN}
       toPorts:
