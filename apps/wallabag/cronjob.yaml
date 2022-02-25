@@ -34,7 +34,7 @@ spec:
                 - name: AWS_SECRET_ACCESS_KEY
                   value: ${MINIO_SECRETKEY}
                 - name: RESTIC_REPOSITORY
-                  value: s3:http://minio.minio.svc.cluster.local:9000/$\{NAMESPACE\}
+                  value: s3:http://minio.minio.svc.cluster.local:9000/$NAMESPACE
                 - name: NAMESPACE
                   valueFrom:
                     fieldRef:
