@@ -60,7 +60,7 @@ spec:
               value: linuxserver/mods:universal-cron
           envFrom:
             - secretRef:
-                name: healthchecks-prunes
+                name: healthchecks-prunes-healthchecks-url
             - secretRef:
                 name: healthchecks-superuser
             - secretRef:
