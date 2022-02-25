@@ -12,11 +12,11 @@ resources:
   - service.yaml
 configMapGenerator:
   - name: prunes
-    namespace: media
+    namespace: healthchecks
     files:
       - ./scripts/prunes.sh
   - name: startup
-    namespace: media
+    namespace: healthchecks
     files:
       - ./scripts/startup.sh
 generatorOptions:
