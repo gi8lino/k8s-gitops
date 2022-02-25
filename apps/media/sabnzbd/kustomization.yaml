@@ -15,7 +15,7 @@ configMapGenerator:
   - name: sabnzbd-startup
     namespace: media
     files:
-      - ./scripts/sabnzbd_startup.sh
+      - ./scripts/startup.sh
 generatorOptions:
   disableNameSuffixHash: true
 patches:
