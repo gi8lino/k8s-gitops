@@ -1,0 +1,20 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: traefik-egress-cyberchef
+  namespace: traefik
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik
+      app.kubernetes.io/name: traefik
+  egress:
+    - toServices:
+        - k8sService:
+            serviceName: cyberchef
+            namespace: debug
+      toPorts:
+        - ports:
+            - port: "8000"
+              protocol: TCP

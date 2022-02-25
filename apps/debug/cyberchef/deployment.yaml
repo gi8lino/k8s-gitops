@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cyberchef
+  namespace: debug
+  labels:
+    app: cyberchef
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cyberchef
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cyberchef
+    spec:
+      containers:
+        - name: cyberchef
+          image: mpepping/cyberchef:v9.32.3
+          imagePullPolicy: IfNotPresent
+          resources: {}
+          ports:
+            - name: http
+              containerPort: 8000
+      restartPolicy: Always
+      automountServiceAccountToken: false
