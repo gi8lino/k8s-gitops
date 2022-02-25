@@ -13,7 +13,7 @@ spec:
     - toServices:
         - k8sService:
             serviceName: cyberchef
-            namespace: debug
+            namespace: cyberchef
       toPorts:
         - ports:
             - port: "8000"

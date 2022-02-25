@@ -5,6 +5,7 @@ resources:
   - authentik.yaml
   - cert-manager.yaml
   - cloudflare-operator.yaml
+  - cyberchef.yaml
   - debug.yaml
   - filebrowser.yaml
   - gitlab.yaml
