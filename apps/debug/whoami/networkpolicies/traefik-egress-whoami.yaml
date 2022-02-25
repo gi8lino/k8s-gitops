@@ -13,7 +13,7 @@ spec:
     - toServices:
         - k8sService:
             serviceName: whoami
-            namespace: whoami
+            namespace: debug
       toPorts:
         - ports:
             - port: "80"
