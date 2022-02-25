@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - networkpolicies
-  - configmap.yaml
+  - scripts
   - cronjob.yaml
   - deployment.yaml
   - ingress.yaml
@@ -11,3 +11,31 @@ resources:
   - schedule.yaml
   - secret.yaml
   - service.yaml
+configMapGenerator:
+  - name: prunes
+    namespace: media
+    files:
+      - ./scripts/prunes.sh
+  - name: startup
+    namespace: media
+    files:
+      - ./scripts/startup.sh
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - target:
+      kind: ConfigMap
+      name: prunes
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+  - target:
+      kind: ConfigMap
+      name: startup
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
