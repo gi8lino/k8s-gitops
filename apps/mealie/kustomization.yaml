@@ -4,8 +4,5 @@ kind: Kustomization
 resources:
   - networkpolicies
   - cronjob.yaml
-  - deployment.yaml
-  - ingress.yaml
-  - persistentvolumeclaim.yaml
+  - helmrelease.yaml
   - schedule.yaml
-  - service.yaml
