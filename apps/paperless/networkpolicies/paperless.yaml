@@ -39,3 +39,9 @@ spec:
         - ports:
             - port: "6379"
               protocol: TCP
+    - toFQDNs:
+        - matchName: http://www.aiim.org
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
