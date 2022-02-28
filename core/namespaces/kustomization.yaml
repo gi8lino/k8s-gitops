@@ -20,6 +20,7 @@ resources:
   - monitoring.yaml
   - nextcloud.yaml
   - nfs-subdir-external-provisioner.yaml
+  - paperless.yaml
   - reloader.yaml
   - renovate.yaml
   - syncflaer.yaml

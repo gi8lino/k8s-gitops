@@ -29,6 +29,8 @@ spec:
     name: slack
   eventSeverity: info
   eventSources:
+    - kind: Kustomization
+      name: "*"
     - kind: HelmRelease
       namespace: authentik
       name: "*"
@@ -64,6 +66,9 @@ spec:
       name: "*"
     - kind: HelmRelease
       namespace: nfs-subdir-external-provisioner
+      name: "*"
+    - kind: HelmRelease
+      namespace: paperless
       name: "*"
     - kind: HelmRelease
       namespace: reloader
