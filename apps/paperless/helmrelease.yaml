@@ -25,7 +25,7 @@ spec:
       PAPERLESS_TIME_ZONE: Europe/Zurich
       PAPERLESS_REDIS: redis://paperless-redis-master.paperless.svc.cluster.local:6379
       PAPERLESS_ENABLE_HTTP_REMOTE_USER: "true"
-      PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_X-Authentik-Email
+      PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_X_AUTHENTIK_EMAIL
     ingress:
       main:
         enabled: true
