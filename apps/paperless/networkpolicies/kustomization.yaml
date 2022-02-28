@@ -2,7 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - networkpolicies
-  - helmrelease.yaml
-  - schedule.yaml
-  - secret.yaml
+  - paperless.yaml
+  - redis.yaml
+  - traefik-egress-paperless.yaml

@@ -1,0 +1,41 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: paperless
+  namespace: paperless
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: paperless
+      app.kubernetes.io/name: paperless
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8000"
+              protocol: TCP
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toServices:
+        - k8sService:
+            serviceName: paperless-redis-headless
+            namespace: paperless
+      toPorts:
+        - ports:
+            - port: "6379"
+              protocol: TCP
