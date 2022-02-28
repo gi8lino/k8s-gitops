@@ -29,8 +29,6 @@ spec:
     name: slack
   eventSeverity: info
   eventSources:
-    - kind: Kustomization
-      name: "*"
     - kind: HelmRelease
       namespace: authentik
       name: "*"
