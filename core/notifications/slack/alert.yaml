@@ -51,6 +51,9 @@ spec:
       namespace: local-path-provisioner
       name: "*"
     - kind: HelmRelease
+      namespace: mealie
+      name: "*"
+    - kind: HelmRelease
       namespace: metallb
       name: "*"
     - kind: HelmRelease
