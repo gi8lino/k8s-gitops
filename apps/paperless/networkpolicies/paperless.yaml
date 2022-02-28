@@ -41,6 +41,7 @@ spec:
               protocol: TCP
     - toFQDNs:
         - matchName: http://www.aiim.org
+        - matchName: debian.map.fastlydns.net
       toPorts:
         - ports:
             - port: "80"
