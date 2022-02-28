@@ -12,6 +12,7 @@ resources:
   - mealie
   - media
   - nextcloud
+  - paperless
   - renovate
   - wallabag
   - wiki

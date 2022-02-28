@@ -1,0 +1,23 @@
+---
+apiVersion: k8up.io/v1
+kind: Schedule
+metadata:
+  name: paperless
+  namespace: paperless
+spec:
+  podSecurityContext:
+    runAsUser: 0
+  backend:
+    s3:
+      bucket: paperless
+  backup:
+    schedule: "0 1,13 * * *"
+  check:
+    schedule: "30 7 * * *"
+  prune:
+    retention:
+      keepDaily: 2
+      keepLast: 7
+    schedule: "0 5 * * *"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2

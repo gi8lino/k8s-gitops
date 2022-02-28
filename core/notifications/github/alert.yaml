@@ -48,6 +48,9 @@ spec:
       namespace: nfs-subdir-external-provisioner
       name: "*"
     - kind: HelmRelease
+      namespace: paperless
+      name: "*"
+    - kind: HelmRelease
       namespace: reloader
       name: "*"
     - kind: HelmRelease
