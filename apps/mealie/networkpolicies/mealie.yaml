@@ -7,7 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: mealie
+      app.kubernetes.io/name: mealie
+      app.kubernetes.io/instance: mealie
   ingress:
     - fromEndpoints:
         - matchLabels:
