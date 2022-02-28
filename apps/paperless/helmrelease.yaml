@@ -24,6 +24,8 @@ spec:
       PAPERLESS_OCR_LANGUAGES: deu eng
       PAPERLESS_TIME_ZONE: Europe/Zurich
       PAPERLESS_REDIS: redis://paperless-redis-master.paperless.svc.cluster.local:6379
+      PAPERLESS_ALLOWED_HOSTS: paperless.local.${BASE_DOMAIN}
+      PAPERLESS_CORS_ALLOWED_HOSTS: https://paperless.local.${BASE_DOMAIN}
       PAPERLESS_ENABLE_HTTP_REMOTE_USER: "True"
       PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_X_AUTHENTIK_USERNAME
     ingress:
