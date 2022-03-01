@@ -38,6 +38,9 @@ spec:
             io.kubernetes.pod.namespace: nextcloud
             k8upjob: "true"
         - matchLabels:
+            io.kubernetes.pod.namespace: paperless
+            k8upjob: "true"
+        - matchLabels:
             io.kubernetes.pod.namespace: wallabag
             k8upjob: "true"
         - matchLabels:
