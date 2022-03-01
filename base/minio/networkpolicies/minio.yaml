@@ -21,39 +21,6 @@ spec:
               protocol: TCP
             - port: "9001"  # minio-console
               protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
-            app: gitlab-backup-mirror
-            component: job
-            io.kubernetes.pod.namespace: gitlab
-        - matchLabels:
-            io.kubernetes.pod.namespace: healthchecks
-            k8upjob: "true"
-        - matchLabels:
-            io.kubernetes.pod.namespace: filebrowser
-            k8upjob: "true"
-        - matchLabels:
-            io.kubernetes.pod.namespace: k8up
-            k8upjob: "true"
-        - matchLabels:
-            io.kubernetes.pod.namespace: media
-            k8upjob: "true"
-        - matchLabels:
-            io.kubernetes.pod.namespace: nextcloud
-            k8upjob: "true"
-        - matchLabels:
-            io.kubernetes.pod.namespace: wallabag
-            k8upjob: "true"
-        - matchLabels:
-            io.kubernetes.pod.namespace: wiki
-            k8upjob: "true"
-        - matchLabels:
-            io.kubernetes.pod.namespace: authentik
-            k8upjob: "true"
-      toPorts:
-        - ports:
-            - port: "9000"  # minio-api
-              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
