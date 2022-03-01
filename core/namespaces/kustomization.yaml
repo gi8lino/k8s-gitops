@@ -8,6 +8,7 @@ resources:
   - cyberchef.yaml
   - debug.yaml
   - filebrowser.yaml
+  - firefly.yaml
   - gitlab.yaml
   - healthchecks.yaml
   - k8up.yaml
