@@ -25,11 +25,10 @@ spec:
             - name: firefly-cron
               image: ghcr.io/containeroo/alpine-toolbox:1.12.9
               command:
-                - curl
+                - bash
               args:
-                - --fail
-                - --location
-                - http://firefly.firefly.svc.cluster.local:8080/api/v1/cron/${FIREFLY_TOKEN}
+                - -c
+                - "curl --fail --location http://firefly.firefly.svc.cluster.local:8080/api/v1/cron/${FIREFLY_TOKEN}"
               envFrom:
                 - secretRef:
                     name: firefly-cron
