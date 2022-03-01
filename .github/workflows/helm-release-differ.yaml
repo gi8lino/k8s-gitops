@@ -18,7 +18,7 @@ jobs:
     name: Detect File Changes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: dorny/paths-filter@v2
         id: filter
         with:
@@ -38,9 +38,9 @@ jobs:
         file: ${{ fromJSON(needs.detect-file-changes.outputs.yaml_files) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Checkout default branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: "${{ env.DEFAULT_BRANCH }}"
           path: default
