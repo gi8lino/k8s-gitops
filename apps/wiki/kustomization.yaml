@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - postgres
   - wiki
-  - cronjob.yaml
   - schedule.yaml
