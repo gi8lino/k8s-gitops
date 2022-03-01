@@ -9,5 +9,4 @@ resources:
   - sonarr
   - tautulli
   - trash-updater
-  - cronjob.yaml
   - schedule.yaml
