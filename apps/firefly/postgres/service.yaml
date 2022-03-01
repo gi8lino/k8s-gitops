@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: firefly-postgres
+  namespace: firefly
+spec:
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: postgres
+  selector:
+    app: firefly
+    component: postgres
+  type: ClusterIP

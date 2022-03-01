@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firefly-postgres
+  namespace: firefly
+  labels:
+    app: firefly
+    component: postgres
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly
+      component: postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        k8up.io/backupcommand: pg_dumpall -U postgres -h 127.0.0.1
+        k8up.io/file-extension: .sql
+      labels:
+        app: firefly
+        component: postgres
+    spec:
+      containers:
+        - name: firefly-postgres
+          image: postgres:14.2-alpine
+          env:
+            - name: TZ
+              value: Europe/Zurich
+          envFrom:
+            - secretRef:
+                name: firefly-postgres
+          ports:
+            - name: postgres
+              containerPort: 5432
+          startupProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - exec pg_isready -U "$POSTGRES_USER" --dbname=firefly -h 127.0.0.1 -p 5432
+            initialDelaySeconds: 5
+            failureThreshold: 30
+            periodSeconds: 3
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - exec pg_isready -U "$POSTGRES_USER" --dbname=firefly -h 127.0.0.1 -p 5432
+            failureThreshold: 2
+            timeoutSeconds: 5
+            periodSeconds: 30
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: firefly-postgres-data

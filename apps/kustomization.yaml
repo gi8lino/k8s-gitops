@@ -6,6 +6,7 @@ resources:
   - cyberchef
   - debug
   - filebrowser
+  - firefly
   - gitlab
   - healthchecks
   - kubernetes-dashboard

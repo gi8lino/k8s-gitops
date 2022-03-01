@@ -1,0 +1,101 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firefly
+  namespace: firefly
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly
+      component: firefly
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: firefly
+        component: firefly
+    spec:
+      initContainers:
+        - name: wait-for-database
+          image: busybox:1.35.0
+          command:
+            - sh
+            - -c
+            - |
+              echo 'Waiting for PostgreSQL to become ready...'
+              until printf "." && nc -z -w 2 firefly-postgres.firefly.svc.cluster.local 5432; do
+                  sleep 2;
+              done;
+              echo 'PostgreSQL OK ✓'
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: firefly
+          image: fireflyiii/core:version-5.6.16
+          env:
+            - name: DB_DATABASE
+              value: firefly
+            - name: DB_HOST
+              value: firefly-postgres.firefly.svc.cluster.local
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_CONNECTION
+              value: pgsql
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: firefly-postgres
+                  key: POSTGRES_PASSWORD
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: firefly-postgres
+                  key: POSTGRES_USER
+            - name: TRUSTED_PROXIES
+              value: "**"
+            - name: APP_URL
+              value: firefly.local.${BASE_DOMAIN}
+            - name: AUTHENTICATION_GUARD
+              value: remote_user_guard
+            - name: AUTHENTICATION_GUARD_HEADER
+              value: HTTP_X_AUTHENTIK_USERNAME
+            - name: AUTHENTICATION_GUARD_EMAIL
+              value: HTTP_X_AUTHENTIK_EMAIL
+          envFrom:
+            - secretRef:
+                name: firefly
+            - secretRef:
+                name: firefly-postgres
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - mountPath: /var/www/html/storage/upload
+              name: upload
+            - mountPath: /var/www/html/storage/export
+              name: export
+          resources: {}
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: upload
+          persistentVolumeClaim:
+            claimName: firefly-upload
+        - name: export
+          persistentVolumeClaim:
+            claimName: firefly-export
