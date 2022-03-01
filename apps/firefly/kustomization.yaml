@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - firefly
   - postgres
-  - cronjob.yaml
   - schedule.yaml
