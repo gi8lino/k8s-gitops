@@ -18,6 +18,6 @@ spec:
     retention:
       keepDaily: 2
       keepLast: 7
-    schedule: "0 0,12 * * *"
+    schedule: "0 5 * * *"
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 2
