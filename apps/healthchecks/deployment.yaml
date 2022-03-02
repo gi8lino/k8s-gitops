@@ -62,7 +62,7 @@ spec:
             - secretRef:
                 name: healthchecks-prunes-healthchecks-url
             - secretRef:
-                name: healthchecks-superuser
+                name: healthchecks-settings
             - secretRef:
                 name: healthchecks-mail-settings
           ports:
