@@ -65,35 +65,6 @@ spec:
               mountPath: /dubbed
             - name: downloads
               mountPath: /downloads
-        - name: exporter
-          image: ghcr.io/onedr0p/exportarr:v1.0.0
-          args:
-            - radarr
-          env:
-            - name: URL
-              value: http://radarr.media.svc.cluster.local
-            - name: CONFIG
-              value: /config/config.xml
-            - name: PORT
-              value: "9794"
-            - name: ENABLE_ADDITIONAL_METRICS
-              value: "true"
-            - name: ENABLE_UNKNOWN_QUEUE_ITEMS
-              value: "false"
-          ports:
-            - containerPort: 9794
-              name: metrics
-          livenessProbe:
-            httpGet:
-              path: /healthz
-              port: metrics
-            initialDelaySeconds: 5
-            failureThreshold: 2
-            periodSeconds: 30
-          volumeMounts:
-            - name: data
-              mountPath: /config
-              readOnly: true
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
