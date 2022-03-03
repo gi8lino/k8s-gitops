@@ -6,9 +6,7 @@ resources:
   - deployment.yaml
   - ingress.yaml
   - persistentvolumeclaim.yaml
-  - prometheusrules.yaml
   - service.yaml
-  - servicemonitor.yaml
 configMapGenerator:
   - name: sonarr-dashboard
     namespace: media

@@ -15,23 +15,11 @@ spec:
             app.kubernetes.io/name: traefik
             io.kubernetes.pod.namespace: traefik
         - matchLabels:
-            app: trash-updater
-            io.kubernetes.pod.namespace: media
-        - matchLabels:
             app: prowlarr
             io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
             - port: "8989"
-              protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
-            app.kubernetes.io/name: prometheus
-            io.kubernetes.pod.namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "9794"
               protocol: TCP
   egress:
     - toEndpoints:

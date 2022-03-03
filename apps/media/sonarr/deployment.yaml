@@ -63,35 +63,6 @@ spec:
               mountPath: /tv
             - name: downloads
               mountPath: /downloads
-        - name: exporter
-          image: ghcr.io/onedr0p/exportarr:v1.0.0
-          args:
-            - sonarr
-          env:
-            - name: URL
-              value: http://sonarr.media.svc.cluster.local
-            - name: CONFIG
-              value: /config/config.xml
-            - name: PORT
-              value: "9794"
-            - name: ENABLE_ADDITIONAL_METRICS
-              value: "true"
-            - name: ENABLE_UNKNOWN_QUEUE_ITEMS
-              value: "false"
-          ports:
-            - containerPort: 9794
-              name: metrics
-          livenessProbe:
-            httpGet:
-              path: /healthz
-              port: metrics
-            initialDelaySeconds: 5
-            failureThreshold: 2
-            periodSeconds: 30
-          volumeMounts:
-            - name: data
-              mountPath: /config
-              readOnly: true
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
