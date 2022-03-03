@@ -8,6 +8,5 @@ resources:
   - sabnzbd
   - sonarr
   - tautulli
-  - trash-updater
   - cronjob.yaml
   - schedule.yaml
