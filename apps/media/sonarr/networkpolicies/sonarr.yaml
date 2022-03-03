@@ -36,6 +36,7 @@ spec:
     - toFQDNs:
         - matchName: artworks.thetvdb.com
         - matchName: hooks.slack.com
+        - matchName: plex.tv
         - matchName: services.sonarr.tv
         - matchName: skyhook.sonarr.tv
         - matchName: thexem.info
