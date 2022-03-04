@@ -24,11 +24,12 @@ spec:
       log_monitors:
         - /config/health-checker-containerd.json
         - /config/health-checker-kubelet.json
-        - /config/kernel-monitor-counter.json
         - /config/kernel-monitor-filelog.json
         - /config/kernel-monitor.json
         - /config/net-cgroup-system-stats-monitor.json
         - /config/network-problem-monitor.json
         - /config/system-stats-monitor.json
-        - /config/systemd-monitor-counter.json
         - /config/systemd-monitor.json
+      custom_plugin_monitors:
+        - /config/kernel-monitor-counter.json
+        - /config/systemd-monitor-counter.json
