@@ -44,6 +44,9 @@ spec:
         storageClass: nvme
         accessModes:
           - ReadWriteOnce
+      commonAnnotations:
+        k8up.io/backupcommand: sh -c "pg_dump --dbname=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@127.0.0.1:5432"
+        k8up.io/file-extension: .sql
     redis:
       enabled: true
       master:
