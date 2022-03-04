@@ -5,6 +5,7 @@ resources:
   - appuio.yaml
   - bitnami.yaml
   - containeroo.yaml
+  - deliveryhero.yaml
   - gitlab.yaml
   - goauthentik.yaml
   - grafana.yaml
