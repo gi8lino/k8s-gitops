@@ -5,7 +5,6 @@ resources:
   - flux-system
   - kthxbye
   - kube-prometheus-stack
-  - node-problem-detector
   - pihole-server
   - prometheus-blackbox-exporter
   - prometheus-pushgateway
