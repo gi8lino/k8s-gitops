@@ -44,7 +44,7 @@ spec:
             - name: REMOTE_USER_HEADER
               value: HTTP_X_AUTHENTIK_EMAIL
             - name: SITE_LOGO_URL
-              value: https://healthchecks.io/static/img/logo-full.svg
+              value: https://healthchecks.io/static/img/logo-full.svg2
             - name: DOCKER_MODS
               value: linuxserver/mods:universal-cron
           envFrom:
