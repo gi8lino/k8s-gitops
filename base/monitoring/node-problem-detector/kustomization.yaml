@@ -8,7 +8,7 @@ configMapGenerator:
   - name: grafana-dashboard-node-problem-detector
     namespace: monitoring
     files:
-      - node-problem-detector.json=https://grafana.com/api/dashboards/15549/revisions/1/download
+      - dashboards/node-problem-detector.json
 generatorOptions:
   disableNameSuffixHash: true
 patches:
