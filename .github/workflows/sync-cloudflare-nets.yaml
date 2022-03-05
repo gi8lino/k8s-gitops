@@ -18,8 +18,15 @@ jobs:
           wget -O /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.21.1/yq_linux_amd64
           chmod +x /tmp/yq
           readarray -d '' nets < <(curl -sS https://www.cloudflare.com/ips-v4/ | sort)
-          nets=$(printf '"%s", ' ${nets[@]})  # add quotes and commas for yq
-          /tmp/yq eval --inplace ".spec.ingress[0].fromCIDR = [ ${nets%,*} ]" infra/traefik/networkpolicies/traefik.yaml
+
+          # cilium network policy
+          cilium_nets=$(printf '"%s", ' ${nets[@]})  # add quotes and commas for yq
+          /tmp/yq eval --inplace ".spec.ingress[0].fromCIDR = [ ${cilium_nets%,*} ]" infra/traefik/networkpolicies/traefik.yaml
+
+          # traefik forwardedHeaders trustedIPs
+          traefik_nets=$(printf '%s,' ${nets[@]})  # add commas for yq
+          traefik_nets="10.0.0.0/24,192.0.0.0/24,172.0.0.0/24,${traefik_nets%,*}"  # add local networks
+          /tmp/yq eval --inplace ".spec.values.additionalArguments[-1] = \"--entryPoints.web.forwardedHeaders.trustedIPs=${traefik_nets}\"" ~/hq/flux/k8s-gitops/infra/traefik/helmrelease.yaml
       - name: Create pull request for cloudflare network range update
         uses: peter-evans/create-pull-request@v3
         with:
@@ -30,7 +37,7 @@ jobs:
           signoff: true
           committer: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
-          assignees: "rxbn"
+          assignees: "gi8lino"
           commit-message: "update cloudflare network ranges"
           body: |
             Cloudflare IP ranges: https://www.cloudflare.com/ips/
