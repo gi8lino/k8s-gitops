@@ -3,5 +3,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - minio-ingress-k8up-jobs.yaml
+  - minio-ingress-mirrio.yaml
   - minio.yaml
   - traefik-egress-minio.yaml

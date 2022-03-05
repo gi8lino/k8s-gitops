@@ -2,10 +2,10 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: minio-ingress-k8up-jobs
+  name: minio-ingress-mirrio
   namespace: minio
 spec:
-  description: "Allow k8up jobs to connect to minio"
+  description: "Allow mirrio to connect to minio"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: minio
@@ -13,8 +13,9 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace.labels.k8up: backup-enabled
-            k8upjob: "true"
+            app: gitlab-backup-mirror
+            component: job
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "9000"  # minio-api
