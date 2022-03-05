@@ -8,7 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       app: prometheus-pushgateway
-      release: prometheus-pushgatewa
+      release: prometheus-pushgateway
   ingress:
     - fromEndpoints:
         - matchLabels:
