@@ -5,6 +5,6 @@ metadata:
   name: appuio
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
   url: https://charts.appuio.ch
   timeout: 3m
