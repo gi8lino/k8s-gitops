@@ -13,7 +13,7 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace.labels.k8up: backup-enabled
+            k8s.namespace.labels.k8up: backup-enabled
             k8upjob: "true"
       toPorts:
         - ports:
