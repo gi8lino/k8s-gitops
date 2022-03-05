@@ -5,5 +5,6 @@ resources:
   - cert-manager
   - local-path-provisioner
   - metallb
+  - metrics-server
   - nfs-subdir-external-provisioner
   - traefik
