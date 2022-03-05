@@ -48,6 +48,9 @@ spec:
       namespace: kubernetes-dashboard
       name: "*"
     - kind: HelmRelease
+      namespace: kube-system
+      name: "*"
+    - kind: HelmRelease
       namespace: local-path-provisioner
       name: "*"
     - kind: HelmRelease
