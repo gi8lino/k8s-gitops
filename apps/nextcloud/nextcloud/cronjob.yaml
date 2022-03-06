@@ -36,8 +36,6 @@ spec:
               envFrom:
                 - secretRef:
                     name: nextcloud-cron-healthchecks-url
-            - name: nextcloud-cron
-              mountPath: /scripts/nextcloud-cron.sh
           volumes:
             - name: healthchecks-data
               persistentVolumeClaim:
