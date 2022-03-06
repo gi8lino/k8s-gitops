@@ -45,9 +45,5 @@ spec:
         - ports:
             - port: "8443"
               protocol: TCP
-    - toFQDNs:
-        - matchName: git.${BASE_DOMAIN}
-      toPorts:
-        - ports:
-            - port: "22"
+            - port: "2222"
               protocol: TCP
