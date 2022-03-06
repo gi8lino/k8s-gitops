@@ -144,9 +144,7 @@ spec:
         https: true
         insecureSkipVerify: true
     kubeProxy:
-      enabled: true
-      endpoints:
-        - ${HOST_IP}
+      enabled: false
     kubeEtcd:
       enabled: false
     prometheus:
