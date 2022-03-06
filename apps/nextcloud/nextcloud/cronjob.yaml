@@ -38,7 +38,7 @@ spec:
                     name: nextcloud-cron-healthchecks-url
               volumeMounts:
                 - name: nextcloud-cron
-                  mountPath: /scripts/
+                  mountPath: /scripts
           volumes:
             - name: nextcloud-cron
               configMap:
