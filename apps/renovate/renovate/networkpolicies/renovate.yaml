@@ -43,7 +43,7 @@ spec:
             namespace: traefik
       toPorts:
         - ports:
-            - port: "8443"
+            - port: "8443"  # for git
               protocol: TCP
-            - port: "2222"
+            - port: "2222" # for ssh to git
               protocol: TCP
