@@ -16,10 +16,10 @@ NEXTCLOUD_CRON_URL=${NEXTCLOUD_CRON_URL:-http://nextcloud.nextcloud.svc.cluster.
 response=$(curl \
             --fail \
             --location \
-            --write-out "%{http_code}") \
+            --write-out "%{http_code}" \
             --output /dev/null \
             --header Host: ${NEXTCLOUD_DOMAIN} \
-            "${NEXTCLOUD_CRON_URL}"
+            "${NEXTCLOUD_CRON_URL}")
 
 [ "${response}" != "200" ] && \
   URL="${HEALTHCHECKS_URL}/fail"
