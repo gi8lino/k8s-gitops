@@ -19,7 +19,7 @@ NEXTCLOUD_CRON_URL=${NEXTCLOUD_CRON_URL:-http://nextcloud.nextcloud.svc.cluster.
   exit 1
 
 response=$(curl \
-            --fail \
+            -sS \
             --location \
             --write-out "%{http_code}" \
             --output /dev/null \
@@ -30,7 +30,7 @@ response=$(curl \
   HEALTHCHECKS_URL="${HEALTHCHECKS_URL}/fail"
 
 curl \
-  -fsS \
+  -sS \
   --max-time 10 \
   --retry 5 \
   --output /dev/null \
