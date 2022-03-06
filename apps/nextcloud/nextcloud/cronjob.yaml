@@ -37,9 +37,6 @@ spec:
                 - secretRef:
                     name: nextcloud-cron-healthchecks-url
           volumes:
-            - name: healthchecks-data
-              persistentVolumeClaim:
-                claimName: healthchecks-data
             - name: nextcloud-cron
               secret:
                 secretName: nextcloud-cron
