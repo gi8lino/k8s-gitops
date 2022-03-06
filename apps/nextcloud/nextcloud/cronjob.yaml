@@ -41,6 +41,6 @@ spec:
                   mountPath: /scripts/nextcloud-cron.sh
           volumes:
             - name: nextcloud-cron
-              secret:
-                secretName: nextcloud-cron
+              configMap:
+                name: nextcloud-cron
                 defaultMode: 0755
