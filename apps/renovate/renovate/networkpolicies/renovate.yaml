@@ -39,11 +39,11 @@ spec:
               protocol: TCP
     - toServices:
         - k8sService:
-            serviceName: traefik
-            namespace: traefik
+            serviceName: gitlab-webservice-default
+            namespace: gitlab
       toPorts:
         - ports:
-            - port: "8443"
+            - port: "8080"
               protocol: TCP
     - toFQDNs:
         - matchName: git.${BASE_DOMAIN}
