@@ -22,7 +22,7 @@ response=$(curl \
             "${NEXTCLOUD_CRON_URL}")
 
 [ "${response}" != "200" ] && \
-  URL="${HEALTHCHECKS_URL}/fail"
+  HEALTHCHECKS_URL="${HEALTHCHECKS_URL}/fail"
 
 curl \
   --fail \
