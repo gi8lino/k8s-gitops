@@ -3,7 +3,7 @@
 set -o errexit
 
 HEALTHCHECKS_URL=${HEALTHCHECKS_URL%*/}
-NEXTCLOUD_CRON_URL="${NEXTCLOUD_CRON_URL:-http://nextcloud.nextcloud.svc.cluster.local:8000/cron.php)"
+NEXTCLOUD_CRON_URL=${NEXTCLOUD_CRON_URL:-http://nextcloud.nextcloud.svc.cluster.local:8000/cron.php}
 
 [ -z "${HEALTHCHECKS_URL}" ] && \
   echo "'HEALTHCHECKS_URL' is not set!" && \
