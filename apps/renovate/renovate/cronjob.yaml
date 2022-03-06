@@ -59,7 +59,7 @@ spec:
                 - name: RENOVATE_PLATFORM
                   value: gitlab
                 - name: RENOVATE_ENDPOINT
-                  value: http://gitlab-webservice-default.gitlab.svc.cluster.local:8080/api/v4/
+                  value: https://git.${BASE_DOMAIN}/api/v4/
                 - name: RENOVATE_REDIS_URL
                   value: redis://renovate-redis.renovate.svc.cluster.local
               envFrom:

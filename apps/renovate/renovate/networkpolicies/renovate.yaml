@@ -39,14 +39,6 @@ spec:
               protocol: TCP
     - toServices:
         - k8sService:
-            serviceName: gitlab-webservice-default
-            namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "8080"
-              protocol: TCP
-    - toServices:
-        - k8sService:
             serviceName: traefik
             namespace: traefik
       toPorts:
