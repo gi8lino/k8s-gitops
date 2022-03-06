@@ -21,15 +21,28 @@ spec:
             component: cronjob
         spec:
           restartPolicy: Never
+          automountServiceAccountToken: false
           containers:
             - name: nextcloud-cron
               image: ghcr.io/containeroo/alpine-toolbox:1.12.9
               command:
-                - curl
+                - bash
               args:
-                - "--fail"
-                - "--location"
-                - "--header"
-                - "Host: cloud.${BASE_DOMAIN}"
-                - "http://nextcloud.nextcloud.svc.cluster.local/cron.php"
-          automountServiceAccountToken: false
+                - -c
+                - /scripts/nextcloud-cron.sh
+              env:
+                - name: NEXTCLOUD_DOMAIN
+                  value: cloud.${BASE_DOMAIN}
+              envFrom:
+                - secretRef:
+                    name: nextcloud-cron-healthchecks-url
+            - name: nextcloud-cron
+              mountPath: /scripts/nextcloud-cron.sh
+          volumes:
+            - name: healthchecks-data
+              persistentVolumeClaim:
+                claimName: healthchecks-data
+            - name: nextcloud-cron
+              secret:
+                secretName: nextcloud-cron
+                defaultMode: 0755
