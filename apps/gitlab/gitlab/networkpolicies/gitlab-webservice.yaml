@@ -25,6 +25,10 @@ spec:
         - matchLabels:
             job: cleanup-gitlab-runner
             io.kubernetes.pod.namespace: gitlab
+        - matchLabels:
+            app: renovate
+            component: job
+            io.kubernetes.pod.namespace: renovate
       toPorts:
         - ports:
             - port: "8080"
