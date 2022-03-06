@@ -18,7 +18,7 @@ response=$(curl \
             --location \
             --write-out "%{http_code}" \
             --output /dev/null \
-            --header Host: ${NEXTCLOUD_DOMAIN} \
+            --header "Host: ${NEXTCLOUD_DOMAIN}" \
             "${NEXTCLOUD_CRON_URL}")
 
 [ "${response}" != "200" ] && \
