@@ -17,9 +17,9 @@ spec:
       interval: 5m
   values:
     metrics:
-      prometheusRule:
+      podMonitor:
         enabled: true
-      serviceMonitor:
+      prometheusRule:
         enabled: true
   install:
     crds: Skip
