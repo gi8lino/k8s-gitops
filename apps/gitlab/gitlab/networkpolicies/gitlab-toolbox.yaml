@@ -71,5 +71,5 @@ spec:
             namespace: traefik
       toPorts:
         - ports:
-            - port: "8443"
+            - port: "8443"  # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
               protocol: TCP
