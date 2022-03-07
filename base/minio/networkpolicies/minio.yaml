@@ -35,7 +35,6 @@ spec:
               - matchPattern: "*"
     - toFQDNs:
         - matchName: dl.min.io
-        - matchName: auth.${BASE_DOMAIN}  # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
       toPorts:
         - ports:
             - port: "443"
