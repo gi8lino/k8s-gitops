@@ -17,8 +17,8 @@ spec:
       interval: 5m
   values:
     auth:
-      rootUser: ${MINIO_ACCESSKEY}
-      rootPassword: ${MINIO_SECRETKEY}
+      rootUser: ${MINIO_ROOT_USER}
+      rootPassword: ${MINIO_ROOT_PASSWORD}
     defaultBuckets: terraform-states
     extraEnv:
       - name: TZ

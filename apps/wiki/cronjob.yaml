@@ -30,9 +30,9 @@ spec:
                 - name: RESTIC_PASSWORD
                   value: ${RESTIC_PASSWORD}
                 - name: AWS_ACCESS_KEY_ID
-                  value: ${MINIO_ACCESSKEY}
+                  value: ${MINIO_ROOT_USER}
                 - name: AWS_SECRET_ACCESS_KEY
-                  value: ${MINIO_SECRETKEY}
+                  value: ${MINIO_ROOT_PASSWORD}
                 - name: RESTIC_REPOSITORY
                   value: s3:http://minio.minio.svc.cluster.local:9000/wiki
           automountServiceAccountToken: false
