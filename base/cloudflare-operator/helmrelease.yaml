@@ -15,6 +15,12 @@ spec:
         name: containeroo
         namespace: flux-system
       interval: 5m
+  values:
+    metrics:
+      prometheusRule:
+        enabled: true
+      serviceMonitor:
+        enabled: true
   install:
     crds: Skip
   upgrade:
