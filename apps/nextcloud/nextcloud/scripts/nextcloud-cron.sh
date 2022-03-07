@@ -26,15 +26,26 @@ response=$(curl \
             --header "Host: ${NEXTCLOUD_DOMAIN}" \
             "${NEXTCLOUD_CRON_URL}")
 
-[ "${response}" != "200" ] && \
+if [ "${response}" != "200" ]; then
   HEALTHCHECKS_URL="${HEALTHCHECKS_URL}/fail"
+  echo "ERROR: cannot trigger nextcloud cron.php. status: ${response}"
+else
+  echo "INFO: nextcloud cron.php successfully triggerd"
+fi
 
-curl \
-  -sS \
-  --max-time 10 \
-  --retry 5 \
-  --output /dev/null \
-  "${HEALTHCHECKS_URL}"
+response=$(curl \
+            -sS \
+            --max-time 10 \
+            --write-out "%{http_code}" \
+            --retry 5 \
+            --output /dev/null \
+            "${HEALTHCHECKS_URL}")
+
+if [ "${response}" != "200" ]; then
+  echo "ERROR: cannot ping healthchecks. status: ${response}"
+else
+  echo "INFO: healthchecks successfully pinged"
+fi
 
 # -f: Makes curl treat non-200 responses as errors.
 # -s: Silent or quiet mode. Hides the progress meter, but also hides error messages.
