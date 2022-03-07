@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: cloudflare-operator
-      version: 0.0.21
+      version: 0.0.24
       sourceRef:
         kind: HelmRepository
         name: containeroo
