@@ -45,11 +45,13 @@ spec:
         - ports:
             - port: "587"
               protocol: TCP
-    - toFQDNs:
-        - matchName: auth.${BASE_DOMAIN}
+    - toServices:
+        - k8sService:
+            serviceName: traefik
+            namespace: traefik
       toPorts:
         - ports:
-            - port: "443"  # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
+            - port: "8443"  # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
               protocol: TCP
     - toFQDNs:
         - matchName: graph.requarks.io
