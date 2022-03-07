@@ -53,9 +53,16 @@ spec:
         - matchName: grafana.com             # grafana dashboards
         - matchName: grafana.net             # grafana dashboards
         - matchName: raw.githubusercontent.com
-        - matchName: auth.${BASE_DOMAIN}      # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
         - matchName: storage.googleapis.com  # grafana plugin archive
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: traefik
+            namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8443"  # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
               protocol: TCP
