@@ -38,6 +38,7 @@ spec:
         - matchName: plex.tv
         - matchName: radarrapi.servarr.com
         - matchName: radarr.servarr.com
+        - matchName: api.radarr.video
       toPorts:
         - ports:
             - port: "443"
