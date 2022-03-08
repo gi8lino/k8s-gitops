@@ -3,11 +3,11 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: rebuild-restic-index
-  namespace: media
+  namespace: paperless
   labels:
     k8upjob: "true"
 spec:
-  schedule: CRON_TZ=Europe/Zurich 40 1,13 * * *
+  schedule: CRON_TZ=Europe/Zurich 30 2,14 * * *
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
@@ -34,5 +34,5 @@ spec:
                 - name: AWS_SECRET_ACCESS_KEY
                   value: ${MINIO_ROOT_PASSWORD}
                 - name: RESTIC_REPOSITORY
-                  value: s3:http://minio.minio.svc.cluster.local:9000/media
+                  value: s3:http://minio.minio.svc.cluster.local:9000/paperless
           automountServiceAccountToken: false

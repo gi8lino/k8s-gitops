@@ -11,7 +11,7 @@ spec:
     s3:
       bucket: media
   backup:
-    schedule: "0 1,13 * * *"
+    schedule: "0 2,14 * * *"
   check:
     schedule: "0 7 * * *"
   prune:
