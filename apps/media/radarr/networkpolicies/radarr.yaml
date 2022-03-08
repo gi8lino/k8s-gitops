@@ -38,8 +38,6 @@ spec:
         - matchName: hooks.slack.com
         - matchName: image.tmdb.org
         - matchName: plex.tv
-        - matchName: radarrapi.servarr.com
-        - matchName: radarr.servarr.com
       toPorts:
         - ports:
             - port: "443"
