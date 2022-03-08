@@ -1,5 +1,5 @@
 ---
-apiVersion: cf.containeroo.ch/v1alpha1
+apiVersion: cf.containeroo.ch/v1beta1
 kind: DNSRecord
 metadata:
   name: ${BASE_DOMAIN/./-}
@@ -13,7 +13,7 @@ spec:
   ttl: 1
   interval: 5m
 ---
-apiVersion: cf.containeroo.ch/v1alpha1
+apiVersion: cf.containeroo.ch/v1beta1
 kind: DNSRecord
 metadata:
   name: vpn-${BASE_DOMAIN/./-}
