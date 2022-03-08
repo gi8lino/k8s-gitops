@@ -1,3 +1,4 @@
+---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
@@ -33,12 +34,12 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
+        - matchName: api.radarr.video
         - matchName: hooks.slack.com
         - matchName: image.tmdb.org
         - matchName: plex.tv
         - matchName: radarrapi.servarr.com
         - matchName: radarr.servarr.com
-        - matchName: api.radarr.video
       toPorts:
         - ports:
             - port: "443"
