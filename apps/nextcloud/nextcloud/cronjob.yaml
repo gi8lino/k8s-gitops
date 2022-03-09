@@ -24,7 +24,7 @@ spec:
           automountServiceAccountToken: false
           containers:
             - name: nextcloud-cron
-              image: ghcr.io/containeroo/alpine-toolbox:1.12.9
+              image: ghcr.io/containeroo/alpine-toolbox:1.13.1
               command:
                 - bash
               args:
