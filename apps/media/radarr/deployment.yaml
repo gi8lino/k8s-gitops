@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: radarr
-          image: lscr.io/linuxserver/radarr:4.0.5.5981-ls133
+          image: lscr.io/linuxserver/radarr:4.0.5.5981-ls134
           env:
             - name: TZ
               value: Europe/Zurich
