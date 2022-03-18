@@ -11,7 +11,7 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels:
+    matchLabels:v2.0-ls117
       app: healthchecks
   strategy:
     type: Recreate
@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: healthchecks
-          image: lscr.io/linuxserver/healthchecks:2.0.20220318
+          image: lscr.io/linuxserver/healthchecks:v2.0-ls117
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
