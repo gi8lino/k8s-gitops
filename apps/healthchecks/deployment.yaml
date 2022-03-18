@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: healthchecks
-          image: lscr.io/linuxserver/healthchecks:v1.25.0-ls117
+          image: lscr.io/linuxserver/healthchecks:2.0.20220318
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
