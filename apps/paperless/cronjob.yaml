@@ -33,6 +33,10 @@ spec:
                   value: ${MINIO_ROOT_USER}
                 - name: AWS_SECRET_ACCESS_KEY
                   value: ${MINIO_ROOT_PASSWORD}
+                - name: BUCKET_NAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.namespace
                 - name: RESTIC_REPOSITORY
-                  value: s3:http://minio.minio.svc.cluster.local:9000/paperless
+                  value: s3:http://minio.minio.svc.cluster.local:9000/$(BUCKET_NAME)
           automountServiceAccountToken: false
