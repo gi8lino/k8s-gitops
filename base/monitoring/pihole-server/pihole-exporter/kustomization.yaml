@@ -10,7 +10,7 @@ configMapGenerator:
   - name: grafana-dashboard-pihole-metrics
     namespace: monitoring
     files:
-      - dashboards/pihole-metrics.json
+      - pihole-metrics.json=https://raw.githubusercontent.com/eko/pihole-exporter/master/grafana/dashboard.json
 generatorOptions:
   disableNameSuffixHash: true
 patches:
@@ -22,10 +22,6 @@ patches:
         path: "/metadata/labels"
         value:
           grafana_dashboard: "1"
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-pihole-metrics
-    patch: |-
       - op: add
         path: "/metadata/annotations"
         value:
