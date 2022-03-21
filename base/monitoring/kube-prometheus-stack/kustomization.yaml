@@ -22,10 +22,6 @@ patches:
         path: "/metadata/labels"
         value:
           grafana_dashboard: "1"
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-node-exporter-full
-    patch: |-
       - op: add
         path: "/metadata/annotations"
         value:

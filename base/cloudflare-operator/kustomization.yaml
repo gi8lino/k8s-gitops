@@ -24,10 +24,6 @@ patches:
         path: "/metadata/labels"
         value:
           grafana_dashboard: "1"
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-cloudflare-operator
-    patch: |-
       - op: add
         path: "/metadata/annotations"
         value:
