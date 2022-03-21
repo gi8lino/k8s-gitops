@@ -1,4 +1,35 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": [],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.4.2"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -23,17 +54,20 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 13230,
   "graphTooltip": 0,
-  "id": 1484,
+  "id": null,
+  "iteration": 1647879955977,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null,
             "displayMode": "auto",
             "filterable": false
           },
@@ -387,6 +421,13 @@
       },
       "id": 2,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "frameIndex": 1,
         "showHeader": true,
         "sortBy": [
@@ -396,9 +437,14 @@
           }
         ]
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.4.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": false,
           "expr": "probe_ssl_earliest_cert_expiry-time()",
           "format": "table",
           "hide": false,
@@ -408,6 +454,11 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": false,
           "expr": "probe_http_status_code",
           "format": "table",
           "instant": true,
@@ -416,6 +467,11 @@
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": false,
           "expr": "probe_http_duration_seconds{phase=\"resolve\"}",
           "format": "table",
           "instant": true,
@@ -424,6 +480,11 @@
           "refId": "G"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": false,
           "expr": "probe_http_duration_seconds{phase=\"connect\"}",
           "format": "table",
           "instant": true,
@@ -432,6 +493,11 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": false,
           "expr": "probe_http_duration_seconds{phase=\"tls\"}",
           "format": "table",
           "instant": true,
@@ -440,6 +506,11 @@
           "refId": "E"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": false,
           "expr": "probe_http_duration_seconds{phase=\"processing\"}",
           "format": "table",
           "instant": true,
@@ -448,6 +519,11 @@
           "refId": "F"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": false,
           "expr": "probe_http_duration_seconds{phase=\"transfer\"}",
           "format": "table",
           "instant": true,
@@ -456,8 +532,6 @@
           "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Certificate & Connection Monitoring",
       "transformations": [
         {
@@ -537,14 +611,32 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 31,
+  "schemaVersion": 35,
   "style": "dark",
   "tags": [
     "blackbox",
     "ssl"
   ],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "DS_PROMETHEUS",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
   },
   "time": {
     "from": "now-6h",
@@ -554,5 +646,6 @@
   "timezone": "",
   "title": "SSL Certificate Monitor",
   "uid": "r8eWoHpGz",
-  "version": 1
+  "version": 1,
+  "weekStart": ""
 }
