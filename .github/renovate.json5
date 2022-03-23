@@ -56,19 +56,10 @@
       ],
       "datasourceTemplate": "github-releases"
     },
-    // crd releases for cert-manager
+    // crd releases based on URL
     {
       "fileMatch": [
-        "crds/cert-manager/kustomization\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\\s.*/(?<currentValue>.*?)/"
-      ],
-      "datasourceTemplate": "helm"
-    },
-    // crd releases for cloudflare-operator & k8up
-    {
-      "fileMatch": [
+        "crds/cert-manager/kustomization\\.ya?ml$",
         "crds/cloudflare-operator/kustomization\\.ya?ml$",
         "crds/k8up/kustomization\\.ya?ml$"
       ],
@@ -76,7 +67,7 @@
         "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"
       ]
     },
-    // crd releases for kube-prometheus-stack & traefik
+    // crd releases based on git repository
     {
       "fileMatch": [
         "crds/kube-prometheus-stack/crds\\.ya?ml$",
