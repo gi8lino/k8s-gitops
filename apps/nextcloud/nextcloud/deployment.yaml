@@ -109,7 +109,7 @@ spec:
               name: user-data
               readOnly: true
         - name: nextcloud
-          image: nextcloud:23.0.2-fpm-alpine
+          image: nextcloud:23.0.3-fpm-alpine
           resources: {}
           env:
             - name: POSTGRES_DB
