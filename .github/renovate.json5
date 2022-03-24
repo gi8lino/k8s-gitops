@@ -56,6 +56,16 @@
       ],
       "datasourceTemplate": "github-releases"
     },
+    // crd releases for kube-prometheus-stack
+    {
+      "fileMatch": [
+        "crds/kube-prometheus-stack/crds\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "registryUrl=(?<registryUrl>.*)\\s.*tag: (?<depName>.*)-(?<currentValue>.*)"
+      ],
+      "datasourceTemplate": "helm"
+    },
     // crd releases based on URL
     {
       "fileMatch": [
@@ -70,7 +80,6 @@
     // crd releases based on git repository
     {
       "fileMatch": [
-        "crds/kube-prometheus-stack/crds\\.ya?ml$",
         "crds/traefik/crds\\.ya?ml$"
       ],
       "matchStrings": [
