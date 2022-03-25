@@ -70,20 +70,23 @@ spec:
           labels:
             severity: warning
           annotations:
-            summary: "SSL certificate {{ \"{{ $labels.instance }}\" }} expires soon"
-            description: "SSL certificate will expire in {{ \"{{ $value | humanizeDuration }}\" }} (instance {{ \"{{ $labels.instance }}\" }})"
+            summary: |-
+              SSL certificate {{"{{ $labels.instance }}"}} expires soon
+            description: |-
+              SSL certificate will expire in {{"{{ $value | humanizeDuration }}" }} (instance {{"{{ $labels.instance }}"}})
         - alert: Newsnab
           expr: probe_failed_due_to_regex{target="newsnab"}
           for: 5m
           labels:
             severity: warning
           annotations:
-            summary: "Newsnab API is expired"
-            description: "Newsnab API for {{ \"{{ $labels.instance }}\" }} is expired"
+            summary: Newsnab API is expired
+            description: Newsnab API for {{"{{ $labels.instance }}"}} is expired
         - alert: BlackboxProbeFailed
           expr: probe_success == 0
           for: 5m
           labels:
             severity: critical
           annotations:
+            summary: Host is unreachable
             description: The host {{"{{ $labels.target }}"}} is currently unreachable
