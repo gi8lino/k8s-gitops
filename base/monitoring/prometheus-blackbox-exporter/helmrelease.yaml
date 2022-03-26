@@ -65,7 +65,7 @@ spec:
       enabled: true
       rules:
         - alert: SSLCertExpiringSoon
-          expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 30
+          expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 29
           for: 5m
           labels:
             severity: warning
