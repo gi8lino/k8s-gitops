@@ -31,6 +31,12 @@
     },
     {
       "type": "panel",
+      "id": "status-history",
+      "name": "Status history",
+      "version": ""
+    },
+    {
+      "type": "panel",
       "id": "table",
       "name": "Table",
       "version": ""
@@ -61,7 +67,7 @@
   "gnetId": 11529,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1647880285121,
+  "iteration": 1648458839099,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -77,11 +83,29 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto"
+            "displayMode": "auto",
+            "filterable": true
           },
-          "decimals": 2,
+          "decimals": 0,
           "displayName": "",
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "DOWN"
+                },
+                "1": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "UP"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "noValue": "1",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -91,7 +115,7 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 1
               }
             ]
           },
@@ -101,43 +125,12 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Value #A"
+              "options": "Value"
             },
             "properties": [
               {
-                "id": "displayName",
-                "value": "1=UP, 0=DOWN"
-              },
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
                 "id": "custom.displayMode",
                 "value": "color-background"
-              },
-              {
-                "id": "custom.align"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "rgba(245, 54, 54, 0.9)",
-                      "value": null
-                    },
-                    {
-                      "color": "rgba(245, 54, 54, 0.9)",
-                      "value": 0
-                    },
-                    {
-                      "color": "rgba(50, 172, 45, 0.97)",
-                      "value": 1
-                    }
-                  ]
-                }
               }
             ]
           }
@@ -203,95 +196,89 @@
       "type": "table"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "decimals": 0,
-      "fill": 0,
-      "fillGradient": 0,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 10,
+            "lineWidth": 1
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "NOK"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "OK"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 7,
         "w": 14,
         "x": 10,
         "y": 0
       },
-      "hiddenSeries": false,
       "id": 111,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
       "options": {
-        "alertThreshold": true
+        "colWidth": 0.72,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "rowHeight": 0.32,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "percentage": false,
       "pluginVersion": "8.4.2",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": true,
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "- probe_success",
+          "exemplar": true,
+          "expr": "probe_success",
           "format": "time_series",
-          "intervalFactor": 1,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 5,
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Bare Metal Server Probes (Up/Down) - Historic",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": 0,
-          "format": "short",
-          "logBase": 1,
-          "show": false
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "transformations": [],
+      "type": "status-history"
     },
     {
       "datasource": {
@@ -305,7 +292,8 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto"
+            "displayMode": "auto",
+            "filterable": true
           },
           "decimals": 2,
           "displayName": "",
@@ -329,7 +317,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Value #A"
+              "options": "Value"
             },
             "properties": [
               {
@@ -363,30 +351,6 @@
               {
                 "id": "unit",
                 "value": "dtdurations"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "instance"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 220
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "target"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 149
               }
             ]
           }
@@ -659,7 +623,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
