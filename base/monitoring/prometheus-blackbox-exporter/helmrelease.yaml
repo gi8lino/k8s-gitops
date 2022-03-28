@@ -18,13 +18,6 @@ spec:
   values:
     config:
       modules:
-        http_2xx:
-          prober: http
-          timeout: 10s
-          http:
-            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
-            follow_redirects: true
-            preferred_ip_protocol: "ip4"
         newsnab:
           prober: http
           timeout: 5s
@@ -58,16 +51,13 @@ spec:
       targets:
         - name: ${BASE_DOMAIN}
           url: https://auth.${BASE_DOMAIN}
-          module: http_2xx
         - name: pihole
           url: https://pihole.local.${BASE_DOMAIN}
-          module: http_2xx
         - name: tools
           url: https://traefik.tools.${BASE_DOMAIN}
-          module: http_2xx
         - name: diskstation
           url: https://ds.local.${BASE_DOMAIN}
-          module: http_2xx
+          scrapeTimeout: 1m
         - name: newsnab
           url: https://${NEWSNAB_DOMAIN}
           interval: 60m
