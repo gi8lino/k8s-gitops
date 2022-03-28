@@ -12,19 +12,3 @@ spec:
   selector:
     app: sonarr
   type: ClusterIP
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: sonarr-metrics
-  namespace: media
-  labels:
-    app: sonarr-metrics
-spec:
-  ports:
-    - name: metrics
-      port: 9794
-      targetPort: metrics
-  selector:
-    app: sonarr
-  clusterIP: None
