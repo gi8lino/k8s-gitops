@@ -55,7 +55,7 @@
   "gnetId": 13230,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1647879955977,
+  "iteration": 1648503062984,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -68,6 +68,7 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
+            "align": "auto",
             "displayMode": "auto",
             "filterable": false
           },
@@ -168,11 +169,11 @@
                     },
                     {
                       "color": "semi-dark-yellow",
-                      "value": 12096000
+                      "value": 1209600
                     },
                     {
                       "color": "semi-dark-green",
-                      "value": 25920000
+                      "value": 2592000
                     }
                   ]
                 }
