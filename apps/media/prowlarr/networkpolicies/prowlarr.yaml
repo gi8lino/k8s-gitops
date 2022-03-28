@@ -40,6 +40,7 @@ spec:
         - matchName: ${USENET_INDEXER_DOMAIN}
         - matchName: hooks.slack.com
         - matchName: indexers.prowlarr.com
+        - matchName: prowlarr.servarr.com
       toPorts:
         - ports:
             - port: "443"
