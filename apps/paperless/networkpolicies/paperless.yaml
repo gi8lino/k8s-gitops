@@ -31,12 +31,10 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toEndpoints:
-        - matchLabels:
-            app.kubernetes.io/name: redis
-            app.kubernetes.io/component: master
-            app.kubernetes.io/instance: paperless
-            io.kubernetes.pod.namespace: paperless
+    - toServices:
+        - k8sService:
+            serviceName: paperless-redis-master
+            namespace: paperless
       toPorts:
         - ports:
             - port: "6379"
