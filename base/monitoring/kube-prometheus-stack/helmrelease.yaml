@@ -102,6 +102,8 @@ spec:
           enabled: true
           searchNamespace: ALL
           resource: both
+          skipReload: true
+          initDatasources: true
       ingress:
         enabled: true
         annotations:
