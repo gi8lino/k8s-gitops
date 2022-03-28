@@ -67,7 +67,7 @@
   "gnetId": 11529,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1648458839099,
+  "iteration": 1648496876978,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -206,8 +206,8 @@
             "mode": "thresholds"
           },
           "custom": {
-            "fillOpacity": 10,
-            "lineWidth": 1
+            "fillOpacity": 24,
+            "lineWidth": 5
           },
           "mappings": [
             {
@@ -247,12 +247,12 @@
       "id": 111,
       "links": [],
       "options": {
-        "colWidth": 0.72,
+        "colWidth": 0.73,
         "legend": {
           "displayMode": "list",
           "placement": "bottom"
         },
-        "rowHeight": 0.32,
+        "rowHeight": 0.8,
         "showValue": "auto",
         "tooltip": {
           "mode": "single",
@@ -272,7 +272,7 @@
           "instant": false,
           "interval": "",
           "intervalFactor": 5,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{target}}",
           "refId": "A"
         }
       ],
@@ -654,6 +654,6 @@
   "timezone": "",
   "title": "Blackbox Exporter Quick Overview",
   "uid": "xtkCtBkiz",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
