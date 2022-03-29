@@ -51,13 +51,17 @@ spec:
       targets:
         - name: ${BASE_DOMAIN}
           url: https://auth.${BASE_DOMAIN}
+          interval: 60m
         - name: pihole
           url: https://pihole.local.${BASE_DOMAIN}
+          interval: 60m
         - name: tools
           url: https://traefik.tools.${BASE_DOMAIN}
+          interval: 60m
         - name: diskstation
           url: https://ds.local.${BASE_DOMAIN}
           scrapeTimeout: 1m
+          interval: 60m
         - name: newsnab
           url: https://${NEWSNAB_DOMAIN}
           interval: 60m
