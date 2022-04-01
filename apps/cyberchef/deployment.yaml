@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: cyberchef
-          image: mpepping/cyberchef:v9.32.3
+          image: mpepping/cyberchef:v9.37.0
           imagePullPolicy: IfNotPresent
           resources: {}
           ports:
