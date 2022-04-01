@@ -82,3 +82,11 @@ spec:
         - ports:
             - port: "9300"
               protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: minio
+            namespace: minio
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP
