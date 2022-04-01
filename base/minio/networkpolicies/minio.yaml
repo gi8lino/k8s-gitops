@@ -50,7 +50,7 @@ spec:
       toPorts:
         - ports:
             - port: "9090"
-              protocol: UDP
+              protocol: TCP
     - toFQDNs:
         - matchName: dl.min.io
       toPorts:
