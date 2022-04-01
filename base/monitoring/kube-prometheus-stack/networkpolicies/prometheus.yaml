@@ -40,9 +40,9 @@ spec:
             namespace: monitoring
       toPorts:
         - ports:
-            - port: "53"
+            - port: "53"  # dns
               protocol: TCP
-            - port: "9153"
+            - port: "9153"  # dns metrics
               protocol: TCP
     - toServices:
         - k8sService:
