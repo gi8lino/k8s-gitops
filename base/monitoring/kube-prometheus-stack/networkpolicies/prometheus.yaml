@@ -40,6 +40,8 @@ spec:
             namespace: monitoring
       toPorts:
         - ports:
+            - port: "53"
+              protocol: TCP
             - port: "9153"
               protocol: TCP
     - toServices:
