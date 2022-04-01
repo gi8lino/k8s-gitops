@@ -23,6 +23,17 @@ spec:
             - port: "9090"
               protocol: TCP
   egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
     - toEntities:
         - host
       toPorts:
@@ -40,9 +51,7 @@ spec:
             namespace: monitoring
       toPorts:
         - ports:
-            - port: "53"  # dns
-              protocol: TCP
-            - port: "9153"  # dns metrics
+            - port: "9153"
               protocol: TCP
     - toServices:
         - k8sService:
