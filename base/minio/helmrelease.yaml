@@ -20,7 +20,7 @@ spec:
       rootUser: ${MINIO_ROOT_USER}
       rootPassword: ${MINIO_ROOT_PASSWORD}
     defaultBuckets: terraform-states
-    extraEnv:
+    extraEnvVars:
       - name: TZ
         value: Europe/Zurich
       - name: MINIO_PROMETHEUS_URL
