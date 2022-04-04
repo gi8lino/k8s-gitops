@@ -102,6 +102,7 @@ spec:
           enabled: true
           searchNamespace: ALL
           resource: both
+          initDatasource: true
       ingress:
         enabled: true
         annotations:
