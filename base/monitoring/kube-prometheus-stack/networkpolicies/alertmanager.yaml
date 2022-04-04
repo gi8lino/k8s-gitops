@@ -22,9 +22,6 @@ spec:
         - matchLabels:
             app: kthxbye
             io.kubernetes.pod.namespace: monitoring
-        - matchLabels:
-            app: notification-controller
-            io.kubernetes.pod.namespace: flux-system
       toPorts:
         - ports:
             - port: "9093"
