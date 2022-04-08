@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: tautulli
-          image: lscr.io/linuxserver/tautulli:v2.9.5-ls34
+          image: lscr.io/linuxserver/tautulli:v2.9.5-ls35
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
