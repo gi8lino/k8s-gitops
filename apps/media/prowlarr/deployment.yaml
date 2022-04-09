@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: prowlarr
-          image: lscr.io/linuxserver/prowlarr:nightly-0.2.0.1672-ls311
+          image: lscr.io/linuxserver/prowlarr:nightly-0.2.0.1673-ls312
           env:
             - name: PGID
               value: "2000"
