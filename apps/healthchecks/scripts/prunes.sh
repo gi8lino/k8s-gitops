@@ -37,11 +37,13 @@ python3 /app/healthchecks/manage.py pruneflips
 # and then iterates over top-level keys in the object storage bucket, and deletes any that don't also exist in the database.
 python3 /app/healthchecks/manage.py pruneobjects
 
-# other prunes
+# Prune old pings
 python3 /app/healthchecks/manage.py prunepings
+
+# Prune old notifications
 python3 /app/healthchecks/manage.py prunenotifications
 
-# shrink db
+# Shrink db
 python3 -c 'import os; import sqlite3; con = sqlite3.connect(os.getenv("DB_NAME", "sqlite"), isolation_level=None); con.execute("VACUUM"); con.close()'
 
 send_healthchecks
