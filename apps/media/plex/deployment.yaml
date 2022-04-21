@@ -25,7 +25,7 @@ spec:
           - 109
       containers:
         - name: plex
-          image: lscr.io/linuxserver/plex:1.25.9.5721-965587f64-ls110
+          image: lscr.io/linuxserver/plex:1.26.0.5715-8cf78dab3-ls111
           env:
             - name: TZ
               value: Europe/Zurich
