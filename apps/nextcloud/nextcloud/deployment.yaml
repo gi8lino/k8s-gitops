@@ -110,7 +110,6 @@ spec:
               readOnly: true
         - name: nextcloud
           image: nextcloud:23.0.3-fpm-alpine
-          resources: {}
           env:
             - name: POSTGRES_DB
               value: nextcloud
@@ -150,6 +149,7 @@ spec:
                   - /bin/sh
                   - -c
                   - crond
+          resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
