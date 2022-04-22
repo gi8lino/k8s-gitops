@@ -27,15 +27,6 @@ spec:
         - ports:
             - port: "8000"
               protocol: TCP
-    - fromEndpoints:  # allow push from nextcloud directly to healthchecks (nextcloud-cron)
-        - matchLabels:
-            app: nextcloud
-            component: cronjob
-            io.kubernetes.pod.namespace: nextcloud
-      toPorts:
-        - ports:
-            - port: "8000"
-              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
