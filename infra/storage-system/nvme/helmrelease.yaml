@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: nvme
-  namespace: local-path-provisioner
+  namespace: storage-system
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
