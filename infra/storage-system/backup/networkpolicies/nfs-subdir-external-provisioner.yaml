@@ -3,7 +3,7 @@ apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: nfs-subdir-external-provisioner
-  namespace: nfs-subdir-external-provisioner
+  namespace: storage-system
 spec:
   endpointSelector:
     matchLabels:
