@@ -2,13 +2,14 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: ssd-local-path-provisioner
-  namespace: local-path-provisioner
+  name: metallb
+  namespace: metallb-system
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: ssd
-      app.kubernetes.io/name: local-path-provisioner
+      app.kubernetes.io/instance: metallb
+      app.kubernetes.io/name: metallb
+      app.kubernetes.io/component: controller
   egress:
     - toEntities:
         - host

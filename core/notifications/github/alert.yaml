@@ -31,13 +31,10 @@ spec:
       namespace: kube-system
       name: "*"
     - kind: HelmRelease
-      namespace: local-path-provisioner
-      name: "*"
-    - kind: HelmRelease
       namespace: mealie
       name: "*"
     - kind: HelmRelease
-      namespace: metallb
+      namespace: metallb-system
       name: "*"
     - kind: HelmRelease
       namespace: minio
@@ -46,13 +43,13 @@ spec:
       namespace: monitoring
       name: "*"
     - kind: HelmRelease
-      namespace: nfs-subdir-external-provisioner
-      name: "*"
-    - kind: HelmRelease
       namespace: paperless
       name: "*"
     - kind: HelmRelease
       namespace: reloader
+      name: "*"
+    - kind: HelmRelease
+      namespace: storage-system
       name: "*"
     - kind: HelmRelease
       namespace: traefik

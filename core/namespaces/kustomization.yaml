@@ -11,17 +11,16 @@ resources:
   - healthchecks.yaml
   - k8up.yaml
   - kubernetes-dashboard.yaml
-  - local-path-provisioner.yaml
   - mealie.yaml
   - media.yaml
-  - metallb.yaml
+  - metallb-system.yaml
   - minio.yaml
   - monitoring.yaml
   - nextcloud.yaml
-  - nfs-subdir-external-provisioner.yaml
   - paperless.yaml
   - reloader.yaml
   - renovate.yaml
+  - storage-system.yaml
   - syncflaer.yaml
   - traefik.yaml
   - wallabag.yaml
