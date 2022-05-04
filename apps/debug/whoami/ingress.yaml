@@ -29,7 +29,7 @@ metadata:
   namespace: debug
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.middlewares: traefik-real-ip@kubernetescrd,authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
     cf.containeroo.ch/type: CNAME
     cf.containeroo.ch/content: ${BASE_DOMAIN}
 spec:

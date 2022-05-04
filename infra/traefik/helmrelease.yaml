@@ -23,7 +23,7 @@ spec:
   values:
     additionalArguments:
       - --api.insecure=true
-      - --entrypoints.websecure.http.middlewares=traefik-default-headers@kubernetescrd
+      - --entrypoints.websecure.http.middlewares=traefik-real-ip@kubernetescrd,traefik-default-headers@kubernetescrd
       - --serverstransport.insecureskipverify
       - --providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDRESS_POOL%/*}
       - --experimental.plugins.traefik-real-ip.modulename=github.com/Paxxs/traefik-get-real-ip
