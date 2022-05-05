@@ -8,7 +8,7 @@ cd "${SAB_COMPLETE_DIR}"
 FILENAME=$(find . -type f -name "*.mkv" -and -not -iname "*sample*")
 
 if [ -z "${FILENAME}" ]; then
-    echo "no mkv file found - skipping"
+    echo "no mkv file found - skipping"
     exit 0
 fi
 
