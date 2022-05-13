@@ -28,6 +28,7 @@ spec:
       PAPERLESS_CORS_ALLOWED_HOSTS: https://paperless.local.${BASE_DOMAIN}
       PAPERLESS_ENABLE_HTTP_REMOTE_USER: "True"
       PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_X_AUTHENTIK_USERNAME
+      PAPERLESS_URL: https://paperless.local.${BASE_DOMAIN}
     ingress:
       main:
         enabled: true
