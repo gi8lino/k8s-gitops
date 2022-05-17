@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: sonarr
-          image: lscr.io/linuxserver/sonarr:3.0.8.1507-ls146
+          image: lscr.io/linuxserver/sonarr:3.0.8.1507-ls147
           env:
             - name: TZ
               value: Europe/Zurich
