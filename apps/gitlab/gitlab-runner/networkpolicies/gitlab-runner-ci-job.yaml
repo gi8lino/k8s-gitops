@@ -20,6 +20,14 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toServices:
+        - k8sService:
+            serviceName: traefik
+            namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8443"  # to access git.${BASE_DOMAIN}
+              protocol: TCP
     - toEntities:
         - world
       toPorts:
