@@ -8,7 +8,6 @@ spec:
   endpointSelector:
     matchLabels:
       gitlab-runner: ci-job
-      release: gitlab
   egress:
     - toEndpoints:
         - matchLabels:
