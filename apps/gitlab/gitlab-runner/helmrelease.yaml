@@ -33,6 +33,8 @@ spec:
       locked: false
       protected: false
       runUntagged: true
+    unregisterRunners: true
+    unregisterRunner: false
   valuesFrom:
     - kind: Secret
       name: gitlab-runner-helm-values
