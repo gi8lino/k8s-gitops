@@ -11,13 +11,13 @@ spec:
     s3:
       bucket: media
   backup:
-    schedule: "0 2,14 * * *"
+    schedule: 0 2,14 * * *
   check:
-    schedule: "0 7 * * *"
+    schedule: 0 7 * * *
   prune:
     retention:
       keepDaily: 2
       keepLast: 4
-    schedule: "0 5 * * *"
+    schedule: 0 5 * * *
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 2

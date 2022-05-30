@@ -11,13 +11,13 @@ spec:
     s3:
       bucket: cluster-resources
   backup:
-    schedule: "0 */12 * * *"
+    schedule: 0 */12 * * *
   check:
-    schedule: "20 */12 * * *"
+    schedule: 20 */12 * * *
   prune:
     retention:
       keepDaily: 2
       keepLast: 14
-    schedule: "10 */12 * * *"
+    schedule: 10 */12 * * *
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 2

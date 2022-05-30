@@ -11,13 +11,13 @@ spec:
     s3:
       bucket: paperless
   backup:
-    schedule: "30 3,15 * * *"
+    schedule: 30 3,15 * * *
   check:
-    schedule: "30 7 * * *"
+    schedule: 30 7 * * *
   prune:
     retention:
       keepDaily: 2
       keepLast: 7
-    schedule: "0 5 * * *"
+    schedule: 0 5 * * *
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 2
