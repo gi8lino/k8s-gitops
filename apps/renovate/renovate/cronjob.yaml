@@ -8,6 +8,7 @@ metadata:
     app: renovate
     component: job
 spec:
+  suspend: true
   schedule: CRON_TZ=Europe/Zurich */15 * * * *
   failedJobsHistoryLimit: 4
   successfulJobsHistoryLimit: 1
