@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: nextcloud-redis
-          image: redis:7.0.0-alpine
+          image: redis:7.0.1-alpine
           env:
             - name: TZ
               value: Europe/Zurich
