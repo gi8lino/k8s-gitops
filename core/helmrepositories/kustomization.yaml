@@ -6,7 +6,6 @@ resources:
   - bitnami.yaml
   - containeroo.yaml
   - gitlab.yaml
-  - goauthentik.yaml
   - grafana.yaml
   - jetstack.yaml
   - k8s-at-home.yaml

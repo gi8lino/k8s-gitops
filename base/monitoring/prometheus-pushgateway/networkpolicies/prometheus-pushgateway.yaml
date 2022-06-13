@@ -51,7 +51,7 @@ spec:
             io.kubernetes.pod.namespace: wiki
             k8upjob: "true"
         - matchLabels:
-            io.kubernetes.pod.namespace: authentik
+            io.kubernetes.pod.namespace: keycloak
             k8upjob: "true"
       toPorts:
         - ports:

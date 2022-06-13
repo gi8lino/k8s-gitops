@@ -42,9 +42,6 @@ spec:
         - matchLabels:
             io.kubernetes.pod.namespace: wiki
             k8upjob: "true"
-        - matchLabels:
-            io.kubernetes.pod.namespace: authentik
-            k8upjob: "true"
       toPorts:
         - ports:
             - port: "9000"  # minio-api
