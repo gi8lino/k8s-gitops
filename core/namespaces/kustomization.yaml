@@ -10,6 +10,7 @@ resources:
   - gitlab.yaml
   - healthchecks.yaml
   - k8up.yaml
+  - keyclaok.yaml
   - kubernetes-dashboard.yaml
   - mealie.yaml
   - media.yaml

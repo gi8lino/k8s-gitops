@@ -45,6 +45,9 @@ spec:
       namespace: k8up
       name: "*"
     - kind: HelmRelease
+      namespace: keycloak
+      name: "*"
+    - kind: HelmRelease
       namespace: kubernetes-dashboard
       name: "*"
     - kind: HelmRelease
