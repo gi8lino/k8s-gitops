@@ -10,9 +10,6 @@ spec:
   eventSeverity: info
   eventSources:
     - kind: HelmRelease
-      namespace: authentik
-      name: "*"
-    - kind: HelmRelease
       namespace: cert-manager
       name: "*"
     - kind: HelmRelease
