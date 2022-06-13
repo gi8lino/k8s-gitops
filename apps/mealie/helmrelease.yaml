@@ -24,7 +24,6 @@ spec:
       PUID: "2000"
       PGID: "2000"
       BASE_URL: https://mealie.local.${BASE_DOMAIN}
-      API_URL: http://mealie-api.mealie.svc.cluster.local:9000
       RECIPE_PUBLIC: "false"
       RECIPE_DISABLE_COMMENTS: "true"
     probes:
