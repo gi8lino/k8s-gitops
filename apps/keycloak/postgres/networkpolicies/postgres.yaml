@@ -1,0 +1,21 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: postgres
+  namespace: keycloak
+spec:
+  endpointSelector:
+    matchLabels:
+      app: keycloak
+      component: postgres
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: keycloak
+            component: keycloak
+            io.kubernetes.pod.namespace: keycloak
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP

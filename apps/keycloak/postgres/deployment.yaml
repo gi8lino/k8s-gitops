@@ -1,0 +1,73 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-postgres
+  namespace: keycloak
+  labels:
+    app: keycloak
+    component: postgres
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+      component: postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        k8up.io/backupcommand: pg_dumpall -U postgres -h 127.0.0.1
+      labels:
+        app: keycloak
+        component: postgres
+    spec:
+      containers:
+        - name: keycloak-postgres
+          image: postgres:14.3-alpine
+          env:
+            - name: TZ
+              value: Europe/Zurich
+          envFrom:
+            - secretRef:
+                name: keycloak-postgres
+          ports:
+            - name: postgres
+              containerPort: 5432
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
+          startupProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - exec pg_isready -U "$POSTGRES_USER" --dbname=postgres -h 127.0.0.1 -p 5432
+            initialDelaySeconds: 5
+            failureThreshold: 30
+            periodSeconds: 3
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - exec pg_isready -U "$POSTGRES_USER" --dbname=postgres -h 127.0.0.1 -p 5432
+            failureThreshold: 2
+            timeoutSeconds: 5
+            periodSeconds: 30
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: keycloak-postgres-data

@@ -1,0 +1,99 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  namespace: keycloak
+  labels:
+    app: keycloak
+    component: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+      component: keycloak
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: keycloak
+        component: keycloak
+    spec:
+      initContainers:
+        - name: wait-for-database
+          image: busybox:1.34.1
+          command:
+            - sh
+            - -c
+            - |
+              echo 'Waiting for PostgreSQL to become ready...'
+              until printf "." && nc -z -w 2 keycloak-postgres.keycloak.svc.cluster.local 5432; do
+                  sleep 2;
+              done;
+              echo 'PostgreSQL OK ✓'
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 20m
+              memory: 32Mi
+            limits:
+              cpu: 20m
+              memory: 32Mi
+      containers:
+        - name: keycloak
+          image: quay.io/keycloak/keycloak:18.0.0
+          args:
+            - start
+            - --auto-build
+          env:
+            - name: KC_DB_URL
+              value: jdbc:postgresql://keycloak-postgres.keycloak.svc.cluster.local/postgres
+            - name: KC_DB
+              value: postgres
+            - name: KC_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-postgres
+                  key: POSTGRES_USER
+            - name: KC_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-postgres
+                  key: POSTGRES_PASSWORD
+            - name: KC_HEALTH_ENABLED
+              value: "true"
+            - name: KC_PROXY
+              value: edge
+            - name: KC_HOSTNAME
+              value: sso.${BASE_DOMAIN}
+            - name: TZ
+              value: Europe/Zurich
+          envFrom:
+            - secretRef:
+                name: keycloak
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: management
+              containerPort: 9990
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            failureThreshold: 60
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: http
+            failureThreshold: 2
+            periodSeconds: 30
+      restartPolicy: Always
+      automountServiceAccountToken: false

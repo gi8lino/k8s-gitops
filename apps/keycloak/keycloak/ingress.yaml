@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak
+  namespace: keycloak
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cf.containeroo.ch/type: CNAME
+    cf.containeroo.ch/content: ${BASE_DOMAIN}
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: sso.${BASE_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak
+                port:
+                  name: http
