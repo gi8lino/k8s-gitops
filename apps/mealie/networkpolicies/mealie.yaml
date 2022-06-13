@@ -31,6 +31,12 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toFQDNs:
+        - matchName: ${SMTP_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "465"
+              protocol: TCP
     - toEntities:
         - world
       toPorts:
