@@ -90,11 +90,11 @@ spec:
               protocol: TCP
     - toServices:
         - k8sService:
-            serviceName: ak-outpost-authentik-embedded-outpost
-            namespace: authentik
+            serviceName: traefik-forward-auth
+            namespace: traefik
       toPorts:
         - ports:
-            - port: "9300"
+            - port: "4181"
               protocol: TCP
     - toServices:
         - k8sService:

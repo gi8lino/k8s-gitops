@@ -10,3 +10,4 @@ This directory contains infrastructure applications.
 - **metrics-server** metrics server collects resource metrics
 - **nfs-subdir-external-provisioner** dynamically provisions sub-dirs on a remote NFS server
 - **traefik** is a cloud native application proxy
+- **traefik-forward-auth** is an OAUTH2 proxy for Traefik
