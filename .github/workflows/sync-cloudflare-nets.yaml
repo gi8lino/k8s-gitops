@@ -21,12 +21,12 @@ jobs:
 
           # cilium network policy
           cilium_nets=$(printf '"%s", ' ${nets[@]})  # add quotes and commas for yq
-          /tmp/yq eval --inplace ".spec.ingress[0].fromCIDR = [ ${cilium_nets%,*} ]" infra/traefik/networkpolicies/traefik.yaml
+          /tmp/yq eval --inplace ".spec.ingress[0].fromCIDR = [ ${cilium_nets%,*} ]" infra/traefik/traefik/networkpolicies/traefik.yaml
 
           # traefik forwardedHeaders trustedIPs
           traefik_nets=$(printf '%s,' ${nets[@]})  # add commas for yq
           traefik_nets="10.0.0.0/24,10.244.0.0/16,${traefik_nets%,*}"  # add local networks
-          /tmp/yq eval --inplace ".spec.values.additionalArguments[-1] = \"--entryPoints.websecure.forwardedHeaders.trustedIPs=${traefik_nets}\"" infra/traefik/helmrelease.yaml
+          /tmp/yq eval --inplace ".spec.values.additionalArguments[-1] = \"--entryPoints.websecure.forwardedHeaders.trustedIPs=${traefik_nets}\"" infra/traefik/traefik/helmrelease.yaml
       - name: Create pull request for cloudflare network range update
         uses: peter-evans/create-pull-request@v4
         with:

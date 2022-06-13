@@ -2,22 +2,23 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: traefik-dashboard
+  name: traefik-forward-auth
   namespace: traefik
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,authentik-ak-outpost-authentik-embedded-outpost@kubernetescrd
-    cf.containeroo.ch/ignore: "true"
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+    cf.containeroo.ch/content: ${BASE_DOMAIN}
+    cf.containeroo.ch/type: CNAME
 spec:
   ingressClassName: traefik
   rules:
-    - host: traefik.local.${BASE_DOMAIN}
+    - host: fw-auth.${BASE_DOMAIN}
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: traefik
+                name: traefik-forward-auth
                 port:
-                  name: traefik
+                  number: 4181

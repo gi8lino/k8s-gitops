@@ -1,0 +1,82 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik-forward-auth
+  namespace: traefik
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik-forward-auth
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: traefik-forward-auth
+    spec:
+      initContainers:
+        - name: wait-for-keycloak
+          image: busybox:1.35.0
+          command:
+            - sh
+            - -c
+            - |
+              echo 'Waiting for Keycloak to become ready...'
+              until printf "." && wget --no-check-certificate --quiet --spider https://sso.${BASE_DOMAIN}/realms/master; do
+                  sleep 2;
+              done;
+              echo 'Keycloak OK ✓'
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: traefik-forward-auth
+          image: mesosphere/traefik-forward-auth:3.1.0
+          env:
+            - name: CONFIG
+              value: /rules/config.ini
+            - name: TZ
+              value: Europe/Zurich
+          envFrom:
+            - secretRef:
+                name: traefik-forward-auth
+          ports:
+            - containerPort: 4181
+          volumeMounts:
+            - name: rules
+              mountPath: /rules
+          startupProbe:
+            tcpSocket:
+              port: 4181
+            failureThreshold: 30
+            periodSeconds: 5
+            timeoutSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: 4181
+            failureThreshold: 2
+            periodSeconds: 30
+            timeoutSeconds: 50
+          resources: {}
+      volumes:
+        - name: rules
+          secret:
+            secretName: traefik-forward-auth-rules
+            items:
+              - key: rules
+                path: config.ini
+      restartPolicy: Always
+      automountServiceAccountToken: false

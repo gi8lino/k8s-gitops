@@ -50,6 +50,14 @@ spec:
               protocol: TCP
             - port: "8443" # regular ingress port
               protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app: forward-auth
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8443"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
