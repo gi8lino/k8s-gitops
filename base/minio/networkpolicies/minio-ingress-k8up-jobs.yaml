@@ -19,6 +19,9 @@ spec:
             io.kubernetes.pod.namespace: filebrowser
             k8upjob: "true"
         - matchLabels:
+            io.kubernetes.pod.namespace: keycloak
+            k8upjob: "true"
+        - matchLabels:
             io.kubernetes.pod.namespace: k8up
             k8upjob: "true"
         - matchLabels:
