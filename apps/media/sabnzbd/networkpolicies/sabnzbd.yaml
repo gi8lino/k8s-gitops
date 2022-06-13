@@ -64,6 +64,7 @@ spec:
     - toFQDNs:
         - matchName: api.github.com
         - matchName: auth.docker.io
+        - matchName: registry-1.docker.io
         - matchName: codeload.github.com
         - matchName: files.pythonhosted.org
         - matchName: hooks.slack.com
