@@ -7,6 +7,7 @@ resources:
   - filebrowser
   - gitlab
   - healthchecks
+  - keycloak
   - kubernetes-dashboard
   - mealie
   - media
