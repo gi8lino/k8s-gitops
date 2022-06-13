@@ -41,7 +41,7 @@ spec:
             paths:
               - path: /
     persistence:
-      config:
+      api-data:
         enabled: true
         storageClass: nvme
         annotations:
