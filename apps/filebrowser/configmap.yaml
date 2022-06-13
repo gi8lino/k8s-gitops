@@ -14,5 +14,5 @@ data:
        "database": "/db/filebrowser.db",
        "root": "/data",
        "auth.method": "proxy",
-       "auth.header": "X-Authentik-Email"
+       "auth.header": "X-Forwarded-Email"
      }
