@@ -12,12 +12,16 @@ spec:
       bucket: nextcloud
   backup:
     schedule: 0 3,15 * * *
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
   check:
     schedule: 0 7 * * *
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
   prune:
     retention:
       keepDaily: 2
       keepLast: 4
     schedule: 0 5 * * *
-  successfulJobsHistoryLimit: 2
-  failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1

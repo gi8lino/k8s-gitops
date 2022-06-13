@@ -12,12 +12,16 @@ spec:
       bucket: paperless
   backup:
     schedule: 30 3,15 * * *
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
   check:
     schedule: 30 7 * * *
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
   prune:
     retention:
       keepDaily: 2
       keepLast: 7
     schedule: 0 5 * * *
-  successfulJobsHistoryLimit: 2
-  failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1

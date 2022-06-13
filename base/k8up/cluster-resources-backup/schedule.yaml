@@ -12,12 +12,16 @@ spec:
       bucket: cluster-resources
   backup:
     schedule: 0 */12 * * *
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
   check:
     schedule: 20 */12 * * *
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
   prune:
     retention:
       keepDaily: 2
       keepLast: 14
     schedule: 10 */12 * * *
-  successfulJobsHistoryLimit: 2
-  failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
