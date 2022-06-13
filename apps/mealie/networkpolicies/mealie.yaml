@@ -17,7 +17,7 @@ spec:
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
-            - port: "80"
+            - port: "3001"
               protocol: TCP
   egress:
     - toEndpoints:

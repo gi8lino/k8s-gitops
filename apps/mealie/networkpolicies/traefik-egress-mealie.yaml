@@ -16,5 +16,5 @@ spec:
             namespace: media
       toPorts:
         - ports:
-            - port: "80"
+            - port: "3001"
               protocol: TCP
