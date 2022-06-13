@@ -10,7 +10,6 @@ This directory contains all other common applications.
 - **healthchecks** monitoring regularly running tasks such as cron jobs
 - **keycloak** single-sign-on
 - **kubernetes-dashboard** gives an overview on what's running in the cluster
-- **mealie** is a self hosted recipe book
 - **media** usenet-stack containing plex, prowlarr, radarr, sabnzbd, sonarr and tautulli
 - **nextcloud** self-hosted cloud similar to iCloud
 - **paperless** (paperless-ng) is an indexer and archiver for scanned paper documents

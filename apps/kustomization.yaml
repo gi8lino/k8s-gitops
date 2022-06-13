@@ -8,7 +8,6 @@ resources:
   - healthchecks
   - keycloak
   - kubernetes-dashboard
-  - mealie
   - media
   - nextcloud
   - paperless

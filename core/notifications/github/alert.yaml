@@ -31,9 +31,6 @@ spec:
       namespace: kube-system
       name: "*"
     - kind: HelmRelease
-      namespace: mealie
-      name: "*"
-    - kind: HelmRelease
       namespace: metallb-system
       name: "*"
     - kind: HelmRelease

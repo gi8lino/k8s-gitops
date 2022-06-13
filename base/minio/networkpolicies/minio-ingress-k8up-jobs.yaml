@@ -25,9 +25,6 @@ spec:
             io.kubernetes.pod.namespace: k8up
             k8upjob: "true"
         - matchLabels:
-            io.kubernetes.pod.namespace: mealie
-            k8upjob: "true"
-        - matchLabels:
             io.kubernetes.pod.namespace: media
             k8upjob: "true"
         - matchLabels:
