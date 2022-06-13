@@ -21,6 +21,7 @@ spec:
     metadata:
       annotations:
         k8up.io/backupcommand: sh -c "pg_dumpall -U $POSTGRES_USER -h 127.0.0.1"
+        k8up.io/file-extension: .sql
       labels:
         app: keycloak
         component: postgres
