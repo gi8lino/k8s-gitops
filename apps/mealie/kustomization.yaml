@@ -6,3 +6,4 @@ resources:
   - cronjob.yaml
   - helmrelease.yaml
   - schedule.yaml
+  - secret.yaml

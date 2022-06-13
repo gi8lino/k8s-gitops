@@ -26,6 +26,9 @@ spec:
       BASE_URL: https://mealie.local.${BASE_DOMAIN}
       RECIPE_PUBLIC: "false"
       RECIPE_DISABLE_COMMENTS: "true"
+    envFrom:
+      - secretRef:
+          name: mealie-mail-settings
     probes:
       readiness:
         enabled: false
