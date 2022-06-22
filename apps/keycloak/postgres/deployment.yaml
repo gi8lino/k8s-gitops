@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: keycloak-postgres
-          image: postgres:14.3-alpine
+          image: postgres:14.4-alpine
           env:
             - name: TZ
               value: Europe/Zurich
