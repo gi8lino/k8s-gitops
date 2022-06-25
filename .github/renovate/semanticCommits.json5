@@ -1,73 +1,71 @@
 {
-  "semanticCommitType": ":arrow_up:",
-  "semanticCommitScope": null,
   "packageRules": [
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": ":arrow_up: feat(container)!: "
+      "commitMessagePrefix": "feat(container)!: "
     },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": ":arrow_up: feat",
+      "semanticCommitType": "feat",
       "semanticCommitScope": "container"
     },
     {
       "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["patch"],
-      "semanticCommitType": ":arrow_up: fix",
+      "matchUpdateTypes": ["digest", "patch"],
+      "semanticCommitType": "fix",
       "semanticCommitScope": "container"
     },
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": ":arrow_up: feat(helm)!: "
+      "commitMessagePrefix": "feat(helm)!: "
     },
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": ":arrow_up: feat",
+      "semanticCommitType": "feat",
       "semanticCommitScope": "helm"
     },
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": ":arrow_up: fix",
+      "semanticCommitType": "fix",
       "semanticCommitScope": "helm"
     },
     {
       "matchDatasources": ["github-releases", "github-tags"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": ":arrow_up: feat(github-release)!: "
+      "commitMessagePrefix": "feat(github-release)!: "
     },
     {
       "matchDatasources": ["github-releases", "github-tags"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": ":arrow_up: feat",
+      "semanticCommitType": "feat",
       "semanticCommitScope": "github-release"
     },
     {
       "matchDatasources": ["github-releases", "github-tags"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": ":arrow_up: fix",
+      "semanticCommitType": "fix",
       "semanticCommitScope": "github-release"
     },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": ":arrow_up: feat(github-action)!: "
+      "commitMessagePrefix": "feat(github-action)!: "
     },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": ":arrow_up: feat",
+      "semanticCommitType": "feat",
       "semanticCommitScope": "github-action"
     },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": ":arrow_up: fix",
+      "semanticCommitType": "fix",
       "semanticCommitScope": "github-action"
     }
   ]

@@ -1,8 +1,9 @@
 {
   "extends": [
-    "github>gi8lino/k8s-gitops//.github/renovate/commitMessage",
-    "github>gi8lino/k8s-gitops//.github/renovate/labels",
-    "github>gi8lino/k8s-gitops//.github/renovate/semanticCommits"
+    "github>gi8lino/k8s-gitops///.github/renovate/commitMessage.json5",
+    "github>gi8lino/k8s-gitops///.github/renovate/labels.json5",
+    "github>gi8lino/k8s-gitops///.github/renovate/semanticCommits.json5"
+
   ],
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "semanticCommits": "enabled",
