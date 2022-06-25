@@ -19,7 +19,7 @@
     {
       "matchDatasources": ["helm"],
       "addLabels": ["renovate/helm"]
-    },<
+    },
     {
       "matchDatasources": ["github-releases", "github-tags"],
       "addLabels": ["renovate/github-release"]
