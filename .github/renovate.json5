@@ -1,8 +1,13 @@
 {
+  "extends": [
+    "github>gi8lino/k8s-gitops//.github/renovate/commitMessage",
+    "github>gi8lino/k8s-gitops//.github/renovate/labels",
+    "github>gi8lino/k8s-gitops//.github/renovate/semanticCommits"
+  ],
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
-  "separateMajorMinor": false,
+  "separateMajorMinor": true,
   "timezone": "Europe/Zurich",
   "assignees": [
     "gi8lino"
@@ -36,8 +41,8 @@
     ]
   },
   "regexManagers": [
-    // dependencies for sync-cloudflare-nets
     {
+      "description": "dependencies for sync-cloudflare-nets",
       "fileMatch": [
         ".github/workflows/sync-cloudflare-nets\\.ya?ml$"
       ],
@@ -46,8 +51,8 @@
       ],
       "datasourceTemplate": "github-releases"
     },
-    // dependencies for helm-release-differ
     {
+      "description": "dependencies for helm-release-differ",
       "fileMatch": [
         ".github/workflows/helm-release-differ\\.ya?ml$"
       ],
@@ -56,8 +61,8 @@
       ],
       "datasourceTemplate": "github-releases"
     },
-    // crd releases for kube-prometheus-stack
     {
+      "description": "crd releases for kube-prometheus-stack",
       "fileMatch": [
         "crds/kube-prometheus-stack/crds\\.ya?ml$"
       ],
@@ -66,8 +71,8 @@
       ],
       "datasourceTemplate": "helm"
     },
-    // crd releases based on URL
     {
+      "description": "crd releases based on URL",
       "fileMatch": [
         "crds/cert-manager/kustomization\\.ya?ml$",
         "crds/cloudflare-operator/kustomization\\.ya?ml$",
@@ -77,8 +82,8 @@
         "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"
       ]
     },
-    // crd releases based on git repository
     {
+      "description": "crd releases based on git repository",
       "fileMatch": [
         "crds/traefik/crds\\.ya?ml$"
       ],
@@ -91,8 +96,6 @@
   "packageRules": [
     {
       "matchDatasources": [
-        "docker",
-        "helm",
         "github-releases",
         "github-tags"
       ],
@@ -100,10 +103,6 @@
         "patch",
         "minor",
         "major"
-      ],
-      "labels": [
-        "renovate/{{datasource}}",
-        "dep/{{updateType}}"
       ],
       "enabled": true
     },
