@@ -1,5 +1,6 @@
 {
   "extends": [
+    "github>gi8lino/k8s-gitops//.github/renovate/autoMerge.json5",
     "github>gi8lino/k8s-gitops//.github/renovate/commitMessage.json5",
     "github>gi8lino/k8s-gitops//.github/renovate/labels.json5",
     "github>gi8lino/k8s-gitops//.github/renovate/semanticCommits.json5"
@@ -24,15 +25,11 @@
   ],
   // container images
   "kubernetes": {
-    "fileMatch": [
-      "(apps|base|infra)/.*(cronjob|daemonset|deployment|statefulset)\\.ya?ml$"
-    ]
+    "fileMatch": ["(apps|base|infra)/.*(cronjob|daemonset|deployment|statefulset)\\.ya?ml$"]
   },
   // container images
   "helm-values": {
-    "fileMatch": [
-      "(apps|base|infra)/(.+/).*helmrelease\\.ya?ml$"
-    ]
+    "fileMatch": ["(apps|base|infra)/(.+/).*helmrelease\\.ya?ml$"]
   },
   // helm releases
   "flux": {
@@ -44,53 +41,35 @@
   "regexManagers": [
     {
       "description": "dependencies for sync-cloudflare-nets",
-      "fileMatch": [
-        ".github/workflows/sync-cloudflare-nets\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"
-      ],
+      "fileMatch": [".github/workflows/sync-cloudflare-nets\\.ya?ml$"],
+      "matchStrings": ["depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"],
       "datasourceTemplate": "github-releases"
     },
     {
       "description": "dependencies for helm-release-differ",
-      "fileMatch": [
-        ".github/workflows/helm-release-differ\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "depName=(?<depName>.*)\\s.*version: (?<currentValue>.*)"
-      ],
+      "fileMatch": [".github/workflows/helm-release-differ\\.ya?ml$"],
+      "matchStrings": ["depName=(?<depName>.*)\\s.*version: (?<currentValue>.*)"],
       "datasourceTemplate": "github-releases"
     },
     {
-      "description": "crd releases for kube-prometheus-stack",
-      "fileMatch": [
-        "crds/kube-prometheus-stack/crds\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*)\\s.*tag: (?<depName>.*)-(?<currentValue>.*)"
-      ],
+      "description": "crd releases based on github-tags",
+      "fileMatch": ["crds/kube-prometheus-stack/crds\\.ya?ml$"],
+      "matchStrings": ["registryUrl=(?<registryUrl>.*)\\s.*tag: (?<depName>.*)-(?<currentValue>.*)"],
       "datasourceTemplate": "helm"
     },
     {
-      "description": "crd releases based on URL",
+      "description": "crd releases based on URLs",
       "fileMatch": [
         "crds/cert-manager/kustomization\\.ya?ml$",
         "crds/cloudflare-operator/kustomization\\.ya?ml$",
         "crds/k8up/kustomization\\.ya?ml$"
       ],
-      "matchStrings": [
-        "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"
-      ]
+      "matchStrings": ["datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"]
     },
     {
       "description": "crd releases based on git repository",
-      "fileMatch": [
-        "crds/traefik/crds\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*) chart=(?<depName>.*)\\s.*tag: v(?<currentValue>.*)"
-      ],
+      "fileMatch": ["crds/traefik/crds\\.ya?ml$"],
+      "matchStrings": ["registryUrl=(?<registryUrl>.*) chart=(?<depName>.*)\\s.*tag: v(?<currentValue>.*)"],
       "datasourceTemplate": "helm"
     }
   ],
@@ -107,24 +86,16 @@
       ],
       "enabled": true
     },
-    // special versioning for linuxserver.io images
     {
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackagePatterns": [
-        "^lscr.io/linuxserver/.*"
-      ],
+      "description": "special versioning for linuxserver.io images",
+      "matchDatasources": ["docker"],
+      "matchPackagePatterns": ["^lscr.io/linuxserver/.*"],
       "versioning": "regex:^v?(?<major>\\d{1,3})\\.(?<minor>\\d+)\\.(?<patch>\\d+)(.*-ls)?(?<build>\\d+)$"
     },
-    // special versioning prowlarr
     {
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackagePatterns": [
-        "^lscr.io/linuxserver/prowlarr"
-      ],
+      "description": "special versioning for prowlarr",
+      "matchDatasources": ["docker"],
+      "matchPackagePatterns": ["^lscr.io/linuxserver/prowlarr"],
       "versioning": "regex:^nightly-(?<major>\\d{1,3})\\.(?<minor>\\d+)\\.(?<patch>\\d+)(.*-ls)?(?<build>\\d+)$"
     }
   ],
