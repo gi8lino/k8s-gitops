@@ -28,6 +28,9 @@ spec:
         - ports:
             - port: "8443"  # to access git.${BASE_DOMAIN}
               protocol: TCP
+        - ports:
+            - port: "2222"  # to access network with ansible
+              protocol: TCP
     - toCIDRSet:
         - cidr: 10.0.0.0/24
       toPorts:
