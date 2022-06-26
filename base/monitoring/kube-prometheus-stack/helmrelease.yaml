@@ -78,7 +78,7 @@ spec:
           disable_login_form: true
           oauth_auto_login: true
         auth.basic:
-          enabled: false
+          enabled: true
         auth.generic_oauth:
           enabled: true
           allow_sign_up: true
