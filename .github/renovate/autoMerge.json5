@@ -1,0 +1,22 @@
+{
+  "packageRules": [
+    {
+      "description": "Auto merge containers",
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": ["lscr.io/linuxserver/prowlarr", "renovate/renovate:32.99.5"]
+    },
+    {
+      "description": "Auto merge GitHub Actions",
+      "matchDatasources": ["github-tags"],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": ["renovatebot/github-action"]
+    }
+  ]
+}
