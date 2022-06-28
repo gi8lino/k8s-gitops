@@ -55,6 +55,7 @@ spec:
               mountPath: /tv
             - name: downloads
               mountPath: /downloads
+          resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
