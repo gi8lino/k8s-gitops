@@ -84,7 +84,7 @@ spec:
             description: Newsnab API for {{"{{ $labels.target }}"}} is expired
         - alert: BlackboxProbeFailed
           expr: probe_success == 0
-          for: 15m
+          for: 5m
           labels:
             severity: critical
           annotations:
