@@ -45,23 +45,19 @@ spec:
     serviceMonitor:
       enabled: true
       defaults:
-        interval: 5m
+        interval: 15m
         scrapeTimeout: 30s
         follow_redirects: false
       targets:
         - name: ${BASE_DOMAIN}
           url: https://sso.${BASE_DOMAIN}
-          interval: 60m
         - name: pihole
           url: https://pihole.local.${BASE_DOMAIN}
-          interval: 60m
         - name: tools
           url: https://traefik.tools.${BASE_DOMAIN}
-          interval: 60m
         - name: diskstation
           url: https://ds.local.${BASE_DOMAIN}
           scrapeTimeout: 1m
-          interval: 60m
         - name: newsnab
           url: https://${NEWSNAB_DOMAIN}
           interval: 60m
@@ -88,7 +84,7 @@ spec:
             description: Newsnab API for {{"{{ $labels.target }}"}} is expired
         - alert: BlackboxProbeFailed
           expr: probe_success == 0
-          for: 1m
+          for: 15m
           labels:
             severity: critical
           annotations:
