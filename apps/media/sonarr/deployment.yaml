@@ -32,25 +32,17 @@ spec:
             - name: http
               containerPort: 8989
           startupProbe:
-            exec:
-              command:
-                - /usr/bin/env
-                - bash
-                - -c
-                - curl --fail localhost:8989/api/v3/system/status?apiKey=`IFS=\> && while
-                  read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
+            httpGet:
+              path: /ping
+              port: http
             initialDelaySeconds: 5
             failureThreshold: 30
             timeoutSeconds: 3
             periodSeconds: 3
           livenessProbe:
-            exec:
-              command:
-                - /usr/bin/env
-                - bash
-                - -c
-                - curl --fail localhost:8989/api/v3/system/status?apiKey=`IFS=\> && while
-                  read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
+            httpGet:
+              path: /ping
+              port: http
             failureThreshold: 2
             timeoutSeconds: 3
             periodSeconds: 30
