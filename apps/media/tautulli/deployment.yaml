@@ -53,6 +53,7 @@ spec:
               mountPath: /config
             - name: backup
               mountPath: /config/backups
+          resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:

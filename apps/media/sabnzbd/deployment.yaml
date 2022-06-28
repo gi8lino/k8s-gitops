@@ -57,6 +57,7 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 5
             periodSeconds: 30
+          resources: {}
           volumeMounts:
             - name: data
               mountPath: /config
