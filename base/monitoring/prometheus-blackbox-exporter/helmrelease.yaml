@@ -76,7 +76,8 @@ spec:
             description: |-
               SSL certificate will expire in {{"{{ $value | humanizeDuration }}" }} (instance {{"{{ $labels.instance }}"}})
         - alert: Newsnab
-          expr: last_over_time(probe_failed_due_to_regex{target="newsnab"}[70m]) == 1
+          expr: last_over_time(probe_failed_due_to_regex{target="newsnab"}[60m]) == 1
+          for: 5m
           labels:
             severity: warning
           annotations:
