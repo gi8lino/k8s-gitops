@@ -58,6 +58,7 @@ spec:
         - name: diskstation
           url: https://ds.local.${BASE_DOMAIN}
           scrapeTimeout: 1m
+          interval: 60m
         - name: newsnab
           url: https://${NEWSNAB_DOMAIN}
           interval: 60m
