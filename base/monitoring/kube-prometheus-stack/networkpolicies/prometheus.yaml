@@ -25,6 +25,14 @@ spec:
         - ports:
             - port: "9090"
               protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app: kustomize-controller
+            io.kubernetes.pod.namespace: flux-system
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
