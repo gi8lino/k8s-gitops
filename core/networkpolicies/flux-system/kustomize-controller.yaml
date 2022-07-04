@@ -46,6 +46,14 @@ spec:
         - ports:
             - port: "9090"
               protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: kube-prometheus-stack-operator  # calling webhook prometheusrulemutate.monitoring.coreos.com
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
     - toEntities:
         - world
       toPorts:
