@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
-  #- addresspools.yaml
-  #- l2avertisement.yaml
+  - l2avertisement.yaml
+  - addresspools.yaml
