@@ -16,20 +16,12 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    configInline:
-      address-pools:
-        - name: traefik
-          addresses:
-            - ${METALLB_TRAEFIK_ADDRESS_POOL}
-          auto-assign: false
-          protocol: layer2
-        - name: default
-          addresses:
-            - ${METALLB_DEFAULT_ADDRESS_POOL}
-          auto-assign: true
-          protocol: layer2
     psp:
       create: false
     speaker:
       frr:
         enabled: false
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
