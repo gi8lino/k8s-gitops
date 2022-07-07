@@ -15,9 +15,12 @@ spec:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
             app.kubernetes.io/name: prometheus
             io.kubernetes.pod.namespace: monitoring
+        - matchLabels:
+            app: kustomize-controller
+            io.kubernetes.pod.namespace: flux-system
       toPorts:
         - ports:
-            - port: "10250"  # kubelet
+            - port: "10250"  # kubelet, webhooks
               protocol: TCP
   egress:
     - toEntities:
