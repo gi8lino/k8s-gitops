@@ -46,28 +46,6 @@ spec:
         - ports:
             - port: "9090"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: metallb-webhook-service
-            namespace: metallb-system
-      toPorts:
-        - ports:
-            - port: "9443"
-              protocol: TCP
-    - toEndpoints:
-        - matchLabels:
-            app.kubernetes.io/name: webhook
-            app.kubernetes.io/component: webhook
-            app.kubernetes.io/instance: cert-manager
-            io.kubernetes.pod.namespace: cert-manager
-        - matchLabels:
-            app: kube-prometheus-stack-operator
-            release: kube-prometheus-stack
-            app.kubernetes.io/instance: kube-prometheus-stack
-            io.kubernetes.pod.namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "10250"
     - toEntities:
         - world
       toPorts:

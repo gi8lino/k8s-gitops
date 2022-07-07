@@ -17,14 +17,6 @@ spec:
         - ports:
             - port: "6080"
               protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
-            app: kustomize-controller
-            io.kubernetes.pod.namespace: flux-system
-      toPorts:
-        - ports:
-            - port: "10250"
-              protocol: TCP
   egress:
     - toEntities:
         - host
