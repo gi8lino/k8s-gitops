@@ -50,13 +50,19 @@ spec:
         - k8sService:
             serviceName: metallb-webhook-service
             namespace: metallb-system
-        - k8sService:
-            serviceName: cert-manager-webhook
-            namespace: cert-manager
       toPorts:
         - ports:
             - port: "9443"
               protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: webhook
+            app.kubernetes.io/component: webhook
+            app.kubernetes.io/instance: cert-manager
+            io.kubernetes.pod.namespace: cert-manager
+      toPorts:
+        - ports:
+            - port: "10250"
     - toEntities:
         - world
       toPorts:
