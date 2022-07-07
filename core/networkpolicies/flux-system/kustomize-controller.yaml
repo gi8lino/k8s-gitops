@@ -49,7 +49,10 @@ spec:
     - toServices:
         - k8sService:
             serviceName: metallb-webhook-service
-            namespace: metallb
+            namespace: metallb-system
+        - k8sService:
+            serviceName: cert-manager-webhook
+            namespace: cert-manager
       toPorts:
         - ports:
             - port: "9443"
