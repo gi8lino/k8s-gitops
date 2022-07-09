@@ -6,5 +6,5 @@ resources:
   - cloudflare-operator
   - k8up
   - kube-prometheus-stack
-  #- metallb-system
+  - metallb-system
   - traefik
