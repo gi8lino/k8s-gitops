@@ -7,7 +7,7 @@
       "automergeType": "branch",
       "requiredStatusChecks": null,
       "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": ["lscr.io/linuxserver/prowlarr", "renovate/renovate"]
+      "matchPackageNames": ["ghcr.io/linuxserver/prowlarr", "renovate/renovate"]
     },
     {
       "description": "Auto merge GitHub Actions",
