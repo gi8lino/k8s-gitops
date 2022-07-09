@@ -21,7 +21,3 @@ spec:
     speaker:
       frr:
         enabled: false
-  install:
-    crds: CreateReplace
-  upgrade:
-    crds: CreateReplace
