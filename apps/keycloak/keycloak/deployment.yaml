@@ -79,7 +79,7 @@ spec:
             - name: KC_JGROUPS_DISCOVERY_PROTOCOL
               value: dns.DNS_PING
             - name: KC_JGROUPS_DISCOVERY_PROPERTIES
-              value: keycloak.keycloak.svc.cluster.local
+              value: dns_query=keycloak-headless.keycloak.svc.cluster.local
           envFrom:
             - secretRef:
                 name: keycloak
