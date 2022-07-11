@@ -4,7 +4,7 @@
       "description": "Auto merge containers",
       "matchDatasources": ["docker"],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "branch",  // https://docs.renovatebot.com/configuration-options/#automergetype
       "requiredStatusChecks": null,
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": ["ghcr.io/linuxserver/prowlarr", "renovate/renovate"]
@@ -13,7 +13,7 @@
       "description": "Auto merge GitHub Actions",
       "matchDatasources": ["github-tags"],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "branch",  // https://docs.renovatebot.com/configuration-options/#automergetype
       "requiredStatusChecks": null,
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": ["renovatebot/github-action"]
