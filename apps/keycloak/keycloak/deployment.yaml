@@ -76,7 +76,7 @@ spec:
               value: Europe/Zurich
             - name: KC_CACHE_STACK
               value: kubernetes
-            - name: KC_DNS_PING
+            - name: KC_DNS_QUERY
               value: keycloak.keycloak.svc.cluster.local
           envFrom:
             - secretRef:
