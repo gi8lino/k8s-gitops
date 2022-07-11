@@ -84,6 +84,8 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+            - name: infinispanPort
+              containerPort: 7800
           startupProbe:
             httpGet:
               path: /health

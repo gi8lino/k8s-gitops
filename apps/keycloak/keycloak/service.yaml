@@ -22,7 +22,7 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 8080
+      port: 7800
       targetPort: http
   selector:
     app: keycloak
