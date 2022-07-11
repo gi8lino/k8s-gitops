@@ -84,7 +84,7 @@ spec:
           ports:
             - name: http
               containerPort: 8080
-            - name: infinispanPort
+            - name: cluster
               containerPort: 7800
           startupProbe:
             httpGet:
