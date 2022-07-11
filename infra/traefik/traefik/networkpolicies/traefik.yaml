@@ -32,7 +32,6 @@ spec:
               protocol: TCP
     - fromCIDR:
         - ${LAN_NETWORK_RANGE}
-        - 10.244.0.0/24
       toPorts:
         - ports:
             - port: "2222" # to access load balancer (git@git.${BASE_DOMAIN}:path/to/repo.git)
