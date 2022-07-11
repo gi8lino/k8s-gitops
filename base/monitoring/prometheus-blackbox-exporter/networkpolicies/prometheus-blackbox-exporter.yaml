@@ -34,7 +34,11 @@ spec:
               protocol: UDP
           rules:
             dns:
-              - matchPattern: "*"
+              - matchName: ${NEWSNAB_DOMAIN%%/*}
+              - matchName: ds.local.${BASE_DOMAIN}
+              - matchName: pihole.local.${BASE_DOMAIN}
+              - matchName: traefik.tools.${BASE_DOMAIN}
+              - matchName: sso.${BASE_DOMAIN}
     - toFQDNs:
         - matchName: ${NEWSNAB_DOMAIN%%/*}
         - matchName: ds.local.${BASE_DOMAIN}
