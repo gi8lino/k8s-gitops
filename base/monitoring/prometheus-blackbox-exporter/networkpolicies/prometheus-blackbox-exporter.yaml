@@ -38,15 +38,15 @@ spec:
     - toFQDNs:
         - matchName: ${NEWSNAB_DOMAIN%%/*}
         - matchName: traefik.tools.${BASE_DOMAIN}
+        - matchName: pihole.local.${BASE_DOMAIN}
+        - matchName: ds.local.${BASE_DOMAIN}
+        - matchName: traefik.local.${BASE_DOMAIN}
       toPorts:
         - ports:
             - port: "443"
               protocol: TCP
     - toFQDNs:
-        - matchName: ds.local.${BASE_DOMAIN}
-        - matchName: pihole.local.${BASE_DOMAIN}
         - matchName: sso.${BASE_DOMAIN}
-        - matchName: traefik.local.${BASE_DOMAIN}
       toPorts:
         - ports:
             - port: "8443"
