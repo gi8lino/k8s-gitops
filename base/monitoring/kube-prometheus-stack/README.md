@@ -22,7 +22,6 @@ kubectl exec -ti -n monitoring alertmanager-kube-prometheus-stack-alertmanager-0
 wget --post-data='[{"labels":{"alertname":"TestAlert1"}}]' localhost:9093/api/v1/alerts
 ```
 
-
 ## node exporter textfile collector scripts
 
 ### apt packages
