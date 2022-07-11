@@ -74,6 +74,8 @@ spec:
               value: sso.${BASE_DOMAIN}
             - name: TZ
               value: Europe/Zurich
+            - name: KC_CACHE_STACK
+              value: kubernetes
           envFrom:
             - secretRef:
                 name: keycloak
