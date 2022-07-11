@@ -27,9 +27,6 @@ spec:
             preferred_ip_protocol: "ip4"
             fail_if_body_not_matches_regexp:
               - ${NEWSNAB_REGEX}
-    pod:
-      labels:
-        app: prometheus-blackbox-exporter
     ingress:
       enabled: true
       className: traefik
