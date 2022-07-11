@@ -47,7 +47,6 @@ spec:
         - matchName: pihole.local.${BASE_DOMAIN}
         - matchName: auth.${BASE_DOMAIN}
         - matchName: traefik.local.${BASE_DOMAIN}
-        - matchName: traefik.tools.${BASE_DOMAIN}
       toPorts:
         - ports:
             - port: "8443"
