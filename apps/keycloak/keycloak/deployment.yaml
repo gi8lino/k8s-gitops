@@ -74,18 +74,12 @@ spec:
               value: sso.${BASE_DOMAIN}
             - name: TZ
               value: Europe/Zurich
-            - name: KC_CACHE_STACK
-              value: kubernetes
-            - name: KC_jgroups.dns.query
-              value: dns_query=keycloak-headless.keycloak.svc.cluster.local
           envFrom:
             - secretRef:
                 name: keycloak
           ports:
             - name: http
               containerPort: 8080
-            - name: cluster
-              containerPort: 7800
           startupProbe:
             httpGet:
               path: /health

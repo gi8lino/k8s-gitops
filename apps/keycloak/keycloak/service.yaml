@@ -13,19 +13,3 @@ spec:
     app: keycloak
     component: keycloak
   type: ClusterIP
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: keycloak-headless
-  namespace: keycloak
-spec:
-  ports:
-    - name: http
-      port: 7800
-      targetPort: http
-  selector:
-    app: keycloak
-    component: keycloak
-  type: ClusterIP
-  clusterIP: None
