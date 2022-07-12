@@ -1,6 +1,6 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: keycloak
   namespace: keycloak
@@ -9,18 +9,37 @@ metadata:
     component: keycloak
 spec:
   replicas: 1
+  podManagementPolicy: Parallel
+  serviceName: keycloak-headless
+  updateStrategy:
+    type: RollingUpdate
   selector:
     matchLabels:
       app: keycloak
       component: keycloak
-  strategy:
-    type: RollingUpdate
   template:
     metadata:
       labels:
         app: keycloak
         component: keycloak
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: keycloak
+                    component: keycloak
+                namespaces:
+                  - keycloak
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
       initContainers:
         - name: wait-for-database
           image: busybox:1.35.0
@@ -33,11 +52,6 @@ spec:
                   sleep 2;
               done;
               echo 'PostgreSQL OK ✓'
-          securityContext:
-            allowPrivilegeEscalation: false
-            runAsUser: 1000
-            runAsGroup: 1000
-            runAsNonRoot: true
           resources:
             requests:
               cpu: 20m
