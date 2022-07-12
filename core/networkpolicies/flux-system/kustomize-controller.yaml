@@ -46,6 +46,20 @@ spec:
         - ports:
             - port: "9090"
               protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: metallb-webhook-service
+            namespace: metallb-system
+      toPorts:
+        - ports:
+            - port: "8443" # validationwebhook
+    - toServices:
+        - k8sService:
+            serviceName: cert-manager-webhook
+            namespace: cert-manager
+      toPorts:
+        - ports:
+            - port: "10250" # validationwebhook
     - toEntities:
         - world
       toPorts:
