@@ -52,7 +52,7 @@ spec:
             namespace: metallb-system
       toPorts:
         - ports:
-            - port: "8443" # validationwebhook
+            - port: "9443" # validationwebhook
     - toServices:
         - k8sService:
             serviceName: cert-manager-webhook
