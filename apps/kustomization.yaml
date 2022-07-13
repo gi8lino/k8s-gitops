@@ -9,7 +9,7 @@ resources:
   - keycloak
   - kubernetes-dashboard
   - media
-  #- nextcloud
+  - nextcloud
   - paperless
   - renovate
   - wallabag
