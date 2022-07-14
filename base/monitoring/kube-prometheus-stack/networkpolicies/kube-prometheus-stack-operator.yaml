@@ -13,20 +13,15 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus # kubelet
             app.kubernetes.io/name: prometheus
             io.kubernetes.pod.namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "10250"  # kubelet
-              protocol: TCP
-    - fromEndpoints:
         - matchLabels:
-            app: kustomize-controller
+            app: kustomize-controller # validationwebhook
             io.kubernetes.pod.namespace: flux-system
       toPorts:
         - ports:
-            - port: "10250"  # validationwebhook
+            - port: "10250"  # kubelet
               protocol: TCP
   egress:
     - toEntities:
