@@ -60,6 +60,13 @@ spec:
       toPorts:
         - ports:
             - port: "10250" # validationwebhook
+    - toServices:
+        - k8sService:
+            serviceName: kube-prometheus-stack-operator
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9443" # validationwebhook
     - toEntities:
         - world
       toPorts:
