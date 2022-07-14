@@ -57,10 +57,6 @@ spec:
         - k8sService:
             serviceName: cert-manager-webhook
             namespace: cert-manager
-      toPorts:
-        - ports:
-            - port: "10250" # validationwebhook
-    - toServices:
         - k8sService:
             serviceName: kube-prometheus-stack-operator
             namespace: monitoring
