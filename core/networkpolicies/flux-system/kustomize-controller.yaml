@@ -66,7 +66,7 @@ spec:
             namespace: monitoring
       toPorts:
         - ports:
-            - port: "9443" # validationwebhook
+            - port: "10250" # validationwebhook
     - toEntities:
         - world
       toPorts:

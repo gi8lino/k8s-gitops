@@ -26,7 +26,7 @@ spec:
             io.kubernetes.pod.namespace: flux-system
       toPorts:
         - ports:
-            - port: "9443"  # validationwebhook
+            - port: "10250"  # validationwebhook
               protocol: TCP
   egress:
     - toEntities:
