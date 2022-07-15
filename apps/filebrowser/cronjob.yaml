@@ -21,7 +21,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: rebuild-restic-index
-              image: ghcr.io/k8up-io/k8up:v2.3.3
+              image: ghcr.io/k8up-io/k8up:v2.4.0
               command:
                 - restic
               args:
