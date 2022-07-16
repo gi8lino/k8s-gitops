@@ -45,7 +45,6 @@ spec:
         interval: 15m
         scrapeTimeout: 30s
         follow_redirects: false
-      scheme: https
       targets:
         - name: ${BASE_DOMAIN}
           url: https://sso.${BASE_DOMAIN}
