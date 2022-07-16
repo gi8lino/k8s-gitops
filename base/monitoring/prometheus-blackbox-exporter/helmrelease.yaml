@@ -54,7 +54,7 @@ spec:
           url: https://traefik.tools.${BASE_DOMAIN}
         - name: diskstation
           url: https://ds.local.${BASE_DOMAIN}
-          scrapeTimeout: 1m
+          scrapeTimeout: 2m
           interval: 60m
         - name: newsnab
           url: https://${NEWSNAB_DOMAIN}
