@@ -33,7 +33,7 @@ spec:
               - matchPattern: "*"
     - toServices:
         - k8sService:
-            serviceName: keycloak-postgres
+            serviceName: postgres
             namespace: keycloak
       toPorts:
         - ports:

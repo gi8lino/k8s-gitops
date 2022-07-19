@@ -29,7 +29,7 @@ spec:
             - -c
             - |
               echo 'Waiting for PostgreSQL to become ready...'
-              until printf "." && nc -z -w 2 keycloak-postgres.keycloak.svc.cluster.local 5432; do
+              until printf "." && nc -z -w 2 postgres.keycloak.svc.cluster.local 5432; do
                   sleep 2;
               done;
               echo 'PostgreSQL OK ✓'
@@ -53,18 +53,18 @@ spec:
             - --auto-build
           env:
             - name: KC_DB_URL
-              value: jdbc:postgresql://keycloak-postgres.keycloak.svc.cluster.local/postgres
+              value: jdbc:postgresql://postgres.keycloak.svc.cluster.local/postgres
             - name: KC_DB
               value: postgres
             - name: KC_DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-postgres
+                  name: postgres
                   key: POSTGRES_USER
             - name: KC_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-postgres
+                  name: postgres
                   key: POSTGRES_PASSWORD
             - name: KC_HEALTH_ENABLED
               value: "true"

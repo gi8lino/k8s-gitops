@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: keycloak-postgres
+  name: postgres
   namespace: keycloak
   labels:
     app: keycloak
@@ -27,14 +27,14 @@ spec:
         component: postgres
     spec:
       containers:
-        - name: keycloak-postgres
+        - name: postgres
           image: postgres:14.4-alpine
           env:
             - name: TZ
               value: Europe/Zurich
           envFrom:
             - secretRef:
-                name: keycloak-postgres
+                name: postgres
           ports:
             - name: postgres
               containerPort: 5432
@@ -71,4 +71,4 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: keycloak-postgres-data
+            claimName: postgres-data
