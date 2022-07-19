@@ -29,7 +29,7 @@ spec:
                 - -c
                 - |
                   echo 'Waiting for Redis to become ready...'
-                  until printf "." && nc -z -w 2 renovate-redis.renovate.svc.cluster.local 6379; do
+                  until printf "." && nc -z -w 2 redis.renovate.svc.cluster.local 6379; do
                       sleep 2;
                   done;
                   echo 'Redis OK ✓'
@@ -64,7 +64,7 @@ spec:
                 - name: RENOVATE_CONFIG_MIGRATION
                   value: "true"
                 - name: RENOVATE_REDIS_URL
-                  value: redis://renovate-redis.renovate.svc.cluster.local
+                  value: redis://redis.renovate.svc.cluster.local
               envFrom:
                 - secretRef:
                     name: renovate

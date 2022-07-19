@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: renovate-redis
+  name: redis
   namespace: renovate
   labels:
     app: renovate
@@ -22,7 +22,7 @@ spec:
         component: redis
     spec:
       containers:
-        - name: renovate-redis
+        - name: redis
           image: redis:7.0.4-alpine
           env:
             - name: TZ

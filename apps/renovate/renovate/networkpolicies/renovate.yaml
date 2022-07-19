@@ -31,7 +31,7 @@ spec:
               protocol: TCP
     - toServices:
         - k8sService:
-            serviceName: renovate-redis
+            serviceName: redis
             namespace: renovate
       toPorts:
         - ports:
