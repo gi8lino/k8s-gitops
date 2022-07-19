@@ -2,13 +2,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - appuio.yaml
   - bitnami.yaml
   - containeroo.yaml
   - gitlab.yaml
   - grafana.yaml
   - jetstack.yaml
   - k8s-at-home.yaml
+  - k8up-io.yaml
   - kubernetes-dashboard.yaml
   - metallb.yaml
   - metrics-server.yaml
