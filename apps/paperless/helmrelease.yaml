@@ -58,6 +58,7 @@ spec:
       auth:
         enabled: false
       architecture: standalone
+      fullnameOverride: redis
   valuesFrom:
     - kind: Secret
       name: paperless-helm-values
