@@ -31,7 +31,7 @@ spec:
             - -c
             - |
               echo 'Waiting for Redis to become ready...'
-              until printf "." && nc -z -w 2 nextcloud-redis.nextcloud.svc.cluster.local 6379; do
+              until printf "." && nc -z -w 2 redis.nextcloud.svc.cluster.local 6379; do
                   sleep 2;
               done;
               echo 'Redis OK ✓'
@@ -54,7 +54,7 @@ spec:
             - -c
             - |
               echo 'Waiting for PostgreSQL to become ready...'
-              until printf "." && nc -z -w 2 nextcloud-postgres.nextcloud.svc.cluster.local 5432; do
+              until printf "." && nc -z -w 2 postgres.nextcloud.svc.cluster.local 5432; do
                   sleep 2;
               done;
               echo 'PostgreSQL OK ✓'
@@ -114,7 +114,7 @@ spec:
             - name: POSTGRES_DB
               value: nextcloud
             - name: POSTGRES_HOST
-              value: nextcloud-postgres.nextcloud.svc.cluster.local
+              value: postgres.nextcloud.svc.cluster.local
             - name: NEXTCLOUD_TRUSTED_DOMAINS
               value: cloud.${BASE_DOMAIN}
             - name: TRUSTED_PROXIES
@@ -122,7 +122,7 @@ spec:
             - name: OVERWRITEPROTOCOL
               value: https
             - name: REDIS_HOST
-              value: nextcloud-redis.nextcloud.svc.cluster.local
+              value: redis.nextcloud.svc.cluster.local
             - name: TZ
               value: Europe/Zurich
             - name: DEFAULT_PHONE_REGION
@@ -131,7 +131,7 @@ spec:
             - secretRef:
                 name: nextcloud-mail-settings
             - secretRef:
-                name: nextcloud-postgres
+                name: postgres
           volumeMounts:
             - name: app-data
               mountPath: /var/www/html

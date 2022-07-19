@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nextcloud-redis
+  name: redis
   namespace: nextcloud
   labels:
     app: nextcloud
@@ -22,7 +22,7 @@ spec:
         component: redis
     spec:
       containers:
-        - name: nextcloud-redis
+        - name: redis
           image: redis:7.0.4-alpine
           env:
             - name: TZ

@@ -37,7 +37,7 @@ spec:
               - matchPattern: "*"
     - toServices:
         - k8sService:
-            serviceName: nextcloud-postgres
+            serviceName: postgres
             namespace: nextcloud
       toPorts:
         - ports:
@@ -45,7 +45,7 @@ spec:
               protocol: TCP
     - toServices:
         - k8sService:
-            serviceName: nextcloud-redis
+            serviceName: redis
             namespace: nextcloud
       toPorts:
         - ports:

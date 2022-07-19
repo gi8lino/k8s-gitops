@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nextcloud-redis
+  name: redis
   namespace: nextcloud
 spec:
   ports:

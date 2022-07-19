@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nextcloud-postgres-data
+  name: postgres-data
   namespace: nextcloud
 spec:
   accessModes:
