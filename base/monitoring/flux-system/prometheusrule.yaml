@@ -6,12 +6,36 @@ metadata:
   namespace: monitoring
 spec:
   groups:
-    - name: GitOpsToolkit
+    - name: Flux
       rules:
-        - alert: ReconciliationFailure
-          expr: max(gotk_reconcile_condition{status="False",type="Ready"}) by (namespace, name, kind) + on(namespace, name, kind) (max(gotk_reconcile_condition{status="Deleted"}) by (namespace, name, kind)) * 2 == 1
-          for: 10m
+        - alert: FluxComponentAbsent
+          annotations:
+            description: Flux component has disappeared from Prometheus target discovery.
+            summary: Flux component is down.
+          expr: |
+            absent(up{job=~".*flux-system.*"} == 1)
+          for: 15m
           labels:
             severity: critical
+        - alert: FluxReconciliationFailure
           annotations:
-            summary: '{{ $labels.kind }} {{ $labels.namespace }}/{{ $labels.name }} reconciliation has been failing for more than ten minutes.'
+            description:
+              "{{ $labels.kind }} {{ $labels.namespace }}/{{ $labels.name }} reconciliation has been failing
+              for more than ten minutes."
+            summary: Flux reconciliation failure.
+          expr: |
+            max(gotk_reconcile_condition{status="False",type="Ready"}) by (namespace, name, kind)
+              +
+            on(namespace, name, kind) (max(gotk_reconcile_condition{status="Deleted"})
+              by (namespace, name, kind)) * 2 == 1
+          for: 15m
+          labels:
+            severity: critical
+        - alert: FluxObjectSuspended
+          annotations:
+            description: "{{ $labels.kind }} {{ $labels.namespace }}/{{ $labels.name }} is suspended."
+            summary: Flux object is suspended.
+          expr: gotk_suspend_status == 1
+          for: 15m
+          labels:
+            severity: critical
