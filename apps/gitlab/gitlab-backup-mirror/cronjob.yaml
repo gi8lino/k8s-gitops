@@ -22,7 +22,7 @@ spec:
         spec:
           containers:
             - name: gitlab-backup-mirror
-              image: ghcr.io/containeroo/mirrio:2.2.6
+              image: ghcr.io/containeroo/mirrio:2.2.7
               env:
                 - name: TZ
                   value: Europe/Zurich
