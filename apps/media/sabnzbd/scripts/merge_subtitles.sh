@@ -5,14 +5,14 @@ set -o pipefail
 
 cd "${SAB_COMPLETE_DIR}"
 
-FILENAME=$(find . -type f -name "*.mkv" -and -not -iname "*sample*")
+FILENAME=$(find . -type f \( -iname '*.mkv' -o -iname '*.avi' -o -iname '*.mp4' \) -and -not -iname "*sample*")
 
 if [ -z "${FILENAME}" ]; then
-    echo "no mkv file found - skipping"
+    echo "no file to process found - skipping"
     exit 0
 fi
 
-SUBS=$(find -type f -name "*.idx" -o -name "*.srt" -o -name "*.sub")
+SUBS=$(find -type f -iname "*.idx" -o -iname "*.srt" -o -name "*.sub")
 
 if [ -z "${SUBS}" ]; then
     echo "no subs found - skipping"
