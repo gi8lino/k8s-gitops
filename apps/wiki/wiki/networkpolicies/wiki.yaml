@@ -33,7 +33,7 @@ spec:
               - matchPattern: "*"
     - toServices:
         - k8sService:
-            serviceName: wiki-postgres
+            serviceName: postgres
             namespace: wiki
       toPorts:
         - ports:

@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wiki-postgres
+  name: postgres
   namespace: wiki
   labels:
     app: wiki
@@ -25,11 +25,11 @@ spec:
         component: postgres
     spec:
       containers:
-        - name: wiki-postgres
+        - name: postgres
           image: postgres:14.4-alpine
           envFrom:
             - secretRef:
-                name: wiki-postgres
+                name: postgres
           env:
             - name: TZ
               value: Europe/Zurich
