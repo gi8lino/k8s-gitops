@@ -52,13 +52,7 @@
       "datasourceTemplate": "github-releases"
     },
     {
-      "description": "crd releases based on github-tags",
-      "fileMatch": ["crds/kube-prometheus-stack/crds\\.ya?ml$"],
-      "matchStrings": ["registryUrl=(?<registryUrl>.*)\\s.*tag: (?<depName>.*)-(?<currentValue>.*)"],
-      "datasourceTemplate": "helm"
-    },
-    {
-      "description": "crd releases based on URLs",
+      "description": "crd releases based on github-releases",
       "fileMatch": [
         "crds/cert-manager/kustomization\\.ya?ml$",
         "crds/cloudflare-operator/kustomization\\.ya?ml$",
@@ -67,8 +61,10 @@
       "matchStrings": ["datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"]
     },
     {
-      "description": "crd releases based on git repository",
-      "fileMatch": ["crds/traefik/crds\\.ya?ml$"],
+      "description": "crd releases based on helm chart",
+      "fileMatch": [
+        "crds/traefik/crds\\.ya?ml$","crds/kube-prometheus-stack/crds\\.ya?ml$"
+      ],
       "matchStrings": ["registryUrl=(?<registryUrl>.*) chart=(?<depName>.*)\\s.*tag: v(?<currentValue>.*)"],
       "datasourceTemplate": "helm"
     }
