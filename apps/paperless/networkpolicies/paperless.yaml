@@ -33,7 +33,7 @@ spec:
               - matchPattern: "*"
     - toServices:
         - k8sService:
-            serviceName: paperless-redis-master
+            serviceName: redis-master
             namespace: paperless
       toPorts:
         - ports:

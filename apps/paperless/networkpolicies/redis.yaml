@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: paperless-redis
+  name: redis
   namespace: paperless
 spec:
   endpointSelector:
