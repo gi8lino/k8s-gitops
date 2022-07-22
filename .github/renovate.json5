@@ -52,25 +52,15 @@
       "datasourceTemplate": "github-releases"
     },
     {
-      "description": "crd releases based on helm chart on github-releases",
-      "fileMatch": ["crds/kube-prometheus-stack/crds\\.ya?ml$"],
-      "matchStrings": ["registryUrl=(?<registryUrl>.*)\\s.*tag: (?<depName>.*)-(?<currentValue>.*)"],
-      "datasourceTemplate": "helm"
-    },
-    {
-      "description": "crd releases based on github-releases",
-      "fileMatch": [
-        "crds/cert-manager/kustomization\\.ya?ml$",
-        "crds/cloudflare-operator/kustomization\\.ya?ml$",
-        "crds/k8up/kustomization\\.ya?ml$"
+      "description": "Process CRD dependencies",
+      "fileMatch": ["crds/.+\\.ya?ml$"],
+      "matchStrings": [
+        // GitRepository where 'Git release/tag' matches 'Helm' version
+        "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
+        // Kustomization where 'GitHub release artifact URL' matches 'Docker image' version
+        "datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)\/(?<currentValue>[^/]+)\/[^/]+\n"
       ],
-      "matchStrings": ["datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"]
-    },
-    {
-      "description": "crd releases based on helm chart in git repository",
-      "fileMatch": ["crds/traefik/crds\\.ya?ml$"],
-      "matchStrings": ["registryUrl=(?<registryUrl>.*) chart=(?<depName>.*)\\s.*tag: v(?<currentValue>.*)"],
-      "datasourceTemplate": "helm"
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}"
     }
   ],
   "packageRules": [
