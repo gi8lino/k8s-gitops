@@ -27,6 +27,13 @@ spec:
             preferred_ip_protocol: "ip4"
             fail_if_body_not_matches_regexp:
               - ${NEWSNAB_REGEX}
+        slower:
+          prober: http
+          timeout: 30s
+          http:
+            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+            follow_redirects: true
+            preferred_ip_protocol: "ip4"
     ingress:
       enabled: true
       className: traefik
@@ -56,6 +63,7 @@ spec:
           url: https://ds.local.${BASE_DOMAIN}
           scrapeTimeout: 2m
           interval: 60m
+          module: slower
         - name: newsnab
           url: https://${NEWSNAB_DOMAIN}
           interval: 60m
