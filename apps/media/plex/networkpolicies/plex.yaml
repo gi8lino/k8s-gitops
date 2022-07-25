@@ -45,10 +45,17 @@ spec:
         - matchName: me.plexapp.com
         - matchName: metadata.provider.plex.tv
         - matchName: plex.tv
+        - matchPattern: "*.lencr.org"
         - matchPattern: "*.plex.tv"
         - matchName: thetvdb.com
         - matchName: www.themoviedb.org
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP
+    - toFQDNs:
+        - matchPattern: "*.lencr.org" # https://letsencrypt.org/docs/lencr.org/
+      toPorts:
+        - ports:
+            - port: "80"
               protocol: TCP
