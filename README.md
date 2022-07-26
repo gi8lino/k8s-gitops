@@ -11,7 +11,7 @@ For initial deploy see this manuals:
 
 - [Install pre-commit Hooks](./.github/docs/precommit.md)
 - [Setting up GnuPG keys](./.github/docs/gpg.md)
-- [Initial Deployment](./.github/docs/flux.md)
+- [Initial flux deployment](./.github/docs/flux.md)
 
 ---
 
