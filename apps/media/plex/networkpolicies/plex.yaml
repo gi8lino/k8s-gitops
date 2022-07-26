@@ -46,7 +46,7 @@ spec:
         - matchName: plex.tv
         - matchPattern: "*.lencr.org"
         - matchPattern: "*.plex.tv"
-        - matchName: thetvdb.com
+        - matchPattern: "*.thetvdb.com"
         - matchName: www.themoviedb.org
       toPorts:
         - ports:
