@@ -7,4 +7,4 @@ metadata:
 spec:
   headers:
     customRequestHeaders:
-      Authorization: Bearer ${KUBERNETES_DASHBOARD_TOKEN}
+      Authorization: Bearer # kubectl get secrets -n kubernetes-dashboard -ojsonpath='{.items[?(@.metadata.annotations.kubernetes\.io/service-account\.name == "cluster-reader")].data.token}' | base64 -d

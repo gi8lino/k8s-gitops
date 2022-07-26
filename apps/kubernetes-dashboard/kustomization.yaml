@@ -7,4 +7,5 @@ resources:
   - clusterrolebinding.yaml
   - helmrelease.yaml
   - middleware.yaml
+  - secret.yaml
   - serviceaccount.yaml
