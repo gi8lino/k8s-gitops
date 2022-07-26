@@ -27,7 +27,7 @@ spec:
             preferred_ip_protocol: "ip4"
             fail_if_body_not_matches_regexp:
               - ${NEWSNAB_REGEX}
-        slower:
+        http_2xx_higher_timeout:
           prober: http
           timeout: 30s
           http:
@@ -63,7 +63,7 @@ spec:
           url: https://ds.local.${BASE_DOMAIN}
           scrapeTimeout: 2m
           interval: 60m
-          module: slower
+          module: http_2xx_higher_timeout
         - name: newsnab
           url: https://${NEWSNAB_DOMAIN}
           interval: 60m
