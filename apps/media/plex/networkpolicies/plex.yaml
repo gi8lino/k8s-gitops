@@ -40,7 +40,6 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
-        - matchName: assets.fanart.tv
         - matchName: image.tmdb.org
         - matchName: me.plexapp.com
         - matchName: metadata.provider.plex.tv
@@ -54,6 +53,7 @@ spec:
             - port: "443"
               protocol: TCP
     - toFQDNs:
+        - matchName: assets.fanart.tv
         - matchPattern: "*.lencr.org" # https://letsencrypt.org/docs/lencr.org/
       toPorts:
         - ports:
