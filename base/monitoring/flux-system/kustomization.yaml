@@ -14,10 +14,6 @@ configMapGenerator:
     namespace: flux-system
     files:
       - flux-control-plane-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2/v0.31.3//manifests/monitoring/monitoring-config/dashboards/control-plane.json
-  - name: grafana-dashboard-flux-logs
-    namespace: flux-system
-    files:
-      - flux-logs-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2/v0.31.3/manifests/monitoring/monitoring-config/dashboards/logs.json
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
