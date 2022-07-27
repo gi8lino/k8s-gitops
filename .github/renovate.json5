@@ -61,6 +61,15 @@
         "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}"
+    },
+    {
+      "description": "Process raw GitHub URLs",
+      "fileMatch": ["(apps|base|infra)/(.+/).*\\.ya?ml$"],
+      "matchStrings": [
+        "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
+      ],
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver"
     }
   ],
   "packageRules": [
