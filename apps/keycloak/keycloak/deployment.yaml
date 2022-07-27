@@ -47,7 +47,7 @@ spec:
               memory: 32Mi
       containers:
         - name: keycloak
-          image: quay.io/keycloak/keycloak:18.0.2
+          image: quay.io/keycloak/keycloak:19.0.0
           args:
             - start
             - --auto-build
