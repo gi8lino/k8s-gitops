@@ -15,6 +15,10 @@ spec:
             app.kubernetes.io/instance: traefik
             app.kubernetes.io/name: traefik
             io.kubernetes.pod.namespace: traefik
+        - matchLabels:
+            app.kubernetes.io/instance: falco
+            app.kubernetes.io/name: falcosidekick-ui
+            io.kubernetes.pod.namespace: falco-system
       toPorts:
         - ports:
             - port: "2802"
