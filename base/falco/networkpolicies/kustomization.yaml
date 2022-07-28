@@ -1,9 +1,0 @@
----
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - falco-sidekick-ui.yaml
-  - falco-sidekick.yaml
-  - falco.yaml
-  - redis.yaml
-  - traefik-egress-falco-sidekick-ui.yaml
