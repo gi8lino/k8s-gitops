@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - bitnami.yaml
   - containeroo.yaml
+  - falco-security.yaml
   - gitlab.yaml
   - grafana.yaml
   - jetstack.yaml

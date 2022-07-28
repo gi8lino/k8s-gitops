@@ -5,6 +5,7 @@ resources:
   - cert-manager.yaml
   - cloudflare-operator.yaml
   - debug.yaml
+  - falco-system.yaml
   - filebrowser.yaml
   - gitlab.yaml
   - healthchecks.yaml

@@ -22,6 +22,10 @@ spec:
         - matchLabels:
             app: kthxbye
             io.kubernetes.pod.namespace: monitoring
+        - matchLabels:
+            app.kubernetes.io/name: falcosidekick-ui
+            app.kubernetes.io/instance: falco-ui
+            io.kubernetes.pod.namespace: falco-system
       toPorts:
         - ports:
             - port: "9093"
