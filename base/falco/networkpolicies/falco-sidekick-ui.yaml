@@ -16,7 +16,7 @@ spec:
             app.kubernetes.io/name: traefik
             io.kubernetes.pod.namespace: traefik
         - matchLabels:
-            app.kubernetes.io/instance: falco
+            app.kubernetes.io/instance: falco-ui
             app.kubernetes.io/name: falcosidekick-ui
             io.kubernetes.pod.namespace: falco-system
       toPorts:
