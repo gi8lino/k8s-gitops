@@ -11,17 +11,17 @@ spec:
     s3:
       bucket: filebrowser
   backup:
-    schedule: 15 1,13 * * *
+    schedule: 0 5 * * 0 # every sunday at 05:00
     successfulJobsHistoryLimit: 1
     failedJobsHistoryLimit: 1
   check:
-    schedule: 30 7 * * *
+    schedule: 0 2 * * 1 # every monday at 02:00
     successfulJobsHistoryLimit: 1
     failedJobsHistoryLimit: 1
   prune:
     retention:
-      keepDaily: 2
+      keepDaily: 1
       keepLast: 7
-    schedule: 0 5 * * *
+    schedule: 0 8 * * 1 # every monday at 08:00
     successfulJobsHistoryLimit: 1
     failedJobsHistoryLimit: 1
