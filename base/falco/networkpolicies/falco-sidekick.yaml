@@ -29,3 +29,11 @@ spec:
         - ports:
             - port: "2802"
               protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: kube-prometheus-stack-alertmanager
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9093"
+              protocol: TCP
