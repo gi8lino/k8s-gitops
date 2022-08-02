@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
-      tag: 1.7.1
+      tag: 1.8.0
     env:
       PAPERLESS_OCR_LANGUAGE: deu
       PAPERLESS_OCR_LANGUAGES: deu eng
@@ -53,8 +53,14 @@ spec:
         size: 1Gi
         annotations:
           k8up.io/backup: "true"
+      consume:
+        enabled: true
+        size: 1Gi
+        emptyDir:
+          enabled: true
     redis:
       enabled: true
+      size: 1Gi
       auth:
         enabled: false
       architecture: standalone
