@@ -7,6 +7,10 @@
       ]
     },
     {
+      "matchDatasources": ["docker"],
+      "addLabels": ["container"]
+    },
+    {
       "matchManagers": ["github-actions"],
       "addLabels": ["github-action"]
     }
