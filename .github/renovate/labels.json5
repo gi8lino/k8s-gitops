@@ -1,32 +1,10 @@
 {
   "packageRules": [
     {
-      "matchUpdateTypes": ["major"],
-      "labels": ["major"]
-    },
-    {
-      "matchUpdateTypes": ["minor"],
-      "labels": ["minor"]
-    },
-    {
-      "matchUpdateTypes": ["patch"],
-      "labels": ["patch"]
-    },
-    {
-      "matchDatasources": ["docker"],
-      "addLabels": ["container"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "addLabels": ["helm"]
-    },
-    {
-      "matchDatasources": ["github-releases"],
-      "addLabels": ["github-release"]
-    },
-    {
-      "matchDatasources": ["github-tags"],
-      "addLabels": ["github-tags"]
+      "labels": [
+        "{{datasource}}",
+        "{{updateType}}"
+      ]
     },
     {
       "matchManagers": ["github-actions"],
