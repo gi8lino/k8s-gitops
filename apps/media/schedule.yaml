@@ -11,7 +11,7 @@ spec:
     s3:
       bucket: media
   backup:
-    schedule: 0 2,14 * * *
+    schedule: 0 2 * * *
     successfulJobsHistoryLimit: 1
     failedJobsHistoryLimit: 1
   check:

@@ -7,7 +7,7 @@ metadata:
   labels:
     k8upjob: "true"
 spec:
-  schedule: CRON_TZ=Europe/Zurich 0 0,12 * * *
+  schedule: CRON_TZ=Europe/Zurich 0 0 * * *
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1

@@ -11,7 +11,7 @@ spec:
     s3:
       bucket: wiki
   backup:
-    schedule: 0 1,13 * * *
+    schedule: 0 1 * * *
     successfulJobsHistoryLimit: 1
     failedJobsHistoryLimit: 1
   check:
