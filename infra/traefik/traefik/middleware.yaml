@@ -15,6 +15,7 @@ spec:
     customFrameOptionsValue: SAMEORIGIN
     customResponseHeaders:
       X-Robots-Tag: none,noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
+      X-Forwarded-Proto: https
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
