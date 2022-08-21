@@ -88,19 +88,3 @@ spec:
         - ports:
             - port: "3000"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: traefik-forward-auth
-            namespace: traefik
-      toPorts:
-        - ports:
-            - port: "4181"
-              protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: minio
-            namespace: minio
-      toPorts:
-        - ports:
-            - port: "9000"
-              protocol: TCP

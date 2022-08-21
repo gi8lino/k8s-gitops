@@ -1,0 +1,20 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-minio
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+      app.kubernetes.io/name: prometheus
+  egress:
+    - toServices:
+        - k8sService:
+            serviceName: minio
+            namespace: minio
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP
