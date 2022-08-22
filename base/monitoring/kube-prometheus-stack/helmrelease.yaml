@@ -171,10 +171,6 @@ spec:
               - targets:
                   - 10.0.0.3:9100  # prometheus node exporter
                   - 10.0.0.4:9100  # prometheus node exporter
-          - job_name: docker
-            static_configs:
-              - targets:
-                  - 10.0.0.4:8080  # cadvisor
     prometheus-node-exporter:
       extraArgs:
         - --collector.filesystem.mount-points-exclude=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
