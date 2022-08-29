@@ -25,7 +25,7 @@ spec:
           - 109
       containers:
         - name: plex
-          image: ghcr.io/linuxserver/plex:1.28.1.6104-788f82488-ls128
+          image: ghcr.io/linuxserver/plex:1.28.2.6106-44a5bbd28-ls129
           env:
             - name: TZ
               value: Europe/Zurich
