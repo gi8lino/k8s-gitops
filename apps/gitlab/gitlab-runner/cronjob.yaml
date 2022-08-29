@@ -21,7 +21,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: cleanup-gitlab-runner
-              image: ghcr.io/containeroo/cleanup-gitlab-runner:1.3.4
+              image: ghcr.io/containeroo/cleanup-gitlab-runner:1.3.5
               env:
                 - name: GITLAB_URL
                   value: http://gitlab-webservice-default.gitlab.svc.cluster.local:8080
