@@ -10,8 +10,8 @@ spec:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus
       app.kubernetes.io/name: prometheus
   egress:
-    - toCIDR:
-        - 10.0.0.3/32
+    - toFQDNs:
+        - matchName: pihole.srv.${BASE_DOMAIN}
       toPorts:
         - ports:
             - port: "9100"  # prometheus node exporter
