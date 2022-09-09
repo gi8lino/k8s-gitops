@@ -55,10 +55,19 @@
       "description": "Process CRD dependencies",
       "fileMatch": ["crds/.+\\.ya?ml$"],
       "matchStrings": [
-        // GitRepository where 'Git release/tag' matches 'Helm' version
+
+        // GitRepository where 'Git release/tag' matches 'Helm' version (traefik, kube-prometheus-stack)
         "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
-        // Kustomization with 'GitHub release artifact URL'
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?(?<currentValue>.*)"
+
+        // GitRepository where 'Git release/tag' matches 'Helm' version (metallb)
+        "datasource=(?<datasource>.*) depName=(?<depName>.*)\\s.*tag: (?<currentValue>.*)",
+
+        // Kustomization with 'GitHub release artifact URL' (cert-manager, cloudflare-operator)
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s.*/(?<currentValue>.*?)\\/",
+
+         // Kustomization with 'GitHub release artifact URL' (k8up)
+        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\\s.*/(?<currentValue>.*?)\\/"
+
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}",
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
