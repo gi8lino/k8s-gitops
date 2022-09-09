@@ -55,7 +55,6 @@
       "description": "Process CRD dependencies",
       "fileMatch": ["crds/.+\\.ya?ml$"],
       "matchStrings": [
-
         // GitRepository where 'Git release/tag' matches 'Helm' version (traefik, kube-prometheus-stack)
         "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
 
