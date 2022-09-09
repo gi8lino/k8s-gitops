@@ -55,6 +55,9 @@
       "description": "Process CRD dependencies",
       "fileMatch": ["crds/.+\\.ya?ml$"],
       "matchStrings": [
+        //GitRepository where 'Git release/tag' matches 'Helm' version (k8up)
+        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*)\\s.*\\/k8up-(?<currentValue>.*?)\\/",
+
         // GitRepository where 'Git release/tag' matches 'Helm' version (metallb, traefik, kube-prometheus-stack)
         "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?(?<currentValue>[^-\\s]*)\n",
 
