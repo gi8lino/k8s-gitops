@@ -169,8 +169,8 @@ spec:
           - job_name: node-exporter
             static_configs:
               - targets:
-                  - pihole.srv.${BASE_DOMAIN}:9100  # prometheus node exporter
-                  - tools.srv.${BASE_DOMAIN}:9100  # prometheus node exporter
+                  - pihole.srv.${BASE_DOMAIN}:9100
+                  - tools.srv.${BASE_DOMAIN}:9100
     prometheus-node-exporter:
       extraArgs:
         - --collector.filesystem.mount-points-exclude=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
