@@ -59,11 +59,10 @@
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*)\\s.*\\/k8up-(?<currentValue>.*?)\\/",
 
         // GitRepository where 'Git release/tag' matches 'Helm' version (metallb, traefik, kube-prometheus-stack)
-        "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?(?<currentValue>[^-\\s]*)\n",
+        "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?v?(?<currentValue>[^-\\s]*)\n",
 
         // Kustomization with 'GitHub release artifact URL' (cert-manager, cloudflare-operator, k8up)
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s.*/(?<currentValue>.*?)\\/"
-
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}",
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
