@@ -47,7 +47,7 @@ spec:
               memory: 16Mi
       containers:
         - name: wiki
-          image: requarks/wiki:2.5.288
+          image: requarks/wiki:2.5.289
           env:
             - name: DB_TYPE
               value: postgres
