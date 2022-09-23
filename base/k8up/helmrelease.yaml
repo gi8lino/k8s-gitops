@@ -19,7 +19,7 @@ spec:
     image:
       registry: ghcr.io
       repository: k8up-io/k8up
-      tag: v2.5.0
+      tag: v2.5.1
     k8up:
       timezone: Europe/Zurich
       envVars:
