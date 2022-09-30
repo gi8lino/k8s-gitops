@@ -51,4 +51,6 @@ spec:
     - kind: HelmRelease
       namespace: traefik
       name: "*"
+  exclusionList:
+    - InternalError.*failed to call webhook.*EOF
   suspend: false

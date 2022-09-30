@@ -17,6 +17,8 @@ spec:
       name: "*"
     - kind: HelmChart
       name: "*"
+  exclusionList:
+    - InternalError.*failed to call webhook.*EOF
   suspend: false
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
@@ -71,4 +73,6 @@ spec:
     - kind: HelmRelease
       namespace: traefik
       name: "*"
+  exclusionList:
+    - InternalError.*failed to call webhook.*EOF
   suspend: false
