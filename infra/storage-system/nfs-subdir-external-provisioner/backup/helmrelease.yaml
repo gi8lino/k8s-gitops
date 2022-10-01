@@ -18,7 +18,7 @@ spec:
   values:
     nfs:
       mountOptions:
-        - nfsvers=3
+        - nfsvers=4
         - rw
       server: nfs.srv.${BASE_DOMAIN}
       path: /volume1/backup/kubernetes
