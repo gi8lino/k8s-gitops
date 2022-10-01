@@ -21,3 +21,7 @@ spec:
     speaker:
       frr:
         enabled: false
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip
