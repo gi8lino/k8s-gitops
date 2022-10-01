@@ -1,4 +1,4 @@
 ---
 creation_rules:
   - encrypted_regex: ^(data|stringData|customRequestHeaders)$
-    pgp: E1D9FD40F6E4DCC09AF2A11BBA5567601F464823
+    pgp: 3AE9F6BBA8327432196EF588637ED0A1DCC83334
