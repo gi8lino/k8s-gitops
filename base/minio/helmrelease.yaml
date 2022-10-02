@@ -16,6 +16,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    provisioning:
+      containerSecurityContext:
+        runAsUser: 1000
     auth:
       rootUser: ${MINIO_ROOT_USER}
       rootPassword: ${MINIO_ROOT_PASSWORD}
