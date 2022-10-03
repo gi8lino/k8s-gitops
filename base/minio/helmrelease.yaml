@@ -23,6 +23,9 @@ spec:
     ignoreChartChecksums: true
     rootUser: ${MINIO_ROOT_USER}
     rootPassword: ${MINIO_ROOT_PASSWORD}
+    podLabels:
+      app.kubernetes.io/instance: minio
+      app.kubernetes.io/name: minio
     persistence:
       storageClass: backup
     ingress:
