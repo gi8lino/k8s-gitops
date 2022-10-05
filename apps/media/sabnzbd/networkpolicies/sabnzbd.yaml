@@ -55,7 +55,7 @@ spec:
         - ports:
             - port: "563"
               protocol: TCP
-    - toFQDNs:  # curl/jq
+    - toFQDNs: # curl/jq
         - matchName: dl-cdn.alpinelinux.org
       toPorts:
         - ports:

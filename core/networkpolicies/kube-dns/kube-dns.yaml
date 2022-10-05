@@ -31,7 +31,7 @@ spec:
         - host
       toPorts:
         - ports:
-            - port: "6443"  # kube api
+            - port: "6443" # kube api
               protocol: TCP
     - toCIDR:
         - ${DNS_IP}/32

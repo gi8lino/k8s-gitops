@@ -1,3 +1,4 @@
+---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
@@ -23,5 +24,5 @@ spec:
         - host
       toPorts:
         - ports:
-            - port: "6443"  # kube api
+            - port: "6443" # kube api
               protocol: TCP

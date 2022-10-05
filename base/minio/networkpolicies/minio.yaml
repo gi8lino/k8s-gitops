@@ -26,9 +26,9 @@ spec:
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
-            - port: "9000"  # minio-api (for terraform states)
+            - port: "9000" # minio-api (for terraform states)
               protocol: TCP
-            - port: "9001"  # minio-console
+            - port: "9001" # minio-console
               protocol: TCP
   egress:
     - toEndpoints:

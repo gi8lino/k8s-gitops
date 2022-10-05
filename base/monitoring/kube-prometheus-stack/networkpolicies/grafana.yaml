@@ -39,7 +39,7 @@ spec:
         - host
       toPorts:
         - ports:
-            - port: "6443"  # kube-api
+            - port: "6443" # kube-api
               protocol: TCP
     - toServices:
         - k8sService:
@@ -50,10 +50,10 @@ spec:
             - port: "9090"
               protocol: TCP
     - toFQDNs:
-        - matchName: grafana.com             # grafana dashboards
-        - matchName: grafana.net             # grafana dashboards
+        - matchName: grafana.com # grafana dashboards
+        - matchName: grafana.net # grafana dashboards
         - matchName: raw.githubusercontent.com
-        - matchName: storage.googleapis.com  # grafana plugin archive
+        - matchName: storage.googleapis.com # grafana plugin archive
       toPorts:
         - ports:
             - port: "443"
@@ -64,5 +64,5 @@ spec:
             namespace: traefik
       toPorts:
         - ports:
-            - port: "8443"  # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
+            - port: "8443" # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
               protocol: TCP

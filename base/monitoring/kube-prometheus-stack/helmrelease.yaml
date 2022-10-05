@@ -38,7 +38,7 @@ spec:
             - job
           group_interval: 2m
           group_wait: 60s
-          receiver: slack  # default receiver
+          receiver: slack # default receiver
           repeat_interval: 2h
           routes:
             - receiver: healthchecks

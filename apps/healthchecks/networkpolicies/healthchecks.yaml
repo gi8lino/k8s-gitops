@@ -18,7 +18,7 @@ spec:
         - ports:
             - port: "8000"
               protocol: TCP
-    - fromEndpoints:  # allow push from alertmanager directly to healthchecks (watchdog)
+    - fromEndpoints: # allow push from alertmanager directly to healthchecks (watchdog)
         - matchLabels:
             app.kubernetes.io/name: alertmanager
             app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
@@ -39,7 +39,7 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toFQDNs:  # curl/jq
+    - toFQDNs: # curl/jq
         - matchName: dl-cdn.alpinelinux.org
       toPorts:
         - ports:

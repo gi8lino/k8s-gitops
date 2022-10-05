@@ -1,6 +1,5 @@
 ---
 name: Helm Release Differ
-
 on: # yamllint disable-line rule:truthy
   pull_request:
     branches:
@@ -9,10 +8,8 @@ on: # yamllint disable-line rule:truthy
       - "apps/**.yaml"
       - "base/**.yaml"
       - "infra/**.yaml"
-
 env:
   DEFAULT_BRANCH: master
-
 jobs:
   detect-file-changes:
     name: Detect File Changes

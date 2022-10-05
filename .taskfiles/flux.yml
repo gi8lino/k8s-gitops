@@ -1,37 +1,31 @@
 ---
 version: "3"
-
 tasks:
   all:
     desc: Print the statuses of all resources
     cmds:
       - flux get all
     silent: false
-
   sync:
     desc: Sync flux-system with the Git Repository
     cmds:
       - flux reconcile source git flux-system
     silent: true
-
   hr:
     desc: List all Helm Releases
     cmds:
       - flux get hr --all-namespaces
     silent: true
-
   hs:
     desc: List all Helm sources
     cmds:
       - flux get sources helm --all-namespaces
     silent: true
-
   hc:
     desc: List all Helm charts
     cmds:
       - flux get sources chart --all-namespaces
     silent: true
-
   k:
     desc: List all Kustomizations
     cmds:

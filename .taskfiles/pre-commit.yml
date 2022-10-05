@@ -1,13 +1,11 @@
 ---
 version: "3"
-
 tasks:
   init:
     desc: Initialize pre-commit hooks
     cmds:
       - pre-commit install --hook-type pre-commit
     silent: true
-
   run:
     desc: Run pre-commit
     cmds:

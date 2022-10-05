@@ -41,11 +41,11 @@ spec:
         - host
       toPorts:
         - ports:
-            - port: "6443"   # kube-api
-            - port: "9100"   # prometheus node exporter
-            - port: "10250"  # kubelet
-            - port: "10257"  # kube-controller-manager
-            - port: "10259"  # kube-scheduler
+            - port: "6443" # kube-api
+            - port: "9100" # prometheus node exporter
+            - port: "10250" # kubelet
+            - port: "10257" # kube-controller-manager
+            - port: "10259" # kube-scheduler
     - toServices:
         - k8sServiceSelector:
             selector:
@@ -78,7 +78,7 @@ spec:
             namespace: monitoring
       toPorts:
         - ports:
-            - port: "10250"  # kubelet
+            - port: "10250" # kubelet
               protocol: TCP
     - toServices:
         - k8sService:

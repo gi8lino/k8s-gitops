@@ -16,7 +16,7 @@ spec:
             namespace: minio
       toPorts:
         - ports:
-            - port: "9000"  # minio-api
+            - port: "9000" # minio-api
               protocol: TCP
-            - port: "9001"  # minio-console
+            - port: "9001" # minio-console
               protocol: TCP

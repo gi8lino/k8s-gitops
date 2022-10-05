@@ -6,13 +6,13 @@ metadata:
   namespace: filebrowser
 data:
   .filebrowser.json: |-
-     {
-       "port": 80,
-       "baseURL": "",
-       "address": "",
-       "log": "stdout",
-       "database": "/db/filebrowser.db",
-       "root": "/data",
-       "auth.method": "proxy",
-       "auth.header": "X-Forwarded-User"
-     }
+    {
+      "port": 80,
+      "baseURL": "",
+      "address": "",
+      "log": "stdout",
+      "database": "/db/filebrowser.db",
+      "root": "/data",
+      "auth.method": "proxy",
+      "auth.header": "X-Forwarded-User"
+    }

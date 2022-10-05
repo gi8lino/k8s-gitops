@@ -1,13 +1,11 @@
 ---
 version: "3"
-
 tasks:
   k:
     desc: Run generate_kustomizations.sh script
     cmds:
       - ./hack/generate_kustomizations.sh apps base core crds infra --ignore-folders ".img,dashboards,scripts" --flux-system-folder "core/flux-system"
     silent: true
-
   s:
     desc: Run generate_secret_templates.sh script
     cmds:

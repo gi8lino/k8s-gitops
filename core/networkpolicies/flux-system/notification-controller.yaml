@@ -16,7 +16,7 @@ spec:
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
-            - port: "9292"  # webhook-receiver
+            - port: "9292" # webhook-receiver
               protocol: TCP
     - fromEndpoints:
         - matchLabels:
@@ -56,7 +56,7 @@ spec:
         - host
       toPorts:
         - ports:
-            - port: "6443"  # kube api
+            - port: "6443" # kube api
     - toFQDNs:
         - matchName: hooks.slack.com
         - matchName: api.github.com

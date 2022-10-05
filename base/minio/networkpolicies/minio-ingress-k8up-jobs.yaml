@@ -41,5 +41,5 @@ spec:
             k8upjob: "true"
       toPorts:
         - ports:
-            - port: "9000"  # minio-api
+            - port: "9000" # minio-api
               protocol: TCP

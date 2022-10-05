@@ -21,12 +21,12 @@ spec:
             io.kubernetes.pod.namespace: flux-system
       toPorts:
         - ports:
-            - port: "10250"  # kubelet metrics, validationwebhook
+            - port: "10250" # kubelet metrics, validationwebhook
               protocol: TCP
   egress:
     - toEntities:
         - host
       toPorts:
         - ports:
-            - port: "6443"  # kube api
+            - port: "6443" # kube api
               protocol: TCP

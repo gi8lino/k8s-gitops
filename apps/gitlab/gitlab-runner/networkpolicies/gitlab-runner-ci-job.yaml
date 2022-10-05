@@ -26,21 +26,21 @@ spec:
             namespace: traefik
       toPorts:
         - ports:
-            - port: "8443"  # to access git.${BASE_DOMAIN}
+            - port: "8443" # to access git.${BASE_DOMAIN}
               protocol: TCP
         - ports:
-            - port: "2222"  # to access network with ansible
+            - port: "2222" # to access network with ansible
               protocol: TCP
     - toCIDRSet:
         - cidr: 10.0.0.0/24
       toPorts:
         - ports:
-            - port: "22"  # to access local network with ansible
+            - port: "22" # to access local network with ansible
     - toEntities:
         - host
       toPorts:
         - ports:
-            - port: "22"  # to access host network with ansible
+            - port: "22" # to access host network with ansible
     - toEntities:
         - world
       toPorts:
