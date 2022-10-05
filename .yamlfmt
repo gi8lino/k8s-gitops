@@ -1,0 +1,9 @@
+---
+formatter:
+  type: basic
+  include_document_start: true
+exclude:
+  - "**/secret.yaml"
+  - apps/kubernetes-dashboard/middleware.yaml
+  - core/cluster-secrets.yaml
+  - core/flux-system/gotk-components.yaml
