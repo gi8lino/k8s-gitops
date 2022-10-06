@@ -8,5 +8,5 @@ resources:
   - sabnzbd
   - sonarr
   - tautulli
-  - cronjob.yaml
+  #- cronjob.yaml
   - schedule.yaml

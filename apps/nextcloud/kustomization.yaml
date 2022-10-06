@@ -5,5 +5,5 @@ resources:
   - nextcloud
   - postgres
   - redis
-  - cronjob.yaml
+  #- cronjob.yaml
   - schedule.yaml
