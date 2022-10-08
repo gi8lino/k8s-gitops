@@ -12,7 +12,7 @@ configMapGenerator:
   - name: grafana-dashboard-cloudflare-operator
     namespace: monitoring
     files:
-      - grafana-dashboard-cloudflare-operator.json=https://raw.githubusercontent.com/containeroo/cloudflare-operator/v0.3.4/config/manifests/grafana/dashboards/overview.json
+      - grafana-dashboard-cloudflare-operator.json=https://raw.githubusercontent.com/containeroo/cloudflare-operator/v0.3.5/config/manifests/grafana/dashboards/overview.json
 generatorOptions:
   disableNameSuffixHash: true
 patches:
