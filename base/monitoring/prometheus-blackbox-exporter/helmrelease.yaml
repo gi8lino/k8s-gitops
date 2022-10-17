@@ -69,8 +69,6 @@ spec:
           url: https://${NEWSNAB_DOMAIN}
           interval: 60m
           module: newsnab
-        - name: test
-          url: https://test.tools.${BASE_DOMAIN}
     prometheusRule:
       enabled: true
       rules:
