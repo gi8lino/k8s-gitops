@@ -58,6 +58,8 @@ spec:
           url: https://sso.${BASE_DOMAIN}
         - name: pihole
           url: https://pihole.local.${BASE_DOMAIN}
+        - name: test
+          url: https://test.local.${BASE_DOMAIN}
         - name: tools
           url: https://traefik.tools.${BASE_DOMAIN}
         - name: diskstation
