@@ -69,6 +69,9 @@ spec:
           url: https://${NEWSNAB_DOMAIN}
           interval: 60m
           module: newsnab
+        - name: test
+          interval: 1m
+          url: https://test.tools.${BASE_DOMAIN}
     prometheusRule:
       enabled: true
       rules:
@@ -79,7 +82,7 @@ spec:
             severity: warning
           annotations:
             summary: |-
-              SSL certificate {{ $labels.instance }} expires soon
+              SSL certificate «{{ $labels.instance }}» expires soon
             description: |-
               SSL certificate will expire in {{ $value | humanizeDuration }} (instance {{ $labels.instance }})
         - alert: Newsnab
@@ -89,7 +92,7 @@ spec:
             severity: warning
           annotations:
             summary: Newsnab API is expired
-            description: Newsnab API for {{ $labels.target }} is expired
+            description: Newsnab API for «{{ $labels.target }}» is expired
         - alert: BlackboxProbeFailed
           expr: last_over_time(probe_success[15m]) == 0
           for: 5m
@@ -97,4 +100,4 @@ spec:
             severity: critical
           annotations:
             summary: Host is unreachable
-            description: The host {{ $labels.target }} is currently unreachable
+            description: The host «{{ $labels.target }}» is currently unreachable
