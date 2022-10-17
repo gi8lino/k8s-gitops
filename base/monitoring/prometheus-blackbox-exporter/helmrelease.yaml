@@ -79,7 +79,7 @@ spec:
             severity: warning
           annotations:
             summary: |-
-              SSL certificate {{"{{ $labels.instance }}"}} expires soon
+              SSL certificate {{ $labels.instance }} expires soon
             description: |-
               SSL certificate will expire in {{ $value | humanizeDuration }} (instance {{ $labels.instance }})
         - alert: Newsnab
