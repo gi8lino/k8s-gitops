@@ -21,8 +21,6 @@ spec:
       tag: RELEASE.2022-10-15T19-57-03Z
     mode: standalone
     ignoreChartChecksums: true
-    rootUser: ${MINIO_ROOT_USER}
-    rootPassword: ${MINIO_ROOT_PASSWORD}
     podLabels:
       app.kubernetes.io/instance: minio
       app.kubernetes.io/name: minio
@@ -59,3 +57,13 @@ spec:
     securityContext:
       enabled: false
     users: []
+    oidc:
+      enabled: true
+      configUrl: https://sso.${BASE_DOMAIN}/realms/master/.well-known/openid-configuration
+      claimName: policy
+      scopes: openid,profile,email
+      redirectUri: https://minio.local.${BASE_DOMAIN}/oauth_callback
+  valuesFrom:
+    - kind: Secret
+      name: minio-helm-values
+      optional: false
