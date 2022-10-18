@@ -56,7 +56,6 @@ spec:
         memory: null
     securityContext:
       enabled: false
-    users: []
     oidc:
       enabled: true
       configUrl: https://sso.${BASE_DOMAIN}/realms/master/.well-known/openid-configuration
