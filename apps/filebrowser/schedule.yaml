@@ -9,7 +9,7 @@ spec:
     runAsUser: 0
   backend:
     s3:
-      bucket: filebrowser
+      bucket: k8up-filebrowser
   backup:
     schedule: 0 5 * * 0 # every sunday at 05:00
     successfulJobsHistoryLimit: 1

@@ -9,7 +9,7 @@ spec:
     runAsUser: 0
   backend:
     s3:
-      bucket: paperless
+      bucket: k8up-paperless
   backup:
     schedule: 30 3 * * *
     successfulJobsHistoryLimit: 1

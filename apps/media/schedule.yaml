@@ -9,7 +9,7 @@ spec:
     runAsUser: 0
   backend:
     s3:
-      bucket: media
+      bucket: k8up-media
   backup:
     schedule: 0 2 * * *
     successfulJobsHistoryLimit: 1

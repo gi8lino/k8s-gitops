@@ -9,7 +9,7 @@ spec:
     runAsUser: 0
   backend:
     s3:
-      bucket: wallabag
+      bucket: k8up-wallabag
   backup:
     schedule: 0 1 * * *
     successfulJobsHistoryLimit: 1

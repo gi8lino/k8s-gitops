@@ -9,7 +9,7 @@ spec:
     runAsUser: 0
   backend:
     s3:
-      bucket: healthchecks
+      bucket: k8up-healthchecks
   backup:
     schedule: 0 1 * * *
     successfulJobsHistoryLimit: 1

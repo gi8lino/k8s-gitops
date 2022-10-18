@@ -9,7 +9,7 @@ spec:
     runAsUser: 0
   backend:
     s3:
-      bucket: cluster-resources
+      bucket: k8up-cluster-resources
   backup:
     schedule: 0 */12 * * *
     successfulJobsHistoryLimit: 1

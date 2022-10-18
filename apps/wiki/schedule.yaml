@@ -9,7 +9,7 @@ spec:
     runAsUser: 0
   backend:
     s3:
-      bucket: wiki
+      bucket: k8up-wiki
   backup:
     schedule: 0 1 * * *
     successfulJobsHistoryLimit: 1
