@@ -55,6 +55,14 @@ spec:
         - ports:
             - port: "9090"
               protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: traefik
+            namespace: traefik
+      toPorts:
+        - ports:
+            - port: "8443" # oidc: to access load balancer (https://sso.${BASE_DOMAIN})
+              protocol: TCP
     - toFQDNs:
         - matchName: dl.min.io
       toPorts:
