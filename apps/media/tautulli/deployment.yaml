@@ -52,14 +52,9 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /config
-            - name: backup
-              mountPath: /config/backups
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: tautulli-data
-        - name: backup
-          persistentVolumeClaim:
-            claimName: tautulli-backup

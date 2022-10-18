@@ -13,16 +13,3 @@ spec:
   resources:
     requests:
       storage: 128Mi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: tautulli-backup
-  namespace: media
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: backup
-  resources:
-    requests:
-      storage: 200Mi
