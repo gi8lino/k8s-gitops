@@ -57,16 +57,16 @@ spec:
               value: "5432"
             - name: DB_NAME
               value: wikijs
-            - name: DB_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: POSTGRES_PASSWORD
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   name: postgres
                   key: POSTGRES_USER
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_PASSWORD
           ports:
             - name: http
               containerPort: 3000
