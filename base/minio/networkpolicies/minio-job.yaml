@@ -28,5 +28,5 @@ spec:
             app.kubernetes.io/name: minio
       toPorts:
         - ports:
-            - port: "9090"
+            - port: "9000"
               protocol: TCP
