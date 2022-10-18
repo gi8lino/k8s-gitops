@@ -22,9 +22,9 @@ spec:
         - name: whoami
           image: containous/whoami:v1.5.0
           imagePullPolicy: IfNotPresent
-          resources: {}
           ports:
             - name: http
               containerPort: 80
+          resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false

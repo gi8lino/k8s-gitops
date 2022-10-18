@@ -132,6 +132,14 @@ spec:
                 name: nextcloud-mail-settings
             - secretRef:
                 name: postgres
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - crond
+          resources: {}
           volumeMounts:
             - name: app-data
               mountPath: /var/www/html
@@ -142,14 +150,6 @@ spec:
             - name: fpm-config
               mountPath: /usr/local/etc/php-fpm.d/www.conf
               subPath: www.conf
-          lifecycle:
-            postStart:
-              exec:
-                command:
-                  - /bin/sh
-                  - -c
-                  - crond
-          resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:

@@ -46,6 +46,7 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 3
             periodSeconds: 30
+          resources: {}
           volumeMounts:
             - name: data
               mountPath: /config
@@ -55,7 +56,6 @@ spec:
               mountPath: /tv
             - name: downloads
               mountPath: /downloads
-          resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:

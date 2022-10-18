@@ -75,6 +75,13 @@ spec:
             initialDelaySeconds: 30
             failureThreshold: 5
             periodSeconds: 30
+          resources:
+            requests:
+              memory: 256Mi
+              cpu: 100m
+            limits:
+              memory: 256Mi
+              cpu: 100m
           volumeMounts:
             - name: healthchecks-data
               mountPath: /config
@@ -84,13 +91,6 @@ spec:
             - name: startup
               mountPath: /scripts/startup
               subPath: startup
-          resources:
-            requests:
-              memory: 256Mi
-              cpu: 100m
-            limits:
-              memory: 256Mi
-              cpu: 100m
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:

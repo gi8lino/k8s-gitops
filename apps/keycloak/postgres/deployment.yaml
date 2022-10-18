@@ -38,13 +38,6 @@ spec:
           ports:
             - name: postgres
               containerPort: 5432
-          resources:
-            requests:
-              cpu: 50m
-              memory: 64Mi
-            limits:
-              cpu: 250m
-              memory: 128Mi
           startupProbe:
             exec:
               command:
@@ -63,6 +56,13 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 5
             periodSeconds: 30
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data

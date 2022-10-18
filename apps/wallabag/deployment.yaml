@@ -36,10 +36,10 @@ spec:
           envFrom:
             - secretRef:
                 name: wallabag-symfony
-          resources: {}
           ports:
             - name: http
               containerPort: 80
+          resources: {}
           volumeMounts:
             - mountPath: /var/www/wallabag/data
               name: wallabag-data

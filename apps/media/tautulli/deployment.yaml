@@ -48,12 +48,12 @@ spec:
             failureThreshold: 5
             timeoutSeconds: 3
             periodSeconds: 30
+          resources: {}
           volumeMounts:
             - name: data
               mountPath: /config
             - name: backup
               mountPath: /config/backups
-          resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:

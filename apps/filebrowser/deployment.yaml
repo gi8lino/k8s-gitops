@@ -44,6 +44,7 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 3
             periodSeconds: 30
+          resources: {}
           volumeMounts:
             - name: data
               mountPath: /data
@@ -52,7 +53,6 @@ spec:
             - name: config
               mountPath: .filebrowser.json
               subPath: .filebrowser.json
-          resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:

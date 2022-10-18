@@ -93,5 +93,6 @@ spec:
               port: http
             failureThreshold: 2
             periodSeconds: 30
+          resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false
