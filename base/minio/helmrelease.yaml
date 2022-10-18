@@ -59,7 +59,7 @@ spec:
     oidc:
       enabled: true
       configUrl: https://sso.${BASE_DOMAIN}/realms/master/.well-known/openid-configuration
-      claimName: configAdmin
+      claimName: policy=configAdmin
       scopes: openid,profile,email
       redirectUri: https://minio.local.${BASE_DOMAIN}/oauth_callback
   valuesFrom:
