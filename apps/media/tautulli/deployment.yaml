@@ -6,6 +6,8 @@ metadata:
   namespace: media
   labels:
     app: tautulli
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
