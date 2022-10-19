@@ -8,7 +8,7 @@ resources:
   - persistentvolumeclaim.yaml
   - service.yaml
 configMapGenerator:
-  - name: 30-config
+  - name: init-radarr-config
     namespace: media
     files:
       - ./scripts/init-radarr-config.sh
