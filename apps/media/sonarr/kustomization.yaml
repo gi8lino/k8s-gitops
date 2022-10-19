@@ -7,3 +7,19 @@ resources:
   - ingress.yaml
   - persistentvolumeclaim.yaml
   - service.yaml
+configMapGenerator:
+  - name: init-sonarr-config
+    namespace: media
+    files:
+      - ./scripts/init-sonarr-config.sh
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - target:
+      kind: ConfigMap
+      name: init-sonarr-config
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
