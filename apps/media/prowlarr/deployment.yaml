@@ -6,6 +6,8 @@ metadata:
   namespace: media
   labels:
     app: prowlarr
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
@@ -58,6 +60,9 @@ spec:
               mountPath: /config
             - name: backup
               mountPath: /config/Backups
+            - name: init-prowlarr-config
+              mountPath: /etc/cont-init.d/30-config
+              subPath: 30-config
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -67,3 +72,10 @@ spec:
         - name: backup
           persistentVolumeClaim:
             claimName: prowlarr-backup
+        - name: init-prowlarr-config
+          configMap:
+            name: init-prowlarr-config
+            items:
+              - key: init-prowlarr-config.sh
+                path: 30-config
+            defaultMode: 0755

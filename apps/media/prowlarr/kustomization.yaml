@@ -7,3 +7,19 @@ resources:
   - ingress.yaml
   - persistentvolumeclaim.yaml
   - service.yaml
+configMapGenerator:
+  - name: init-prowlarr-config
+    namespace: media
+    files:
+      - ./scripts/init-prowlarr-config.sh
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - target:
+      kind: ConfigMap
+      name: init-prowlarr-config
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
