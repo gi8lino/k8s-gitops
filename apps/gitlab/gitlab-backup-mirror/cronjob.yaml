@@ -43,7 +43,7 @@ spec:
                 - name: DESTINATION_URL
                   value: http://minio.minio.svc.cluster.local:9000
                 - name: DESTINATION_BUCKET
-                  value: gitlab
+                  value: gitlab-backups
                 - name: JOB_NAME
                   value: gitlab-backup-mirror
                 - name: RETENTION
