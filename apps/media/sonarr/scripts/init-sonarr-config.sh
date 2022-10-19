@@ -1,4 +1,5 @@
 #!/usr/bin/with-contenv bash
+# shellcheck shell=bash
 
 # cleanup pid if it exists
 [[ -e /config/sonarr.pid ]] && \
