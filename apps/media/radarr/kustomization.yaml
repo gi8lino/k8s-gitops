@@ -7,3 +7,19 @@ resources:
   - ingress.yaml
   - persistentvolumeclaim.yaml
   - service.yaml
+configMapGenerator:
+  - name: 30-config
+    namespace: media
+    files:
+      - ./scripts/init-radarr-config.sh
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - target:
+      kind: ConfigMap
+      name: init-radarr-config
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled

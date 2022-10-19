@@ -6,6 +6,8 @@ metadata:
   namespace: media
   labels:
     app: radarr
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
@@ -70,6 +72,9 @@ spec:
               mountPath: /dubbed
             - name: downloads
               mountPath: /downloads
+            - name: init-radarr-config
+              mountPath: /etc/cont-init.d/30-config
+              subPath: 30-config
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -91,3 +96,10 @@ spec:
           hostPath:
             path: /mnt/sabnzbd/complete
             type: Directory
+        - name: init-radarr-config
+          configMap:
+            name: init-radarr-config
+            items:
+              - key: init-radarr-config.sh
+                path: 30-config
+            defaultMode: 0755
