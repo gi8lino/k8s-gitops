@@ -6,20 +6,15 @@ metadata:
   namespace: renovate
   labels:
     app: renovate
-    component: redis
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: renovate
-      component: redis
+    matchLabels: {}
   strategy:
     type: RollingUpdate
   template:
     metadata:
-      labels:
-        app: renovate
-        component: redis
+      labels: {}
     spec:
       containers:
         - name: redis

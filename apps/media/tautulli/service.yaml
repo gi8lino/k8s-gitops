@@ -9,6 +9,4 @@ spec:
     - name: http
       port: 8181
       targetPort: http
-  selector:
-    app: tautulli
   type: ClusterIP

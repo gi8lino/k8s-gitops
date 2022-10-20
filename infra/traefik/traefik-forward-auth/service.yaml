@@ -8,6 +8,4 @@ spec:
   ports:
     - port: 4181
       targetPort: 4181
-  selector:
-    app: traefik-forward-auth
   type: ClusterIP

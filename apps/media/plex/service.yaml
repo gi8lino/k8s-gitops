@@ -9,6 +9,4 @@ spec:
     - name: http
       port: 32400
       targetPort: http
-  selector:
-    app: plex
   type: ClusterIP

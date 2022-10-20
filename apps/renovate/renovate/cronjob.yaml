@@ -4,9 +4,6 @@ kind: CronJob
 metadata:
   name: renovate
   namespace: renovate
-  labels:
-    app: renovate
-    component: job
 spec:
   suspend: false
   schedule: CRON_TZ=Europe/Zurich */15 * * * *
@@ -17,9 +14,7 @@ spec:
     spec:
       template:
         metadata:
-          labels:
-            app: renovate
-            component: job
+          labels: {}
         spec:
           initContainers:
             - name: wait-for-redis

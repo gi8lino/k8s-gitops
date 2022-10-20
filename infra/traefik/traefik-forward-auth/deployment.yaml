@@ -9,14 +9,12 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: traefik-forward-auth
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: traefik-forward-auth
+      labels: {}
     spec:
       initContainers:
         - name: wait-for-keycloak

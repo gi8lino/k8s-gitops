@@ -4,15 +4,10 @@ kind: Deployment
 metadata:
   name: postgres
   namespace: nextcloud
-  labels:
-    app: nextcloud
-    component: postgres
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: nextcloud
-      component: postgres
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
@@ -20,9 +15,7 @@ spec:
       annotations:
         k8up.io/backupcommand: sh -c "pg_dumpall -U $POSTGRES_USER -h 127.0.0.1"
         k8up.io/file-extension: .sql
-      labels:
-        app: nextcloud
-        component: postgres
+      labels: {}
     spec:
       containers:
         - name: postgres

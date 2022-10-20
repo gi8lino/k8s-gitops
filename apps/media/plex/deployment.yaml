@@ -4,19 +4,15 @@ kind: Deployment
 metadata:
   name: plex
   namespace: media
-  labels:
-    app: plex
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: plex
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: plex
+      labels: {}
     spec:
       securityContext:
         supplementalGroups:

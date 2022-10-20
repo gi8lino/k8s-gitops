@@ -4,21 +4,17 @@ kind: Deployment
 metadata:
   name: filebrowser
   namespace: filebrowser
-  labels:
-    app: filebrowser
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: filebrowser
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: filebrowser
+      labels: {}
     spec:
       containers:
         - name: filebrowser

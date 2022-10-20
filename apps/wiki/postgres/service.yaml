@@ -9,7 +9,4 @@ spec:
     - name: postgres
       port: 5432
       targetPort: postgres
-  selector:
-    app: wiki
-    component: postgres
   type: ClusterIP

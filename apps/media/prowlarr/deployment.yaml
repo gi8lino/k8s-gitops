@@ -4,21 +4,17 @@ kind: Deployment
 metadata:
   name: prowlarr
   namespace: media
-  labels:
-    app: prowlarr
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: prowlarr
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: prowlarr
+      labels: {}
     spec:
       containers:
         - name: prowlarr

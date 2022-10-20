@@ -4,24 +4,17 @@ kind: Deployment
 metadata:
   name: nextcloud
   namespace: nextcloud
-  labels:
-    app: nextcloud
-    component: fpm-nginx
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: nextcloud
-      component: fpm-nginx
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: nextcloud
-        component: fpm-nginx
+      labels: {}
     spec:
       initContainers:
         - name: wait-for-redis

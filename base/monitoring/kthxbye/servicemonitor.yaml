@@ -4,8 +4,6 @@ kind: ServiceMonitor
 metadata:
   name: kthxbye
   namespace: monitoring
-  labels:
-    app: kthxbye
 spec:
   endpoints:
     - interval: 5m

@@ -4,21 +4,17 @@ kind: Deployment
 metadata:
   name: radarr
   namespace: media
-  labels:
-    app: radarr
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: radarr
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: radarr
+      labels: {}
     spec:
       containers:
         - name: radarr

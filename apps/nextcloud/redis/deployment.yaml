@@ -4,22 +4,15 @@ kind: Deployment
 metadata:
   name: redis
   namespace: nextcloud
-  labels:
-    app: nextcloud
-    component: redis
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: nextcloud
-      component: redis
+    matchLabels: {}
   strategy:
     type: RollingUpdate
   template:
     metadata:
-      labels:
-        app: nextcloud
-        component: redis
+      labels: {}
     spec:
       containers:
         - name: redis

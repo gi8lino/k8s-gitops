@@ -4,21 +4,17 @@ kind: Deployment
 metadata:
   name: sonarr
   namespace: media
-  labels:
-    app: sonarr
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: sonarr
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: sonarr
+      labels: {}
     spec:
       containers:
         - name: sonarr

@@ -4,21 +4,17 @@ kind: Deployment
 metadata:
   name: healthchecks
   namespace: healthchecks
-  labels:
-    app: healthchecks
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: healthchecks
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: healthchecks
+      labels: {}
     spec:
       containers:
         - name: healthchecks

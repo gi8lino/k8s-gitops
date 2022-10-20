@@ -9,7 +9,4 @@ spec:
     - name: http
       port: 3000
       targetPort: http
-  selector:
-    app: wiki
-    component: wiki
   type: ClusterIP

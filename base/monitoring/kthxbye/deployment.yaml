@@ -4,19 +4,15 @@ kind: Deployment
 metadata:
   name: kthxbye
   namespace: monitoring
-  labels:
-    app: kthxbye
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: kthxbye
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: kthxbye
+      labels: {}
     spec:
       containers:
         - name: kthxbye

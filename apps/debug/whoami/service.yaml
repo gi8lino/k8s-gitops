@@ -9,6 +9,4 @@ spec:
     - name: http
       port: 80
       targetPort: http
-  selector:
-    app: whoami
   type: ClusterIP

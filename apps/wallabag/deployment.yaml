@@ -4,19 +4,15 @@ kind: Deployment
 metadata:
   name: wallabag
   namespace: wallabag
-  labels:
-    app: wallabag
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: wallabag
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: wallabag
+      labels: {}
     spec:
       containers:
         - name: wallabag

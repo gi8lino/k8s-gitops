@@ -11,6 +11,4 @@ spec:
     - name: metrics
       port: 8080
       targetPort: metrics
-  selector:
-    app: kthxbye
   type: ClusterIP

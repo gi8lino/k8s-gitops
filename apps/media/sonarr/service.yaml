@@ -9,6 +9,4 @@ spec:
     - name: http
       port: 8989
       targetPort: http
-  selector:
-    app: sonarr
   type: ClusterIP

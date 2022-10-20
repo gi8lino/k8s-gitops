@@ -9,6 +9,4 @@ spec:
     - name: http
       port: 7878
       targetPort: http
-  selector:
-    app: radarr
   type: ClusterIP

@@ -4,21 +4,17 @@ kind: Deployment
 metadata:
   name: tautulli
   namespace: media
-  labels:
-    app: tautulli
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: tautulli
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: tautulli
+      labels: {}
     spec:
       containers:
         - name: tautulli

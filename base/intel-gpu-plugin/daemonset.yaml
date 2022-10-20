@@ -4,16 +4,12 @@ kind: DaemonSet
 metadata:
   name: intel-gpu-plugin
   namespace: kube-system
-  labels:
-    app: intel-gpu-plugin
 spec:
   selector:
-    matchLabels:
-      app: intel-gpu-plugin
+    matchLabels: {}
   template:
     metadata:
-      labels:
-        app: intel-gpu-plugin
+      labels: {}
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64

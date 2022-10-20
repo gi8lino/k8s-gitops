@@ -4,19 +4,15 @@ kind: Deployment
 metadata:
   name: whoami
   namespace: debug
-  labels:
-    app: whoami
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: whoami
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: whoami
+      labels: {}
     spec:
       containers:
         - name: whoami

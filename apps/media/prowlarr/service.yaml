@@ -9,6 +9,4 @@ spec:
     - name: http
       port: 9696
       targetPort: http
-  selector:
-    app: prowlarr
   type: ClusterIP
