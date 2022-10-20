@@ -4,21 +4,17 @@ kind: Deployment
 metadata:
   name: sabnzbd
   namespace: media
-  labels:
-    app: sabnzbd
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: sabnzbd
+    matchLabels: {}
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        app: sabnzbd
+      labels: {}
     spec:
       containers:
         - name: sabnzbd
