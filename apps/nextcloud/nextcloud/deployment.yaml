@@ -85,7 +85,7 @@ spec:
                 - name: Host
                   value: cloud.${BASE_DOMAIN}
             initialDelaySeconds: 10
-            failureThreshold: 30
+            failureThreshold: 60
             timeoutSeconds: 3
             periodSeconds: 3
           livenessProbe:
