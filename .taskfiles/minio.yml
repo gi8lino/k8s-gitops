@@ -1,0 +1,13 @@
+---
+version: "3"
+tasks:
+  config:
+    desc: Configure minio mc client
+    cmds:
+      - |-
+        MINIO_NAMESPACE=minio
+        MINIO_URL=$(kubectl get ingresses.networking.k8s.io -n ${MINIO_NAMESPACE} -o=jsonpath='{.items[?(@.metadata.name == "minio")].spec.rules[].host}')
+        AWS_ACCESS_KEY_ID=$(kubectl get secret -n ${MINIO_NAMESPACE} minio -ojsonpath='{.data.rootUser}' | base64 -d)
+        AWS_SECRET_ACCESS_KEY=$(kubectl get secret -n ${MINIO_NAMESPACE} minio -ojsonpath='{.data.rootPassword}' | base64 -d)
+        mc config host add minio https://${MINIO_URL%/} "${AWS_ACCESS_KEY_ID}" "${AWS_SECRET_ACCESS_KEY}" --api S3v4
+    silent: true

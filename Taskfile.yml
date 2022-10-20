@@ -2,5 +2,7 @@
 version: "3"
 includes:
   flux: .taskfiles/flux.yml
-  pre-commit: .taskfiles/pre-commit.yml
   hack: .taskfiles/hack.yml
+  k8up: .taskfiles/k8up.yml
+  minio: .taskfiles/minio.yml
+  pre-commit: .taskfiles/pre-commit.yml
