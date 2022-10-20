@@ -1,12 +1,12 @@
 ---
 version: "3"
 tasks:
-  c:
+  cleanup:
     desc: cleanup stucked k8up jobs in current namespace
     cmds:
       - ./hack/cleanup_k8up_jobs.sh
     silent: false
-  ca:
+  cleanup-all:
     desc: cleanup stucked k8up jobs in all namespace
     cmds:
       - ./hack/cleanup_k8up_jobs.sh -A
