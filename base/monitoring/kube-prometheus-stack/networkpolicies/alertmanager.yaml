@@ -16,7 +16,7 @@ spec:
             app.kubernetes.io/name: prometheus
             io.kubernetes.pod.namespace: monitoring
         - matchLabels:
-            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/instance: traefik-traefik
             app.kubernetes.io/name: traefik
             io.kubernetes.pod.namespace: traefik
         - matchLabels:

@@ -25,7 +25,7 @@ spec:
               protocol: TCP
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/instance: traefik-traefik
             app.kubernetes.io/name: traefik
             io.kubernetes.pod.namespace: traefik
       toPorts:

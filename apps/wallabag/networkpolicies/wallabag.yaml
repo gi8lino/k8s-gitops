@@ -11,7 +11,7 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/instance: traefik-traefik
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
