@@ -31,6 +31,8 @@ spec:
     env:
       - name: TZ
         value: Europe/Zurich
+      - name: TEST
+        value: TEST
     ingressClass:
       enabled: true
       fallbackApiVersion: v1
