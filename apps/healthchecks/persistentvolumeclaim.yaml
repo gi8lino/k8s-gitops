@@ -9,7 +9,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: nvme
+  storageClassName: ssd
   resources:
     requests:
       storage: 128Mi
