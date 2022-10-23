@@ -24,7 +24,8 @@ spec:
           resources: {}
       tolerations:
         - key: "worker"
-          operator: "Exists"
+          operator: "Equal"
+          value: "true"
           effect: NoSchedule
       restartPolicy: Always
       automountServiceAccountToken: false
