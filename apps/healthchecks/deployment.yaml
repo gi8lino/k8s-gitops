@@ -87,12 +87,12 @@ spec:
             - name: startup
               mountPath: /scripts/startup
               subPath: startup
+      restartPolicy: Always
+      automountServiceAccountToken: false
       tolerations:
         - key: "worker"
           operator: "Exists"
           effect: NoSchedule
-      restartPolicy: Always
-      automountServiceAccountToken: false
       volumes:
         - name: healthchecks-data
           persistentVolumeClaim:
