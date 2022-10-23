@@ -22,5 +22,9 @@ spec:
             - name: http
               containerPort: 80
           resources: {}
+      tolerations:
+        - key: "worker"
+          operator: "Exists"
+          effect: NoSchedule
       restartPolicy: Always
       automountServiceAccountToken: false
