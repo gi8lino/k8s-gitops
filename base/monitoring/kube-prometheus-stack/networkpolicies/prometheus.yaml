@@ -39,6 +39,7 @@ spec:
               - matchPattern: "*"
     - toEntities:
         - host
+        - remote-node
       toPorts:
         - ports:
             - port: "6443" # kube-api
@@ -46,12 +47,6 @@ spec:
             - port: "10250" # kubelet
             - port: "10257" # kube-controller-manager
             - port: "10259" # kube-scheduler
-    - toCIDR:
-        - 10.0.0.25/32
-      toPorts:
-        - ports:
-            - port: "9100" # prometheus node exporter
-              protocol: TCP
     - toServices:
         - k8sServiceSelector:
             selector:
