@@ -25,7 +25,6 @@ spec:
 
         archived_path="$(dirname ${VOL_DIR})/archived-$(basename ${VOL_DIR})"
         mv ${VOL_DIR} ${archived_path}
-    nodePathMap: {}
     storageClass:
       defaultClass: false
       name: ssd
