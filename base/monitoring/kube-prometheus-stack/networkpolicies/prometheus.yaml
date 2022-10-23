@@ -46,11 +46,12 @@ spec:
             - port: "10250" # kubelet
             - port: "10257" # kube-controller-manager
             - port: "10259" # kube-scheduler
-    - to:
-        - ipBlock:
-            cidr: 10.0.0.25/32
-      ports:
-        - port: "9100" # prometheus node exporter
+    - toCIDR:
+        - 10.0.0.25/32
+      toPorts:
+        - ports:
+            - port: "9100" # prometheus node exporter
+              protocol: TCP
     - toServices:
         - k8sServiceSelector:
             selector:
