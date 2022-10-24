@@ -28,7 +28,7 @@ spec:
     storageClass:
       defaultClass: false
       name: hdd
-  valuesFrom:
-    - kind: Secret
-      name: hdd-helm-values
-      optional: false
+    nodePathMap:
+      - node: DEFAULT_PATH_FOR_NON_LISTED_NODES
+        paths:
+          - /mnt/disk5/appdata

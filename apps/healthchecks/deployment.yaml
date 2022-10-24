@@ -89,20 +89,6 @@ spec:
               subPath: startup
       restartPolicy: Always
       automountServiceAccountToken: false
-      tolerations:
-        - key: worker
-          operator: Equal
-          value: "true"
-          effect: NoSchedule
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: worker
-                    operator: In
-                    values:
-                      - "true"
       volumes:
         - name: healthchecks-data
           persistentVolumeClaim:

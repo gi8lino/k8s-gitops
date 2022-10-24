@@ -28,7 +28,7 @@ spec:
     storageClass:
       defaultClass: false
       name: ssd
-  valuesFrom:
-    - kind: Secret
-      name: ssd-helm-values
-      optional: false
+    nodePathMap:
+      - node: DEFAULT_PATH_FOR_NON_LISTED_NODES
+        paths:
+          - /mnt/disk6/appdata

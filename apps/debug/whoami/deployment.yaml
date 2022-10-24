@@ -22,19 +22,5 @@ spec:
             - name: http
               containerPort: 80
           resources: {}
-      tolerations:
-        - key: "worker"
-          operator: "Equal"
-          value: "true"
-          effect: NoSchedule
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: worker
-                    operator: In
-                    values:
-                      - "true"
       restartPolicy: Always
       automountServiceAccountToken: false
