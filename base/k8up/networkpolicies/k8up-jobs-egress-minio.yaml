@@ -7,7 +7,7 @@ spec:
   description: "Allow k8up jobs to connect to minio"
   endpointSelector:
     matchLabels:
-      io.kubernetes.pod.namespace.labels.k8up: backup-enabled
+      #io.kubernetes.pod.namespace.labels.k8up: backup-enabled
       k8upjob: "true"
   egress:
     - toEndpoints:
