@@ -2,12 +2,12 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: forward-auth
+  name: traefik-forward-auth
   namespace: traefik
 spec:
   endpointSelector:
     matchLabels:
-      app: forward-auth
+      app: traefik-forward-auth
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -27,6 +27,3 @@ spec:
         - ports:
             - port: "53"
               protocol: ANY
-          rules:
-            dns:
-              - matchPattern: "*"

@@ -52,7 +52,7 @@ spec:
               protocol: TCP
     - fromEndpoints:
         - matchLabels:
-            app: forward-auth
+            app: traefik-forward-auth
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
