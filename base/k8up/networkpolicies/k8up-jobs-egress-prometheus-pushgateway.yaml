@@ -10,6 +10,17 @@ spec:
       io.kubernetes.pod.namespace.labels.k8up: backup-enabled
       k8upjob: "true"
   egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
     - toServices:
         - k8sService:
             serviceName: prometheus-pushgateway

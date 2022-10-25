@@ -10,6 +10,17 @@ spec:
       app.kubernetes.io/instance: hdd
       app.kubernetes.io/name: local-path-provisioner
   egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
     - toEntities:
         - host
       toPorts:

@@ -10,6 +10,17 @@ spec:
       app: nfs-subdir-external-provisioner
       release: backup
   egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
     - toEntities:
         - host
       toPorts:
