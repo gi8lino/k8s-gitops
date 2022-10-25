@@ -7,7 +7,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: reloader
+      app: reloader-reloader
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -15,7 +15,7 @@ spec:
             io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
-            - port: "9090"
+            - port: "9091"
               protocol: TCP
   egress:
     - toEntities:

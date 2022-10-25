@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - k8up-jobs-egress-minio.yaml
   - k8up-jobs-egress-prometheus-pushgateway.yaml
+  - k8up.yaml

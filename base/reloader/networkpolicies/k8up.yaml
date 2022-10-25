@@ -2,13 +2,13 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: gitlab-runner
-  namespace: gitlab
+  name: k8up
+  namespace: k8up
 spec:
   endpointSelector:
     matchLabels:
-      app: gitlab-runner
-      release: gitlab-runner
+      app.kubernetes.io/instance: k8up
+      app.kubernetes.io/name: k8up
   egress:
     - toEndpoints:
         - matchLabels:
@@ -18,23 +18,12 @@ spec:
         - ports:
             - port: "53"
               protocol: UDP
-    - toEntities:
-        - world
-      toPorts:
-        - ports:
-            - port: "443"
-              protocol: TCP
+          rules:
+            dns:
+              - matchPattern: "*"
     - toEntities:
         - host
       toPorts:
         - ports:
             - port: "6443" # kube-api
-              protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: traefik
-            namespace: traefik
-      toPorts:
-        - ports:
-            - port: "8443"
               protocol: TCP
