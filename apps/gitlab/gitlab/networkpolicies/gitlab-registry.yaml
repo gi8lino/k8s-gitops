@@ -46,3 +46,14 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: minio
+                release: gitlab
+            namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP
