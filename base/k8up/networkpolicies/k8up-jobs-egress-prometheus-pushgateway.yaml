@@ -7,7 +7,6 @@ spec:
   description: "allow k8up jobs to send metrics to pushgateway"
   endpointSelector:
     matchLabels:
-      io.kubernetes.pod.namespace: "k8up: backup-enabled"
       k8upjob: "true"
   egress:
     - toEndpoints:
