@@ -8,7 +8,6 @@ spec:
   endpointSelector:
     matchLabels:
       k8up.io/prebackuppod: cluster-resources-backup
-      k8up.io/backupcommandpod: "true"
   egress:
     - toEndpoints:
         - matchLabels:
