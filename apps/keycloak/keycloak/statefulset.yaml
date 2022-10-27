@@ -1,0 +1,108 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  selector:
+    matchLabels: {}
+  replicas: 1
+  serviceName: keycloak-headless
+  podManagementPolicy: OrderedReady
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels: {}
+    spec:
+      containers:
+        - name: keycloak
+          image: quay.io/keycloak/keycloak:19.0.3
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+          args:
+            - start
+          env:
+            - name: KC_CACHE
+              value: ispn
+            - name: KC_CACHE_STACK
+              value: kubernetes
+            - name: KC_PROXY
+              value: edge
+            - name: KC_METRICS_ENABLED
+              value: "true"
+            - name: KC_HEALTH_ENABLED
+              value: "true"
+            - name: KC_DB_URL
+              value: jdbc:postgresql://postgres.keycloak.svc.cluster.local/postgres
+            - name: KC_DB
+              value: postgres
+            - name: KC_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_USER
+            - name: KC_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_PASSWORD
+            - name: KC_HOSTNAME
+              value: sso.${BASE_DOMAIN}
+            - name: TZ
+              value: Europe/Zurich
+            - name: JAVA_OPTS_APPEND
+              value: -Djgroups.dns.query=keycloak-headless
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: https
+              containerPort: 8443
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+            failureThreshold: 60
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: http
+            initialDelaySeconds: 0
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: http
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+          resources: {}
+      serviceAccountName: keycloak
+      securityContext:
+        fsGroup: 1000
+      enableServiceLinks: true
+      restartPolicy: Always
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: keycloak
+                  component: keycloak
+              topologyKey: kubernetes.io/hostname
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: keycloak
+                    component: keycloak
+                topologyKey: topology.kubernetes.io/zone
+      terminationGracePeriodSeconds: 60

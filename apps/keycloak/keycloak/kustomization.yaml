@@ -5,7 +5,8 @@ commonLabels:
   component: keycloak
 resources:
   - networkpolicies
-  - deployment.yaml
   - ingress.yaml
   - secret.yaml
   - service.yaml
+  - serviceaccount.yaml
+  - statefulset.yaml
