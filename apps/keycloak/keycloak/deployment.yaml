@@ -43,7 +43,7 @@ spec:
           image: quay.io/keycloak/keycloak:19.0.3
           args:
             - start
-            - --auto-build
+            - --optimized
           env:
             - name: KC_DB_URL
               value: jdbc:postgresql://postgres.keycloak.svc.cluster.local/postgres
