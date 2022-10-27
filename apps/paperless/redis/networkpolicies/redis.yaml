@@ -7,13 +7,13 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: paperless
-      app.kubernetes.io/name: redis
+      app: paperless
+      component: redis
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: paperless
-            app.kubernetes.io/name: paperless
+            app: paperless
+            component: paperless
       toPorts:
         - ports:
             - port: "6379"

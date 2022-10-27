@@ -1,0 +1,98 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless
+  namespace: paperless
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: {}
+    spec:
+      initContainers:
+        - name: wait-for-redis
+          image: busybox:1.35.0
+          command:
+            - sh
+            - -c
+            - |
+              echo 'Waiting for Redis to become ready...'
+              until printf "." && nc -z -w 2 redis 6379; do
+                  sleep 2;
+              done;
+              echo 'Redis OK ✓'
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: paperless
+          image: ghcr.io/paperless-ngx/paperless-ngx:1.9.2
+          envFrom:
+            - secretRef:
+                name: paperless
+          env:
+            - name: PAPERLESS_PORT
+              value: "8000"
+            - name: PAPERLESS_OCR_LANGUAGE
+              value: deu
+            - name: PAPERLESS_OCR_LANGUAGES
+              value: deu eng
+            - name: PAPERLESS_TIME_ZONE
+              value: Europe/Zurich
+            - name: PAPERLESS_REDIS
+              value: redis://redis:6379
+            - name: PAPERLESS_ALLOWED_HOSTS
+              value: paperless.local.${BASE_DOMAIN}
+            - name: PAPERLESS_CORS_ALLOWED_HOSTS
+              value: https://paperless.local.${BASE_DOMAIN}
+            - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
+              value: "True"
+            - name: PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME
+              value: HTTP_X_FORWARDED_USER
+            - name: PAPERLESS_URL
+              value: https://paperless.local.${BASE_DOMAIN}
+          ports:
+            - name: http
+              containerPort: 8000
+          resources: {}
+          startupProbe:
+            tcpSocket:
+              port: 8000
+            initialDelaySeconds: 10
+            failureThreshold: 60
+            timeoutSeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            tcpSocket:
+              port: 8000
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+          volumeMounts:
+            - name: data
+              mountPath: /usr/src/paperless/data
+            - name: media
+              mountPath: /usr/src/paperless/media
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: paperless-data
+        - name: media
+          persistentVolumeClaim:
+            claimName: paperless-media

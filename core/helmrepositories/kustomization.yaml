@@ -6,7 +6,6 @@ resources:
   - gitlab.yaml
   - grafana.yaml
   - jetstack.yaml
-  - k8s-at-home.yaml
   - k8up-io.yaml
   - kubernetes-dashboard.yaml
   - metallb.yaml

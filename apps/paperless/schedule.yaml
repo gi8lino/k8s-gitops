@@ -11,17 +11,17 @@ spec:
     s3:
       bucket: k8up-paperless
   backup:
-    schedule: 30 3 * * *
+    schedule: 0 3 * * *
     successfulJobsHistoryLimit: 1
     failedJobsHistoryLimit: 1
   check:
-    schedule: 30 7 * * *
+    schedule: 0 7 * * *
     successfulJobsHistoryLimit: 1
     failedJobsHistoryLimit: 1
   prune:
     retention:
       keepDaily: 2
-      keepLast: 7
+      keepLast: 4
     schedule: 0 5 * * *
     successfulJobsHistoryLimit: 1
     failedJobsHistoryLimit: 1

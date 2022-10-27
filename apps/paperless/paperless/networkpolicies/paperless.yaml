@@ -7,8 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: paperless
-      app.kubernetes.io/name: paperless
+      app: paperless
+      component: paperless
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -33,7 +33,7 @@ spec:
               - matchPattern: "*"
     - toServices:
         - k8sService:
-            serviceName: redis-master
+            serviceName: redis
             namespace: paperless
       toPorts:
         - ports:

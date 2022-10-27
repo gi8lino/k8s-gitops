@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: paperless
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels: {}
+    spec:
+      containers:
+        - name: redis
+          image: redis:7.0.5-alpine
+          env:
+            - name: TZ
+              value: Europe/Zurich
+          ports:
+            - name: redis
+              containerPort: 6379
+          startupProbe:
+            tcpSocket:
+              port: redis
+            failureThreshold: 30
+            periodSeconds: 2
+          livenessProbe:
+            tcpSocket:
+              port: redis
+            failureThreshold: 2
+            timeoutSeconds: 5
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 64Mi
+      restartPolicy: Always
+      automountServiceAccountToken: false
