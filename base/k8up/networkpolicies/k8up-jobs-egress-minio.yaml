@@ -21,6 +21,12 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443" # kube-api
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: minio
@@ -28,10 +34,4 @@ spec:
       toPorts:
         - ports:
             - port: "9000"
-              protocol: TCP
-    - toEntities:
-        - host
-      toPorts:
-        - ports:
-            - port: "6443" # kube-api
               protocol: TCP
