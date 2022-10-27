@@ -102,6 +102,7 @@ spec:
                   matchLabels:
                     app: keycloak
                     component: keycloak
+                namespaces: []
                 topologyKey: topology.kubernetes.io/zone
               weight: 100
       terminationGracePeriodSeconds: 60
