@@ -87,7 +87,6 @@ spec:
       serviceAccountName: keycloak
       securityContext:
         fsGroup: 1000
-      enableServiceLinks: true
       restartPolicy: Always
       affinity:
         podAntiAffinity:
@@ -98,11 +97,11 @@ spec:
                   component: keycloak
               topologyKey: kubernetes.io/hostname
           preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
+            - podAffinityTerm:
                 labelSelector:
                   matchLabels:
                     app: keycloak
                     component: keycloak
                 topologyKey: topology.kubernetes.io/zone
+              weight: 100
       terminationGracePeriodSeconds: 60
