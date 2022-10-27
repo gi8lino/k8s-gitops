@@ -7,7 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      k8up.io/prebackuppod: cluster-resources-backup
+      io.cilium.k8s.namespace.labels.k8up: backup-enabled
+      io.cilium.k8s.policy.serviceaccount: cluster-resources-backup
   egress:
     - toEndpoints:
         - matchLabels:
