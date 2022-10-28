@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 function send_healthchecks {
-  local send_failed="${1}"
+  local send_failed="${1:-false}"
   curl --retry 3 \
         --max-time 5 \
         --silent \
         --show-error \
-        "${HEALTHCHECKS_URL}$([ -n "${send_failed}" ] && echo -n /fail)" > /dev/null
+        "${HEALTHCHECKS_URL}$([ "${send_failed}" = "true" ] && echo -n /fail)" > /dev/null
 }
 
 function notify {
@@ -46,4 +46,4 @@ python3 /app/healthchecks/manage.py prunenotifications
 # Shrink db
 python3 -c 'import os; import sqlite3; con = sqlite3.connect(os.getenv("DB_NAME", "sqlite"), isolation_level=None); con.execute("VACUUM"); con.close()'
 
-send_healthchecks
+send_healthchecks false
