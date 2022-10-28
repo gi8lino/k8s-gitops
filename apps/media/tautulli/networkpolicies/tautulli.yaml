@@ -40,6 +40,7 @@ spec:
               protocol: TCP
     - toFQDNs:
         - matchName: plex.tv
+        - matchName: secure.gravatar.com
         - matchName: tautulli.com
       toPorts:
         - ports:
