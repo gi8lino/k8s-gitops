@@ -44,10 +44,10 @@ spec:
         - matchName: me.plexapp.com
         - matchName: metadata.provider.plex.tv
         - matchName: plex.tv
+        - matchName: www.themoviedb.org
         - matchPattern: "*.lencr.org"
         - matchPattern: "*.plex.tv"
         - matchPattern: "*.thetvdb.com"
-        - matchName: www.themoviedb.org
       toPorts:
         - ports:
             - port: "443"
