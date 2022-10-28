@@ -1,4 +1,4 @@
-# media Directory
+# apps/media Directory
 
 This directory contains applications related to movies and tv shows.
 
