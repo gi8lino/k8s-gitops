@@ -57,8 +57,8 @@ spec:
             - name: backup
               mountPath: /config/Backups
             - name: init-prowlarr-config
-              mountPath: /etc/cont-init.d/30-config
-              subPath: 30-config
+              mountPath: /etc/s6-overlay/s6-rc.d/init-prowlarr-config/run
+              subPath: run
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
