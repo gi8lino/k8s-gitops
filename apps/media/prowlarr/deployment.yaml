@@ -73,5 +73,5 @@ spec:
             name: init-prowlarr-config
             items:
               - key: init-prowlarr-config.sh
-                path: 30-config
+                path: run
             defaultMode: 0755
