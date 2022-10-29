@@ -180,6 +180,47 @@ spec:
           hostPath: /run/prometheus
           mountPath: /run/prometheus
           readOnly: true
+    additionalPrometheusRules:
+      - alert: HostNodeOvertemperatureAlarm
+        expr: node_hwmon_temp_crit_alarm_celsius == 1
+        for: 0m
+        labels:
+          severity: critical
+        annotations:
+          summary: Host «{{ $labels.instance }}» overtemperature alarm
+          description: Physical node temperature alarm triggered\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}
+      - alert: HostCPUTooHot
+        expr: node_hwmon_temp_celsius{chip=~"platform_coretemp.*"} > 42
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Host «{{ $labels.instance }}» CPU is too hot
+          description: CPU «{{ $$labels.chip }}» has {{ $value }} Celsius
+      - alert: HostNVMETooHot
+        expr: node_hwmon_temp_celsius{chip=~"nvme.*"} > 57
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Host «{{ $labels.instance }}» NVME is too hot
+          description: NVME «{{ $$labels.chip }}» has {{ $value }} Celsius
+      - alert: HostHDDTooHot
+        expr: node_hwmon_temp_celsius{chip=~"target.*"} > 50
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Host «{{ $labels.instance }}» has a too hot disk
+          description: Disk «{{ $$labels.chip }}» has {{ $value }} Celsius
+      - alert: RaspberryTooHot
+        expr: node_hwmon_temp_celsius{chip=~"thermal_thermal_zone.*", instance!~"${HOST_IP}.*"} > 58
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Raspberry «{{ $labels.instance }}» is too hot
+          description: Raspberry is {{ $value }} Celsius
   valuesFrom:
     - kind: Secret
       name: kube-prometheus-stack-helm-values
