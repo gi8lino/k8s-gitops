@@ -183,7 +183,7 @@ spec:
     additionalPrometheusRulesMap:
       temperatures:
         groups:
-          - name: temperatures
+          - name: hwmon
             rules:
               - alert: HostNodeOvertemperatureAlarm
                 expr: node_hwmon_temp_crit_alarm_celsius == 1
@@ -200,7 +200,7 @@ spec:
                   severity: warning
                 annotations:
                   summary: Host «{{ $labels.instance }}» CPU is too hot
-                  description: CPU «{{ $$labels.chip }}» has {{ $value }} Celsius
+                  description: CPU «{{ $labels.chip }}» has {{ $value }} Celsius
               - alert: HostNVMETooHot
                 expr: node_hwmon_temp_celsius{chip=~"nvme.*"} > 57
                 for: 5m
@@ -208,15 +208,7 @@ spec:
                   severity: warning
                 annotations:
                   summary: Host «{{ $labels.instance }}» NVME is too hot
-                  description: NVME «{{ $$labels.chip }}» has {{ $value }} Celsius
-              - alert: HostHDDTooHot
-                expr: node_hwmon_temp_celsius{chip=~"target.*"} > 50
-                for: 5m
-                labels:
-                  severity: warning
-                annotations:
-                  summary: Host «{{ $labels.instance }}» has a too hot disk
-                  description: Disk «{{ $$labels.chip }}» has {{ $value }} Celsius
+                  description: NVME «{{ $labels.chip }}» has {{ $value }} Celsius
               - alert: RaspberryTooHot
                 expr: node_hwmon_temp_celsius{chip=~"thermal_thermal_zone.*", instance!~"${HOST_IP}.*"} > 58
                 for: 5m
