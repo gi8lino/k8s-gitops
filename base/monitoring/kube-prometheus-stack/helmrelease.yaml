@@ -186,36 +186,36 @@ spec:
           - name: hwmon
             rules:
               - alert: HostNodeOvertemperatureAlarm
-                expr: node_hwmon_temp_crit_alarm_celsius == 1
+                expr: node_hwmon_temp_crit_alarm_celsius * on(instance) group_left(nodename) (node_uname_info) == 1
                 for: 0m
                 labels:
                   severity: critical
                 annotations:
-                  summary: Host «{{ $labels.instance }}» overtemperature alarm
+                  summary: Host «{{ $labels.nodename }}» overtemperature alarm
                   description: Physical node temperature alarm triggered\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}
               - alert: HostCPUTooHot
-                expr: node_hwmon_temp_celsius{chip=~"platform_coretemp.*"} > 42
+                expr: node_hwmon_temp_celsius{chip=~"platform_coretemp.*"} * on(instance) group_left(nodename) (node_uname_info) > 42
                 for: 5m
                 labels:
                   severity: warning
                 annotations:
-                  summary: Host «{{ $labels.instance }}» CPU is too hot
+                  summary: Host «{{ $labels.nodename }}» CPU is too hot
                   description: CPU «{{ $labels.chip }}» has {{ $value }} Celsius
               - alert: HostNVMETooHot
-                expr: node_hwmon_temp_celsius{chip=~"nvme.*"} > 57
+                expr: node_hwmon_temp_celsius{chip=~"nvme.*"} * on(instance) group_left(nodename) (node_uname_info) > 57
                 for: 5m
                 labels:
                   severity: warning
                 annotations:
-                  summary: Host «{{ $labels.instance }}» NVME is too hot
+                  summary: Host «{{ $labels.nodename }}» NVME is too hot
                   description: NVME «{{ $labels.chip }}» has {{ $value }} Celsius
               - alert: RaspberryTooHot
-                expr: node_hwmon_temp_celsius{chip=~"thermal_thermal_zone.*", instance!~"${HOST_IP}.*"} > 58
+                expr: node_hwmon_temp_celsius{chip=~"thermal_thermal_zone.*", instance!~"${HOST_IP}.*"} * on(instance) group_left(nodename) (node_uname_info) > 58
                 for: 5m
                 labels:
                   severity: warning
                 annotations:
-                  summary: Raspberry «{{ $labels.instance }}» is too hot
+                  summary: Raspberry «{{ $labels.nodename }}» is too hot
                   description: Raspberry is {{ $value }} Celsius
   valuesFrom:
     - kind: Secret
