@@ -192,9 +192,24 @@
               "pod": true,
               "service": true
             },
-            "indexByName": {},
+            "indexByName": {
+              "Time": 3,
+              "Value": 2,
+              "__name__": 4,
+              "container": 5,
+              "endpoint": 6,
+              "instance": 1,
+              "job": 7,
+              "namespace": 8,
+              "pod": 9,
+              "service": 10,
+              "target": 0
+            },
             "renameByName": {
-              "Value": "Status"
+              "Value": "Status",
+              "container": "",
+              "instance": "URL",
+              "target": "Target"
             }
           }
         }
@@ -448,9 +463,21 @@
               "pod": true,
               "service": true
             },
-            "indexByName": {},
+            "indexByName": {
+              "Time": 0,
+              "Value": 9,
+              "container": 3,
+              "endpoint": 4,
+              "instance": 2,
+              "job": 5,
+              "namespace": 6,
+              "pod": 7,
+              "service": 8,
+              "target": 1
+            },
             "renameByName": {
-              "instance": ""
+              "instance": "URL",
+              "target": "Target"
             }
           }
         }
@@ -514,9 +541,17 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "s"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "https://newz-complex.org/www/api?t=user&username=giotto&apikey=8572dc4bfbe132a8a6c3f3467615a628"
+            },
+            "properties": []
+          }
+        ]
       },
       "gridPos": {
         "h": 7,
@@ -545,14 +580,26 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "expr": "probe_dns_lookup_time_seconds",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{target}}",
+          "range": true,
           "refId": "A"
         }
       ],
       "title": "DNS Lookup",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*\\.[a-zA-Z]{2,3})",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -640,14 +687,36 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
+          "exemplar": false,
           "expr": "probe_duration_seconds",
           "format": "time_series",
+          "instant": false,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{target}}",
+          "range": true,
           "refId": "A"
         }
       ],
       "title": "Probe Duration",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*\\.[a-zA-Z]{2,3})",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "includeTimeField": false,
+            "mode": "seriesToRows",
+            "reducers": []
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
@@ -680,7 +749,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -711,6 +780,6 @@
   "timezone": "",
   "title": "Blackbox Exporter Quick Overview",
   "uid": "xtkCtBkiz",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
