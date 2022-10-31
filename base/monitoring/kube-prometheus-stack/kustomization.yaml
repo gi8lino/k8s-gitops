@@ -30,8 +30,6 @@ patches:
         path: "/metadata/annotations"
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
-      kind: ConfigMap
-      name: grafana-dashboard-node-exporter-full
   - target:
       kind: ConfigMap
       name: grafana-dashboard-node-temperatures
