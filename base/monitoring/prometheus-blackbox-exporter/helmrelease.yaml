@@ -54,7 +54,7 @@ spec:
         scrapeTimeout: 30s
         follow_redirects: false
       targets:
-        - name: ${BASE_DOMAIN/\./-}
+        - name: ${BASE_DOMAIN/\./\-}
           url: https://sso.${BASE_DOMAIN}
         - name: pihole
           url: https://pihole.local.${BASE_DOMAIN}
