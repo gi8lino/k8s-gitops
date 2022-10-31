@@ -44,7 +44,7 @@ spec:
             description: Disk «{{ $labels.device }}» on node «{{ $labels.nodename }}» is too hot
             summary: Disk «{{ $labels.device }}» has {{ $value }} Celsius
           for: 5m
-          expr: smartmon_attr_raw_value{name="temperature_celsius"}  * on(instance) group_left(nodename) (node_uname_info) > 45
+          expr: smartmon_attr_raw_value{name="temperature_celsius"}  * on(instance) group_left(nodename) (node_uname_info) > 47
           labels:
             severity: warning
         - alert: DeviceNotHealthy
