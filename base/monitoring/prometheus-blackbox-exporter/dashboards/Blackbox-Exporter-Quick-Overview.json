@@ -166,8 +166,9 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "probe_success",
+          "expr": "last_over_time(probe_success[24h])",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -350,7 +351,7 @@
         ]
       },
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 10,
         "x": 0,
         "y": 7
@@ -375,8 +376,9 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "probe_ssl_earliest_cert_expiry-time()",
+          "expr": "last_over_time(probe_ssl_earliest_cert_expiry[24h])-time()",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -470,7 +472,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 14,
         "x": 10,
         "y": 7
@@ -568,7 +570,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 14
       },
       "id": 105,
       "links": [],
@@ -662,6 +664,6 @@
   "timezone": "",
   "title": "Blackbox Exporter Quick Overview",
   "uid": "xtkCtBkiz",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

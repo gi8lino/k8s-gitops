@@ -9,13 +9,13 @@
       "pluginName": "Prometheus"
     }
   ],
-  "__elements": [],
+  "__elements": {},
   "__requires": [
     {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "8.4.2"
+      "version": "9.2.2"
     },
     {
       "type": "datasource",
@@ -34,7 +34,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -55,7 +58,6 @@
   "gnetId": 13230,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1648503062984,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -70,7 +72,8 @@
           "custom": {
             "align": "auto",
             "displayMode": "auto",
-            "filterable": false
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -415,8 +418,8 @@
         ]
       },
       "gridPos": {
-        "h": 20,
-        "w": 20,
+        "h": 8,
+        "w": 24,
         "x": 0,
         "y": 0
       },
@@ -438,15 +441,16 @@
           }
         ]
       },
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "9.2.2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "probe_ssl_earliest_cert_expiry-time()",
+          "expr": "last_over_time(probe_ssl_earliest_cert_expiry[24h])-time()",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -459,8 +463,9 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "probe_http_status_code",
+          "expr": "last_over_time(probe_http_status_code[24h])",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -472,8 +477,9 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "probe_http_duration_seconds{phase=\"resolve\"}",
+          "expr": "last_over_time(probe_http_duration_seconds{phase=\"resolve\"}[24h])",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -485,8 +491,9 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "probe_http_duration_seconds{phase=\"connect\"}",
+          "expr": "last_over_time(probe_http_duration_seconds{phase=\"connect\"}[24h])",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -498,8 +505,9 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "probe_http_duration_seconds{phase=\"tls\"}",
+          "expr": "last_over_time(probe_http_duration_seconds{phase=\"tls\"}[24h])",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -511,8 +519,9 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "probe_http_duration_seconds{phase=\"processing\"}",
+          "expr": "last_over_time(probe_http_duration_seconds{phase=\"processing\"}[24h])",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -524,8 +533,9 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "probe_http_duration_seconds{phase=\"transfer\"}",
+          "expr": "last_over_time(probe_http_duration_seconds{phase=\"transfer\"}[24h])",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -533,7 +543,7 @@
           "refId": "C"
         }
       ],
-      "title": "Certificate & Connection Monitoring",
+      "title": "Certificate & Connection Monitoring (Last)",
       "transformations": [
         {
           "id": "organize",
@@ -612,7 +622,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 35,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [
     "blackbox",
