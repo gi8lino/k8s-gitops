@@ -193,7 +193,9 @@
               "service": true
             },
             "indexByName": {},
-            "renameByName": {}
+            "renameByName": {
+              "Value": "Status"
+            }
           }
         }
       ],
@@ -210,25 +212,64 @@
             "mode": "thresholds"
           },
           "custom": {
-            "fillOpacity": 24,
-            "lineWidth": 5
+            "fillOpacity": 15,
+            "lineWidth": 2
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "NOK"
+                },
+                "1": {
+                  "index": 1,
+                  "text": "OK"
+                }
+              },
+              "type": "value"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "NOK"
+                      },
+                      "1": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "OK"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 7,
@@ -239,13 +280,13 @@
       "id": 111,
       "links": [],
       "options": {
-        "colWidth": 0.73,
+        "colWidth": 0.47,
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
-        "rowHeight": 0.8,
+        "rowHeight": 0.31,
         "showValue": "auto",
         "tooltip": {
           "mode": "single",
@@ -259,6 +300,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "probe_success",
           "format": "time_series",
@@ -367,7 +409,12 @@
           "show": false
         },
         "showHeader": true,
-        "sortBy": []
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Time Left"
+          }
+        ]
       },
       "pluginVersion": "9.2.2",
       "targets": [
@@ -633,7 +680,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -664,6 +711,6 @@
   "timezone": "",
   "title": "Blackbox Exporter Quick Overview",
   "uid": "xtkCtBkiz",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
