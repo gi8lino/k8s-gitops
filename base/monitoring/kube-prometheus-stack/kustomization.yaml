@@ -11,12 +11,30 @@ configMapGenerator:
     namespace: monitoring
     files:
       - dashboards/node-exporter-full.json
+  - name: grafana-dashboard-node-temperatures
+    namespace: monitoring
+    files:
+      - dashboards/node-temperatures.json
 generatorOptions:
   disableNameSuffixHash: true
 patches:
   - target:
       kind: ConfigMap
       name: grafana-dashboard-node-exporter-full
+    patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: "1"
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+      kind: ConfigMap
+      name: grafana-dashboard-node-exporter-full
+  - target:
+      kind: ConfigMap
+      name: grafana-dashboard-node-temperatures
     patch: |-
       - op: add
         path: "/metadata/labels"
