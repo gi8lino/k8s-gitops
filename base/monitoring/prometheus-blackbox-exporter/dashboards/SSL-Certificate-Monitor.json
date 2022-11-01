@@ -99,11 +99,11 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 500
+                "value": 250
               },
               {
                 "id": "displayName",
-                "value": "Instance"
+                "value": "URL"
               }
             ]
           },
@@ -406,12 +406,35 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Instance"
+              "options": "instance"
             },
             "properties": [
               {
-                "id": "custom.width",
-                "value": 215
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "(.*\\.[a-zA-Z]{2,3}).*",
+                      "result": {
+                        "index": 0,
+                        "text": "$1"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "target"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Taget"
               }
             ]
           }
@@ -657,6 +680,6 @@
   "timezone": "",
   "title": "SSL Certificate Monitor",
   "uid": "r8eWoHpGz",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
