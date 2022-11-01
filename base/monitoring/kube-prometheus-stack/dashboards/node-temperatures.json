@@ -125,7 +125,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 12,
         "w": 13,
         "x": 0,
         "y": 0
@@ -202,10 +202,23 @@
           },
           "unit": "celsius"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Check"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 10,
+        "h": 12,
         "w": 11,
         "x": 13,
         "y": 0
@@ -335,10 +348,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 12,
         "w": 13,
         "x": 0,
-        "y": 10
+        "y": 12
       },
       "id": 7,
       "options": {
@@ -438,13 +451,26 @@
           },
           "unit": "celsius"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Check"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 10,
+        "h": 12,
         "w": 11,
         "x": 13,
-        "y": 10
+        "y": 12
       },
       "id": 4,
       "options": {
@@ -619,13 +645,13 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Node Temperatures",
   "uid": "GFqJrsN4z",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
