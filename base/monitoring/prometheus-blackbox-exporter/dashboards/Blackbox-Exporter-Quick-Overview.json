@@ -136,6 +136,29 @@
                 "value": "color-background"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "URL"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "(.*\\.[a-zA-Z]{2,3}).*",
+                      "result": {
+                        "index": 0,
+                        "text": "$1"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -327,7 +350,15 @@
         }
       ],
       "title": "Bare Metal Server Probes (Up/Down) - Historic",
-      "transformations": [],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*\\.[a-zA-Z]{2,3}).*",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "status-history"
     },
     {
@@ -402,6 +433,29 @@
               {
                 "id": "unit",
                 "value": "dtdurations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "URL"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "(.*\\.[a-zA-Z]{2,3}).*",
+                      "result": {
+                        "index": 0,
+                        "text": "$1"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
               }
             ]
           }
@@ -543,15 +597,7 @@
           },
           "unit": "s"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "https://newz-complex.org/www/api?t=user&username=giotto&apikey=8572dc4bfbe132a8a6c3f3467615a628"
-            },
-            "properties": []
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -595,7 +641,7 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "(.*\\.[a-zA-Z]{2,3})",
+            "regex": "(.*\\.[a-zA-Z]{2,3}).*",
             "renamePattern": "$1"
           }
         }
@@ -658,7 +704,14 @@
           },
           "unit": "s"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName"
+            },
+            "properties": []
+          }
+        ]
       },
       "gridPos": {
         "h": 7,
@@ -704,16 +757,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "(.*\\.[a-zA-Z]{2,3})",
+            "regex": "(.*\\.[a-zA-Z]{2,3}).*",
             "renamePattern": "$1"
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "seriesToRows",
-            "reducers": []
           }
         }
       ],
@@ -780,6 +825,6 @@
   "timezone": "",
   "title": "Blackbox Exporter Quick Overview",
   "uid": "xtkCtBkiz",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
