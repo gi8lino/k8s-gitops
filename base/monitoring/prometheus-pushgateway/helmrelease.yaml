@@ -19,6 +19,8 @@ spec:
     extraVars:
       - name: TZ
         value: Europe/Zurich
+    extraArgs:
+      - --log.level=debug
     ingress:
       enabled: true
       className: traefik
