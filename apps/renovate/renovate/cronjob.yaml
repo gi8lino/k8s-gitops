@@ -6,7 +6,8 @@ metadata:
   namespace: renovate
 spec:
   suspend: false
-  schedule: CRON_TZ=Europe/Zurich */15 * * * *
+  schedule: "*/15 * * * *"
+  timeZone: Europe/Zurich
   failedJobsHistoryLimit: 4
   successfulJobsHistoryLimit: 1
   concurrencyPolicy: Forbid

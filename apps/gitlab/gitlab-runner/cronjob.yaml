@@ -7,7 +7,8 @@ metadata:
   labels:
     job: cleanup-gitlab-runner
 spec:
-  schedule: CRON_TZ=Europe/Zurich 0 4 * * *
+  schedule: 0 4 * * *
+  timeZone: Europe/Zurich
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
