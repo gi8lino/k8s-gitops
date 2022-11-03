@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.2.2"
+      "version": "9.2.3"
     },
     {
       "type": "datasource",
@@ -181,7 +181,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.2.2",
+      "pluginVersion": "9.2.3",
       "repeatDirection": "h",
       "targets": [
         {
@@ -316,6 +316,7 @@
         "y": 0
       },
       "id": 111,
+      "interval": "1m",
       "links": [],
       "options": {
         "colWidth": 0.47,
@@ -485,7 +486,7 @@
           }
         ]
       },
-      "pluginVersion": "9.2.2",
+      "pluginVersion": "9.2.3",
       "targets": [
         {
           "datasource": {
@@ -704,14 +705,7 @@
           },
           "unit": "s"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName"
-            },
-            "properties": []
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -825,6 +819,6 @@
   "timezone": "",
   "title": "Blackbox Exporter Quick Overview",
   "uid": "xtkCtBkiz",
-  "version": 5,
+  "version": 1,
   "weekStart": ""
 }
