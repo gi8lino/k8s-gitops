@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.2.2"
+      "version": "9.2.3"
     },
     {
       "type": "datasource",
@@ -142,7 +142,7 @@
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true,
-          "sortBy": "Max",
+          "sortBy": "Last *",
           "sortDesc": true
         },
         "tooltip": {
@@ -157,7 +157,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(smartmon_attr_raw_value{name=\"temperature_celsius\",instance=\"$node\"}) by (device)",
+          "expr": "avg(smartmon_attr_raw_value{name=\"temperature_celsius\",instance=~\"$node.*\"}) by (device)",
           "legendFormat": "{{label_name}}",
           "range": true,
           "refId": "A"
@@ -206,12 +206,46 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Last Check"
+              "options": "Family"
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "dateTimeAsIso"
+                "id": "custom.width"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Model"
+            },
+            "properties": [
+              {
+                "id": "custom.width"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Temperature"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Device"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
               }
             ]
           }
@@ -224,6 +258,7 @@
         "y": 0
       },
       "id": 2,
+      "interval": "1m",
       "options": {
         "footer": {
           "fields": "",
@@ -235,12 +270,12 @@
         "showHeader": true,
         "sortBy": [
           {
-            "desc": true,
+            "desc": false,
             "displayName": "Temperature"
           }
         ]
       },
-      "pluginVersion": "9.2.2",
+      "pluginVersion": "9.2.3",
       "targets": [
         {
           "datasource": {
@@ -249,7 +284,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "last_over_time(smartmon_attr_raw_value{name=\"temperature_celsius\",instance=\"$node\"}[$__rate_interval])",
+          "expr": "last_over_time(smartctl_device_temperature{instance=~\"$node.*\"}[$__rate_interval])",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -263,22 +298,45 @@
           "id": "organize",
           "options": {
             "excludeByName": {
+              "Time": true,
               "__name__": true,
               "container": true,
               "disk": true,
               "endpoint": true,
               "instance": true,
               "job": true,
+              "model_family": false,
               "name": true,
               "namespace": true,
               "pod": true,
-              "service": true
+              "serial_number": true,
+              "service": true,
+              "temperature_type": true
             },
-            "indexByName": {},
+            "indexByName": {
+              "Time": 0,
+              "Value": 14,
+              "__name__": 3,
+              "container": 4,
+              "device": 1,
+              "endpoint": 5,
+              "instance": 6,
+              "job": 7,
+              "model_family": 2,
+              "model_name": 8,
+              "namespace": 9,
+              "pod": 10,
+              "serial_number": 11,
+              "service": 12,
+              "temperature_type": 13
+            },
             "renameByName": {
               "Time": "Last Check",
               "Value": "Temperature",
-              "device": "Device"
+              "device": "Device",
+              "model_family": "Family",
+              "model_name": "Model",
+              "temperature_type": ""
             }
           }
         }
@@ -380,7 +438,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(node_hwmon_temp_celsius{chip=~\"platform_coretemp.*\",instance=\"$node\"}) by(sensor)",
+          "expr": "avg(node_hwmon_temp_celsius{chip=~\"platform_coretemp.*\",instance=~\"$node.*\"}) by(sensor)",
           "legendFormat": "{{label_name}}",
           "range": true,
           "refId": "A"
@@ -460,7 +518,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "dateTimeAsIso"
+                "value": "celsius"
               }
             ]
           }
@@ -489,7 +547,7 @@
           }
         ]
       },
-      "pluginVersion": "9.2.2",
+      "pluginVersion": "9.2.3",
       "targets": [
         {
           "datasource": {
@@ -498,7 +556,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "last_over_time(node_hwmon_temp_celsius{chip=~\"platform_coretemp.*\",instance=\"$node\"}[$__rate_interval])",
+          "expr": "last_over_time(node_hwmon_temp_celsius{chip=~\"platform_coretemp.*\",instance=~\"$node.*\"}[$__rate_interval])",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -637,7 +695,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "(.*):.*",
         "skipUrlSync": false,
         "sort": 1,
         "type": "query"
@@ -652,6 +710,6 @@
   "timezone": "",
   "title": "Node Temperatures",
   "uid": "GFqJrsN4z",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }

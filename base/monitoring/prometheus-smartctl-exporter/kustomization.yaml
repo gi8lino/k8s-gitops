@@ -4,3 +4,16 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
+patches:
+  - target:
+      kind: ConfigMap
+      name: grafana-dashboard-node-temperatures
+    patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: "1"
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
