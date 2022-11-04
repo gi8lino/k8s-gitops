@@ -11,10 +11,6 @@ configMapGenerator:
     namespace: monitoring
     files:
       - dashboards/node-exporter-full.json
-  - name: grafana-dashboard-node-temperatures
-    namespace: monitoring
-    files:
-      - dashboards/node-temperatures.json
 generatorOptions:
   disableNameSuffixHash: true
 patches:

@@ -29,35 +29,3 @@ spec:
           expr: apt_autoremove_pending * on(instance) group_left(nodename) (node_uname_info) > 0
           labels:
             severity: warning
----
-apiVersion: monitoring.coreos.com/v1
-kind: PrometheusRule
-metadata:
-  name: smartmon
-  namespace: monitoring
-spec:
-  groups:
-    - name: smartmon
-      rules:
-        - alert: HostDiskTooHot
-          annotations:
-            description: Disk «{{ $labels.device }}» on node «{{ $labels.nodename }}» is too hot
-            summary: Disk «{{ $labels.device }}» has {{ $value }} Celsius
-          for: 5m
-          expr: smartmon_attr_raw_value{name="temperature_celsius"}  * on(instance) group_left(nodename) (node_uname_info) > 42
-          labels:
-            severity: warning
-        - alert: DeviceNotHealthy
-          annotations:
-            description: Device «{{ $labels.device }}» on node «{{ $labels.nodename }}» is not healthy.
-            summary: Device «{{ $labels.device }}» is not healthy.
-          expr: smartmon_device_smart_healthy  * on(instance) group_left(nodename) (node_uname_info) != 1
-          labels:
-            severity: critical
-        - alert: DeviceHasErrors
-          annotations:
-            description: Device «{{ $labels.device }}» on node «{{ $labels.nodename }}» has {{ $value }} errors.
-            summary: Device «{{ $labels.device }}» has errors.
-          expr: smartmon_device_errors * on(instance) group_left(nodename) (node_uname_info) > 0
-          labels:
-            severity: critical

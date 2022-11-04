@@ -58,7 +58,7 @@
       }
     ]
   },
-  "description": "Requires smartmontools & lm-sensors",
+  "description": "Requires prometheus-smartctl-exporter",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,

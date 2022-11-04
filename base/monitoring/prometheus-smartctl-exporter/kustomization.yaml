@@ -4,6 +4,14 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
+  - prometheusrule.yaml
+configMapGenerator:
+  - name: grafana-dashboard-node-temperatures
+    namespace: monitoring
+    files:
+      - dashboards/node-temperatures.json
+generatorOptions:
+  disableNameSuffixHash: true
 patches:
   - target:
       kind: ConfigMap
