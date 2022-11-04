@@ -157,7 +157,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(smartmon_attr_raw_value{name=\"temperature_celsius\",instance=~\"$node.*\"}) by (device)",
+          "expr": "avg(label_replace(smartctl_device_temperature{instance=~\"$node.*\"}, \"node\", \"$1\", \"instance\", \"(.*):.*\") * on(node) group_left(nodename) (label_replace(node_uname_info, \"node\", \"$1\", \"instance\", \"(.*):.*\"))) by (device)",
           "legendFormat": "{{label_name}}",
           "range": true,
           "refId": "A"
@@ -270,7 +270,7 @@
         "showHeader": true,
         "sortBy": [
           {
-            "desc": false,
+            "desc": true,
             "displayName": "Temperature"
           }
         ]
@@ -284,7 +284,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "last_over_time(smartctl_device_temperature{instance=~\"$node.*\"}[$__rate_interval])",
+          "expr": "label_replace(smartctl_device_temperature{instance=~\"$node.*\"}, \"node\", \"$1\", \"instance\", \"(.*):.*\") * on(node) group_left(nodename) (label_replace(node_uname_info, \"node\", \"$1\", \"instance\", \"(.*):.*\"))",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -308,6 +308,8 @@
               "model_family": false,
               "name": true,
               "namespace": true,
+              "node": true,
+              "nodename": true,
               "pod": true,
               "serial_number": true,
               "service": true,
@@ -710,6 +712,6 @@
   "timezone": "",
   "title": "Node Temperatures",
   "uid": "GFqJrsN4z",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
