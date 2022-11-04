@@ -8,4 +8,5 @@ resources:
   - pihole-server
   - prometheus-blackbox-exporter
   - prometheus-pushgateway
+  - prometheus-smartctl-exporter
   - tools-server

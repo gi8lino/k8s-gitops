@@ -1,0 +1,23 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-prometheus-smartctl-exporter
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+      app.kubernetes.io/name: prometheus
+  egress:
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app.kubernetes.io/name: prometheus-smartctl-exporter
+                app.kubernetes.io/instance: smartctl-exporter
+            namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9633"
+              protocol: TCP
