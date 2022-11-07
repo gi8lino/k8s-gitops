@@ -9,6 +9,7 @@ resources:
   - keycloak
   - kubernetes-dashboard
   - media
+  - memos
   - nextcloud
   - paperless
   - renovate
