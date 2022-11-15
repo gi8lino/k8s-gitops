@@ -41,7 +41,7 @@ spec:
           receiver: slack # default receiver
           repeat_interval: 2h
           routes:
-            - receiver: healthchecks
+            - receiver: heartbeats
               matchers:
                 - alertname = Watchdog
               repeat_interval: 15m
