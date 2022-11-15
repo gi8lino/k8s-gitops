@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: heartbeats
+  namespace: heartbeats
+data:
+  config.yaml: |
+    heartbeats:
+      - name: watchdog-prometheus
+        interval: 15m
+        grace: 1m
+        notifications:
+          - slack
+    notifications:
+      defaults:
+        subject: Heartbeat {{ .Name }}
+        message: "Heartbeat is missing. interval: {{.Interval}}, grace: {{.Grace}}"
+      services:
+        - name: slack
+          enabled: true
+          type: slack
+          oauthToken: env:OAUTH_TOKEN
+          channels:
+          - alertmanager

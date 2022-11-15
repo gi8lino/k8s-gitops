@@ -2,12 +2,12 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: healthchecks
-  namespace: healthchecks
+  name: heartbeats
+  namespace: heartbeats
 spec:
   endpointSelector:
     matchLabels:
-      app: healthchecks
+      app: heartbeats
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -16,7 +16,16 @@ spec:
             io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
-            - port: "8000"
+            - port: "8090"
+              protocol: TCP
+    - fromEndpoints: # allow push from alertmanager directly to heartbeats (watchdog)
+        - matchLabels:
+            app.kubernetes.io/name: alertmanager
+            app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "8090"
               protocol: TCP
   egress:
     - toEndpoints:
@@ -30,18 +39,8 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toFQDNs: # curl/jq
-        - matchName: dl-cdn.alpinelinux.org
-      toPorts:
-        - ports:
-            - port: "80"
-              protocol: TCP
     - toFQDNs:
-        - matchName: ghcr.io
-        - matchName: github.com # docker-mods
         - matchName: hooks.slack.com
-        - matchName: pkg-containers.githubusercontent.com
-        - matchName: raw.githubusercontent.com
       toPorts:
         - ports:
             - port: "443"

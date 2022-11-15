@@ -1,0 +1,69 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heartbeats
+  namespace: heartbeats
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: {}
+    spec:
+      containers:
+        - name: heartbeats
+          image: ghcr.io/gi8lino/heartbeats:v0.0.1
+          imagePullPolicy: IfNotPresent
+          args:
+            - --config
+            - /app/config.yaml
+            - --host
+            - 0.0.0.0
+          env:
+            - name: TZ
+              value: Europe/Zurich
+          envFrom:
+            - secretRef:
+                name: heartbeats
+          ports:
+            - name: http
+              containerPort: 8090
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 2
+            failureThreshold: 30
+            timeoutSeconds: 3
+            periodSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            failureThreshold: 1
+            timeoutSeconds: 3
+            periodSeconds: 30
+          resources:
+            requests:
+              memory: 256Mi
+              cpu: 100m
+            limits:
+              memory: 256Mi
+              cpu: 100m
+          volumeMounts:
+            - name: config
+              mountPath: /config.yaml
+              subPath: config.yaml
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: config
+          configMap:
+            name: heartbeats
+            defaultMode: 0755

@@ -8,6 +8,7 @@ resources:
   - filebrowser.yaml
   - gitlab.yaml
   - healthchecks.yaml
+  - heartbeats.yaml
   - k8up.yaml
   - keyclaok.yaml
   - kubernetes-dashboard.yaml
