@@ -6,7 +6,6 @@ resources:
   - filebrowser
   - gitlab
   - healthchecks
-  - heartbeats
   - keycloak
   - kubernetes-dashboard
   - media

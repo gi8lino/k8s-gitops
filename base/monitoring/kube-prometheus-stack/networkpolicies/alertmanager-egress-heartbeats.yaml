@@ -10,11 +10,8 @@ spec:
       app.kubernetes.io/name: alertmanager
       app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: heartbeats
-            namespace: heartbeats
+    - toFQDNs:
+        - matchName: heartbeats.tools.${BASE_DOMAIN}
       toPorts:
         - ports:
-            - port: "8090"
-              protocol: TCP
+            - port: "443"
