@@ -13,6 +13,7 @@ spec:
             description: Node «{{ $labels.nodename }}» needs to reboot.
             summary: Reboot needed.
           expr: node_reboot_required * on(instance) group_left(nodename) (node_uname_info) > 0
+          for: 35m
           labels:
             severity: warning
         - alert: NodePackageUpdatesAvailable
@@ -20,6 +21,7 @@ spec:
             description: Updates for «{{ $labels.nodename }}» available.
             summary: Updates available.
           expr: apt_upgrades_pending * on(instance) group_left(nodename) (node_uname_info) > 0
+          for: 35m
           labels:
             severity: warning
         - alert: NodeAutoremovePackagePending
@@ -27,5 +29,6 @@ spec:
             description: Autoremove packages for «{{ $labels.nodename }}» possible.
             summary: Autoremove packages possible.
           expr: apt_autoremove_pending * on(instance) group_left(nodename) (node_uname_info) > 0
+          for: 35m
           labels:
             severity: warning
