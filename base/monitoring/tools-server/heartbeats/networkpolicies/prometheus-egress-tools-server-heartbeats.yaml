@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: prometheus-egress-tools-server-node-exporter
+  name: prometheus-egress-tools-server-heartbeats
   namespace: monitoring
 spec:
   endpointSelector:
@@ -14,5 +14,5 @@ spec:
         - matchName: tools.srv.${BASE_DOMAIN}
       toPorts:
         - ports:
-            - port: "9100" # prometheus node exporter
+            - port: "80" # prometheus node exporter
               protocol: TCP
