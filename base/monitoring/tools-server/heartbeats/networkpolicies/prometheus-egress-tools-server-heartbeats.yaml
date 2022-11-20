@@ -14,5 +14,7 @@ spec:
         - matchName: tools.srv.${BASE_DOMAIN}
       toPorts:
         - ports:
+            - port: "80" # heartbeats metrics
+              protocol: TCP
             - port: "443" # heartbeats metrics
               protocol: TCP

@@ -175,7 +175,6 @@ spec:
             static_configs:
               - targets:
                   - heartbeats.tools.${BASE_DOMAIN}
-                scheme: https
     prometheus-node-exporter:
       extraArgs:
         - --collector.filesystem.mount-points-exclude=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
