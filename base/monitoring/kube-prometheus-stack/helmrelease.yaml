@@ -171,6 +171,10 @@ spec:
               - targets:
                   - pihole.srv.${BASE_DOMAIN}:9100
                   - tools.srv.${BASE_DOMAIN}:9100
+          - job_name: heartbeats
+            static_configs:
+              - targets:
+                  - heartbeats.tools.${BASE_DOMAIN}
     prometheus-node-exporter:
       extraArgs:
         - --collector.filesystem.mount-points-exclude=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)

@@ -14,5 +14,7 @@ spec:
         - matchName: tools.srv.${BASE_DOMAIN}
       toPorts:
         - ports:
+            - port: "443" # heartbeats
+              protocol: TCP
             - port: "9100" # prometheus node exporter
               protocol: TCP
