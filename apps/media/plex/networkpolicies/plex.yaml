@@ -40,6 +40,7 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
+        - matchName: assets.fanart.tv
         - matchName: image.tmdb.org
         - matchName: me.plexapp.com
         - matchName: metadata.provider.plex.tv
