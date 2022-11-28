@@ -5,9 +5,9 @@ on: # yamllint disable-line rule:truthy
     branches:
       - master
     paths:
-      - "apps/**.yaml"
-      - "base/**.yaml"
-      - "infra/**.yaml"
+      - apps/**.yaml
+      - base/**.yaml
+      - infra/**.yaml
 env:
   DEFAULT_BRANCH: master
 jobs:
@@ -15,8 +15,11 @@ jobs:
     name: Detect File Changes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: dorny/paths-filter@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Filter Helm Releases
+        uses: dorny/paths-filter@v2
         id: filter
         with:
           list-files: json
@@ -29,7 +32,6 @@ jobs:
     name: Helm Release Differ
     runs-on: ubuntu-latest
     needs: detect-file-changes
-    if: ${{ needs.detect-file-changes.outputs.yaml_files != '[]' && needs.detect-file-changes.outputs.yaml_files != '' }}
     strategy:
       matrix:
         file: ${{ fromJSON(needs.detect-file-changes.outputs.yaml_files) }}
@@ -55,8 +57,18 @@ jobs:
           diff="${diff//$'\n'/'%0A'}"
           diff="${diff//$'\r'/'%0D'}"
           echo "::set-output name=diff::$(echo ${diff})"
-      - name: Add Pull Request comment
-        uses: peter-evans/create-or-update-comment@v2
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        id: find-comment
         with:
           issue-number: "${{ github.event.pull_request.number }}"
+          body-includes: "${{ matrix.file }}"
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: "${{ steps.find-comment.outputs.comment-id }}"
+          issue-number: "${{ github.event.pull_request.number }}"
           body: "${{ steps.diff.outputs.diff }}"
+          edit-mode: replace
