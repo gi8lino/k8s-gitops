@@ -46,3 +46,9 @@ spec:
         - ports:
             - port: "80"
               protocol: TCP
+    - toFQDNs:
+        - matchName: raw.githubusercontent.com
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
