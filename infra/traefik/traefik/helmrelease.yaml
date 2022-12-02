@@ -66,8 +66,7 @@ spec:
     experimental:
       plugins:
         enabled: false
-    metrics:
-      prometheus: null
+    metrics: {}
   valuesFrom:
     - kind: Secret
       name: traefik-helm-values
