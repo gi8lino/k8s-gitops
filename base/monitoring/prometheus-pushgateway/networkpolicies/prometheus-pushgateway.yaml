@@ -7,8 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: prometheus-pushgateway
-      release: prometheus-pushgateway
+      app.kubernetes.io/name: prometheus-pushgateway
+      app.kubernetes.io/instance: prometheus-pushgateway
   ingress:
     - fromEndpoints:
         - matchLabels:

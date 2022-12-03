@@ -11,10 +11,8 @@ spec:
       app.kubernetes.io/name: prometheus
   egress:
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: prometheus-pushgateway
+        - k8sService:
+            serviceName: prometheus-pushgateway
             namespace: monitoring
       toPorts:
         - ports:
