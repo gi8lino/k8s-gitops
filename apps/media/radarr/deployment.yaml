@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: radarr
-          image: ghcr.io/linuxserver/radarr:4.2.4.6635-ls157
+          image: ghcr.io/linuxserver/radarr:4.2.4.6635-ls158
           env:
             - name: TZ
               value: Europe/Zurich
