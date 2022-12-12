@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:7.0.5-alpine
+          image: redis:7.0.6-alpine
           env:
             - name: TZ
               value: Europe/Zurich
