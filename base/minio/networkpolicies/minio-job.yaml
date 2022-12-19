@@ -9,7 +9,7 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: minio
       app.kubernetes.io/name: minio
-      app: minio-job
+      app: minio-post-job
   egress:
     - toEndpoints:
         - matchLabels:
