@@ -15,7 +15,13 @@ jobs:
           # renovate depName=mikefarah/yq
           wget -O /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.30.6/yq_linux_amd64
           chmod +x /tmp/yq
-          readarray -d '' nets < <(curl -sS https://www.cloudflare.com/ips-v4/ | sort)
+
+          readarray -d '' nets < <(curl -sS https://www.cloudflare.com/ips-v4/ | sort) || (echo "Error reading and processing data returned by curl" && exit 1)
+          # check if nets is not empty
+          if [ -z "${nets[@]}" ]; then
+            echo "ERROR: No data returned by curl"
+            exit 1
+          fi
 
           # cilium network policy
           cilium_nets=$(printf '"%s", ' ${nets[@]})  # add quotes and commas for yq
