@@ -40,7 +40,7 @@ spec:
               memory: 16Mi
       containers:
         - name: paperless
-          image: ghcr.io/paperless-ngx/paperless-ngx:1.11.1
+          image: ghcr.io/paperless-ngx/paperless-ngx:1.11.2
           envFrom:
             - secretRef:
                 name: paperless
