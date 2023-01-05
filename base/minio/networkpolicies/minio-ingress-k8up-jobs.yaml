@@ -28,9 +28,6 @@ spec:
             io.kubernetes.pod.namespace: media
             k8upjob: "true"
         - matchLabels:
-            io.kubernetes.pod.namespace: memos
-            k8upjob: "true"
-        - matchLabels:
             io.kubernetes.pod.namespace: nextcloud
             k8upjob: "true"
         - matchLabels:
