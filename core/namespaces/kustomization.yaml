@@ -12,7 +12,6 @@ resources:
   - keyclaok.yaml
   - kubernetes-dashboard.yaml
   - media.yaml
-  - memos.yaml
   - metallb-system.yaml
   - minio.yaml
   - monitoring.yaml
