@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: keycloak
-          image: quay.io/keycloak/keycloak:20.0.2
+          image: quay.io/keycloak/keycloak:20.0.3
           imagePullPolicy: IfNotPresent
           securityContext:
             runAsNonRoot: true
