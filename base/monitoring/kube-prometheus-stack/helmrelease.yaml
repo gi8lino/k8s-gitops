@@ -192,9 +192,6 @@ spec:
           hostPath: /run/prometheus
           mountPath: /run/prometheus
           readOnly: true
-    prometheusOperator:
-      serviceMonitor:
-        sampleLimit: 0
     additionalPrometheusRulesMap:
       temperatures:
         groups:
