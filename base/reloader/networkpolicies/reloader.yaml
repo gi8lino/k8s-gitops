@@ -15,7 +15,7 @@ spec:
             io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
-            - port: "9091"
+            - port: "9090"
               protocol: TCP
   egress:
     - toEndpoints:
