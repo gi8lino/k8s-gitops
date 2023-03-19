@@ -4,8 +4,7 @@ kind: Account
 metadata:
   name: main
 spec:
-  email: ${EMAIL}
-  globalAPIKey:
+  apiToken:
     secretRef:
       name: cloudflare-api-token
       namespace: cloudflare-operator
