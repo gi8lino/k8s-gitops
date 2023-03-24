@@ -14,7 +14,7 @@ spec:
     stsSeconds: 15552000
     customFrameOptionsValue: SAMEORIGIN
     customResponseHeaders:
-      X-Robots-Tag: none,noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
+      X-Robots-Tag: none
       X-Forwarded-Proto: https
 ---
 apiVersion: traefik.containo.us/v1alpha1
