@@ -44,9 +44,13 @@ spec:
               kind: ClusterRole
               name: k8up-manager
             patch:
-              - op: add
+              - op: replace
                 path: /rules/-1/verbs
-                value: patch
-              - op: add
-                path: /rules/-1/verbs
-                value: update
+                value:
+                  - create
+                  - delete
+                  - get
+                  - list
+                  - watch
+                  - update
+                  - patch
