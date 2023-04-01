@@ -46,7 +46,6 @@ spec:
             patch:
               - op: add
                 path: /rules/-1/verbs
-                value: patch
-              - op: add
-                path: /rules/-1/verbs
-                value: update
+                value:
+                  - patch
+                  - update
