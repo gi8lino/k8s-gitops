@@ -37,3 +37,16 @@ spec:
     crds: Skip
   upgrade:
     crds: Skip
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          - target:
+              kind: ClusterRole
+              name: k8up-manager
+            patch:
+              - op: add
+                path: /rules/-1/verbs
+                value: patch
+              - op: add
+                path: /rules/-1/verbs
+                value: update
