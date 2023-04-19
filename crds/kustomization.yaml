@@ -7,5 +7,5 @@ resources:
   - k8up
   - kube-prometheus-stack
   - metallb-system
-  - tetragon
+  #- tetragon
   - traefik
