@@ -8,4 +8,4 @@ resources:
   - minio
   - monitoring
   - reloader
-  - tetragon
+  #- tetragon
