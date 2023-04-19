@@ -1,0 +1,36 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: tetragon-helm-chart
+  namespace: flux-system
+spec:
+  interval: 30m
+  url: https://github.com/cilium/tetragon.git
+  ref:
+    # renovate: registryUrl=https://helm.cilium.io chart=tetragon
+    tag: 0.9.0
+  ignore: |
+    # exclude all
+    /*
+    # path to crds
+    !/pkg/k8s/apis/cilium.io/client/crds/v1alpha1
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: tetragon-crds
+  namespace: flux-system
+spec:
+  interval: 10m
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: tetragon-helm-chart
+  healthChecks:
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: tracingpolicies.cilium.io
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: tracingpoliciesnamespaced.cilium.io

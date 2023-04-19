@@ -41,6 +41,7 @@ spec:
         - host
       toPorts:
         - ports:
+            - port: "2112" # tetragon
             - port: "6443" # kube-api
             - port: "9100" # prometheus node exporter
             - port: "10250" # kubelet
