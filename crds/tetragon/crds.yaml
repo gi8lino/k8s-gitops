@@ -9,7 +9,7 @@ spec:
   url: https://github.com/cilium/tetragon.git
   ref:
     # renovate: registryUrl=https://helm.cilium.io chart=tetragon
-    tag: 0.9.0
+    tag: v0.9.0
   ignore: |
     # exclude all
     /*
