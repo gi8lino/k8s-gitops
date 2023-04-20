@@ -22,14 +22,6 @@ spec:
     rbac:
       create: true
     runners:
-      config: |
-        [[runners]]
-          [runners.kubernetes]
-            image = "alpine:latest"
-            [runners.kubernetes.pod_labels]
-              gitlab-runner = "ci-job"
-          [runners.feature_flags]
-            FF_GITLAB_REGISTRY_HELPER_IMAGE = true
       locked: false
       protected: false
       runUntagged: true
