@@ -48,7 +48,6 @@ spec:
         ipFamilyPolicy: PreferDualStack
         ipFamilies:
           - IPv4
-          - IPv6
     defaultBackend:
       enabled: true
     tcp:
