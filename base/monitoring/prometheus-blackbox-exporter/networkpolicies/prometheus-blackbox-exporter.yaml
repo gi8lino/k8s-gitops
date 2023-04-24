@@ -16,9 +16,9 @@ spec:
             app.kubernetes.io/name: prometheus
             io.kubernetes.pod.namespace: monitoring
         - matchLabels:
-            app.kubernetes.io/instance: traefik-traefik
-            app.kubernetes.io/name: traefik
-            io.kubernetes.pod.namespace: traefik
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: ingress-nginx
+            app.kubernetes.io/name: ingress-nginx
       toPorts:
         - ports:
             - port: "9115"
@@ -46,8 +46,8 @@ spec:
               protocol: TCP
     - toServices:
         - k8sService:
-            serviceName: traefik
-            namespace: traefik
+            serviceName: nginx
+            namespace: ingress-nginx
       toPorts:
         - ports:
             - port: "8443"

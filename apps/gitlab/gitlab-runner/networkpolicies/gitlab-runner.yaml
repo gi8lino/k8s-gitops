@@ -35,8 +35,8 @@ spec:
               protocol: TCP
     - toServices:
         - k8sService:
-            serviceName: traefik
-            namespace: traefik
+            serviceName: nginx
+            namespace: ingress-nginx
       toPorts:
         - ports:
             - port: "8443"

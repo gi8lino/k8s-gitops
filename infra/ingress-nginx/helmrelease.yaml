@@ -1,0 +1,55 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+spec:
+  interval: 5m
+  dependsOn:
+    - name: metallb
+      namespace: metallb-system
+    - name: cert-manager
+      namespace: cert-manager
+  chart:
+    spec:
+      chart: ingress-nginx
+      version: 4.6.0
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx
+        namespace: flux-system
+      interval: 5m
+  values:
+    controller:
+      config:
+        disable-access-log: "true"
+        force-ssl-redirect: "true"
+        forwarded-for-header: CF-Connecting-IP
+        ssl-protocols: TLSv1.3 TLSv1.2
+        use-forwarded-headers: "true"
+        proxy-real-ip-cidr: 103.21.244.0/22,103.22.200.0/22,103.31.4.0/22,104.16.0.0/13,104.24.0.0/14,108.162.192.0/18,131.0.72.0/22,141.101.64.0/18,162.158.0.0/15,172.64.0.0/13,173.245.48.0/20,188.114.96.0/20,190.93.240.0/20,197.234.240.0/22,198.41.128.0/17,2400:cb00::/32,2405:8100::/32,2405:b500::/32,2606:4700::/32,2803:f800::/32,2a06:98c0::/29,2c0f:f248::/32
+        client-body-buffer-size: "100M"
+        client-body-timeout: 120
+        client-header-timeout: 120
+        hsts-max-age: "31449600"
+        keep-alive-requests: 10000
+        keep-alive: 120
+        proxy-body-size: "100M"
+      ingressClassResource:
+        default: true
+      extraArgs:
+        default-ssl-certificate: |-
+          ingress-nginx/${BASE_DOMAIN/./-}
+      service:
+        annotations:
+          metallb.universe.tf/address-pool: ingress-nginx
+        externalTrafficPolicy: Local
+        ipFamilyPolicy: PreferDualStack
+        ipFamilies:
+          - IPv4
+          - IPv6
+    defaultBackend:
+      enabled: true
+    tcp:
+      "22": "gitlab/gitlab-gitlab-shell:22"

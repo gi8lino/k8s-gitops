@@ -71,7 +71,7 @@ spec:
       namespace: storage-system
       name: "*"
     - kind: HelmRelease
-      namespace: traefik
+      namespace: ingress-nginx
       name: "*"
   exclusionList:
     - InternalError.*failed to call webhook.*EOF

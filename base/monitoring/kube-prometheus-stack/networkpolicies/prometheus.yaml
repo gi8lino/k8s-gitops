@@ -12,9 +12,9 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: traefik-traefik
-            app.kubernetes.io/name: traefik
-            io.kubernetes.pod.namespace: traefik
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: ingress-nginx
+            app.kubernetes.io/name: ingress-nginx
         - matchLabels:
             app.kubernetes.io/name: grafana
             io.kubernetes.pod.namespace: monitoring

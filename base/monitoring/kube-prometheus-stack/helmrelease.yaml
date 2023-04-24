@@ -56,12 +56,10 @@ spec:
       ingress:
         enabled: true
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
           cf.containeroo.ch/ignore: "true"
         hosts:
           - alertmanager.local.${BASE_DOMAIN}
-        ingressClassName: traefik
+        ingressClassName: nginx
         pathType: Prefix
         paths:
           - /
@@ -105,12 +103,10 @@ spec:
       ingress:
         enabled: true
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
           cf.containeroo.ch/ignore: "true"
         hosts:
           - grafana.local.${BASE_DOMAIN}
-        ingressClassName: traefik
+        ingressClassName: nginx
         pathType: Prefix
         paths:
           - /
@@ -151,12 +147,10 @@ spec:
       ingress:
         enabled: true
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
           cf.containeroo.ch/ignore: "true"
         hosts:
           - prometheus.local.${BASE_DOMAIN}
-        ingressClassName: traefik
+        ingressClassName: nginx
         pathType: Prefix
         paths:
           - /

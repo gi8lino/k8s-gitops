@@ -1,0 +1,21 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: nginx-egress-kubernetes-dashboard
+  namespace: ingress-nginx
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: ingress-nginx
+      app.kubernetes.io/name: ingress-nginx
+  egress:
+    - toServices:
+        - k8sService:
+            serviceName: kubernetes-dashboard
+            namespace: kubernetes-dashboard
+      toPorts:
+        - ports:
+            - port: "8443"
+              protocol: TCP

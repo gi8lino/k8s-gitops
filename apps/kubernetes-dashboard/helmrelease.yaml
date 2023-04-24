@@ -21,21 +21,24 @@ spec:
         value: Europe/Zurich
     ingress:
       annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd,kubernetes-dashboard-kubernetes-dashboard-auth@kubernetescrd
+        nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
+        nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
+        nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
+        nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
+        nginx.ingress.kubernetes.io/configuration-snippet: |
+          proxy_set_header Authorization "${KUBE_DASHBOARD_BASIC_AUTH}";
         cf.containeroo.ch/ignore: "true"
       enabled: true
       hosts:
         - dash.local.${BASE_DOMAIN}
-      className: traefik
+      className: nginx
     metricsScraper:
       enabled: true
-    podLabels:
-      app: kubernetes-dashboard
     settings:
-      clusterName: hq
-      disableAccessDeniedNotifications: false
+      clusterName: ${BASE_DOMAIN/./-}
+      defaultNamespace: default
       itemsPerPage: 20
       labelsLimit: 3
       logsAutoRefreshTimeInterval: 1
       resourceAutoRefreshTimeInterval: 5
+      disableAccessDeniedNotifications: false

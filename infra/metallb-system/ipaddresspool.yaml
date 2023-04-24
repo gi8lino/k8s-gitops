@@ -2,12 +2,12 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: traefik
+  name: ingress-nginx
   namespace: metallb-system
 spec:
   autoAssign: false
   addresses:
-    - ${METALLB_TRAEFIK_ADDRESS_POOL}
+    - ${METALLB_INGRESS_NGINX_ADDRESS_POOL}
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool

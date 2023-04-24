@@ -21,6 +21,5 @@ resources:
   - renovate.yaml
   - storage-system.yaml
   - syncflaer.yaml
-  - traefik.yaml
   - wallabag.yaml
   - wiki.yaml

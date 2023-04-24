@@ -1,0 +1,28 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: nginx-egress-cilium
+  namespace: ingress-nginx
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: ingress-nginx
+      app.kubernetes.io/name: ingress-nginx
+  egress:
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                k8s-app: hubble-ui
+            namespace: kube-system
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                k8s-app: hubble-relay
+            namespace: kube-system
+      toPorts:
+        - ports:
+            - port: "8081"
+              protocol: TCP

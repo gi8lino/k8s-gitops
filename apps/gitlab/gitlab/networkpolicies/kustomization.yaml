@@ -15,4 +15,4 @@ resources:
   - gitlab-sidekiq.yaml
   - gitlab-toolbox.yaml
   - gitlab-webservice.yaml
-  - traefik-egress-gitlab.yaml
+  - nginx-egress-gitlab.yaml

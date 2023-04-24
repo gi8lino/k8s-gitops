@@ -5,11 +5,10 @@ metadata:
   name: wallabag
   namespace: wallabag
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cf.containeroo.ch/type: CNAME
     cf.containeroo.ch/content: ${BASE_DOMAIN}
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   rules:
     - host: wallabag.${BASE_DOMAIN}
       http:

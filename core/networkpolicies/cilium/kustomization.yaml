@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - hubble-relay.yaml
   - hubble-ui.yaml
-  - traefik-egress-cilium.yaml
+  - nginx-egress-cilium.yaml

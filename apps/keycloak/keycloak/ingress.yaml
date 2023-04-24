@@ -5,11 +5,10 @@ metadata:
   name: keycloak
   namespace: keycloak
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cf.containeroo.ch/type: CNAME
     cf.containeroo.ch/content: ${BASE_DOMAIN}
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   rules:
     - host: sso.${BASE_DOMAIN}
       http:

@@ -6,5 +6,5 @@ resources:
   - minio-ingress-mirrio.yaml
   - minio-job.yaml
   - minio.yaml
+  - nginx-egress-minio.yaml
   - prometheus-egress-minio.yaml
-  - traefik-egress-minio.yaml

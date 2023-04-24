@@ -9,7 +9,7 @@ resources:
   - grafana.yaml
   - kube-prometheus-stack-operator.yaml
   - kube-state-metrics.yaml
+  - nginx-egress-alertmanager.yaml
+  - nginx-egress-grafana.yaml
+  - nginx-egress-prometheus.yaml
   - prometheus.yaml
-  - traefik-egress-alertmanager.yaml
-  - traefik-egress-grafana.yaml
-  - traefik-egress-prometheus.yaml

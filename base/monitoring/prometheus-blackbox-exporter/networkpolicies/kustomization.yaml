@@ -2,6 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - nginx-egress-blackbox-exporter.yaml
   - prometheus-blackbox-exporter.yaml
   - prometheus-egress-prometheus-blackbox-exporter.yaml
-  - traefik-egress-blackbox-exporter.yaml

@@ -111,7 +111,7 @@ spec:
             - name: NEXTCLOUD_TRUSTED_DOMAINS
               value: cloud.${BASE_DOMAIN}
             - name: TRUSTED_PROXIES
-              value: http://traefik.traefik.svc.cluster.local
+              value: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local
             - name: OVERWRITEPROTOCOL
               value: https
             - name: REDIS_HOST

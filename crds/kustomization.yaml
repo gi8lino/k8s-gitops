@@ -8,4 +8,3 @@ resources:
   - kube-prometheus-stack
   - metallb-system
   - tetragon
-  - traefik

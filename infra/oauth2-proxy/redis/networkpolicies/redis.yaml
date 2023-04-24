@@ -1,0 +1,21 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: redis
+  namespace: oauth-proxy
+spec:
+  endpointSelector:
+    matchLabels:
+      app: oauth2-proxy
+      component: redis
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/component: authentication-proxy
+            app.kubernetes.io/name: oauth2-proxy
+            app.kubernetes.io/instance: oauth-proxy
+      toPorts:
+        - ports:
+            - port: "6379"
+              protocol: TCP

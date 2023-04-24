@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - helm-controller.yaml
   - kustomize-controller.yaml
+  - nginx-egress-flux-webhook-receiver.yaml
   - notification-controller.yaml
   - source-controller.yaml
-  - traefik-egress-flux-webhook-receiver.yaml
