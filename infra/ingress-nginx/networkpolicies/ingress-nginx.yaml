@@ -48,5 +48,3 @@ spec:
         - ports:
             - port: "443"
               protocol: ANY
-    - fromEntities:
-        - cluster
