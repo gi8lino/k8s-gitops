@@ -22,7 +22,7 @@ spec:
               - matchPattern: "*"
     - toServices:
         - k8sService:
-            serviceName: nginx
+            serviceName: ingress-nginx-defaultbackend
             namespace: ingress-nginx
       toPorts:
         - ports:
