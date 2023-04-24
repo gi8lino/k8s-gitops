@@ -8,6 +8,7 @@ resources:
   - filebrowser.yaml
   - gitlab.yaml
   - healthchecks.yaml
+  - ingress-nginx.yaml
   - k8up.yaml
   - keyclaok.yaml
   - kubernetes-dashboard.yaml
@@ -16,6 +17,7 @@ resources:
   - minio.yaml
   - monitoring.yaml
   - nextcloud.yaml
+  - oauth2-proxy.yaml
   - paperless.yaml
   - reloader.yaml
   - renovate.yaml
