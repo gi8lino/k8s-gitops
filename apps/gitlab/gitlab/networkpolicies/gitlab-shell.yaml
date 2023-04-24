@@ -17,7 +17,7 @@ spec:
             app.kubernetes.io/name: ingress-nginx
       toPorts:
         - ports:
-            - port: "2222"
+            - port: "22"
   egress:
     - toEndpoints:
         - matchLabels:
