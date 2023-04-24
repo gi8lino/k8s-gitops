@@ -14,7 +14,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/component: authentication-proxy
             app.kubernetes.io/name: oauth2-proxy
-            app.kubernetes.io/instance: oauth-proxy
+            app.kubernetes.io/instance: oauth2-proxy
       toPorts:
         - ports:
             - port: "6379"
