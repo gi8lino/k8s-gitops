@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: redis
+  name: oauth2-proxy
   namespace: oauth2-proxy
 spec:
   endpointSelector:
