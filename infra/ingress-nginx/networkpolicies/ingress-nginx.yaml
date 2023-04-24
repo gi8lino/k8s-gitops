@@ -66,3 +66,11 @@ spec:
         - ports:
             - port: "6443" # kube api
               protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: notification-controller
+            namespace: flux-system
+      toPorts:
+        - ports:
+            - port: "9292"
+              protocol: TCP
