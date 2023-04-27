@@ -70,27 +70,27 @@ spec:
             - name: http
               containerPort: 80
           resources: {}
-          startupProbe:
-            httpGet:
-              path: /status.php
-              port: http
-              httpHeaders:
-                - name: Host
-                  value: cloud.${BASE_DOMAIN}
-            initialDelaySeconds: 10
-            failureThreshold: 60
-            timeoutSeconds: 3
-            periodSeconds: 3
-          livenessProbe:
-            httpGet:
-              path: /status.php
-              port: http
-              httpHeaders:
-                - name: Host
-                  value: cloud.${BASE_DOMAIN}
-            failureThreshold: 2
-            timeoutSeconds: 3
-            periodSeconds: 30
+          #startupProbe:
+          #  httpGet:
+          #    path: /status.php
+          #    port: http
+          #    httpHeaders:
+          #      - name: Host
+          #        value: cloud.${BASE_DOMAIN}
+          #  initialDelaySeconds: 10
+          #  failureThreshold: 60
+          #  timeoutSeconds: 3
+          #  periodSeconds: 3
+          #livenessProbe:
+          #  httpGet:
+          #    path: /status.php
+          #    port: http
+          #    httpHeaders:
+          #      - name: Host
+          #        value: cloud.${BASE_DOMAIN}
+          #  failureThreshold: 2
+          #  timeoutSeconds: 3
+          #  periodSeconds: 30
           volumeMounts:
             - mountPath: /etc/nginx/nginx.conf
               name: nginx-config
