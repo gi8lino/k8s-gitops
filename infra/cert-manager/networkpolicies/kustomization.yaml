@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - cert-manager-cainjector.yaml
   - cert-manager-controller.yaml
+  - cert-manager-startupapicheck.yaml
   - cert-manager-webhook.yaml
   - prometheus-egress-cert-manager.yaml
