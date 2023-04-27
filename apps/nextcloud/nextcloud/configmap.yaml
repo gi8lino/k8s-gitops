@@ -22,13 +22,16 @@ data:
         default_type  application/octet-stream;
 
         log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                        '$status $body_bytes_sent "$http_referer" '
-                        '"$http_user_agent" "$http_x_forwarded_for"';
+                          '$status $body_bytes_sent "$http_referer" '
+                          '"$http_user_agent" "$http_x_forwarded_for"';
 
         access_log  /var/log/nginx/access.log  main;
 
         sendfile        on;
         #tcp_nopush     on;
+
+        # Prevent nginx HTTP Server Detection
+        server_tokens   off;
 
         keepalive_timeout  65;
 
@@ -66,13 +69,13 @@ data:
             #pagespeed off;
 
             # HTTP response headers borrowed from Nextcloud `.htaccess`
-            add_header Referrer-Policy                      "no-referrer"   always;
-            add_header X-Content-Type-Options               "nosniff"       always;
-            add_header X-Download-Options                   "noopen"        always;
-            add_header X-Frame-Options                      "SAMEORIGIN"    always;
-            add_header X-Permitted-Cross-Domain-Policies    "none"          always;
-            add_header X-Robots-Tag                         "none"          always;
-            add_header X-XSS-Protection                     "1; mode=block" always;
+            add_header Referrer-Policy                      "no-referrer"       always;
+            add_header X-Content-Type-Options               "nosniff"           always;
+            add_header X-Download-Options                   "noopen"            always;
+            add_header X-Frame-Options                      "SAMEORIGIN"        always;
+            add_header X-Permitted-Cross-Domain-Policies    "none"              always;
+            add_header X-Robots-Tag                         "noindex, nofollow" always;
+            add_header X-XSS-Protection                     "1; mode=block"     always;
 
             # Remove X-Powered-By, which is an information leak
             fastcgi_hide_header X-Powered-By;
@@ -133,6 +136,9 @@ data:
             # then Nginx will encounter an infinite rewriting loop when it prepends `/index.php`
             # to the URI, resulting in a HTTP 500 error response.
             location ~ \.php(?:$|/) {
+                # Required for legacy support
+                rewrite ^/(?!index|remote|public|cron|core\/ajax\/update|status|ocs\/v[12]|updater\/.+|oc[ms]-provider\/.+|.+\/richdocumentscode\/proxy) /index.php$request_uri;
+
                 fastcgi_split_path_info ^(.+?\.php)(/.*)$;
                 set $path_info $fastcgi_path_info;
 

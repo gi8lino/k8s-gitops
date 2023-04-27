@@ -140,9 +140,9 @@ spec:
               mountPath: /var/www/html/data
             - name: backup
               mountPath: /nfs
-            - name: fpm-config
-              mountPath: /usr/local/etc/php-fpm.d/www.conf
-              subPath: www.conf
+            #- name: fpm-config
+            #  mountPath: /usr/local/etc/php-fpm.d/www.conf
+            #  subPath: www.conf
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
