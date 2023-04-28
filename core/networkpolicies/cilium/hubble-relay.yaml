@@ -17,15 +17,6 @@ spec:
         - ports:
             - port: "4245"
               protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
-            app.kubernetes.io/name: prometheus
-            io.kubernetes.pod.namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "9966"
-              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
