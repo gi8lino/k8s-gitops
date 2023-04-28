@@ -44,6 +44,7 @@ spec:
             - port: "2112" # tetragon
             - port: "6443" # kube-api
             - port: "9100" # prometheus node exporter
+            - port: "9965" # hubble
             - port: "10250" # kubelet
             - port: "10257" # kube-controller-manager
             - port: "10259" # kube-scheduler
