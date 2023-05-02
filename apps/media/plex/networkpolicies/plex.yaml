@@ -43,12 +43,9 @@ spec:
         - matchName: assets.fanart.tv
         - matchName: image.tmdb.org
         - matchName: l2.wp.com
-        - matchName: me.plexapp.com
-        - matchName: metadata.provider.plex.tv
         - matchName: plex.tv
-        - matchName: resources-cdn.plexapp.com
-        - matchName: tvthemes.plexapp.com
         - matchName: www.themoviedb.org
+        - matchPattern: "*.plexapp.com"
         - matchPattern: "*.lencr.org"
         - matchPattern: "*.plex.tv"
         - matchPattern: "*.thetvdb.com"
