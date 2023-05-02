@@ -42,13 +42,13 @@ spec:
     - toFQDNs:
         - matchName: assets.fanart.tv
         - matchName: image.tmdb.org
-        - matchName: l2.wp.com
         - matchName: plex.tv
         - matchName: www.themoviedb.org
         - matchPattern: "*.plexapp.com"
         - matchPattern: "*.lencr.org"
         - matchPattern: "*.plex.tv"
         - matchPattern: "*.thetvdb.com"
+        - matchPattern: "*.wp.com"
       toPorts:
         - ports:
             - port: "443"
