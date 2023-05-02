@@ -57,6 +57,7 @@ spec:
               protocol: TCP
     - toFQDNs:
         - matchName: assets.fanart.tv
+        - matchName: resources-cdn.plexapp.com
         - matchPattern: "*.lencr.org" # https://letsencrypt.org/docs/lencr.org/
       toPorts:
         - ports:
