@@ -42,6 +42,7 @@ spec:
     - toFQDNs:
         - matchName: assets.fanart.tv
         - matchName: image.tmdb.org
+        - matchName: l2.wp.com
         - matchName: me.plexapp.com
         - matchName: metadata.provider.plex.tv
         - matchName: plex.tv
