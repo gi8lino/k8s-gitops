@@ -51,6 +51,7 @@ spec:
       TZ: Europe/Zurich
       MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
       MINIO_PROMETHEUS_JOB_ID: minio
+      MINIO_UPDATE: off
     resources:
       requests:
         memory: null

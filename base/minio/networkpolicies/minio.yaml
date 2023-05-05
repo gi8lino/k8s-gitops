@@ -55,9 +55,3 @@ spec:
         - ports:
             - port: "9090"
               protocol: TCP
-    - toFQDNs:
-        - matchName: dl.min.io
-      toPorts:
-        - ports:
-            - port: "443"
-              protocol: TCP
