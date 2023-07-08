@@ -10,7 +10,6 @@ resources:
   - healthchecks.yaml
   - k8up.yaml
   - keyclaok.yaml
-  - kubernetes-dashboard.yaml
   - media.yaml
   - metallb-system.yaml
   - minio.yaml

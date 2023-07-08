@@ -9,7 +9,6 @@ This directory contains all other common applications.
 - **gitlab** contains GitLab related applications and manifests
 - **healthchecks** monitoring regularly running tasks such as cron jobs
 - **keycloak** single-sign-on service
-- **kubernetes-dashboard** gives an overview on what's running in the cluster
 - **media** usenet-stack containing plex, prowlarr, radarr, sabnzbd, sonarr and tautulli
 - **nextcloud** self-hosted cloud similar to iCloud
 - **paperless** (paperless-ng) is an indexer and archiver for scanned paper documents

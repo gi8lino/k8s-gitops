@@ -7,7 +7,6 @@ resources:
   - gitlab
   - healthchecks
   - keycloak
-  - kubernetes-dashboard
   - media
   - nextcloud
   - paperless

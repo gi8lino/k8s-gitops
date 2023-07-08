@@ -25,9 +25,6 @@ spec:
       namespace: keycloak
       name: "*"
     - kind: HelmRelease
-      namespace: kubernetes-dashboard
-      name: "*"
-    - kind: HelmRelease
       namespace: kube-system
       name: "*"
     - kind: HelmRelease

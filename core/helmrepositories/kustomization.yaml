@@ -8,7 +8,6 @@ resources:
   - grafana.yaml
   - jetstack.yaml
   - k8up-io.yaml
-  - kubernetes-dashboard.yaml
   - metallb.yaml
   - metrics-server.yaml
   - minio.yaml
