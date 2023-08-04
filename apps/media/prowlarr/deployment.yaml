@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: prowlarr
-          image: ghcr.io/linuxserver/prowlarr:nightly-1.8.1.3823-ls11
+          image: ghcr.io/linuxserver/prowlarr:nightly-1.8.1.3827-ls13
           env:
             - name: PGID
               value: "2000"
