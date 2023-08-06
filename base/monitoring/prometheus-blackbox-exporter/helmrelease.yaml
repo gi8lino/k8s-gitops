@@ -19,15 +19,6 @@ spec:
     pspEnabled: false
     config:
       modules:
-        newsnab:
-          prober: http
-          timeout: 5s
-          http:
-            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
-            follow_redirects: true
-            preferred_ip_protocol: "ip4"
-            fail_if_body_not_matches_regexp:
-              - ${NEWSNAB_REGEX}
         http_2xx_higher_timeout:
           prober: http
           timeout: 30s
@@ -65,9 +56,6 @@ spec:
           scrapeTimeout: 2m
           interval: 60m
           module: http_2xx_higher_timeout
-        - name: newsnab
-          url: https://${USENET_INDEXER_DOMAIN}
-          module: newsnab
     prometheusRule:
       enabled: true
       rules:
