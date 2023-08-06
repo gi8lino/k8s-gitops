@@ -65,9 +65,6 @@ spec:
           scrapeTimeout: 2m
           interval: 60m
           module: http_2xx_higher_timeout
-        - name: newsnab
-          url: https://${USENET_INDEXER_DOMAIN}
-          module: newsnab
     prometheusRule:
       enabled: true
       rules:
