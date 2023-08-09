@@ -4,8 +4,6 @@ kind: Deployment
 metadata:
   name: redis
   namespace: renovate
-  labels:
-    app: renovate
 spec:
   replicas: 1
   selector:
