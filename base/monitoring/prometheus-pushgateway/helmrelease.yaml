@@ -26,7 +26,7 @@ spec:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
-        cf.containeroo.ch/ignore: "true"
+        cloudflare-operator.io/ignore: "true"
       hosts:
         - pushgateway.local.${BASE_DOMAIN}
     serviceMonitor:

@@ -32,7 +32,7 @@ spec:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
-        cf.containeroo.ch/ignore: "true"
+        cloudflare-operator.io/ignore: "true"
       hosts:
         - s3.local.${BASE_DOMAIN}
     consoleIngress:
@@ -41,7 +41,7 @@ spec:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
-        cf.containeroo.ch/ignore: "true"
+        cloudflare-operator.io/ignore: "true"
       hosts:
         - minio.local.${BASE_DOMAIN}
     metrics:

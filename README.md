@@ -4,7 +4,7 @@
 
 ## :loudspeaker:&nbsp; About
 
-This repository contains my entire Kubernetes cluster setup built on K3s and managed by Flux v2.  
+This repository contains my entire Kubernetes cluster setup built on K3s and managed by Flux v2.\
 Secrets are encrypted and managed with [SOPS](https://github.com/mozilla/sops).
 
 For initial deploy see this manuals:
@@ -57,7 +57,7 @@ For adblocking, I have [pihole](https://pi-hole.net) deployed on a raspberry pi.
 
 ### External DNS
 
-[cloudflare-operator](https://github.com/containeroo/cloudflare-operator) is deployed in my cluster and ingresses with the annotation `cf.containeroo.ch/type=CNAME` and `cf.containeroo.ch/content=${BASE_DOMAIN}` will be synced with [Cloudflare](https://www.cloudflare.com/).
+[cloudflare-operator](https://github.com/containeroo/cloudflare-operator) is deployed in my cluster and ingresses with the annotation `cloudflare-operator.io/type=CNAME` and `cloudflare-operator.io/content=${BASE_DOMAIN}` will be synced with [Cloudflare](https://www.cloudflare.com/).
 
 ### Dynamic DNS
 
