@@ -7,8 +7,8 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
-    cf.containeroo.ch/content: ${BASE_DOMAIN}
-    cf.containeroo.ch/type: CNAME
+    cloudflare-operator.io/content: ${BASE_DOMAIN}
+    cloudflare-operator.io/type: CNAME
 spec:
   ingressClassName: traefik
   rules:

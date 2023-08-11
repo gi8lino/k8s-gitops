@@ -58,7 +58,7 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
-          cf.containeroo.ch/ignore: "true"
+          cloudflare-operator.io/ignore: "true"
         hosts:
           - alertmanager.local.${BASE_DOMAIN}
         ingressClassName: traefik
@@ -107,7 +107,7 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
-          cf.containeroo.ch/ignore: "true"
+          cloudflare-operator.io/ignore: "true"
         hosts:
           - grafana.local.${BASE_DOMAIN}
         ingressClassName: traefik
@@ -153,7 +153,7 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
-          cf.containeroo.ch/ignore: "true"
+          cloudflare-operator.io/ignore: "true"
         hosts:
           - prometheus.local.${BASE_DOMAIN}
         ingressClassName: traefik

@@ -1,5 +1,5 @@
 ---
-apiVersion: cf.containeroo.ch/v1beta1
+apiVersion: cloudflare-operator.io/v1
 kind: Account
 metadata:
   name: main
