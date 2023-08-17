@@ -39,25 +39,10 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toFQDNs:
-        - matchName: assets.fanart.tv
-        - matchName: image.tmdb.org
-        - matchName: plex.tv
-        - matchName: www.themoviedb.org
-        - matchPattern: "*.plexapp.com"
-        - matchPattern: "*.lencr.org"
-        - matchPattern: "*.plex.tv"
-        - matchPattern: "*.thetvdb.com"
-        - matchPattern: "*.wp.com"
-      toPorts:
-        - ports:
-            - port: "443"
-              protocol: TCP
-    - toFQDNs:
-        - matchName: assets.fanart.tv
-        - matchName: resources-cdn.plexapp.com
-        - matchPattern: "*.lencr.org" # https://letsencrypt.org/docs/lencr.org/
+    - toEntities:
+        - world
       toPorts:
         - ports:
             - port: "80"
-              protocol: TCP
+        - ports:
+            - port: "443"
