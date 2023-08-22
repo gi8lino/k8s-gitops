@@ -45,21 +45,60 @@ spec:
             dns:
               - matchPattern: "*"
     - toServices:
-        - k8sService:
-            serviceName: gitlab-minio-svc
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: minio
+                release: gitlab
             namespace: gitlab
-        - k8sService:
-            serviceName: gitlab-registry
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: registry
+                release: gitlab
             namespace: gitlab
-        - k8sService:
-            serviceName: gitlab-postgresql
+      toPorts:
+        - ports:
+            - port: "5000"
+              protocol: TCP
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: postgresql
+                release: gitlab
             namespace: gitlab
-        - k8sService:
-            serviceName: gitlab-redis-master
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: redis
+                release: gitlab
             namespace: gitlab
-        - k8sService:
-            serviceName: gitlab-gitaly
+      toPorts:
+        - ports:
+            - port: "6379"
+              protocol: TCP
+    - toServices:
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: gitaly
+                release: gitlab
             namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "8075"
+              protocol: TCP
     - toFQDNs:
         - matchName: hooks.slack.com
       toPorts:
