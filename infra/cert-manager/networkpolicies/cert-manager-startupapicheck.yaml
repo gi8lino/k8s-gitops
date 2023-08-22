@@ -26,3 +26,7 @@ spec:
         - k8sService:
             serviceName: cert-manager-webhook
             namespace: cert-manager
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP

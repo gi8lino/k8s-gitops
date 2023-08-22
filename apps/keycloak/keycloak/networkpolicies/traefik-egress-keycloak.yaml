@@ -14,3 +14,7 @@ spec:
         - k8sService:
             serviceName: keycloak
             namespace: keycloak
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP

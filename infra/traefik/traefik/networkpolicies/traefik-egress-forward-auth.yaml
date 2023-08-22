@@ -14,3 +14,7 @@ spec:
         - k8sService:
             serviceName: traefik-forward-auth
             namespace: traefik
+      toPorts:
+        - ports:
+            - port: "4181"
+              protocol: TCP

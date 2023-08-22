@@ -14,3 +14,7 @@ spec:
         - k8sService:
             serviceName: healthchecks
             namespace: healthchecks
+      toPorts:
+        - ports:
+            - port: "8000"
+              protocol: TCP

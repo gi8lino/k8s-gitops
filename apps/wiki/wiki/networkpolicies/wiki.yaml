@@ -35,6 +35,10 @@ spec:
         - k8sService:
             serviceName: postgres
             namespace: wiki
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP
     - toFQDNs:
         - matchName: ${SMTP_DOMAIN}
       toPorts:
@@ -42,11 +46,8 @@ spec:
             - port: "587"
               protocol: TCP
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app.kubernetes.io/instance: traefik-traefik
-                app.kubernetes.io/name: traefik
+        - k8sService:
+            serviceName: traefik
             namespace: traefik
       toPorts:
         - ports:

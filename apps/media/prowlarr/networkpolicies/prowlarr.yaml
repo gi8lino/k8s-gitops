@@ -50,11 +50,23 @@ spec:
         - k8sService:
             serviceName: radarr
             namespace: media
+      toPorts:
+        - ports:
+            - port: "7878"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: sonarr
             namespace: media
+      toPorts:
+        - ports:
+            - port: "8989"
+              protocol: TCP
     - toServices:
         - k8sService:
             serviceName: sabnzbd
             namespace: media
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP

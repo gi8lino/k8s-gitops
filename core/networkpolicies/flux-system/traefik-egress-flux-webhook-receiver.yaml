@@ -14,3 +14,7 @@ spec:
         - k8sService:
             serviceName: webhook-receiver
             namespace: flux-system
+      toPorts:
+        - ports:
+            - port: "9292"
+              protocol: TCP

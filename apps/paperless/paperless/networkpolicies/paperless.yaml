@@ -35,6 +35,10 @@ spec:
         - k8sService:
             serviceName: redis
             namespace: paperless
+      toPorts:
+        - ports:
+            - port: "6379"
+              protocol: TCP
     - toFQDNs:
         - matchName: www.aiim.org
         - matchName: debian.map.fastlydns.net

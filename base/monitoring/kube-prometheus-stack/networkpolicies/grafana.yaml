@@ -45,6 +45,10 @@ spec:
         - k8sService:
             serviceName: kube-prometheus-stack-prometheus
             namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9090"
+              protocol: TCP
     - toFQDNs:
         - matchName: grafana.com # grafana dashboards
         - matchName: grafana.net # grafana dashboards
@@ -55,11 +59,8 @@ spec:
             - port: "443"
               protocol: TCP
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app.kubernetes.io/instance: traefik-traefik
-                app.kubernetes.io/name: traefik
+        - k8sService:
+            serviceName: traefik
             namespace: traefik
       toPorts:
         - ports:

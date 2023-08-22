@@ -14,3 +14,7 @@ spec:
         - k8sService:
             serviceName: kube-prometheus-stack-prometheus
             namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9090"
+              protocol: TCP

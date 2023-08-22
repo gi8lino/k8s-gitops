@@ -14,3 +14,7 @@ spec:
         - k8sService:
             serviceName: kube-prometheus-stack-grafana
             namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "3000"
+              protocol: TCP

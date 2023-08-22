@@ -39,9 +39,18 @@ spec:
         - k8sService:
             serviceName: postgres
             namespace: nextcloud
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP
+    - toServices:
         - k8sService:
             serviceName: redis
             namespace: nextcloud
+      toPorts:
+        - ports:
+            - port: "6379"
+              protocol: TCP
     - toEntities:
         - world
       toPorts:

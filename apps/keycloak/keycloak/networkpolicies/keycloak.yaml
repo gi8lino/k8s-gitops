@@ -35,6 +35,10 @@ spec:
         - k8sService:
             serviceName: postgres
             namespace: keycloak
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP
     - toFQDNs:
         - matchName: ${SMTP_DOMAIN}
       toPorts:

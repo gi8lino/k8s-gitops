@@ -48,9 +48,23 @@ spec:
         - k8sService:
             serviceName: prowlarr
             namespace: media
+      toPorts:
+        - ports:
+            - port: "9696"
+              protocol: TCP
+    - toServices:
         - k8sService:
             serviceName: plex
             namespace: media
+      toPorts:
+        - ports:
+            - port: "32400"
+              protocol: TCP
+    - toServices:
         - k8sService:
             serviceName: sabnzbd
             namespace: media
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP

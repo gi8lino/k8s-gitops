@@ -14,3 +14,7 @@ spec:
         - k8sService:
             serviceName: wallabag
             namespace: wallabag
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP

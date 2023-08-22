@@ -24,3 +24,7 @@ spec:
         - k8sService:
             serviceName: gitlab-webservice-default
             namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP

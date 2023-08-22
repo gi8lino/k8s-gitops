@@ -33,12 +33,13 @@ spec:
         - k8sService:
             serviceName: redis
             namespace: renovate
+      toPorts:
+        - ports:
+            - port: "6379"
+              protocol: TCP
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app.kubernetes.io/instance: traefik-traefik
-                app.kubernetes.io/name: traefik
+        - k8sService:
+            serviceName: traefik
             namespace: traefik
       toPorts:
         - ports:

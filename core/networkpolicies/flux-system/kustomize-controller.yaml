@@ -47,14 +47,32 @@ spec:
             - port: "9090"
     - toServices:
         - k8sService:
+            serviceName: source-controller
+            namespace: flux-system
+        - k8sService:
+            serviceName: notification-controller
+            namespace: flux-system
+      toPorts:
+        - ports:
+            - port: "9090"
+              protocol: TCP
+    - toServices:
+        - k8sService:
             serviceName: metallb-webhook-service
             namespace: metallb-system
+      toPorts:
+        - ports:
+            - port: "9443" # validationwebhook
+    - toServices:
         - k8sService:
             serviceName: cert-manager-webhook
             namespace: cert-manager
         - k8sService:
             serviceName: kube-prometheus-stack-operator
             namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "10250" # validationwebhook
     - toEntities:
         - world
       toPorts:

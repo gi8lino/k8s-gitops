@@ -14,3 +14,7 @@ spec:
         - k8sService:
             serviceName: prowlarr
             namespace: media
+      toPorts:
+        - ports:
+            - port: "9696"
+              protocol: TCP

@@ -14,3 +14,7 @@ spec:
         - k8sService:
             serviceName: cert-manager
             namespace: cert-manager
+      toPorts:
+        - ports:
+            - port: "9402"
+              protocol: TCP

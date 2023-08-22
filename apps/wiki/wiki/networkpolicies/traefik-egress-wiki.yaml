@@ -14,3 +14,7 @@ spec:
         - k8sService:
             serviceName: wiki
             namespace: wiki
+      toPorts:
+        - ports:
+            - port: "3000"
+              protocol: TCP

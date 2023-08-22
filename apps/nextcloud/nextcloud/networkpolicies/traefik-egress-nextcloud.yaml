@@ -14,3 +14,7 @@ spec:
         - k8sService:
             serviceName: nextcloud
             namespace: nextcloud
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
