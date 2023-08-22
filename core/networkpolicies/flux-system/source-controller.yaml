@@ -46,10 +46,14 @@ spec:
         - ports:
             - port: "6443" # kube-api
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: notification-controller
-            namespace: flux-system
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/component: notification-controller
+            app.kubernetes.io/instance: flux-system
+            io.kubernetes.pod.namespace: flux-system
+      toPorts:
+        - ports:
+            - port: "8080"
     - toEntities:
         - world
       toPorts:

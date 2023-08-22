@@ -35,13 +35,23 @@ spec:
         - ports:
             - port: "6443" # kube api
               protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/component: notification-controller
+            app.kubernetes.io/instance: flux-system
+            io.kubernetes.pod.namespace: flux-system
+      toPorts:
+        - ports:
+            - port: "9090"
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/component: source-controller
+            app.kubernetes.io/instance: flux-system
+            io.kubernetes.pod.namespace: flux-system
+      toPorts:
+        - ports:
+            - port: "9090"
     - toServices:
-        - k8sService:
-            serviceName: source-controller
-            namespace: flux-system
-        - k8sService:
-            serviceName: notification-controller
-            namespace: flux-system
         - k8sService:
             serviceName: metallb-webhook-service
             namespace: metallb-system
