@@ -53,16 +53,9 @@ spec:
             dns:
               - matchPattern: "*"
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: webservice
-                release: gitlab
+        - k8sService:
+            serviceName: gitlab-webservice-default
             namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "8181"
-              protocol: TCP
     - toEntities:
         - world
       toPorts:

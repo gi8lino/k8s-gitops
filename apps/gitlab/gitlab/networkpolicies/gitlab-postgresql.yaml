@@ -48,13 +48,10 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: sidekiq
-                release: gitlab
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app: sidekiq
+            release: gitlab
       toPorts:
         - ports:
             - port: "34358"

@@ -22,35 +22,12 @@ spec:
             dns:
               - matchPattern: "*"
     - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: postgres
-                release: gitlab
+        - k8sService:
+            serviceName: gitlab-postgresql
             namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "5432"
-              protocol: TCP
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: redis
-                release: gitlab
+        - k8sService:
+            serviceName: gitlab-redis-master
             namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "6379"
-              protocol: TCP
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: minio
-                release: gitlab
+        - k8sService:
+            serviceName: gitlab-minio-svc
             namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "9000"
-              protocol: TCP
