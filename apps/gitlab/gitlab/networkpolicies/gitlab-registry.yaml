@@ -47,6 +47,13 @@ spec:
             dns:
               - matchPattern: "*"
     - toServices:
-        - k8sService:
-            serviceName: gitlab-minio-svc
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app: minio
+                release: gitlab
             namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP
