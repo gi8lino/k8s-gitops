@@ -34,10 +34,6 @@ spec:
         - k8sService:
             serviceName: plex
             namespace: media
-      toPorts:
-        - ports:
-            - port: "32400"
-              protocol: TCP
     - toFQDNs:
         - matchName: plex.tv
         - matchName: secure.gravatar.com

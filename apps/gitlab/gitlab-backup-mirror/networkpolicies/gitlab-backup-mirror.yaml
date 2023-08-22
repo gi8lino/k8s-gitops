@@ -35,15 +35,6 @@ spec:
         - k8sService:
             serviceName: minio
             namespace: minio
-      toPorts:
-        - ports:
-            - port: "9000" # minio-api
-              protocol: TCP
-    - toServices:
         - k8sService:
             serviceName: prometheus-pushgateway
             namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "9091"
-              protocol: TCP

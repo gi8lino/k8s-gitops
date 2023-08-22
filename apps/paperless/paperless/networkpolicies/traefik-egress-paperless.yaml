@@ -14,7 +14,3 @@ spec:
         - k8sService:
             serviceName: paperless
             namespace: paperless
-      toPorts:
-        - ports:
-            - port: "8000"
-              protocol: TCP

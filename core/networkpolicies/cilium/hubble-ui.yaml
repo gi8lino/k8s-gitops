@@ -33,10 +33,7 @@ spec:
     - toServices:
         - k8sService:
             serviceName: hubble-relay
-      toPorts:
-        - ports:
-            - port: "4245"
-              protocol: TCP
+            namespace: kube-system
     - toEntities:
         - host
       toPorts:

@@ -14,9 +14,6 @@ spec:
         - k8sService:
             serviceName: minio
             namespace: minio
-      toPorts:
-        - ports:
-            - port: "9000" # minio-api
-              protocol: TCP
-            - port: "9001" # minio-console
-              protocol: TCP
+        - k8sService:
+            serviceName: minio-console
+            namespace: minio

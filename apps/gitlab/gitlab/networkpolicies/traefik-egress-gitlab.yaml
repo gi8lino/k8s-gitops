@@ -14,33 +14,12 @@ spec:
         - k8sService:
             serviceName: gitlab-gitlab-shell
             namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "2222"
-              protocol: TCP
-    - toServices:
         - k8sService:
             serviceName: gitlab-minio-svc
             namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "9000"
-              protocol: TCP
-    - toServices:
         - k8sService:
             serviceName: gitlab-registry
             namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "5000"
-              protocol: TCP
-    - toServices:
         - k8sService:
             serviceName: gitlab-webservice-default
             namespace: gitlab
-      toPorts:
-        - ports:
-            - port: "8080"
-              protocol: TCP
-            - port: "8181"
-              protocol: TCP
