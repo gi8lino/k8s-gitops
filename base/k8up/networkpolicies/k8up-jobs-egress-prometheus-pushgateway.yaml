@@ -25,7 +25,3 @@ spec:
         - k8sService:
             serviceName: prometheus-pushgateway
             namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "9091"
-              protocol: TCP

@@ -50,10 +50,6 @@ spec:
         - k8sService:
             serviceName: notification-controller
             namespace: flux-system
-      toPorts:
-        - ports:
-            - port: "9090"
-              protocol: TCP
     - toEntities:
         - world
       toPorts:

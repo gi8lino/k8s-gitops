@@ -14,7 +14,3 @@ spec:
         - k8sService:
             serviceName: filebrowser
             namespace: filebrowser
-      toPorts:
-        - ports:
-            - port: "80"
-              protocol: TCP

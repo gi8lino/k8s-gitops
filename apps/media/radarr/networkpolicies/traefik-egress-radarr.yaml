@@ -14,7 +14,3 @@ spec:
         - k8sService:
             serviceName: radarr
             namespace: media
-      toPorts:
-        - ports:
-            - port: "7878"
-              protocol: TCP

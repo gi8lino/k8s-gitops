@@ -13,7 +13,3 @@ spec:
         - k8sService:
             serviceName: sonarr
             namespace: media
-      toPorts:
-        - ports:
-            - port: "8989"
-              protocol: TCP

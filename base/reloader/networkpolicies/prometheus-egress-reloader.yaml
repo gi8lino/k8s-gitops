@@ -14,7 +14,3 @@ spec:
         - k8sService:
             serviceName: reloader-reloader
             namespace: reloader
-      toPorts:
-        - ports:
-            - port: "9090"
-              protocol: TCP

@@ -45,8 +45,11 @@ spec:
             - port: "443"
               protocol: TCP
     - toServices:
-        - k8sService:
-            serviceName: traefik
+        - k8sServiceSelector:
+            selector:
+              matchLabels:
+                app.kubernetes.io/instance: traefik-traefik
+                app.kubernetes.io/name: traefik
             namespace: traefik
       toPorts:
         - ports:

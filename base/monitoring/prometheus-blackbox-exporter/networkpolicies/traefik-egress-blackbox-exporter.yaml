@@ -14,7 +14,3 @@ spec:
         - k8sService:
             serviceName: prometheus-blackbox-exporter
             namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "9115"
-              protocol: TCP
