@@ -48,8 +48,7 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/component: notification-controller
-            app.kubernetes.io/instance: flux-system
+            app: notification-controller
             io.kubernetes.pod.namespace: flux-system
       toPorts:
         - ports:

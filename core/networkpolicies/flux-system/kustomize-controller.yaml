@@ -39,10 +39,6 @@ spec:
         - matchLabels:
             app: notification-controller
             io.kubernetes.pod.namespace: flux-system
-      toPorts:
-        - ports:
-            - port: "9090"
-    - toEndpoints:
         - matchLabels:
             app: source-controller
             io.kubernetes.pod.namespace: flux-system
