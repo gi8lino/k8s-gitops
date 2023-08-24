@@ -31,11 +31,16 @@ spec:
               protocol: TCP
     - fromEndpoints:
         - matchLabels:
-            app: gitlab-shell
+            app: gitaly
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
+      toPorts:
+        - ports:
+            - port: "8075"
+              protocol: TCP
+    - fromEndpoints:
         - matchLabels:
-            app: gitaly
+            app: gitlab-shell
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
       toPorts:
