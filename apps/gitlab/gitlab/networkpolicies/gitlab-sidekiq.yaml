@@ -101,6 +101,7 @@ spec:
               protocol: TCP
     - toFQDNs:
         - matchName: hooks.slack.com
+        - matchName: version.gitlab.com
       toPorts:
         - ports:
             - port: "443"
