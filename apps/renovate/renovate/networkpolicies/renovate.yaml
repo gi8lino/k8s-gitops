@@ -29,18 +29,20 @@ spec:
               protocol: TCP
             - port: "443"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: redis
-            namespace: renovate
+    - toEndpoints:
+        - matchLabels:
+            app: renovate
+            component: redis
+            io.kubernetes.pod.namespace: renovate
       toPorts:
         - ports:
             - port: "6379"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: traefik
-            namespace: traefik
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik-traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
             - port: "8443" # to access git.${BASE_DOMAIN}
