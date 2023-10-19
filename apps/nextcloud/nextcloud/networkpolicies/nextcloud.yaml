@@ -35,18 +35,20 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sService:
-            serviceName: postgres
-            namespace: nextcloud
+    - toEndpoints:
+        - matchLabels:
+            app: nextcloud
+            component: postgres
+            io.kubernetes.pod.namespace: nextcloud
       toPorts:
         - ports:
             - port: "5432"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: redis
-            namespace: nextcloud
+    - toEndpoints:
+        - matchLabels:
+            app: nextcloud
+            component: redis
+            io.kubernetes.pod.namespace: nextcloud
       toPorts:
         - ports:
             - port: "6379"
