@@ -10,10 +10,10 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: whoami
-            namespace: debug
+    - toEndpoints:
+        - matchLabels:
+            app: whoami
+            io.kubernetes.pod.namespace: debug
       toPorts:
         - ports:
             - port: "80"
