@@ -10,17 +10,13 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                k8s-app: hubble-ui
-            namespace: kube-system
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                k8s-app: hubble-relay
-            namespace: kube-system
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: hubble-ui
+            io.kubernetes.pod.namespace: kube-system
+        - matchLabels:
+            k8s-app: hubble-relay
+            io.kubernetes.pod.namespace: kube-system
       toPorts:
         - ports:
             - port: "8081"

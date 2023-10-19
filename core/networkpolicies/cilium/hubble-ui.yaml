@@ -30,9 +30,10 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sService:
-            serviceName: hubble-relay
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: hubble-relay
+            io.kubernetes.pod.namespace: kube-system
       toPorts:
         - ports:
             - port: "4245"
