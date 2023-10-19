@@ -27,10 +27,11 @@ spec:
         - ports:
             - port: "6443" # kube-api
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: minio
-            namespace: minio
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: minio
+            app.kubernetes.io/name: minio
+            io.kubernetes.pod.namespace: minio
       toPorts:
         - ports:
             - port: "9000"
