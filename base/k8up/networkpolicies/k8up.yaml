@@ -9,6 +9,15 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: k8up
       app.kubernetes.io/name: k8up
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "8080"
   egress:
     - toEndpoints:
         - matchLabels:

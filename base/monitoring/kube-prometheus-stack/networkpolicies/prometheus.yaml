@@ -43,6 +43,7 @@ spec:
         - ports:
             - port: "6443" # kube-api
             - port: "9100" # prometheus node exporter
+            - port: "9633"
             - port: "10250" # kubelet
             - port: "10257" # kube-controller-manager
             - port: "10259" # kube-scheduler
@@ -83,4 +84,30 @@ spec:
       toPorts:
         - ports:
             - port: "3000"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: kube-dns
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9153"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: k8up
+            app.kubernetes.io/name: k8up
+            io.kubernetes.pod.namespace: k8up
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: cloudflare-operator
+            app.kubernetes.io/name: cloudflare-operator
+            io.kubernetes.pod.namespace: cloudflare-operator
+      toPorts:
+        - ports:
+            - port: "8080"
               protocol: TCP
