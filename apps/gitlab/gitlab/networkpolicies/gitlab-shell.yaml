@@ -30,24 +30,20 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: webservice
-                release: gitlab
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app: webservice
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "8181"
               protocol: TCP
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: gitaly
-                release: gitlab
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app: gitaly
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "8075"

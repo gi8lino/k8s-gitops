@@ -10,34 +10,39 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: gitlab-gitlab-shell
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app: gitlab-shell
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "2222"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: gitlab-minio-svc
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app: minio
+            component: app
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "9000"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: gitlab-registry
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app: registry
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "5000"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: gitlab-webservice-default
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app: webservice
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "8080"

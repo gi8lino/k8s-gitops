@@ -20,10 +20,11 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sService:
-            serviceName: traefik
-            namespace: traefik
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik-traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
             - port: "8443" # to access git.${BASE_DOMAIN}

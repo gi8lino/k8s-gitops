@@ -22,13 +22,11 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: postgres
-                release: gitlab
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: gitlab
+            app.kubernetes.io/name: postgresql
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "5432"

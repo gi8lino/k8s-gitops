@@ -20,10 +20,11 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sService:
-            serviceName: gitlab-webservice-default
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app: webservice
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "8080"

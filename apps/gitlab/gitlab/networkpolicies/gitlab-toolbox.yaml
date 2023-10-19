@@ -21,54 +21,48 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: minio
-                release: gitlab
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app: minio
+            component: app
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "9000"
               protocol: TCP
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: postgresql
-                release: gitlab
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: gitlab
+            app.kubernetes.io/name: postgresql
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "5432"
               protocol: TCP
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: redis
-                release: gitlab
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: gitlab
+            app.kubernetes.io/name: redis
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "6379"
               protocol: TCP
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: gitaly
-                release: gitlab
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app: gitaly
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "8075"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: traefik
-            namespace: traefik
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik-traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
             - port: "8443" # oidc: to access load balancer (https://auth.${BASE_DOMAIN})

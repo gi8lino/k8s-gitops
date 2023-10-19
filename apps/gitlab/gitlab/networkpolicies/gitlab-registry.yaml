@@ -46,13 +46,12 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app: minio
-                release: gitlab
-            namespace: gitlab
+    - toEndpoints:
+        - matchLabels:
+            app: minio
+            component: app
+            release: gitlab
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "9000"
