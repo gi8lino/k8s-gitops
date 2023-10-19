@@ -10,10 +10,10 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: filebrowser
-            namespace: filebrowser
+    - toEndpoints:
+        - matchLabels:
+            app: filebrowser
+            io.kubernetes.pod.namespace: filebrowser
       toPorts:
         - ports:
             - port: "80"

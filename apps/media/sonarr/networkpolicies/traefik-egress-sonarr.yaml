@@ -9,10 +9,10 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: traefik-traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: sonarr
-            namespace: media
+    - toEndpoints:
+        - matchLabels:
+            app: sonarr
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
             - port: "8989"

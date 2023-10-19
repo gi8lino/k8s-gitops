@@ -10,10 +10,10 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: plex
-            namespace: media
+    - toEndpoints:
+        - matchLabels:
+            app: plex
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
             - port: "32400"

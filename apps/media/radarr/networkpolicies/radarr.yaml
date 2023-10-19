@@ -44,26 +44,26 @@ spec:
         - ports:
             - port: "443"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: prowlarr
-            namespace: media
+    - toEndpoints:
+        - matchLabels:
+            app: prowlarr
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
             - port: "9696"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: plex
-            namespace: media
+    - toEndpoints:
+        - matchLabels:
+            app: plex
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
             - port: "32400"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: sabnzbd
-            namespace: media
+    - toEndpoints:
+        - matchLabels:
+            app: sabnzbd
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
             - port: "8080"

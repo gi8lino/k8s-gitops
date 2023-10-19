@@ -10,10 +10,10 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: radarr
-            namespace: media
+    - toEndpoints:
+        - matchLabels:
+            app: radarr
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
             - port: "7878"

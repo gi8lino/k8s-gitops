@@ -10,10 +10,10 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: tautulli
-            namespace: media
+    - toEndpoints:
+        - matchLabels:
+            app: tautulli
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
             - port: "8181"

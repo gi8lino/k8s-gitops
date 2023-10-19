@@ -31,10 +31,11 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sService:
-            serviceName: postgres
-            namespace: keycloak
+    - toEndpoints:
+        - matchLabels:
+            app: keycloak
+            component: postgres
+            io.kubernetes.pod.namespace: keycloak
       toPorts:
         - ports:
             - port: "5432"

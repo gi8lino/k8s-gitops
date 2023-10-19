@@ -10,10 +10,11 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: keycloak
-            namespace: keycloak
+    - toEndpoints:
+        - matchLabels:
+            app: keycloak
+            component: keycloak
+            io.kubernetes.pod.namespace: keycloak
       toPorts:
         - ports:
             - port: "8080"
