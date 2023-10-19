@@ -74,8 +74,8 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app: redis
-            release: gitlab
+            app.kubernetes.io/instance: gitlab
+            app.kubernetes.io/name: redis
             io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:

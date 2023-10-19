@@ -7,8 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: redis
-      release: gitlab
+      app.kubernetes.io/instance: gitlab
+      app.kubernetes.io/name: redis
   ingress:
     - fromEndpoints:
         - matchLabels:
