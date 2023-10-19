@@ -10,10 +10,10 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: webhook-receiver
-            namespace: flux-system
+    - toEndpoints:
+        - matchLabels:
+            app: notification-controller
+            io.kubernetes.pod.namespace: flux-system
       toPorts:
         - ports:
             - port: "9292"

@@ -45,13 +45,13 @@ spec:
       toPorts:
         - ports:
             - port: "9090"
-    - toServices:
-        - k8sService:
-            serviceName: source-controller
-            namespace: flux-system
-        - k8sService:
-            serviceName: notification-controller
-            namespace: flux-system
+    - toEndpoints:
+        - matchLabels:
+            app: source-controller
+            io.kubernetes.pod.namespace: flux-system
+        - matchLabels:
+            app: notification-controller
+            io.kubernetes.pod.namespace: flux-system
       toPorts:
         - ports:
             - port: "9090"
@@ -63,13 +63,17 @@ spec:
       toPorts:
         - ports:
             - port: "9443" # validationwebhook
-    - toServices:
-        - k8sService:
-            serviceName: cert-manager-webhook
-            namespace: cert-manager
-        - k8sService:
-            serviceName: kube-prometheus-stack-operator
-            namespace: monitoring
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/component: webhook
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: webhook
+            io.kubernetes.pod.namespace: cert-manager
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/managed-by: prometheus-operator
+            app.kubernetes.io/name: prometheus
+            io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
             - port: "10250" # validationwebhook
