@@ -10,13 +10,11 @@ spec:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus
       app.kubernetes.io/name: prometheus
   egress:
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                app.kubernetes.io/name: prometheus-smartctl-exporter
-                app.kubernetes.io/instance: smartctl-exporter
-            namespace: monitoring
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: prometheus-smartctl-exporter
+            app.kubernetes.io/instance: smartctl-exporter
+            io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
             - port: "9633"

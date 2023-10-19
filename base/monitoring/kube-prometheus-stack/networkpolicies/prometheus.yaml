@@ -46,55 +46,41 @@ spec:
             - port: "10250" # kubelet
             - port: "10257" # kube-controller-manager
             - port: "10259" # kube-scheduler
-    - toServices:
-        - k8sServiceSelector:
-            selector:
-              matchLabels:
-                k8s-app: kube-dns
-            namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "9153"
-              protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: kube-prometheus-stack-alertmanager
-            namespace: monitoring
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
+            app.kubernetes.io/name: alertmanager
+            io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
             - port: "8080"
               protocol: TCP
             - port: "9093"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: kube-prometheus-stack-kube-state-metrics
-            namespace: monitoring
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack
+            app.kubernetes.io/name: kube-state-metrics
+            io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
             - port: "8080"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: kube-prometheus-stack-operator
-            namespace: monitoring
+    - toEndpoints:
+        - matchLabels:
+            app: kube-prometheus-stack-operator
+            release: kube-prometheus-stack
+            io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
             - port: "10250" # kubelet
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: kube-prometheus-stack-grafana
-            namespace: monitoring
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack
+            app.kubernetes.io/name: grafana
+            io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
             - port: "3000"
-              protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: hubble-relay-metrics
-            namespace: kube-system
-      toPorts:
-        - ports:
-            - port: "9966"
               protocol: TCP

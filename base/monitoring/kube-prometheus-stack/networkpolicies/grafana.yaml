@@ -41,10 +41,11 @@ spec:
         - ports:
             - port: "6443" # kube-api
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: kube-prometheus-stack-prometheus
-            namespace: monitoring
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
+            io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
             - port: "9090"
@@ -58,10 +59,11 @@ spec:
         - ports:
             - port: "443"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: traefik
-            namespace: traefik
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik-traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
             - port: "8443" # oidc: to access load balancer (https://auth.${BASE_DOMAIN})

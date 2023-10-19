@@ -10,10 +10,11 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: prometheus-pushgateway
-            namespace: monitoring
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: prometheus-pushgateway
+            app.kubernetes.io/name: prometheus-pushgateway
+            io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
             - port: "9091"

@@ -10,10 +10,11 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: kube-prometheus-stack-alertmanager
-            namespace: monitoring
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
+            app.kubernetes.io/name: alertmanager
+            io.kubernetes.pod.namespace: monitoing
       toPorts:
         - ports:
             - port: "9093"
