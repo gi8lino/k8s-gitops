@@ -56,10 +56,12 @@ spec:
         - ports:
             - port: "9090"
               protocol: TCP
-    - toServices:
-        - k8sService:
-            serviceName: metallb-webhook-service
-            namespace: metallb-system
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: metallb
+            app.kubernetes.io/name: metallb
+            io.kubernetes.pod.namespace: metallb-system
       toPorts:
         - ports:
             - port: "9443" # validationwebhook
