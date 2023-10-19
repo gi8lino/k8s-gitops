@@ -88,7 +88,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             k8s-app: kube-dns
-            io.kubernetes.pod.namespace: monitoring
+            io.kubernetes.pod.namespace: kube-system
       toPorts:
         - ports:
             - port: "9153"
