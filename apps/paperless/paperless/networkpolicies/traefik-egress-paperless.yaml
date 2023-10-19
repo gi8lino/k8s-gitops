@@ -10,10 +10,11 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: paperless
-            namespace: paperless
+    - toEndpoints:
+        - matchLabels:
+            app: paperless
+            component: paperless
+            io.kubernetes.pod.namespace: paperless
       toPorts:
         - ports:
             - port: "8000"

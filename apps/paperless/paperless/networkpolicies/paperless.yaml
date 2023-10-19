@@ -31,10 +31,11 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toServices:
-        - k8sService:
-            serviceName: redis
-            namespace: paperless
+    - toEndpoints:
+        - matchLabels:
+            app: paperless
+            component: redis
+            io.kubernetes.pod.namespace: paperless
       toPorts:
         - ports:
             - port: "6379"
