@@ -10,10 +10,10 @@ spec:
       app.kubernetes.io/instance: traefik-traefik
       app.kubernetes.io/name: traefik
   egress:
-    - toServices:
-        - k8sService:
-            serviceName: traefik-forward-auth
-            namespace: traefik
+    - toEndpoints:
+        - matchLabels:
+            app: traefik-forward-auth
+            io.kubernetes.pod.namespace: traefik
       toPorts:
         - ports:
             - port: "4181"
