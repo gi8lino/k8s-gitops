@@ -15,10 +15,6 @@ spec:
             app.kubernetes.io/instance: prometheus-blackbox-exporter
             app.kubernetes.io/name: prometheus-blackbox-exporter
             io.kubernetes.pod.namespace: monitoring
-    - toServices:
-        - k8sService:
-            serviceName: prometheus-blackbox-exporter
-            namespace: monitoring
       toPorts:
         - ports:
             - port: "9115"
