@@ -26,6 +26,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: minio
             app.kubernetes.io/name: minio
+            io.kubernetes.pod.namespace: minio
       toPorts:
         - ports:
             - port: "9000"
