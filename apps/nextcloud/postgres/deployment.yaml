@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:16.0-alpine
+          image: postgres:16.1-alpine
           env:
             - name: TZ
               value: Europe/Zurich
