@@ -60,7 +60,7 @@ spec:
         - ports:
             - port: "80"
               protocol: TCP
-            - port: "883"
+            - port: "8083"
               protocol: TCP
   egress:
     - toEndpoints:
