@@ -118,7 +118,7 @@ spec:
         - matchLabels:
             app: gitaly
             release: gitlab
-            io.kubernetes.pod.namespace: monitoring
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "80"
@@ -129,7 +129,7 @@ spec:
         - matchLabels:
             app: webservice
             release: gitlab
-            io.kubernetes.pod.namespace: monitoring
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "80"
@@ -138,8 +138,17 @@ spec:
         - matchLabels:
             app: sidekiq
             release: gitlab
-            io.kubernetes.pod.namespace: monitoring
+            io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "80"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: traefik-traefik
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: traefik
+      toPorts:
+        - ports:
+            - port: "9100"
               protocol: TCP
