@@ -134,6 +134,8 @@ spec:
         - ports:
             - port: "80"
               protocol: TCP
+            - port: "8083"
+              protocol: TCP
     - toEndpoints:
         - matchLabels:
             app: sidekiq
@@ -142,6 +144,8 @@ spec:
       toPorts:
         - ports:
             - port: "80"
+              protocol: TCP
+            - port: "3807"
               protocol: TCP
     - toEndpoints:
         - matchLabels:
