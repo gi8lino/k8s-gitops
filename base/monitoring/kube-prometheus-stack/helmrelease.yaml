@@ -183,19 +183,7 @@ spec:
             static_configs:
               - targets:
                   - heartbeats.tools.${BASE_DOMAIN}
-          - job_name: 'kubernetes-pods'
-            kubernetes_sd_configs:
-              - role: pod
-            relabel_configs:
-              - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
-                action: keep
-                regex: true
-              - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
-                action: replace
-                regex: (.+):(?:\d+);(\d+)
-                replacement: ${1}:${2}
-                target_label: __address__
-          - job_name: 'kubernetes-endpoints'
+          - job_name: kubernetes-endpoints
             scrape_interval: 30s
             kubernetes_sd_configs:
               - role: endpoints
