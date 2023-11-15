@@ -114,3 +114,32 @@ spec:
         - ports:
             - port: "8080"
               protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app: gitaly
+            release: gitlab
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+            - port: "9236"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app: webservice
+            release: gitlab
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app: sidekiq
+            release: gitlab
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
