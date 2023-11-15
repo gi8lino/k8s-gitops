@@ -44,6 +44,9 @@ spec:
             - port: "6443" # kube-api
             - port: "9100" # prometheus node exporter
             - port: "9633"
+            - port: "9962" # cilium metrics
+            - port: "9963" # cilium metrics
+            - port: "9965" # cilium metrics
             - port: "10250" # kubelet
             - port: "10257" # kube-controller-manager
             - port: "10259" # kube-scheduler
