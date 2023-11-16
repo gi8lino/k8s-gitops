@@ -156,3 +156,11 @@ spec:
         - ports:
             - port: "9100"
               protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: hubble-relay
+            io.kubernetes.pod.namespace: kube-system
+      toPorts:
+        - ports:
+            - port: "9966"
+              protocol: TCP

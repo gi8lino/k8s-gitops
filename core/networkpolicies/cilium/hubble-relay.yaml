@@ -11,6 +11,15 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
+            io.kubernetes.pod.namespace: monitoring
+      toPorts:
+        - ports:
+            - port: "9966"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
             k8s-app: hubble-ui
             io.kubernetes.pod.namespace: kube-system
       toPorts:
