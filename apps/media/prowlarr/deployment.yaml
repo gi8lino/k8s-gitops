@@ -15,8 +15,6 @@ spec:
   template:
     metadata:
       labels: {}
-      annotations:
-        policy.cilium.io/proxy-visibility: <Ingress/9696/TCP/HTTP>,<Egress/53/UDP/DNS>
     spec:
       containers:
         - name: prowlarr
