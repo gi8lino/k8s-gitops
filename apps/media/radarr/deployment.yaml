@@ -16,7 +16,7 @@ spec:
     metadata:
       labels: {}
       annotations:
-        policy.cilium.io/proxy-visibility: <Ingress/7878/TCP/HTTP>,<Egress/53/UDP/DNS>
+        policy.cilium.io/proxy-visibility: <Ingress/7878/TCP/HTTP>,<Egress/53/UDP/DNS,<Egress/8080/TCP/HTTP>,<Egress/9696/TCP/HTTP>
     spec:
       containers:
         - name: radarr
