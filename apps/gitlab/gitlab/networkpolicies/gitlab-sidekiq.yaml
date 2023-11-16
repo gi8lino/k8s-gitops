@@ -12,17 +12,6 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
-            app.kubernetes.io/name: prometheus
-            io.kubernetes.pod.namespace: monitoring
-      toPorts:
-        - ports:
-            - port: "80"
-              protocol: TCP
-            - port: "3807"
-              protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
             app: postgres
             release: gitlab
             io.kubernetes.pod.namespace: gitlab
