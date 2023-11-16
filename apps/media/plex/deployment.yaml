@@ -13,6 +13,8 @@ spec:
   template:
     metadata:
       labels: {}
+      annotations:
+        policy.cilium.io/proxy-visibility: <Ingress/32400/TCP/HTTP>,<Egress/53/UDP/DNS>
     spec:
       securityContext:
         supplementalGroups:
