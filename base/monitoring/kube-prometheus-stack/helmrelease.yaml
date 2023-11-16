@@ -201,7 +201,7 @@ spec:
                 target_label: __address__
                 regex: (.+)(?::\d+);(\d+)
                 replacement: $1:$2
-          - job_name: "kubernetes-pods"
+          - job_name: kubernetes-pods
             kubernetes_sd_configs:
               - role: pod
             relabel_configs:
@@ -216,7 +216,7 @@ spec:
                   ]
                 action: replace
                 regex: (.+):(?:\d+);(\d+)
-                replacement: ${1}:${2}
+                replacement: $1:$2
                 target_label: __address__
     prometheus-node-exporter:
       extraArgs:
