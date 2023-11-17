@@ -50,7 +50,7 @@ spec:
               cpu: 10m
             limits:
               memory: 250Mi
-              cpu: 100m
+              cpu: 200m
           volumeMounts:
             - name: data
               mountPath: /config
