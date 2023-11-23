@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: sabnzbd
-          image: ghcr.io/linuxserver/sabnzbd:4.1.0-ls135
+          image: ghcr.io/linuxserver/sabnzbd:4.1.0-ls136
           env:
             - name: TZ
               value: Europe/Zurich
