@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: whoami
-          image: containous/whoami:v1.5.0
+          image: containous/whoami:v1.4.0
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
