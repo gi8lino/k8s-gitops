@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: tautulli
-          image: ghcr.io/linuxserver/tautulli:v2.13.2-ls107
+          image: ghcr.io/linuxserver/tautulli:v2.13.2-ls108
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
