@@ -64,8 +64,6 @@ spec:
               mountPath: /config/Backups
             - name: movies
               mountPath: /movies
-            - name: dubbed
-              mountPath: /dubbed
             - name: downloads
               mountPath: /downloads
             - name: init-radarr-config
@@ -83,10 +81,6 @@ spec:
         - name: movies
           hostPath:
             path: /mnt/storage/filme
-            type: Directory
-        - name: dubbed
-          hostPath:
-            path: /mnt/storage/dubbed
             type: Directory
         - name: downloads
           hostPath:
