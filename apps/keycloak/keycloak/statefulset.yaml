@@ -25,6 +25,9 @@ spec:
             runAsUser: 1000
           args:
             - start
+          envFrom:
+            - secretRef:
+                name: keycloak
           env:
             - name: KC_CACHE
               value: ispn
