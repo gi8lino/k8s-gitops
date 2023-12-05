@@ -52,8 +52,9 @@ spec:
         protocol: TCP
       traefik:
         expose: true
-      redirectTo:
-        port: websecure
+      web:
+        redirectTo:
+          port: websecure
       websecure:
         tls:
           enabled: true
