@@ -65,9 +65,6 @@ spec:
         metallb.universe.tf/address-pool: traefik
       spec:
         externalTrafficPolicy: Local
-    experimental:
-      plugins:
-        enabled: false
     metrics:
       prometheus: {}
   valuesFrom:
