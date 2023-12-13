@@ -14,7 +14,7 @@ spec:
     # exclude all
     /*
     # include deploy crds dir
-    !/charts/crds/crds
+    !/charts/crds
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
