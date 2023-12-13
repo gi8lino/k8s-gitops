@@ -15,6 +15,14 @@ spec:
         name: prometheus-community
         namespace: flux-system
       interval: 5m
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip
+  valuesFrom:
+    - kind: Secret
+      name: kube-prometheus-stack-helm-values
+      optional: false
   values:
     alertmanager:
       config:
@@ -229,12 +237,3 @@ spec:
                 annotations:
                   summary: Raspberry «{{ $labels.nodename }}» is too hot
                   description: Raspberry is {{ $value }} Celsius
-
-  valuesFrom:
-    - kind: Secret
-      name: kube-prometheus-stack-helm-values
-      optional: false
-  install:
-    crds: Skip
-  upgrade:
-    crds: Skip

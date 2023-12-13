@@ -15,6 +15,14 @@ spec:
         name: k8up-io
         namespace: flux-system
       interval: 5m
+  valuesFrom:
+    - kind: Secret
+      name: k8up-helm-values
+      optional: false
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip
   values:
     image:
       registry: ghcr.io
@@ -29,11 +37,3 @@ spec:
       serviceMonitor:
         enabled: true
         namespace: monitoring
-  valuesFrom:
-    - kind: Secret
-      name: k8up-helm-values
-      optional: false
-  install:
-    crds: Skip
-  upgrade:
-    crds: Skip

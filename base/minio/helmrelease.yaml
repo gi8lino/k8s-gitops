@@ -15,6 +15,10 @@ spec:
         name: minio
         namespace: flux-system
       interval: 5m
+  valuesFrom:
+    - kind: Secret
+      name: minio-helm-values
+      optional: false
   values:
     image:
       repository: quay.io/minio/minio
@@ -57,7 +61,3 @@ spec:
         memory: null
     securityContext:
       enabled: false
-  valuesFrom:
-    - kind: Secret
-      name: minio-helm-values
-      optional: false

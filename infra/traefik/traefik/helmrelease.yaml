@@ -20,6 +20,14 @@ spec:
         name: traefik
         namespace: flux-system
       interval: 5m
+  valuesFrom:
+    - kind: Secret
+      name: traefik-helm-values
+      optional: false
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip
   values:
     additionalArguments:
       - --api.insecure=true
@@ -67,11 +75,3 @@ spec:
         externalTrafficPolicy: Local
     metrics:
       prometheus: {}
-  valuesFrom:
-    - kind: Secret
-      name: traefik-helm-values
-      optional: false
-  install:
-    crds: Skip
-  upgrade:
-    crds: Skip
