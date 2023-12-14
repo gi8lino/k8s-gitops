@@ -87,6 +87,9 @@ spec:
             initialDelaySeconds: 10
             timeoutSeconds: 1
           resources: {}
+          volumeMounts:
+            - name: keycloak-themes
+              mountPath: /opt/keycloak/themes
       serviceAccountName: keycloak
       securityContext:
         fsGroup: 1000
@@ -109,3 +112,7 @@ spec:
                 topologyKey: topology.kubernetes.io/zone
               weight: 100
       terminationGracePeriodSeconds: 60
+      volumes:
+        - name: keycloak-themes
+          persistentVolumeClaim:
+            claimName: keycloak-themes

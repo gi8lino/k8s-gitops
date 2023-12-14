@@ -6,6 +6,7 @@ commonLabels:
 resources:
   - networkpolicies
   - ingress.yaml
+  - persistenvolumeclaim.yaml
   - secret.yaml
   - service.yaml
   - serviceaccount.yaml
