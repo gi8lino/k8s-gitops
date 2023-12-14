@@ -11,5 +11,6 @@ resources:
   - nextcloud
   - paperless
   - renovate
+  - vimbin
   - wallabag
   - wiki

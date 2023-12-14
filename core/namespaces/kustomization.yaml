@@ -21,5 +21,6 @@ resources:
   - storage-system.yaml
   - syncflaer.yaml
   - traefik.yaml
+  - vimbin.yaml
   - wallabag.yaml
   - wiki.yaml

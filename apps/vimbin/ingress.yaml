@@ -1,0 +1,18 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vimbin
+  namespace: vimbin
+spec:
+  rules:
+    - host: vimbin.${BASE_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vimbin
+                port:
+                  name: http

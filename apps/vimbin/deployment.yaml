@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vimbin
+  namespace: vimbin
+spec:
+  selector:
+    matchLabels: {}
+  template:
+    metadata:
+      labels: {}
+    spec:
+      containers:
+        - name: vimbin
+          image: ghcr.io/containeroo/vimbin:v0.0.5
+          ports:
+            - name: http
+              containerPort: 8080
+          args:
+            - serve
+            - --listen-address=0.0.0.0:8080
+            - --directory=/data
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          resources: {}
+      volumes:
+        - name: data
+          emptyDir: {}
