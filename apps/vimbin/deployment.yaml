@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: vimbin
-          image: ghcr.io/containeroo/vimbin:v0.0.8
+          image: ghcr.io/containeroo/vimbin:v0.0.11
           ports:
             - name: http
               containerPort: 8080
