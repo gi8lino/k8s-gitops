@@ -17,6 +17,9 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: vimbin
           args:
             - serve
             - --listen-address=0.0.0.0:8080
