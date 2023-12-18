@@ -35,10 +35,13 @@ spec:
               - matchPattern: "*"
     - toFQDNs:
         - matchName: api.radarr.video
+        - matchName: ghcr.io # catppuccin theme
         - matchName: hooks.slack.com
         - matchName: image.tmdb.org
+        - matchName: pkg-containers.githubusercontent.com # catppucin theme
         - matchName: plex.tv
         - matchName: radarr.servarr.com
+        - matchName: raw.githubusercontent.com # catppuccin theme
         - matchName: sentry.servarr.com
       toPorts:
         - ports:

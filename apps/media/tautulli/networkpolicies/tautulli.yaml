@@ -39,7 +39,10 @@ spec:
             - port: "32400"
               protocol: TCP
     - toFQDNs:
+        - matchName: ghcr.io # catppuccin theme
+        - matchName: pkg-containers.githubusercontent.com # catppucin theme
         - matchName: plex.tv
+        - matchName: raw.githubusercontent.com # catppuccin theme
         - matchName: secure.gravatar.com
         - matchName: tautulli.com
       toPorts:

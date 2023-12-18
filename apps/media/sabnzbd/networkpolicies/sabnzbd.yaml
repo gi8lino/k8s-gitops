@@ -62,17 +62,20 @@ spec:
             - port: "80"
               protocol: TCP
     - toFQDNs:
+        - matchName: ${USENET_INDEXER_DOMAIN}
         - matchName: api.github.com
         - matchName: auth.docker.io
-        - matchName: registry-1.docker.io
         - matchName: codeload.github.com
         - matchName: files.pythonhosted.org
+        - matchName: ghcr.io # catppuccin theme
         - matchName: hooks.slack.com
+        - matchName: pkg-containers.githubusercontent.com # catppucin theme
         - matchName: production.cloudflare.docker.com
         - matchName: pypi.org
-        - matchName: self-test.sabnzbd.org
         - matchName: raw.githubusercontent.com
-        - matchName: ${USENET_INDEXER_DOMAIN}
+        - matchName: raw.githubusercontent.com # catppuccin theme
+        - matchName: registry-1.docker.io
+        - matchName: self-test.sabnzbd.org
       toPorts:
         - ports:
             - port: "443"

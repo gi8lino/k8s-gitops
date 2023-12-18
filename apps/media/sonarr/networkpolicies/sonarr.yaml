@@ -35,8 +35,11 @@ spec:
               - matchPattern: "*"
     - toFQDNs:
         - matchName: artworks.thetvdb.com
+        - matchName: ghcr.io # catppuccin theme
         - matchName: hooks.slack.com
+        - matchName: pkg-containers.githubusercontent.com # catppucin theme
         - matchName: plex.tv
+        - matchName: raw.githubusercontent.com # catppuccin theme
         - matchName: services.sonarr.tv
         - matchName: skyhook.sonarr.tv
         - matchName: thexem.info
