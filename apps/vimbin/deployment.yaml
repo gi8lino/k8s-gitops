@@ -18,8 +18,8 @@ spec:
             - name: http
               containerPort: 8080
           env:
-            - name: VIMBIN_TRACE
-              value: "true"
+            - name: VIMBIN_THEME
+              value: dark
           envFrom:
             - secretRef:
                 name: vimbin
