@@ -25,6 +25,7 @@ spec:
             runAsUser: 1000
           args:
             - start
+            - --auto-build
           envFrom:
             - secretRef:
                 name: keycloak
