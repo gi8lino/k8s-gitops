@@ -24,7 +24,7 @@ spec:
             runAsNonRoot: true
             runAsUser: 1000
           args:
-            - build
+            - start
           envFrom:
             - secretRef:
                 name: keycloak
