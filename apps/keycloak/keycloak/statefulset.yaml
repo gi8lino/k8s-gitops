@@ -24,7 +24,7 @@ spec:
             runAsNonRoot: true
             runAsUser: 1000
           args:
-            - start
+            - build
           envFrom:
             - secretRef:
                 name: keycloak
@@ -88,6 +88,8 @@ spec:
             timeoutSeconds: 1
           resources: {}
           volumeMounts:
+            - name: keycloak-providers
+              mountPath: /opt/keycloak/providers
             - name: keycloak-themes
               mountPath: /opt/keycloak/themes
       serviceAccountName: keycloak
@@ -113,6 +115,9 @@ spec:
               weight: 100
       terminationGracePeriodSeconds: 60
       volumes:
+        - name: keycloak-providers
+          persistentVolumeClaim:
+            claimName: keycloak-providers
         - name: keycloak-themes
           persistentVolumeClaim:
             claimName: keycloak-themes
