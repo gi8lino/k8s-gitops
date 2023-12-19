@@ -11,16 +11,3 @@ spec:
   resources:
     requests:
       storage: 512Mi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: keycloak-themes
-  namespace: keycloak
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: nvme
-  resources:
-    requests:
-      storage: 512Mi

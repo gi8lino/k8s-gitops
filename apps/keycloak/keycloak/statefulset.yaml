@@ -25,7 +25,6 @@ spec:
             runAsUser: 1000
           args:
             - start
-            - --auto-build
           envFrom:
             - secretRef:
                 name: keycloak
@@ -91,8 +90,6 @@ spec:
           volumeMounts:
             - name: keycloak-providers
               mountPath: /opt/keycloak/providers
-            - name: keycloak-themes
-              mountPath: /opt/keycloak/themes
       serviceAccountName: keycloak
       securityContext:
         fsGroup: 1000
@@ -119,6 +116,3 @@ spec:
         - name: keycloak-providers
           persistentVolumeClaim:
             claimName: keycloak-providers
-        - name: keycloak-themes
-          persistentVolumeClaim:
-            claimName: keycloak-themes
