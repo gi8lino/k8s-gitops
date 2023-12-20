@@ -6,9 +6,11 @@ metadata:
   namespace: vimbin
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
     cloudflare-operator.io/type: CNAME
     cloudflare-operator.io/content: ${BASE_DOMAIN}
 spec:
+  ingressClassName: traefik
   rules:
     - host: vimbin.${BASE_DOMAIN}
       http:
