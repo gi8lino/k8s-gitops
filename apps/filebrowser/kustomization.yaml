@@ -9,5 +9,5 @@ resources:
   - deployment.yaml
   - ingress.yaml
   - persistentvolumeclaim.yaml
-  - schedule.yaml
+  # - schedule.yaml
   - service.yaml
