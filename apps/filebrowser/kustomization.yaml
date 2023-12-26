@@ -6,7 +6,7 @@ commonLabels:
 resources:
   - networkpolicies
   - configmap.yaml
-  # - deployment.yaml
+  - deployment.yaml
   - ingress.yaml
   - persistentvolumeclaim.yaml
   # - schedule.yaml
