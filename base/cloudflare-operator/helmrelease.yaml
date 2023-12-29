@@ -6,6 +6,8 @@ metadata:
   namespace: cloudflare-operator
 spec:
   interval: 5m
+  driftDetection:
+    mode: enabled
   chart:
     spec:
       chart: cloudflare-operator
