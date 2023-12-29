@@ -6,6 +6,8 @@ metadata:
   namespace: reloader
 spec:
   interval: 5m
+  driftDetection:
+    mode: enabled
   chart:
     spec:
       chart: reloader

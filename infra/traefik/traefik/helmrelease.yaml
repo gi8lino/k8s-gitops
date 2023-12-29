@@ -6,6 +6,8 @@ metadata:
   namespace: traefik
 spec:
   interval: 5m
+  driftDetection:
+    mode: enabled
   dependsOn:
     - name: metallb
       namespace: metallb-system

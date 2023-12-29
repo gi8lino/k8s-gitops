@@ -6,6 +6,8 @@ metadata:
   namespace: cert-manager
 spec:
   interval: 5m
+  driftDetection:
+    mode: enabled
   chart:
     spec:
       chart: cert-manager

@@ -6,6 +6,8 @@ metadata:
   namespace: monitoring
 spec:
   interval: 5m
+  driftDetection:
+    mode: enabled
   chart:
     spec:
       chart: kube-prometheus-stack

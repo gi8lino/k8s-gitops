@@ -6,6 +6,8 @@ metadata:
   namespace: minio
 spec:
   interval: 5m
+  driftDetection:
+    mode: enabled
   chart:
     spec:
       chart: minio

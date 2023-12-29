@@ -8,6 +8,8 @@ metadata:
     kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
   interval: 5m
+  driftDetection:
+    mode: enabled
   chart:
     spec:
       chart: local-path-provisioner

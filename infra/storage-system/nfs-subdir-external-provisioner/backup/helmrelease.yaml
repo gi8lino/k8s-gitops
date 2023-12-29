@@ -6,6 +6,8 @@ metadata:
   namespace: storage-system
 spec:
   interval: 5m
+  driftDetection:
+    mode: enabled
   chart:
     spec:
       chart: nfs-subdir-external-provisioner
