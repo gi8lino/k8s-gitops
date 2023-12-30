@@ -94,7 +94,7 @@
       "description": "Special versioning for linuxserver.io images",
       "matchDatasources": ["docker"],
       "matchPackagePatterns": ["^ghcr.io/linuxserver/.*"],
-      "versioning": "regex:^(?<compatibility>.*?)-(?<major>v?\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)[\\.-]*r?(?<build>\\d+)*-*r?(?<release>\\w+)*"
+      "versioning": "regex:^v?(?<major>v?\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)[\\.-]*r?(?<build>\\d+)*-*r?(?<release>\\w+)*"
     },
     {
       "matchDatasources": ["docker"],
