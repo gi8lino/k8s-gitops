@@ -22,3 +22,25 @@ spec:
                 name: sonarr
                 port:
                   name: http
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sonarr-api
+  namespace: media
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cloudflare-operator.io/ignore: "true"
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: sonarr.${BASE_DOMAIN}
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: sonarr
+                port:
+                  name: http
