@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
   - plex
   - prowlarr
-  # - radarr
+  - radarr
   - sabnzbd
-  # - sonarr
+  - sonarr
   - tautulli
   - schedule.yaml
