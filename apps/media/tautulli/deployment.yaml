@@ -58,9 +58,6 @@ spec:
               mountPath: /config
             - name: backup
               mountPath: /config/backups
-            - name: init-tautulli-config
-              mountPath: /etc/s6-overlay/s6-rc.d/init-tautulli-config/run
-              subPath: run
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -70,10 +67,3 @@ spec:
         - name: backup
           persistentVolumeClaim:
             claimName: tautulli-backup
-        - name: init-tautulli-config
-          configMap:
-            name: init-tautulli-config
-            items:
-              - key: init-tautulli-config.sh
-                path: run
-            defaultMode: 0755

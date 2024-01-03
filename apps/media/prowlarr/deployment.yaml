@@ -56,9 +56,6 @@ spec:
               mountPath: /config
             - name: backup
               mountPath: /config/Backups
-            - name: init-prowlarr-config
-              mountPath: /etc/s6-overlay/s6-rc.d/init-prowlarr-config/run
-              subPath: run
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -68,10 +65,3 @@ spec:
         - name: backup
           persistentVolumeClaim:
             claimName: prowlarr-backup
-        - name: init-prowlarr-config
-          configMap:
-            name: init-prowlarr-config
-            items:
-              - key: init-prowlarr-config.sh
-                path: run
-            defaultMode: 0755
