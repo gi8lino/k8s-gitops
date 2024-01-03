@@ -40,9 +40,8 @@ spec:
         - matchName: pkg-containers.githubusercontent.com # catppucin theme
         - matchName: plex.tv
         - matchName: raw.githubusercontent.com # catppuccin theme
-        - matchName: services.sonarr.tv
-        - matchName: skyhook.sonarr.tv
         - matchName: thexem.info
+        - matchPattern: "*.sonarr.tv"
       toPorts:
         - ports:
             - port: "443"
