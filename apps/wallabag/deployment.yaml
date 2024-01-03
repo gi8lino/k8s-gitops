@@ -37,11 +37,16 @@ spec:
               containerPort: 80
           resources: {}
           volumeMounts:
-            - mountPath: /var/www/wallabag/data
-              name: wallabag-data
+            - name: wallabag-data
+              mountPath: /var/www/wallabag/data
+            - name: wallabag-images
+              mountPath: /var/www/wallabag/web/assets/images
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
         - name: wallabag-data
           persistentVolumeClaim:
             claimName: wallabag-data
+        - name: wallabag-images
+          persistentVolumeClaim:
+            claimName: wallabag-images
