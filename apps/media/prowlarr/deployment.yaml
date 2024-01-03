@@ -31,15 +31,15 @@ spec:
               containerPort: 9696
           startupProbe:
             httpGet:
-              path: /actuator/health/livenessState
+              path: /ping
               port: http
-            initialDelaySeconds: 10
+            initialDelaySeconds: 5
             failureThreshold: 30
             timeoutSeconds: 3
             periodSeconds: 3
           livenessProbe:
             httpGet:
-              path: /actuator/health/livenessState
+              path: /ping
               port: http
             failureThreshold: 2
             timeoutSeconds: 3
