@@ -8,6 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       app: wallabag
+      component: wallabag
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -29,6 +30,15 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toEndpoints:
+        - matchLabels:
+            app: wallabag
+            component: postgres
+            io.kubernetes.pod.namespace: wallabag
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP
     - toEntities:
         - world
       toPorts:

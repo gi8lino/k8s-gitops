@@ -29,6 +29,22 @@ spec:
               value: "False"
             - name: SYMFONY__ENV__FOSUSER_CONFIRMATION
               value: "False"
+            - name: SYMFONY__ENV__DATABASE_DRIVER
+              value: pdo_pgsql
+            - name: SYMFONY__ENV__DATABASE_HOST
+              value: postgres.wallabag.svc.cluster.local
+            - name: SYMFONY__ENV__DATABASE_PORT
+              value: 5432
+            - name: SYMFONY__ENV__DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_USER
+            - name: SYMFONY__ENV__DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_PASSWORD
           envFrom:
             - secretRef:
                 name: wallabag-symfony
@@ -37,16 +53,11 @@ spec:
               containerPort: 80
           resources: {}
           volumeMounts:
-            - name: wallabag-data
-              mountPath: /var/www/wallabag/data
             - name: wallabag-images
               mountPath: /var/www/wallabag/web/assets/images
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
-        - name: wallabag-data
-          persistentVolumeClaim:
-            claimName: wallabag-data
         - name: wallabag-images
           persistentVolumeClaim:
             claimName: wallabag-images

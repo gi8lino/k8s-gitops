@@ -2,19 +2,20 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: traefik-egress-wallabag
-  namespace: traefik
+  name: postgres
+  namespace: wallabag
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: traefik-traefik
-      app.kubernetes.io/name: traefik
-  egress:
-    - toEndpoints:
+      app: wallabag
+      component: postgres
+  ingress:
+    - fromEndpoints:
         - matchLabels:
             app: wallabag
+            component: wallabag
             io.kubernetes.pod.namespace: wallabag
       toPorts:
         - ports:
-            - port: "80"
+            - port: "5432"
               protocol: TCP
