@@ -29,6 +29,8 @@ spec:
               value: "False"
             - name: SYMFONY__ENV__FOSUSER_CONFIRMATION
               value: "False"
+            - name: POPULATE_DATABASE
+              value: "True"
             - name: SYMFONY__ENV__DATABASE_DRIVER
               value: pdo_pgsql
             - name: SYMFONY__ENV__DATABASE_HOST
