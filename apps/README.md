@@ -13,5 +13,4 @@ This directory contains all other common applications.
 - **nextcloud** self-hosted cloud similar to iCloud
 - **paperless** (paperless-ng) is an indexer and archiver for scanned paper documents
 - **renovate** dependency updater
-- **wallabag** read-it-later application, similar to Pocket
 - **wiki** self-hosted wiki for internal documentation

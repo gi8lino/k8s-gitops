@@ -22,5 +22,4 @@ resources:
   - syncflaer.yaml
   - traefik.yaml
   - vimbin.yaml
-  - wallabag.yaml
   - wiki.yaml
