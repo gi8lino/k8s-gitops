@@ -18,17 +18,14 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    gitlabUrl: https://git.${BASE_DOMAIN}/
-    metrics:
-      enabled: false
+    gitlabUrl: https://git.${BASE_DOMAIN}
+    unregisterRunners: true
     rbac:
       create: true
-    runners:
-      locked: false
-      protected: false
-      runUntagged: true
-    unregisterRunners: true
-    unregisterRunner: false
+      rules:
+        - apiGroups: [""]
+          resources: ["*"]
+          verbs: ["*"]
   valuesFrom:
     - kind: Secret
       name: gitlab-runner-helm-values
