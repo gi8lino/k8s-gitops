@@ -43,6 +43,29 @@ spec:
                 times:
                   - start_time: 09:00
                     end_time: 23:30
+        receivers:
+          - name: heartbeats
+            webhook_configs:
+              - send_resolved: true
+                url: https://heartbeats.tools.${BASE_DOMAIN}/ping/watchdog-prometheus
+          - name: slack
+            slack_configs:
+              - channel: "#alertmanager"
+                send_resolved: true
+                username: Alertmanager
+                icon_url: https://github.com/gi8lino/dashboard-icons/raw/master/png/alertmanager.png
+                text: |2-
+                  {{ range .Alerts }}
+                    *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+                    *Description:* {{ .Annotations.description }}
+                    *Details:*
+                    {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+                    {{ end }}
+                  {{ end }}
+                title:
+                  '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing
+                  | len }}{{ end }}] Monitoring Event Notification'
+          - name: blackhole
         route:
           group_by:
             - job
@@ -84,11 +107,13 @@ spec:
       grafana.ini:
         analytics:
           check_for_updates: false
+        security:
+          disable_initial_admin_creation: true
         auth:
           disable_login_form: true
           oauth_auto_login: true
         auth.basic:
-          enabled: true
+          enabled: false
         auth.generic_oauth:
           enabled: true
           allow_sign_up: true
