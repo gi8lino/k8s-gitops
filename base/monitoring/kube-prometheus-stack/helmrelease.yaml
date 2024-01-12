@@ -102,6 +102,7 @@ spec:
       rules:
         etcd: false
     grafana:
+      assertNoLeakedSecrets: false
       defaultDashboardsTimezone: browser
       envFromSecret: kube-prometheus-stack-grafana-settings
       grafana.ini:
