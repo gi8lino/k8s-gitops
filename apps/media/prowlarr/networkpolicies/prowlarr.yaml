@@ -38,10 +38,13 @@ spec:
               - matchPattern: "*"
     - toFQDNs:
         - matchName: ${USENET_INDEXER_DOMAIN}
+        - matchName: ghcr.io # catppuccin theme
         - matchName: hooks.slack.com
         - matchName: indexers.prowlarr.com
-        - matchName: releases.servarr.com
+        - matchName: pkg-containers.githubusercontent.com # catppucin theme
         - matchName: prowlarr.servarr.com
+        - matchName: raw.githubusercontent.com # catppuccin theme
+        - matchName: releases.servarr.com
       toPorts:
         - ports:
             - port: "443"
