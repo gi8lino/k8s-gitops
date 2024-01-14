@@ -7,8 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: postgresql
-      release: gitlab
+      app.kubernetes.io/instance: gitlab
+      app.kubernetes.io/name: postgresql
   ingress:
     - fromEndpoints:
         - matchLabels:
