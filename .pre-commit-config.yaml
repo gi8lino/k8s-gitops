@@ -45,8 +45,6 @@ repos:
           - Account
           - --ignore-kind
           - IP
-          - --ignore-kind
-          - Component
       - id: forbidden_pattern
         args:
           - --forbidden-pattern

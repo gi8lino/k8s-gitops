@@ -4,8 +4,6 @@ kind: Deployment
 metadata:
   name: sonarr2
   namespace: media
-  labels:
-    configarr: enabled
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
@@ -18,6 +16,30 @@ spec:
     metadata:
       labels: {}
     spec:
+      initContainers:
+        - name: configarr
+          image: busybox:1.36.1
+          env:
+            - name: CONFIGARR_PREFIX
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['app']
+            - NAME: SONARR__LAUNCHBROWSER
+              value: "False"
+            - name: SONARR__AUTHENTICATIONMETHOD
+              value: External
+          command:
+            - sh
+            - -c
+            - |
+              /app/configarr.sh
+              /config/config.xml
+              ${CONFIGARR_PREFIX}
+          volumeMounts:
+            - name: configarr
+              mountPath: /app
+            - name: data
+              mountPath: /config
       containers:
         - name: sonarr2
           image: ghcr.io/linuxserver/sonarr:4.0.0.748-ls221
@@ -65,6 +87,10 @@ spec:
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
+        - name: configarr
+          configMap:
+            name: configarr
+            defaultMode: 0755
         - name: data
           persistentVolumeClaim:
             claimName: sonarr2-data
