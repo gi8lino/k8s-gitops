@@ -34,7 +34,7 @@ spec:
             - |
               /app/configarr.sh
               /config/config.xml
-              ${CONFIGARR_PREFIX}
+              $(CONFIGARR_PREFIX)
           volumeMounts:
             - name: configarr
               mountPath: /app
