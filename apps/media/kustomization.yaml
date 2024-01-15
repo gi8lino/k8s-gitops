@@ -10,5 +10,3 @@ resources:
   - sonarr2
   - tautulli
   - schedule.yaml
-components:
-  - configarr
