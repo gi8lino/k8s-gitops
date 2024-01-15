@@ -8,3 +8,12 @@ configMapGenerator:
     namespace: media
 generatorOptions:
   disableNameSuffixHash: true
+patches:
+  - patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: configarr
