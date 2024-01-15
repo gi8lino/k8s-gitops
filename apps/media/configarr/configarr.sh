@@ -8,7 +8,7 @@ TEMP_FILE="$(mktemp)"
 # Ensure XML file exists
 if [ ! -f "$XML_FILE" ]; then
     echo "XML file not found."
-    exit 1
+    exit 0
 fi
 
 # Function to extract a node value from the XML
