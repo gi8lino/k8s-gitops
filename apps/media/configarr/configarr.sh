@@ -14,7 +14,7 @@ fi
 # Function to extract a node value from the XML
 extract_node_value() {
     node_name="$1"
-    sed -n "s|<${node_name}>\(.*\)</${node_name}>|\1|p" "$XML_FILE"
+    sed -n "s|[ \t]*<${node_name}>\(.*\)</${node_name}>|\1|p" "$XML_FILE"
 }
 
 # Function to replace a node value in the XML
