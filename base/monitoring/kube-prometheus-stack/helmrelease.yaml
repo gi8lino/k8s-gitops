@@ -54,7 +54,7 @@ spec:
                 send_resolved: true
                 username: Alertmanager
                 icon_url: https://github.com/gi8lino/dashboard-icons/raw/master/png/alertmanager.png
-                text: |2-
+                text: |-
                   {{ range .Alerts }}
                     *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
                     *Description:* {{ .Annotations.description }}
@@ -62,9 +62,7 @@ spec:
                     {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
                     {{ end }}
                   {{ end }}
-                title:
-                  '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing
-                  | len }}{{ end }}] Monitoring Event Notification'
+                title: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Monitoring Event Notification'
           - name: blackhole
         route:
           group_by:

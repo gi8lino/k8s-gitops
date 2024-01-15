@@ -9,17 +9,14 @@ resources:
   - ip.yaml
   - secret.yaml
 configMapGenerator:
-  - name: grafana-dashboard-cloudflare-operator
-    namespace: monitoring
-    files:
+  - files:
       - grafana-dashboard-cloudflare-operator.json=https://raw.githubusercontent.com/containeroo/cloudflare-operator/v1.2.2/config/manifests/grafana/dashboards/overview.json
+    name: grafana-dashboard-cloudflare-operator
+    namespace: monitoring
 generatorOptions:
   disableNameSuffixHash: true
 patches:
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-cloudflare-operator
-    patch: |-
+  - patch: |-
       - op: add
         path: "/metadata/labels"
         value:
@@ -28,3 +25,6 @@ patches:
         path: "/metadata/annotations"
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: grafana-dashboard-cloudflare-operator

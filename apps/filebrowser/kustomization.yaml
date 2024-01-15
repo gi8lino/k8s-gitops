@@ -1,8 +1,6 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-commonLabels:
-  app: filebrowser
 resources:
   - networkpolicies
   - configmap.yaml
@@ -11,3 +9,7 @@ resources:
   - persistentvolumeclaim.yaml
   - schedule.yaml
   - service.yaml
+labels:
+  - includeSelectors: true
+    pairs:
+      app: filebrowser

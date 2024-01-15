@@ -6,17 +6,14 @@ resources:
   - helmrelease.yaml
   - prometheusrule.yaml
 configMapGenerator:
-  - name: grafana-dashboard-node-temperatures
-    namespace: monitoring
-    files:
+  - files:
       - dashboards/node-temperatures.json
+    name: grafana-dashboard-node-temperatures
+    namespace: monitoring
 generatorOptions:
   disableNameSuffixHash: true
 patches:
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-node-temperatures
-    patch: |-
+  - patch: |-
       - op: add
         path: "/metadata/labels"
         value:
@@ -25,3 +22,6 @@ patches:
         path: "/metadata/annotations"
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: grafana-dashboard-node-temperatures

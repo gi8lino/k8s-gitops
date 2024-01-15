@@ -53,9 +53,7 @@ spec:
                 - bash
                 - -c
                 - >-
-                  curl
-                  --fail
-                  "localhost:8080/api?mode=version"
+                  curl --fail "localhost:8080/api?mode=version"
             failureThreshold: 2
             timeoutSeconds: 5
             periodSeconds: 30

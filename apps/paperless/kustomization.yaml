@@ -1,9 +1,11 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-commonLabels:
-  app: paperless
 resources:
   - paperless
   - redis
   - schedule.yaml
+labels:
+  - includeSelectors: true
+    pairs:
+      app: paperless

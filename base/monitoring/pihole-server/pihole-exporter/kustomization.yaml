@@ -7,17 +7,14 @@ resources:
   - service.yaml
   - servicemonitor.yaml
 configMapGenerator:
-  - name: grafana-dashboard-pihole-metrics
-    namespace: monitoring
-    files:
+  - files:
       - dashboards/pihole-metrics.json
+    name: grafana-dashboard-pihole-metrics
+    namespace: monitoring
 generatorOptions:
   disableNameSuffixHash: true
 patches:
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-pihole-metrics
-    patch: |-
+  - patch: |-
       - op: add
         path: "/metadata/labels"
         value:
@@ -26,3 +23,6 @@ patches:
         path: "/metadata/annotations"
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: grafana-dashboard-pihole-metrics

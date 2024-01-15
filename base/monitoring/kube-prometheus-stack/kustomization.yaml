@@ -7,17 +7,14 @@ resources:
   - prometheusrule.yaml
   - secret.yaml
 configMapGenerator:
-  - name: grafana-dashboard-node-exporter-full
-    namespace: monitoring
-    files:
+  - files:
       - dashboards/node-exporter-full.json
+    name: grafana-dashboard-node-exporter-full
+    namespace: monitoring
 generatorOptions:
   disableNameSuffixHash: true
 patches:
-  - target:
-      kind: ConfigMap
-      name: grafana-dashboard-node-exporter-full
-    patch: |-
+  - patch: |-
       - op: add
         path: "/metadata/labels"
         value:
@@ -26,3 +23,6 @@ patches:
         path: "/metadata/annotations"
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: grafana-dashboard-node-exporter-full

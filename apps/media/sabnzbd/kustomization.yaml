@@ -1,8 +1,6 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-commonLabels:
-  app: sabnzbd
 resources:
   - networkpolicies
   - deployment.yaml
@@ -10,30 +8,34 @@ resources:
   - persistentvolumeclaim.yaml
   - service.yaml
 configMapGenerator:
-  - name: merge-subtitles
-    namespace: media
-    files:
+  - files:
       - ./scripts/merge_subtitles.sh
-  - name: sabnzbd-startup
+    name: merge-subtitles
     namespace: media
-    files:
+  - files:
       - ./scripts/startup.sh
+    name: sabnzbd-startup
+    namespace: media
 generatorOptions:
   disableNameSuffixHash: true
 patches:
-  - target:
+  - patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
       kind: ConfigMap
       name: merge-subtitles
-    patch: |-
+  - patch: |-
       - op: add
         path: "/metadata/annotations"
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
-  - target:
+    target:
       kind: ConfigMap
       name: sabnzbd-startup
-    patch: |-
-      - op: add
-        path: "/metadata/annotations"
-        value:
-          kustomize.toolkit.fluxcd.io/substitute: disabled
+labels:
+  - includeSelectors: true
+    pairs:
+      app: sabnzbd
