@@ -9,5 +9,4 @@ resources:
   - sabnzbd
   - schedule.yaml
   - sonarr
-  - sonarr2
   - tautulli

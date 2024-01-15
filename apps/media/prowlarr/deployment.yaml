@@ -16,6 +16,23 @@ spec:
     metadata:
       labels: {}
     spec:
+      initContainers:
+        - name: configarr
+          image: busybox:1.36.1
+          env:
+            - name: PROWLARR__LAUNCHBROWSER
+              value: "False"
+            - name: PROWLARR__AUTHENTICATIONMETHOD
+              value: External
+          command:
+            - sh
+            - -c
+            - /app/configarr.sh /config/config.xml PROWLARR
+          volumeMounts:
+            - name: configarr
+              mountPath: /app
+            - name: data
+              mountPath: /config
       containers:
         - name: prowlarr
           image: ghcr.io/linuxserver/prowlarr:1.11.4.4173-ls46
@@ -65,6 +82,10 @@ spec:
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
+        - name: configarr
+          configMap:
+            name: configarr
+            defaultMode: 0755
         - name: data
           persistentVolumeClaim:
             claimName: prowlarr-data
