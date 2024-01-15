@@ -21,7 +21,7 @@ extract_node_value() {
 replace_node_value_sed() {
     node_name="$1"
     new_value="$2"
-    sed "s|<${node_name}>.*</${node_name}>|<${node_name}>${new_value}</${node_name}>|g"
+    sed "s|<${node_name}>.*</${node_name}>|<${node_name}>${new_value}</${node_name}>|gi"
 }
 
 # Copy original XML file to temporary file
