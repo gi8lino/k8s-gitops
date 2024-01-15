@@ -20,18 +20,14 @@ spec:
         - name: configarr
           image: busybox:1.36.1
           env:
-            - name: CONFIGARR_PREFIX
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['app']
-            - name: SONARR__LAUNCHBROWSER
+            - name: SONARR2__LAUNCHBROWSER
               value: "False"
-            - name: SONARR__AUTHENTICATIONMETHOD
+            - name: SONARR2__AUTHENTICATIONMETHOD
               value: External
           command:
             - sh
             - -c
-            - /app/configarr.sh /config/config.xml \$CONFIGARR_PREFIX
+            - /app/configarr.sh /config/config.xml SONARR
           volumeMounts:
             - name: configarr
               mountPath: /app
