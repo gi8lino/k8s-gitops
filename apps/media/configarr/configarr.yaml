@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arr
+  namespace: media
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: configarr
+          image: busybox:1.36.1
+          env:
+            - name: CONFIGARR_PREFIX
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['app']
+            - name: $(CONFIGARR_PREFIX)__LaunchBrowser
+              value: "False"
+            - name: $(CONFIGARR_PREFIX)__AUTHENTICATIONMETHOD
+              value: External
+          command:
+            - sh
+            - -c
+            - |
+              /app/configarr.sh
+              /config/config.xml
+              ${CONFIGARR_PREFIX}
+          volumeMounts:
+            - name: configarr
+              mountPath: /app
+            - name: data
+              mountPath: /config
+      volumes:
+        - name: configarr
+          configMap:
+            name: configarr
+            defaultMode: 0755

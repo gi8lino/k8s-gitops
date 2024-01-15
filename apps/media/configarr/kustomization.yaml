@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+configMapGenerator:
+  - name: configarr
+    namespace: media
+    files:
+      - ./configarr.sh
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - path: configarr.yaml
+    target:
+      kind: Deployment
+      labelSelector: configarr=enabled
