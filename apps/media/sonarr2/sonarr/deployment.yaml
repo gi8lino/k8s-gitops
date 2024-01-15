@@ -1,0 +1,81 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr2
+  namespace: media
+  labels:
+    configarr: enabled
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: {}
+    spec:
+      containers:
+        - name: sonarr2
+          image: ghcr.io/linuxserver/sonarr2:4.0.0.748-ls221
+          env:
+            - name: TZ
+              value: Europe/Zurich
+            - name: PGID
+              value: "2000"
+            - name: PUID
+              value: "2000"
+            - name: DOCKER_MODS
+              value: ghcr.io/themepark-dev/theme.park:sonarr2
+            - name: TP_THEME
+              value: catppuccin-frappe
+            - name: TP_COMMUNITY_THEME
+              value: "true"
+          ports:
+            - name: http
+              containerPort: 8989
+          startupProbe:
+            httpGet:
+              path: /ping
+              port: http
+            initialDelaySeconds: 5
+            failureThreshold: 30
+            timeoutSeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: http
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+          resources: {}
+          volumeMounts:
+            - name: data
+              mountPath: /config
+            - name: backup
+              mountPath: /config/Backups
+            - name: tv-shows
+              mountPath: /tv
+            - name: downloads
+              mountPath: /downloads
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: sonarr2-data
+        - name: backup
+          persistentVolumeClaim:
+            claimName: sonarr2-backup
+        - name: tv-shows
+          hostPath:
+            path: /mnt/storage/serien
+            type: Directory
+        - name: downloads
+          hostPath:
+            path: /mnt/sabnzbd/tv
+            type: Directory

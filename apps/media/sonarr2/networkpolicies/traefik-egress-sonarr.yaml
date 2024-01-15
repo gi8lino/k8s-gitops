@@ -1,0 +1,19 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: traefik-egress-sonarr2
+  namespace: traefik
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik-traefik
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: sonarr2
+            io.kubernetes.pod.namespace: media
+      toPorts:
+        - ports:
+            - port: "8989"
+              protocol: TCP

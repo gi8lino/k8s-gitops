@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sonarr2
+  namespace: media
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+    cloudflare-operator.io/type: CNAME
+    cloudflare-operator.io/content: ${BASE_DOMAIN}
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: sonarr2.${BASE_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sonarr2
+                port:
+                  name: http
