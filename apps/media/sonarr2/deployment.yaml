@@ -24,7 +24,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.labels['app']
-            - NAME: SONARR__LAUNCHBROWSER
+            - name: SONARR__LAUNCHBROWSER
               value: "False"
             - name: SONARR__AUTHENTICATIONMETHOD
               value: External
