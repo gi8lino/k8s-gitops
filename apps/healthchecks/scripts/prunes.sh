@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
 function send_healthchecks {
-  local send_failed="${1:-false}"
-  curl --retry 3 \
+    local send_failed="${1:-false}"
+    curl --retry 3 \
         --max-time 5 \
         --silent \
         --show-error \
-        "${HEALTHCHECKS_URL}$([ "${send_failed}" = "true" ] && echo -n /fail)" > /dev/null
+        "${HEALTHCHECKS_URL}$([ "${send_failed}" = "true" ] && echo -n /fail)" >/dev/null
 }
 
 function notify {
-  send_healthchecks true
-  echo "ERROR: Unable to prune!"
+    send_healthchecks true
+    echo "ERROR: Unable to prune!"
 }
 
 trap notify ERR
@@ -35,10 +35,10 @@ python3 /app/healthchecks/manage.py pruneflips
 # Healthchecks does not remove the associated objects from the external object storage on the fly.
 # Instead, you should run pruneobjects occasionally (for example, once a month). This command first takes an inventory of all checks in the database,
 # and then iterates over top-level keys in the object storage bucket, and deletes any that don't also exist in the database.
-python3 /app/healthchecks/manage.py pruneobjects
+# python3 /app/healthchecks/manage.py pruneobjects
 
 # Prune old pings
-python3 /app/healthchecks/manage.py prunepings
+# python3 /app/healthchecks/manage.py prunepings
 
 # Prune old notifications
 python3 /app/healthchecks/manage.py prunenotifications
