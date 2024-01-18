@@ -9,7 +9,6 @@ resources:
   - keycloak
   - media
   - nextcloud
-  - paperless
   - renovate
   - vimbin
   - wiki

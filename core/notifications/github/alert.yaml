@@ -37,9 +37,6 @@ spec:
       namespace: monitoring
       name: "*"
     - kind: HelmRelease
-      namespace: paperless
-      name: "*"
-    - kind: HelmRelease
       namespace: reloader
       name: "*"
     - kind: HelmRelease

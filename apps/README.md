@@ -11,6 +11,5 @@ This directory contains all other common applications.
 - **keycloak** single-sign-on service
 - **media** usenet-stack containing plex, prowlarr, radarr, sabnzbd, sonarr and tautulli
 - **nextcloud** self-hosted cloud similar to iCloud
-- **paperless** (paperless-ng) is an indexer and archiver for scanned paper documents
 - **renovate** dependency updater
 - **wiki** self-hosted wiki for internal documentation

@@ -7,6 +7,6 @@ resources:
   - prowlarr
   - radarr
   - sabnzbd
-  - schedule.yaml
   - sonarr
   - tautulli
+  - schedule.yaml

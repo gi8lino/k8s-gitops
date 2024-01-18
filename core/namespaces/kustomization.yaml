@@ -15,7 +15,6 @@ resources:
   - minio.yaml
   - monitoring.yaml
   - nextcloud.yaml
-  - paperless.yaml
   - reloader.yaml
   - renovate.yaml
   - storage-system.yaml
