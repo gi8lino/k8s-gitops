@@ -82,7 +82,7 @@ spec:
             - name: healthchecks-data
               mountPath: /config
             - name: prunes
-              mountPath: /etc/periodic/weekly/prunes
+              mountPath: /scripts/prunes
               subPath: prunes
             - name: startup
               mountPath: /scripts/startup
