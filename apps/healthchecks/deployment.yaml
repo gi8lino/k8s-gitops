@@ -71,6 +71,13 @@ spec:
             initialDelaySeconds: 30
             failureThreshold: 5
             periodSeconds: 30
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - crond
           resources:
             requests:
               memory: 256Mi
@@ -82,7 +89,7 @@ spec:
             - name: healthchecks-data
               mountPath: /config
             - name: prunes
-              mountPath: /scripts/prunes
+              mountPath: /etc/periodic/weekly/prunes
               subPath: prunes
             - name: startup
               mountPath: /scripts/startup
