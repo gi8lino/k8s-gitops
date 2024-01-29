@@ -5,6 +5,7 @@ This directory contains infrastructure applications.
 ## Contents
 
 - **cert-manager** automatically provisions and manages TLS certificates in Kubernetes
+- **cilium** is a CNI plugin that provides networking and security services
 - **metallb-system** MetalLB is a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols
 - **metrics-server** metrics server collects resource metrics
 - **storage-system** dynamically provisions persistent local storage and nfs with Kubernetes

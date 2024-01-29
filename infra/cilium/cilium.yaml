@@ -1,0 +1,48 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: cilium
+  namespace: kube-system
+spec:
+  interval: 5m
+  driftDetection:
+    mode: enabled
+  chart:
+    spec:
+      chart: cilium
+      version: 1.14.6
+      sourceRef:
+        kind: HelmRepository
+        name: cilium
+        namespace: flux-system
+      interval: 5m
+  values:
+    hubble:
+      relay:
+        enabled: true
+      ui:
+        enabled: true
+        ingress:
+          enabled: true
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
+            cf.containeroo.ch/ignore: "true"
+          hosts:
+            - hubble.local.${BASE_DOMAIN}
+    operator:
+      replicas: 1
+    ipam:
+      operator:
+        clusterPoolIPv4PodCIDRList:
+          - ${POD_NETWORK_RANGE}
+    kubeProxyReplacement: strict
+    k8sServiceHost: k8s.srv.${BASE_DOMAIN}
+    k8sServicePort: 6443
+    nodeinit:
+      enabled: true
+    nodePort:
+      enabled: true
+    ipv6:
+      enabled: false
