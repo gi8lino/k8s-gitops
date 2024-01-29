@@ -57,6 +57,8 @@ spec:
     gitlab-runner:
       install: false
     global:
+      kas:
+        enabled: false
       appConfig:
         omniauth:
           enabled: true
@@ -77,8 +79,6 @@ spec:
         from: git@${BASE_DOMAIN}
         reply_to: git@${BASE_DOMAIN}
         subject_suffix: null
-      kas:
-        enabled: false
       grafana:
         enabled: false
       hosts:
@@ -108,19 +108,16 @@ spec:
     nginx-ingress:
       enabled: false
     postgresql:
-      metrics:
-        enabled: false
       image:
         tag: 13.6.0
+      metrics:
+        enabled: false
     prometheus:
       install: false
     redis:
       metrics:
         enabled: false
     registry:
-      maintenance:
-        readonly:
-          enabled: false
       ingress:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
@@ -129,6 +126,9 @@ spec:
       hpa:
         maxReplicas: 1
         minReplicas: 1
+      maintenance:
+        readonly:
+          enabled: false
     minio:
       ingress:
         annotations:
