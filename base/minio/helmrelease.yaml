@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: quay.io/minio/minio
-      tag: RELEASE.2024-01-28T22-35-53Z
+      tag: RELEASE.2024-01-29T03-56-32Z
     mode: standalone
     ignoreChartChecksums: true
     podLabels:
