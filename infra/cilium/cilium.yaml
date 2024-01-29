@@ -38,7 +38,7 @@ spec:
         clusterPoolIPv4PodCIDRList:
           - ${POD_NETWORK_RANGE}
     kubeProxyReplacement: strict
-    k8sServiceHost: k8s.srv.${BASE_DOMAIN}
+    k8sServiceHost: k3s.srv.${BASE_DOMAIN}
     k8sServicePort: 6443
     nodeinit:
       enabled: true
