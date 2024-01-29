@@ -1,0 +1,226 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: gitlab
+  namespace: gitlab
+spec:
+  interval: 5m
+  driftDetection:
+    mode: enabled
+  chart:
+    spec:
+      chart: gitlab
+      version: 7.8.1
+      sourceRef:
+        kind: HelmRepository
+        name: gitlab
+        namespace: flux-system
+      interval: 5m
+  values:
+    certmanager:
+      install: false
+    gitlab:
+      gitlab-exporter:
+        enabled: false
+      gitlab-shell:
+        maxReplicas: 1
+        minReplicas: 1
+      migrations:
+        enabled: true
+      sidekiq:
+        deployment:
+          strategy:
+            type: Recreate
+        maxReplicas: 1
+        minReplicas: 1
+      toolbox:
+        backups:
+          cron:
+            enabled: true
+            schedule: 0 1 * * *
+            successfulJobsHistoryLimit: 1
+      webservice:
+        deployment:
+          strategy:
+            type: Recreate
+        maxReplicas: 1
+        minReplicas: 1
+        deployments:
+          default:
+            ingress:
+              annotations:
+                traefik.ingress.kubernetes.io/router.entrypoints: websecure
+                cloudflare-operator.io/content: ${BASE_DOMAIN}
+                cloudflare-operator.io/type: CNAME
+              path: /
+    gitlab-runner:
+      install: false
+    global:
+      appConfig:
+        omniauth:
+          enabled: true
+          allowSingleSignOn:
+            - openid_connect
+          syncProfileFromProvider:
+            - openid_connect
+          syncProfileAttributes:
+            - email
+          autoSignInWithProvider: openid_connect
+          autoLinkUser: true
+          blockAutoCreatedUsers: false
+          providers:
+            - secret: gitlab-oidc-sso
+      edition: ce
+      email:
+        display_name: GitLab@${BASE_DOMAIN}
+        from: git@${BASE_DOMAIN}
+        reply_to: git@${BASE_DOMAIN}
+        subject_suffix: null
+      kas:
+        enabled: false
+      grafana:
+        enabled: false
+      hosts:
+        domain: ${BASE_DOMAIN}
+        gitlab:
+          name: git.${BASE_DOMAIN}
+        minio:
+          name: gitlab-minio.local.${BASE_DOMAIN}
+        registry:
+          name: registry.${BASE_DOMAIN}
+      ingress:
+        configureCertmanager: false
+        enabled: true
+        class: traefik
+        tls:
+          enabled: false
+      smtp:
+        authentication: login
+        enabled: true
+        openssl_verify_mode: peer
+        password:
+          key: password
+          secret: gitlab-mail-password
+        port: 587
+        starttls_auto: true
+      time_zone: Europe/Zurich
+    nginx-ingress:
+      enabled: false
+    postgresql:
+      metrics:
+        enabled: false
+      image:
+        tag: 13.6.0
+    prometheus:
+      install: false
+    redis:
+      metrics:
+        enabled: false
+    registry:
+      maintenance:
+        readonly:
+          enabled: false
+      ingress:
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+          cloudflare-operator.io/ignore: "true"
+      hpa:
+        maxReplicas: 1
+        minReplicas: 1
+    minio:
+      ingress:
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+          cloudflare-operator.io/ignore: "true"
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip
+  valuesFrom:
+    - kind: Secret
+      name: gitlab-helm-values
+      optional: false
+  postRenderers:
+    - kustomize:
+        patches:
+          - patch: |
+              apiVersion: batch/v1
+              kind: CronJob
+              metadata:
+                name: gitlab-toolbox-backup
+                namespace: gitlab
+              spec:
+                timeZone: Europe/Zurich
+          - patch: |-
+              apiVersion: autoscaling/v2
+              kind: HorizontalPodAutoscaler
+              metadata:
+                name: gitlab-registry
+                namespace: gitlab
+              $patch: delete
+          - patch: |-
+              apiVersion: autoscaling/v2
+              kind: HorizontalPodAutoscaler
+              metadata:
+                name: gitlab-webservice-default
+                namespace: gitlab
+              $patch: delete
+          - patch: |-
+              apiVersion: autoscaling/v2
+              kind: HorizontalPodAutoscaler
+              metadata:
+                name: gitlab-gitlab-shell
+                namespace: gitlab
+              $patch: delete
+          - patch: |-
+              apiVersion: autoscaling/v2
+              kind: HorizontalPodAutoscaler
+              metadata:
+                name: gitlab-sidekiq-all-in-1-v2
+                namespace: gitlab
+              $patch: delete
+          - patch: |-
+              apiVersion: policy/v1
+              kind: PodDisruptionBudget
+              metadata:
+                name: gitlab-gitaly
+                namespace: gitlab
+              $patch: delete
+          - patch: |-
+              apiVersion: policy/v1
+              kind: PodDisruptionBudget
+              metadata:
+                name: gitlab-gitlab-shell
+                namespace: gitlab
+              $patch: delete
+          - patch: |-
+              apiVersion: policy/v1
+              kind: PodDisruptionBudget
+              metadata:
+                name: gitlab-sidekiq-all-in-1-v1
+                namespace: gitlab
+              $patch: delete
+          - patch: |-
+              apiVersion: policy/v1
+              kind: PodDisruptionBudget
+              metadata:
+                name: gitlab-webservice-default
+                namespace: gitlab
+              $patch: delete
+          - patch: |-
+              apiVersion: policy/v1
+              kind: PodDisruptionBudget
+              metadata:
+                name: gitlab-minio-v1
+                namespace: gitlab
+              $patch: delete
+          - patch: |-
+              apiVersion: policy/v1
+              kind: PodDisruptionBudget
+              metadata:
+                name: gitlab-registry-v1
+                namespace: gitlab
+              $patch: delete
