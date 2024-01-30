@@ -1,4 +1,5 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>gi8lino/k8s-gitops//.github/renovate/autoMerge.json5",
     "github>gi8lino/k8s-gitops//.github/renovate/commitMessage.json5",
@@ -6,7 +7,6 @@
     "github>gi8lino/k8s-gitops//.github/renovate/semanticCommits.json5"
 
   ],
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
   "separateMajorMinor": true,
@@ -61,7 +61,7 @@
         // GitRepository where 'Git release/tag' matches 'Helm' version (metallb, traefik, kube-prometheus-stack)
         "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?v?(?<currentValue>[^-\\s]*)\n",
 
-        // Kustomization with 'GitHub release artifact URL' (cert-manager, cloudflare-operator, k8up)
+        // Kustomization with 'GitHub release artifact URL' (cert-manager, cloudflare-operator)
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s.*/(?<currentValue>.*?)\\/"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}",
@@ -98,6 +98,7 @@
 
     },
     {
+      "descriiption": "Special versioning for minio images",
       "matchDatasources": ["docker"],
       "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
       "matchPackageNames": ["quay.io/minio/minio"]
