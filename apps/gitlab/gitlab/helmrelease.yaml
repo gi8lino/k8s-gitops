@@ -88,7 +88,7 @@ spec:
         minio:
           name: gitlab-minio.local.${BASE_DOMAIN}
         registry:
-          name: registry.${BASE_DOMAIN}
+          name: registry.local.${BASE_DOMAIN}
       ingress:
         configureCertmanager: false
         enabled: true
