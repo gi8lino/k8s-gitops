@@ -4,9 +4,9 @@ tasks:
   gc:
     desc: run garbage collection on the gitlab registry
     cmds:
-      - kubectl exec -ti \
-        --namespace gitlab \
-        deployments/gitlab-registry \
-        -- \
+      - kubectl exec -ti
+        --namespace gitlab
+        deployments/gitlab-registry
+        --
         registry garbage-collect -m /etc/docker/registry/config.yml
     silent: false
