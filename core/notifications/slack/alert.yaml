@@ -50,7 +50,7 @@ spec:
       namespace: kube-system
       name: "*"
     - kind: HelmRelease
-      namespace: metallb
+      namespace: metallb-system
       name: "*"
     - kind: HelmRelease
       namespace: minio
