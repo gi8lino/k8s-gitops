@@ -10,15 +10,6 @@ spec:
       app.kubernetes.io/instance: metallb
       app.kubernetes.io/name: metallb
       app.kubernetes.io/component: controller
-  ingress:
-    - fromEndpoints:
-        - matchLabels:
-            app: kustomize-controller
-            io.kubernetes.pod.namespace: flux-system
-      toPorts:
-        - ports:
-            - port: "9443" # validationwebhook
-              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
