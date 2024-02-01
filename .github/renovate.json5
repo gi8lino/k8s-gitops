@@ -99,17 +99,7 @@
       "requiredStatusChecks": null,
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": [ "renovate/renovate"]
-    },
-    {
-      "description": "Auto merge GitHub Actions",
-      "matchDatasources": ["github-tags"],
-      "automerge": true,
-      "automergeType": "branch",  // https://docs.renovatebot.com/configuration-options/#automergetype
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": ["renovatebot/github-action"]
     }
-
   ],
   "pre-commit": {
     "enabled": true
