@@ -1,19 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>gi8lino/k8s-gitops//.github/renovate/autoMerge.json5",
     "github>gi8lino/k8s-gitops//.github/renovate/commitMessage.json5",
     "github>gi8lino/k8s-gitops//.github/renovate/labels.json5",
     "github>gi8lino/k8s-gitops//.github/renovate/semanticCommits.json5"
-
   ],
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
   "separateMajorMinor": true,
   "timezone": "Europe/Zurich",
-  "assignees": [
-    "gi8lino"
-  ],
+  "assignees": ["gi8lino"],
   // ignore flux deps (will be updated separately)
   "ignoreDeps": [
     "ghcr.io/fluxcd/helm-controller",
@@ -38,21 +34,24 @@
       "core/helmrepositories/.*\\.ya?ml$"
     ]
   },
-  "regexManagers": [
+  "customManagers": [
     {
       "description": "dependencies for sync-cloudflare-nets",
+      "customType": "regex",
       "fileMatch": [".github/workflows/sync-cloudflare-nets\\.ya?ml$"],
       "matchStrings": ["depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"],
       "datasourceTemplate": "github-releases"
     },
     {
       "description": "dependencies for helm-release-differ",
+      "customType": "regex",
       "fileMatch": [".github/workflows/helm-release-differ\\.ya?ml$"],
       "matchStrings": ["depName=(?<depName>.*)\\s.*version: (?<currentValue>.*)"],
       "datasourceTemplate": "github-releases"
     },
     {
       "description": "Process CRD dependencies",
+      "customType": "regex",
       "fileMatch": ["crds/.+\\.ya?ml$"],
       "matchStrings": [
         //GitRepository where 'Git release/tag' matches 'Helm' version (k8up)
@@ -69,6 +68,7 @@
     },
     {
       "description": "Process raw GitHub URLs",
+      "customType": "regex",
       "fileMatch": ["(apps|base|infra)/(.+/).*\\.ya?ml$"],
       "matchStrings": [
         "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
@@ -79,30 +79,37 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": [
-        "github-releases",
-        "github-tags"
-      ],
-      "matchUpdateTypes": [
-        "patch",
-        "minor",
-        "major"
-      ],
-      "enabled": true
-    },
-    {
       "description": "Special versioning for linuxserver.io images",
       "matchDatasources": ["docker"],
       "matchPackagePatterns": ["^ghcr.io/linuxserver/.*"],
       "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.?(?<build>\\d+)?.*?-ls(?<revision>\\d+)$"
-
     },
     {
       "description": "Special versioning for minio images",
       "matchDatasources": ["docker"],
       "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
       "matchPackageNames": ["quay.io/minio/minio"]
+    },
+    // Auto merge
+    {
+      "description": "Auto merge containers",
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "automergeType": "branch",  // https://docs.renovatebot.com/configuration-options/#automergetype
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": [ "renovate/renovate"]
+    },
+    {
+      "description": "Auto merge GitHub Actions",
+      "matchDatasources": ["github-tags"],
+      "automerge": true,
+      "automergeType": "branch",  // https://docs.renovatebot.com/configuration-options/#automergetype
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": ["renovatebot/github-action"]
     }
+
   ],
   "pre-commit": {
     "enabled": true
