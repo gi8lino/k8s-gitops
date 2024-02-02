@@ -8,8 +8,8 @@ extends: default
 rules:
   truthy:
     allowed-values:
-      - 'true'
-      - 'false'
+      - "true"
+      - "false"
   comments:
     min-spaces-from-content: 1
   line-length: disable
