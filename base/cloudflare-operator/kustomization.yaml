@@ -10,7 +10,7 @@ resources:
   - secret.yaml
 configMapGenerator:
   - files:
-      - grafana-dashboard-cloudflare-operator.json=https://raw.githubusercontent.com/containeroo/cloudflare-operator/v1.2.2/config/manifests/grafana/dashboards/overview.json
+      - grafana-dashboard-cloudflare-operator.json=https://raw.githubusercontent.com/containeroo/cloudflare-operator/v1.3.0/config/manifests/grafana/dashboards/overview.json
     name: grafana-dashboard-cloudflare-operator
     namespace: monitoring
 generatorOptions:
