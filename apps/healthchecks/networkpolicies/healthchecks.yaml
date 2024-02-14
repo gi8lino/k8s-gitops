@@ -40,6 +40,7 @@ spec:
         - matchName: ghcr.io
         - matchName: github.com # docker-mods
         - matchName: hooks.slack.com
+        - matchName: lscr.io
         - matchName: pkg-containers.githubusercontent.com
         - matchName: raw.githubusercontent.com
       toPorts:
