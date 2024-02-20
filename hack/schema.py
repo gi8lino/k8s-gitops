@@ -82,9 +82,9 @@ schemas = [
         schema="https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/gitrepository_v1beta2.json",
     ),
     Schema(
-        api_version="source.toolkit.fluxcd.io/v1beta1",
-        kind="Helmrepository",
-        schema="https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/helmrepository_v1beta1.json",
+        api_version="source.toolkit.fluxcd.io/v1beta2",
+        kind="HelmRepository",
+        schema="https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/helmrepository_v1beta2.json",
     ),
     Schema(
         api_version="notification.toolkit.fluxcd.io/v1beta2",
