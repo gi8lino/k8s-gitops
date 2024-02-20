@@ -1,0 +1,8 @@
+---
+version: "3"
+tasks:
+  add:
+    desc: adds schema to known kinds
+    cmds:
+      - python3 hack/schema.py
+    silent: true
