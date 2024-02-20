@@ -92,7 +92,7 @@ schemas = [
         schema="https://kubernetes-schemas.pages.dev/notification.toolkit.fluxcd.io/alert_v1beta2.json",
     ),
     Schema(
-        api_version="notification.toolkit.fluxcd.io/v1beta1",
+        api_version="notification.toolkit.fluxcd.io/v1beta2",
         kind="Provider",
         schema="https://kubernetes-schemas.pages.dev/notification.toolkit.fluxcd.io/provider_v1beta1.json",
     ),
