@@ -76,6 +76,16 @@ schemas = [
         kind="PrometheusRule",
         schema="https://kubernetes-schemas.pages.dev/monitoring.coreos.com/prometheusrule_v1.json",
     ),
+    Schema(
+        api_version="cert-manager.io/v1",
+        kind="Certificate",
+        schema="https://kubernetes-schemas.pages.dev/cert-manager.io/certificate_v1.json",
+    ),
+    Schema(
+        api_version="cert-manager.io/v1",
+        kind="ClusterIssuer",
+        schema="https://kubernetes-schemas.pages.dev/cert-manager.io/clusterissuer_v1.json",
+    ),
 ]
 
 
