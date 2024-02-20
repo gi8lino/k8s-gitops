@@ -12,6 +12,46 @@ class Schema:
 
 schemas = [
     Schema(
+        api_version="apps/v1",
+        kind="Deployment",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/deployment-v1.json",
+    ),
+    Schema(
+        api_version="apps/v1",
+        kind="StatefulSet",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/statefulset-v1.json",
+    ),
+    Schema(
+        api_version="apps/v1",
+        kind="DaemonSet",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/daemonset-v1.json",
+    ),
+    Schema(
+        api_version="v1",
+        kind="Service",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json",
+    ),
+    Schema(
+        api_version="v1",
+        kind="ConfigMap",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/configmap-v1.json"
+    ),
+    Schema(
+        api_version="networking.k8s.io/v1",
+        kind="Ingress",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/ingress-v1.json"
+    ),
+    Schema(
+        api_version="v1",
+        kind="PersistentVolumeClaim",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/persistentvolumeclaim-v1.json"
+    ),
+    Schema(
+        api_version="batch/v1",
+        kind="CronJob",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/cronjob-batch-v1.json"
+    ),
+    Schema(
         api_version="kustomize.config.k8s.io/v1beta1",
         kind="Kustomization",
         schema="https://json.schemastore.org/kustomization",
