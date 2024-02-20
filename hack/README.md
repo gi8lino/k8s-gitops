@@ -56,3 +56,7 @@ Unencrypted secret will be automatically decrypted!
 -f, --force         override existing templates
 -h, --help          display this help and exit
 ```
+
+## schema
+
+Iterates over each ".yaml" file and tries to add the yaml-schema to the file.
