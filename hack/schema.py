@@ -126,6 +126,16 @@ schemas = [
         kind="ClusterIssuer",
         schema="https://kubernetes-schemas.pages.dev/cert-manager.io/clusterissuer_v1.json",
     ),
+    Schema(
+        api_version="traefik.containo.us/v1alpha1",
+        kind="IngressRouteTCP",
+        schema="https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/traefik.containo.us/ingressroutetcp_v1alpha1.json"
+    ),
+    Schema(
+        api_version="traefik.containo.us/v1alpha1",
+        kind="Middleware",
+        schema="https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/traefik.containo.us/middlevare_v1alpha1.json"
+    ),
 ]
 
 
