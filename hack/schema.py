@@ -43,6 +43,11 @@ schemas = [
     ),
     Schema(
         api_version="v1",
+        kind="Namespace",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/namespace-v1.json"
+    ),
+    Schema(
+        api_version="v1",
         kind="PersistentVolumeClaim",
         schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/persistentvolumeclaim-v1.json"
     ),
