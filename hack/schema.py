@@ -12,14 +12,14 @@ class Schema:
 
 schemas = [
     Schema(
-        api_version="apps/v1",
-        kind="Deployment",
-        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/deployment-v1.json",
+        api_version="v1",
+        kind="ConfigMap",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/configmap-v1.json"
     ),
     Schema(
-        api_version="apps/v1",
-        kind="StatefulSet",
-        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/statefulset-v1.json",
+        api_version="batch/v1",
+        kind="CronJob",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/cronjob-batch-v1.json"
     ),
     Schema(
         api_version="apps/v1",
@@ -27,19 +27,14 @@ schemas = [
         schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/daemonset-v1.json",
     ),
     Schema(
-        api_version="v1",
-        kind="Service",
-        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json",
-    ),
-    Schema(
-        api_version="v1",
-        kind="ConfigMap",
-        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/configmap-v1.json"
+        api_version="apps/v1",
+        kind="Deployment",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/deployment-apps-v1.json",
     ),
     Schema(
         api_version="networking.k8s.io/v1",
         kind="Ingress",
-        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/ingress-v1.json"
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master/ingress.json"
     ),
     Schema(
         api_version="v1",
@@ -52,74 +47,14 @@ schemas = [
         schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/persistentvolumeclaim-v1.json"
     ),
     Schema(
-        api_version="batch/v1",
-        kind="CronJob",
-        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/cronjob-batch-v1.json"
+        api_version="v1",
+        kind="Service",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json",
     ),
     Schema(
-        api_version="kustomize.config.k8s.io/v1beta1",
-        kind="Kustomization",
-        schema="https://json.schemastore.org/kustomization",
-    ),
-    Schema(
-        api_version="cilium.io/v2",
-        kind="CiliumNetworkPolicy",
-        schema="https://kubernetes-schemas.pages.dev/cilium.io/ciliumnetworkpolicy_v2.json",
-    ),
-    Schema(
-        api_version="cilium.io/v2",
-        kind="CiliumClusterwideNetworkPolicy",
-        schema="https://kubernetes-schemas.pages.dev/cilium.io/ciliumclusterwidenetworkpolicy_v2.json",
-    ),
-    Schema(
-        api_version="kustomize.toolkit.fluxcd.io/v1",
-        kind="Kustomization",
-        schema="https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json",
-    ),
-    Schema(
-        api_version="helm.toolkit.fluxcd.io/v2beta2",
-        kind="HelmRelease",
-        schema="https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json",
-    ),
-    Schema(
-        api_version="source.toolkit.fluxcd.io/v1beta2",
-        kind="GitRepository",
-        schema="https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/gitrepository_v1beta2.json",
-    ),
-    Schema(
-        api_version="source.toolkit.fluxcd.io/v1beta2",
-        kind="HelmRepository",
-        schema="https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/helmrepository_v1beta2.json",
-    ),
-    Schema(
-        api_version="notification.toolkit.fluxcd.io/v1beta2",
-        kind="Alert",
-        schema="https://kubernetes-schemas.pages.dev/notification.toolkit.fluxcd.io/alert_v1beta2.json",
-    ),
-    Schema(
-        api_version="notification.toolkit.fluxcd.io/v1beta2",
-        kind="Provider",
-        schema="https://kubernetes-schemas.pages.dev/notification.toolkit.fluxcd.io/provider_v1beta1.json",
-    ),
-    Schema(
-        api_version="notification.toolkit.fluxcd.io/v1beta1",
-        kind="Receiver",
-        schema="https://kubernetes-schemas.pages.dev/notification.toolkit.fluxcd.io/receiver_v1beta1.json",
-    ),
-    Schema(
-        api_version="monitoring.coreos.com/v1",
-        kind="Podmonitor",
-        schema="https://kubernetes-schemas.pages.dev/monitoring.coreos.com/podmonitor_v1.json",
-    ),
-    Schema(
-        api_version="monitoring.coreos.com/v1",
-        kind="ServiceMonitor",
-        schema="https://kubernetes-schemas.pages.dev/monitoring.coreos.com/servicemonitor_v1.json",
-    ),
-    Schema(
-        api_version="monitoring.coreos.com/v1",
-        kind="PrometheusRule",
-        schema="https://kubernetes-schemas.pages.dev/monitoring.coreos.com/prometheusrule_v1.json",
+        api_version="apps/v1",
+        kind="StatefulSet",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/statefulset-apps-v1.json",
     ),
     Schema(
         api_version="cert-manager.io/v1",
@@ -132,6 +67,83 @@ schemas = [
         schema="https://kubernetes-schemas.pages.dev/cert-manager.io/clusterissuer_v1.json",
     ),
     Schema(
+        api_version="cilium.io/v2",
+        kind="CiliumClusterwideNetworkPolicy",
+        schema="https://kubernetes-schemas.pages.dev/cilium.io/ciliumclusterwidenetworkpolicy_v2.json",
+    ),
+    Schema(
+        api_version="cilium.io/v2",
+        kind="CiliumNetworkPolicy",
+        schema="https://kubernetes-schemas.pages.dev/cilium.io/ciliumnetworkpolicy_v2.json",
+    ),
+
+    Schema(
+        api_version="kustomize.config.k8s.io/v1beta1",
+        kind="Kustomization",
+        schema="https://json.schemastore.org/kustomization",
+    ),
+
+    Schema(
+        api_version="notification.toolkit.fluxcd.io/v1beta2",
+        kind="Alert",
+        schema="https://kubernetes-schemas.pages.dev/notification.toolkit.fluxcd.io/alert_v1beta2.json",
+    ),
+    Schema(
+        api_version="source.toolkit.fluxcd.io/v1beta2",
+        kind="GitRepository",
+        schema="https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/gitrepository_v1beta2.json",
+    ),
+    Schema(
+        api_version="helm.toolkit.fluxcd.io/v2beta2",
+        kind="HelmRelease",
+        schema="https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json",
+    ),
+    Schema(
+        api_version="source.toolkit.fluxcd.io/v1beta2",
+        kind="HelmRepository",
+        schema="https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/helmrepository_v1beta2.json",
+    ),
+    Schema(
+        api_version="kustomize.toolkit.fluxcd.io/v1",
+        kind="Kustomization",
+        schema="https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json",
+    ),
+    Schema(
+        api_version="monitoring.coreos.com/v1",
+        kind="Podmonitor",
+        schema="https://kubernetes-schemas.pages.dev/monitoring.coreos.com/podmonitor_v1.json",
+    ),
+    Schema(
+        api_version="notification.toolkit.fluxcd.io/v1beta2",
+        kind="Provider",
+        schema="https://kubernetes-schemas.pages.dev/notification.toolkit.fluxcd.io/provider_v1beta1.json",
+    ),
+    Schema(
+        api_version="notification.toolkit.fluxcd.io/v1beta1",
+        kind="Receiver",
+        schema="https://kubernetes-schemas.pages.dev/notification.toolkit.fluxcd.io/receiver_v1beta1.json",
+    ),
+    Schema(
+        api_version="metallb.io/v1beta1",
+        kind="IPAddressPool",
+        schema="https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/metallb.io/ipaddresspool_v1beta1.json"
+    ),
+    Schema(
+        api_version="metallb.io/v1beta1",
+        kind="L2Advertisement",
+        schema="https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/metallb.io/l2advertisement_v1beta1.json"
+    ),
+    Schema(
+        api_version="monitoring.coreos.com/v1",
+        kind="PrometheusRule",
+        schema="https://kubernetes-schemas.pages.dev/monitoring.coreos.com/prometheusrule_v1.json",
+    ),
+    Schema(
+        api_version="monitoring.coreos.com/v1",
+        kind="ServiceMonitor",
+        schema="https://kubernetes-schemas.pages.dev/monitoring.coreos.com/servicemonitor_v1.json",
+    ),
+    Schema(
         api_version="traefik.containo.us/v1alpha1",
         kind="IngressRouteTCP",
         schema="https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/traefik.containo.us/ingressroutetcp_v1alpha1.json"
@@ -139,7 +151,12 @@ schemas = [
     Schema(
         api_version="traefik.containo.us/v1alpha1",
         kind="Middleware",
-        schema="https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/traefik.containo.us/middlevare_v1alpha1.json"
+        schema="https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/traefik.containo.us/middleware_v1alpha1.json"
+    ),
+    Schema(
+        api_version="traefik.containo.us/v1alpha1",
+        kind="TLSStore",
+        schema="https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/traefik.containo.us/tlsstore_v1alpha1.json"
     ),
 ]
 
