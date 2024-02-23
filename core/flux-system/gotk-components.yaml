@@ -3550,6 +3550,7 @@ spec:
     subresources:
       status: {}
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -3561,6 +3562,7 @@ metadata:
   name: source-controller
   namespace: flux-system
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json
 apiVersion: v1
 kind: Service
 metadata:
@@ -3582,6 +3584,7 @@ spec:
     app: source-controller
   type: ClusterIP
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/deployment-apps-v1.json
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5313,6 +5316,7 @@ spec:
     subresources:
       status: {}
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -5324,6 +5328,7 @@ metadata:
   name: kustomize-controller
   namespace: flux-system
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/deployment-apps-v1.json
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7670,6 +7675,7 @@ spec:
     subresources:
       status: {}
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -7681,6 +7687,7 @@ metadata:
   name: helm-controller
   namespace: flux-system
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/deployment-apps-v1.json
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -9539,6 +9546,7 @@ spec:
     subresources:
       status: {}
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -9550,6 +9558,7 @@ metadata:
   name: notification-controller
   namespace: flux-system
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json
 apiVersion: v1
 kind: Service
 metadata:
@@ -9571,6 +9580,7 @@ spec:
     app: notification-controller
   type: ClusterIP
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json
 apiVersion: v1
 kind: Service
 metadata:
@@ -9592,6 +9602,7 @@ spec:
     app: notification-controller
   type: ClusterIP
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/deployment-apps-v1.json
 apiVersion: apps/v1
 kind: Deployment
 metadata:

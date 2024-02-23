@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/traefik.containo.us/middleware_v1alpha1.json
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
@@ -17,6 +18,7 @@ spec:
       X-Robots-Tag: none
       X-Forwarded-Proto: https
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/traefik.containo.us/middleware_v1alpha1.json
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:

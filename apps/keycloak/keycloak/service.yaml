@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json
 apiVersion: v1
 kind: Service
 metadata:
@@ -11,6 +12,7 @@ spec:
       targetPort: http
   type: ClusterIP
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/service-v1.json
 apiVersion: v1
 kind: Service
 metadata:
