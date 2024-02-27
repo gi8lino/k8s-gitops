@@ -33,7 +33,7 @@ spec:
             - name: VERSION
               value: latest
             - name: DOCKER_MODS
-              value: ghcr.io/themepark-dev/theme.park:jellyfin
+              value: ghcr.io/themepark-dev/theme.park:jellyfin,linuxserver/mods:jellyfin-opencl-intel
             - name: TP_THEME
               value: catppuccin-frappe
             - name: TP_COMMUNITY_THEME
