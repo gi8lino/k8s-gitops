@@ -3,21 +3,30 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: tautulli
+  name: jellyfin
   namespace: media
 spec:
   endpointSelector:
     matchLabels:
-      app: tautulli
+      app: jellyfin
   ingress:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: traefik-traefik
             app.kubernetes.io/name: traefik
             io.kubernetes.pod.namespace: traefik
+        - matchLabels:
+            app: sonarr
+            io.kubernetes.pod.namespace: media
+        - matchLabels:
+            app: radarr
+            io.kubernetes.pod.namespace: media
+        - matchLabels:
+            app: tautulli
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
-            - port: "8181"
+            - port: "8096"
               protocol: TCP
   egress:
     - toEndpoints:
@@ -31,31 +40,10 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toEndpoints:
-        - matchLabels:
-            app: jellyfin
-            io.kubernetes.pod.namespace: media
+    - toEntities:
+        - world
       toPorts:
         - ports:
-            - port: "8096"
-              protocol: TCP
-    - toEndpoints:
-        - matchLabels:
-            app: plex
-            io.kubernetes.pod.namespace: media
-      toPorts:
-        - ports:
-            - port: "32400"
-              protocol: TCP
-    - toFQDNs:
-        - matchName: api.github.com
-        - matchName: ghcr.io # catppuccin theme
-        - matchName: pkg-containers.githubusercontent.com # catppucin theme
-        - matchName: plex.tv
-        - matchName: raw.githubusercontent.com # catppuccin theme
-        - matchName: secure.gravatar.com
-        - matchName: tautulli.com
-      toPorts:
+            - port: "80"
         - ports:
             - port: "443"
-              protocol: TCP
