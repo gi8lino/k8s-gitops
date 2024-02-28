@@ -33,14 +33,6 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - matchLabels:
-            app: jellyfin
-            io.kubernetes.pod.namespace: media
-      toPorts:
-        - ports:
-            - port: "8096"
-              protocol: TCP
-    - toEndpoints:
-        - matchLabels:
             app: plex
             io.kubernetes.pod.namespace: media
       toPorts:
