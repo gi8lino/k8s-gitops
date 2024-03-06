@@ -6,7 +6,7 @@ metadata:
   name: k8up
   namespace: k8up
 spec:
-  interval: 5m
+  interval: 30m
   driftDetection:
     mode: enabled
   chart:
@@ -17,7 +17,6 @@ spec:
         kind: HelmRepository
         name: k8up-io
         namespace: flux-system
-      interval: 5m
   valuesFrom:
     - kind: Secret
       name: k8up-helm-values

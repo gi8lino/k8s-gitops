@@ -24,7 +24,7 @@ metadata:
   name: traefik-crds
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 30m
   prune: false
   sourceRef:
     kind: GitRepository

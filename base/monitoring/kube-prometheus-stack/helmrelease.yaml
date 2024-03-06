@@ -6,7 +6,7 @@ metadata:
   name: kube-prometheus-stack
   namespace: monitoring
 spec:
-  interval: 5m
+  interval: 30m
   driftDetection:
     mode: enabled
   chart:
@@ -17,7 +17,6 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
-      interval: 5m
   install:
     crds: Skip
   upgrade:

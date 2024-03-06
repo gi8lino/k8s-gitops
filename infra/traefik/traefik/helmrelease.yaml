@@ -6,7 +6,7 @@ metadata:
   name: traefik
   namespace: traefik
 spec:
-  interval: 5m
+  interval: 30m
   driftDetection:
     mode: enabled
   dependsOn:
@@ -22,7 +22,6 @@ spec:
         kind: HelmRepository
         name: traefik
         namespace: flux-system
-      interval: 5m
   valuesFrom:
     - kind: Secret
       name: traefik-helm-values

@@ -6,7 +6,7 @@ metadata:
   name: cilium
   namespace: kube-system
 spec:
-  interval: 5m
+  interval: 30m
   driftDetection:
     mode: enabled
   chart:
@@ -17,7 +17,6 @@ spec:
         kind: HelmRepository
         name: cilium
         namespace: flux-system
-      interval: 5m
   values:
     hubble:
       relay:

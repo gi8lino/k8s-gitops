@@ -6,7 +6,7 @@ metadata:
   name: gitlab
   namespace: gitlab
 spec:
-  interval: 5m
+  interval: 30m
   driftDetection:
     mode: enabled
   chart:
@@ -17,7 +17,6 @@ spec:
         kind: HelmRepository
         name: gitlab
         namespace: flux-system
-      interval: 5m
   values:
     certmanager:
       install: false
