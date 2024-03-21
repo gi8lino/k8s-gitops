@@ -52,10 +52,9 @@ spec:
         annotations:
           metallb.universe.tf/address-pool: ingress-nginx
         externalTrafficPolicy: Local
-        ipFamilyPolicy: PreferDualStack
+        ipFamilyPolicy: SingleStack
         ipFamilies:
           - IPv4
-          - IPv6
     defaultBackend:
       enabled: true
     tcp:
