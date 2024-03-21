@@ -3,18 +3,20 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: traefik-egress-sonarr
-  namespace: traefik
+  name: ingress-nginx-egress-whoami
+  namespace: ingress-nginx
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: traefik-traefik
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: ingress-nginx
   egress:
     - toEndpoints:
         - matchLabels:
-            app: sonarr
-            io.kubernetes.pod.namespace: media
+            app: whoami
+            io.kubernetes.pod.namespace: debug
       toPorts:
         - ports:
-            - port: "8989"
+            - port: "80"
               protocol: TCP

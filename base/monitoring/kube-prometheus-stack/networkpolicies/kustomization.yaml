@@ -8,9 +8,9 @@ resources:
   - egress-kube-prometheus-stack-admission-create-job.yaml
   - egress-kube-prometheus-stack-admission-patch-job.yaml
   - grafana.yaml
+  - ingress-nginx-egress-alertmanager.yaml
+  - ingress-nginx-egress-grafana.yaml
+  - ingress-nginx-egress-prometheus.yaml
   - kube-prometheus-stack-operator.yaml
   - kube-state-metrics.yaml
   - prometheus.yaml
-  - traefik-egress-alertmanager.yaml
-  - traefik-egress-grafana.yaml
-  - traefik-egress-prometheus.yaml

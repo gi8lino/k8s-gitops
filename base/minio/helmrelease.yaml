@@ -36,8 +36,8 @@ spec:
       enabled: true
       ingressClassName: nginx
       annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+        nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
+        nginx.ingress.kubernetes.io/proxy-body-size: 200m
         cloudflare-operator.io/ignore: "true"
       hosts:
         - s3.local.${BASE_DOMAIN}
@@ -45,8 +45,8 @@ spec:
       enabled: true
       ingressClassName: nginx
       annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+        nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
+        nginx.ingress.kubernetes.io/proxy-body-size: 200m
         cloudflare-operator.io/ignore: "true"
       hosts:
         - minio.local.${BASE_DOMAIN}

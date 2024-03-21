@@ -3,18 +3,19 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: traefik-egress-vimbin
-  namespace: traefik
+  name: ingress-nginx-egress-sabnzbd
+  namespace: ingress-nginx
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: traefik-traefik
-      app.kubernetes.io/name: traefik
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: ingress-nginx
   egress:
     - toEndpoints:
         - matchLabels:
-            app: vimbin
-            io.kubernetes.pod.namespace: vimbin
+            app: sabnzbd
+            io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
             - port: "8080"

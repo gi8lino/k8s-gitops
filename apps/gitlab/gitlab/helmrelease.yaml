@@ -50,7 +50,9 @@ spec:
           default:
             ingress:
               annotations:
-                traefik.ingress.kubernetes.io/router.entrypoints: websecure
+                nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
+                nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
+                nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
                 cloudflare-operator.io/content: ${BASE_DOMAIN}
                 cloudflare-operator.io/type: CNAME
               path: /
@@ -92,7 +94,7 @@ spec:
       ingress:
         configureCertmanager: false
         enabled: true
-        class: traefik
+        class: nginx
         tls:
           enabled: false
       smtp:
@@ -120,8 +122,10 @@ spec:
     registry:
       ingress:
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+          nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
+          nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
+          nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
+          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
           cloudflare-operator.io/ignore: "true"
       hpa:
         maxReplicas: 1
@@ -132,8 +136,10 @@ spec:
     minio:
       ingress:
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
+          nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
+          nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
+          nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
+          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
           cloudflare-operator.io/ignore: "true"
   install:
     crds: Skip

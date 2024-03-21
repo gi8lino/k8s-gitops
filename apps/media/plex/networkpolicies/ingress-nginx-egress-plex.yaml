@@ -3,19 +3,20 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: traefik-egress-prowlarr
-  namespace: traefik
+  name: ingress-nginx-egress-plex
+  namespace: ingress-nginx
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: traefik-traefik
-      app.kubernetes.io/name: traefik
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: ingress-nginx
   egress:
     - toEndpoints:
         - matchLabels:
-            app: prowlarr
+            app: plex
             io.kubernetes.pod.namespace: media
       toPorts:
         - ports:
-            - port: "9696"
+            - port: "32400"
               protocol: TCP

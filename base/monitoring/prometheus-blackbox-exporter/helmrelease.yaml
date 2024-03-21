@@ -39,10 +39,12 @@ spec:
               - ${NEWSNAB_REGEX}
     ingress:
       enabled: true
-      className: traefik
+      className: nginx
       annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd,traefik-forward-auth@kubernetescrd
+        nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
+        nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
+        nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
+        nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
         cloudflare-operator.io/ignore: "true"
       hosts:
         - host: blackbox.local.${BASE_DOMAIN}

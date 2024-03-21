@@ -3,18 +3,19 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: traefik-egress-whoami
-  namespace: traefik
+  name: ingress-nginx-egress-filebrowser
+  namespace: ingress-nginx
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: traefik-traefik
-      app.kubernetes.io/name: traefik
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: ingress-nginx
+      app.kubernetes.io/name: ingress-nginx
   egress:
     - toEndpoints:
         - matchLabels:
-            app: whoami
-            io.kubernetes.pod.namespace: debug
+            app: filebrowser
+            io.kubernetes.pod.namespace: filebrowser
       toPorts:
         - ports:
             - port: "80"

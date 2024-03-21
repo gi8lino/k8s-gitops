@@ -3,20 +3,21 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: traefik-egress-blackbox-exporter
-  namespace: traefik
+  name: ingress-nginx-egress-prometheus-pushgateway
+  namespace: ingress-nginx
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: traefik-traefik
-      app.kubernetes.io/name: traefik
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: ingress-nginx
   egress:
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: prometheus-blackbox-exporter
-            app.kubernetes.io/name: prometheus-blackbox-exporter
+            app.kubernetes.io/instance: prometheus-pushgateway
+            app.kubernetes.io/name: prometheus-pushgateway
             io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
-            - port: "9115"
+            - port: "9091"
               protocol: TCP

@@ -6,7 +6,9 @@ metadata:
   name: keycloak
   namespace: keycloak
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
+    nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
     cloudflare-operator.io/type: CNAME
     cloudflare-operator.io/content: ${BASE_DOMAIN}
 spec:

@@ -13,9 +13,10 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: traefik-traefik
-            app.kubernetes.io/name: traefik
-            io.kubernetes.pod.namespace: traefik
+            app.kubernetes.io/name: ingress-nginx
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: ingress-nginx
+            io.kubernetes.pod.namespace: ingress-nginx
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
             app.kubernetes.io/name: prometheus
@@ -62,10 +63,11 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: traefik-traefik
-            app.kubernetes.io/name: traefik
-            io.kubernetes.pod.namespace: traefik
+            app.kubernetes.io/name: ingress-nginx
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: ingress-nginx
+            io.kubernetes.pod.namespace: ingress-nginx
       toPorts:
         - ports:
-            - port: "8443" # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
+            - port: "443" # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
               protocol: TCP

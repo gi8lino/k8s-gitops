@@ -3,20 +3,21 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: traefik-egress-grafana
-  namespace: traefik
+  name: ingress-nginx-egress-prometheus
+  namespace: ingress-nginx
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: traefik-traefik
-      app.kubernetes.io/name: traefik
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: ingress-nginx
   egress:
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack
-            app.kubernetes.io/name: grafana
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
             io.kubernetes.pod.namespace: monitoring
       toPorts:
         - ports:
-            - port: "3000"
+            - port: "9090"
               protocol: TCP

@@ -13,9 +13,10 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: traefik-traefik
-            app.kubernetes.io/name: traefik
-            io.kubernetes.pod.namespace: traefik
+            app.kubernetes.io/name: ingress-nginx
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: ingress-nginx
+            io.kubernetes.pod.namespace: ingress-nginx
       toPorts:
         - ports:
             - port: "8080"
@@ -66,9 +67,10 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: traefik-traefik
-            app.kubernetes.io/name: traefik
-            io.kubernetes.pod.namespace: traefik
+            app.kubernetes.io/name: ingress-nginx
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: ingress-nginx
+            io.kubernetes.pod.namespace: ingress-nginx
       toPorts:
         - ports:
             - port: "8443" # OIDC

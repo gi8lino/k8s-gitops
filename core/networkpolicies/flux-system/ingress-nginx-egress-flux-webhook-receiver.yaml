@@ -1,0 +1,22 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumnetworkpolicy_v2.json
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: ingress-nginx-egress-flux-webhook-receiver
+  namespace: ingress-nginx
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: ingress-nginx
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: notification-controller
+            io.kubernetes.pod.namespace: flux-system
+      toPorts:
+        - ports:
+            - port: "9292"
+              protocol: TCP

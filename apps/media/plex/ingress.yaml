@@ -6,7 +6,6 @@ metadata:
   name: plex
   namespace: media
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cloudflare-operator.io/type: CNAME
     cloudflare-operator.io/content: ${BASE_DOMAIN}
 spec:

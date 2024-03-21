@@ -22,6 +22,5 @@ resources:
   - renovate.yaml
   - storage-system.yaml
   - syncflaer.yaml
-  - traefik.yaml
   - vimbin.yaml
   - wiki.yaml
