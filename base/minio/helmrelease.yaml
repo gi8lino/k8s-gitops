@@ -34,7 +34,7 @@ spec:
       storageClass: backup
     ingress:
       enabled: true
-      ingressClassName: traefik
+      ingressClassName: nginx
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd
@@ -43,7 +43,7 @@ spec:
         - s3.local.${BASE_DOMAIN}
     consoleIngress:
       enabled: true
-      ingressClassName: traefik
+      ingressClassName: nginx
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-allow-lan-only@kubernetescrd

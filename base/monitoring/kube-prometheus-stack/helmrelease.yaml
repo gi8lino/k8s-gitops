@@ -92,7 +92,7 @@ spec:
           cloudflare-operator.io/ignore: "true"
         hosts:
           - alertmanager.local.${BASE_DOMAIN}
-        ingressClassName: traefik
+        ingressClassName: nginx
         pathType: Prefix
         paths:
           - /
@@ -142,7 +142,7 @@ spec:
           cloudflare-operator.io/ignore: "true"
         hosts:
           - grafana.local.${BASE_DOMAIN}
-        ingressClassName: traefik
+        ingressClassName: nginx
         pathType: Prefix
         paths:
           - /
@@ -188,7 +188,7 @@ spec:
           cloudflare-operator.io/ignore: "true"
         hosts:
           - prometheus.local.${BASE_DOMAIN}
-        ingressClassName: traefik
+        ingressClassName: nginx
         pathType: Prefix
         paths:
           - /

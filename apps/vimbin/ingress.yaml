@@ -11,7 +11,7 @@ metadata:
     cloudflare-operator.io/type: CNAME
     cloudflare-operator.io/content: ${BASE_DOMAIN}
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   rules:
     - host: vimbin.${BASE_DOMAIN}
       http:
