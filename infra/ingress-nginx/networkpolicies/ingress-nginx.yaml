@@ -13,16 +13,6 @@ spec:
       app.kubernetes.io/name: ingress-nginx
   ingress:
     - fromCIDR:
-        - ${LAN_NETWORK_RANGE}
-      toPorts:
-        - ports:
-            - port: "22"
-              protocol: ANY
-            - port: "80"
-              protocol: ANY
-            - port: "443"
-              protocol: ANY
-    - fromCIDR:
         - 103.21.244.0/22
         - 103.22.200.0/22
         - 103.31.4.0/22
@@ -44,3 +34,13 @@ spec:
               protocol: ANY
     - fromEntities:
         - cluster
+    - fromCIDR:
+        - ${LAN_NETWORK_RANGE}
+      toPorts:
+        - ports:
+            - port: "22"
+              protocol: ANY
+            - port: "80"
+              protocol: ANY
+            - port: "443"
+              protocol: ANY
