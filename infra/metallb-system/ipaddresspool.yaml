@@ -3,7 +3,7 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: traefik
+  name: ingress-nginx
   namespace: metallb-system
 spec:
   autoAssign: false

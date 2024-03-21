@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: oauth2-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels: {}
+    spec:
+      containers:
+        - name: redis
+          image: redis:7.2.4-alpine
+          env:
+            - name: TZ
+              value: Europe/Zurich
+          ports:
+            - name: http
+              containerPort: 6379
+          startupProbe:
+            tcpSocket:
+              port: 6379
+            failureThreshold: 30
+            periodSeconds: 5
+            timeoutSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: 6379
+            failureThreshold: 2
+            periodSeconds: 30
+            timeoutSeconds: 5
+          resources: {}
+      restartPolicy: Always
+      automountServiceAccountToken: false

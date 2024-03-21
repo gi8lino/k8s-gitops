@@ -7,12 +7,13 @@ resources:
   - containeroo.yaml
   - gitlab.yaml
   - grafana.yaml
+  - ingres-nginx.yaml
   - jetstack.yaml
   - k8up-io.yaml
   - metallb.yaml
   - metrics-server.yaml
   - minio.yaml
   - nfs-subdir-external-provisioner.yaml
+  - oauth2-proxy.yaml
   - prometheus-community.yaml
   - stakater.yaml
-  - traefik.yaml

@@ -1,0 +1,53 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: oauth2-proxy
+  namespace: oauth2-proxy
+spec:
+  interval: 30m
+  driftDetection:
+    mode: enabled
+  chart:
+    spec:
+      chart: oauth2-proxy
+      version: 7.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: oauth2-proxy
+        namespace: flux-system
+  values:
+    config:
+      configFile: |-
+        skip_provider_button = true
+        provider = "oidc"
+        provider_display_name = "${BASE_DOMAIN} SSO"
+        oidc_issuer_url = "https://sso.${BASE_DOMAIN}/realms/master"
+        cookie_domains = ".${BASE_DOMAIN}"
+        email_domains = [ "*" ]
+        scope = "openid profile email"
+        whitelist_domains = ".${BASE_DOMAIN}"
+        pass_authorization_header = true
+        pass_access_token = true
+        pass_user_headers = true
+        set_authorization_header = true
+        set_xauthrequest = true
+        cookie_refresh = "1m"
+        cookie_expire = "30m"
+        reverse_proxy = true
+        session_store_type = "redis"
+        redis_connection_url = "redis://redis.oauth2-proxy.svc.cluster.local:6379"
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cloudflare-operator.io/content: ${BASE_DOMAIN}
+        cloudflare-operator.io/type: CNAME
+      hosts:
+        - oauth2-proxy.${BASE_DOMAIN}
+    metrics:
+      enabled: false
+  valuesFrom:
+    - kind: Secret
+      name: oauth2-proxy-helm-values
+      optional: false

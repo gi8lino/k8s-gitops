@@ -5,7 +5,8 @@ kind: Kustomization
 resources:
   - cert-manager
   - cilium
+  - ingress-nginx
   - metallb-system
   - metrics-server
+  - oauth2-proxy
   - storage-system
-  - traefik

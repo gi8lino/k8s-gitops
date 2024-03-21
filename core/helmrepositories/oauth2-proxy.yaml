@@ -3,9 +3,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: traefik
+  name: oauth2-proxy
   namespace: flux-system
 spec:
   interval: 30m
-  url: https://helm.traefik.io/traefik
+  url: https://oauth2-proxy.github.io/manifests
   timeout: 3m
