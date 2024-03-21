@@ -5,5 +5,4 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
-  - ingressroutetcp.yaml
   - secret.yaml
