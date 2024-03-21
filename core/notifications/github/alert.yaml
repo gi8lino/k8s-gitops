@@ -20,6 +20,9 @@ spec:
       namespace: gitlab
       name: "*"
     - kind: HelmRelease
+      namespace: ingress-nginx
+      name: "*"
+    - kind: HelmRelease
       namespace: k8up
       name: "*"
     - kind: HelmRelease
@@ -38,13 +41,13 @@ spec:
       namespace: monitoring
       name: "*"
     - kind: HelmRelease
+      namespace: oauth2-proxy
+      name: "*"
+    - kind: HelmRelease
       namespace: reloader
       name: "*"
     - kind: HelmRelease
       namespace: storage-system
-      name: "*"
-    - kind: HelmRelease
-      namespace: traefik
       name: "*"
   exclusionList:
     - InternalError.*failed to call webhook.*EOF
