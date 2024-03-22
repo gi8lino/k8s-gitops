@@ -42,7 +42,7 @@ spec:
             io.kubernetes.pod.namespace: ingress-nginx
       toPorts:
         - ports:
-            - port: "8443"
+            - port: "443"
               protocol: TCP
     - toFQDNs:
         - matchName: s3.local.${BASE_DOMAIN}

@@ -44,6 +44,15 @@ spec:
               protocol: ANY
             - port: "443"
               protocol: ANY
+    - fromEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: monitoring
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
+      toPorts:
+        - ports:
+            - port: "10254"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:

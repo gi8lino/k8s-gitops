@@ -45,7 +45,7 @@ spec:
             io.kubernetes.pod.namespace: ingress-nginx
       toPorts:
         - ports:
-            - port: "8443" # OIDC
+            - port: "443" # OIDC
               protocol: TCP
     - toEndpoints:
         - matchLabels:
