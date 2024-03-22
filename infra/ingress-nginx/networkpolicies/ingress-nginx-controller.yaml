@@ -53,16 +53,6 @@ spec:
         - ports:
             - port: "10254"
               protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
-            app.kubernetes.io/name: oauth2-proxy
-            app.kubernetes.io/instance: oauth2-proxy
-            app.kubernetes.io/component: authentication-proxy
-            io.kubernetes.pod.namespace: oauth2-proxy
-      toPorts:
-        - ports:
-            - port: "443"
-              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
