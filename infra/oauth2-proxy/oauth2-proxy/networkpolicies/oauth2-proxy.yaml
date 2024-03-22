@@ -11,6 +11,15 @@ spec:
       app.kubernetes.io/component: authentication-proxy
       app.kubernetes.io/instance: oauth2-proxy
       app.kubernetes.io/name: oauth2-proxy
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: ingress-nginx
+            app.kubernetes.io/instance: ingress-nginx
+            app.kubernetes.io/component: controller
+      toPorts:
+        - ports:
+            - port: "4180"
   egress:
     - toEndpoints:
         - matchLabels:
