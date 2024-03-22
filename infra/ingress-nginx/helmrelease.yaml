@@ -61,5 +61,12 @@ spec:
           - IPv4
     defaultBackend:
       enabled: true
+      image:
+        registry: ghcr.io
+        image: tarampampam/error-pages
+        tag: 2.27.0
+      extraEnvs:
+        - name: TEMPLATE_NAME
+          value: ghost
     tcp:
       "22": "gitlab/gitlab-gitlab-shell:22"
