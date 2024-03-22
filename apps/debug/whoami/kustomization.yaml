@@ -10,4 +10,4 @@ resources:
 labels:
   - includeSelectors: true
     pairs:
-      app: wohami
+      app: whoami
