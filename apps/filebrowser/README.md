@@ -17,7 +17,7 @@ rm -f /db/filebrowser.db
 create new database:
 
 ```bash
-./filebrowser config init --auth.method proxy --auth.header X-Forwarded-User -c .filebrowser.json -d /db/filebrowser.db
+./filebrowser config init --auth.method proxy --auth.header X-Auth-Request-Email -c .filebrowser.json -d /db/filebrowser.db
 ```
 
 create new admin user:
@@ -37,3 +37,10 @@ restart deployment:
 ```bash
 kubectl rollout restart deployment -n filebrowser filebrowser
 ```
+
+### Headers
+
+| Proxy   | Header               |
+| :------ | :------------------- |
+| nginx   | X-Auth-Request-Email |
+| traefik | X-Forwarded-User     |
