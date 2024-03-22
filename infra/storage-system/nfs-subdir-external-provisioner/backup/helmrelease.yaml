@@ -6,7 +6,7 @@ metadata:
   name: backup
   namespace: storage-system
 spec:
-  interval: 30m
+  interval: 20m
   driftDetection:
     mode: enabled
   chart:
@@ -17,6 +17,7 @@ spec:
         kind: HelmRepository
         name: nfs-subdir-external-provisioner
         namespace: flux-system
+      interval: 30m
   values:
     nfs:
       mountOptions:

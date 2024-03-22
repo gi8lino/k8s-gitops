@@ -6,7 +6,7 @@ metadata:
   name: reloader
   namespace: reloader
 spec:
-  interval: 30m
+  interval: 20m
   driftDetection:
     mode: enabled
   chart:
@@ -17,6 +17,7 @@ spec:
         kind: HelmRepository
         name: stakater
         namespace: flux-system
+      interval: 30m
   values:
     reloader:
       service:

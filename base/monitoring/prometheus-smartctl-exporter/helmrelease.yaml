@@ -6,7 +6,7 @@ metadata:
   name: prometheus--smartctl-exporter
   namespace: monitoring
 spec:
-  interval: 30m
+  interval: 20m
   driftDetection:
     mode: enabled
   chart:
@@ -17,6 +17,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
+      interval: 30m
   values:
     fullnameOverride: prometheus-smartctl-exporter
     serviceMonitor:

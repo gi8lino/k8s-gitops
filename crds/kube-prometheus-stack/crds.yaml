@@ -6,7 +6,7 @@ metadata:
   name: prometheus-community-helm-charts
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 20m
   url: https://github.com/prometheus-community/helm-charts.git
   ref:
     # renovate: registryUrl=https://prometheus-community.github.io/helm-charts chart=kube-prometheus-stack
@@ -24,7 +24,7 @@ metadata:
   name: kube-prometheus-stack-crds
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 20m
   prune: false
   sourceRef:
     kind: GitRepository

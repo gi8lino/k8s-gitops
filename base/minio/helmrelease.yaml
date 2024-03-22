@@ -6,7 +6,7 @@ metadata:
   name: minio
   namespace: minio
 spec:
-  interval: 30m
+  interval: 20m
   driftDetection:
     mode: enabled
   chart:
@@ -17,6 +17,7 @@ spec:
         kind: HelmRepository
         name: minio
         namespace: flux-system
+      interval: 30m
   valuesFrom:
     - kind: Secret
       name: minio-helm-values

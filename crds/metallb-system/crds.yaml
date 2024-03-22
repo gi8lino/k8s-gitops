@@ -6,7 +6,7 @@ metadata:
   name: metallb
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 20m
   url: https://github.com/metallb/metallb.git
   ref:
     # renovate: registryUrl=https://metallb.github.io/metallb chart=metallb
@@ -24,7 +24,7 @@ metadata:
   name: metallb-crds
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 20m
   prune: false
   sourceRef:
     kind: GitRepository

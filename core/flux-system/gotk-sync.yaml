@@ -6,7 +6,7 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 20m
   ref:
     branch: master
   url: https://github.com/gi8lino/k8s-gitops
@@ -18,7 +18,7 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 20m
   path: ./core
   prune: true
   sourceRef:

@@ -6,7 +6,7 @@ metadata:
   name: cert-manager
   namespace: cert-manager
 spec:
-  interval: 30m
+  interval: 20m
   driftDetection:
     mode: enabled
   chart:
@@ -17,6 +17,7 @@ spec:
         kind: HelmRepository
         name: jetstack
         namespace: flux-system
+      interval: 30m
   dependsOn:
     - name: metallb
       namespace: metallb-system

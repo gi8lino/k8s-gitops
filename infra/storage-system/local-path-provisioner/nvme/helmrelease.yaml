@@ -8,7 +8,7 @@ metadata:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
-  interval: 30m
+  interval: 20m
   driftDetection:
     mode: enabled
   chart:
@@ -19,6 +19,7 @@ spec:
         kind: HelmRepository
         name: containeroo
         namespace: flux-system
+      interval: 30m
   values:
     configmap:
       name: nvme-local-path-provisioner

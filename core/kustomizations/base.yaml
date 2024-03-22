@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: infra
-  interval: 30m
+  interval: 20m
   path: ./base
   prune: true
   sourceRef:

@@ -6,7 +6,7 @@ metadata:
   name: metrics-server
   namespace: kube-system
 spec:
-  interval: 30m
+  interval: 20m
   driftDetection:
     mode: enabled
   chart:
@@ -17,3 +17,4 @@ spec:
         kind: HelmRepository
         name: metrics-server
         namespace: flux-system
+      interval: 30m

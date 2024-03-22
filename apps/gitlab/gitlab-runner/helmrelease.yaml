@@ -6,7 +6,7 @@ metadata:
   name: gitlab-runner
   namespace: gitlab
 spec:
-  interval: 30m
+  interval: 20m
   driftDetection:
     mode: enabled
   chart:
