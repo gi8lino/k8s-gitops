@@ -3,7 +3,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: ingress-egress-sonarr
+  name: ingress-nginx-egress-sonarr
   namespace: ingress-nginx
 spec:
   endpointSelector:
