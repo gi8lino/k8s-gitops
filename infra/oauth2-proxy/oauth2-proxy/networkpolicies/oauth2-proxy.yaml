@@ -35,7 +35,7 @@ spec:
             app.kubernetes.io/name: ingress-nginx
             app.kubernetes.io/instance: ingress-nginx
             app.kubernetes.io/component: controller
-            io.kubernetes.pod.namespace: ingrexx-nginx
+            io.kubernetes.pod.namespace: ingress-nginx
       toPorts:
         - ports:
             - port: "443"
