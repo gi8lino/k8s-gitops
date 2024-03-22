@@ -8,6 +8,7 @@ metadata:
   labels:
     job: cleanup-gitlab-runner
 spec:
+  suspend: true
   schedule: 0 4 * * *
   timeZone: Europe/Zurich
   concurrencyPolicy: Forbid
