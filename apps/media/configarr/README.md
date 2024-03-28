@@ -5,12 +5,10 @@ This script is designed to read an XML configuration file and update its node va
 ## Requirements
 
 - A POSIX-compliant shell (`sh`)
-- The `sed` command available in your environment
-- The `grep` command available in your environment
-- The `mktemp` command for creating a temporary file
+- The `xmlstarlet` command-line tool
 
 ## Usage
 
 ```sh
-./update_config.sh [XML_FILE] [PREFIX]
+./update_config.sh -c [XML_FILE] -p [PREFIX]
 ```
