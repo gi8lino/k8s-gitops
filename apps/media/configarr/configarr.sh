@@ -54,17 +54,31 @@ if [ -z "$PREFIX" ]; then
     exit 1
 fi
 
-# Read and modify the XML based on environment variables
+# Make a temporary copy of the original XML file for comparison
+TEMP_FILE_NAME=$(basename "$XML_FILE")
+TEMP_FILE="$(mktemp -t "${TEMP_FILE_NAME}".XXXXXX)" # Create a temporary file with a template for naming
+cp "$XML_FILE" "$TEMP_FILE"
+
+ORIGINAL_PERMISSIONS=$(stat -c %a "$XML_FILE") # Preserve original file permissions
+
+# Use xmlstarlet to read nodes, similar to before
 xmlstarlet sel -T -t -m "//*" -v "name()" -n "$XML_FILE" | while read -r node; do
     env_name="${PREFIX}__${node}"
     env_name=$(printf '%s' "$env_name" | tr '[:lower:]' '[:upper:]')
     env_value=$(printenv "$env_name")
 
     if [ -n "$env_value" ]; then
-        # Use xmlstarlet to modify the node value
-        xmlstarlet ed -L -u "//$node" -v "$env_value" "$XML_FILE"
+        # Modify the TEMP_FILE instead of the original XML file
+        xmlstarlet ed -L -u "//$node" -v "$env_value" "$TEMP_FILE"
         echo "Modified '$node' to '$env_value'"
     fi
 done
 
-echo "XML modifications completed."
+# Check if changes were made by comparing the original file with the temporary file
+if ! cmp -s "$TEMP_FILE" "$XML_FILE"; then
+    chmod "$ORIGINAL_PERMISSIONS" "$TEMP_FILE" # Apply original file permissions to temporary file
+    mv "$TEMP_FILE" "$XML_FILE"                # Move the modified temporary file to the original file location
+    echo "Changes were made to the configuration."
+else
+    echo "No changes were made to the configuration."
+fi
