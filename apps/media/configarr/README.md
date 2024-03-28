@@ -10,5 +10,11 @@ This script is designed to read an XML configuration file and update its node va
 ## Usage
 
 ```sh
-./update_config.sh -c [XML_FILE] -p [PREFIX]
+Usage: configarr.sh [options]
+
+Options:
+
+-c, --config FILE     XML file to be configured
+-p, --prefix PREFIX   Prefix for environment variables
+-h, --help            Display this help and exit
 ```
