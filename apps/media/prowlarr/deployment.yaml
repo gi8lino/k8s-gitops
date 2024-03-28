@@ -19,7 +19,7 @@ spec:
     spec:
       initContainers:
         - name: configarr
-          image: busybox:1.36.1
+          image: ghcr.io/containeroo/alpine-toolbox:2.1.0
           env:
             - name: PROWLARR__LAUNCHBROWSER
               value: "False"
@@ -28,7 +28,7 @@ spec:
           command:
             - sh
             - -c
-            - /app/configarr.sh /config/config.xml PROWLARR
+            - /app/configarr.sh --config /config/config.xml --prefix PROWLARR
           volumeMounts:
             - name: configarr
               mountPath: /app
