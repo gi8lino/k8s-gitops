@@ -6,7 +6,7 @@ resources:
   - nextcloud
   - postgres
   - redis
-  # - schedule.yaml
+  - schedule.yaml
 labels:
   - includeSelectors: true
     pairs:
