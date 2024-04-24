@@ -18,17 +18,17 @@ spec:
       labels: {}
     spec:
       initContainers:
-        - name: wait-for-redis
+        - name: wait-for-valkey
           image: busybox:1.36.1
           command:
             - sh
             - -c
             - |
-              echo 'Waiting for Redis to become ready...'
-              until printf "." && nc -z -w 2 redis.nextcloud.svc.cluster.local 6379; do
+              echo 'Waiting for valkey to become ready...'
+              until printf "." && nc -z -w 2 valkey.nextcloud.svc.cluster.local 6379; do
                   sleep 2;
               done;
-              echo 'Redis OK ✓'
+              echo 'valkey OK ✓'
           securityContext:
             allowPrivilegeEscalation: false
             runAsUser: 1000
@@ -117,7 +117,7 @@ spec:
             - name: OVERWRITEPROTOCOL
               value: https
             - name: REDIS_HOST
-              value: redis.nextcloud.svc.cluster.local
+              value: valkey.nextcloud.svc.cluster.local
             - name: TZ
               value: Europe/Zurich
             - name: DEFAULT_PHONE_REGION

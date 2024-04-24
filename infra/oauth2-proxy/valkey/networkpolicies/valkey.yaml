@@ -3,18 +3,19 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: redis
-  namespace: nextcloud
+  name: valkey
+  namespace: oauth2-proxy
 spec:
   endpointSelector:
     matchLabels:
-      app: nextcloud
-      component: redis
+      app.kubernetes.io/instance: oauth2-proxy
+      app.kubernetes.io/component: valkey
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app: nextcloud
-            component: fpm-nginx
+            app.kubernetes.io/name: oauth2-proxy
+            app.kubernetes.io/component: authentication-proxy
+            app.kubernetes.io/instance: oauth2-proxy
       toPorts:
         - ports:
             - port: "6379"

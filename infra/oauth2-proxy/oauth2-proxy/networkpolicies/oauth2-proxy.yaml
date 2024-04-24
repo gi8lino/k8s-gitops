@@ -36,7 +36,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: oauth2-proxy
-            app.kubernetes.io/component: redis
+            app.kubernetes.io/component: valkey
       toPorts:
         - ports:
             - port: "6379"

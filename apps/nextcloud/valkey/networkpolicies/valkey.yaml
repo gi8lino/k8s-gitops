@@ -3,19 +3,18 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: redis
-  namespace: renovate
+  name: valkey
+  namespace: nextcloud
 spec:
   endpointSelector:
     matchLabels:
-      app: renovate
-      component: redis
+      app: nextcloud
+      component: valkey
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app: renovate
-            component: job
-            io.kubernetes.pod.namespace: renovate
+            app: nextcloud
+            component: fpm-nginx
       toPorts:
         - ports:
             - port: "6379"

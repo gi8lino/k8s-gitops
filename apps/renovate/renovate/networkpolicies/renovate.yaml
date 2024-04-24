@@ -33,7 +33,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app: renovate
-            component: redis
+            component: valkey
             io.kubernetes.pod.namespace: renovate
       toPorts:
         - ports:

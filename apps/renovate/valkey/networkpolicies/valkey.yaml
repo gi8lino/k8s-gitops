@@ -3,19 +3,19 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: redis
-  namespace: oauth2-proxy
+  name: valkey
+  namespace: renovate
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: oauth2-proxy
-      app.kubernetes.io/component: redis
+      app: renovate
+      component: valkey
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: oauth2-proxy
-            app.kubernetes.io/component: authentication-proxy
-            app.kubernetes.io/instance: oauth2-proxy
+            app: renovate
+            component: job
+            io.kubernetes.pod.namespace: renovate
       toPorts:
         - ports:
             - port: "6379"

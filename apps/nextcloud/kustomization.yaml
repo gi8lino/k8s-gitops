@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - nextcloud
   - postgres
-  - redis
+  - valkey
   - schedule.yaml
 labels:
   - includeSelectors: true

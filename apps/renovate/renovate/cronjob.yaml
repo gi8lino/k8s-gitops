@@ -19,17 +19,17 @@ spec:
           labels: {}
         spec:
           initContainers:
-            - name: wait-for-redis
+            - name: wait-for-valkey
               image: busybox:1.36.1
               command:
                 - sh
                 - -c
                 - |
-                  echo 'Waiting for Redis to become ready...'
-                  until printf "." && nc -z -w 2 redis.renovate.svc.cluster.local 6379; do
+                  echo 'Waiting for valkey to become ready...'
+                  until printf "." && nc -z -w 2 valkey.renovate.svc.cluster.local 6379; do
                       sleep 2;
                   done;
-                  echo 'Redis OK ✓'
+                  echo 'valkey OK ✓'
               securityContext:
                 allowPrivilegeEscalation: false
                 runAsUser: 1000
@@ -61,13 +61,13 @@ spec:
                 - name: RENOVATE_CONFIG_MIGRATION
                   value: "true"
                 - name: RENOVATE_REDIS_URL
-                  value: redis://redis.renovate.svc.cluster.local
+                  value: redis://valkey.renovate.svc.cluster.local
               envFrom:
                 - secretRef:
                     name: renovate
               volumeMounts:
                 - name: renovate-ssh
-                  mountPath: '/home/ubuntu/.ssh'
+                  mountPath: "/home/ubuntu/.ssh"
                   readOnly: true
                 - name: renovate-config
                   mountPath: /renovate/

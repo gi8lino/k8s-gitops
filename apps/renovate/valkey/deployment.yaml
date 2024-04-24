@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis
+  name: valkey
   namespace: renovate
 spec:
   replicas: 1
@@ -16,22 +16,22 @@ spec:
       labels: {}
     spec:
       containers:
-        - name: redis
-          image: redis:7.2.4-alpine
+        - name: valkey
+          image: valkey/valkey:7.2.5-alpine
           env:
             - name: TZ
               value: Europe/Zurich
           ports:
-            - name: redis
+            - name: valkey
               containerPort: 6379
           startupProbe:
             tcpSocket:
-              port: redis
+              port: valkey
             failureThreshold: 30
             periodSeconds: 2
           livenessProbe:
             tcpSocket:
-              port: redis
+              port: valkey
             failureThreshold: 2
             timeoutSeconds: 10
             periodSeconds: 30

@@ -1,9 +1,10 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/deployment-apps-v1.json
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis
-  namespace: oauth2-proxy
+  name: valkey
+  namespace: nextcloud
 spec:
   replicas: 1
   selector:
@@ -15,26 +16,31 @@ spec:
       labels: {}
     spec:
       containers:
-        - name: redis
-          image: redis:7.2.4-alpine
+        - name: valkey
+          image: valkey/valkey:7.2.5-alpine
           env:
             - name: TZ
               value: Europe/Zurich
           ports:
-            - name: http
+            - name: valkey
               containerPort: 6379
           startupProbe:
             tcpSocket:
-              port: 6379
+              port: valkey
             failureThreshold: 30
-            periodSeconds: 5
-            timeoutSeconds: 5
+            periodSeconds: 2
           livenessProbe:
             tcpSocket:
-              port: 6379
+              port: valkey
             failureThreshold: 2
-            periodSeconds: 30
             timeoutSeconds: 5
-          resources: {}
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 64Mi
       restartPolicy: Always
       automountServiceAccountToken: false
