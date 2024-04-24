@@ -6,7 +6,7 @@ metadata:
   name: nextcloud-app-data
   namespace: nextcloud
   annotations:
-    k8up.io/backup: "true"
+    k8up.io/backup: "false"
 spec:
   accessModes:
     - ReadWriteOnce
@@ -27,20 +27,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: ssd
-  resources:
-    requests:
-      storage: 10Gi
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/persistentvolumeclaim-v1.json
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nextcloud-backup
-  namespace: nextcloud
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: backup
   resources:
     requests:
       storage: 10Gi

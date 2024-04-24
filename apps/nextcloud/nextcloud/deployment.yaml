@@ -96,6 +96,7 @@ spec:
             - mountPath: /etc/nginx/nginx.conf
               name: nginx-config
               subPath: nginx.conf
+              readOnly: true
             - mountPath: /var/www/html
               name: app-data
               readOnly: true
@@ -139,11 +140,6 @@ spec:
               mountPath: /var/www/html
             - name: user-data
               mountPath: /var/www/html/data
-            - name: backup
-              mountPath: /nfs
-              #- name: fpm-config
-              #  mountPath: /usr/local/etc/php-fpm.d/www.conf
-              #  subPath: www.conf
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -153,12 +149,6 @@ spec:
         - name: user-data
           persistentVolumeClaim:
             claimName: nextcloud-user-data
-        - name: backup
-          persistentVolumeClaim:
-            claimName: nextcloud-backup
         - name: nginx-config
           configMap:
             name: nextcloud-nginx-config
-        - name: fpm-config
-          configMap:
-            name: nextcloud-fpm-config
