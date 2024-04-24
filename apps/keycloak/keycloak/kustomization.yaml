@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - networkpolicies
   - ingress.yaml
-  - persistenvolumeclaim.yaml
+  - persistentvolumeclaim.yaml
   - secret.yaml
   - service.yaml
   - serviceaccount.yaml
