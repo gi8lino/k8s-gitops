@@ -1,0 +1,15 @@
+version: "3"
+tasks:
+  run:
+    desc: "Run manual renovate cronjob"
+    cmds:
+      - |-
+        # Delete the pod and ignore errors if it doesn't exist
+        kubectl delete pod -n renovate -l component=valkey --ignore-not-found
+
+        # Delete the job and ignore errors if it doesn't exist
+        kubectl delete job -n renovate manual-renovate --ignore-not-found
+
+        # Create a new job from the cronjob definition
+        kubectl create job --from cronjobs/renovate manual-renovate -n renovate
+    silent: true

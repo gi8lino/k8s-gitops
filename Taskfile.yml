@@ -7,4 +7,5 @@ includes:
   k8up: .taskfiles/k8up.yml
   minio: .taskfiles/minio.yml
   pre-commit: .taskfiles/pre-commit.yml
+  renovate: .taskfiles/renovate.yml
   schema: .taskfiles/schema.yml
