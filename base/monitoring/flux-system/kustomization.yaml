@@ -7,14 +7,18 @@ resources:
   - podmonitor.yaml
   - prometheusrule.yaml
 configMapGenerator:
-  - files:
-      - flux-cluster-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2/v2.3.0/manifests/monitoring/monitoring-config/dashboards/cluster.json
-    name: grafana-dashboard-flux-cluster
+  - name: grafana-dashboard-flux-cluster
     namespace: flux-system
-  - files:
-      - flux-control-plane-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2/v2.3.0//manifests/monitoring/monitoring-config/dashboards/control-plane.json
-    name: grafana-dashboard-flux-control-plane
+    files:
+      - flux-cluster-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
+  - name: grafana-dashboard-flux-control-plane
     namespace: flux-system
+    files:
+      - flux-control-plane-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/control-plane.json
+  - name: grafana-dashboard-flux-logs
+    namespace: flux-system
+    files:
+      - flux-logs-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/logs.json
 generatorOptions:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
