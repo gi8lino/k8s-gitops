@@ -28,7 +28,7 @@ spec:
         maxReplicas: 1
         minReplicas: 1
       migrations:
-        enabled: true
+        enabled: false
       sidekiq:
         deployment:
           strategy:
@@ -109,7 +109,7 @@ spec:
       enabled: false
     postgresql:
       image:
-        tag: 13.6.0
+        tag: 14.0.8
       metrics:
         enabled: false
     prometheus:
