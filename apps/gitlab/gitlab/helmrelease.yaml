@@ -109,7 +109,7 @@ spec:
       enabled: false
     postgresql:
       image:
-        tag: 14.0.8
+        tag: 14.8.0
       metrics:
         enabled: false
     prometheus:
