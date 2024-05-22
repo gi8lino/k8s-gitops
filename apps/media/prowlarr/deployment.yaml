@@ -36,7 +36,7 @@ spec:
               mountPath: /config
       containers:
         - name: prowlarr
-          image: ghcr.io/linuxserver/prowlarr:1.17.2.4511-ls69
+          image: ghcr.io/linuxserver/prowlarr:1.17.2.4511-ls70
           env:
             - name: PGID
               value: "2000"
