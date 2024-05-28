@@ -2,7 +2,7 @@
 version: "3"
 tasks:
   gc:
-    desc: run garbage collection on the gitlab registry
+    desc: Run garbage collection on the gitlab registry
     cmds:
       - kubectl exec -ti
         --namespace gitlab
