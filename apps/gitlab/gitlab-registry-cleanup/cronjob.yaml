@@ -1,0 +1,41 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/cronjob-batch-v1.json
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: gitlab-registry-cleanup
+  namespace: gitlab
+  labels:
+    app: gitlab-registry-cleanup
+    component: job
+spec:
+  schedule: 0 1 * * *
+  timeZone: Europe/Zurich
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: gitlab-registry-cleanup
+            component: job
+        spec:
+          serviceAccountName: gitlab-registry-cleanup
+          containers:
+            - name: kubectl
+              image: bitnami/kubectl:1.27.14
+              command:
+                - /bin/sh
+                - -c
+                - >
+                  kubectl exec -ti
+                  --namespace gitlab
+                  deployments/gitlab-registry
+                  --
+                  registry garbage-collect -m /etc/docker/registry/config.yml
+              env:
+                - name: TZ
+                  value: Europe/Zurich
+          restartPolicy: Never

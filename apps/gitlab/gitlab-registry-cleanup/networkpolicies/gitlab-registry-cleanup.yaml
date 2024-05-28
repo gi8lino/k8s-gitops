@@ -1,0 +1,31 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumnetworkpolicy_v2.json
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: gitlab-registry-cleanup
+  namespace: gitlab
+spec:
+  description: "Allow gitlab registry cleanup"
+  endpointSelector:
+    matchLabels:
+      app: gitlab-registry-cleanup
+      component: job
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443" # kube-api
+              protocol: TCP
