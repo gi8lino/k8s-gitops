@@ -49,3 +49,5 @@ spec:
       enabled: true
     ipv6:
       enabled: false
+    bpf:
+      masquerade: true
