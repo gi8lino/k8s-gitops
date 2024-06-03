@@ -14,7 +14,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:
@@ -27,7 +27,7 @@ spec:
         - matchLabels:
             release: gitlab
             app: minio
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "9000" # gitlab uses a old version of minio => port is for web-ui and api
@@ -36,7 +36,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: minio
             app.kubernetes.io/name: minio
-            io.kubernetes.pod.namespace: minio
+            "k8s:io.kubernetes.pod.namespace": minio
       toPorts:
         - ports:
             - port: "9000" # minio-api
@@ -45,7 +45,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: prometheus-pushgateway
             app.kubernetes.io/name: prometheus-pushgateway
-            io.kubernetes.pod.namespace: monitoring
+            "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
             - port: "9091"

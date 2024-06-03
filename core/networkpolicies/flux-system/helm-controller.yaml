@@ -13,7 +13,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
-            io.kubernetes.pod.namespace: monitoring
+            "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
             - port: "8080"
@@ -21,7 +21,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:
@@ -39,10 +39,10 @@ spec:
     - toEndpoints:
         - matchLabels:
             app: source-controller
-            io.kubernetes.pod.namespace: flux-system
+            "k8s:io.kubernetes.pod.namespace": flux-system
         - matchLabels:
             app: notification-controller
-            io.kubernetes.pod.namespace: flux-system
+            "k8s:io.kubernetes.pod.namespace": flux-system
       toPorts:
         - ports:
             - port: "9090"

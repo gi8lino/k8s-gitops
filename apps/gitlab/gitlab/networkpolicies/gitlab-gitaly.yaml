@@ -15,19 +15,19 @@ spec:
         - matchLabels:
             app: webservice
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app: sidekiq
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app: gitlab-shell
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app: toolbox
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "8075"
@@ -35,7 +35,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:
@@ -48,7 +48,7 @@ spec:
         - matchLabels:
             app: webservice
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "8181"

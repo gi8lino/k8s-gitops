@@ -17,34 +17,34 @@ spec:
             app.kubernetes.io/name: ingress-nginx
             app.kubernetes.io/component: controller
             app.kubernetes.io/instance: ingress-nginx
-            io.kubernetes.pod.namespace: ingress-nginx
+            "k8s:io.kubernetes.pod.namespace": ingress-nginx
         - matchLabels:
             app: webservice
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app: sidekiq
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app: registry
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app: toolbox
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app: gitlab-backup-mirror
             component: job
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app: minio
             component: create-buckets
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app: migrations
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "9000"

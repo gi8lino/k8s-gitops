@@ -15,7 +15,7 @@ spec:
         - matchLabels:
             app: renovate
             component: job
-            io.kubernetes.pod.namespace: renovate
+            "k8s:io.kubernetes.pod.namespace": renovate
       toPorts:
         - ports:
             - port: "6379"

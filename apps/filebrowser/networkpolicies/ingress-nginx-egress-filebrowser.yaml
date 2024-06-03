@@ -15,7 +15,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app: filebrowser
-            io.kubernetes.pod.namespace: filebrowser
+            "k8s:io.kubernetes.pod.namespace": filebrowser
       toPorts:
         - ports:
             - port: "80"

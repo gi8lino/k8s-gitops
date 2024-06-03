@@ -15,7 +15,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app: tautulli
-            io.kubernetes.pod.namespace: media
+            "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:
             - port: "8181"

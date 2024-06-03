@@ -16,10 +16,10 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus # kubelet
             app.kubernetes.io/name: prometheus
-            io.kubernetes.pod.namespace: monitoring
+            "k8s:io.kubernetes.pod.namespace": monitoring
         - matchLabels:
             app: kustomize-controller # validationwebhook
-            io.kubernetes.pod.namespace: flux-system
+            "k8s:io.kubernetes.pod.namespace": flux-system
       toPorts:
         - ports:
             - port: "10250" # kubelet metrics, validationwebhook
@@ -27,7 +27,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:

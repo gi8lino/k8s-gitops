@@ -16,7 +16,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
             app.kubernetes.io/name: alertmanager
-            io.kubernetes.pod.namespace: monitoring
+            "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
             - port: "9093"

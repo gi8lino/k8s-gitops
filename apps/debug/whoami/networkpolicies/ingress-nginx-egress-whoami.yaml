@@ -15,7 +15,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app: whoami
-            io.kubernetes.pod.namespace: debug
+            "k8s:io.kubernetes.pod.namespace": debug
       toPorts:
         - ports:
             - port: "80"

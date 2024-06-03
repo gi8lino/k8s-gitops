@@ -15,10 +15,10 @@ spec:
     - toEndpoints:
         - matchLabels:
             k8s-app: hubble-ui
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
         - matchLabels:
             k8s-app: hubble-relay
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
       toPorts:
         - ports:
             - port: "8081"

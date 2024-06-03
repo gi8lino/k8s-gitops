@@ -16,7 +16,7 @@ spec:
         - matchLabels:
             app: gitlab-shell
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "2222"
@@ -26,7 +26,7 @@ spec:
             app: minio
             component: app
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "9000"
@@ -35,7 +35,7 @@ spec:
         - matchLabels:
             app: registry
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "5000"
@@ -44,7 +44,7 @@ spec:
         - matchLabels:
             app: webservice
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "8080"

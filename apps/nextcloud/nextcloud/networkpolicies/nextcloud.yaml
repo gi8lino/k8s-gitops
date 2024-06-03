@@ -16,11 +16,11 @@ spec:
             app.kubernetes.io/name: ingress-nginx
             app.kubernetes.io/component: controller
             app.kubernetes.io/instance: ingress-nginx
-            io.kubernetes.pod.namespace: ingress-nginx
+            "k8s:io.kubernetes.pod.namespace": ingress-nginx
         - matchLabels:
             app: nextcloud
             component: cronjob
-            io.kubernetes.pod.namespace: nextcloud
+            "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:
             - port: "80"
@@ -28,7 +28,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:
@@ -42,7 +42,7 @@ spec:
             app.kubernetes.io/name: ingress-nginx
             app.kubernetes.io/component: controller
             app.kubernetes.io/instance: ingress-nginx
-            io.kubernetes.pod.namespace: ingress-nginx
+            "k8s:io.kubernetes.pod.namespace": ingress-nginx
       toPorts:
         - ports:
             - port: "443" # OIDC
@@ -51,7 +51,7 @@ spec:
         - matchLabels:
             app: nextcloud
             component: postgres
-            io.kubernetes.pod.namespace: nextcloud
+            "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:
             - port: "5432"
@@ -60,7 +60,7 @@ spec:
         - matchLabels:
             app: nextcloud
             component: valkey
-            io.kubernetes.pod.namespace: nextcloud
+            "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:
             - port: "6379"

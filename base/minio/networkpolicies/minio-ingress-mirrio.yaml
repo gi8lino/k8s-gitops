@@ -16,7 +16,7 @@ spec:
         - matchLabels:
             app: gitlab-backup-mirror
             component: job
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "9000" # minio-api

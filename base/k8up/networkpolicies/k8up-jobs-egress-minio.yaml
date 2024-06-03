@@ -13,7 +13,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:
@@ -32,7 +32,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: minio
             app.kubernetes.io/name: minio
-            io.kubernetes.pod.namespace: minio
+            "k8s:io.kubernetes.pod.namespace": minio
       toPorts:
         - ports:
             - port: "9000"

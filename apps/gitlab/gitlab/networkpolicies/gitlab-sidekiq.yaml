@@ -15,7 +15,7 @@ spec:
         - matchLabels:
             app: postgres
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "34358"
@@ -27,7 +27,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:
@@ -41,7 +41,7 @@ spec:
             app: minio
             component: app
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "9000"
@@ -50,7 +50,7 @@ spec:
         - matchLabels:
             app: registry
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "5000"
@@ -59,7 +59,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: gitlab
             app.kubernetes.io/name: postgresql
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "5432"
@@ -68,7 +68,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: gitlab
             app.kubernetes.io/name: redis
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "6379"
@@ -77,7 +77,7 @@ spec:
         - matchLabels:
             app: gitaly
             release: gitlab
-            io.kubernetes.pod.namespace: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "8075"

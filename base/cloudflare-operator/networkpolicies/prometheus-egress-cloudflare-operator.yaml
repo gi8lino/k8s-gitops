@@ -14,7 +14,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app: cloudflare-operator
-            io.kubernetes.pod.namespace: cloudflare-operator
+            "k8s:io.kubernetes.pod.namespace": cloudflare-operator
       toPorts:
         - ports:
             - port: "8080"

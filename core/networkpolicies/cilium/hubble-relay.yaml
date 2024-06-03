@@ -14,7 +14,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
             app.kubernetes.io/name: prometheus
-            io.kubernetes.pod.namespace: monitoring
+            "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
             - port: "9966"
@@ -22,7 +22,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             k8s-app: hubble-ui
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
       toPorts:
         - ports:
             - port: "4245"
@@ -30,7 +30,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:

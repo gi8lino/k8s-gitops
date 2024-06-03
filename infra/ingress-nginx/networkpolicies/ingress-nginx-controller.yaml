@@ -46,7 +46,7 @@ spec:
               protocol: ANY
     - fromEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: monitoring
+            "k8s:io.kubernetes.pod.namespace": monitoring
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
             app.kubernetes.io/name: prometheus
       toPorts:
@@ -58,7 +58,7 @@ spec:
             app.kubernetes.io/name: oauth2-proxy
             app.kubernetes.io/instance: oauth2-proxy
             app.kubernetes.io/component: authentication-proxy
-            io.kubernetes.pod.namespace: oauth2-proxy
+            "k8s:io.kubernetes.pod.namespace": oauth2-proxy
       toPorts:
         - ports:
             - port: "443"
@@ -66,7 +66,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:
@@ -93,7 +93,7 @@ spec:
             app.kubernetes.io/name: oauth2-proxy
             app.kubernetes.io/instance: oauth2-proxy
             app.kubernetes.io/component: authentication-proxy
-            io.kubernetes.pod.namespace: oauth2-proxy
+            "k8s:io.kubernetes.pod.namespace": oauth2-proxy
       toPorts:
         - ports:
             - port: "4180"

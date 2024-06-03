@@ -15,12 +15,12 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
             app.kubernetes.io/name: prometheus
-            io.kubernetes.pod.namespace: monitoring
+            "k8s:io.kubernetes.pod.namespace": monitoring
         - matchLabels:
             app.kubernetes.io/name: ingress-nginx
             app.kubernetes.io/component: controller
             app.kubernetes.io/instance: ingress-nginx
-            io.kubernetes.pod.namespace: ingress-nginx
+            "k8s:io.kubernetes.pod.namespace": ingress-nginx
       toPorts:
         - ports:
             - port: "9115"
@@ -28,7 +28,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:
@@ -51,7 +51,7 @@ spec:
             app.kubernetes.io/name: ingress-nginx
             app.kubernetes.io/instance: ingress-nginx
             app.kubernetes.io/component: controller
-            io.kubernetes.pod.namespace: ingress-nginx
+            "k8s:io.kubernetes.pod.namespace": ingress-nginx
       toPorts:
         - ports:
             - port: "443"

@@ -15,7 +15,7 @@ spec:
         - matchLabels:
             app: reloader-reloader
             release: reloader
-            io.kubernetes.pod.namespace: reloader
+            "k8s:io.kubernetes.pod.namespace": reloader
       toPorts:
         - ports:
             - port: "9090"

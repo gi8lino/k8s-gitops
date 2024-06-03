@@ -14,7 +14,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:
@@ -28,7 +28,7 @@ spec:
             app.kubernetes.io/component: webhook
             app.kubernetes.io/instance: cert-manager
             app.kubernetes.io/name: webhook
-            io.kubernetes.pod.namespace: cert-manager
+            "k8s:io.kubernetes.pod.namespace": cert-manager
       toPorts:
         - ports:
             - port: "443"

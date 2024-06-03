@@ -15,7 +15,7 @@ spec:
             app.kubernetes.io/name: ingress-nginx
             app.kubernetes.io/component: controller
             app.kubernetes.io/instance: ingress-nginx
-            io.kubernetes.pod.namespace: ingress-nginx
+            "k8s:io.kubernetes.pod.namespace": ingress-nginx
       toPorts:
         - ports:
             - port: "8080"

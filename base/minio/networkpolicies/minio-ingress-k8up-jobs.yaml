@@ -14,25 +14,25 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: healthchecks
+            "k8s:io.kubernetes.pod.namespace": healthchecks
             k8upjob: "true"
         - matchLabels:
-            io.kubernetes.pod.namespace: filebrowser
+            "k8s:io.kubernetes.pod.namespace": filebrowser
             k8upjob: "true"
         - matchLabels:
-            io.kubernetes.pod.namespace: keycloak
+            "k8s:io.kubernetes.pod.namespace": keycloak
             k8upjob: "true"
         - matchLabels:
-            io.kubernetes.pod.namespace: k8up
+            "k8s:io.kubernetes.pod.namespace": k8up
             k8upjob: "true"
         - matchLabels:
-            io.kubernetes.pod.namespace: media
+            "k8s:io.kubernetes.pod.namespace": media
             k8upjob: "true"
         - matchLabels:
-            io.kubernetes.pod.namespace: nextcloud
+            "k8s:io.kubernetes.pod.namespace": nextcloud
             k8upjob: "true"
         - matchLabels:
-            io.kubernetes.pod.namespace: wiki
+            "k8s:io.kubernetes.pod.namespace": wiki
             k8upjob: "true"
       toPorts:
         - ports:

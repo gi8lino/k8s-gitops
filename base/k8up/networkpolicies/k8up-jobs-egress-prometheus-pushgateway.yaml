@@ -13,7 +13,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:
@@ -26,7 +26,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: prometheus-pushgateway
             app.kubernetes.io/name: prometheus-pushgateway
-            io.kubernetes.pod.namespace: monitoring
+            "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
             - port: "9091"

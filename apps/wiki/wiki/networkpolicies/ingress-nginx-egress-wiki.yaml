@@ -16,7 +16,7 @@ spec:
         - matchLabels:
             app: wiki
             component: wiki
-            io.kubernetes.pod.namespace: wiki
+            "k8s:io.kubernetes.pod.namespace": wiki
       toPorts:
         - ports:
             - port: "3000"

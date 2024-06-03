@@ -15,7 +15,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app: vimbin
-            io.kubernetes.pod.namespace: vimbin
+            "k8s:io.kubernetes.pod.namespace": vimbin
       toPorts:
         - ports:
             - port: "8080"

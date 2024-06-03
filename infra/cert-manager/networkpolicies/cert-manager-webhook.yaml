@@ -21,7 +21,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             app: kustomize-controller
-            io.kubernetes.pod.namespace: flux-system
+            "k8s:io.kubernetes.pod.namespace": flux-system
       toPorts:
         - ports:
             - port: "10250" # validationwebhook
@@ -38,7 +38,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:

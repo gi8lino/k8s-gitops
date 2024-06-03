@@ -15,7 +15,7 @@ spec:
         - matchLabels:
             app: keycloak
             component: keycloak
-            io.kubernetes.pod.namespace: keycloak
+            "k8s:io.kubernetes.pod.namespace": keycloak
       toPorts:
         - ports:
             - port: "5432"

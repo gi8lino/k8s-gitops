@@ -13,7 +13,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
-            io.kubernetes.pod.namespace: monitoring
+            "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
             - port: "8080"
@@ -21,7 +21,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
       toPorts:
         - ports:
@@ -39,20 +39,20 @@ spec:
     - toEndpoints:
         - matchLabels:
             app: notification-controller
-            io.kubernetes.pod.namespace: flux-system
+            "k8s:io.kubernetes.pod.namespace": flux-system
         - matchLabels:
             app: source-controller
-            io.kubernetes.pod.namespace: flux-system
+            "k8s:io.kubernetes.pod.namespace": flux-system
       toPorts:
         - ports:
             - port: "9090"
     - toEndpoints:
         - matchLabels:
             app: source-controller
-            io.kubernetes.pod.namespace: flux-system
+            "k8s:io.kubernetes.pod.namespace": flux-system
         - matchLabels:
             app: notification-controller
-            io.kubernetes.pod.namespace: flux-system
+            "k8s:io.kubernetes.pod.namespace": flux-system
       toPorts:
         - ports:
             - port: "9090"
@@ -62,7 +62,7 @@ spec:
             app.kubernetes.io/component: controller
             app.kubernetes.io/instance: metallb
             app.kubernetes.io/name: metallb
-            io.kubernetes.pod.namespace: metallb-system
+            "k8s:io.kubernetes.pod.namespace": metallb-system
       toPorts:
         - ports:
             - port: "9443" # validationwebhook
@@ -71,12 +71,12 @@ spec:
             app.kubernetes.io/component: webhook
             app.kubernetes.io/instance: cert-manager
             app.kubernetes.io/name: webhook
-            io.kubernetes.pod.namespace: cert-manager
+            "k8s:io.kubernetes.pod.namespace": cert-manager
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
             app.kubernetes.io/managed-by: prometheus-operator
             app.kubernetes.io/name: prometheus
-            io.kubernetes.pod.namespace: monitoring
+            "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
             - port: "10250" # validationwebhook
