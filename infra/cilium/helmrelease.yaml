@@ -19,6 +19,9 @@ spec:
         namespace: flux-system
       interval: 30m
   values:
+    cluster:
+      name: home
+      id: 1
     hubble:
       enabled: true
       metrics:
