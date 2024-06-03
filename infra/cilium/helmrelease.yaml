@@ -20,8 +20,27 @@ spec:
       interval: 30m
   values:
     hubble:
+      enabled: true
+      metrics:
+        enabled:
+          - dns:query
+          - drop
+          - tcp
+          - flow
+          - port-distribution
+          - icmp
+          - http
+        serviceMonitor:
+          enabled: true
+        dashboards:
+          enabled: true
+          annotations:
+            grafana_folder: Cilium
       relay:
         enabled: true
+        prometheus:
+          serviceMonitor:
+            enabled: true
       ui:
         enabled: true
         ingress:
@@ -36,6 +55,14 @@ spec:
             - hubble.local.${BASE_DOMAIN}
     operator:
       replicas: 1
+      prometheus:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+      dashboards:
+        enabled: true
+        annotations:
+          grafana_folder: Cilium
     ipam:
       operator:
         clusterPoolIPv4PodCIDRList:
@@ -51,3 +78,12 @@ spec:
       enabled: false
     bpf:
       masquerade: true
+    prometheus:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+        trustCRDsExist: true
+    dashboards:
+      enabled: true
+      annotations:
+        grafana_folder: Cilium
