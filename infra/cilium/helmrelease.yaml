@@ -20,27 +20,8 @@ spec:
       interval: 30m
   values:
     hubble:
-      enabled: true
-      metrics:
-        enabled:
-          - dns:query
-          - drop
-          - tcp
-          - flow
-          - port-distribution
-          - icmp
-          - http
-        serviceMonitor:
-          enabled: true
-        dashboards:
-          enabled: true
-          annotations:
-            grafana_folder: Cilium
       relay:
         enabled: true
-        prometheus:
-          serviceMonitor:
-            enabled: true
       ui:
         enabled: true
         ingress:
@@ -63,25 +44,10 @@ spec:
     k8sServiceHost: k3s.srv.${BASE_DOMAIN}
     k8sServicePort: 6443
     nodeinit:
-      prometheus:
-        enabled: true
-        serviceMonitor:
-          enabled: true
-      dashboards:
-        enabled: true
-        annotations:
-          grafana_folder: Cilium
-    prometheus:
       enabled: true
     nodePort:
-      serviceMonitor:
-        enabled: true
-        trustCRDsExist: true
-    dashboards:
       enabled: true
     ipv6:
       enabled: false
     bpf:
       masquerade: true
-      annotations:
-        grafana_folder: Cilium
