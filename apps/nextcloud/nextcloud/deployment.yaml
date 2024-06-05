@@ -113,7 +113,7 @@ spec:
             - name: NEXTCLOUD_TRUSTED_DOMAINS
               value: cloud.${BASE_DOMAIN}
             - name: TRUSTED_PROXIES
-              value: http://ingress-nginx-ingress-nginx.svc.cluster.local
+              value: 10.244.0.0/16
             - name: OVERWRITEPROTOCOL
               value: https
             - name: REDIS_HOST
