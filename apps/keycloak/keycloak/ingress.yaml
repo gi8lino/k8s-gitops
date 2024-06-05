@@ -8,6 +8,8 @@ metadata:
   annotations:
     cloudflare-operator.io/type: CNAME
     cloudflare-operator.io/content: ${BASE_DOMAIN}
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 8k
 spec:
   ingressClassName: nginx
   rules:
