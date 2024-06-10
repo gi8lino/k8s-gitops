@@ -54,16 +54,22 @@ spec:
             - secretRef:
                 name: keycloak
           env:
+            - name: KC_HOSTNAME
+              value: sso.${BASE_DOMAIN}
             - name: KC_CACHE
               value: ispn
             - name: KC_CACHE_STACK
               value: kubernetes
-            - name: KC_PROXY
-              value: edge
+            - name: KC_PROXY_HEADERS
+              value: xforwarded
+            - name: KC_HTTP_ENABLED
+              value: "true"
             - name: KC_METRICS_ENABLED
               value: "true"
             - name: KC_HEALTH_ENABLED
               value: "true"
+            - name: KC_FEATURES
+              value: persistent-user-sessions,hostname:v2
             - name: KC_DB_URL
               value: jdbc:postgresql://postgres.keycloak.svc.cluster.local/postgres
             - name: KC_DB
@@ -78,8 +84,6 @@ spec:
                 secretKeyRef:
                   name: postgres
                   key: POSTGRES_PASSWORD
-            - name: KC_HOSTNAME
-              value: sso.${BASE_DOMAIN}
             - name: TZ
               value: Europe/Zurich
             - name: JAVA_OPTS_APPEND
