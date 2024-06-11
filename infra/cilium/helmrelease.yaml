@@ -36,6 +36,8 @@ spec:
           enabled: true
           annotations:
             grafana_folder: Cilium
+      observe:
+        enabled: true
       relay:
         enabled: true
         prometheus:
