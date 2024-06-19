@@ -22,10 +22,6 @@ spec:
     unregisterRunners: true
     rbac:
       create: true
-      rules:
-        - apiGroups: [""]
-          resources: ["*"]
-          verbs: ["*"]
   valuesFrom:
     - kind: Secret
       name: gitlab-runner-helm-values
