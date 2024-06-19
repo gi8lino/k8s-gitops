@@ -29,6 +29,7 @@ spec:
         - matchName: mirrors.edge.kernel.org
         - matchName: pkg-containers.githubusercontent.com
         - matchName: tuf-repo-cdn.sigstore.dev
+        - matchPattern: "*.cloudfront.net"
       toPorts:
         - ports:
             - port: "443"
