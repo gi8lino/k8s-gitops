@@ -35,6 +35,20 @@ spec:
       config:
         slack:
           minimumpriority: notice
+      webui:
+        enabled: true
+        replicaCount: 1
+        disableauth: true
+        ingress:
+          enabled: true
+          annotations:
+            nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
+            nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
+            nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
+            nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
+            cloudflare-operator.io/ignore: "true"
+          hosts:
+            - host: falco.local.${BASE_DOMAIN}
     tty: true
     customRules:
       falco_rules.local.yaml: |-
@@ -50,20 +64,6 @@ spec:
             (k8s.ns.name="monitoring" and container.name in ("grafana-sc-datasources", "grafana-sc-dashboard"))
             or (k8s.ns.name="storage-system" and container.name in ("local-path-provisioner", "nfs-subdir-external-provisioner"))
             or (k8s.ns.name="flux-system" and container.name="manager")
-    webui:
-      enabled: true
-      replicaCount: 1
-      disableauth: true
-      ingress:
-        enabled: true
-        annotations:
-          nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
-          nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
-          nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
-          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
-          cloudflare-operator.io/ignore: "true"
-        hosts:
-          - host: falco.local.${BASE_DOMAIN}
   valuesFrom:
     - kind: Secret
       name: falco-helm-values
