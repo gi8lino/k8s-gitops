@@ -40,6 +40,9 @@ spec:
       namespace: cloudflare-operator
       name: "*"
     - kind: HelmRelease
+      namespace: falco
+      name: "*"
+    - kind: HelmRelease
       namespace: gitlab
       name: "*"
     - kind: HelmRelease

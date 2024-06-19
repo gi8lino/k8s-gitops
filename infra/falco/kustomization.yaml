@@ -3,11 +3,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cert-manager
-  - cilium
-  - falco
-  - ingress-nginx
-  - metallb-system
-  - metrics-server
-  - oauth2-proxy
-  - storage-system
+  - networkpolicies
+  - helmrelease.yaml
+  - secret.yaml

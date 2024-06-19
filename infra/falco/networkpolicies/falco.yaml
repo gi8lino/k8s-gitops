@@ -1,0 +1,52 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumnetworkpolicy_v2.json
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: falco
+  namespace: falco
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: falco
+      app.kubernetes.io/instance: falco
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toFQDNs:
+        - matchName: download.falco.org
+        - matchName: falcosecurity.github.io
+        - matchName: ghcr.io
+        - matchName: mirrors.edge.kernel.org
+        - matchName: pkg-containers.githubusercontent.com
+        - matchName: tuf-repo-cdn.sigstore.dev
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
+    - toFQDNs:
+        - matchName: security.ubuntu.com
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: falcosidekick
+            app.kubernetes.io/component: core
+            app.kubernetes.io/instance: falco
+            app.kubernetes.io/part-of: falcosidekick
+            "k8s:io.kubernetes.pod.namespace": falco
+      toPorts:
+        - ports:
+            - port: "2801"
+              protocol: TCP

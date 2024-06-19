@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumnetworkpolicy_v2.json
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: ingress-nginx-egress-falco
+  namespace: ingress-nginx
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: ingress-nginx
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: falcosidekick
+            app.kubernetes.io/component: ui
+            app.kubernetes.io/instance: falco
+            app.kubernetes.io/part-of: falcosidekick
+            "k8s:io.kubernetes.pod.namespace": falco
+      toPorts:
+        - ports:
+            - port: "2802"
+              protocol: TCP

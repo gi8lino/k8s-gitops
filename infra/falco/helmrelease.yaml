@@ -1,0 +1,70 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: falco
+  namespace: falco
+spec:
+  interval: 20m
+  driftDetection:
+    mode: enabled
+  chart:
+    spec:
+      chart: falco
+      version: 4.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: falcosecurity
+        namespace: flux-system
+      interval: 20m
+  values:
+    driver:
+      kind: ebpf
+    collectors:
+      containerd:
+        enabled: true
+        socket: /run/k3s/containerd/containerd.sock
+      crio:
+        enabled: false
+      docker:
+        enabled: false
+    falcosidekick:
+      enabled: true
+      replicaCount: 1
+      config:
+        slack:
+          minimumpriority: notice
+    tty: true
+    customRules:
+      falco_rules.local.yaml: |-
+        - macro: user_known_stand_streams_redirect_activities
+          condition: >
+            (k8s.ns.name="gitlab" and container.name in ("gitlab-shell", "gitlab-workhorse"))
+
+        - list: user_known_packet_socket_binaries
+          items: [speaker]
+
+        - macro: user_known_contact_k8s_api_server_activities
+          condition: >
+            (k8s.ns.name="monitoring" and container.name in ("grafana-sc-datasources", "grafana-sc-dashboard"))
+            or (k8s.ns.name="storage-system" and container.name in ("local-path-provisioner", "nfs-subdir-external-provisioner"))
+            or (k8s.ns.name="flux-system" and container.name="manager")
+    webui:
+      enabled: true
+      replicaCount: 1
+      disableauth: true
+      ingress:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
+          nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
+          nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
+          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
+          cloudflare-operator.io/ignore: "true"
+        hosts:
+          - host: falco.local.${BASE_DOMAIN}
+  valuesFrom:
+    - kind: Secret
+      name: falco-helm-values
+      optional: false
