@@ -49,6 +49,8 @@ spec:
             cloudflare-operator.io/ignore: "true"
           hosts:
             - host: falco.local.${BASE_DOMAIN}
+              paths:
+                - path: /
     tty: true
     customRules:
       falco_rules.local.yaml: |-
