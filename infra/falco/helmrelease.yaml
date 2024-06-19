@@ -51,6 +51,12 @@ spec:
             - host: falco.local.${BASE_DOMAIN}
               paths:
                 - path: /
+        redis:
+          enabled: true
+          image:
+            registry: docker.io
+            repository: valkey/valkey
+            tag: 7.2.5-alpine
     tty: true
     customRules:
       falco_rules.local.yaml: |-
