@@ -73,6 +73,7 @@ spec:
             or (k8s.ns.name="storage-system" and container.name in ("local-path-provisioner", "nfs-subdir-external-provisioner"))
             or (k8s.ns.name="flux-system" and container.name="manager")
             or proc.name="k8up"
+            or (proc.name="mkvmerge" and container.name="sabnzbd")
   valuesFrom:
     - kind: Secret
       name: falco-helm-values
