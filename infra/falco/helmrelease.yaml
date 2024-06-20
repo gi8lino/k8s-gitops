@@ -72,6 +72,7 @@ spec:
             (k8s.ns.name="monitoring" and container.name in ("grafana-sc-datasources", "grafana-sc-dashboard"))
             or (k8s.ns.name="storage-system" and container.name in ("local-path-provisioner", "nfs-subdir-external-provisioner"))
             or (k8s.ns.name="flux-system" and container.name="manager")
+            or proc.name="k8up"
   valuesFrom:
     - kind: Secret
       name: falco-helm-values
