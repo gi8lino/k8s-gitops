@@ -74,7 +74,9 @@ spec:
             or (k8s.ns.name="flux-system" and container.name="manager")
             or (k8s.ns.name="ingress-nginx" and container.name="controller")
             or (k8s.ns.name="k8up" and container.name="cluster-resources-backup")
+            or (k8s.ns.name="k8up" and container.name="backup")
             or (k8s.ns.name="gitlab" and container.name="gitlab-runner")
+            or (k8s.ns.name="gitlab" and container.name="gitaly")
             or (k8s.ns.name="gitlab" and k8s.pod.name startswith "gitlab-shared-secrets")
             or (proc.name="mkvmerge" and container.name="sabnzbd")
   valuesFrom:
