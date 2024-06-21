@@ -69,10 +69,13 @@ spec:
 
         - macro: user_known_contact_k8s_api_server_activities
           condition: >
-            (k8s.ns.name="monitoring" and container.name in ("grafana-sc-datasources", "grafana-sc-dashboard"))
+            (k8s.ns.name="monitoring" and container.name in ("grafana-sc-datasources", "grafana-sc-dashboard", "prometheus"))
             or (k8s.ns.name="storage-system" and container.name in ("local-path-provisioner", "nfs-subdir-external-provisioner"))
             or (k8s.ns.name="flux-system" and container.name="manager")
-            or proc.name="k8up"
+            or (k8s.ns.name="ingress-nginx" and container.name="controller")
+            or (k8s.ns.name="k8up" and container.name="cluster-resources-backup")
+            or (k8s.ns.name="gitlab" and container.name="gitlab-runner")
+            or (k8s.ns.name="gitlab" and k8s.pod.name startswith "gitlab-shared-secrets")
             or (proc.name="mkvmerge" and container.name="sabnzbd")
   valuesFrom:
     - kind: Secret
