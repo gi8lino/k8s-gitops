@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - cilium.yaml
   - containeroo.yaml
+  - coredns.yaml
   - falcosecurity.yaml
   - gitlab.yaml
   - grafana.yaml
