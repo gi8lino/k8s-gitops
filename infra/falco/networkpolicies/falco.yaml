@@ -24,7 +24,7 @@ spec:
               - matchPattern: "*"
     - toFQDNs:
         - matchName: download.falco.org
-        - matchName: falcosecurity.github.io
+        - matchName: falcosecurity.github.io # falco indexes
         - matchName: ghcr.io
         - matchName: mirrors.edge.kernel.org
         - matchName: pkg-containers.githubusercontent.com
