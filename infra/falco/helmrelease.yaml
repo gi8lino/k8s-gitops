@@ -75,8 +75,7 @@ spec:
 
         - macro: user_known_read_sensitive_files_activities
           condition: >
-            (proc.name startswith "python3")
-            or (k8s.ns.name="gitlab" and proc.exepath="/kaniko/executor")
+            (k8s.ns.name="gitlab" and proc.exepath="/kaniko/executor")
 
   valuesFrom:
     - kind: Secret
