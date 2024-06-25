@@ -24,3 +24,51 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-secrets
+      - kind: ConfigMap
+        name: cluster-settings
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  patches:
+    # Remove the network policies that does not work with k3s
+    - patch: |
+        apiVersion: networking.k8s.io/v1
+        kind: NetworkPolicy
+        metadata:
+          name: allow-egress
+          namespace: flux-system
+        $patch: delete
+    - patch: |
+        apiVersion: networking.k8s.io/v1
+        kind: NetworkPolicy
+        metadata:
+          name: allow-scraping
+          namespace: flux-system
+        $patch: delete
+    - patch: |
+        apiVersion: networking.k8s.io/v1
+        kind: NetworkPolicy
+        metadata:
+          name: allow-webhooks
+          namespace: flux-system
+        $patch: delete
+    # Increase memory limit for source-controller
+    - patch: |
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: source-controller
+          namespace: flux-system
+        spec:
+          template:
+            spec:
+              containers:
+                - name: manager
+                  resources:
+                    limits:
+                      memory: 2Gi
