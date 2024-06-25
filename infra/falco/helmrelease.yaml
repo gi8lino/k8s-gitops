@@ -70,7 +70,7 @@ spec:
         - macro: known_drop_and_execute_activities
           condition: >
             (k8s.ns.name="gitlab" and container.name in ("gitaly", "build"))
-            or (k8s.ns.name="media" and container.name="plex" and proc.name in ("Plex Media Fing", "Plex Transcoder", "Plex Media Scan"))
+            or (k8s.ns.name="media" and container.name="plex" and proc.name in ("Plex Media Fing", "Plex Transcoder", "Plex Media Scan", "Plex Script Hos"))
             or (k8s.ns.name="media" and container.name="sabnzbd" and proc.name in ("mkvmerge", "gio-querymodule"))
 
         - macro: user_known_read_sensitive_files_activities
