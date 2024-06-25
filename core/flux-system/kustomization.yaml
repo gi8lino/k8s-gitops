@@ -6,8 +6,6 @@ resources:
   - gotk-components.yaml
   - gotk-sync.yaml
 patches:
-  - path: patch-flux-system-kustomization.yaml
-  - path: patch-source-controller-deployment.yaml
   - patch: |
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
@@ -29,3 +27,17 @@ patches:
         name: allow-webhooks
         namespace: flux-system
       $patch: delete
+  - patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: source-controller
+        namespace: flux-system
+      spec:
+        template:
+          spec:
+            containers:
+              - name: manager
+                resources:
+                  limits:
+                    memory: 2Gi
