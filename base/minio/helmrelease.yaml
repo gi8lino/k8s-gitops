@@ -37,7 +37,7 @@ spec:
       enabled: true
       ingressClassName: nginx
       annotations:
-        nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
+        nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE_IPV4}
         nginx.ingress.kubernetes.io/proxy-body-size: 200m
         cloudflare-operator.io/ignore: "true"
       hosts:
@@ -46,7 +46,7 @@ spec:
       enabled: true
       ingressClassName: nginx
       annotations:
-        nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
+        nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE_IPV4}
         nginx.ingress.kubernetes.io/proxy-body-size: 200m
         cloudflare-operator.io/ignore: "true"
       hosts:

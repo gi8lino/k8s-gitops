@@ -120,7 +120,7 @@ spec:
     registry:
       ingress:
         annotations:
-          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
+          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE_IPV4}
           cloudflare-operator.io/ignore: "true"
       hpa:
         maxReplicas: 1
@@ -131,7 +131,7 @@ spec:
     minio:
       ingress:
         annotations:
-          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE}
+          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE_IPV4}
           cloudflare-operator.io/ignore: "true"
   install:
     crds: Skip
