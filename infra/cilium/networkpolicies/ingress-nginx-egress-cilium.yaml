@@ -15,10 +15,10 @@ spec:
     - toEndpoints:
         - matchLabels:
             k8s-app: hubble-ui
-            "k8s:io.kubernetes.pod.namespace": kube-system
+            "k8s:io.kubernetes.pod.namespace": cilium
         - matchLabels:
             k8s-app: hubble-relay
-            "k8s:io.kubernetes.pod.namespace": kube-system
+            "k8s:io.kubernetes.pod.namespace": cilium
       toPorts:
         - ports:
             - port: "8081"

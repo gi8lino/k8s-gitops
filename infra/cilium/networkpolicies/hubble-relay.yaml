@@ -4,7 +4,7 @@ apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: hubble-relay
-  namespace: kube-system
+  namespace: cilium
 spec:
   endpointSelector:
     matchLabels:
@@ -22,7 +22,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             k8s-app: hubble-ui
-            "k8s:io.kubernetes.pod.namespace": kube-system
+            "k8s:io.kubernetes.pod.namespace": cilium
       toPorts:
         - ports:
             - port: "4245"
