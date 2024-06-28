@@ -75,8 +75,11 @@ spec:
 
         - macro: user_known_read_sensitive_files_activities
           condition: >
-            (k8s.ns.name="gitlab" and proc.exepath="/kaniko/executor")
+            (proc.name startswith "python3")
+            or (k8s.ns.name="gitlab" and proc.exepath="/kaniko/executor")
 
+        - macro: allowed_clear_log_files
+          condition: (fd.name startswith "/var/lib/rancher/k3s")
   valuesFrom:
     - kind: Secret
       name: falco-helm-values
