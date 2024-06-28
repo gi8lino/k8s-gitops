@@ -50,7 +50,7 @@ spec:
         - ports:
             - port: "443"
     - toFQDNs:
-        - matchName: sso.{BASE_DOMAIN}
+        - matchName: sso.${BASE_DOMAIN}
       toPorts:
         - ports:
             - port: "443"
