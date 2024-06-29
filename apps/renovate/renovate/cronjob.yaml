@@ -18,26 +18,26 @@ spec:
         metadata:
           labels: {}
         spec:
-      initContainers:
-        - name: wait-for-cache
-          image: ghcr.io/containeroo/wait-for-tcp:v0.0.1
-          env:
-            - name: TARGET_NAME
-              value: valkey
-            - name: TARGET_ADDRESS
-              value: valkey.renovate.svc.cluster.local:6379
-          securityContext:
-            allowPrivilegeEscalation: false
-            runAsUser: 1000
-            runAsGroup: 1000
-            runAsNonRoot: true
-          resources:
-            requests:
-              cpu: 10m
-              memory: 16Mi
-            limits:
-              cpu: 10m
-              memory: 16Mi
+          initContainers:
+            - name: wait-for-cache
+              image: ghcr.io/containeroo/wait-for-tcp:v0.0.1
+              env:
+                - name: TARGET_NAME
+                  value: valkey
+                - name: TARGET_ADDRESS
+                  value: valkey.renovate.svc.cluster.local:6379
+              securityContext:
+                allowPrivilegeEscalation: false
+                runAsUser: 1000
+                runAsGroup: 1000
+                runAsNonRoot: true
+              resources:
+                requests:
+                  cpu: 10m
+                  memory: 16Mi
+                limits:
+                  cpu: 10m
+                  memory: 16Mi
           containers:
             - name: renovate
               image: renovate/renovate:37.421.0
