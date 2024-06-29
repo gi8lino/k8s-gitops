@@ -19,16 +19,12 @@ spec:
     spec:
       initContainers:
         - name: wait-for-database
-          image: busybox:1.36.1
-          command:
-            - sh
-            - -c
-            - |
-              echo 'Waiting for PostgreSQL to become ready...'
-              until printf "." && nc -z -w 2 postgres.keycloak.svc.cluster.local 5432; do
-                  sleep 2;
-              done;
-              echo 'PostgreSQL OK ✓'
+          image: ghcr.io/containeroo/wait-for-tcp:0.0.1
+          env:
+            - name: TARGET_NAME
+              value: PostgreSQL
+            - name: TARGET_ADDRESS
+              value: postgres.keycloak.svc.cluster.local:5432
           securityContext:
             allowPrivilegeEscalation: false
             runAsUser: 1000
