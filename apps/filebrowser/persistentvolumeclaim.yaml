@@ -12,19 +12,3 @@ spec:
   resources:
     requests:
       storage: 128Mi
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/persistentvolumeclaim-v1.json
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: filebrowser-data
-  namespace: filebrowser
-  annotations:
-    k8up.io/backup: "true"
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: hdd
-  resources:
-    requests:
-      storage: 400Gi
