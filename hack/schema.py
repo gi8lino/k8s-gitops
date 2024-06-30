@@ -24,7 +24,7 @@ schemas = [
     Schema(
         api_version="apps/v1",
         kind="DaemonSet",
-        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/daemonset-v1.json",
+        schema="https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/daemonset-apps-v1.json",
     ),
     Schema(
         api_version="apps/v1",
