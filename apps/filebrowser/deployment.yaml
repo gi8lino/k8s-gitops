@@ -54,8 +54,9 @@ spec:
       automountServiceAccountToken: false
       volumes:
         - name: data
-          persistentVolumeClaim:
-            claimName: filebrowser-data
+          hostPath:
+            path: /mnt/disk5/appdata/filebrowser-data
+            type: Directory
         - name: db
           persistentVolumeClaim:
             claimName: filebrowser-db
