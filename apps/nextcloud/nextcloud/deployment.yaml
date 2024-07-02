@@ -105,7 +105,7 @@ spec:
             - name: NEXTCLOUD_TRUSTED_DOMAINS
               value: cloud.${BASE_DOMAIN}
             - name: TRUSTED_PROXIES
-              value: 10.244.0.0/16
+              value: 10.1.0.0/16
             - name: OVERWRITEPROTOCOL
               value: https
             - name: REDIS_HOST
