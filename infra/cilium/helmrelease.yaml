@@ -47,6 +47,7 @@ spec:
         enabled: true
         ingress:
           enabled: true
+          className: nginx
           annotations:
             nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
             nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
