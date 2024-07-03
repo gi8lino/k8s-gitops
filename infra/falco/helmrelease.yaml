@@ -107,29 +107,6 @@ spec:
           priority: WARNING
           tags: [network, ssh]
 
-        - macro: all_tty_sessions
-          condition: >
-            proc.tty != 0
-
-        - rule: Detect Any TTY Session
-          desc: Detect any process with a TTY, indicating an interactive session.
-          condition: all_tty_sessions
-          output: >
-            Interactive session detected (user=%user.name command=%proc.cmdline tty=%proc.tty)
-          priority: NOTICE
-          tags: [shell, interactive]
-
-        - rule: Detect TTY Session in Privileged Container
-          desc: Detect any interactive session in a privileged container.
-          condition: >
-            container
-            and all_tty_sessions
-            and container.privileged=true
-          output: >
-            Interactive session in privileged container detected (user=%user.name command=%proc.cmdline container_id=%container.id container_name=%container.name tty=%proc.tty)
-          priority: WARNING
-          tags: [shell, k8s, privileged, interactive]
-
   valuesFrom:
     - kind: Secret
       name: falco-helm-values
