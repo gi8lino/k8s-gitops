@@ -81,9 +81,16 @@ spec:
         - macro: allowed_clear_log_files
           condition: (fd.name startswith "/var/lib/rancher/k3s")
 
+        - macro: inbound
+          condition: >
+            (evt.rawres >= 0) and
+            (evt.type in (accept, accept4, connect, listen)) and
+            (fd.typechar in (4)) and
+            (fd.l4proto in (tcp, udp))
+    
         - rule: Detect SSH Connections
           desc: Detect any incoming SSH connection
-          condition: inbound and evt.rawres >= 0 and (fd.sport=22 or fd.dport=22)
+          condition: inbound and (fd.sport=22 or fd.dport=22)
           output: "SSH connection detected (user=%user.name user_loginuid=%user.loginuid user_loginname=%user.loginname command=%proc.cmdline parent=%proc.pname connection=%fd.name)"
           priority: WARNING
           tags: [network, ssh]
