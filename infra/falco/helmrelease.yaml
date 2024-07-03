@@ -83,15 +83,20 @@ spec:
 
         - macro: inbound
           condition: >
+             # Ensure the event result is successful (no error)
             (evt.rawres >= 0) and
+            # The event type should be one of 'accept', 'accept4', 'connect', or 'listen'
             (evt.type in (accept, accept4, connect, listen)) and
+            # The file descriptor type should be a network socket (typechar 4)
             (fd.typechar in (4)) and
+            # The protocol should be either TCP or UDP
             (fd.l4proto in (tcp, udp))
     
         - rule: Detect SSH Connections
           desc: Detect any incoming SSH connection
-          condition: inbound and (fd.sport=22 or fd.dport=22)
-          output: "SSH connection detected (user=%user.name user_loginuid=%user.loginuid user_loginname=%user.loginname command=%proc.cmdline parent=%proc.pname connection=%fd.name)"
+          condition: inbound and (fd.sport=22 or fd.cport=22)
+          output: 
+            "SSH connection detected (user=%user.name user_loginuid=%user.loginuid user_loginname=%user.loginname command=%proc.cmdline parent=%proc.pname connection=%fd.name)"
           priority: WARNING
           tags: [network, ssh]
   
