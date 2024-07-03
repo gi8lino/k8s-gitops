@@ -107,6 +107,27 @@ spec:
           priority: WARNING
           tags: [network, ssh]
 
+        - rule: Create Privileged Pod
+          desc: Detect the creation of a privileged pod.
+          condition: >
+            evt.type=create
+            and evt.arg.pod.spec.containers.securityContext.privileged=true
+          output: >
+            Privileged pod created (user=%user.name pod=%k8s.pod.name namespace=%k8s.ns.name)
+          priority: WARNING
+          tags: [k8s, pod, privileged]
+
+        - rule: Run Shell in Privileged Pod
+          desc: Detect running a shell in a privileged pod.
+          condition: >
+            container
+            and shell_procs
+            and container.privileged=true
+          output: >
+            Shell running in privileged container (user=%user.name command=%proc.cmdline container_id=%container.id container_name=%container.name)
+          priority: WARNING
+          tags: [shell, k8s, privileged]
+
   valuesFrom:
     - kind: Secret
       name: falco-helm-values
