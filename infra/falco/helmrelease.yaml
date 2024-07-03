@@ -107,26 +107,28 @@ spec:
           priority: WARNING
           tags: [network, ssh]
 
-        - rule: Create Privileged Pod
-          desc: Detect the creation of a privileged pod.
+        - macro: all_tty_sessions
           condition: >
-            evt.type=create
-            and evt.arg.pod.spec.containers.securityContext.privileged=true
-          output: >
-            Privileged pod created (user=%user.name pod=%k8s.pod.name namespace=%k8s.ns.name)
-          priority: WARNING
-          tags: [k8s, pod, privileged]
+            proc.tty != 0
 
-        - rule: Run Shell in Privileged Pod
-          desc: Detect running a shell in a privileged pod.
+        - rule: Detect Any TTY Session
+          desc: Detect any process with a TTY, indicating an interactive session.
+          condition: all_tty_sessions
+          output: >
+            Interactive session detected (user=%user.name command=%proc.cmdline tty=%proc.tty)
+          priority: NOTICE
+          tags: [shell, interactive]
+
+        - rule: Detect TTY Session in Privileged Container
+          desc: Detect any interactive session in a privileged container.
           condition: >
             container
-            and shell_procs
+            and all_tty_sessions
             and container.privileged=true
           output: >
-            Shell running in privileged container (user=%user.name command=%proc.cmdline container_id=%container.id container_name=%container.name)
+            Interactive session in privileged container detected (user=%user.name command=%proc.cmdline container_id=%container.id container_name=%container.name tty=%proc.tty)
           priority: WARNING
-          tags: [shell, k8s, privileged]
+          tags: [shell, k8s, privileged, interactive]
 
   valuesFrom:
     - kind: Secret
