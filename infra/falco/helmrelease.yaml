@@ -82,7 +82,7 @@ spec:
           condition: (fd.name startswith "/var/lib/rancher/k3s")
 
         - macro: ssh_port
-          condition: (fd.sport=22 or fd.dport=22)
+          condition: (fd.sport=22 or fd.lport=22)
 
         - rule: Inbound SSH Connection
           desc: Detect Inbound SSH Connection
