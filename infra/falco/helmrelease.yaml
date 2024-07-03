@@ -81,11 +81,14 @@ spec:
         - macro: allowed_clear_log_files
           condition: (fd.name startswith "/var/lib/rancher/k3s")
 
+        - macro: ssh_port
+          condition: (fd.sport=22 or fd.dport=22)
+
         - rule: Inbound SSH Connection
           desc: Detect Inbound SSH Connection
           condition: >
-            ((evt.type in (accept,listen) and evt.dir=<) or
-              (evt.type in (recvfrom,recvmsg))) and ssh_port
+            ((evt.type in (accept,listen) and evt.dir=<)
+            or (evt.type in (recvfrom,recvmsg))) and ssh_port
           output: >
             Inbound SSH connection (user=%user.name client_ip=%fd.cip client_port=%fd.cport server_ip=%fd.sip)
           priority: WARNING
@@ -94,8 +97,8 @@ spec:
         - rule: Outbound SSH Connection
           desc: Detect Outbound SSH Connection
           condition: >
-            ((evt.type = connect and evt.dir=<) or
-              (evt.type in (sendto,sendmsg))) and ssh_port
+            ((evt.type = connect and evt.dir=<) or (evt.type in (sendto,sendmsg)))
+            and ssh_port
           output: >
             Outbound SSH connection (user=%user.name server_ip=%fd.sip server_port=%fd.sport client_ip=%fd.cip)
           priority: WARNING
