@@ -83,10 +83,10 @@ spec:
 
         - macro: inbound
           condition: >
-            (evt.rawres >= 0) and
-            (evt.type in (accept, accept4, connect, listen)) and
-            (fd.typechar in (4)) and
-            (fd.l4proto in (tcp, udp))
+            (evt.rawres >= 0)
+            and (evt.type in (accept, accept4, connect, listen))
+            and (fd.typechar in (4))
+            and (fd.l4proto in (tcp, udp))
     
         - rule: Detect SSH Connections
           desc: Detect any incoming SSH connection
