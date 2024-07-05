@@ -4,10 +4,13 @@ This directory contains monitoring apps.
 
 ## Contents
 
-- **flux-system** contains monitoring objects for Flux. They need to be created afterwards since crds don't exist when `core` is being deployed.
-- **kthxbye** is a simple daemon that will automatically extend expiring silences from Alertmanager
-- **kube-prometheus-stack** is a collection of Kubernetes manifests, Grafana dashboards, and Prometheus rules
-- **pihole-server** contains monitoring objects for a pihole server
-- **prometheus-blackbox-exporter** is a blackbox prober exporter
-- **prometheus-pushgateway** is a push acceptor for ephemeral and batch jobs
-- **tools-server** contains monitoring objects for a tools server
+- **flux-system** contains monitoring objects for Flux.
+- **kthxbye** is a simple daemon that automatically extends expiring silences in Alertmanager.
+- **kube-prometheus-stack** is a comprehensive collection of Kubernetes manifests, Grafana dashboards, and Prometheus rules for monitoring.
+- **loki** is a horizontally-scalable, highly-available log aggregation system inspired by Prometheus.
+- **pihole-server** contains monitoring objects for a Pi-hole server.
+- **prometheus-blackbox-exporter** is a blackbox prober that allows probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP, and more.
+- **prometheus-pushgateway** is a service that allows you to push metrics from ephemeral and batch jobs to a Prometheus server.
+- **prometheus-smartctl-exporter** is an exporter that collects and exposes smartctl metrics.
+- **promtail** is an agent that ships logs to Loki, typically deployed as a DaemonSet in Kubernetes.
+- **tools-server** contains monitoring objects for a tools server.
