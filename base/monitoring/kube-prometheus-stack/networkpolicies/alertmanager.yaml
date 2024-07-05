@@ -17,6 +17,10 @@ spec:
             app.kubernetes.io/name: prometheus
             "k8s:io.kubernetes.pod.namespace": monitoring
         - matchLabels:
+            app.kubernetes.io/name: grafana
+            app.kubernetes.io/instance: kube-prometheus-stack
+            "k8s:io.kubernetes.pod.namespace": monitoring
+        - matchLabels:
             app.kubernetes.io/name: ingress-nginx
             app.kubernetes.io/component: controller
             app.kubernetes.io/instance: ingress-nginx
