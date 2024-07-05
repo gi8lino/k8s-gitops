@@ -16,6 +16,10 @@ spec:
             app.kubernetes.io/name: grafana
             app.kubernetes.io/instance: kube-prometheus-stack
             "k8s:io.kubernetes.pod.namespace": monitoring
+        - matchLabels:
+            app.kubernetes.io/instance: promtail
+            app.kubernetes.io/name: promtail
+            "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
             - port: "3100"
