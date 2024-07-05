@@ -32,6 +32,12 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443" # kube-api
+              protocol: TCP
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/name: loki
