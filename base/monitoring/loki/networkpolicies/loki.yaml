@@ -9,14 +9,13 @@ spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: loki
-      app.kubernetes.io/component: single-binary
       app.kubernetes.io/instance: loki
   ingress:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/name: grafana
             app.kubernetes.io/instance: kube-prometheus-stack
-            "k8s:io.kubernetes.pod.namespace": ingress-nginx
+            "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
             - port: "3100"
