@@ -11,4 +11,5 @@ resources:
   - prometheus-blackbox-exporter
   - prometheus-pushgateway
   - prometheus-smartctl-exporter
+  - promtail
   - tools-server
