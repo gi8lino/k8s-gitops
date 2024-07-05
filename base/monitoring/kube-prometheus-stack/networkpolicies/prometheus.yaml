@@ -8,8 +8,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
       app.kubernetes.io/name: prometheus
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -98,6 +98,16 @@ spec:
         - ports:
             - port: "9153"
               protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: promtail
+            app.kubernetes.io/name: promtail
+            "k8s:io.kubernetes.pod.namespace": monitoring
+      toPorts:
+        - ports:
+            - port: "3101"
+              protocol: TCP
+
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: k8up
