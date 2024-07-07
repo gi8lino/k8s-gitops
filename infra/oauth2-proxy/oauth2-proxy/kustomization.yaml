@@ -6,3 +6,33 @@ resources:
   - networkpolicies
   - helmrelease.yaml
   - secret.yaml
+patches:
+  - patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: oauth2-proxy
+        namespace: oauth2-proxy
+      spec:
+        template:
+          spec:
+            initContainers:
+              - name: wait-for-keycloak
+                image: ghcr.io/containeroo/wait-for-tcp:0.0.14
+                env:
+                  - name: TARGET_NAME
+                    value: Keycloak
+                  - name: TARGET_ADDRESS
+                    value: sso.${BASE_DOMAIN}:443
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  runAsUser: 1000
+                  runAsGroup: 1000
+                  runAsNonRoot: true
+                resources:
+                  requests:
+                    cpu: 10m
+                    memory: 16Mi
+                  limits:
+                    cpu: 10m
+                    memory: 16Mi
