@@ -63,6 +63,7 @@ spec:
                   spec:
                     initContainers:
                       - name: wait-for-keycloak
+                        # renovate: datasource=docker
                         image: ghcr.io/containeroo/wait-for-tcp:0.0.14
                         env:
                           - name: TARGET_NAME
