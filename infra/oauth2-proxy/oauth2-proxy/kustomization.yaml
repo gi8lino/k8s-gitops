@@ -6,3 +6,5 @@ resources:
   - networkpolicies
   - helmrelease.yaml
   - secret.yaml
+patches:
+  - path: patch-deployment.yaml

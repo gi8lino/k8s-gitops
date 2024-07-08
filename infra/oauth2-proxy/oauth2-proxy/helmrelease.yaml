@@ -49,10 +49,6 @@ spec:
         - oauth2-proxy.${BASE_DOMAIN}
     metrics:
       enabled: false
-  postRenderers:
-    - kustomize:
-        patches:
-          - path: patch-deployment.yaml
   valuesFrom:
     - kind: Secret
       name: oauth2-proxy-helm-values
