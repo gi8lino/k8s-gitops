@@ -9,5 +9,6 @@ resources:
 labels:
   - includeSelectors: true
     pairs:
+      app.kubernetes.io/name: valkey
       app.kubernetes.io/instance: oauth2-proxy
       app.kubernetes.io/component: valkey
