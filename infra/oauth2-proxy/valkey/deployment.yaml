@@ -16,13 +16,13 @@ spec:
       labels: {}
     spec:
       initContainers:
-        - name: wait-for-oauth2-proxy
+        - name: wait-for-keycloak
           image: ghcr.io/containeroo/wait-for-tcp:0.0.15
           env:
             - name: TARGET_NAME
-              value: OAuth2-Proxy
+              value: keycloak
             - name: TARGET_ADDRESS
-              value: oauth2-proxy.oauth2-proxy.svc.cluster.local:80
+              value: sso.${BASE_DOMAIN}:443
           securityContext:
             allowPrivilegeEscalation: false
             runAsUser: 1000

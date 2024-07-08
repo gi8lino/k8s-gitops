@@ -62,14 +62,14 @@ spec:
                 template:
                   spec:
                     initContainers:
-                      - name: wait-for-keycloak
+                      - name: wait-for-valkey
                         # renovate
                         image: ghcr.io/containeroo/wait-for-tcp:0.0.15
                         env:
                           - name: TARGET_NAME
-                            value: Keycloak
+                            value: valkey
                           - name: TARGET_ADDRESS
-                            value: sso.${BASE_DOMAIN}:443
+                            value: valkey.oauth2-proxy.svc.cluster.local:6379
                         securityContext:
                           allowPrivilegeEscalation: false
                           runAsUser: 1000
