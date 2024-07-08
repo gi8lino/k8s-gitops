@@ -15,6 +15,26 @@ spec:
     metadata:
       labels: {}
     spec:
+      initContainers:
+        - name: wait-for-oauth2-proxy
+          image: ghcr.io/containeroo/wait-for-tcp:0.0.15
+          env:
+            - name: TARGET_NAME
+              value: OAuth2-Proxy
+            - name: TARGET_ADDRESS
+              value: oauth2-proxy:80
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
       containers:
         - name: valkey
           image: valkey/valkey:7.2.5-alpine
