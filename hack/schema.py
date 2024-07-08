@@ -94,14 +94,14 @@ schemas = [
         schema="https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/gitrepository_v1.json",
     ),
     Schema(
-        api_version="helm.toolkit.fluxcd.io/v2beta2",
+        api_version="helm.toolkit.fluxcd.io/v2",
         kind="HelmRelease",
-        schema="https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json",
+        schema="https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json",
     ),
     Schema(
-        api_version="source.toolkit.fluxcd.io/v1beta2",
+        api_version="source.toolkit.fluxcd.io/v1",
         kind="HelmRepository",
-        schema="https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/helmrepository_v1beta2.json",
+        schema="https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/helmrepository_v1.json",
     ),
     Schema(
         api_version="kustomize.toolkit.fluxcd.io/v1",
