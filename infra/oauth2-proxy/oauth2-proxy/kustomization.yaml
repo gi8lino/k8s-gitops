@@ -7,4 +7,4 @@ resources:
   - helmrelease.yaml
   - secret.yaml
 patches:
-  - path: patch-deployment.yaml
+  - patch: patch-deployment.yaml
