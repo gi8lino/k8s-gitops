@@ -19,7 +19,7 @@ spec:
     spec:
       initContainers:
         - name: wait-for-database
-          image: ghcr.io/containeroo/wait-for-tcp:0.0.15
+          image: ghcr.io/containeroo/wait-for-tcp:0.0.16
           env:
             - name: TARGET_NAME
               value: PostgreSQL
