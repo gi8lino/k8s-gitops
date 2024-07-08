@@ -75,7 +75,14 @@
       ],
       "datasourceTemplate": "github-releases",
       "versioningTemplate": "semver"
-    }
+    },
+    {
+      "description": "Process postRenderer patches with images",
+      "customType": "regex",
+      "fileMatch": ["infra/oauth2-roxy/oauth2-proxy/helmrelease\\.ya?ml$"],
+      "datasourceTemplate": "docker"
+    },
+
   ],
   "packageRules": [
     {
