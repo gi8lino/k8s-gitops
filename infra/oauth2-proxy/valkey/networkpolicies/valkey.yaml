@@ -33,9 +33,12 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toFQDNs:
-        - matchName: sso.${BASE_DOMAIN}
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: ingress-nginx
+            app.kubernetes.io/instance: ingress-nginx
+            app.kubernetes.io/component: controller
+            "k8s:io.kubernetes.pod.namespace": ingress-nginx
       toPorts:
         - ports:
             - port: "443"
-              protocol: TCP
