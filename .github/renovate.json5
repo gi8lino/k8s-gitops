@@ -21,8 +21,10 @@
   ],
   // container images
   "kubernetes": {
-    "fileMatch": ["(apps|base|infra)/.*(cronjob|daemonset|deployment|statefulset)\\.ya?ml$"]
-    "fileMatch": ["infra/oauth2-proxy/oauth2-proxy/helmrelease\\.yaml$"]
+    "fileMatch": [
+      "(apps|base|infra)/.*(cronjob|daemonset|deployment|statefulset)\\.ya?ml$",
+      "infra/oauth2-proxy/oauth2-proxy/helmrelease\\.yaml$"
+    ]
   },
   // container images
   "helm-values": {
