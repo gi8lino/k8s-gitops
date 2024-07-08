@@ -52,7 +52,7 @@ spec:
   postRenderers:
     - kustomize:
         patches:
-          - patch: patch-deployment.yaml
+          - path: patch-deployment.yaml
   valuesFrom:
     - kind: Secret
       name: oauth2-proxy-helm-values
