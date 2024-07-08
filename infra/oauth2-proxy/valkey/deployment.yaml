@@ -22,7 +22,7 @@ spec:
             - name: TARGET_NAME
               value: OAuth2-Proxy
             - name: TARGET_ADDRESS
-              value: oauth2-proxy:80
+              value: oauth2-proxy.oauth2-proxy.svc.cluster.local:80
           securityContext:
             allowPrivilegeEscalation: false
             runAsUser: 1000
