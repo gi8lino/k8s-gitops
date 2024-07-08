@@ -81,7 +81,7 @@
       "customType": "regex",
       "fileMatch": ["infra/oauth2-proxy/oauth2-proxy/helmrelease\\.ya?ml$"],
       "matchStrings": [
-        "# renovate\\n\\s+image:\\s+(?<registryUrl>\\S+):v?(?<currentValue>[^-\\s]*)"
+        "# renovate\\n\\s+image:\\s+(?<deptName>\\S+):v?(?<currentValue>[^-\\s]*)"
       ],
       "datasourceTemplate": "docker"
     }
