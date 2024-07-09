@@ -8,7 +8,7 @@ metadata:
 spec:
   autoAssign: false
   addresses:
-    - ${METALLB_INGRESS_NGINX_ADDRESS_POOL}
+    - ${METALLB_INGRESS_NGINX_ADDRESS_POOL_V4}
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/metallb.io/ipaddresspool_v1beta1.json
 apiVersion: metallb.io/v1beta1
@@ -19,4 +19,4 @@ metadata:
 spec:
   autoAssign: true
   addresses:
-    - ${METALLB_DEFAULT_ADDRESS_POOL}
+    - ${METALLB_DEFAULT_ADDRESS_POOL_V4}

@@ -35,7 +35,7 @@ spec:
     - fromEntities:
         - cluster
     - fromCIDR:
-        - ${LAN_NETWORK_RANGE}
+        - ${LAN_NETWORK_RANGE_V4}
       toPorts:
         - ports:
             - port: "22"

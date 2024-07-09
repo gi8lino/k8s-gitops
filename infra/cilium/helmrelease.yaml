@@ -52,7 +52,7 @@ spec:
             nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
             nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
             nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
-            nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE},${POD_NETWORK_RANGE_IPV4}
+            nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE_V4},${POD_NETWORK_RANGE_V4}
             cf.containeroo.ch/ignore: "true"
           hosts:
             - hubble.local.${BASE_DOMAIN}
@@ -70,7 +70,7 @@ spec:
       operator:
         clusterPoolIPv4MaskSize: 24
         clusterPoolIPv4PodCIDRList:
-          - ${POD_NETWORK_RANGE_IPV4}
+          - ${POD_NETWORK_RANGE_V4}
     kubeProxyReplacement: true
     k8sServiceHost: k3s.srv.${BASE_DOMAIN}
     k8sServicePort: 6443

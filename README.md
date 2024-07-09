@@ -47,7 +47,7 @@ These directories are not tracked by Flux but are useful nonetheless:
 
 Over WAN, I have port forwarded ports `80` and `443` to the load balancer IP of my ingress controller that's running in my Kubernetes cluster.
 
-[Cloudflare](https://www.cloudflare.com/) works as a proxy to hide my homes WAN IP and also as a firewall. [Cilium](https://cilium.io) blocks all IPs not originating from the [Cloudflares list of IP ranges](https://www.cloudflare.com/ips/), except the local network range `${LAN_NETWORK_RANGE}`.
+[Cloudflare](https://www.cloudflare.com/) works as a proxy to hide my homes WAN IP and also as a firewall. [Cilium](https://cilium.io) blocks all IPs not originating from the [Cloudflares list of IP ranges](https://www.cloudflare.com/ips/), except the local network range `${LAN_NETWORK_RANGE_V4}`.
 
 ### Internal DNS
 
