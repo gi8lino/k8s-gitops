@@ -20,7 +20,7 @@ spec:
         spec:
           initContainers:
             - name: wait-for-cache
-              image: ghcr.io/containeroo/wait-for-tcp:0.0.18
+              image: ghcr.io/containeroo/wait-for-tcp:0.0.19
               env:
                 - name: TARGET_NAME
                   value: valkey
