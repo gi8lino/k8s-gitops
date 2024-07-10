@@ -64,7 +64,7 @@ spec:
                     initContainers:
                       - name: wait-for-valkey
                         # renovate
-                        image: ghcr.io/containeroo/wait-for-tcp:0.0.18
+                        image: ghcr.io/containeroo/wait-for-tcp:0.0.19
                         env:
                           - name: TARGET_NAME
                             value: valkey
