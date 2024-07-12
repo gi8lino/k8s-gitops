@@ -19,7 +19,7 @@ spec:
     spec:
       initContainers:
         - name: wait-for-cache
-          image: ghcr.io/containeroo/taco:0.0.19
+          image: ghcr.io/containeroo/taco:0.0.21
           env:
             - name: TARGET_NAME
               value: valkey
@@ -38,7 +38,7 @@ spec:
               cpu: 10m
               memory: 16Mi
         - name: wait-for-database
-          image: ghcr.io/containeroo/taco:0.0.19
+          image: ghcr.io/containeroo/taco:0.0.21
           env:
             - name: TARGET_NAME
               value: PostgreSQL

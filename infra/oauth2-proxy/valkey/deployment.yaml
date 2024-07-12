@@ -17,7 +17,7 @@ spec:
     spec:
       initContainers:
         - name: wait-for-keycloak
-          image: ghcr.io/containeroo/taco:0.0.19
+          image: ghcr.io/containeroo/taco:0.0.21
           env:
             - name: TARGET_NAME
               value: keycloak
