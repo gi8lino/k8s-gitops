@@ -84,7 +84,7 @@ spec:
             - name: healthchecks-data
               mountPath: /config
             - name: logo
-              mountPath: /opt/healthchecks/static-collected/img/logo.svg
+              mountPath: /app/healthchecks/static-collected/img/logo.svg
               subPath: logo.svg
               readOnly: true
             - name: prunes
