@@ -11,33 +11,45 @@ resources:
   - secret.yaml
   - service.yaml
 configMapGenerator:
-  - files:
+  - name: logo
+    namespace: healthchecks
+    files:
+      - ./img/logo.svg
+  - name: prunes
+    namespace: healthchecks
+    files:
       - ./scripts/prunes.sh
-    name: prunes
+  - name: startup
     namespace: healthchecks
-  - files:
+    files:
       - ./scripts/startup.sh
-    name: startup
-    namespace: healthchecks
 generatorOptions:
   disableNameSuffixHash: true
 patches:
-  - patch: |-
+  - target:
+      kind: ConfigMap
+      name: logo
+    patch: |-
       - op: add
         path: "/metadata/annotations"
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
-    target:
+  - target:
       kind: ConfigMap
       name: prunes
-  - patch: |-
+    patch: |-
       - op: add
         path: "/metadata/annotations"
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
-    target:
+  - target:
       kind: ConfigMap
       name: startup
+    patch: |-
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
 labels:
   - includeSelectors: true
     pairs:

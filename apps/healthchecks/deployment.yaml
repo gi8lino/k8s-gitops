@@ -41,7 +41,7 @@ spec:
             - name: REMOTE_USER_HEADER
               value: HTTP_X_AUTH_REQUEST_EMAIL
             - name: SITE_LOGO_URL
-              value: https://healthchecks.io/static/img/logo-full.svg
+              value: /static/img/logo.svg
             - name: DOCKER_MODS
               value: linuxserver/mods:universal-cron
           envFrom:
@@ -83,6 +83,10 @@ spec:
           volumeMounts:
             - name: healthchecks-data
               mountPath: /config
+            - name: logo
+              mountPath: /opt/healthchecks/static-collected/img/logo.svg
+              subPath: logo.svg
+              readOnly: true
             - name: prunes
               mountPath: /etc/periodic/weekly/prunes
               subPath: prunes
