@@ -99,6 +99,9 @@ spec:
         - name: healthchecks-data
           persistentVolumeClaim:
             claimName: healthchecks-data
+        - name: logo
+          configMap:
+            name: logo
         - name: prunes
           configMap:
             name: prunes
