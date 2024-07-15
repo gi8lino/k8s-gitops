@@ -64,7 +64,7 @@ spec:
                     initContainers:
                       - name: wait-for-valkey
                         # renovate
-                        image: ghcr.io/containeroo/taco:0.0.21
+                        image: ghcr.io/containeroo/taco:0.0.22
                         env:
                           - name: TARGET_NAME
                             value: valkey
