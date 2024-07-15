@@ -45,6 +45,8 @@ spec:
             "k8s:io.kubernetes.pod.namespace": ingress-nginx
       toPorts:
         - ports:
+            - port: "80"
+              protocol: TCP
             - port: "443" # OIDC
               protocol: TCP
             - port: "8080" # Nextcloud Healthcheck
