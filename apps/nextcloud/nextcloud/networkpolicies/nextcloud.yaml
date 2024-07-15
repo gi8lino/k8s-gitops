@@ -45,11 +45,9 @@ spec:
             "k8s:io.kubernetes.pod.namespace": ingress-nginx
       toPorts:
         - ports:
-            - port: "80"
+            - port: "80" # Nextcloud Healthcheck
               protocol: TCP
             - port: "443" # OIDC
-              protocol: TCP
-            - port: "8080" # Nextcloud Healthcheck
               protocol: TCP
     - toEndpoints:
         - matchLabels:
@@ -76,6 +74,12 @@ spec:
             - port: "80"
               protocol: TCP
             - port: "443"
+              protocol: TCP
+    - toFQDNs:
+        - matchName: cloud.${BASE_DOMAIN} # Nextcloud Healthcheck
+      toPorts:
+        - ports:
+            - port: "8080"
               protocol: TCP
     - toFQDNs:
         - matchName: ${SMTP_DOMAIN}
