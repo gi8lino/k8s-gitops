@@ -10,6 +10,18 @@ spec:
     matchLabels:
       app.kubernetes.io/name: loki
       app.kubernetes.io/instance: loki
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
   ingress:
     - fromEndpoints:
         - matchLabels:
