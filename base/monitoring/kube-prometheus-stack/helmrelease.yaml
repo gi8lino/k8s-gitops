@@ -140,36 +140,33 @@ spec:
           enabled: true
           searchNamespace: ALL
           resource: both
-      datasources:
-        datasources.yaml:
-          apiVersion: 1
-          deleteDatasources:
-            - { name: Alertmanager, orgId: 1 }
-            - { name: Loki, orgId: 1 }
-            - { name: Prometheus, orgId: 1 }
-          datasources:
-            - name: Prometheus
-              type: prometheus
-              uid: prometheus
-              access: proxy
-              url: http://prometheus-operated:9090
-              jsonData:
-                timeInterval: 1m
-              isDefault: true
-            - name: Loki
-              type: loki
-              uid: loki
-              access: proxy
-              url: http://loki-headless:3100
-              jsonData:
-                maxLines: 250
-            - name: Alertmanager
-              type: alertmanager
-              uid: alertmanager
-              access: proxy
-              url: http://alertmanager-operated:9093
-              jsonData:
-                implementation: prometheus
+      deleteDatasources:
+        - { name: Alertmanager, orgId: 1 }
+        - { name: Loki, orgId: 1 }
+        - { name: Prometheus, orgId: 1 }
+      additionalDataSources:
+        - name: Prometheus
+          type: prometheus
+          uid: prometheus
+          access: proxy
+          url: http://prometheus-operated:9090
+          jsonData:
+            timeInterval: 1m
+          isDefault: true
+        - name: Loki
+          type: loki
+          uid: loki
+          access: proxy
+          url: http://loki-headless:3100
+          jsonData:
+            maxLines: 250
+        - name: Alertmanager
+          type: alertmanager
+          uid: alertmanager
+          access: proxy
+          url: http://alertmanager-operated:9093
+          jsonData:
+            implementation: prometheus
       ingress:
         enabled: true
         annotations:
