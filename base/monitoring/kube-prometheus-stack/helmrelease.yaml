@@ -141,9 +141,12 @@ spec:
           searchNamespace: ALL
           resource: both
       deleteDatasources:
-        - { name: Alertmanager, orgId: 1 }
-        - { name: Loki, orgId: 1 }
-        - { name: Prometheus, orgId: 1 }
+        - name: Alertmanager
+          orgId: 1
+        - name: Loki
+          orgId: 1
+        - name: Prometheus
+          orgId: 1
       additionalDataSources:
         - name: Prometheus
           type: prometheus
