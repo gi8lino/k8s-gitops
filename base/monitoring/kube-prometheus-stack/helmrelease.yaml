@@ -156,7 +156,6 @@ spec:
           jsonData:
             timeInterval: 1m
           isDefault: true
-          orgId: 1
         - name: Loki
           type: loki
           uid: loki
@@ -164,7 +163,6 @@ spec:
           url: http://loki-headless:3100
           jsonData:
             maxLines: 250
-          orgId: 1
         - name: Alertmanager
           type: alertmanager
           uid: alertmanager
@@ -172,7 +170,6 @@ spec:
           url: http://alertmanager-operated:9093
           jsonData:
             implementation: prometheus
-          orgId: 1
       ingress:
         enabled: true
         annotations:
