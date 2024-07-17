@@ -23,6 +23,12 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
+        - matchName: mirrors.kernel.org
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+    - toFQDNs:
         - matchName: download.falco.org
         - matchName: falcosecurity.github.io # falco indexes
         - matchName: ghcr.io
