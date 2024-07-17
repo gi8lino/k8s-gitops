@@ -23,8 +23,9 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
-        - matchName: mirrors.kernel.org
         - matchName: mirrors.edge.kernel.org
+        - matchName: mirrors.kernel.org
+        - matchName: security-cdn.debian.org
       toPorts:
         - ports:
             - port: "80"
