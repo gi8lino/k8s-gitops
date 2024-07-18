@@ -42,16 +42,18 @@ spec:
             - name: http
               containerPort: 32400
           startupProbe:
-            httpGet:
-              path: /web/index.html
-              port: http
+            exec:
+              command:
+                - sh
+                - -c
+                - if [ ! -e /dev/dri/card0 ]; then echo 'GPU is not ready yet...'; exit 1; fi
             initialDelaySeconds: 15
             failureThreshold: 60
             timeoutSeconds: 3
             periodSeconds: 3
           livenessProbe:
             httpGet:
-              path: /web/index.html
+              path: /identity
               port: http
             failureThreshold: 2
             timeoutSeconds: 3
