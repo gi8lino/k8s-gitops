@@ -14,15 +14,15 @@ configMapGenerator:
   - name: logo
     namespace: healthchecks
     files:
-      - ./img/logo.svg
+      - .img/logo.svg
   - name: prunes
     namespace: healthchecks
     files:
-      - ./scripts/prunes.sh
+      - scripts/prunes.sh
   - name: startup
     namespace: healthchecks
     files:
-      - ./scripts/startup.sh
+      - scripts/startup.sh
 generatorOptions:
   disableNameSuffixHash: true
 patches:
