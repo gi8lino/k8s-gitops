@@ -20,7 +20,7 @@ spec:
       interval: 20m
   values:
     driver:
-      kind: ebpf
+      kind: modern_ebpf
     collectors:
       containerd:
         enabled: true
