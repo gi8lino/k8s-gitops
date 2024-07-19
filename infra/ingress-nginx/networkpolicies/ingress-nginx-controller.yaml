@@ -97,3 +97,7 @@ spec:
       toPorts:
         - ports:
             - port: "4180"
+    - icmps:
+        - fields:
+            - type: 8
+              family: IPv4
