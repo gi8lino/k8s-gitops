@@ -57,7 +57,8 @@ spec:
       falco_rules.local.yaml: |-
         - macro: user_known_stand_streams_redirect_activities
           condition: >
-            (k8s.ns.name="gitlab" and container.name in ("gitlab-shell", "gitlab-workhorse"))
+            (k8s.ns.name="gitlab" and container.name in ("gitaly", "gitlab-shell", "gitlab-workhorse"))
+            or (k8s.ns.name="flux-system" and proc.name="gpg-agent")
 
         - list: user_known_packet_socket_binaries
           items: [speaker]
@@ -80,7 +81,9 @@ spec:
             or (k8s.ns.name="gitlab" and proc.exepath="/kaniko/executor")
 
         - macro: allowed_clear_log_files
-          condition: (fd.name startswith "/var/lib/rancher/k3s")
+          condition: >
+            (fd.name startswith "/var/lib/rancher/k3s")
+            or (k8s.ns.name="gitlab" and proc.exepath="/kaniko/executor")
 
   valuesFrom:
     - kind: Secret
