@@ -103,7 +103,7 @@ spec:
             - name: POSTGRES_HOST
               value: postgres.nextcloud.svc.cluster.local
             - name: NEXTCLOUD_TRUSTED_DOMAINS
-              value: cloud.${BASE_DOMAIN}:8080 # without port it tries to redirect to http (only releveant because of nginx-unprivileged)
+              value: cloud.${BASE_DOMAIN}
             - name: TRUSTED_PROXIES
               value: ${POD_NETWORK_RANGE_V4}
             - name: OVERWRITEPROTOCOL
