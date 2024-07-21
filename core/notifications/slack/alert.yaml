@@ -40,6 +40,9 @@ spec:
       namespace: cloudflare-operator
       name: "*"
     - kind: HelmRelease
+      namespace: cnpg-system
+      name: "*"
+    - kind: HelmRelease
       namespace: falco
       name: "*"
     - kind: HelmRelease

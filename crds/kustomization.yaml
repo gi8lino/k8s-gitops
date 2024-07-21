@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - cert-manager
   - cloudflare-operator
+  - cloudnative-pg
   - k8up
   - kube-prometheus-stack
   - metallb-system

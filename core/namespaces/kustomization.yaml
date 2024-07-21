@@ -6,6 +6,7 @@ resources:
   - cert-manager.yaml
   - cilium.yaml
   - cloudflare-operator.yaml
+  - cnpg-system.yaml
   - debug.yaml
   - falco.yaml
   - filebrowser.yaml
