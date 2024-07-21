@@ -4,6 +4,7 @@ This directory contains applications that are useful for cluster operations.
 
 ## Contents
 
+- **cloudnative-pg** contains monitoring objects for Cloud Native PostgreSQL
 - **cloudflare-operator** manage Cloudflare DNS records using Kubernetes objects
 - **intel-gpu-plugin** Intel device plugin for Kubernetes
 - **k8up** is a Kubernetes backup operator created by VSHN
