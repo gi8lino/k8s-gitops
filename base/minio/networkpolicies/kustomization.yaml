@@ -5,7 +5,6 @@ kind: Kustomization
 resources:
   - ingress-nginx-egress-minio.yaml
   - minio-ingress-k8up-jobs.yaml
-  - minio-ingress-mirrio.yaml
   - minio-job.yaml
   - minio.yaml
   - prometheus-egress-minio.yaml
