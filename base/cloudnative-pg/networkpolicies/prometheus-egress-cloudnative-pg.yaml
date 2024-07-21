@@ -13,7 +13,8 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: cloudnative-pg
+            app.kubernetes.io/name: cloudnative-pg
+            app.kubernetes.io/instance: cloudnative-pg
             "k8s:io.kubernetes.pod.namespace": cnpg-system
       toPorts:
         - ports:

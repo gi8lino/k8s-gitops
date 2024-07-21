@@ -9,11 +9,12 @@ spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: cloudnative-pg
+      app.kubernetes.io/instance: cloudnative-pg
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
             app.kubernetes.io/name: prometheus
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
             "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
