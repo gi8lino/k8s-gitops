@@ -38,8 +38,8 @@ spec:
     - name: nextcloud-postgres
       connectionParameters:
         host: postgres.nextcloud.svc.cluster.local
-        user: nextcloud
-        dbname: nextcloud
+        user: postgres
+        dbname: postgres
       password:
         name: postgres
         key: POSTGRES_PASSWORD
