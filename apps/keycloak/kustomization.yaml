@@ -5,7 +5,6 @@ kind: Kustomization
 resources:
   - keycloak
   - postgres
-  - schedule.yaml
 labels:
   - includeSelectors: true
     pairs:

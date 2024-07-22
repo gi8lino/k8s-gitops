@@ -3,24 +3,20 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: postgres
-  namespace: keycloak
+  name: cloudnative-pg-egress-keycloak-postgres
+  namespace: cnpg-system
 spec:
   endpointSelector:
     matchLabels:
-      app: keycloak
-      component: postgres
-  ingress:
-    - fromEndpoints:
-        - matchLabels:
-            app: keycloak
-            component: keycloak
-            "k8s:io.kubernetes.pod.namespace": keycloak
+      app.kubernetes.io/name: cloudnative-pg
+      app.kubernetes.io/instance: cloudnative-pg
+  egress:
+    - toEndpoints:
         - matchLabels:
             cnpg.io/cluster: keycloak-psql
-            cnpg.io/jobRole: import
+            cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": keycloak
       toPorts:
         - ports:
-            - port: "5432"
+            - port: "8000"
               protocol: TCP

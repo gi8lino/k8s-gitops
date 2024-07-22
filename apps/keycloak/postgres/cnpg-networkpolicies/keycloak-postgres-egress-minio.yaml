@@ -3,24 +3,20 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: postgres
-  namespace: keycloak
+  name: keycloak-postgres-egress-minio
+  namespace: minio
 spec:
   endpointSelector:
     matchLabels:
-      app: keycloak
-      component: postgres
+      app.kubernetes.io/instance: minio
+      app.kubernetes.io/name: minio
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app: keycloak
-            component: keycloak
-            "k8s:io.kubernetes.pod.namespace": keycloak
-        - matchLabels:
             cnpg.io/cluster: keycloak-psql
-            cnpg.io/jobRole: import
+            cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": keycloak
       toPorts:
         - ports:
-            - port: "5432"
+            - port: "9000"
               protocol: TCP

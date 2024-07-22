@@ -1,0 +1,45 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: keycloak-psql
+  namespace: keycloak
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.3
+  storage:
+    size: 20Gi
+  bootstrap:
+    initdb:
+      database: keycloak
+      import:
+        type: microservice
+        databases:
+          - postgres
+        source:
+          externalCluster: keycloak-postgres
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://db-backups
+      endpointURL: http://minio.minio.svc.cluster.local:9000
+      s3Credentials:
+        accessKeyId:
+          name: db-backup
+          key: accessKey
+        secretAccessKey:
+          name: db-backup
+          key: secretKey
+      wal:
+        compression: gzip
+      data:
+        compression: gzip
+    retentionPolicy: 3d
+  externalClusters:
+    - name: keycloak-postgres
+      connectionParameters:
+        host: postgres.keycloak.svc.cluster.local
+        user: gi8-dev-admin
+        dbname: gi8-dev-admin
+      password:
+        name: postgres
+        key: POSTGRES_PASSWORD
