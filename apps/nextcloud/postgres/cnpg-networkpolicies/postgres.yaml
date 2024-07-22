@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumnetworkpolicy_v2.json
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: cnpg-postgres
+  namespace: nextcloud
+spec:
+  endpointSelector:
+    matchLabels:
+      cnpg.io/cluster: nextcloud-psql
+      cnpg.io/podRole: instance
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: kube-dns
+            io.kubernetes.pod.namespace: kube-system
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443" # kube-api
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: minio
+            app.kubernetes.io/instance: minio
+            io.kubernetes.pod.namespace: minio
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: prometheus
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            "k8s:io.kubernetes.pod.namespace": monitoring
+      toPorts:
+        - ports:
+            - port: "9187"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: cloudnative-pg
+            app.kubernetes.io/instance: cloudnative-pg
+            "k8s:io.kubernetes.pod.namespace": cnpg-system
+      toPorts:
+        - ports:
+            - port: "8000"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app: nextcloud
+            component: nextcloud
+            "k8s:io.kubernetes.pod.namespace": nextcloud
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP

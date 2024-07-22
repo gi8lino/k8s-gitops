@@ -3,24 +3,20 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: postgres
-  namespace: nextcloud
+  name: cloudnative-pg-egress-nextcloud-postgres
+  namespace: cnpg-system
 spec:
   endpointSelector:
     matchLabels:
-      app: nextcloud
-      component: postgres
-  ingress:
-    - fromEndpoints:
-        - matchLabels:
-            app: nextcloud
-            component: fpm-nginx
-            "k8s:io.kubernetes.pod.namespace": nextcloud
+      app.kubernetes.io/name: cloudnative-pg
+      app.kubernetes.io/instance: cloudnative-pg
+  egress:
+    - toEndpoints:
         - matchLabels:
             cnpg.io/cluster: nextcloud-psql
-            cnpg.io/jobRole: import
+            cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:
-            - port: "5432"
+            - port: "8000"
               protocol: TCP
