@@ -37,7 +37,7 @@ spec:
   externalClusters:
     - name: wiki-postgres
       connectionParameters:
-        host: wiki-postgres.wiki.svc.cluster.local
+        host: postgres.wiki.svc.cluster.local
         user: postgres
         dbname: postgres
       password:
