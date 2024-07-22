@@ -38,10 +38,6 @@ spec:
             cnpg.io/cluster: wiki-psql
             cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": wiki
-        - matchLabels:
-            app: wiki
-            component: postgres
-            "k8s:io.kubernetes.pod.namespace": wiki
       toPorts:
         - ports:
             - port: "5432"

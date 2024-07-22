@@ -49,6 +49,11 @@ spec:
               value: "5432"
             - name: DB_NAME
               value: wikijs
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: wiki-psql-app
+                  key: dbname
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
