@@ -48,8 +48,6 @@ spec:
             - name: DB_PORT
               value: "5432"
             - name: DB_NAME
-              value: wikijs
-            - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   name: wiki-psql-app
