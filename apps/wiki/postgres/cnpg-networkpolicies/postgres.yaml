@@ -57,8 +57,8 @@ spec:
               protocol: TCP
     - fromEndpoints:
         - matchLabels:
-            cnpg.io/cluster: wiki-psql
-            cnpg.io/podRole: instance
+            app: wiki
+            component: wiki
             "k8s:io.kubernetes.pod.namespace": wiki
       toPorts:
         - ports:
