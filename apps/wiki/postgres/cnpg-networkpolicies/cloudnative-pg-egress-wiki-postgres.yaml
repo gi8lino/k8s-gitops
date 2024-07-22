@@ -13,10 +13,10 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            cnpg.io/cluster: wiki-postgres
+            cnpg.io/cluster: wiki-psql
             cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": wiki
       toPorts:
         - ports:
             - port: "8000"
-              protocol: UDP
+              protocol: TCP

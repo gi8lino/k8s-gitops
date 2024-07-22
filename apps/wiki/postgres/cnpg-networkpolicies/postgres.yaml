@@ -8,7 +8,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      cnpg.io/cluster: wiki-postgres
+      cnpg.io/cluster: wiki-psql
       cnpg.io/podRole: instance
   egress:
     - toEndpoints:
