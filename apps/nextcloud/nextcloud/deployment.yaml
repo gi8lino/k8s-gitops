@@ -43,7 +43,7 @@ spec:
             - name: TARGET_NAME
               value: PostgreSQL
             - name: TARGET_ADDRESS
-              value: postgres.nextcloud.svc.cluster.local:5432
+              value: nextcloud-psql-rw.nextcloud.svc.cluster.local:5432
           securityContext:
             allowPrivilegeEscalation: false
             runAsUser: 1000
