@@ -7,4 +7,4 @@ resources:
   - postgres-import.yaml
   - postgres-initdb.yaml
   - postgres.yaml
-  - prometheus-egress-nextcloud-postgres.yaml
+  - prometheus-egress-keycloak-postgres.yaml
