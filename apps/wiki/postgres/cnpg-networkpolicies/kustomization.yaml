@@ -7,3 +7,4 @@ resources:
   - postgres-initdb.yaml
   - postgres.yaml
   - prometheus-egress-wiki-postgres.yaml
+  - wiki-postgres-egress-minio.yaml
