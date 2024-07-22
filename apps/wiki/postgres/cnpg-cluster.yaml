@@ -38,8 +38,8 @@ spec:
     - name: wiki-postgres
       connectionParameters:
         host: postgres.wiki.svc.cluster.local
-        user: postgres
-        dbname: postgres
+        user: wikijs
+        dbname: wikijs
       password:
         name: postgres
         key: POSTGRES_PASSWORD
