@@ -37,3 +37,4 @@ spec:
         - ports:
             - port: "5432"
               protocol: TCP
+# vi: ft=yaml
