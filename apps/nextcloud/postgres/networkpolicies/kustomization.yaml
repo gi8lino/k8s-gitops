@@ -1,6 +1,8 @@
 ---
-# yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - cloudnative-pg-egress-nextcloud-postgres.yaml
   - postgres.yaml
+  - prometheus-egress-wiki-postgres.yaml
+  - wiki-postgres-egress-minio.yaml
