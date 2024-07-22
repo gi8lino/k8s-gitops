@@ -11,6 +11,11 @@ spec:
       app.kubernetes.io/name: cloudnative-pg
       app.kubernetes.io/instance: cloudnative-pg
   ingress:
+    - fromEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "9443" # webhook
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/name: prometheus
