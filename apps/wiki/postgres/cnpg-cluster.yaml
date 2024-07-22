@@ -41,5 +41,5 @@ spec:
         user: wikijs
         dbname: wikijs
       password:
-        name: postgres
+        name: wikijs
         key: POSTGRES_PASSWORD
