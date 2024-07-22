@@ -3,24 +3,20 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: postgres
-  namespace: wiki
+  name: cloudnative-pg
+  namespace: cnpg-system
 spec:
   endpointSelector:
     matchLabels:
-      app: wiki
-      component: postgres
-  ingress:
-    - fromEndpoints:
-        - matchLabels:
-            app: wiki
-            component: wiki
-            "k8s:io.kubernetes.pod.namespace": wiki
+      app.kubernetes.io/name: cloudnative-pg
+      app.kubernetes.io/instance: cloudnative-pg
+  egress:
+    - toEndpoints:
         - matchLabels:
             cnpg.io/cluster: wiki-postgres
             cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": wiki
       toPorts:
         - ports:
-            - port: "5432"
-              protocol: TCP
+            - port: "8000"
+              protocol: UDP

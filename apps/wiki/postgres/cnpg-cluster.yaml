@@ -1,0 +1,45 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: wiki-psql
+  namespace: wiki
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.3
+  storage:
+    size: 20Gi
+  bootstrap:
+    initdb:
+      database: wiki
+      import:
+        type: microservice
+        databases:
+          - postgres
+        source:
+          externalCluster: wiki-postgres
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://db-backups
+      endpointURL: http://minio.minio.svc.cluster.local:9000
+      s3Credentials:
+        accessKeyId:
+          name: db-backup
+          key: accessKey
+        secretAccessKey:
+          name: db-backup
+          key: secretKey
+      wal:
+        compression: gzip
+      data:
+        compression: gzip
+    retentionPolicy: 3d
+  externalClusters:
+    - name: wiki-postgres
+      connectionParameters:
+        host: wiki-postgres.wiki.svc.cluster.local
+        user: postgres
+        dbname: postgres
+      password:
+        name: wiki-postgres
+        key: POSTGRES_PASSWORD

@@ -36,6 +36,12 @@
   },
   "customManagers": [
     {
+      "description": "dependencies cloudnative-pg postgres databases",
+      "fileMatch": ["apps\\/(.+\\/)*postgres\\.yaml$"],
+      "matchStrings": ["imageName:\\s(?<depName>.*):(?<currentValue>.*)"],
+      "datasourceTemplate": "docker"
+    },
+    {
       "description": "dependencies for sync-cloudflare-nets",
       "customType": "regex",
       "fileMatch": [".github/workflows/sync-cloudflare-nets\\.ya?ml$"],

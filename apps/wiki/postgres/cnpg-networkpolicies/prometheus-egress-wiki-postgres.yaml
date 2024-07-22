@@ -3,24 +3,20 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: postgres
-  namespace: wiki
+  name: prometheus-egress-wiki-postgres
+  namespace: monitoring
 spec:
   endpointSelector:
     matchLabels:
-      app: wiki
-      component: postgres
-  ingress:
-    - fromEndpoints:
-        - matchLabels:
-            app: wiki
-            component: wiki
-            "k8s:io.kubernetes.pod.namespace": wiki
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+      app.kubernetes.io/name: prometheus
+  egress:
+    - toEndpoints:
         - matchLabels:
             cnpg.io/cluster: wiki-postgres
             cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": wiki
       toPorts:
         - ports:
-            - port: "5432"
+            - port: "9187"
               protocol: TCP

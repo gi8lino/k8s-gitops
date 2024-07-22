@@ -1,0 +1,8 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - cloudnative-pg-egress-wiki-postgres.yaml
+  - postgres-initdb.yaml
+  - postgres.yaml
+  - prometheus-egress-wiki-postgres.yaml
