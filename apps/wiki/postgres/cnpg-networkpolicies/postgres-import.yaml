@@ -3,7 +3,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: cnpg-postgres-initdb
+  name: cnpg-postgres-import
   namespace: wiki
 spec:
   endpointSelector:

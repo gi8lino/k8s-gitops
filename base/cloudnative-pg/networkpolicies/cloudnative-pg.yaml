@@ -11,11 +11,6 @@ spec:
       app.kubernetes.io/name: cloudnative-pg
       app.kubernetes.io/instance: cloudnative-pg
   ingress:
-    - fromEntities:
-        - host
-      toPorts:
-        - ports:
-            - port: "9443" # webhook
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/name: prometheus
@@ -28,8 +23,8 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
+            "k8s:io.kubernetes.pod.namespace": kube-system
       toPorts:
         - ports:
             - port: "53"
@@ -39,7 +34,8 @@ spec:
               - matchPattern: "*"
     - toEntities:
         - host
-      toPorts:
-        - ports:
-            - port: "6443" # kube-api
-              protocol: TCP
+      # toPorts:
+      #   - ports:
+      #       - port: "6443" # kube-api
+      #   - ports:
+      #       - port: "9443" # webhook
