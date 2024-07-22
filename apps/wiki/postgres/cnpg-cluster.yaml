@@ -41,5 +41,5 @@ spec:
         user: postgres
         dbname: postgres
       password:
-        name: wiki-postgres
+        name: postgres
         key: POSTGRES_PASSWORD
