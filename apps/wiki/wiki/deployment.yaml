@@ -24,7 +24,7 @@ spec:
             - name: TARGET_NAME
               value: PostgreSQL
             - name: TARGET_ADDRESS
-              value: postgres.wiki.svc.cluster.local:5432
+              value: wiki-psql-rw.wiki.svc.cluster.local:5432
           securityContext:
             allowPrivilegeEscalation: false
             runAsUser: 1000
@@ -44,7 +44,7 @@ spec:
             - name: DB_TYPE
               value: postgres
             - name: DB_HOST
-              value: postgres.wiki.svc.cluster.local
+              value: wiki-psql-rw.wiki.svc.cluster.local
             - name: DB_PORT
               value: "5432"
             - name: DB_NAME
@@ -52,13 +52,13 @@ spec:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: postgres
-                  key: POSTGRES_USER
-            - name: DB_PASS
+                  name: nextcloud-postgres-app
+                  key: username
+            - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres
-                  key: POSTGRES_PASSWORD
+                  name: nextcloud-postgres-app
+                  key: password
           ports:
             - name: http
               containerPort: 3000
