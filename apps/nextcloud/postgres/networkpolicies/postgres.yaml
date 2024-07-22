@@ -58,7 +58,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             app: nextcloud
-            component: nextcloud
+            component: fpm-nginx
             "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:
