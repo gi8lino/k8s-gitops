@@ -70,6 +70,8 @@ spec:
               value: Europe/Zurich
             - name: JAVA_OPTS_APPEND
               value: -Djgroups.dns.query=keycloak-headless
+            - name: KC_DB
+              value: postgres
             - name: KC_DB_URL
               valueFrom:
                 secretKeyRef:
