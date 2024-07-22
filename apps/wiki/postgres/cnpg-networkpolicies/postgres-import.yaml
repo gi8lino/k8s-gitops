@@ -3,13 +3,13 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: cnpg-postgres
+  name: cnpg-postgres-initdb
   namespace: wiki
 spec:
   endpointSelector:
     matchLabels:
-      cnpg.io/cluster: wiki-postgres
-      cnpg.io/podRole: instance
+      cnpg.io/cluster: wiki-psql
+      cnpg.io/jobRole: import
   egress:
     - toEndpoints:
         - matchLabels:
@@ -22,22 +22,18 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-  ingress:
-    - fromEndpoints:
-        - matchLabels:
-            app.kubernetes.io/name: prometheus
-            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
-            "k8s:io.kubernetes.pod.namespace": monitoring
+    - toEntities:
+        - host
       toPorts:
         - ports:
-            - port: "9187"
+            - port: "6443" # kube-api
               protocol: TCP
-    - fromEndpoints:
+    - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: cloudnative-pg
-            app.kubernetes.io/instance: cloudnative-pg
-            "k8s:io.kubernetes.pod.namespace": cnpg-system
+            app: wiki
+            component: postgres
+            io.kubernetes.pod.namespace: wiki
       toPorts:
         - ports:
-            - port: "8000"
-              protocol: TCP
+            - port: "5432"
+              protocol: UDP

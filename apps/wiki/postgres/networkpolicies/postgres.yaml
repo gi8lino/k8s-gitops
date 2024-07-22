@@ -17,8 +17,8 @@ spec:
             component: wiki
             "k8s:io.kubernetes.pod.namespace": wiki
         - matchLabels:
-            cnpg.io/cluster: wiki-postgres
-            cnpg.io/podRole: instance
+            cnpg.io/cluster: wiki-psql
+            cnpg.io/jobRole: import
             "k8s:io.kubernetes.pod.namespace": wiki
       toPorts:
         - ports:
