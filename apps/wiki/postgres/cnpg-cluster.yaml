@@ -12,12 +12,6 @@ spec:
   bootstrap:
     initdb:
       database: wikijs
-      import:
-        type: microservice
-        databases:
-          - wikijs
-        source:
-          externalCluster: wiki-postgres
   backup:
     barmanObjectStore:
       destinationPath: s3://db-backups
@@ -34,12 +28,5 @@ spec:
       data:
         compression: gzip
     retentionPolicy: 3d
-  externalClusters:
-    - name: wiki-postgres
-      connectionParameters:
-        host: postgres.wiki.svc.cluster.local
-        user: wikijs
-        dbname: wikijs
-      password:
-        name: postgres
-        key: POSTGRES_PASSWORD
+  monitoring:
+    enablePodMonitor: true
