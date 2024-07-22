@@ -51,8 +51,8 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app: nextcloud
-            component: postgres
+            cnpg.io/cluster: nextcloud-psql
+            cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:

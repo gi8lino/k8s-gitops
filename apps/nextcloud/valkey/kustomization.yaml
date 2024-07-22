@@ -9,4 +9,5 @@ resources:
 labels:
   - includeSelectors: true
     pairs:
+      app: nextcloud
       component: valkey
