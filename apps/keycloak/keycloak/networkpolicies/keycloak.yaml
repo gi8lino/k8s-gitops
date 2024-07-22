@@ -35,8 +35,8 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - matchLabels:
-            app: keycloak
-            component: postgres
+            cnpg.io/cluster: keycloak-psql
+            cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": keycloak
       toPorts:
         - ports:
