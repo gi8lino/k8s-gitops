@@ -36,4 +36,4 @@ spec:
       toPorts:
         - ports:
             - port: "5432"
-              protocol: UDP
+              protocol: TCP
