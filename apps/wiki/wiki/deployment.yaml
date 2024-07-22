@@ -57,7 +57,7 @@ spec:
                 secretKeyRef:
                   name: wiki-psql-app
                   key: username
-            - name: DB_PASSWORD
+            - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   name: wiki-psql-app
