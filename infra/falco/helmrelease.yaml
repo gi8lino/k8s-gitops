@@ -85,6 +85,10 @@ spec:
             (fd.name startswith "/var/lib/rancher/k3s")
             or (k8s.ns.name="gitlab" and proc.exepath="/kaniko/executor")
 
+        - macro: user_shell_container_exclusions
+          condition: >
+            (proc.cmdline contains wal-archive)
+            or (proc.cmdline contains wal-restore)
   valuesFrom:
     - kind: Secret
       name: falco-helm-values
