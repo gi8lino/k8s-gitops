@@ -52,12 +52,12 @@ spec:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-postgres-app
+                  name: wiki-psql-app
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-postgres-app
+                  name: wiki-psql-app
                   key: password
           ports:
             - name: http
