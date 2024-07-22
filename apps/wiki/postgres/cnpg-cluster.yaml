@@ -11,7 +11,7 @@ spec:
     size: 20Gi
   bootstrap:
     initdb:
-      database: wiki
+      database: wikijs
       import:
         type: microservice
         databases:
