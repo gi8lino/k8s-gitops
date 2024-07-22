@@ -24,7 +24,7 @@ spec:
             - name: TARGET_NAME
               value: PostgreSQL
             - name: TARGET_ADDRESS
-              value: postgres.keycloak.svc.cluster.local:5432
+              value: keycloak-psql-rw.keycloak.svc.cluster.local:5432
           securityContext:
             allowPrivilegeEscalation: false
             runAsUser: 1000
@@ -66,24 +66,15 @@ spec:
               value: "true"
             - name: KC_FEATURES
               value: persistent-user-sessions,hostname:v2
-            - name: KC_DB_URL
-              value: jdbc:postgresql://postgres.keycloak.svc.cluster.local/postgres
-            - name: KC_DB
-              value: postgres
-            - name: KC_DB_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: POSTGRES_USER
-            - name: KC_DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: POSTGRES_PASSWORD
             - name: TZ
               value: Europe/Zurich
             - name: JAVA_OPTS_APPEND
               value: -Djgroups.dns.query=keycloak-headless
+            - name: KC_DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-psql-app
+                  key: jdbc-uri
           ports:
             - name: http
               containerPort: 8080
