@@ -46,3 +46,12 @@ spec:
         - ports:
             - port: "8000"
               protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app: wiki
+            component: wiki
+            "k8s:io.kubernetes.pod.namespace": wiki
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP
