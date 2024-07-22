@@ -103,17 +103,17 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-postgres-app
+                  name: nextcloud-psql-app
                   key: username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-postgres-app
+                  name: nextcloud-psql-app
                   key: password
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-postgres-app
+                  name: nextcloud-psql-app
                   key: dbname
             - name: NEXTCLOUD_TRUSTED_DOMAINS
               value: cloud.${BASE_DOMAIN}
