@@ -9,6 +9,9 @@ spec:
   interval: 20m
   driftDetection:
     mode: enabled
+  dependsOn:
+    - name: ingress-nginx
+      namespace: ingress-nginx
   chart:
     spec:
       chart: cloudflare-operator
