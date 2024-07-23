@@ -1,0 +1,22 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumnetworkpolicy_v2.json
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-gitlab-postgres
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+      app.kubernetes.io/name: prometheus
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            cnpg.io/cluster: gitlab-psql
+            cnpg.io/podRole: instance
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "9187"
+              protocol: TCP

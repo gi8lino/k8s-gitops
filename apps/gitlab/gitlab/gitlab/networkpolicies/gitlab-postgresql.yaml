@@ -13,6 +13,10 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
+            cnpg.io/cluster: gitlab-psql
+            cnpg.io/jobRole: import
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
             app: webservice
             release: gitlab
             "k8s:io.kubernetes.pod.namespace": gitlab

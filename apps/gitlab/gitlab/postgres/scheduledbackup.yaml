@@ -1,0 +1,11 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/postgresql.cnpg.io/scheduledbackup_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: gitlab-psql
+  namespace: gitlab
+spec:
+  schedule: "0 30 2 * * *"
+  cluster:
+    name: gitlab-psql

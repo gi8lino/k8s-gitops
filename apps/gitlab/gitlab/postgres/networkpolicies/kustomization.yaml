@@ -1,0 +1,11 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - cloudnative-pg-egress-gitlab-postgres.yaml
+  - gitlab-postgres-egress-minio.yaml
+  - postgres-import.yaml
+  - postgres-initdb.yaml
+  - postgres.yaml
+  - prometheus-egress-gitlab-postgres.yaml
