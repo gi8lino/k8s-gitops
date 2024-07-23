@@ -158,6 +158,16 @@ schemas = [
         kind="TLSStore",
         schema="https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/traefik.containo.us/tlsstore_v1alpha1.json"
     ),
+    Schema(
+        api_version="postgresql.cnpg.io/v1",
+        kind="Cluster",
+        schema="https://kubernetes-schemas.pages.dev/postgresql.cnpg.io/cluster_v1.json"
+    ),
+    Schema(
+        api_version="postgresql.cnpg.io/v1",
+        kind="ScheduledBackup",
+        schema="https://kubernetes-schemas.pages.dev/postgresql.cnpg.io/scheduledbackup_v1.json"
+    ),
 ]
 
 

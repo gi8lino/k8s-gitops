@@ -6,6 +6,7 @@ resources:
   - networkpolicies
   - deployment.yaml
   - ingress.yaml
+  - scheduledbackup.yaml
   - service.yaml
 labels:
   - includeSelectors: true

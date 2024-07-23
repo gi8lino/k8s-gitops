@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - networkpolicies
   - cnpg-cluster.yaml
+  - scheduledbackup.yaml
   - secret.yaml
 labels:
   - includeSelectors: true
