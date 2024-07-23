@@ -18,6 +18,9 @@ spec:
         name: cloudnative-pg
         namespace: flux-system
       interval: 5m
+  dependsOn:
+    - name: minio
+      namespace: minio
   values:
     crds:
       create: false

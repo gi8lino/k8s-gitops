@@ -10,6 +10,8 @@ spec:
   driftDetection:
     mode: enabled
   dependsOn:
+    - name: backup
+      namespace: storage-system
     - name: ingress-nginx
       namespace: ingress-nginx
   chart:

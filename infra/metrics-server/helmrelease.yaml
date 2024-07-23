@@ -9,6 +9,9 @@ spec:
   interval: 20m
   driftDetection:
     mode: enabled
+  dependsOn:
+    - name: metallb
+      namespace: metallb-system
   chart:
     spec:
       chart: metrics-server
