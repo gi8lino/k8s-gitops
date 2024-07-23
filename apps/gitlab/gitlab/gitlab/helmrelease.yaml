@@ -28,7 +28,7 @@ spec:
         maxReplicas: 1
         minReplicas: 1
       migrations:
-        enabled: false
+        enabled: true
       sidekiq:
         deployment:
           strategy:
