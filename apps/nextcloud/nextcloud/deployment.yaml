@@ -61,7 +61,7 @@ spec:
           image: ghcr.io/nginxinc/nginx-unprivileged:1.27.0
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: 80
           resources: {}
           startupProbe:
             httpGet:
