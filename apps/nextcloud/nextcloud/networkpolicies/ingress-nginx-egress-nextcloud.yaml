@@ -19,5 +19,5 @@ spec:
             "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:
-            - port: "80"
+            - port: "8080"
               protocol: TCP
