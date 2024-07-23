@@ -3,7 +3,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: gitlab-postgres-egress-minio
+  name: minio-ingress-nextcloud-postgres
   namespace: minio
 spec:
   endpointSelector:
@@ -13,9 +13,9 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            cnpg.io/cluster: gitlab-psql
+            cnpg.io/cluster: nextcloud-psql
             cnpg.io/podRole: instance
-            "k8s:io.kubernetes.pod.namespace": gitlab
+            "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:
             - port: "9000"
