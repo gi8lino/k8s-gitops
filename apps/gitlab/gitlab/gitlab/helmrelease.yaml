@@ -113,10 +113,7 @@ spec:
     nginx-ingress:
       enabled: false
     postgresql:
-      image:
-        tag: 14.8.0
-      metrics:
-        enabled: false
+      install: false
     prometheus:
       install: false
     redis:
