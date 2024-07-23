@@ -50,6 +50,7 @@ data:
 
         server {
             listen 8080;
+            server_name cloud.${BASE_DOMAIN};
 
             # HSTS settings
             # WARNING: Only add the preload option once you read about
