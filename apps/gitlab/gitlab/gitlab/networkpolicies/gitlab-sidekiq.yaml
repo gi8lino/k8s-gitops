@@ -13,8 +13,8 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app: postgres
-            release: gitlab
+            cnpg.io/cluster: gitlab-psql
+            cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
@@ -57,8 +57,8 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: gitlab
-            app.kubernetes.io/name: postgresql
+            cnpg.io/cluster: gitlab-psql
+            cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:

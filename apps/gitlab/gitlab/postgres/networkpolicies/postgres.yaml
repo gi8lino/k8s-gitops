@@ -36,6 +36,19 @@ spec:
         - ports:
             - port: "9000"
               protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app: sidekiq
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "34358"
+              protocol: TCP
+            - port: "43720"
+              protocol: TCP
+            - port: "56404"
+              protocol: TCP
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -59,6 +72,36 @@ spec:
         - matchLabels:
             app: gitlab
             component: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            cnpg.io/cluster: gitlab-psql
+            cnpg.io/jobRole: import
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app: webservice
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app: sidekiq
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app: toolbox
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app: migrations
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app: gitlab
+            job-name: gitlab-gitlab-upgrade-check
+            release: gitlab
             "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
