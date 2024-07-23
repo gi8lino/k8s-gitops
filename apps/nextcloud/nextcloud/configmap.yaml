@@ -49,7 +49,7 @@ data:
         }
 
         server {
-            listen 80;
+            listen 8080;
 
             # HSTS settings
             # WARNING: Only add the preload option once you read about

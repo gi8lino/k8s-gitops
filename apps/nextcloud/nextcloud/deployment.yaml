@@ -58,10 +58,10 @@ spec:
               memory: 16Mi
       containers:
         - name: nginx
-          image: nginx:1.27.0-alpine
+          image: ghcr.io/nginxinc/nginx-unprivileged:1.27.0
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
           resources: {}
           startupProbe:
             httpGet:
