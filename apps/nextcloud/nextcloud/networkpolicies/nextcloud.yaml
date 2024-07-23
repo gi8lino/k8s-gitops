@@ -79,7 +79,7 @@ spec:
         - matchName: cloud.${BASE_DOMAIN} # Nextcloud Healthcheck
       toPorts:
         - ports:
-            - port: "8080"
+            - port: "80"
               protocol: TCP
             - port: "443"
               protocol: TCP
