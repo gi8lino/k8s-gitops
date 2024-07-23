@@ -61,7 +61,7 @@ spec:
         host: gitlab-postgres-rw.gitlab.svc.cluster.local
         password:
           key: password
-          secret: gitlab-postgres-app
+          secret: gitlab-psql-app
       kas:
         enabled: false
       appConfig:
