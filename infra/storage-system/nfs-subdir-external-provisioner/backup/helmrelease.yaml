@@ -12,8 +12,6 @@ spec:
   dependsOn:
     - name: metallb
       namespace: metallb-system
-    - name: minio
-      namespace: minio
   chart:
     spec:
       chart: nfs-subdir-external-provisioner
