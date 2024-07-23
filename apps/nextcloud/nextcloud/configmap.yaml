@@ -49,16 +49,6 @@ data:
         }
 
         server {
-            listen 80;
-            server_name cloud.${BASE_DOMAIN};
-
-            # Prevent nginx HTTP Server Detection
-            server_tokens off;
-
-            return 301 http://$server_name:8080$request_uri;
-        }
-
-        server {
             listen 8080;
             server_name cloud.${BASE_DOMAIN};
 
