@@ -20,7 +20,5 @@ spec:
       interval: 30m
   values:
     reloader:
-      service:
-        port: 9090
-      serviceMonitor:
+      podMonitor:
         enabled: true
