@@ -37,7 +37,7 @@
   "customManagers": [
     {
       "description": "dependencies cloudnative-pg postgres databases",
-      "fileMatch": ["apps\\/(.+\\/)*postgres\\.yaml$"],
+      "fileMatch": ["apps\\/(.+\\/)*cnpg-cluster\\.yaml$"],
       "matchStrings": ["imageName:\\s(?<depName>.*):(?<currentValue>.*)"],
       "datasourceTemplate": "docker"
     },
