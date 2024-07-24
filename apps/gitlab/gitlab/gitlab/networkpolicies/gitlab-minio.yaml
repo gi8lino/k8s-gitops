@@ -45,6 +45,10 @@ spec:
         - matchLabels:
             app: migrations
             "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app: gitlab-runner
+            release: gitlab-runner
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "9000"

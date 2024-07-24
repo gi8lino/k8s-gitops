@@ -44,9 +44,13 @@ spec:
         - ports:
             - port: "443"
               protocol: TCP
-    - toFQDNs:
-        - matchName: gitlab-minio.local.${BASE_DOMAIN}
+    - toEndpoints:
+        - matchLabels:
+            app: minio
+            component: app
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
-            - port: "80"
+            - port: "9000"
               protocol: TCP
