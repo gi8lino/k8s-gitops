@@ -20,3 +20,5 @@ spec:
         - ports:
             - port: "8000"
               protocol: TCP
+          rules:
+            http: [{}]
