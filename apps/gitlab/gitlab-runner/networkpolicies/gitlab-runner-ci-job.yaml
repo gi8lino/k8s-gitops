@@ -50,13 +50,3 @@ spec:
         - ports:
             - port: "443"
               protocol: TCP
-    - toEndpoints:
-        - matchLabels:
-            app: minio
-            component: app
-            release: gitlab
-            "k8s:io.kubernetes.pod.namespace": gitlab
-      toPorts:
-        - ports:
-            - port: "9000"
-              protocol: TCP
