@@ -48,16 +48,12 @@ spec:
         - ports:
             - port: "443"
               protocol: TCP
-          rules:
-            http: [{}]
     - toFQDNs:
         - matchName: thexem.info
       toPorts:
         - ports:
             - port: "80"
               protocol: TCP
-          rules:
-            http: [{}]
     - toEndpoints:
         - matchLabels:
             app: prowlarr

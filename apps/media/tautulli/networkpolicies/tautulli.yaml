@@ -52,5 +52,3 @@ spec:
         - ports:
             - port: "443"
               protocol: TCP
-          rules:
-            http: [{}]
