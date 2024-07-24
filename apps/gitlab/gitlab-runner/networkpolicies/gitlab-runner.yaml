@@ -45,7 +45,7 @@ spec:
             - port: "443"
               protocol: TCP
     - toFQDNs:
-        - matchName: s3.local.${BASE_DOMAIN}
+        - matchName: gitlab-minio.local.${BASE_DOMAIN}
       toPorts:
         - ports:
             - port: "80"
