@@ -20,3 +20,5 @@ spec:
         - ports:
             - port: "8181"
               protocol: TCP
+          rules:
+            http: [{}]

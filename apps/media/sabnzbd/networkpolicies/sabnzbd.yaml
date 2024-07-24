@@ -63,6 +63,8 @@ spec:
         - ports:
             - port: "80"
               protocol: TCP
+          rules:
+            http: [{}]
     - toFQDNs:
         - matchName: ${USENET_INDEXER_DOMAIN}
         - matchName: api.github.com
@@ -82,3 +84,5 @@ spec:
         - ports:
             - port: "443"
               protocol: TCP
+          rules:
+            http: [{}]

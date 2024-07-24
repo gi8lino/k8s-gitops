@@ -20,3 +20,5 @@ spec:
         - ports:
             - port: "8989"
               protocol: TCP
+          rules:
+            http: [{}]
