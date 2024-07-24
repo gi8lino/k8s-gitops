@@ -20,7 +20,7 @@ spec:
       interval: 30m
   values:
     envoy:
-      enabled: false
+      enabled: true
     hubble:
       enabled: true
       metrics:
@@ -79,7 +79,7 @@ spec:
     nodeinit:
       enabled: true
     nodePort:
-      enabled: true
+      enabled: false
     ipv6:
       enabled: false
     bpf:
