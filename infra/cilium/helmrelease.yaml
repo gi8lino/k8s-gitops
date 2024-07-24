@@ -19,6 +19,8 @@ spec:
         namespace: flux-system
       interval: 30m
   values:
+    envoy:
+      enabled: false
     hubble:
       enabled: true
       metrics:
