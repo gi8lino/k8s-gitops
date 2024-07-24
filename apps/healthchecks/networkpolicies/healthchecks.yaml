@@ -38,6 +38,8 @@ spec:
         - ports:
             - port: "80"
               protocol: TCP
+          rules:
+            http: [{}]
     - toFQDNs:
         - matchName: ghcr.io
         - matchName: github.com # docker-mods
@@ -49,3 +51,5 @@ spec:
         - ports:
             - port: "443"
               protocol: TCP
+          rules:
+            http: [{}]
