@@ -8,7 +8,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: reloader-reloader
+      app: reloader
   ingress:
     - fromEndpoints:
         - matchLabels:
