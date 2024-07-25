@@ -48,5 +48,3 @@ spec:
             - port: "80"
         - ports:
             - port: "443"
-      rules:
-        http: [{}]
