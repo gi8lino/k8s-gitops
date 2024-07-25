@@ -20,7 +20,7 @@ spec:
       interval: 30m
   values:
     envoy:
-      enabled: false
+      enabled: true
     hubble:
       enabled: true
       metrics:
