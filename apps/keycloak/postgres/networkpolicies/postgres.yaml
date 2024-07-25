@@ -60,6 +60,16 @@ spec:
             app: keycloak
             component: keycloak
             "k8s:io.kubernetes.pod.namespace": keycloak
+        # when joining, we need to allow the joining pod to connect to the instance
+        # - matchLabels:
+        #     cnpg.io/cluster: keycloak-psql
+        #     cnpg.io/jobRole: join
+        #     "k8s:io.kubernetes.pod.namespace": keycloak
+        # allow the instance to connect to itself
+        # - matchLabels:
+        #     cnpg.io/cluster: keycloak-psql
+        #     cnpg.io/podRole: instance
+        #     "k8s:io.kubernetes.pod.namespace": keycloak
       toPorts:
         - ports:
             - port: "5432"

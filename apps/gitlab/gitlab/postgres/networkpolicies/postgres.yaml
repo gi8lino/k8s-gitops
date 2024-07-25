@@ -103,6 +103,16 @@ spec:
             job-name: gitlab-gitlab-upgrade-check
             release: gitlab
             "k8s:io.kubernetes.pod.namespace": gitlab
+        # when joining, we need to allow the joining pod to connect to the instance
+        # - matchLabels:
+        #     cnpg.io/cluster: gitlab-psql
+        #     cnpg.io/jobRole: join
+        #     "k8s:io.kubernetes.pod.namespace": gitlab
+        # allow the instance to connect to itself
+        # - matchLabels:
+        #     cnpg.io/cluster: gitlab-psql
+        #     cnpg.io/podRole: instance
+        #     "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "5432"
