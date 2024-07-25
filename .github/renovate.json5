@@ -39,7 +39,8 @@
       "description": "dependencies cloudnative-pg postgres databases",
       "fileMatch": ["apps\\/(.+\\/)*cnpg-cluster\\.yaml$"],
       "matchStrings": ["imageName:\\s(?<depName>.*):(?<currentValue>.*)"],
-      "datasourceTemplate": "docker"
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "redhat"
     },
     {
       "description": "dependencies for sync-cloudflare-nets",
