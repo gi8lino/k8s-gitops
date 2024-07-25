@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
-# shellcheck source=/dev/null
-source "$(dirname "${0}")/lib/functions.sh"
-
 set -o errexit
 set -o nounset
 set -o pipefail
 shopt -s lastpipe
+
+check() {
+  command -v "${1}" >/dev/null 2>&1 || {
+    echo >&2 "ERROR: ${1} is not installed or not found in \$PATH" >&2
+    exit 1
+  }
+}
 
 show_help() {
   cat <<EOF
