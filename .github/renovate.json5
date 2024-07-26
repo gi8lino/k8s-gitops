@@ -97,7 +97,7 @@
   "packageRules": [
     {
       "description": "Separate cnpg-cluster releases",
-      "matchPackagePatterns": ["^ghcr\\.io\\/cloudnative-pg\\/postgresql$"],
+      "matchPackageNames": ["ghcr.io/cloudnative-pg/postgresql"],
       "additionalBranchPrefix": "{{baseDir}}-",
     },
     {
