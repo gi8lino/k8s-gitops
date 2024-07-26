@@ -99,6 +99,7 @@
       "description": "Separate cnpg-cluster releases",
       "matchPackageNames": ["ghcr.io/cloudnative-pg/postgresql"],
       "additionalBranchPrefix": "{{baseDir}}-",
+      "major": false
     },
     {
       "description": "Special versioning for linuxserver.io images",
