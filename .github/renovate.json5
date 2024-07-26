@@ -40,8 +40,7 @@
       "fileMatch": ["apps\\/(.+\\/)*cnpg-cluster\\.yaml$"],
       "matchStrings": ["imageName:\\s(?<depName>.*):(?<currentValue>.*)"],
       "datasourceTemplate": "docker",
-      "versioningTemplate": "redhat",
-      "additionalBranchPrefix": "{{{ replace '(.*?)\\/.*' '$1' packageFileDir}}}/",
+      "versioningTemplate": "redhat"
     },
     {
       "description": "dependencies for sync-cloudflare-nets",
