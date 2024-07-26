@@ -40,7 +40,8 @@
       "fileMatch": ["apps\\/(.+\\/)*cnpg-cluster\\.yaml$"],
       "matchStrings": ["imageName:\\s(?<depName>.*):(?<currentValue>.*)"],
       "datasourceTemplate": "docker",
-      "versioningTemplate": "redhat"
+      "versioningTemplate": "redhat",
+      "additionalBranchPrefix": "{{{ replace '(.*?)\\/.*' '$1' packageFileDir}}}/",
     },
     {
       "description": "dependencies for sync-cloudflare-nets",
@@ -95,6 +96,11 @@
 
   ],
   "packageRules": [
+    {
+      "description": "Separate cnpg-cluster releases",
+      "matchPackagePatterns": ["^ghcr\\.io\\/cloudnative-pg\\/postgresql$"],
+      "additionalBranchPrefix": "{{baseDir}}-",
+    },
     {
       "description": "Special versioning for linuxserver.io images",
       "matchDatasources": ["docker"],
