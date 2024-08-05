@@ -10,6 +10,7 @@
   "separateMajorMinor": true,
   "timezone": "Europe/Zurich",
   "assignees": ["gi8lino"],
+
   // ignore flux deps (will be updated separately)
   "ignoreDeps": [
     "ghcr.io/fluxcd/helm-controller",
@@ -100,6 +101,11 @@
       "matchPackageNames": ["ghcr.io/cloudnative-pg/postgresql"],
       "additionalBranchPrefix": "{{baseDir}}-",
       "major": false
+    },
+    {
+      "description": "Separate valkey releases",
+      "matchPackageNames": ["valkey/valkey"],
+      "additionalBranchPrefix": "{{baseDir}}-",
     },
     {
       "description": "Special versioning for linuxserver.io images",
