@@ -62,6 +62,7 @@ spec:
           condition: >
             (k8s.ns.name="gitlab" and container.name in ("gitaly", "gitlab-shell", "gitlab-workhorse"))
             or (k8s.ns.name="flux-system" and proc.name="gpg-agent")
+            or (k8s.ns.name="renovate" and container.name="renovate")
 
         - list: user_known_packet_socket_binaries
           items: [speaker]
