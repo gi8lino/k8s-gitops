@@ -22,24 +22,24 @@
   ],
   // container images
   "kubernetes": {
-    "fileMatch": ["cluster/apps/.*(cronjob|daemonset|deployment|statefulset)\\.ya?ml$"]
+    "fileMatch": ["cluster/apps/.+/(cronjob|daemonset|deployment|statefulset)\\.ya?ml$"]
   },
   // container images
   "helm-values": {
-    "fileMatch": ["cluster/apps/(.+/).*helmrelease\\.ya?ml$"]
+    "fileMatch": ["cluster/apps/.+/helmrelease\\.ya?ml$"]
   },
   // helm releases
   "flux": {
     "fileMatch": [
-      "cluster/apps/(.+/).*helmrelease\\.ya?ml$",
+      "cluster/apps/.+/helmrelease\\.ya?ml$",
       "cluster/flux/repositories/helm/.*\\.ya?ml$"
     ]
   },
   "customManagers": [
     {
       "description": "dependencies cloudnative-pg postgres databases",
-      "fileMatch": ["cluster/apps\\/(.+\\/)*cnpg-cluster\\.yaml$"],
-      "matchStrings": ["imageName:\\s(?<depName>.*):(?<currentValue>.*)"],
+      "fileMatch": ["cluster/apps/.+/cnpg-cluster\\.yaml$"],
+      "matchStrings": ["imageName:\\s*(?<depName>\\S+):(?<currentValue>\\S+)"],
       "datasourceTemplate": "docker",
       "versioningTemplate": "redhat"
     },
@@ -47,14 +47,14 @@
       "description": "dependencies for sync-cloudflare-nets",
       "customType": "regex",
       "fileMatch": [".github/workflows/sync-cloudflare-nets\\.ya?ml$"],
-      "matchStrings": ["depName=(?<depName>.*)\\s.*/(?<currentValue>.*?)/"],
+      "matchStrings": ["depName=(?<depName>\\S+)\\s.*/(?<currentValue>[^/]+?)/"],
       "datasourceTemplate": "github-releases"
     },
     {
       "description": "dependencies for helm-release-differ",
       "customType": "regex",
       "fileMatch": [".github/workflows/helm-release-differ\\.ya?ml$"],
-      "matchStrings": ["depName=(?<depName>.*)\\s.*version: (?<currentValue>.*)"],
+      "matchStrings": ["depName=(?<depName>\\S+)\\s.*version:\\s*(?<currentValue>\\S+)"],
       "datasourceTemplate": "github-releases"
     },
     {
@@ -63,7 +63,7 @@
       "fileMatch": ["cluster/crds/.+\\.ya?ml$"],
       "matchStrings": [
         //GitRepository where 'Git release/tag' matches 'Helm' version (k8up)
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*)\\s.*\\/k8up-(?<currentValue>.*?)\\/",
+        "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\\s.*\\/k8up-(?<currentValue>[^/]+)\\/"
 
         // GitRepository where 'Git release/tag' matches 'Helm' version (metallb, traefik, kube-prometheus-stack)
         "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?v?(?<currentValue>[^-\\s]*)\n",
@@ -77,10 +77,8 @@
     {
       "description": "Process raw GitHub URLs",
       "customType": "regex",
-      "fileMatch": ["cluster/apps/(.+/).*kustomization\\.ya?ml$"],
-      "matchStrings": [
-        "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
-      ],
+      "fileMatch": ["cluster/apps/.+/kustomization\\.ya?ml$"],
+      "matchStrings": ["https://raw\\.githubusercontent\\.com/(?<depName>[\\w\\-]+/[\\w\\-]+)/(?:v?(?<currentValue>[\\w\\.\\-_]+))/"],
       "datasourceTemplate": "github-releases",
       "versioningTemplate": "semver"
     },
@@ -88,9 +86,7 @@
       "description": "Process postRenderer patches with images",
       "customType": "regex",
       "fileMatch": ["cluster/apps/oauth2-proxy/oauth2-proxy/helmrelease\\.ya?ml$"],
-      "matchStrings": [
-        "# renovate\\n\\s+image:\\s+(?<depName>\\S+):v?(?<currentValue>[^-\\s]*)"
-      ],
+      "matchStrings": ["# renovate\\s*image:\\s+(?<depName>\\S+):v?(?<currentValue>\\S+)"],
       "datasourceTemplate": "docker"
     }
 
