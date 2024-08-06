@@ -8,4 +8,3 @@ includes:
   minio: .taskfiles/minio.yml
   pre-commit: .taskfiles/pre-commit.yml
   renovate: .taskfiles/renovate.yml
-  schema: .taskfiles/schema.yml
