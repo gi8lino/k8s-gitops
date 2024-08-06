@@ -2,12 +2,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - flux-system
-  - helmrepositories
-  - kustomizations
-  - namespaces
-  - networkpolicies
-  - notifications
-  - webhook
   - cluster-secrets.yaml
   - cluster-settings.yaml

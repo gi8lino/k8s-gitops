@@ -5,9 +5,7 @@ on: # yamllint disable-line rule:truthy
     branches:
       - master
     paths:
-      - "apps/**.yaml"
-      - "base/**.yaml"
-      - "infra/**.yaml"
+      - "cluster/apps/**.yaml"
 jobs:
   detect-file-changes:
     name: Detect File Changes

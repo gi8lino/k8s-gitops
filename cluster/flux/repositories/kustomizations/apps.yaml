@@ -6,9 +6,9 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: base
+    - name: crds
   interval: 20m
-  path: ./apps
+  path: ./cluster/kustomizations/apps
   prune: true
   sourceRef:
     kind: GitRepository

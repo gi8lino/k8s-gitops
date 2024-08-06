@@ -21,11 +21,11 @@ kubectl create secret generic sops-gpg \
 6. Apply `cluster-settings.yaml`
 
 ```bash
-kubectl apply -f core/cluster-settings.yaml
+kubectl apply -f cluster/flux/vars/cluster-settings.yaml
 ```
 
 7. Bootstrap cluster
 
 ```bash
-kubectl apply --kustomize=./core/flux-system
+kubectl apply --kustomize=./cluster/flux/config
 ```

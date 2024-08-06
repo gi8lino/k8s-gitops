@@ -22,23 +22,23 @@
   ],
   // container images
   "kubernetes": {
-    "fileMatch": ["(apps|base|infra)/.*(cronjob|daemonset|deployment|statefulset)\\.ya?ml$"]
+    "fileMatch": ["cluster/apps/.*(cronjob|daemonset|deployment|statefulset)\\.ya?ml$"]
   },
   // container images
   "helm-values": {
-    "fileMatch": ["(apps|base|infra)/(.+/).*helmrelease\\.ya?ml$"]
+    "fileMatch": ["cluster/apps/(.+/).*helmrelease\\.ya?ml$"]
   },
   // helm releases
   "flux": {
     "fileMatch": [
-      "(apps|base|infra)/(.+/).*helmrelease\\.ya?ml$",
-      "core/helmrepositories/.*\\.ya?ml$"
+      "cluster/apps/(.+/).*helmrelease\\.ya?ml$",
+      "cluster/flux/repositories/helm/.*\\.ya?ml$"
     ]
   },
   "customManagers": [
     {
       "description": "dependencies cloudnative-pg postgres databases",
-      "fileMatch": ["apps\\/(.+\\/)*cnpg-cluster\\.yaml$"],
+      "fileMatch": ["cluster/apps\\/(.+\\/)*cnpg-cluster\\.yaml$"],
       "matchStrings": ["imageName:\\s(?<depName>.*):(?<currentValue>.*)"],
       "datasourceTemplate": "docker",
       "versioningTemplate": "redhat"
@@ -60,7 +60,7 @@
     {
       "description": "Process CRD dependencies",
       "customType": "regex",
-      "fileMatch": ["crds/.+\\.ya?ml$"],
+      "fileMatch": ["cluster/crds/.+\\.ya?ml$"],
       "matchStrings": [
         //GitRepository where 'Git release/tag' matches 'Helm' version (k8up)
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*)\\s.*\\/k8up-(?<currentValue>.*?)\\/",
@@ -77,7 +77,7 @@
     {
       "description": "Process raw GitHub URLs",
       "customType": "regex",
-      "fileMatch": ["(apps|base|infra)/(.+/).*kustomization\\.ya?ml$"],
+      "fileMatch": ["cluster/(apps|base|infra)/(.+/).*kustomization\\.ya?ml$"],
       "matchStrings": [
         "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
       ],
@@ -87,7 +87,7 @@
     {
       "description": "Process postRenderer patches with images",
       "customType": "regex",
-      "fileMatch": ["infra/oauth2-proxy/oauth2-proxy/helmrelease\\.ya?ml$"],
+      "fileMatch": ["cluster/apps/oauth2-proxy/oauth2-proxy/helmrelease\\.ya?ml$"],
       "matchStrings": [
         "# renovate\\n\\s+image:\\s+(?<depName>\\S+):v?(?<currentValue>[^-\\s]*)"
       ],
