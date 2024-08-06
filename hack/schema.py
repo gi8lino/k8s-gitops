@@ -188,7 +188,6 @@ def insert_schema_in_file(file_path):
                 # Insert the schema after the pattern match
                 updated_content = pattern.sub(
                     r'---\n' +
-                    r'# yaml-language-server: $schema=' + item.schema + '\n' +
                     r'apiVersion: ' + item.api_version + '\n' +
                     r'kind: ' + item.kind, updated_content
                 )
