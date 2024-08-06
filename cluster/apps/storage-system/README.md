@@ -1,4 +1,4 @@
-# infra/storage-system Directory
+# storage-system Directory
 
 This directory contains storage related applications.
 

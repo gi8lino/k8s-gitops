@@ -77,7 +77,7 @@
     {
       "description": "Process raw GitHub URLs",
       "customType": "regex",
-      "fileMatch": ["cluster/(apps|base|infra)/(.+/).*kustomization\\.ya?ml$"],
+      "fileMatch": ["cluster/apps/(.+/).*kustomization\\.ya?ml$"],
       "matchStrings": [
         "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
       ],

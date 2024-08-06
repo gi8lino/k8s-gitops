@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - apps.yaml
   - crds.yaml
+  - networkpolicies.yaml
