@@ -17,6 +17,10 @@ spec:
         name: weaveworks
         namespace: flux-system
   values:
+    adminUser:
+      create: true
+      username: admin
+      passwordHash: $2a$12$s9PwZO4LVr7cFfIfvtNbQ.JNxEHToBsiABZ.SPuXUzqwaULgq3MaG
     ingress:
       enabled: true
       className: nginx
