@@ -9,10 +9,10 @@ spec:
     - name: crds
   interval: 20m
   path: ./cluster/apps
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
-    name: cluster
+    name: flux-system
   postBuild:
     substituteFrom:
       - kind: Secret
