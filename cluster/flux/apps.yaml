@@ -7,7 +7,6 @@ metadata:
 spec:
   dependsOn:
     - name: crds
-      namespace: flux-system
   interval: 20m
   path: ./cluster/apps
   prune: true
