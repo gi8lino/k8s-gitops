@@ -25,4 +25,5 @@ resources:
   - renovate
   - storage-system
   - vimbin
+  - weave-gitops
   - wiki

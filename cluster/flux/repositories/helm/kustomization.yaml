@@ -19,3 +19,4 @@ resources:
   - oauth2-proxy.yaml
   - prometheus-community.yaml
   - stakater.yaml
+  - weaveworks.yaml

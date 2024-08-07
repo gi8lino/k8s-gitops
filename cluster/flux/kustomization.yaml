@@ -9,6 +9,6 @@ resources:
   - repositories
   - vars
   - webhook
-  - crds.yaml
   - apps.yaml
+  - crds.yaml
   - networkpolicies.yaml
