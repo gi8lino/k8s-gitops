@@ -35,3 +35,5 @@ spec:
           paths:
             - path: /
               pathType: Prefix
+    networkPolicy:
+      create: false
