@@ -9,7 +9,7 @@ spec:
     - name: crds
   interval: 20m
   path: ./cluster/apps
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster
