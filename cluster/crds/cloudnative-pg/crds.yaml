@@ -22,8 +22,8 @@ metadata:
   name: cloudnative-pg-crds
   namespace: flux-system
 spec:
-  interval: 5m
-  prune: false
+  interval: 20m
+  prune: true
   sourceRef:
     kind: GitRepository
     name: cloudnative-pg
