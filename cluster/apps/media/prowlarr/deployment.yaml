@@ -18,19 +18,15 @@ spec:
     spec:
       initContainers:
         - name: configarr
-          image: ghcr.io/containeroo/alpine-toolbox:2.4.2
+          image: ghcr.io/gi8lino/configarr:0.0.2
           env:
             - name: PROWLARR__LAUNCHBROWSER
-              value: "False"
+              value: LaunchBrowser=False
             - name: PROWLARR__AUTHENTICATIONMETHOD
-              value: External
+              value: AuthenticationMethod=External
           command:
-            - sh
-            - -c
-            - /app/configarr.sh --config /config/config.xml --prefix PROWLARR
+            - --prefix PROWLARR__
           volumeMounts:
-            - name: configarr
-              mountPath: /app
             - name: data
               mountPath: /config
       containers:
@@ -82,10 +78,6 @@ spec:
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
-        - name: configarr
-          configMap:
-            name: configarr
-            defaultMode: 0755
         - name: data
           persistentVolumeClaim:
             claimName: prowlarr-data
