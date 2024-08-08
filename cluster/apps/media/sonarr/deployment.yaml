@@ -18,19 +18,13 @@ spec:
     spec:
       initContainers:
         - name: configarr
-          image: ghcr.io/containeroo/alpine-toolbox:2.4.2
+          image: ghcr.io/gi8lino/configarr:0.0.2
           env:
-            - name: SONARR__LAUNCHBROWSER
+            - name: CONFIGARR__LAUNCHBROWSER
               value: "False"
-            - name: SONARR__AUTHENTICATIONMETHOD
+            - name: CONFIGARR__AUTHENTICATIONMETHOD
               value: External
-          command:
-            - sh
-            - -c
-            - /app/configarr.sh --config /config/config.xml --prefix SONARR
           volumeMounts:
-            - name: configarr
-              mountPath: /app
             - name: data
               mountPath: /config
       containers:

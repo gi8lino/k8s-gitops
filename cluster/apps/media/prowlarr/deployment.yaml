@@ -20,13 +20,10 @@ spec:
         - name: configarr
           image: ghcr.io/gi8lino/configarr:0.0.2
           env:
-            - name: PROWLARR__LAUNCHBROWSER
+            - name: CONFIGARR__LAUNCHBROWSER
               value: LaunchBrowser=False
-            - name: PROWLARR__AUTHENTICATIONMETHOD
+            - name: CONFIGARR__AUTHENTICATIONMETHOD
               value: AuthenticationMethod=External
-          args:
-            - --prefix
-            - PROWLARR__
           volumeMounts:
             - name: data
               mountPath: /config
