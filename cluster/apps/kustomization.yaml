@@ -16,13 +16,13 @@ resources:
   - keycloak
   - kube-system
   - media
-  - metallb-system
+  - metallb
   - minio
   - monitoring
   - nextcloud
   - oauth2-proxy
   - reloader
   - renovate
-  - storage-system
+  - storage
   - vimbin
   - wiki
