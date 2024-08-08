@@ -29,8 +29,8 @@ This Git Repository contains the following directories and are ordered below by 
 
 - **cluster/flux** directory is where Flux deployments are located
 - **cluster/crds** directory contains CustomResourceDefinitions that need to exist before anything else
-- **apps** directory (depends on **crds**) is where common applications are located
-- **networkpolicies** directory (depends on **cilium**) contains network policies
+- **cluster/apps** directory (depends on **crds**) is where common applications are located
+- **cluster/networkpolicies** directory (depends on **cilium**) contains network policies
 
 These directories are not tracked by Flux but are useful nonetheless:
 

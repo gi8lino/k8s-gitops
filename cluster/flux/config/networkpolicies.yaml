@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: apps
+    - name: crds
   interval: 20m
   path: ./cluster/networkpolicies
   prune: true
