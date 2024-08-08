@@ -39,7 +39,7 @@ spec:
                   memory: 16Mi
           containers:
             - name: renovate
-              image: renovate/renovate:38.23.0
+              image: renovate/renovate:38.23.1
               env:
                 - name: LOG_LEVEL
                   value: debug
