@@ -18,7 +18,7 @@ spec:
     spec:
       initContainers:
         - name: configarr
-          image: ghcr.io/gi8lino/configarr:0.0.2
+          image: ghcr.io/gi8lino/configarr:0.0.4
           env:
             - name: CONFIGARR__LAUNCHBROWSER
               value: "False"
