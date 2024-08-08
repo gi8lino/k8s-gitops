@@ -25,7 +25,7 @@ spec:
             - name: PROWLARR__AUTHENTICATIONMETHOD
               value: AuthenticationMethod=External
           args:
-            - --prefix PROWLARR__
+            - "--prefix PROWLARR__"
           volumeMounts:
             - name: data
               mountPath: /config
