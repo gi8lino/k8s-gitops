@@ -24,7 +24,7 @@ spec:
               value: LaunchBrowser=False
             - name: PROWLARR__AUTHENTICATIONMETHOD
               value: AuthenticationMethod=External
-          command:
+          args:
             - --prefix PROWLARR__
           volumeMounts:
             - name: data
