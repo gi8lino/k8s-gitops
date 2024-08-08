@@ -9,6 +9,11 @@ spec:
   ref:
     branch: master
   url: https://github.com/gi8lino/k8s-gitops
+  ignore: |
+    # exclude all
+    /*
+    # include flux directories
+    !/cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
