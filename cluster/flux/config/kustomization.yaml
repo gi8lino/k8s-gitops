@@ -2,8 +2,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cluster.yaml
   - gotk-components.yaml
+  - cluster.yaml
+  - apps.yaml
+  - crds.yaml
+  - networkpolicies.yaml
 patches:
   # Remove the network policies that does not work with k3s
   - patch: |
