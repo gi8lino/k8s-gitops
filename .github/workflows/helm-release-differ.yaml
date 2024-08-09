@@ -23,7 +23,7 @@ jobs:
           list-files: json
           filters: |
             yaml:
-              - added|modified: "**/helmrelease.yaml"
+              - added|modified: "cluster/apps/**/helmrelease.yaml"
     outputs:
       yaml_files: ${{ steps.filter.outputs.yaml_files }}
 
