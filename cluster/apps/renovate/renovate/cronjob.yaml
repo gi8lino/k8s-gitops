@@ -25,11 +25,6 @@ spec:
                   value: valkey
                 - name: TARGET_ADDRESS
                   value: valkey.renovate.svc.cluster.local:6379
-              securityContext:
-                allowPrivilegeEscalation: false
-                runAsUser: 1000
-                runAsGroup: 1000
-                runAsNonRoot: true
               resources:
                 requests:
                   cpu: 10m

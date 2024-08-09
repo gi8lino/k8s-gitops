@@ -24,11 +24,6 @@ spec:
               value: valkey
             - name: TARGET_ADDRESS
               value: valkey.nextcloud.svc.cluster.local:6379
-          securityContext:
-            allowPrivilegeEscalation: false
-            runAsUser: 1000
-            runAsGroup: 1000
-            runAsNonRoot: true
           resources:
             requests:
               cpu: 10m
@@ -43,11 +38,6 @@ spec:
               value: PostgreSQL
             - name: TARGET_ADDRESS
               value: nextcloud-psql-rw.nextcloud.svc.cluster.local:5432
-          securityContext:
-            allowPrivilegeEscalation: false
-            runAsUser: 1000
-            runAsGroup: 1000
-            runAsNonRoot: true
           resources:
             requests:
               cpu: 10m

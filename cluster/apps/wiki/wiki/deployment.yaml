@@ -22,11 +22,6 @@ spec:
               value: PostgreSQL
             - name: TARGET_ADDRESS
               value: wiki-psql-rw.wiki.svc.cluster.local:5432
-          securityContext:
-            allowPrivilegeEscalation: false
-            runAsUser: 1000
-            runAsGroup: 1000
-            runAsNonRoot: true
           resources:
             requests:
               cpu: 10m
