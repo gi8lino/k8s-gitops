@@ -35,8 +35,7 @@ spec:
             valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
             follow_redirects: true
             preferred_ip_protocol: "ip4"
-            fail_if_body_not_matches_regexp:
-              - ${NEWSNAB_REGEX}
+            fail_if_body_not_matches_regexp: ["${NEWSNAB_REGEX}"]
     ingress:
       enabled: true
       className: nginx
