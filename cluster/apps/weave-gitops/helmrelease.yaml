@@ -32,7 +32,6 @@ spec:
       enabled: false
     rbac:
       create: true
-      impersonationResourceNames: ["admin"]
       viewSecretsResourceNames: ["cluster-user-auth"]
     podAnnotations:
       secret.reloader.stakater.com/reload: cluster-user-auth
