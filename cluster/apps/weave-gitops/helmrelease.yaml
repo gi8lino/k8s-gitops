@@ -1,0 +1,38 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: weave-gitops
+  namespace: flux-system
+spec:
+  interval: 20m
+  driftDetection:
+    mode: enabled
+  chart:
+    spec:
+      chart: weave-gitops
+      version: 4.0.36
+      sourceRef:
+        kind: HelmRepository
+        name: weave-gitops
+        namespace: flux-system
+      interval: 30m
+  values:
+    adminUser:
+      create: true
+      createSecret: true
+      username: admin
+    ingress:
+      enabled: true
+      className: nginx
+      hosts:
+        - host: flux.local.${BASE_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+    networkPolicy:
+      create: false
+    metrics:
+      enabled: true
+    rbac:
+      create: true
