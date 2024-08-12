@@ -25,7 +25,7 @@ spec:
       enabled: true
       className: nginx
       hosts:
-        - host: flux.local.${BASE_DOMAIN}
+        - host: flux.${BASE_DOMAIN}
           paths:
             - path: /
               pathType: Prefix
