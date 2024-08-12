@@ -26,6 +26,9 @@ spec:
       className: nginx
       hosts:
         - host: flux.local.${BASE_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
     networkPolicy:
       create: false
     metrics:
