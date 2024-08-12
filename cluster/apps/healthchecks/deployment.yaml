@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: healthchecks
-          image: ghcr.io/linuxserver/healthchecks:3.4.20240805
+          image: ghcr.io/linuxserver/healthchecks:3.4.20240812
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
