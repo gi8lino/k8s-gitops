@@ -34,7 +34,7 @@ spec:
       create: true
       impersonationResourceNames: ["admin"]
       viewSecretsResourceNames: ["cluster-user-auth"]
-    valuesFrom:
-      - kind: Secret
-        name: weave-gitops-helm-values
-        optional: false
+  valuesFrom:
+    - kind: Secret
+      name: weave-gitops-helm-values
+      optional: false
