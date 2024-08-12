@@ -21,19 +21,20 @@ spec:
     adminUser:
       create: true
       createSecret: true
-      username: admin
-      passwordHash: $2a$10$p7nWoid0hg312zrcm/z/yeU5cTavCXUeA/05GsLakB5avUO1KV9vO
     ingress:
       enabled: true
       className: nginx
       hosts:
         - host: flux.local.${BASE_DOMAIN}
-          paths:
-            - path: /
-              pathType: Prefix
     networkPolicy:
       create: false
     metrics:
-      enabled: true
+      enabled: false
     rbac:
       create: true
+      impersonationResourceNames: ["admin"]
+      viewSecretsResourceNames: ["cluster-user-auth"]
+    valuesFrom:
+      - kind: Secret
+        name: weave-gitops-helm-values
+        optional: false
