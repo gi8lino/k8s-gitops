@@ -3,10 +3,56 @@ version: "3"
 tasks:
   gc:
     desc: Run garbage collection on the gitlab registry
+    silent: false
     cmds:
       - kubectl exec -ti
         --namespace gitlab
         deployments/gitlab-registry
         --
         registry garbage-collect -m /etc/docker/registry/config.yml
+  checks:
+    desc: Run checks on the gitlab (https://docs.gitlab.com/ee/administration/raketasks/check.html#delete-references-to-missing-artifacts)
     silent: false
+    cmds:
+      - kubectl exec -ti
+        --namespace gitlab
+        deployments/gitlab-toolbox
+        -c toolbox
+        --
+        gitlab-rake gitlab:git:fsck
+      - kubectl exec -ti
+        --namespace gitlab
+        deployments/gitlab-toolbox
+        -c toolbox
+        --
+        gitlab-rake gitlab:git:checksum_projects
+      - kubectl exec -ti
+        --namespace gitlab
+        deployments/gitlab-toolbox
+        -c toolbox
+        --
+        gitlab-rake gitlab:artifacts:check
+      - kubectl exec -ti
+        --namespace gitlab
+        deployments/gitlab-toolbox
+        -c toolbox
+        --
+        gitlab-rake gitlab:ci_secure_files:check
+      - kubectl exec -ti
+        --namespace gitlab
+        deployments/gitlab-toolbox
+        -c toolbox
+        --
+        gitlab-rake gitlab:lfs:check
+      - kubectl exec -ti
+        --namespace gitlab
+        deployments/gitlab-toolbox
+        -c toolbox
+        --
+        gitlab-rake gitlab:uploads:check
+      - kubectl exec -ti
+        --namespace gitlab
+        deployments/gitlab-toolbox
+        -c toolbox
+        --
+        gitlab-rake gitlab:doctor:secrets
