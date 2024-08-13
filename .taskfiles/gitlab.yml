@@ -56,3 +56,8 @@ tasks:
         -c toolbox
         --
         gitlab-rake gitlab:doctor:secrets
+  backup:
+    desc: Create a backup of gitlab
+    silent: false
+    cmds:
+      - kubectl create job --from=cronjob/gitlab-toolbox-backup --namespace gitlab manual-backup-$(date +'%Y%m%d%H%M%S')
