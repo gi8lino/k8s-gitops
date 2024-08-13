@@ -61,7 +61,7 @@ tasks:
     silent: false
     cmds:
       - kubectl create job --from=cronjob/gitlab-toolbox-backup --namespace gitlab manual-backup-$(date +'%Y%m%d%H%M%S')
-  mirrio:
+  mirror:
     desc: Runs gitlab backup mirror
     silent: false
     cmds:
