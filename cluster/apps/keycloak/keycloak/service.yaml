@@ -9,6 +9,9 @@ spec:
     - name: http
       port: 8080
       targetPort: http
+    - name: health
+      port: 9000
+      targetPort: health
   type: ClusterIP
 ---
 apiVersion: v1
