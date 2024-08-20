@@ -64,6 +64,21 @@ spec:
                 template:
                   spec:
                     initContainers:
+                      - name: wait-for-keycloak
+                        # renovate
+                        image: ghcr.io/containeroo/toast:0.0.1
+                        env:
+                          - name: TARGET_NAME
+                            value: keycloak
+                          - name: TARGET_ADDRESS
+                            value: http://keycloak.keycloak.svc.cluster.local:9000/health
+                        resources:
+                          requests:
+                            cpu: 10m
+                            memory: 16Mi
+                          limits:
+                            cpu: 10m
+                            memory: 16Mi
                       - name: wait-for-valkey
                         # renovate
                         image: ghcr.io/containeroo/taco:0.0.23

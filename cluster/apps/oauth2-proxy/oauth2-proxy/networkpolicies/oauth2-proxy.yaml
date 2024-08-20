@@ -55,3 +55,11 @@ spec:
         - ports:
             - port: "443"
               protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app: keycloak
+            component: keycloak
+            "k8s:io.kubernetes.pod.namespace": keycloak
+      toPorts:
+        - ports:
+            - port: "9000" # keycloak health

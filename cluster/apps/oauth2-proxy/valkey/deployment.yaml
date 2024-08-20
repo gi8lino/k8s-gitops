@@ -14,21 +14,6 @@ spec:
     metadata:
       labels: {}
     spec:
-      initContainers:
-        - name: wait-for-keycloak
-          image: ghcr.io/containeroo/taco:0.0.23
-          env:
-            - name: TARGET_NAME
-              value: keycloak
-            - name: TARGET_ADDRESS
-              value: sso.${BASE_DOMAIN}:443
-          resources:
-            requests:
-              cpu: 10m
-              memory: 16Mi
-            limits:
-              cpu: 10m
-              memory: 16Mi
       containers:
         - name: valkey
           image: valkey/valkey:7.2.6-alpine
