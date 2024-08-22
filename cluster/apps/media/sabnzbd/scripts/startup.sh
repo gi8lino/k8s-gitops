@@ -5,7 +5,7 @@ if ! command -v mkvmerge >/dev/null; then
   exit 1
 fi
 
-if [ ! -f /app/sabnzbd/scripts/merge_subtitles.sh ]; then
+if [ ! -f /opt/sabnzbd/scripts/merge_subtitles.sh ]; then
   echo "merge_subtitles.sh not found"
   exit 1
 fi
