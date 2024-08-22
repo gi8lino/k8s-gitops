@@ -18,9 +18,6 @@ spec:
         namespace: flux-system
       interval: 30m
   values:
-    cluster:
-      id: 1
-      name: home
     envoy:
       enabled: false
     hubble:
