@@ -70,7 +70,7 @@ spec:
             - name: tv
               mountPath: /tv
             - name: merge-subtitles
-              mountPath: /app/sabnzbd/scripts/merge_subtitles.sh
+              mountPath: /opt/sabnzbd/scripts/merge_subtitles.sh
               subPath: merge_subtitles.sh
             - name: startup
               mountPath: /app/sabnzbd/startup
