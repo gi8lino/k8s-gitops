@@ -32,6 +32,8 @@ spec:
               value: catppuccin-frappe
             - name: TP_COMMUNITY_THEME
               value: "true"
+            - name: HAS_IPV6
+              value: "false"
           ports:
             - name: http
               containerPort: 8080
