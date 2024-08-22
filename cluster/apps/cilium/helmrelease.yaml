@@ -18,6 +18,9 @@ spec:
         namespace: flux-system
       interval: 30m
   values:
+    cluster:
+      id: 1
+      name: home
     envoy:
       enabled: false
     hubble:
@@ -26,11 +29,11 @@ spec:
         enabled:
           - dns:query
           - drop
-          - tcp
           - flow
-          - port-distribution
-          - icmp
           - http
+          - icmp
+          - port-distribution
+          - tcp
         serviceMonitor:
           enabled: true
         dashboards:
