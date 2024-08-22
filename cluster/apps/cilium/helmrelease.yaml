@@ -46,6 +46,10 @@ spec:
             enabled: true
       ui:
         enabled: true
+        frontend:
+          server:
+            ipv6:
+              enabled: false
         ingress:
           enabled: true
           className: nginx
