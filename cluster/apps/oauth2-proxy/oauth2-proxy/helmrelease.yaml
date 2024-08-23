@@ -81,12 +81,12 @@ spec:
                             memory: 16Mi
                       - name: wait-for-valkey
                         # renovate
-                        image: ghcr.io/containeroo/taco:0.0.24
+                        image: ghcr.io/containeroo/thor:0.0.7
                         env:
                           - name: TARGET_NAME
                             value: valkey
                           - name: TARGET_ADDRESS
-                            value: valkey.oauth2-proxy.svc.cluster.local:6379
+                            value: tcp://valkey.oauth2-proxy.svc.cluster.local:6379
                         resources:
                           requests:
                             cpu: 10m
