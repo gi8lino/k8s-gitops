@@ -18,7 +18,7 @@ spec:
     spec:
       initContainers:
         - name: wait-for-cache
-          image: ghcr.io/containeroo/portpatrol:0.0.10
+          image: ghcr.io/containeroo/portpatrol:0.2.0
           env:
             - name: TARGET_NAME
               value: valkey
@@ -32,7 +32,7 @@ spec:
               cpu: 10m
               memory: 16Mi
         - name: wait-for-database
-          image: ghcr.io/containeroo/portpatrol:0.0.10
+          image: ghcr.io/containeroo/portpatrol:0.2.0
           env:
             - name: TARGET_NAME
               value: PostgreSQL
