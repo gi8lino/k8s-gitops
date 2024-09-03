@@ -16,7 +16,7 @@ spec:
     spec:
       initContainers:
         - name: wait-for-database
-          image: ghcr.io/containeroo/portpatrol:0.4.1
+          image: ghcr.io/containeroo/portpatrol:0.4.2
           env:
             - name: TARGET_NAME
               value: PostgreSQL
