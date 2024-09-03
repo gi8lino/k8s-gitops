@@ -32,7 +32,7 @@ jobs:
           /tmp/yq --inplace ".spec.values.controller.config.proxy-real-ip-cidr = \"${ingress_nets%,*}\"" cluster/apps/ingress-nginx/helmrelease.yaml
 
       - name: Create pull request for cloudflare network range update
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: "cf/update-nets"
