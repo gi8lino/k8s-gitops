@@ -135,3 +135,4 @@ spec:
         - name: healthchecks-uwsgi-config
           configMap:
             name: healthchecks-uwsgi-config
+            defaultMode: 0755
