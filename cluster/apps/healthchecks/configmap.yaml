@@ -10,7 +10,7 @@ data:
     #!/usr/bin/with-contenv bash
     # shellcheck shell=bash
 
-    sed -i 's/\[::\]://g' /apps/healthchecks/uwsgi.ini
+    sed -i 's/\[::\]://g' /app/healthchecks/uwsgi.ini
   type: |
     oneshot
   up: |
