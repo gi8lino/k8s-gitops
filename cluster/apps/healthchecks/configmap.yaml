@@ -8,7 +8,11 @@ data:
   init-healthchecks-uwsgi-config: ""
   run: |
     #!/usr/bin/with-contenv bash
-    sed -i 's/\[::\]://g' /app/healthchecks/uwsgi.ini
+    if [ -f /app/healthchecks/uwsgi.ini ]; then
+      sed -i 's/\[::\]://g' /app/healthchecks/uwsgi.ini
+    else
+      sed -i 's/\[::\]://g' /defaults/uwsgi.ini
+    fi
   type: |
     oneshot
   up: |
