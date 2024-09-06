@@ -9,9 +9,9 @@ data:
   run: |
     #!/usr/bin/with-contenv bash
     if [ -f /app/healthchecks/uwsgi.ini ]; then
-      sed -i 's/\[::\]://g' /app/healthchecks/uwsgi.ini
+      sed -i 's/\[::\]//g' /app/healthchecks/uwsgi.ini
     else
-      sed -i 's/\[::\]://g' /defaults/uwsgi.ini
+      sed -i 's/\[::\]//g' /defaults/uwsgi.ini
     fi
   type: |
     oneshot
