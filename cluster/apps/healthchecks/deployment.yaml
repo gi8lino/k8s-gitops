@@ -94,6 +94,21 @@ spec:
             - name: startup
               mountPath: /scripts/startup
               subPath: startup
+            - name: healthchecks-uwsgi-config
+              mountPath: /etc/s6-overlay/s6-rc.d/user/contents.d/init-healthchecks-uwsgi-config
+              subPath: init-healthchecks-uwsgi-config
+            - name: healthchecks-uwsgi-config
+              mountPath: /etc/s6-overlay/s6-rc.d/init-config-end/dependencies.d/init-healthchecks-uwsgi-config
+              subPath: init-healthchecks-uwsgi-config
+            - name: healthchecks-uwsgi-config
+              mountPath: /etc/s6-overlay/s6-rc.d/init-healthchecks-uwsgi-config/run
+              subPath: run
+            - name: healthchecks-uwsgi-config
+              mountPath: /etc/s6-overlay/s6-rc.d/init-healthchecks-uwsgi-config/type
+              subPath: type
+            - name: healthchecks-uwsgi-config
+              mountPath: /etc/s6-overlay/s6-rc.d/init-healthchecks-uwsgi-config/up
+              subPath: up
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -117,3 +132,6 @@ spec:
               - key: startup.sh
                 path: startup
             defaultMode: 0755
+        - name: healthchecks-uwsgi-config
+          configMap:
+            name: healthchecks-uwsgi-config

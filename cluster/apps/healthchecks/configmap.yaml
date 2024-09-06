@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: healthchecks-uwsgi-config
+  namespace: healthchecks
+data:
+  init-healthchecks-uwsgi-config: ""
+  run: |
+    #!/usr/bin/with-contenv bash
+    # shellcheck shell=bash
+
+    sed -i 's/\[::\]://g' /apps/healthchecks/uwsgi.ini
+  type: |
+    oneshot
+  up: |
+    /etc/s6-overlay/s6-rc.d/init-healthchecks-uwsgi-config/run
