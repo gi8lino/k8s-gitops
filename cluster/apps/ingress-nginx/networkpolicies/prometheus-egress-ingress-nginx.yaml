@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-ingress-nginx
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: ingress-nginx
+            app.kubernetes.io/instance: ingress-nginx
+            app.kubernetes.io/component: controller
+            "k8s:io.kubernetes.pod.namespace": ingress-nginx
+      toPorts:
+        - ports:
+            - port: "10254"
+              protocol: TCP

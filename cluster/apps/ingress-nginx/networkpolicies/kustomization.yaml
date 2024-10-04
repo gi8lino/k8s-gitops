@@ -5,3 +5,4 @@ resources:
   - ingress-nginx-admission-create.yaml
   - ingress-nginx-backend.yaml
   - ingress-nginx-controller.yaml
+  - prometheus-egress-ingress-nginx.yaml

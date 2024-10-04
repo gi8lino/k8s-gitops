@@ -38,6 +38,14 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: kube-dns
+            "k8s:io.kubernetes.pod.namespace": kube-system
+      toPorts:
+        - ports:
+            - port: "9153" # coreDNS
+              protocol: TCP
     - toEntities:
         - host
       toPorts:
@@ -88,50 +96,4 @@ spec:
       toPorts:
         - ports:
             - port: "3000"
-              protocol: TCP
-    - toEndpoints:
-        - matchLabels:
-            k8s-app: kube-dns
-            "k8s:io.kubernetes.pod.namespace": kube-system
-      toPorts:
-        - ports:
-            - port: "9153"
-              protocol: TCP
-    - toEndpoints:
-        - matchLabels:
-            app.kubernetes.io/instance: promtail
-            app.kubernetes.io/name: promtail
-            "k8s:io.kubernetes.pod.namespace": monitoring
-      toPorts:
-        - ports:
-            - port: "3101"
-              protocol: TCP
-
-    - toEndpoints:
-        - matchLabels:
-            app.kubernetes.io/instance: k8up
-            app.kubernetes.io/name: k8up
-            "k8s:io.kubernetes.pod.namespace": k8up
-      toPorts:
-        - ports:
-            - port: "8080"
-              protocol: TCP
-    - toEndpoints:
-        - matchLabels:
-            app.kubernetes.io/instance: cloudflare-operator
-            app.kubernetes.io/name: cloudflare-operator
-            "k8s:io.kubernetes.pod.namespace": cloudflare-operator
-      toPorts:
-        - ports:
-            - port: "8080"
-              protocol: TCP
-    - toEndpoints:
-        - matchLabels:
-            app.kubernetes.io/name: ingress-nginx
-            app.kubernetes.io/instance: ingress-nginx
-            app.kubernetes.io/component: controller
-            "k8s:io.kubernetes.pod.namespace": ingress-nginx
-      toPorts:
-        - ports:
-            - port: "10254"
               protocol: TCP

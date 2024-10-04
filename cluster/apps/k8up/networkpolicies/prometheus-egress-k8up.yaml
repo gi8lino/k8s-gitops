@@ -1,0 +1,21 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-k8up
+  namespace: monitoring
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: k8up
+            app.kubernetes.io/name: k8up
+            "k8s:io.kubernetes.pod.namespace": k8up
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
