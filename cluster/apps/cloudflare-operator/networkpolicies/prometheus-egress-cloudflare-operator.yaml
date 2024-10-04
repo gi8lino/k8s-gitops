@@ -12,7 +12,8 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: cloudflare-operator
+            app.kubernetes.io/name: cloudflare-operator
+            app.kubernetes.io/instance: cloudflare-operator
             "k8s:io.kubernetes.pod.namespace": cloudflare-operator
       toPorts:
         - ports:
