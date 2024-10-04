@@ -13,9 +13,9 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            "k8s:io.kubernetes.pod.namespace": monitoring
-            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
             app.kubernetes.io/name: prometheus
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
             - port: "9402"

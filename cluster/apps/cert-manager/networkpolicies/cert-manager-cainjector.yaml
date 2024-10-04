@@ -10,6 +10,16 @@ spec:
       app.kubernetes.io/instance: cert-manager
       app.kubernetes.io/name: cainjector
       app.kubernetes.io/component: cainjector
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: prometheus
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            "k8s:io.kubernetes.pod.namespace": monitoring
+      toPorts:
+        - ports:
+            - port: "9402"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:

@@ -16,6 +16,16 @@ spec:
             app.kubernetes.io/instance: cert-manager
             app.kubernetes.io/name: cert-manager
             "k8s:io.kubernetes.pod.namespace": cert-manager
+        - matchLabels:
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: cainjector
+            app.kubernetes.io/component: cainjector
+            "k8s:io.kubernetes.pod.namespace": cert-manager
+        - matchLabels:
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: webhook
+            app.kubernetes.io/component: webhook
+            "k8s:io.kubernetes.pod.namespace": cert-manager
       toPorts:
         - ports:
             - port: "9402"
