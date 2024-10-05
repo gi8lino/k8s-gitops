@@ -58,8 +58,6 @@ spec:
               value: "true"
             - name: KC_HEALTH_ENABLED
               value: "true"
-            - name: KC_FEATURES
-              value: persistent-user-sessions,hostname:v2
             - name: TZ
               value: Europe/Zurich
             - name: JAVA_OPTS_APPEND
