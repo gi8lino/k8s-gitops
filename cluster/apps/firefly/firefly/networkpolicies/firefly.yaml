@@ -31,12 +31,15 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+
     - toEndpoints:
         - matchLabels:
-            cnpg.io/cluster: keycloak-psql
+            cnpg.io/cluster: firefly-psql
             cnpg.io/podRole: instance
-            "k8s:io.kubernetes.pod.namespace": keycloak
+            "k8s:io.kubernetes.pod.namespace": firefly
       toPorts:
         - ports:
             - port: "5432"
+              protocol: TCP
+            - port: "8000"
               protocol: TCP
