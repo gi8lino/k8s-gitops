@@ -8,6 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       cnpg.io/jobRole: initdb
+      cnpg.io/cluster: firefly-psql
   egress:
     - toEndpoints:
         - matchLabels:
