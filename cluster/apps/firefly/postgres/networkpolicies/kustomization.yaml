@@ -1,0 +1,8 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - cloudnative-pg-egress-firefly-postgres.yaml
+  - minio-ingress-firefly-postgres.yaml
+  - postgres.yaml
+  - prometheus-egress-firefly-postgres.yaml

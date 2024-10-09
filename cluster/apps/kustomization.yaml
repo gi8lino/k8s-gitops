@@ -9,6 +9,7 @@ resources:
   - debug
   - falco
   - filebrowser
+  - firefly
   - gitlab
   - healthchecks
   - ingress-nginx

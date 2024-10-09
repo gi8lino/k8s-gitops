@@ -9,6 +9,7 @@ resources:
   - debug.yaml
   - falco.yaml
   - filebrowser.yaml
+  - firefly.yaml
   - gitlab.yaml
   - healthchecks.yaml
   - ingress-nginx.yaml
