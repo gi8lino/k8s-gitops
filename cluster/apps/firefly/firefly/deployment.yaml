@@ -21,7 +21,7 @@ spec:
             - name: TARGET_NAME
               value: PostgreSQL
             - name: TARGET_ADDRESS
-              value: firefly-psql-rw.firefly.svc.cluster.local:5432
+              value: firefly-psql-rw.firefly.svc.cluster.local:8000/healthz
           resources:
             requests:
               cpu: 10m
@@ -36,23 +36,23 @@ spec:
             - name: DB_CONNECTION
               value: pgsql
             - name: DB_HOST
-              value: firefly-postgres-rw.firefly.svc.cluster.local
+              value: firefly-psql-rw.firefly.svc.cluster.local
             - name: DB_PORT
               value: "5432"
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: firefly-postgres-app
+                  name: firefly-psql-app
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: firefly-postgres-app
+                  name: firefly-psql-app
                   key: password
             - name: DB_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: firefly-postgres-app
+                  name: firefly-psql-app
                   key: dbname
             - name: TRUSTED_PROXIES
               value: "*"
