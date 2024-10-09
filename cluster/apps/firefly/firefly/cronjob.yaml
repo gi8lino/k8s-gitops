@@ -17,6 +17,21 @@ spec:
     spec:
       template:
         spec:
+          initContainers:
+            - name: wait-for-database
+              image: ghcr.io/containeroo/portpatrol:0.4.7
+              env:
+                - name: TARGET_NAME
+                  value: PostgreSQL
+                - name: TARGET_ADDRESS
+                  value: firefly-psql-rw.firefly.svc.cluster.local:5432
+              resources:
+                requests:
+                  cpu: 10m
+                  memory: 16Mi
+                limits:
+                  cpu: 10m
+                  memory: 16Mi
           containers:
             - name: firefly-cron
               image: ghcr.io/containeroo/alpine-toolbox:2.4.7
