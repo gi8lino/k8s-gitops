@@ -29,7 +29,7 @@ spec:
                 - name: TARGET_NAME
                   value: Firefly III
                 - name: TARGET_ADDRESS
-                  value: firefly.firefly.svc.cluster.local:8080/health
+                  value: http://firefly.firefly.svc.cluster.local:8080/health
               resources:
                 requests:
                   cpu: 10m
