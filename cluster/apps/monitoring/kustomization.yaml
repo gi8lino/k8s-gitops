@@ -5,8 +5,10 @@ resources:
   - flux-system
   - kthxbye
   - kube-prometheus-stack
+  - loki
   - pihole-server
   - prometheus-blackbox-exporter
   - prometheus-pushgateway
   - prometheus-smartctl-exporter
+  - promtail
   - tools-server
