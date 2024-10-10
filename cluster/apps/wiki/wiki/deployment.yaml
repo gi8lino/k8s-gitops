@@ -23,7 +23,7 @@ spec:
             - name: HTTP_SKIP_TLS_VERIFY
               value: "true"
             - name: TARGET_ADDRESS
-              value: https://postgres-healthz.wiki.svc.cluster.local:8000/healthz
+              value: https://wiki-psql-healthz:8000/healthz
           resources:
             requests:
               cpu: 10m
