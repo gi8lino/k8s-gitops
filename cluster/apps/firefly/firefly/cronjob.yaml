@@ -4,6 +4,8 @@ kind: CronJob
 metadata:
   name: firefly-cron
   namespace: firefly
+  labels:
+    component: job
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
@@ -16,6 +18,9 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          labels:
+            component: job
         spec:
           initContainers:
             - name: wait-for-database

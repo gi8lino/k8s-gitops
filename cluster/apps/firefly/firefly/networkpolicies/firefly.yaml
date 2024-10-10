@@ -8,6 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       app: firefly
+      component: firefly
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -15,6 +16,11 @@ spec:
             app.kubernetes.io/component: controller
             app.kubernetes.io/instance: ingress-nginx
             "k8s:io.kubernetes.pod.namespace": ingress-nginx
+        - matchLabels:
+            app: firefly
+            component: job
+            "k8s:io.kubernetes.pod.namespace": firefly
+
       toPorts:
         - ports:
             - port: "8080"

@@ -7,12 +7,14 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: {}
+    matchLabels:
+      component: firefly
   strategy:
     type: Recreate
   template:
     metadata:
-      labels: {}
+      labels:
+        component: firefly
     spec:
       initContainers:
         - name: wait-for-database
@@ -76,18 +78,16 @@ spec:
             initialDelaySeconds: 10
             timeoutSeconds: 1
             failureThreshold: 60
-            periodSeconds: 5
+            periodSeconds: 2
           livenessProbe:
             httpGet:
               path: /health
               port: 8080
-            initialDelaySeconds: 0
-            timeoutSeconds: 5
+            timeoutSeconds: 1
           readinessProbe:
             httpGet:
               path: /health
               port: 8080
-            initialDelaySeconds: 10
             timeoutSeconds: 1
       restartPolicy: Always
       automountServiceAccountToken: false

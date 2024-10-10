@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - cloudnative-pg-egress-firefly-postgres.yaml
   - minio-ingress-firefly-postgres.yaml
+  - postgres-initdb.yaml
   - postgres.yaml
   - prometheus-egress-firefly-postgres.yaml
