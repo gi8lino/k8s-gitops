@@ -23,7 +23,7 @@ spec:
             - name: TARGET_NAME
               value: PostgreSQL
             - name: TARGET_ADDRESS
-              value: firefly-psql-rw.firefly.svc.cluster.local:5432
+              value: https://postgres-healthz.firefly.svc.cluster.local:8000/healthz
           resources:
             requests:
               cpu: 10m
