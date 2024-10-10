@@ -23,13 +23,13 @@ spec:
             component: job
         spec:
           initContainers:
-            - name: wait-for-database
+            - name: wait-for-firefly
               image: ghcr.io/containeroo/portpatrol:0.4.7
               env:
                 - name: TARGET_NAME
-                  value: PostgreSQL
+                  value: Firefly III
                 - name: TARGET_ADDRESS
-                  value: firefly-psql-rw.firefly.svc.cluster.local:5432
+                  value: firefly.firefly.svc.cluster.local:8080/health
               resources:
                 requests:
                   cpu: 10m
