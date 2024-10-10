@@ -6,3 +6,4 @@ resources:
   - cnpg-cluster.yaml
   - scheduledbackup.yaml
   - secret.yaml
+  - service.yaml
