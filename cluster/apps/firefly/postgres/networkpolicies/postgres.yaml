@@ -57,6 +57,11 @@ spec:
     - fromEndpoints:
         - matchLabels:
             app: firefly
+            component: firefly
+            "k8s:io.kubernetes.pod.namespace": firefly
+        - matchLabels:
+            app: firefly
+            component: job
             "k8s:io.kubernetes.pod.namespace": firefly
         # when joining, we need to allow the joining pod to connect to the instance
         # - matchLabels:

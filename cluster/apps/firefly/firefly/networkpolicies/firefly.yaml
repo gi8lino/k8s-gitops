@@ -37,7 +37,6 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-
     - toEndpoints:
         - matchLabels:
             cnpg.io/cluster: firefly-psql
