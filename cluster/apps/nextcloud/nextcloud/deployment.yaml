@@ -31,13 +31,13 @@ spec:
             limits:
               cpu: 10m
               memory: 16Mi
-        - name: wait-for-database
+        - name: wait-for-db
           image: ghcr.io/containeroo/portpatrol:0.4.7
           env:
             - name: TARGET_NAME
               value: PostgreSQL
             - name: TARGET_ADDRESS
-              value: nextcloud-psql-rw.nextcloud.svc.cluster.local:5432
+              value: https://postgres-healthz.nextcloud.svc.cluster.local:8000/healthz
           resources:
             requests:
               cpu: 10m

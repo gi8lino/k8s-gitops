@@ -6,3 +6,4 @@ resources:
   - minio-ingress-keycloak-postgres.yaml
   - postgres.yaml
   - prometheus-egress-keycloak-postgres.yaml
+  - service.yaml

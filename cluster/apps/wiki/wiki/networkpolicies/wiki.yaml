@@ -41,6 +41,9 @@ spec:
         - ports:
             - port: "5432"
               protocol: TCP
+        - ports:
+            - port: "8000" # /healthz endpoint
+              protocol: TCP
     - toFQDNs:
         - matchName: ${SMTP_DOMAIN}
       toPorts:

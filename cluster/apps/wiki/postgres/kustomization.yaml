@@ -5,6 +5,7 @@ resources:
   - networkpolicies
   - cnpg-cluster.yaml
   - secret.yaml
+  - service.yaml
 labels:
   - includeSelectors: true
     pairs:
