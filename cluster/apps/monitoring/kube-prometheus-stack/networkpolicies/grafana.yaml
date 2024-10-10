@@ -60,15 +60,6 @@ spec:
         - ports:
             - port: "9093"
               protocol: TCP
-    - toEndpoints:
-        - matchLabels:
-            app.kubernetes.io/name: loki
-            app.kubernetes.io/instance: loki
-            "k8s:io.kubernetes.pod.namespace": monitoring
-      toPorts:
-        - ports:
-            - port: "3100"
-              protocol: TCP
     - toFQDNs:
         - matchName: grafana.com # grafana dashboards
         - matchName: grafana.net # grafana dashboards
