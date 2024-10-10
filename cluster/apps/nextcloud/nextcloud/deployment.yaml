@@ -37,7 +37,7 @@ spec:
             - name: TARGET_NAME
               value: PostgreSQL
             - name: TARGET_ADDRESS
-              value: https://postgres-healthz.nextcloud.svc.cluster.local:8000/healthz
+              value: https://nextcloud-psql-healthz:8000/healthz
           resources:
             requests:
               cpu: 10m
