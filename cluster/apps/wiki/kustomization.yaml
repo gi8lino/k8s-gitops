@@ -5,7 +5,3 @@ resources:
   - postgres
   - wiki
   - schedule.yaml
-labels:
-  - includeSelectors: true
-    pairs:
-      app: wiki

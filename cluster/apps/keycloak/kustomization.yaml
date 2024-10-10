@@ -4,7 +4,3 @@ kind: Kustomization
 resources:
   - keycloak
   - postgres
-labels:
-  - includeSelectors: true
-    pairs:
-      app: keycloak

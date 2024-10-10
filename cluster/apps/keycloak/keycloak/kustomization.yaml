@@ -12,4 +12,5 @@ resources:
 labels:
   - includeSelectors: true
     pairs:
+      app: keycloak
       component: keycloak
