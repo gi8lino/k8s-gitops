@@ -36,6 +36,8 @@ spec:
           env:
             - name: TARGET_NAME
               value: PostgreSQL
+            - name: HTTP_SKIP_TLS_VERIFY
+              value: "true"
             - name: TARGET_ADDRESS
               value: https://nextcloud-psql-healthz:8000/healthz
           resources:
