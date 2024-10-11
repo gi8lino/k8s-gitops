@@ -19,7 +19,6 @@ resources:
   - metallb
   - minio
   - monitoring
-  - nc
   - nextcloud
   - oauth2-proxy
   - reloader
