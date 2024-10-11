@@ -9,7 +9,6 @@ resources:
   - debug
   - falco
   - filebrowser
-  - firefly
   - gitlab
   - healthchecks
   - ingress-nginx
@@ -20,6 +19,7 @@ resources:
   - metallb
   - minio
   - monitoring
+  - nc
   - nextcloud
   - oauth2-proxy
   - reloader
