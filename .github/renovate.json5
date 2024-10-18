@@ -107,7 +107,7 @@
       "description": "Special versioning for linuxserver.io sabnzbd image",
       "matchDatasources": ["docker"],
       "matchPackagePatterns": ["^ghcr\\.io\\/linuxserver\\/sabnzbd$"],
-      "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ls(?<revision>\\d+)$",
+      "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ls(?<build>\\d+)$",
     },
     {
       "description": "Special versioning for linuxserver.io images",
