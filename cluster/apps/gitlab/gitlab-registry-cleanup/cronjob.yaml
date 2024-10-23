@@ -24,7 +24,7 @@ spec:
           serviceAccountName: gitlab-registry-cleanup
           containers:
             - name: kubectl
-              image: bitnami/kubectl:1.31.1
+              image: bitnami/kubectl:1.31.2
               command:
                 - /bin/sh
                 - -c
