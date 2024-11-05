@@ -8,7 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: prometheus-smartctl-exporter
-      app.kubernetes.io/instance: smartctl-exporter
+      app.kubernetes.io/instance: prometheus-smartctl-exporter
   ingress:
     - fromEndpoints:
         - matchLabels:

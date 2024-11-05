@@ -13,7 +13,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/name: prometheus-smartctl-exporter
-            app.kubernetes.io/instance: smartctl-exporter
+            app.kubernetes.io/instance: prometheus-smartctl-exporter
             "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
