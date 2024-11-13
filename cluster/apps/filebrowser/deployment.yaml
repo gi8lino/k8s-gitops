@@ -23,7 +23,7 @@ spec:
             - name: TZ
               value: Europe/Zurich
             - name: FB_DATABASE
-              value: /data/database.db
+              value: /db/database.db
           ports:
             - name: http
               containerPort: 80
@@ -49,11 +49,10 @@ spec:
             - name: db
               mountPath: /db
             - name: config
-              mountPath: /config/filebrowser.json
-              subPath: filebrowser.json
+              mountPath: /.filebrowser.json
+              subPath: .filebrowser.json
             - name: users
-              mountPath: /config/users.json
-              subPath: users.json
+              mountPath: /users
             - name: branding
               mountPath: /branding/custom.css
               subPath: custom.css
