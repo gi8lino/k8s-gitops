@@ -16,3 +16,42 @@ data:
       "auth.method": "proxy",
       "auth.header": "X-Forwarded-User"
     }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-themes
+  namespace: filebrowser
+data:
+  catppuccin-frappe.css: |
+    :root {
+      --main-bg-color: #303446;
+
+      --modal-bg-color: #292c3c;
+      --modal-header-color: #292c3c;
+      --modal-footer-color: #292c3c;
+
+      --drop-down-menu-bg: #292c3c;
+
+      --button-color: #94e2d5;
+      --button-color-hover: #f2d5cf;
+      --button-text: #f4f4f7;
+      --button-text-hover: #ffffff;
+
+      --accent-color: 148, 226, 213;
+      --accent-color-hover: rgba(var(--accent-color), 0.8);
+      --link-color: #f2d5cf;
+      --link-color-hover: #f4b8e4;
+      --label-text-color: #303446;
+
+      --text: #c6d0f5;
+      --text-hover: #ffffff;
+      --text-muted: #737994;
+
+      /* Specials */
+      --arr-queue-color: #a6d189; /* Servarr apps + Bazarr */
+      --plex-poster-unwatched: #94e2d5;
+      --petio-spinner: invert(75%) sepia(5%) saturate(1030%) hue-rotate(118deg) brightness(102%) contrast(99%);
+      --gitea-color-primary-dark-4: 148, 226, 213;
+      --overseerr-gradient: linear-gradient(180deg, rgba(48, 52, 70, 0.17) 0%, rgba(48, 52, 70) 100%);
+    }
