@@ -7,14 +7,39 @@ metadata:
 data:
   .filebrowser.json: |-
     {
-      "port": 80,
-      "baseURL": "",
-      "address": "",
-      "log": "stdout",
-      "database": "/db/filebrowser.db",
-      "root": "/data",
-      "auth.method": "proxy",
-      "auth.header": "X-Forwarded-User"
+        "settings": {
+            "signup": false,
+            "createUserDir": false,
+            "defaults": {
+                "scope": ".",
+                "viewMode": "list",
+                "singleClick": true,
+                "hideDotfiles": false,
+                "dateFormat": false
+            },
+            "authMethod": "proxy",
+            "branding": {
+                "name": "Home",
+                "disableExternal": true,
+                "disableUsedPercentage": true,
+                "files": "/brandng",
+                "theme": "catppuccin-frappe",
+                "color": ""
+            },
+        },
+        "server": {
+            "root": "/data",
+            "baseURL": "",
+            "socket": "",
+            "tlsKey": "",
+            "tlsCert": "",
+            "port": "8080",
+            "address": "",
+            "log": "stdout",
+        },
+        "auther": {
+            "header": "X-Forwarded-User"
+        }
     }
 ---
 apiVersion: v1
