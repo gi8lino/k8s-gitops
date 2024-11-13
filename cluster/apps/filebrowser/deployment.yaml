@@ -25,16 +25,15 @@ spec:
             - name: FB_DATABASE
               value: /data/database.db
           command:
-            - -c '
+            - |
               /filebrowser version;
               [ -r "$$FB_DATABASE" ] || (
-              /filebrowser config import /config/filebrowser.json &&
-              /filebrowser users  import /config/users.json
+                /filebrowser config import /config/filebrowser.json &&
+                /filebrowser users  import /config/users.json
               );
               /filebrowser config cat 2>/dev/null;
               /filebrowser users  ls  2>/dev/null;
               /filebrowser
-              '
           ports:
             - name: http
               containerPort: 8080
