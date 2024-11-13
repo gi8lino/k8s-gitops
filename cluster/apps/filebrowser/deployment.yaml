@@ -50,7 +50,8 @@ spec:
               mountPath: .filebrowser.json
               subPath: .filebrowser.json
             - name: branding
-              mountPath: /branding
+              mountPath: /branding/custom.css
+              subPath: custom.css
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -67,5 +68,6 @@ spec:
             defaultMode: 0644
         - name: branding
           configMap:
-            name: custom-themes
-            defaultMode: 0644
+            items:
+              - key: catppuccin-frappe.css
+                path: custom.css
