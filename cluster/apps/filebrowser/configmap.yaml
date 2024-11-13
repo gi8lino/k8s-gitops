@@ -38,7 +38,7 @@ data:
         "log": "stdout"
       },
       "auther": {
-        "header": "X-Forwarded-User"
+        "header": "X-Auth-Request-Email"
       }
     }
 ---
