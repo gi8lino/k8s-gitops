@@ -17,19 +17,13 @@ rm -f /db/filebrowser.db
 create new database:
 
 ```bash
-./filebrowser config init --auth.method proxy --auth.header X-Auth-Request-Email -c .filebrowser.json -d /db/filebrowser.db
+./filebrowser config import .filebrowser.json
 ```
 
-create new admin user:
+import users:
 
 ```bash
-./filebrowser users add email@gmail.com <PASSWORD> --perm.admin
-```
-
-create additional user:
-
-```bash
-./filebrowser users add email@gmail.com <PASSWORD>
+./filebrowser users  import /config/users.json
 ```
 
 restart deployment:
