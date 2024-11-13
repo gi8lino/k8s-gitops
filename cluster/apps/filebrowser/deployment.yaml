@@ -52,7 +52,8 @@ spec:
               mountPath: /.filebrowser.json
               subPath: .filebrowser.json
             - name: users
-              mountPath: /users
+              mountPath: .users.json
+              subPath: .users.json
             - name: branding
               mountPath: /branding/custom.css
               subPath: custom.css
