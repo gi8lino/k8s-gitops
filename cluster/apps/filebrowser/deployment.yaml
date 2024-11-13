@@ -68,6 +68,7 @@ spec:
             defaultMode: 0644
         - name: branding
           configMap:
+            name: custom-themes
             items:
               - key: catppuccin-frappe.css
                 path: custom.css
