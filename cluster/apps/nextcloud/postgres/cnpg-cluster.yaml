@@ -75,5 +75,5 @@ spec:
         user: nextcloud
         dbname: nextcloud
       password:
-        name: nextcloud-postgres-app
+        name: nextcloud-psql-app
         key: password
