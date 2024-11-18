@@ -7,7 +7,6 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      cnpg.io/cluster: nextcloud-psql
       cnpg.io/jobRole: join
   egress:
     - toEndpoints:
@@ -29,7 +28,6 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            cnpg.io/cluster: nextcloud-psql
             cnpg.io/podRole: instance
             io.kubernetes.pod.namespace: nextcloud
       toPorts:
