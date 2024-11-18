@@ -93,7 +93,7 @@ data:
             # only for Nextcloud like below:
             include mime.types;
             types {
-                text/javascript js mjs;
+                text/javascript mjs;
             }
 
             # Path to the root of your installation
