@@ -7,4 +7,4 @@ metadata:
 spec:
   schedule: "0 5 2 * * *"
   cluster:
-    name: nextcloud-psql
+    name: nextcloud-postgres-17

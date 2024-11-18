@@ -4,5 +4,7 @@ kind: Kustomization
 resources:
   - cloudnative-pg-egress-nextcloud-postgres.yaml
   - minio-ingress-nextcloud-postgres.yaml
+  - postgres-import.yaml
+  - postgres-initdb.yaml
   - postgres.yaml
   - prometheus-egress-nextcloud-postgres.yaml

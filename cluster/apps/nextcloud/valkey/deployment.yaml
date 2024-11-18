@@ -5,7 +5,7 @@ metadata:
   name: valkey
   namespace: nextcloud
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels: {}
   strategy:
