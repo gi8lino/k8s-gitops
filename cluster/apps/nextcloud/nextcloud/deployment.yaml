@@ -7,7 +7,7 @@ metadata:
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels: {}
   strategy:
@@ -39,7 +39,7 @@ spec:
             - name: HTTP_SKIP_TLS_VERIFY
               value: "true"
             - name: TARGET_ADDRESS
-              value: https://nextcloud-psql-healthz:8000/healthz
+              value: https://nextcloud-postgres-17-healthz:8000/healthz
           resources:
             requests:
               cpu: 10m
@@ -90,21 +90,21 @@ spec:
           image: nextcloud:30.0.2-fpm-alpine
           env:
             - name: POSTGRES_HOST
-              value: nextcloud-psql-rw.nextcloud.svc.cluster.local
+              value: nextcloud-postgres-17-rw.nextcloud.svc.cluster.local
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-psql-app
+                  name: nextcloud-postgres-17-app
                   key: username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-psql-app
+                  name: nextcloud-postgres-17-app
                   key: password
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-psql-app
+                  name: nextcloud-postgres-17-app
                   key: dbname
             - name: NEXTCLOUD_TRUSTED_DOMAINS
               value: cloud.${BASE_DOMAIN}

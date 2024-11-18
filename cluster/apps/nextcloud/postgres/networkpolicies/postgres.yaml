@@ -7,7 +7,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      cnpg.io/cluster: nextcloud-psql
+      cnpg.io/cluster: nextcloud-postgres-17
       cnpg.io/podRole: instance
   egress:
     - toEndpoints:
