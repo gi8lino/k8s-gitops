@@ -48,7 +48,7 @@ spec:
         databases:
           - nextcloud
         source:
-          externalCluster: nextcloud-postgres
+          externalCluster: nextcloud-psql
         type: microservice
   backup:
     barmanObjectStore:
