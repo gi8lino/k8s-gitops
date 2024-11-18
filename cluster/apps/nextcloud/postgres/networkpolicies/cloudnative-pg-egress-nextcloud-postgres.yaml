@@ -12,6 +12,10 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
+            cnpg.io/cluster: nextcloud-postgres
+            cnpg.io/podRole: instance
+            "k8s:io.kubernetes.pod.namespace": nextcloud
+        - matchLabels:
             cnpg.io/cluster: nextcloud-psql
             cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": nextcloud
