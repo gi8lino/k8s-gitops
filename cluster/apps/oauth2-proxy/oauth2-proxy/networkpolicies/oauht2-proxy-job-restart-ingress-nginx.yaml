@@ -2,13 +2,13 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: oauth2-proxy-restart-ingress-nginx
+  name: oauht2-proxy-job-restart-ingress-nginx.yaml
   namespace: oauth2-proxy
 spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: oauth2-proxy
-      app.kubernetes.io/component: restart-nginx-ingress-job
+      app.kubernetes.io/component: restart-ingress-nginx-job
   egress:
     - toEndpoints:
         - matchLabels:

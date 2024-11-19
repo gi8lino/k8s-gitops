@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: restart-nginx-ingress
+  name: restart-ingress-nginx
   namespace: ingress-nginx
 rules:
   - apiGroups: ["apps"]
