@@ -4,6 +4,8 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
+  - role.yaml
+  - rolebinding.yaml
 configMapGenerator:
   - name: grafana-dashboards-ingress-nginx
     namespace: monitoring
