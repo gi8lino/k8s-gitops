@@ -81,7 +81,8 @@ spec:
                   # renovate
                   image: ghcr.io/gi8lino/kubectl-distroless:1.31.2-g1
                   args:
-                    - rollout restart deployment ingress-nginx-controller -n ingress-nginx
+                    - |
+                      rollout restart deployment ingress-nginx-controller -n ingress-nginx
               restartPolicy: Never
               serviceAccountName: restart-ingress-nginx
   postRenderers:
