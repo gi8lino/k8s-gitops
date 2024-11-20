@@ -24,12 +24,10 @@ spec:
           serviceAccountName: gitlab-registry-cleanup
           containers:
             - name: kubectl
-              image: bitnami/kubectl:1.31.2
-              command:
-                - /bin/sh
-                - -c
-                - >
-                  kubectl exec -ti
+              image: ghcr.io/gi8lino/kubectl-distroless:1.31.2-g1
+              args:
+                - |
+                  exec -ti
                   --namespace gitlab
                   deployments/gitlab-registry
                   --
