@@ -79,9 +79,12 @@ spec:
               containers:
                 - name: restart-ingress-nginx
                   # renovate
-                  image: ghcr.io/gi8lino/kubectl-distroless:1.31.2-g1
-                  args:
-                    - rollout restart deployment ingress-nginx-controller -n ingress-nginx
+                  image: bitnami/kubectl:1.31.2
+                  command:
+                    - /bin/sh
+                    - -c
+                    - |
+                      kubectl rollout restart deployment ingress-nginx-controller -n ingress-nginx
               restartPolicy: Never
               serviceAccountName: restart-ingress-nginx
   postRenderers:
