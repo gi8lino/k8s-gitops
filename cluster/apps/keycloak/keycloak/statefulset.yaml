@@ -9,7 +9,6 @@ spec:
     matchLabels: {}
   replicas: 1
   serviceName: keycloak-headless
-  podManagementPolicy: OrderedReady
   updateStrategy:
     type: RollingUpdate
   template:
