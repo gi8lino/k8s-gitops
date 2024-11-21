@@ -24,7 +24,7 @@ spec:
           serviceAccountName: gitlab-registry-cleanup
           containers:
             - name: kubectl
-              image: ghcr.io/gi8lino/kubectl-distroless:1.31.2-g3
+              image: ghcr.io/containeroo/kubectl-distroless:1.31.2-g3
               args:
                 - exec
                 - -ti
