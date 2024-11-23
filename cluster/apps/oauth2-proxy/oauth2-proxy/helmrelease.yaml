@@ -79,7 +79,7 @@ spec:
               containers:
                 - name: restart-ingress-nginx
                   # renovate
-                  image: ghcr.io/containeroo/kubectl-distroless:1.31.2-g3
+                  image: ghcr.io/containeroo/kubectl-distroless:1.31.2
                   args:
                     - rollout
                     - restart
