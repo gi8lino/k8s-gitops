@@ -80,7 +80,7 @@
       matchStrings: [
         'registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\\s.*\\/k8up-(?<currentValue>[^/]+)\\/',
         'registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?v?(?<currentValue>[^-\\s]*)\n',
-        'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s.*/(?<currentValue>.*?)\\/',
+        'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s.*tag:\\s(?<currentValue>.+)',
       ],
       datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}',
       versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}',
