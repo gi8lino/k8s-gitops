@@ -69,8 +69,6 @@ spec:
               mountPath: /transcode
             - name: media
               mountPath: /media
-            - name: audiobooks
-              mountPath: /audiobooks
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -86,8 +84,4 @@ spec:
         - name: media
           hostPath:
             path: /mnt/storage
-            type: Directory
-        - name: audiobooks
-          hostPath:
-            path: /mnt/disk5/audiobooks
             type: Directory
