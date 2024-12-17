@@ -102,29 +102,12 @@ spec:
                 template:
                   spec:
                     initContainers:
-                      - name: wait-for-keycloak
+                      - name: portpatrol
                         # renovate
-                        image: ghcr.io/containeroo/portpatrol:0.4.7
-                        env:
-                          - name: TARGET_NAME
-                            value: keycloak
-                          - name: TARGET_ADDRESS
-                            value: http://keycloak.keycloak.svc.cluster.local:9000/health
-                        resources:
-                          requests:
-                            cpu: 10m
-                            memory: 16Mi
-                          limits:
-                            cpu: 10m
-                            memory: 16Mi
-                      - name: wait-for-valkey
-                        # renovate
-                        image: ghcr.io/containeroo/portpatrol:0.4.7
-                        env:
-                          - name: TARGET_NAME
-                            value: valkey
-                          - name: TARGET_ADDRESS
-                            value: tcp://valkey.oauth2-proxy.svc.cluster.local:6379
+                        image: ghcr.io/containeroo/portpatrol:0.5.0
+                        args:
+                          - --http.keycloak.address=http://keycloak.keycloak.svc.cluster.local:9000/health
+                          - --tcp.valkey.address: valkey.oauth2-proxy.svc.cluster.local:6379
                         resources:
                           requests:
                             cpu: 10m

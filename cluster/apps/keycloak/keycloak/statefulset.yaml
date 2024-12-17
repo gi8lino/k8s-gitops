@@ -18,13 +18,9 @@ spec:
       initContainers:
         - name: wait-for-db
           image: ghcr.io/containeroo/portpatrol:0.4.7
-          env:
-            - name: TARGET_NAME
-              value: PostgreSQL
-            - name: HTTP_SKIP_TLS_VERIFY
-              value: "true"
-            - name: TARGET_ADDRESS
-              value: https://keycloak-psql-healthz:8000/healthz
+          args:
+            - --http.keycloak.address=https://keycloak-psql-healthz:8000/healthz
+            - --http.keycloak.skip-tls-verify=true
           resources:
             requests:
               cpu: 10m
