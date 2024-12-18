@@ -104,7 +104,7 @@ spec:
                     initContainers:
                       - name: portpatrol
                         # renovate
-                        image: ghcr.io/containeroo/portpatrol:0.5.0
+                        image: ghcr.io/containeroo/portpatrol:0.5.1
                         args:
                           - --http.keycloak.address=http://keycloak.keycloak.svc.cluster.local:9000/health
                           - --tcp.valkey.address=valkey.oauth2-proxy.svc.cluster.local:6379
