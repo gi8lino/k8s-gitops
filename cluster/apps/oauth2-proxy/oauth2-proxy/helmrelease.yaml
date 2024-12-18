@@ -107,7 +107,7 @@ spec:
                         image: ghcr.io/containeroo/portpatrol:0.5.0
                         args:
                           - --http.keycloak.address=http://keycloak.keycloak.svc.cluster.local:9000/health
-                          - --tcp.valkey.address: valkey.oauth2-proxy.svc.cluster.local:6379
+                          - --tcp.valkey.address=valkey.oauth2-proxy.svc.cluster.local:6379
                         resources:
                           requests:
                             cpu: 10m
