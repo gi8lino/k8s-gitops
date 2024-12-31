@@ -31,7 +31,7 @@ spec:
           namespace: monitoring
       allowSnippetAnnotations: true
       config:
-        annotations-risk-level: Low
+        annotations-risk-level: Critical
         client-body-buffer-size: 100M
         client-body-timeout: 120
         client-header-timeout: 120
