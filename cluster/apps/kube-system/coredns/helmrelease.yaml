@@ -27,3 +27,5 @@ spec:
     rollingUpdate:
       maxSurge: 25%
       maxUnavailable: 25%
+    podAnnotations:
+      cascader.containeroo.ch/deployment: ingress-nginx/ingress-nginx-controller
