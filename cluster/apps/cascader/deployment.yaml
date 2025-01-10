@@ -31,6 +31,14 @@ spec:
             - --metrics-bind-address=:8443
             - --leader-elect
             - --health-probe-bind-address=:8081
+            - --deployment-annotation
+            - cascader.containeroo.ch/deployment
+            - --statefulset-annotation
+            - cascader.containeroo.ch/statefulset
+            - --daemonset-annotation
+            - cascader.containeroo.ch/daemonset
+            - --requeue-after-annotation
+            - cascader.containeroo.ch/requeue-after
           command:
             - /cascader
           livenessProbe:
