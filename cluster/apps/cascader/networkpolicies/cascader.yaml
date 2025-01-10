@@ -3,7 +3,7 @@ apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: cascader
-  namespace: cascader
+  namespace: cascader-system
 spec:
   endpointSelector:
     matchLabels:
