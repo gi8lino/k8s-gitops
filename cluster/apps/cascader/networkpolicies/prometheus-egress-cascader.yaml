@@ -13,7 +13,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/name: cascader
-            app.kubernetes.io/instance: controller
+            app.kubernetes.io/component: controller
             "k8s:io.kubernetes.pod.namespace": cascader-system
       toPorts:
         - ports:
