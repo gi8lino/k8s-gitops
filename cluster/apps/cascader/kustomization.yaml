@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - networkpolicies
+  - clusterrole-cascader.yaml
+  - clusterrolebinding-cascader.yaml
+  - deployment.yaml
+  - leader-election-role.yaml
+  - leader-election-rolebinding.yaml
+  - metrics-auth-clusterrole.yaml
+  - metrics-auth-rolebinding.yaml
+  - metrics-reader.yaml
+  - metrics-service.yaml
+  - metrics-servicemonitor.yaml
+  - prometheusrule.yaml
+  - secret.yaml
+  - serviceaccount-cascader.yaml

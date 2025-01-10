@@ -18,6 +18,7 @@ resources:
   - metallb-system.yaml
   - minio.yaml
   - monitoring.yaml
+  - namespace.yaml
   - nextcloud.yaml
   - oauth2-proxy.yaml
   - reloader.yaml
