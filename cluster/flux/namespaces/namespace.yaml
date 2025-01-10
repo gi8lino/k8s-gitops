@@ -1,8 +1,0 @@
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: cascader-system
-  labels:
-    app.kubernetes.io/name: cascader
-    app.kubernetes.io/component: controller
