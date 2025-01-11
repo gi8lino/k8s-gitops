@@ -10,7 +10,6 @@ resources:
   - leader-election-rolebinding.yaml
   - metrics-auth-clusterrole.yaml
   - metrics-auth-rolebinding.yaml
-  - metrics-reader.yaml
   - metrics-service.yaml
   - metrics-servicemonitor.yaml
   - prometheusrule.yaml
