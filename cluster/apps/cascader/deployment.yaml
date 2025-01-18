@@ -26,11 +26,8 @@ spec:
       serviceAccountName: cascader
       containers:
         - name: cascader
-          image: ghcr.io/gi8lino/cascader:v0.0.4
+          image: ghcr.io/gi8lino/cascader:v0.0.5
           args:
-            - --metrics-bind-address=:8443
-            - --leader-elect
-            - --health-probe-bind-address=:8081
             - --deployment-annotation
             - cascader.containeroo.ch/deployment
             - --statefulset-annotation
