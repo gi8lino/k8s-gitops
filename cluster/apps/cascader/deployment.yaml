@@ -26,7 +26,7 @@ spec:
       serviceAccountName: cascader
       containers:
         - name: cascader
-          image: ghcr.io/gi8lino/cascader:v0.0.6
+          image: ghcr.io/gi8lino/cascader:v0.0.7
           args:
             - --deployment-annotation
             - cascader.containeroo.ch/deployment
