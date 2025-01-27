@@ -36,8 +36,6 @@ spec:
             - cascader.containeroo.ch/daemonset
             - --requeue-after-annotation
             - cascader.containeroo.ch/requeue-after
-          command:
-            - /cascader
           livenessProbe:
             httpGet:
               path: /healthz
