@@ -59,9 +59,9 @@ spec:
       falco_rules.local.yaml: |-
         - macro: user_known_stand_streams_redirect_activities
           condition: >
-            (k8smeta.ns.name="gitlab" and container.name in ("gitaly", "gitlab-shell", "gitlab-workhorse"))
-            or (k8smeta.ns.name="flux-system" and proc.name="gpg-agent")
-            or (k8smeta.ns.name="renovate" and container.name="renovate")
+            (k8s.ns.name="gitlab" and container.name in ("gitaly", "gitlab-shell", "gitlab-workhorse"))
+            or (k8s.ns.name="flux-system" and proc.name="gpg-agent")
+            or (k8s.ns.name="renovate" and container.name="renovate")
             or (container.name="postgres" and proc.exepath="/controller/manager")
 
         - list: user_known_packet_socket_binaries
@@ -75,19 +75,19 @@ spec:
 
         - macro: known_drop_and_execute_activities
           condition: >
-            (k8smeta.ns.name="gitlab" and container.name in ("gitaly", "build"))
-            or (k8smeta.ns.name="media" and container.name="plex" and proc.name in ("Plex Media Serv", "Plex Media Fing", "Plex Transcoder", "Plex Media Scan", "Plex Script Hos", "Plex Tuner Serv"))
-            or (k8smeta.ns.name="media" and container.name="sabnzbd" and proc.name in ("mkvmerge", "gio-querymodule"))
+            (k8s.ns.name="gitlab" and container.name in ("gitaly", "build"))
+            or (k8s.ns.name="media" and container.name="plex" and proc.name in ("Plex Media Serv", "Plex Media Fing", "Plex Transcoder", "Plex Media Scan", "Plex Script Hos", "Plex Tuner Serv"))
+            or (k8s.ns.name="media" and container.name="sabnzbd" and proc.name in ("mkvmerge", "gio-querymodule"))
 
         - macro: user_known_read_sensitive_files_activities
           condition: >
             (proc.name startswith "python3")
-            or (k8smeta.ns.name="gitlab" and proc.exepath="/kaniko/executor")
+            or (k8s.ns.name="gitlab" and proc.exepath="/kaniko/executor")
 
         - macro: allowed_clear_log_files
           condition: >
             (fd.name startswith "/var/lib/rancher/k3s")
-            or (k8smeta.ns.name="gitlab" and proc.exepath="/kaniko/executor")
+            or (k8s.ns.name="gitlab" and proc.exepath="/kaniko/executor")
 
         - macro: user_shell_container_exclusions
           condition: >
