@@ -29,11 +29,11 @@ spec:
           image: ghcr.io/gi8lino/cascader:v0.0.10
           args:
             - --deployment-annotation
-            - cascader.containeroo.ch/deployment
+            - cascader.containeroo.ch/dep
             - --statefulset-annotation
-            - cascader.containeroo.ch/statefulset
+            - cascader.containeroo.ch/sts
             - --daemonset-annotation
-            - cascader.containeroo.ch/daemonset
+            - cascader.containeroo.ch/ds
             - --requeue-after-annotation
             - cascader.containeroo.ch/requeue-after
           livenessProbe:

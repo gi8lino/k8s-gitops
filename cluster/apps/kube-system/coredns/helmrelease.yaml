@@ -28,4 +28,4 @@ spec:
       maxSurge: 25%
       maxUnavailable: 25%
     podAnnotations:
-      cascader.containeroo.ch/deployment: ingress-nginx/ingress-nginx-controller
+      cascader.containeroo.ch/dep: ingress-nginx/ingress-nginx-controller
