@@ -24,6 +24,8 @@ spec:
     driver:
       kind: modern_ebpf
     collectors:
+      kubernetes:
+        enabled: true
       containerd:
         enabled: true
         socket: /run/k3s/containerd/containerd.sock
