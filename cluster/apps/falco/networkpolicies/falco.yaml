@@ -52,3 +52,12 @@ spec:
         - ports:
             - port: "2801"
               protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: k8s-metacollector
+            app.kubernetes.io/instance: falco
+            "k8s:io.kubernetes.pod.namespace": falco
+      toPorts:
+        - ports:
+            - port: "45000"
+              protocol: TCP
