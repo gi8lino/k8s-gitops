@@ -27,8 +27,7 @@ spec:
       kubernetes:
         enabled: true
       containerd:
-        enabled: true
-        socket: /run/k3s/containerd/containerd.sock
+        enabled: false
       crio:
         enabled: false
       docker:
@@ -36,14 +35,14 @@ spec:
     falco:
       plugins:
         - name: cri
-          libraryPath: /usr/share/falco/plugins/libcri.so
+          library_path: /usr/share/falco/plugins/libcri.so
           required: true
-          openParams:
+          open_params:
             cri_socket_path: /run/k3s/containerd/containerd.sock
         - name: k8smeta
-          libraryPath: /usr/share/falco/plugins/libk8smeta.so
+          library_path: /usr/share/falco/plugins/libk8smeta.so
           required: true
-      loadPlugins:
+      load_plugins:
         - cri
         - k8smeta
       sources:
