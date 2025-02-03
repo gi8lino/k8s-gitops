@@ -27,8 +27,7 @@ spec:
       kubernetes:
         enabled: true
       containerd:
-        enabled: true
-        socket: /run/k3s/containerd/containerd.sock
+        enabled: false
       crio:
         enabled: false
       docker:
