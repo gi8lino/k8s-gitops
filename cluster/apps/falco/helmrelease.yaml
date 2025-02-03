@@ -32,24 +32,6 @@ spec:
         enabled: false
       docker:
         enabled: false
-    falco:
-      plugins:
-        - name: cri
-          library_path: /usr/share/falco/plugins/libcri.so
-          required: true
-          open_params:
-            cri_socket_path: /run/k3s/containerd/containerd.sock
-        - name: k8smeta
-          library_path: /usr/share/falco/plugins/libk8smeta.so
-          required: true
-      load_plugins:
-        - cri
-        - k8smeta
-      sources:
-        - name: syscall
-          enable: true
-        - name: cri
-          enable: true
     falcosidekick:
       enabled: false
       replicaCount: 1
