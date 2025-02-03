@@ -27,7 +27,8 @@ spec:
       kubernetes:
         enabled: true
       containerd:
-        enabled: false
+        enabled: true
+        socket: /run/k3s/containerd/containerd.sock
       crio:
         enabled: false
       docker:
@@ -36,6 +37,8 @@ spec:
       container_engines:
         cri:
           enabled: true
+          sockets: ["/run/k3s/containerd/containerd.sock"]
+          disable_async: true
     falcosidekick:
       enabled: false
       replicaCount: 1
