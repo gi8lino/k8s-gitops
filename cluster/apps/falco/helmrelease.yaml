@@ -27,10 +27,10 @@ spec:
       kubernetes:
         enabled: true
       containerd:
+        enabled: false
+      crio:
         enabled: true
         socket: /run/k3s/containerd/containerd.sock
-      crio:
-        enabled: false
       docker:
         enabled: false
     falcosidekick:
