@@ -33,6 +33,10 @@ spec:
         enabled: false
       docker:
         enabled: false
+    falco:
+      container_engines:
+        cri:
+          enabled: true
     falcosidekick:
       enabled: false
       replicaCount: 1
