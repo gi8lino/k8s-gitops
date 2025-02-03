@@ -28,11 +28,17 @@ spec:
         enabled: true
       containerd:
         enabled: true
-        sockets: /run/k3s/containerd/containerd.sock
+        socket: /run/k3s/containerd/containerd.sock
       crio:
         enabled: false
       docker:
         enabled: false
+      falco:
+        container_engines:
+          cri:
+            enabled: true
+            sockets:
+              - /host/run/containerd/containerd.sock
     falcosidekick:
       enabled: false
       replicaCount: 1
