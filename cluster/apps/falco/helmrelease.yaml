@@ -32,7 +32,7 @@ spec:
       crio:
         enabled: false
       docker:
-        enabled:
+        enabled: false
     falcosidekick:
       enabled: false
       replicaCount: 1
