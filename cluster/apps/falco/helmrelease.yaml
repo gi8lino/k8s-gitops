@@ -34,11 +34,23 @@ spec:
       docker:
         enabled: false
     falco:
-      container_engines:
-        cri:
-          enabled: true
-          sockets: ["/run/k3s/containerd/containerd.sock"]
-          disable_async: true
+      plugins:
+        - name: cri
+          libraryPath: /usr/share/falco/plugins/libcri.so
+          required: true
+          openParams:
+            cri_socket_path: /run/k3s/containerd/containerd.sock
+        - name: k8smeta
+          libraryPath: /usr/share/falco/plugins/libk8smeta.so
+          required: true
+      loadPlugins:
+        - cri
+        - k8smeta
+      sources:
+        - name: syscall
+          enable: true
+        - name: cri
+          enable: true
     falcosidekick:
       enabled: false
       replicaCount: 1
