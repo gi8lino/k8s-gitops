@@ -33,11 +33,6 @@ spec:
         enabled: false
       docker:
         enabled:
-    falco:
-      append_output:
-        - match:
-            source: syscall
-          extra_output": "pod_uid=%k8smeta.pod.uid, pod_name=%k8smeta.pod.name, namespace_name=%k8smeta.ns.name"
     falcosidekick:
       enabled: false
       replicaCount: 1
