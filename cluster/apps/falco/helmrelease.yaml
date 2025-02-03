@@ -39,6 +39,8 @@ spec:
             enabled: true
             sockets:
               - /host/run/containerd/containerd.sock
+              - /host/run/k3s/containerd/containerd.sock
+              - /run/k3s/containerd/containerd.sock
     falcosidekick:
       enabled: false
       replicaCount: 1
