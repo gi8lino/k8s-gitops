@@ -37,6 +37,7 @@ spec:
         container_engines:
           cri:
             enabled: true
+            disable_async: true
             sockets:
               - /host/run/containerd/containerd.sock
               - /host/run/k3s/containerd/containerd.sock
