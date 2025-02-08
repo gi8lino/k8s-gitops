@@ -1,0 +1,8 @@
+---
+apiVersion: cloudflare-operator.io/v1
+kind: Zone
+metadata:
+  name: ${BASE_DOMAIN/./-}
+spec:
+  name: ${BASE_DOMAIN}
+  prune: true

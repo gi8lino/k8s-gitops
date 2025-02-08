@@ -8,5 +8,3 @@ spec:
     secretRef:
       name: cloudflare-api-token
       namespace: cloudflare-operator
-  managedZones:
-    - ${BASE_DOMAIN}

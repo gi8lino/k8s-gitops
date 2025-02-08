@@ -8,6 +8,7 @@ resources:
   - helmrelease.yaml
   - ip.yaml
   - secret.yaml
+  - zone.yaml
 configMapGenerator:
   - files:
       - grafana-dashboard-cloudflare-operator.json=https://raw.githubusercontent.com/containeroo/cloudflare-operator/v1.3.3/config/manifests/grafana/dashboards/overview.json
