@@ -77,6 +77,7 @@ spec:
         - matchName: raw.githubusercontent.com # catppuccin theme
         - matchName: registry-1.docker.io
         - matchName: self-test.sabnzbd.org
+        - matchPattern: "*.cloudflarestorage.com" # docker images
       toPorts:
         - ports:
             - port: "443"
