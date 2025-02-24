@@ -19,7 +19,7 @@ spec:
         spec:
           initContainers:
             - name: portpatrol
-              image: ghcr.io/containeroo/portpatrol:0.5.8
+              image: ghcr.io/containeroo/portpatrol:0.5.9
               args:
                 - --tcp.valkey.address=valkey.renovate.svc.cluster.local:6379
               resources:
