@@ -18,7 +18,7 @@ spec:
     spec:
       initContainers:
         - name: portpatrol
-          image: ghcr.io/containeroo/portpatrol:0.5.9
+          image: ghcr.io/containeroo/portpatrol:0.5.10
           args:
             - --tcp.valkey.address=valkey.nextcloud.svc.cluster.local:6379
             - --http.postgres.address=https://nextcloud-postgres-17-healthz:8000/healthz
