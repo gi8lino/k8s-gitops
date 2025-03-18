@@ -2,13 +2,12 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: cnpg-postgres-join
+  name: cnpg-postgres-import
   namespace: keycloak
 spec:
   endpointSelector:
     matchLabels:
-      cnpg.io/cluster: keycloak-psql
-      cnpg.io/jobRole: join
+      cnpg.io/jobRole: import
   egress:
     - toEndpoints:
         - matchLabels:
@@ -29,8 +28,6 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            cnpg.io/cluster: keycloak-psql
-            cnpg.io/podRole: instance
             io.kubernetes.pod.namespace: keycloak
       toPorts:
         - ports:

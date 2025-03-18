@@ -67,8 +67,6 @@ spec:
         # - matchLabels:
         #     cnpg.io/podRole: instance
         #     "k8s:io.kubernetes.pod.namespace": nextcloud
-        - matchLabels:
-            "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:
             - port: "5432"

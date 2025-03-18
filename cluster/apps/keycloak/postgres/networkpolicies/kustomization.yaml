@@ -4,8 +4,6 @@ kind: Kustomization
 resources:
   - cloudnative-pg-egress-keycloak-postgres.yaml
   - minio-ingress-keycloak-postgres.yaml
-  - postgres-import.yaml.yaml
   - postgres-initdb.yaml.yaml
-  - postgres-join.yaml
   - postgres.yaml
   - prometheus-egress-keycloak-postgres.yaml

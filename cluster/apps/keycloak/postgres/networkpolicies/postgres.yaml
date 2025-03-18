@@ -7,7 +7,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      cnpg.io/cluster: keycloak-psql
+      cnpg.io/cluster: keycloak-postgres-17
       cnpg.io/podRole: instance
   egress:
     - toEndpoints:
@@ -61,7 +61,6 @@ spec:
             "k8s:io.kubernetes.pod.namespace": keycloak
         # when joining, we need to allow the joining pod to connect to the instance
         # - matchLabels:
-        #     cnpg.io/cluster: keycloak-psql
         #     cnpg.io/jobRole: join
         #     "k8s:io.kubernetes.pod.namespace": keycloak
         # allow the instance to connect to itself

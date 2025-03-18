@@ -2,7 +2,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: keycloak-postgres-17
+  name: keycloak-postgres-VERSION
   namespace: keycloak
 spec:
   instances: 1

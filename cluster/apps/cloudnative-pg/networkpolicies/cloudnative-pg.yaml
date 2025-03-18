@@ -32,6 +32,11 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
+        - cluster
+      toPorts:
+        - ports:
+            - port: "8000"
+    - toEntities:
         - host
       toPorts:
         - ports:

@@ -2,16 +2,22 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: keycloak-psql
+  name: keycloak-postgres-17
   namespace: keycloak
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:16.8-6
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.0
   storage:
     size: 20Gi
   bootstrap:
     initdb:
       database: keycloak
+      import:
+        databases:
+          - keycloak
+        source:
+          externalCluster: keycloak-psql
+        type: microservice
   backup:
     barmanObjectStore:
       destinationPath: s3://db-backups
@@ -30,3 +36,12 @@ spec:
     retentionPolicy: 3d
   monitoring:
     enablePodMonitor: true
+  externalClusters:
+    - name: keycloak-psql
+      connectionParameters:
+        host: keycloak-psql-rw.keycloak.svc.cluster.local
+        user: keycloak
+        dbname: keycloak
+      password:
+        name: keycloak-psql-app
+        key: password
