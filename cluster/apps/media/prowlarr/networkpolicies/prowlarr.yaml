@@ -39,6 +39,7 @@ spec:
               - matchPattern: "*"
     - toFQDNs:
         - matchName: ${USENET_INDEXER_DOMAIN}
+        - matchName: file.scenenzbs.com
         - matchName: ghcr.io # catppuccin theme
         - matchName: hooks.slack.com
         - matchName: indexers.prowlarr.com
