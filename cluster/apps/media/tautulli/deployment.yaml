@@ -57,7 +57,7 @@ spec:
             - name: data
               mountPath: /config
             - name: backup
-              mountPath: /backups
+              mountPath: /config/backups
             - name: modcache
               mountPath: /modcache
       restartPolicy: Always
