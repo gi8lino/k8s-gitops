@@ -75,6 +75,8 @@ spec:
               mountPath: /config
             - name: backup
               mountPath: /config/Backups
+            - name: modcache
+              mountPath: /modcache
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -84,3 +86,6 @@ spec:
         - name: backup
           persistentVolumeClaim:
             claimName: prowlarr-backup
+        - name: modache
+          persistentVolumeClaim:
+            claimName: prowlarr-modcache
