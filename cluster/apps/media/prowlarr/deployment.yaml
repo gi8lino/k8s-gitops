@@ -86,6 +86,6 @@ spec:
         - name: backup
           persistentVolumeClaim:
             claimName: prowlarr-backup
-        - name: modache
+        - name: modcache
           persistentVolumeClaim:
             claimName: prowlarr-modcache
