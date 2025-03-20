@@ -75,6 +75,8 @@ spec:
             - name: startup
               mountPath: /app/sabnzbd/startup
               subPath: startup
+            - name: modcache
+              mountPath: /modcache
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -104,3 +106,6 @@ spec:
               - key: startup.sh
                 path: startup
             defaultMode: 0755
+        - name: modcache
+          persistentVolumeClaim:
+            claimName: sabnzbd-modcache

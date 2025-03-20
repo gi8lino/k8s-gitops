@@ -73,6 +73,8 @@ spec:
               mountPath: /movies
             - name: downloads
               mountPath: /downloads
+            - name: modcache
+              mountPath: /modcache
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -90,3 +92,6 @@ spec:
           hostPath:
             path: /mnt/sabnzbd/complete
             type: Directory
+        - name: modcache
+          persistentVolumeClaim:
+            claimName: radarr-modcache

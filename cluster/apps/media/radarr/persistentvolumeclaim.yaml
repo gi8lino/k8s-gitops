@@ -26,3 +26,18 @@ spec:
   resources:
     requests:
       storage: 200Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: radarr-modcache
+  namespace: media
+  annotations:
+    k8up.io/backup: "false"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nvme
+  resources:
+    requests:
+      storage: 250Mi

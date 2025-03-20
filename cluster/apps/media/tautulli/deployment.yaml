@@ -58,6 +58,8 @@ spec:
               mountPath: /config
             - name: backup
               mountPath: /config/backups
+            - name: modcache
+              mountPath: /modcache
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -67,3 +69,6 @@ spec:
         - name: backup
           persistentVolumeClaim:
             claimName: tautulli-backup
+        - name: modcache
+          persistentVolumeClaim:
+            claimName: tautulli-modcache

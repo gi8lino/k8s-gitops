@@ -69,6 +69,8 @@ spec:
               mountPath: /transcode
             - name: media
               mountPath: /media
+            - name: modcache
+              mountPath: /modcache
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
@@ -85,3 +87,6 @@ spec:
           hostPath:
             path: /mnt/storage
             type: Directory
+        - name: modcache
+          persistentVolumeClaim:
+            claimName: plex-modcache
