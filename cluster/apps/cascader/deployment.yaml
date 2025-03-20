@@ -36,6 +36,13 @@ spec:
             - cascader.containeroo.ch/ds
             - --requeue-after-annotation
             - cascader.containeroo.ch/requeue-after
+          ports:
+            - name: metrics
+              containerPort: 8443
+              protocol: TCP
+            - name: probes
+              containerPort: 8081
+              protocol: TCP
           livenessProbe:
             httpGet:
               path: /healthz
