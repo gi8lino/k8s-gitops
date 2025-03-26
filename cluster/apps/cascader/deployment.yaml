@@ -21,8 +21,6 @@ spec:
         app.kubernetes.io/name: cascader
         app.kubernetes.io/component: controller
     spec:
-      imagePullSecrets:
-        - name: cascader
       serviceAccountName: cascader
       containers:
         - name: cascader

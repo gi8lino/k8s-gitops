@@ -13,5 +13,4 @@ resources:
   - metrics-service.yaml
   - metrics-servicemonitor.yaml
   - prometheusrule.yaml
-  - secret.yaml
   - serviceaccount-cascader.yaml
