@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: cascader-leader-election-role
+  name: cascader-leader-election
   namespace: cascader-system
   labels:
     app.kubernetes.io/name: cascader

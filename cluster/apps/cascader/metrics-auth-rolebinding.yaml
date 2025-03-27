@@ -2,11 +2,11 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: cascader-metrics-auth-rolebinding
+  name: cascader-metrics-auth
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: cascader-metrics-auth-role
+  name: cascader-metrics-auth
 subjects:
   - kind: ServiceAccount
     name: cascader
