@@ -16,7 +16,7 @@ spec:
     spec:
       initContainers:
         - name: portpatrol
-          image: ghcr.io/containeroo/portpatrol:0.5.10
+          image: ghcr.io/containeroo/portpatrol:0.5.11
           args:
             - --http.postgres.address=https://wiki-psql-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true
