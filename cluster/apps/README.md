@@ -4,7 +4,6 @@ This directory contains infrastructure applications.
 
 ## Contents
 
-- **capacitor** is a web UI for flux
 - **cert-manager** automatically provisions and manages TLS certificates in Kubernetes
 - **cilium** is a CNI plugin that provides networking and security services
 - **cloudflare-operator** Kubernetes operator for managing Cloudflare DNS records
