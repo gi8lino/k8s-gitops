@@ -10,7 +10,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: cascader-leader-election-role
+  name: cascader-leader-election
 subjects:
   - kind: ServiceAccount
     name: cascader
