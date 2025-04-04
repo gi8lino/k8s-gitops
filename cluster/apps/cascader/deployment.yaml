@@ -32,17 +32,21 @@ spec:
             - name: probes
               containerPort: 8081
               protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: probes
+            failureThreshold: 30
+            periodSeconds: 2
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 8081
-            initialDelaySeconds: 15
+              port: probes
             periodSeconds: 20
           readinessProbe:
             httpGet:
               path: /readyz
-              port: 8081
-            initialDelaySeconds: 5
+              port: probes
             periodSeconds: 10
           resources:
             limits:

@@ -9,10 +9,10 @@ metadata:
   namespace: cascader-system
 spec:
   ports:
-    - name: https
+    - name: metrics
       port: 8443
       protocol: TCP
-      targetPort: 8443
+      targetPort: metrics
   selector:
     app.kubernetes.io/name: cascader
     app.kubernetes.io/component: controller
