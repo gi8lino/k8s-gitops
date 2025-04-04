@@ -27,5 +27,6 @@ spec:
     rollingUpdate:
       maxSurge: 25%
       maxUnavailable: 25%
-    podAnnotations:
-      cascader.tkb.ch/deployment: ingress-nginx/ingress-nginx-controller
+    deployment:
+      annotations:
+        cascader.tkb.ch/deployment: ingress-nginx/ingress-nginx-controller
