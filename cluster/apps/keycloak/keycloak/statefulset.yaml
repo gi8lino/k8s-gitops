@@ -17,7 +17,7 @@ spec:
     spec:
       initContainers:
         - name: portpatrol
-          image: ghcr.io/containeroo/portpatrol:0.5.11
+          image: ghcr.io/containeroo/portpatrol:0.5.12
           args:
             - --http.keycloak.address=https://keycloak-postgres-healthz:8000/healthz
             - --http.keycloak.skip-tls-verify=true
