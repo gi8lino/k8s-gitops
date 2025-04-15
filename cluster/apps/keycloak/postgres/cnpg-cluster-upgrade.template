@@ -16,7 +16,7 @@ spec:
         databases:
           - keycloak
         source:
-          externalCluster: keycloak-psql
+          externalCluster: keycloak-postgres
         type: microservice
   backup:
     barmanObjectStore:
@@ -37,12 +37,12 @@ spec:
   monitoring:
     enablePodMonitor: true
   externalClusters:
-    - name: keycloak-psql
+    - name: keycloak-postgres
       connectionParameters:
-        host: keycloak-psql-rw.keycloak.svc.cluster.local
+        host: keycloak-postgres-16-rw.keycloak.svc.cluster.local
         user: keycloak
         dbname: keycloak
       password:
-        name: keycloak-psql-app
+        name: keycloak-postgres-16-app
         key: password
 # vi: ft=yaml
