@@ -12,12 +12,6 @@ spec:
   bootstrap:
     initdb:
       database: keycloak
-      import:
-        databases:
-          - keycloak
-        source:
-          externalCluster: keycloak-psql
-        type: microservice
   backup:
     barmanObjectStore:
       destinationPath: s3://db-backups
@@ -36,12 +30,3 @@ spec:
     retentionPolicy: 3d
   monitoring:
     enablePodMonitor: true
-  externalClusters:
-    - name: keycloak-psql
-      connectionParameters:
-        host: keycloak-psql-rw.keycloak.svc.cluster.local
-        user: keycloak
-        dbname: keycloak
-      password:
-        name: keycloak-psql-app
-        key: password
