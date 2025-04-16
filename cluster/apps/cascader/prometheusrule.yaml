@@ -9,10 +9,20 @@ spec:
     - name: CascaderAlerts
       rules:
         - alert: CascaderCycleDetected
-          annotations:
-            description: "A dependency cycle has been detected in the Cascader controller. Namespace: {{ $labels.namespace }}, Name: {{ $labels.name }}, Resource Kind: {{ $labels.resource_kind }}. Please check the corresponding Kubernetes Event for detailed cycle path information."
-            summary: Dependency Cycle Detected in ({{ $labels.namespace }}/{{ $labels.name }})
-          expr: cascader_dependency_cycles_detected > 0
+          expr: |
+            cascader_dependency_cycles_detected > 0
+            and on(namespace, name, resource_kind)
+            (
+              kube_deployment_created
+              or kube_statefulset_created
+              or kube_daemonset_created
+            )
           for: 1m
           labels:
             severity: critical
+          annotations:
+            summary: Dependency Cycle Detected in ({{ $labels.namespace }}/{{ $labels.name }})
+            description: >-
+              A dependency cycle has been detected in the Cascader controller.
+              Namespace: {{ $labels.namespace }}, Name: {{ $labels.name }}, Resource Kind: {{ $labels.resource_kind }}.
+              Please check the corresponding Kubernetes Event for detailed cycle path information.
