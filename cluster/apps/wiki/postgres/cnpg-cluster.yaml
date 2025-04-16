@@ -2,11 +2,11 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: wiki-psql
+  name: wiki-postgres-17
   namespace: wiki
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:16.8-10
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.0
   storage:
     size: 20Gi
   bootstrap:
