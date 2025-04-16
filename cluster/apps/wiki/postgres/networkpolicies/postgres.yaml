@@ -7,7 +7,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      cnpg.io/cluster: wiki-psql
+      cnpg.io/cluster: wiki-postgres-17
       cnpg.io/podRole: instance
   egress:
     - toEndpoints:
@@ -59,16 +59,17 @@ spec:
             app: wiki
             component: wiki
             "k8s:io.kubernetes.pod.namespace": wiki
-        # when joining, we need to allow the joining pod to connect to the instance
+        # # when joining, we need to allow the joining pod to connect to the instance
         # - matchLabels:
-        #     cnpg.io/cluster: wiki-psql
+        #     cnpg.io/jobRole: import
+        #     "k8s:io.kubernetes.pod.namespace": wiki
+        # - matchLabels:
         #     cnpg.io/jobRole: join
-        #     "k8s:io.kubernetes.pod.namespace": keycloak
-        # allow the instance to connect to itself
+        #     "k8s:io.kubernetes.pod.namespace": wiki
+        # # allow the instance to connect to itself
         # - matchLabels:
-        #     cnpg.io/cluster: wiki-psql
         #     cnpg.io/podRole: instance
-        #     "k8s:io.kubernetes.pod.namespace": keycloak
+        #     "k8s:io.kubernetes.pod.namespace": wiki
       toPorts:
         - ports:
             - port: "5432"

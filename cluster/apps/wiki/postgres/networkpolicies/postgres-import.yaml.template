@@ -7,7 +7,6 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      cnpg.io/cluster: wiki-psql
       cnpg.io/jobRole: import
   egress:
     - toEndpoints:
@@ -29,8 +28,6 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app: wiki
-            component: postgres
             io.kubernetes.pod.namespace: wiki
       toPorts:
         - ports:

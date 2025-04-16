@@ -18,7 +18,7 @@ spec:
         - name: portpatrol
           image: ghcr.io/containeroo/portpatrol:0.5.12
           args:
-            - --http.postgres.address=https://wiki-psql-healthz:8000/healthz
+            - --http.postgres.address=https://wiki-postgres-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true
           resources:
             requests:
