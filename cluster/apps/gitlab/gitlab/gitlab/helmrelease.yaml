@@ -118,6 +118,8 @@ spec:
     redis:
       metrics:
         enabled: false
+      networkPolicy:
+        enabled: true
     registry:
       ingress:
         annotations:
