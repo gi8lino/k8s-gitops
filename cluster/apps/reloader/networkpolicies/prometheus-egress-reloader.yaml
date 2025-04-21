@@ -12,8 +12,8 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: reloader
-            app.kubernetes.io/instance: "reloader"
+            app: reloader
+            release: reloader
             "k8s:io.kubernetes.pod.namespace": reloader
       toPorts:
         - ports:
