@@ -17,7 +17,7 @@ spec:
     spec:
       initContainers:
         - name: never
-          image: ghcr.io/containeroo/never:0.5.13
+          image: ghcr.io/containeroo/never:0.6.0
           args:
             - --http.keycloak.address=https://keycloak-postgres-healthz:8000/healthz
             - --http.keycloak.skip-tls-verify=true
