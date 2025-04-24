@@ -102,9 +102,9 @@ spec:
                 template:
                   spec:
                     initContainers:
-                      - name: portpatrol
+                      - name: never
                         # renovate
-                        image: ghcr.io/containeroo/portpatrol:0.5.13
+                        image: ghcr.io/containeroo/never:0.5.13
                         args:
                           - --http.keycloak.address=http://keycloak.keycloak.svc.cluster.local:9000/health
                           - --tcp.valkey.address=valkey.oauth2-proxy.svc.cluster.local:6379

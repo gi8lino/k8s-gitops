@@ -15,8 +15,8 @@ spec:
       labels: {}
     spec:
       initContainers:
-        - name: portpatrol
-          image: ghcr.io/containeroo/portpatrol:0.5.13
+        - name: never
+          image: ghcr.io/containeroo/never:0.5.13
           args:
             - --http.postgres.address=https://wiki-postgres-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true
