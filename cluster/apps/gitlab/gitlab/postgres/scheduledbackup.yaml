@@ -2,9 +2,9 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: gitlab-psql
+  name: gitlab-postgres-16
   namespace: gitlab
 spec:
   schedule: "0 30 2 * * *"
   cluster:
-    name: gitlab-psql
+    name: gitlab-postgres-16
