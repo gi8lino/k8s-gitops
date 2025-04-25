@@ -44,6 +44,10 @@ spec:
         - matchLabels:
             app: migrations
             "k8s:io.kubernetes.pod.namespace": gitlab
+        # cnpg: migration
+        # - matchLabels:
+        #     cnpg.io/jobRole: import
+        #     "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "9000"

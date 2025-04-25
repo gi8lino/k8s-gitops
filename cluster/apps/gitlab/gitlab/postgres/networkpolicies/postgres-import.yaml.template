@@ -7,7 +7,6 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      cnpg.io/cluster: gitlab-psql
       cnpg.io/jobRole: import
   egress:
     - toEndpoints:
@@ -29,11 +28,10 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: postgresql
-            app.kubernetes.io/instance: gitlab
             io.kubernetes.pod.namespace: gitlab
       toPorts:
         - ports:
             - port: "5432"
               protocol: TCP
+
 # vi: ft=yaml

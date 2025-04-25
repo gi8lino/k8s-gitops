@@ -57,10 +57,10 @@ spec:
       install: false
     global:
       psql:
-        host: gitlab-psql-rw.gitlab.svc.cluster.local
+        host: gitlab-postgres-16-rw.gitlab.svc.cluster.local
         password:
           key: password
-          secret: gitlab-psql-app
+          secret: gitlab-postgres-16-app
       kas:
         enabled: false
       appConfig:

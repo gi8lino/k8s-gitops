@@ -33,7 +33,7 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            cnpg.io/cluster: gitlab-psql
+            #            cnpg.io/cluster: gitlab-psql
             cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
