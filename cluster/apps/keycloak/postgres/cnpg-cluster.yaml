@@ -27,6 +27,6 @@ spec:
         compression: gzip
       data:
         compression: gzip
-    retentionPolicy: 3d
+    retentionPolicy: 10d
   monitoring:
     enablePodMonitor: true
