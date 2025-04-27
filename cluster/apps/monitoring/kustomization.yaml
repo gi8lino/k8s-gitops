@@ -6,9 +6,9 @@ resources:
   - kthxbye
   - kube-prometheus-stack
   - loki
-  - pihole-server
   - prometheus-blackbox-exporter
   - prometheus-pushgateway
   - prometheus-smartctl-exporter
   - promtail
   - tools-server
+  - vpn-server
