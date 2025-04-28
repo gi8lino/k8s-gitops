@@ -6,6 +6,7 @@ resources:
   - kthxbye
   - kube-prometheus-stack
   - loki
+  - pihole-exporter
   - prometheus-blackbox-exporter
   - prometheus-pushgateway
   - prometheus-smartctl-exporter
