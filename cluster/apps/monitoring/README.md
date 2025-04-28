@@ -8,7 +8,6 @@ This directory contains monitoring apps.
 - **kthxbye** is a simple daemon that automatically extends expiring silences in Alertmanager.
 - **kube-prometheus-stack** is a comprehensive collection of Kubernetes manifests, Grafana dashboards, and Prometheus rules for monitoring.
 - **loki** is a horizontally-scalable, highly-available log aggregation system inspired by Prometheus.
-- **pihole-server** contains monitoring objects for a Pi-hole server.
 - **prometheus-blackbox-exporter** is a blackbox prober that allows probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP, and more.
 - **prometheus-pushgateway** is a service that allows you to push metrics from ephemeral and batch jobs to a Prometheus server.
 - **prometheus-smartctl-exporter** is an exporter that collects and exposes smartctl metrics.
