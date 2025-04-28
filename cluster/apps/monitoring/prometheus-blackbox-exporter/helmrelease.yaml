@@ -59,10 +59,16 @@ spec:
       targets:
         - name: ${BASE_DOMAIN/./-}
           url: https://sso.${BASE_DOMAIN}
-        - name: pihole
+        - name: pihole-keepalive
           url: https://pihole.local.${BASE_DOMAIN}
-        - name: tools
+        - name: pihole-1
+          url: https://pihole.tools.${BASE_DOMAIN}
+        - name: pihole-2
+          url: https://pihole.vpn.${BASE_DOMAIN}
+        - name: traefik-tools
           url: https://traefik.tools.${BASE_DOMAIN}
+        - name: traefik-vpn
+          url: https://traefik.vpn.${BASE_DOMAIN}
         - name: diskstation
           url: https://ds.local.${BASE_DOMAIN}
           scrapeTimeout: 2m
