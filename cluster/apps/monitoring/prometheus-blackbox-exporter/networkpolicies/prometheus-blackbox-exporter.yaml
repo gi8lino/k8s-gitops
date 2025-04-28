@@ -40,7 +40,10 @@ spec:
         - matchName: ${NEWSNAB_DOMAIN%%/*}
         - matchName: ds.local.${BASE_DOMAIN}
         - matchName: pihole.local.${BASE_DOMAIN}
+        - matchName: pihole.tools.${BASE_DOMAIN}
+        - matchName: pihole.vpn.${BASE_DOMAIN}
         - matchName: traefik.tools.${BASE_DOMAIN}
+        - matchName: traefik.vpn.${BASE_DOMAIN}
       toPorts:
         - ports:
             - port: "443"
