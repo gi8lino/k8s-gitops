@@ -11,3 +11,4 @@ resources:
   - prometheus-smartctl-exporter
   - promtail
   - tools-server
+  - vpn-server
