@@ -55,16 +55,16 @@ spec:
       defaults:
         interval: 15m
         scrapeTimeout: 30s
-        follow_redirects: true
+        follow_redirects: false
       targets:
         - name: ${BASE_DOMAIN/./-}
           url: https://sso.${BASE_DOMAIN}
         - name: pihole-keepalive
-          url: https://pihole.local.${BASE_DOMAIN}
+          url: https://pihole.local.${BASE_DOMAIN}/admin/login
         - name: pihole-1
-          url: https://pihole.tools.${BASE_DOMAIN}
+          url: https://pihole.tools.${BASE_DOMAIN}/admin/login
         - name: pihole-2
-          url: https://pihole.vpn.${BASE_DOMAIN}
+          url: https://pihole.vpn.${BASE_DOMAIN}/admin/login
         - name: traefik-tools
           url: https://traefik.tools.${BASE_DOMAIN}
         - name: traefik-vpn
