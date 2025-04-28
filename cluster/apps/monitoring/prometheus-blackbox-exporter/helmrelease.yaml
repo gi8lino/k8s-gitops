@@ -55,7 +55,7 @@ spec:
       defaults:
         interval: 15m
         scrapeTimeout: 30s
-        follow_redirects: false
+        follow_redirects: true
       targets:
         - name: ${BASE_DOMAIN/./-}
           url: https://sso.${BASE_DOMAIN}
