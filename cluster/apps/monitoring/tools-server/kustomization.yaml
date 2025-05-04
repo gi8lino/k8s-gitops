@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - heartbeats
   - node-exporter
+  - smartctl
