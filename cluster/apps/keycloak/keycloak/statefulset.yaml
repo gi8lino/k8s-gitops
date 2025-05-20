@@ -76,7 +76,7 @@ spec:
               protocol: TCP
           startupProbe:
             httpGet:
-              path: /health
+              path: /health/started
               port: health
             initialDelaySeconds: 7
             timeoutSeconds: 1
