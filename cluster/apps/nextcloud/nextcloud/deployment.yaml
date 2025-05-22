@@ -18,7 +18,7 @@ spec:
     spec:
       initContainers:
         - name: never
-          image: ghcr.io/containeroo/never:0.6.3
+          image: ghcr.io/containeroo/never:0.6.4
           args:
             - --tcp.valkey.address=valkey.nextcloud.svc.cluster.local:6379
             - --http.postgres.address=https://nextcloud-postgres-17-healthz:8000/healthz
