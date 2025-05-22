@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: miracle-data
+  namespace: miracle
+  annotations:
+    k8up.io/backup: "false"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nvme
+  resources:
+    requests:
+      storage: 1Gi

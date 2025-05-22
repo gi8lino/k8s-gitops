@@ -23,11 +23,10 @@ spec:
             - name: http
               containerPort: 8080
           volumeMounts:
-            - name: html
-              mountPath: /usr/share/nginx/html/index.html
-              subPath: index.html
+            - name: miracle-data
+              mountPath: /usr/share/nginx/html
               readOnly: true
       volumes:
-        - name: html
-          secret:
-            secretName: html
+        - name: miracle-data
+          persistentVolumeClaim:
+            claimName: nextcloud-app-data
