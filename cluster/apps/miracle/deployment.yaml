@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: miracle
+  namespace: miracle
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: miracle
+  template:
+    metadata:
+      labels:
+        app: miracle
+    spec:
+      containers:
+        - name: nginx
+          image: ghcr.io/nginxinc/nginx-unprivileged:1.27.4
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - name: html
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+              readOnly: true
+      volumes:
+        - name: html
+          secret:
+            secretName: html

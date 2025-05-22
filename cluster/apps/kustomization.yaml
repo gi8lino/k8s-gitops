@@ -19,6 +19,7 @@ resources:
   - media
   - metallb
   - minio
+  - miracle
   - monitoring
   - nextcloud
   - oauth2-proxy

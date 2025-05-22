@@ -17,6 +17,7 @@ resources:
   - media.yaml
   - metallb-system.yaml
   - minio.yaml
+  - miracle.yaml
   - monitoring.yaml
   - namespace.yaml
   - nextcloud.yaml
