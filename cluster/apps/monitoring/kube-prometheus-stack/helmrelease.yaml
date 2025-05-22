@@ -50,7 +50,7 @@ spec:
           - name: heartbeats
             webhook_configs:
               - send_resolved: true
-                url: https://heartbeats.tools.${BASE_DOMAIN}/bump/watchdog-prometheus
+                url: https://heartbeats.tools.${BASE_DOMAIN}/api/v1/bump/watchdog-prometheus
           - name: slack
             slack_configs:
               - channel: "#alertmanager"
