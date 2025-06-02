@@ -48,7 +48,7 @@ jobs:
         uses: azure/setup-helm@v4
         with:
           # renovate depName=helm/helm
-          version: v3.18.1
+          version: v3.18.2
 
       - name: Helm Release Differ
         id: diff
