@@ -95,6 +95,27 @@ spec:
           condition: >
             (proc.cmdline contains wal-archive)
             or (proc.cmdline contains wal-restore)
+
+        - rule: K3s Exec API Call
+          desc: Detect any attempt to exec into a running Kubernetes pod
+                in a K3s environment by watching the K3s containerd socket for an Exec request.
+          condition: >
+            evt.type = connect and
+            fd.name contains "/var/run/k3s/containerd" and
+            (
+              arg[1] contains "\"exec\"" and
+              arg[1] contains "\"ContainerID\""
+            )
+          output: >
+            K3s exec detected (user=%user.name
+            cri_socket=%fd.name
+            cmdline=%proc.cmdline
+            container_id=%container.id
+            pod=%k8smeta.pod.name
+            namespace=%k8smeta.ns.name)
+          priority: WARNING
+          tags: [k3s, k8s, container, exec]
+
   valuesFrom:
     - kind: Secret
       name: falco-helm-values
