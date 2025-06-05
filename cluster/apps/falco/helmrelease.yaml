@@ -96,25 +96,17 @@ spec:
             (proc.cmdline contains wal-archive)
             or (proc.cmdline contains wal-restore)
 
-        - rule: K3s Exec API Call
-          desc: Detect any attempt to exec into a running Kubernetes pod
-                in a K3s environment by watching the K3s containerd socket for an Exec request.
-          condition: >
-            evt.type = connect and
-            fd.name contains "/var/run/k3s/containerd" and
-            (
-              arg[1] contains "\"exec\"" and
-              arg[1] contains "\"ContainerID\""
-            )
-          output: >
-            K3s exec detected (user=%user.name
-            cri_socket=%fd.name
-            cmdline=%proc.cmdline
-            container_id=%container.id
-            pod=%k8smeta.pod.name
-            namespace=%k8smeta.ns.name)
+        - macro: container
+          condition: container.id != host
+
+        - macro: spawned_process
+          condition: evt.type = execve and evt.dir=<
+
+        - rule: run_shell_in_container
+          desc: a shell was spawned by a non-shell program in a container. Container entrypoints are excluded.
+          condition: container and proc.name = bash and spawned_process and proc.pname exists and not proc.pname in (bash, docker)
+          output: "Shell spawned in a container other than entrypoint | user=%user.name container_id=%container.id container_name=%container.name shell=%proc.name parent=%proc.pname cmdline=%proc.cmdline"
           priority: WARNING
-          tags: [k3s, k8s, container, exec]
 
   valuesFrom:
     - kind: Secret
