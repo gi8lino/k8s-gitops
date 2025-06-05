@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snapraid
+  namespace: snapraid
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snapraid
+  template:
+    metadata:
+      labels:
+        app: snapraid
+    spec:
+      containers:
+        - name: snapraid
+          image: ghcr.io/gi8lino/go-snapraid-webui:v0.0.1
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - name: output
+              mountPath: /output
+              readOnly: true
+      volumes:
+        - name: output
+          hostPath:
+            path: /var/log/go-snapraid
+            type: Directory

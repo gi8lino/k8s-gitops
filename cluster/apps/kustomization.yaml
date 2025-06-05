@@ -25,6 +25,7 @@ resources:
   - oauth2-proxy
   - reloader
   - renovate
+  - snapraid
   - storage
   - vimbin
   - wiki

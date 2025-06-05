@@ -24,6 +24,7 @@ resources:
   - oauth2-proxy.yaml
   - reloader.yaml
   - renovate.yaml
+  - snapraid.yaml
   - storage-system.yaml
   - syncflaer.yaml
   - vimbin.yaml
