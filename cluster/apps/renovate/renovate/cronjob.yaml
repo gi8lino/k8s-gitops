@@ -19,7 +19,7 @@ spec:
         spec:
           initContainers:
             - name: never
-              image: ghcr.io/containeroo/never:0.6.4
+              image: ghcr.io/containeroo/never:0.6.5
               args:
                 - --tcp.valkey.address=valkey.renovate.svc.cluster.local:6379
               resources:
