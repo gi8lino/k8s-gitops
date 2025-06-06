@@ -21,27 +21,27 @@
     'ghcr.io/fluxcd/source-controller',
   ],
   kubernetes: {
-    fileMatch: [
-      'cluster/apps/.+/(cronjob|daemonset|deployment|statefulset)\\.ya?ml$',
+    managerFilePatterns: [
+      '/cluster/apps/.+/(cronjob|daemonset|deployment|statefulset)\\.ya?ml$/',
     ],
   },
   'helm-values': {
-    fileMatch: [
-      'cluster/apps/.+/helmrelease\\.ya?ml$',
+    managerFilePatterns: [
+      '/cluster/apps/.+/helmrelease\\.ya?ml$/',
     ],
   },
   flux: {
-    fileMatch: [
-      'cluster/apps/.+/helmrelease\\.ya?ml$',
-      'cluster/flux/repositories/helm/.*\\.ya?ml$',
+    managerFilePatterns: [
+      '/cluster/apps/.+/helmrelease\\.ya?ml$/',
+      '/cluster/flux/repositories/helm/.*\\.ya?ml$/',
     ],
   },
   customManagers: [
     {
       customType: 'regex',
       description: 'dependencies cloudnative-pg postgres databases',
-      fileMatch: [
-        'cluster/apps/.+/cnpg-cluster\\.yaml$',
+      managerFilePatterns: [
+        '/cluster/apps/.+/cnpg-cluster\\.yaml$/',
       ],
       matchStrings: [
         'imageName:\\s*(?<depName>\\S+):(?<currentValue>\\S+)',
@@ -52,8 +52,8 @@
     {
       description: 'dependencies for sync-cloudflare-nets',
       customType: 'regex',
-      fileMatch: [
-        '.github/workflows/sync-cloudflare-nets\\.ya?ml$',
+      managerFilePatterns: [
+        '/.github/workflows/sync-cloudflare-nets\\.ya?ml$/',
       ],
       matchStrings: [
         'depName=(?<depName>\\S+)\\s.*/(?<currentValue>[^/]+?)/',
@@ -63,8 +63,8 @@
     {
       description: 'dependencies for helm-release-differ',
       customType: 'regex',
-      fileMatch: [
-        '.github/workflows/helm-release-differ\\.ya?ml$',
+      managerFilePatterns: [
+        '/.github/workflows/helm-release-differ\\.ya?ml$/',
       ],
       matchStrings: [
         'depName=(?<depName>\\S+)\\s.*version:\\s*(?<currentValue>\\S+)',
@@ -74,8 +74,8 @@
     {
       description: 'Process CRD dependencies',
       customType: 'regex',
-      fileMatch: [
-        'cluster/crds/.+\\.ya?ml$',
+      managerFilePatterns: [
+        '/cluster/crds/.+\\.ya?ml$/',
       ],
       matchStrings: [
         'registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\\s.*\\/k8up-(?<currentValue>[^/]+)\\/',
@@ -88,8 +88,8 @@
     {
       description: 'Process raw GitHub URLs',
       customType: 'regex',
-      fileMatch: [
-        'cluster/apps/.+/kustomization\\.ya?ml$',
+      managerFilePatterns: [
+        '/cluster/apps/.+/kustomization\\.ya?ml$/',
       ],
       matchStrings: [
         'https://raw\\.githubusercontent\\.com/(?<depName>[\\w\\-]+/[\\w\\-]+)/(?:v?(?<currentValue>[\\w\\.\\-_]+))/',
@@ -100,8 +100,8 @@
     {
       description: 'Process postRenderer patches with images',
       customType: 'regex',
-      fileMatch: [
-        'cluster/apps/oauth2-proxy/oauth2-proxy/helmrelease\\.ya?ml$',
+      managerFilePatterns: [
+        '/cluster/apps/oauth2-proxy/oauth2-proxy/helmrelease\\.ya?ml$/',
       ],
       matchStrings: [
         '# renovate\\s*image:\\s+(?<depName>\\S+):v?(?<currentValue>\\S+)',
