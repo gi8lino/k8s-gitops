@@ -81,6 +81,8 @@
         'registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\\s.*\\/k8up-(?<currentValue>[^/]+)\\/',
         'registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?v?(?<currentValue>[^-\\s]*)\n',
         'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s.*tag:\\s(?<currentValue>.+)',
+        'https:\\/\\/github\\.com\\/[^\\/]+\\/[^\\/]+\\/releases\\/download\\/v(?<currentValue>[^\\/]+)\\/'
+        'https:\\/\\/github\\.com\\/[^\\n]+\\/releases\\/download\\/(?<currentValue>v?\\d+\\.\\d+\\.\\d+)\\/'
       ],
       datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}',
       versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}',
