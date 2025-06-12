@@ -32,6 +32,9 @@ spec:
           containers:
             - name: renovate
               image: renovate/renovate:40.51.0
+              env:
+                - name: LOG_LEVEL
+                  value: debug
               volumeMounts:
                 - name: renovate-ssh
                   mountPath: "/home/ubuntu/.ssh"
