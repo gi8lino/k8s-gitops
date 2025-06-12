@@ -45,8 +45,8 @@ spec:
           automountServiceAccountToken: false
           volumes:
             - name: renovate-config
-              configMap:
-                name: renovate-config
+              secret:
+                secretName: renovate-config
             - name: renovate-ssh
               secret:
                 secretName: renovate-ssh
