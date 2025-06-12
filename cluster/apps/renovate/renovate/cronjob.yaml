@@ -35,8 +35,8 @@ spec:
               env:
                 - name: LOG_LEVEL
                   value: debug
-                - name: RENOVATE_AUTODISCOVER
-                  value: "true"
+                # - name: RENOVATE_AUTODISCOVER
+                #   value: "true"
                 - name: RENOVATE_CONFIG_FILE
                   value: /renovate/config.json
                 - name: RENOVATE_ONBOARDING

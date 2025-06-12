@@ -7,5 +7,6 @@ metadata:
 data:
   config.json: |-
     {
-        "printConfig": true
+        "printConfig": true,
+        "autodiscover": true
     }
