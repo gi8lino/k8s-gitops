@@ -32,9 +32,6 @@ spec:
           containers:
             - name: renovate
               image: renovate/renovate:40.51.0
-              envFrom:
-                - secretRef:
-                    name: renovate
               volumeMounts:
                 - name: renovate-ssh
                   mountPath: "/home/ubuntu/.ssh"
