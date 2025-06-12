@@ -32,21 +32,6 @@ spec:
           containers:
             - name: renovate
               image: renovate/renovate:40.51.0
-              env:
-                - name: LOG_LEVEL
-                  value: debug
-                - name: RENOVATE_CONFIG_FILE
-                  value: /renovate/config.json
-                - name: RENOVATE_ONBOARDING
-                  value: "false"
-                - name: RENOVATE_PLATFORM
-                  value: gitlab
-                - name: RENOVATE_ENDPOINT
-                  value: https://git.${BASE_DOMAIN}/api/v4/
-                - name: RENOVATE_CONFIG_MIGRATION
-                  value: "true"
-                - name: RENOVATE_REDIS_URL
-                  value: redis://valkey.renovate.svc.cluster.local
               envFrom:
                 - secretRef:
                     name: renovate
