@@ -80,6 +80,7 @@ spec:
                 - alertname = Watchdog
               repeat_interval: 15m
               group_wait: 0s # no wait
+              group_interval: 10s
             - receiver: blackhole
               matchers:
                 - alertname = InfoInhibitor
