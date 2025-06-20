@@ -24,6 +24,8 @@ spec:
               value: Europe/Zurich
             - name: FB_DATABASE
               value: /db/database.db
+            - name: FB_ADDRESS
+              value: 0.0.0.0
           ports:
             - name: http
               containerPort: 8080
