@@ -23,7 +23,7 @@ create new database:
 import users:
 
 ```bash
-./filebrowser users import .users.json
+./filebrowser users import /config/.users.json
 ```
 
 restart deployment:

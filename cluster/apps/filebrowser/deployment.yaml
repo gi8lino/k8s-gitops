@@ -50,8 +50,9 @@ spec:
               mountPath: /db
             - name: config
               mountPath: /config/settings.json
+              subPath: settings.json
             - name: users
-              mountPath: .users.json
+              mountPath: /config/.users.json
               subPath: .users.json
             - name: branding
               mountPath: /branding/custom.css
