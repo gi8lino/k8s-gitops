@@ -29,12 +29,12 @@ data:
       },
       "server": {
         "root": "/data",
-        "baseURL": "",
+        "baseURL": "filebrowser.local.${BASE_DOMAIN}",
         "socket": "",
         "tlsKey": "",
         "tlsCert": "",
-        "port": "80",
-        "address": "",
+        "port": "8080",
+        "address": "0.0.0.0",
         "log": "stdout"
       },
       "auther": {
