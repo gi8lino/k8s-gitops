@@ -17,13 +17,13 @@ rm -f /db/filebrowser.db
 create new database:
 
 ```bash
-./filebrowser config import .filebrowser.json
+./filebrowser config import /config/settings.json
 ```
 
 import users:
 
 ```bash
-./filebrowser users  import .users.json
+./filebrowser users import .users.json
 ```
 
 restart deployment:

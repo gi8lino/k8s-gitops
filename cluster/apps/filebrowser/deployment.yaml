@@ -49,7 +49,7 @@ spec:
             - name: db
               mountPath: /db
             - name: config
-              mountPath: settings.json
+              mountPath: /config/settings.json
             - name: users
               mountPath: .users.json
               subPath: .users.json
