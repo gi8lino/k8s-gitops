@@ -50,7 +50,7 @@ spec:
               mountPath: /data
             - name: db
               mountPath: /db
-            - name: config
+            - name: settings
               mountPath: /config/settings.json
               subPath: settings.json
             - name: users
@@ -69,10 +69,9 @@ spec:
         - name: db
           persistentVolumeClaim:
             claimName: filebrowser-db
-        - name: config
-          configMap:
-            name: filebrowser-config
-            defaultMode: 0644
+        - name: settings
+          secret:
+            secretName: filebrowser-settings
         - name: users
           secret:
             secretName: users
