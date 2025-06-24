@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: filebrowser
-          image: filebrowser/filebrowser:v2.33.4
+          image: filebrowser/filebrowser:v2.33.5
           env:
             - name: TZ
               value: Europe/Zurich
