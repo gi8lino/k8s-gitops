@@ -30,7 +30,7 @@ spec:
               memory: 16Mi
       containers:
         - name: keycloak
-          image: quay.io/keycloak/keycloak:26.2.5
+          image: quay.io/keycloak/keycloak:26.3.0
           imagePullPolicy: IfNotPresent
           securityContext:
             runAsNonRoot: true
