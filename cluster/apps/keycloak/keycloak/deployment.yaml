@@ -1,20 +1,26 @@
----
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: keycloak
   namespace: keycloak
 spec:
-  selector:
-    matchLabels: {}
   replicas: 1
-  serviceName: keycloak-headless
-  updateStrategy:
+  selector:
+    matchLabels:
+      app: keycloak
+      component: keycloak
+  strategy:
     type: RollingUpdate
   template:
     metadata:
-      labels: {}
+      labels:
+        app: keycloak
+        component: keycloak
     spec:
+      serviceAccountName: keycloak
+      securityContext:
+        fsGroup: 1000
+      restartPolicy: Always
       initContainers:
         - name: never
           image: ghcr.io/containeroo/never:0.6.7
@@ -98,10 +104,6 @@ spec:
           volumeMounts:
             - name: keycloak-providers
               mountPath: /opt/keycloak/providers
-      serviceAccountName: keycloak
-      securityContext:
-        fsGroup: 1000
-      restartPolicy: Always
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

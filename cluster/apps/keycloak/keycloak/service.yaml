@@ -13,6 +13,9 @@ spec:
       port: 9000
       targetPort: health
   type: ClusterIP
+  selector:
+    app: keycloak
+    component: keycloak
 ---
 apiVersion: v1
 kind: Service
@@ -29,3 +32,6 @@ spec:
       port: 80
       targetPort: http
       protocol: TCP
+  selector:
+    app: keycloak
+    component: keycloak
