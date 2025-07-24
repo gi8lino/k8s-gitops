@@ -21,24 +21,45 @@ spec:
         namespace: flux-system
       interval: 20m
   values:
+  values:
     driver:
       kind: modern_ebpf
     collectors:
-      kubernetes:
-        enabled: true
-      containerd:
-        enabled: true
-        socket: /run/k3s/containerd/containerd.sock
-      crio:
-        enabled: false
       docker:
         enabled: false
+      containerd:
+        enabled: false
+      crio:
+        enabled: false
+      containerEngine:
+        enabled: true
+        engines:
+          docker:
+            enabled: false
+          podman:
+            enabled: false
+          containerd:
+            enabled: true
+            sockets: ["/run/k3s/containerd/containerd.sock"]
+          cri:
+            enabled: false
+          lxc:
+            enabled: false
+          libvirt_lxc:
+            enabled: false
+          bpm:
+            enabled: false
+      kubernetes:
+        enabled: true
     falcosidekick:
       enabled: true
       replicaCount: 1
       config:
         slack:
           minimumpriority: notice
+        loki:
+          grafanaDashboard:
+            enabled: true
       webui:
         enabled: true
         replicaCount: 1
