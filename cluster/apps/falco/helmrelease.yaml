@@ -21,7 +21,6 @@ spec:
         namespace: flux-system
       interval: 20m
   values:
-  values:
     driver:
       kind: modern_ebpf
     collectors:
