@@ -23,7 +23,7 @@ spec:
       restartPolicy: Always
       initContainers:
         - name: never
-          image: ghcr.io/containeroo/never:0.7.3
+          image: ghcr.io/containeroo/never:0.7.5
           args:
             - --http.keycloak.address=https://keycloak-postgres-healthz:8000/healthz
             - --http.keycloak.skip-tls-verify=true
