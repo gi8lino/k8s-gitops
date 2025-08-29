@@ -35,8 +35,8 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
-        - matchName: ${USENET_INDEXER_DOMAIN}
         - matchName: artworks.thetvdb.com
+        - matchName: files.${USENET_INDEXER_DOMAIN}
         - matchName: ghcr.io # catppuccin theme
         - matchName: hooks.slack.com
         - matchName: pkg-containers.githubusercontent.com # catppucin theme
