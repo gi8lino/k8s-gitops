@@ -35,6 +35,7 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
+        - matchName: ${USENET_INDEXER_DOMAIN}
         - matchName: api.radarr.video
         - matchName: ghcr.io # catppuccin theme
         - matchName: hooks.slack.com
