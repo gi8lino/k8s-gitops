@@ -16,7 +16,7 @@ spec:
     spec:
       initContainers:
         - name: never
-          image: ghcr.io/containeroo/never:v0.8.1
+          image: ghcr.io/containeroo/never:v0.8.2
           args:
             - --http.postgres.address=https://wiki-postgres-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true

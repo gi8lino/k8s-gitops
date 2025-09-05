@@ -104,7 +104,7 @@ spec:
                     initContainers:
                       - name: never
                         # renovate
-                        image: ghcr.io/containeroo/never:v0.8.1
+                        image: ghcr.io/containeroo/never:v0.8.2
                         args:
                           - --http.keycloak.address=http://keycloak.keycloak.svc.cluster.local:9000/health
                           - --tcp.valkey.address=valkey.oauth2-proxy.svc.cluster.local:6379
