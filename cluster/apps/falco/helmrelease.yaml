@@ -27,7 +27,7 @@ spec:
       docker:
         enabled: false
       containerd:
-        enabled: true
+        enabled: false
       crio:
         enabled: false
       containerEngine:
