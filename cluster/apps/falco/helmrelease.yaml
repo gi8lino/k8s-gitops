@@ -78,6 +78,12 @@ spec:
                 - path: /
     tty: true
     customRules:
+      falco_debug_exec.yaml: |-
+        - rule: LOCAL - any execve (test)
+          desc: "debug rule - catches any execve"
+          condition: evt.type = execve
+          output: "LOCAL TEST execve pid=%proc.pid proc=%proc.name cmd=%proc.cmdline node=%hostname priority=%priority"
+          priority: Emergency
       falco_rules.local.yaml: |-
         - macro: user_known_stand_streams_redirect_activities
           condition: >
