@@ -79,6 +79,11 @@ spec:
     tty: true
     customRules:
       falco_rules.local.yaml: |-
+        - rule: Detect exec mapped by k8smeta
+          desc: Detect execve when k8s-metacollector maps the event to a pod
+          condition: evt.type in (execve, execveat) and k8smeta.pod.name exists and proc.tty != 0
+          output: "K8SMETA EXEC pod=%k8smeta.pod.name ns=%k8smeta.ns.name proc=%proc.name pid=%proc.pid cmd=%proc.cmdline container_id=%container.id"
+          priority: WARNING
         - macro: user_known_stand_streams_redirect_activities
           condition: >
             (k8smeta.ns.name="gitlab" and container.name in ("gitaly", "gitlab-shell", "gitlab-workhorse"))
