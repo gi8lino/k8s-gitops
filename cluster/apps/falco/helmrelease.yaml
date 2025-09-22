@@ -68,12 +68,12 @@ spec:
           image:
             registry: docker.io
             repository: valkey/valkey
-            tag: 8.1.3-alpine
+            tag: 7.2.10-alpine
         initContainer:
           image:
             registry: docker.io
             repository: valkey/valkey
-            tag: 8.1.3-alpine
+            tag: 7.2.10-alpine
         ingress:
           enabled: true
           ingressClassName: nginx
