@@ -24,7 +24,7 @@ spec:
             - name: TZ
               value: Europe/Zurich
           ports:
-            - name: http
+            - name: valkey
               containerPort: 6379
           startupProbe:
             tcpSocket:

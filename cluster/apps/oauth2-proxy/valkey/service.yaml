@@ -9,7 +9,7 @@ spec:
   ports:
     - name: valkey
       port: 6379
-      targetPort: http
+      targetPort: valkey
   selector:
     app.kubernetes.io/name: valkey
     app.kubernetes.io/instance: oauth2-proxy
