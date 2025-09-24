@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: valkey
+  namespace: oauth2-proxy
+spec:
+  serviceName: valkey
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: valkey
+      app.kubernetes.io/instance: oauth2-proxy
+      app.kubernetes.io/component: valkey
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: valkey
+        app.kubernetes.io/instance: oauth2-proxy
+        app.kubernetes.io/component: valkey
+    spec:
+      containers:
+        - name: nextcloud-valkey
+          image: valkey/valkey:8.1.3-alpine
+          env:
+            - name: TZ
+              value: Europe/Zurich
+          ports:
+            - containerPort: 6379
+          startupProbe:
+            tcpSocket:
+              port: 6379
+            failureThreshold: 30
+            periodSeconds: 2
+            timeoutSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: 6379
+            failureThreshold: 2
+            periodSeconds: 30
+            timeoutSeconds: 5
+      restartPolicy: Always
+      automountServiceAccountToken: false
