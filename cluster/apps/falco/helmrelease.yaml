@@ -60,7 +60,7 @@ spec:
           grafanaDashboard:
             enabled: true
       webui:
-        enabled: true
+        enabled: false
         replicaCount: 1
         disableauth: true
         redis:
@@ -68,12 +68,12 @@ spec:
           image:
             registry: docker.io
             repository: valkey/valkey
-            tag: 7.2.10-alpine
+            tag: 7.2.10-bookworm
         initContainer:
           image:
             registry: docker.io
             repository: valkey/valkey
-            tag: 7.2.10-alpine
+            tag: 7.2.10-bookworm
         ingress:
           enabled: true
           ingressClassName: nginx
