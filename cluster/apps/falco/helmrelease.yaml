@@ -63,17 +63,6 @@ spec:
         enabled: true
         replicaCount: 1
         disableauth: true
-        redis:
-          enabled: true
-          image:
-            registry: docker.io
-            repository: valkey/valkey-bundle
-            tag: 8.1.1-bookworm
-        initContainer:
-          image:
-            registry: docker.io
-            repository: valkey/valkey-bundle
-            tag: 8.1.1-bookworm
         ingress:
           enabled: true
           ingressClassName: nginx
