@@ -3,11 +3,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - networkpolicies
-  - deployment.yaml
+  - statefulset.yaml
   - service.yaml
-labels:
-  - includeSelectors: true
-    pairs:
-      app.kubernetes.io/name: valkey
-      app.kubernetes.io/instance: oauth2-proxy
-      app.kubernetes.io/component: valkey
