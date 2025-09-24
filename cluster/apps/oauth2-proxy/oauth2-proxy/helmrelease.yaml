@@ -60,8 +60,8 @@ spec:
               metadata:
                 name: oauth2-proxy
                 namespace: oauth2-proxy
-              annotations:
-                cascader.tkb.ch/deployment=ingress-nginx/ingress-nginx-controller
+                annotations:
+                  cascader.tkb.ch/deployment=ingress-nginx/ingress-nginx-controller
               spec:
                 template:
                   spec:
