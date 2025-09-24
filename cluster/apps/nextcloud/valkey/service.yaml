@@ -5,8 +5,11 @@ metadata:
   name: valkey
   namespace: nextcloud
 spec:
+  type: ClusterIP
   ports:
     - name: valkey
       port: 6379
       targetPort: valkey
-  type: ClusterIP
+  selector:
+    app: nextcloud
+    component: valkey
