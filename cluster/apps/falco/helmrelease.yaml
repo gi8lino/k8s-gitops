@@ -60,7 +60,7 @@ spec:
           grafanaDashboard:
             enabled: true
       webui:
-        enabled: false
+        enabled: true
         replicaCount: 1
         disableauth: true
         redis:
