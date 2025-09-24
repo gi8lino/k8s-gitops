@@ -5,7 +5,3 @@ resources:
   - networkpolicies
   - cronjob.yaml
   - secret.yaml
-labels:
-  - includeSelectors: true
-    pairs:
-      component: job

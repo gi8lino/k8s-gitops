@@ -5,8 +5,11 @@ metadata:
   name: valkey
   namespace: renovate
 spec:
+  type: ClusterIP
   ports:
     - name: valkey
       port: 6379
       targetPort: valkey
-  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: renovate
+    app.kubernetes.io/component: valkey

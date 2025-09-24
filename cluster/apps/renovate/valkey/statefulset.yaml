@@ -1,18 +1,21 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: valkey
   namespace: renovate
 spec:
+  serviceName: valkey
   replicas: 1
   selector:
-    matchLabels: {}
-  strategy:
-    type: RollingUpdate
+    matchLabels:
+      app.kubernetes.io/name: renovate
+      app.kubernetes.io/component: valkey
   template:
     metadata:
-      labels: {}
+      labels:
+        app.kubernetes.io/name: renovate
+        app.kubernetes.io/component: valkey
     spec:
       containers:
         - name: valkey
@@ -21,25 +24,18 @@ spec:
             - name: TZ
               value: Europe/Zurich
           ports:
-            - name: valkey
-              containerPort: 6379
+            - containerPort: 6379
           startupProbe:
             tcpSocket:
-              port: valkey
+              port: 6379
             failureThreshold: 30
             periodSeconds: 2
+            timeoutSeconds: 5
           livenessProbe:
             tcpSocket:
-              port: valkey
+              port: 6379
             failureThreshold: 2
-            timeoutSeconds: 10
             periodSeconds: 30
-          resources:
-            requests:
-              cpu: 50m
-              memory: 64Mi
-            limits:
-              cpu: 250m
-              memory: 64Mi
+            timeoutSeconds: 5
       restartPolicy: Always
       automountServiceAccountToken: false

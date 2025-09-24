@@ -15,7 +15,9 @@ spec:
     spec:
       template:
         metadata:
-          labels: {}
+          labels:
+            app.kubernetes.io/name: renovate
+            app.kubernetes.io/component: job
         spec:
           initContainers:
             - name: never

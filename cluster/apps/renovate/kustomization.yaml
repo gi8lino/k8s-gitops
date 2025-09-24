@@ -4,7 +4,3 @@ kind: Kustomization
 resources:
   - renovate
   - valkey
-labels:
-  - includeSelectors: true
-    pairs:
-      app: renovate
