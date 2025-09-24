@@ -24,7 +24,8 @@ spec:
             - name: TZ
               value: Europe/Zurich
           ports:
-            - containerPort: 6379
+            - name: htttp
+              containerPort: 6379
           startupProbe:
             tcpSocket:
               port: 6379
