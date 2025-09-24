@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: snapraid
-          image: ghcr.io/gi8lino/go-snapraid-web:v0.0.11
+          image: ghcr.io/gi8lino/go-snapraid-web:v0.0.13
           ports:
             - name: http
               containerPort: 8080
