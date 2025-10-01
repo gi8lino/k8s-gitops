@@ -36,6 +36,7 @@ spec:
             dns:
               - matchPattern: "*"
     - toFQDNs:
+        - matchName: github.com
         - matchName: raw.githubusercontent.com
       toPorts:
         - ports:
