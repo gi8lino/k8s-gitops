@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: valkey
-          image: valkey/valkey:8.1.4-alpine
+          image: valkey/valkey:9.0.0-alpine
           env:
             - name: TZ
               value: Europe/Zurich
