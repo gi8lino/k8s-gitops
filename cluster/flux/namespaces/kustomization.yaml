@@ -15,7 +15,6 @@ resources:
   - k8up.yaml
   - keyclaok.yaml
   - media.yaml
-  - metallb-system.yaml
   - minio.yaml
   - miracle.yaml
   - monitoring.yaml

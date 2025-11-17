@@ -83,6 +83,10 @@ spec:
       enabled: true
     nodePort:
       enabled: false
+    l2announcements:
+      enabled: true
+    externalIPs:
+      enabled: true
     ipv6:
       enabled: false
     bpf:

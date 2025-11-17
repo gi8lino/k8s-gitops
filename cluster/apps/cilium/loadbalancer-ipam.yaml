@@ -1,0 +1,35 @@
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: default
+  namespace: cilium
+spec:
+  blocks:
+    - start: ${CILIUM_LB_DEFAULT_RANGE_START_V4}
+      stop: ${CILIUM_LB_DEFAULT_RANGE_END_V4}
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: ingress-nginx
+  namespace: cilium
+spec:
+  blocks:
+    - cidr: ${INGRESS_NGINX_LB_IP}/32
+  serviceSelector:
+    matchLabels:
+      app.kubernetes.io/instance: ingress-nginx
+      app.kubernetes.io/name: ingress-nginx
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumL2AnnouncementPolicy
+metadata:
+  name: default
+  namespace: cilium
+spec:
+  nodeSelector:
+    matchLabels:
+      kubernetes.io/os: linux
+  serviceSelector: {}
+  loadBalancerIPs: true

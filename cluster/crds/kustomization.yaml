@@ -7,4 +7,3 @@ resources:
   - cloudnative-pg
   - k8up
   - kube-prometheus-stack
-  - metallb-system

@@ -9,8 +9,8 @@ spec:
   driftDetection:
     mode: enabled
   dependsOn:
-    - name: metallb
-      namespace: metallb-system
+    - name: cilium
+      namespace: cilium
     - name: cert-manager
       namespace: cert-manager
   chart:
@@ -54,7 +54,7 @@ spec:
           ingress-nginx/${BASE_DOMAIN/./-}
       service:
         annotations:
-          metallb.universe.tf/address-pool: ingress-nginx
+          io.cilium/lb-ipam-ips: ${INGRESS_NGINX_LB_IP}
         externalTrafficPolicy: Local
         ipFamilyPolicy: SingleStack
         ipFamilies:

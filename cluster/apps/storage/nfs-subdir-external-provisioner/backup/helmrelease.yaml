@@ -9,8 +9,8 @@ spec:
   driftDetection:
     mode: enabled
   dependsOn:
-    - name: metallb
-      namespace: metallb-system
+    - name: cilium
+      namespace: cilium
   chart:
     spec:
       chart: nfs-subdir-external-provisioner

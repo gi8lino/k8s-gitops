@@ -12,7 +12,6 @@ resources:
   - ingres-nginx.yaml
   - jetstack.yaml
   - k8up-io.yaml
-  - metallb.yaml
   - metrics-server.yaml
   - minio.yaml
   - nfs-subdir-external-provisioner.yaml

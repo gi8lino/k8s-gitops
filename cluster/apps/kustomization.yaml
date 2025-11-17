@@ -17,7 +17,6 @@ resources:
   - keycloak
   - kube-system
   - media
-  - metallb
   - minio
   - miracle
   - monitoring

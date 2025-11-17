@@ -5,7 +5,7 @@ This directory contains infrastructure applications.
 ## Contents
 
 - **cert-manager** automatically provisions and manages TLS certificates in Kubernetes
-- **cilium** is a CNI plugin that provides networking and security services
+- **cilium** is a CNI plugin that provides networking, security services, and bare-metal L2 load balancing
 - **cloudflare-operator** Kubernetes operator for managing Cloudflare DNS records
 - **cloudnative-pg** Kubernetes operator for managing PostgreSQL databases
 - **debug** tools for debugging the cluster
@@ -18,7 +18,6 @@ This directory contains infrastructure applications.
 - **keycloak** identity and access management
 - **kube-system** contains essential system components
 - **media** usenet-stack containing plex, prowlarr, radarr, sabnzbd, sonarr and tautulli
-- **metallb** MetalLB is a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols
 - **minio** s3 compatible object storage
 - **monitoring** contains kube-prometheus-stack and prometheus-pushgateway for cluster monitoring
 - **nextcloud** self-hosted cloud similar to iCloud
