@@ -8,8 +8,6 @@ spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: envoy-gateway
-      app.kubernetes.io/instance: envoy-gateway
-      app.kubernetes.io/component: controller
   ingress:
     - fromEndpoints:
         - matchLabels:
