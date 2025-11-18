@@ -42,5 +42,5 @@ spec:
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
-            - port: "443"
+            - port: "10443"
               protocol: TCP
