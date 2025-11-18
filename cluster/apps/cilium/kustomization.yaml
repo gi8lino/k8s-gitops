@@ -6,3 +6,5 @@ resources:
   - helmrelease.yaml
   - httproute.yaml
   - loadbalancer-ipam.yaml
+  - secret.yaml
+  - securitypolicy.yaml

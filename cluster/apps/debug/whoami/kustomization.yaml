@@ -6,6 +6,8 @@ resources:
   - deployment.yaml
   - dnsrecord.yaml
   - httproute.yaml
+  - secret.yaml
+  - securitypolicy.yaml
   - service.yaml
 labels:
   - includeSelectors: true

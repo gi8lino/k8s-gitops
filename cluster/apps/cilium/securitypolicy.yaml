@@ -1,0 +1,17 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: ${BASE_DOMAIN/./-}-sso
+  namespace: cilium
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: hubble-ui
+  oidc:
+    provider:
+      issuer: https://sso.${BASE_DOMAIN}/realms/master
+    clientID: envoy-gateway
+    clientSecret:
+      name: ${BASE_DOMAIN/./-}-sso-client-secret

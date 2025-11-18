@@ -20,7 +20,7 @@ spec:
             app.kubernetes.io/instance: kube-prometheus-stack
             "k8s:io.kubernetes.pod.namespace": monitoring
         - matchLabels:
-            gateway.envoyproxy.io/owning-gateway-name: envoy-external
+            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
         - matchLabels:
