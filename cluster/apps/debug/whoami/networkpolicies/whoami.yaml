@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: whoami-internal
+  name: whoami
   namespace: debug
 spec:
   endpointSelector:
