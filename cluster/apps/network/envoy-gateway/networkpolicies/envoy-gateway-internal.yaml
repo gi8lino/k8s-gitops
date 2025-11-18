@@ -34,8 +34,6 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: envoy-gateway
-            app.kubernetes.io/component: controller
             app.kubernetes.io/instance: envoy-gateway
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
