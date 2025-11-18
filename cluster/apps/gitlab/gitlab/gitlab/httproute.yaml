@@ -1,0 +1,70 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: gitlab-web
+  namespace: gitlab
+  annotations:
+    cloudflare-operator.io/type: CNAME
+    cloudflare-operator.io/content: ${BASE_DOMAIN}
+spec:
+  parentRefs:
+    - name: envoy-external
+      namespace: network
+      sectionName: https
+  hostnames:
+    - git.${BASE_DOMAIN}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: gitlab-webservice-default
+          port: 8080
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: gitlab-registry
+  namespace: gitlab
+  annotations:
+    cloudflare-operator.io/ignore: "true"
+spec:
+  parentRefs:
+    - name: envoy-internal
+      namespace: network
+      sectionName: https
+  hostnames:
+    - registry.local.${BASE_DOMAIN}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: gitlab-registry
+          port: 5000
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: gitlab-minio
+  namespace: gitlab
+  annotations:
+    cloudflare-operator.io/ignore: "true"
+spec:
+  parentRefs:
+    - name: envoy-internal
+      namespace: network
+      sectionName: https
+  hostnames:
+    - gitlab-minio.local.${BASE_DOMAIN}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: gitlab-minio-svc
+          port: 9000

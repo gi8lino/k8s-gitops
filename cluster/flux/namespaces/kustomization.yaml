@@ -11,7 +11,6 @@ resources:
   - filebrowser.yaml
   - gitlab.yaml
   - healthchecks.yaml
-  - ingress-nginx.yaml
   - k8up.yaml
   - keyclaok.yaml
   - media.yaml
@@ -19,8 +18,8 @@ resources:
   - miracle.yaml
   - monitoring.yaml
   - namespace.yaml
+  - network.yaml
   - nextcloud.yaml
-  - oauth2-proxy.yaml
   - reloader.yaml
   - renovate.yaml
   - snapraid.yaml

@@ -6,6 +6,7 @@ resources:
   - egress-gitlab-migrations.yaml
   - egress-gitlab-shared-secrets.yaml
   - egress-gitlab-upgrade-check.yaml
+  - envoy-gateway-egress-gitlab.yaml
   - gitlab-gitaly.yaml
   - gitlab-minio.yaml
   - gitlab-redis.yaml
@@ -14,4 +15,3 @@ resources:
   - gitlab-sidekiq.yaml
   - gitlab-toolbox.yaml
   - gitlab-webservice.yaml
-  - ingress-nginx-egress-gitlab.yaml

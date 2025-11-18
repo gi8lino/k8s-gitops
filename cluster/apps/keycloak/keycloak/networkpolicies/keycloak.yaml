@@ -12,23 +12,13 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: ingress-nginx
+            app.kubernetes.io/name: envoy-gateway
             app.kubernetes.io/component: controller
-            app.kubernetes.io/instance: ingress-nginx
-            "k8s:io.kubernetes.pod.namespace": ingress-nginx
+            app.kubernetes.io/instance: envoy-gateway
+            "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
             - port: "8080"
-              protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
-            app.kubernetes.io/name: oauth2-proxy
-            app.kubernetes.io/component: authentication-proxy
-            app.kubernetes.io/instance: oauth2-proxy
-            "k8s:io.kubernetes.pod.namespace": oauth2-proxy
-      toPorts:
-        - ports:
-            - port: "9000"
               protocol: TCP
   egress:
     - toEndpoints:

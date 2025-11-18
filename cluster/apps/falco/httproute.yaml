@@ -1,0 +1,23 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: falco-webui
+  namespace: falco
+  annotations:
+    cloudflare-operator.io/ignore: "true"
+spec:
+  parentRefs:
+    - name: envoy-internal
+      namespace: network
+      sectionName: https
+  hostnames:
+    - falco.local.${BASE_DOMAIN}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: falco-falcosidekick-ui
+          port: 2802

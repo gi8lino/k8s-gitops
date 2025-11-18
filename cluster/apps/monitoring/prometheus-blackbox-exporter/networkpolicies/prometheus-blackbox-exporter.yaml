@@ -16,10 +16,10 @@ spec:
             app.kubernetes.io/name: prometheus
             "k8s:io.kubernetes.pod.namespace": monitoring
         - matchLabels:
-            app.kubernetes.io/name: ingress-nginx
+            app.kubernetes.io/name: envoy-gateway
             app.kubernetes.io/component: controller
-            app.kubernetes.io/instance: ingress-nginx
-            "k8s:io.kubernetes.pod.namespace": ingress-nginx
+            app.kubernetes.io/instance: envoy-gateway
+            "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
             - port: "9115"
@@ -50,10 +50,10 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: ingress-nginx
-            app.kubernetes.io/instance: ingress-nginx
+            app.kubernetes.io/name: envoy-gateway
+            app.kubernetes.io/instance: envoy-gateway
             app.kubernetes.io/component: controller
-            "k8s:io.kubernetes.pod.namespace": ingress-nginx
+            "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
             - port: "443"

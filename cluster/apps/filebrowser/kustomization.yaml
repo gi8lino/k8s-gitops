@@ -5,10 +5,11 @@ resources:
   - networkpolicies
   - configmap.yaml
   - deployment.yaml
-  - ingress.yaml
+  - httproute.yaml
   - persistentvolumeclaim.yaml
   - schedule.yaml
   - secret.yaml
+  - securitypolicy.yaml
   - service.yaml
 labels:
   - includeSelectors: true

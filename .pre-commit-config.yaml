@@ -47,6 +47,8 @@ repos:
           - IP
           - --ignore-kind
           - Zone
+          - --ignore-kind
+          - GatewayClass
       - id: forbidden_pattern
         args:
           - --forbidden-pattern

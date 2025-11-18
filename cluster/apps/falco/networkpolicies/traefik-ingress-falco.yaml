@@ -2,14 +2,14 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: ingress-nginx-egress-falco
-  namespace: ingress-nginx
+  name: envoy-gateway-egress-falco
+  namespace: network
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/name: envoy-gateway
       app.kubernetes.io/component: controller
-      app.kubernetes.io/instance: ingress-nginx
+      app.kubernetes.io/instance: envoy-gateway
   egress:
     - toEndpoints:
         - matchLabels:

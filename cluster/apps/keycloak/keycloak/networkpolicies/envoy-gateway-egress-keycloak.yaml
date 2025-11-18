@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-keycloak
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: envoy-gateway
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: envoy-gateway
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: keycloak
+            component: keycloak
+            "k8s:io.kubernetes.pod.namespace": keycloak
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP

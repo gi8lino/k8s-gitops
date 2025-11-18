@@ -1,0 +1,13 @@
+---
+apiVersion: cloudflare-operator.io/v1
+kind: DNSRecord
+metadata:
+  name: sabnzbd
+  namespace: media
+spec:
+  name: sabnzbd.${BASE_DOMAIN}
+  type: CNAME
+  content: ${BASE_DOMAIN}
+  proxied: true
+  ttl: 120
+  interval: 5m0s

@@ -1,0 +1,50 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-internal
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      networking.containeroo.ch/role: envoy-proxy
+      gateway.envoyproxy.io/owning-gateway-name: envoy-internal
+  ingress:
+    - fromCIDR:
+        - ${LAN_NETWORK_RANGE_V4}
+      toPorts:
+        - ports:
+            - port: "10080"
+              protocol: TCP
+            - port: "10443"
+              protocol: TCP
+    - fromEntities:
+        - cluster
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: envoy-gateway
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: envoy-gateway
+            "k8s:io.kubernetes.pod.namespace": network
+      toPorts:
+        - ports:
+            - port: "18000"
+              protocol: TCP
+            - port: "18001"
+              protocol: TCP
+            - port: "18002"
+              protocol: TCP
+    - toEntities:
+        - cluster

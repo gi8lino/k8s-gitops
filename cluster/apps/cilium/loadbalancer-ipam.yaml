@@ -12,15 +12,26 @@ spec:
 apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
 metadata:
-  name: ingress-nginx
+  name: envoy-external
   namespace: cilium
 spec:
   blocks:
-    - cidr: ${INGRESS_NGINX_LB_IP}/32
+    - cidr: ${ENVOY_EXTERNAL_LB_IP}/32
   serviceSelector:
     matchLabels:
-      app.kubernetes.io/instance: ingress-nginx
-      app.kubernetes.io/name: ingress-nginx
+      gateway.envoyproxy.io/owning-gateway-name: envoy-external
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: envoy-internal
+  namespace: cilium
+spec:
+  blocks:
+    - cidr: ${ENVOY_INTERNAL_LB_IP}/32
+  serviceSelector:
+    matchLabels:
+      gateway.envoyproxy.io/owning-gateway-name: envoy-internal
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy

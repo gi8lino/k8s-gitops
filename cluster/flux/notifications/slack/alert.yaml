@@ -50,9 +50,6 @@ spec:
       namespace: gitlab
       name: "*"
     - kind: HelmRelease
-      namespace: ingress-nxinx
-      name: "*"
-    - kind: HelmRelease
       namespace: k8up
       name: "*"
     - kind: HelmRelease
@@ -68,7 +65,7 @@ spec:
       namespace: monitoring
       name: "*"
     - kind: HelmRelease
-      namespace: oauth2-proxy
+      namespace: network
       name: "*"
     - kind: HelmRelease
       namespace: reloader

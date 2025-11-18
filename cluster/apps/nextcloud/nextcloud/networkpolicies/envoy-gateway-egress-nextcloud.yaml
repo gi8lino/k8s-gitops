@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-nextcloud
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: envoy-gateway
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: envoy-gateway
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: nextcloud
+            component: fpm-nginx
+            "k8s:io.kubernetes.pod.namespace": nextcloud
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP

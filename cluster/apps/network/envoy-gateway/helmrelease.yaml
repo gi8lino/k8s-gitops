@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: envoy-gateway
+  namespace: network
+spec:
+  interval: 20m
+  driftDetection:
+    mode: enabled
+  dependsOn:
+    - name: cilium
+      namespace: cilium
+    - name: cert-manager
+      namespace: cert-manager
+  chartRef:
+    kind: OCIRepository
+    name: envoy-gateway
+    namespace: flux-system

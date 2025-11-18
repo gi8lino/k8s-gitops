@@ -1,10 +1,11 @@
 # cluster Directory
 
-This directory contains Flux deployments and other manifests.
+This directory is the root of the GitOps stack reconciled by Flux.
+Everything under here is applied declaratively.
 
 ## Contents
 
-- **apps** contains all applications
-- **crds** contains all `CustomResourceDefinition` manifests
-- **flux** contains Flux related manifests
-- **networkpolicies** contains all `CiliumClusterwideNetworkPolicy` manifests
+- **apps** – application definitions grouped per namespace or stack
+- **crds** – `CustomResourceDefinition` sources Flux applies before apps
+- **flux** – Flux controllers, sources, kustomizations, and shared vars
+- **networkpolicies** – cluster-wide Cilium network policies

@@ -42,11 +42,9 @@ These directories are not tracked by Flux but are useful nonetheless:
 
 ## 🌐 DNS
 
-### Ingress Controller
+### Gateways
 
-Over WAN, I have port forwarded ports `80` and `443` to the load balancer IP of my ingress controller that's running in my Kubernetes cluster.
-
-[Cloudflare](https://www.cloudflare.com/) works as a proxy to hide my homes WAN IP and also as a firewall. [Cilium](https://cilium.io) blocks all IPs not originating from the [Cloudflares list of IP ranges](https://www.cloudflare.com/ips/), except the local network range `${LAN_NETWORK_RANGE_V4}`.
+Ports `80/443` forward to the two Envoy Gateway data planes: `envoy-external` serves public FQDNs while `envoy-internal` handles `*.local.${BASE_DOMAIN}`. Cloudflare fronts the external Gateway, and dedicated Cilium network policies only permit traffic originating from Cloudflare's published ranges (plus `${LAN_NETWORK_RANGE_V4}` for LAN access); everything else is dropped before it reaches Envoy.
 
 ### Internal DNS
 

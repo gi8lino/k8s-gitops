@@ -12,3 +12,4 @@ resources:
   - promtail
   - tools-server
   - vpn-server
+  - secret.yaml

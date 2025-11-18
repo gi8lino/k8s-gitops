@@ -1,0 +1,24 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-cilium
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: envoy-gateway
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: envoy-gateway
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: hubble-ui
+            "k8s:io.kubernetes.pod.namespace": cilium
+        - matchLabels:
+            k8s-app: hubble-relay
+            "k8s:io.kubernetes.pod.namespace": cilium
+      toPorts:
+        - ports:
+            - port: "8081"
+              protocol: TCP

@@ -1,0 +1,23 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: ${BASE_DOMAIN/./-}-sso
+  namespace: monitoring
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: kube-prometheus-stack-alertmanager
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: kube-prometheus-stack-prometheus
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: prometheus-pushgateway
+  oidc:
+    provider:
+      issuer: https://sso.${BASE_DOMAIN}/realms/master
+    clientID: envoy-gateway
+    clientSecret:
+      name: ${BASE_DOMAIN/./-}-sso-client-secret

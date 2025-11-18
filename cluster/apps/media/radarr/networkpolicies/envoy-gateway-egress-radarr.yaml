@@ -1,0 +1,21 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-radarr
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: envoy-gateway
+      app.kubernetes.io/name: envoy-gateway
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: radarr
+            "k8s:io.kubernetes.pod.namespace": media
+      toPorts:
+        - ports:
+            - port: "7878"
+              protocol: TCP

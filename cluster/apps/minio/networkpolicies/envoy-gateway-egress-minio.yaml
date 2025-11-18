@@ -1,0 +1,24 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-minio
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: envoy-gateway
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: envoy-gateway
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: minio
+            app.kubernetes.io/name: minio
+            "k8s:io.kubernetes.pod.namespace": minio
+      toPorts:
+        - ports:
+            - port: "9000" # minio-api
+              protocol: TCP
+            - port: "9001" # minio-console
+              protocol: TCP

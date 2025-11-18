@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - networkpolicies
   - deployment.yaml
-  - ingress.yaml
+  - httproute.yaml
   - persistentvolumeclaim.yaml
   - service.yaml
 labels:

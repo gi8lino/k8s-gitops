@@ -5,7 +5,8 @@ resources:
   - networkpolicies
   - configmap.yaml
   - deployment.yaml
-  - ingress.yaml
+  - dnsrecord.yaml
+  - httproute.yaml
   - persistentvolumeclaim.yaml
   - secret.yaml
   - service.yaml

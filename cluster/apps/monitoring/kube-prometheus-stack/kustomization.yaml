@@ -4,8 +4,10 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
+  - httproute.yaml
   - prometheusrule.yaml
   - secret.yaml
+  - securitypolicy.yaml
 configMapGenerator:
   - files:
       - dashboards/node-exporter-full.json

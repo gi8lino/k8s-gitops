@@ -4,6 +4,8 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
+  - httproute.yaml
+  - securitypolicy.yaml
 configMapGenerator:
   - files:
       - dashboards/Blackbox-Exporter-Quick-Overview.json

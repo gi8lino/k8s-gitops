@@ -1,0 +1,45 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: sabnzbd
+  namespace: media
+  annotations:
+    cloudflare-operator.io/type: CNAME
+    cloudflare-operator.io/content: ${BASE_DOMAIN}
+spec:
+  parentRefs:
+    - name: envoy-external
+      namespace: network
+      sectionName: https
+  hostnames:
+    - sabnzbd.${BASE_DOMAIN}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: sabnzbd
+          port: 8080
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: sabnzbd-api
+  namespace: media
+spec:
+  parentRefs:
+    - name: envoy-external
+      namespace: network
+      sectionName: https
+  hostnames:
+    - sabnzbd.${BASE_DOMAIN}
+  rules:
+    - matches:
+        - path:
+            type: Exact
+            value: /api
+      backendRefs:
+        - name: sabnzbd
+          port: 8080

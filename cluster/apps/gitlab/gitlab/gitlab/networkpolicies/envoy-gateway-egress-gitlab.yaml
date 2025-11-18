@@ -1,0 +1,52 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-gitlab
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: envoy-gateway
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: envoy-gateway
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: gitlab-shell
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "2222"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app: minio
+            component: app
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app: registry
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "5000"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app: webservice
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
+            - port: "8181"
+              protocol: TCP

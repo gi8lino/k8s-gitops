@@ -1,0 +1,54 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-controller
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: envoy-gateway
+      app.kubernetes.io/instance: envoy-gateway
+      app.kubernetes.io/component: controller
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            networking.containeroo.ch/role: envoy-proxy
+            "k8s:io.kubernetes.pod.namespace": network
+      toPorts:
+        - ports:
+            - port: "18000"
+              protocol: TCP
+            - port: "18001"
+              protocol: TCP
+            - port: "18002"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
+            "k8s:io.kubernetes.pod.namespace": monitoring
+      toPorts:
+        - ports:
+            - port: "19001"
+              protocol: TCP
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443"
+              protocol: TCP
+    - toEntities:
+        - cluster

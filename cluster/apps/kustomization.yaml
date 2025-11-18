@@ -12,16 +12,14 @@ resources:
   - filebrowser
   - gitlab
   - healthchecks
-  - ingress-nginx
   - k8up
   - keycloak
   - kube-system
   - media
   - minio
-  - miracle
   - monitoring
+  - network
   - nextcloud
-  - oauth2-proxy
   - reloader
   - renovate
   - snapraid

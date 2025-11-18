@@ -12,10 +12,10 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: ingress-nginx
+            app.kubernetes.io/name: envoy-gateway
             app.kubernetes.io/component: controller
-            app.kubernetes.io/instance: ingress-nginx
-            "k8s:io.kubernetes.pod.namespace": ingress-nginx
+            app.kubernetes.io/instance: envoy-gateway
+            "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
             - port: "2222"

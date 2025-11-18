@@ -9,8 +9,8 @@ spec:
   driftDetection:
     mode: enabled
   dependsOn:
-    - name: ingress-nginx
-      namespace: ingress-nginx
+    - name: envoy-gateway
+      namespace: network
   chart:
     spec:
       chart: cloudflare-operator

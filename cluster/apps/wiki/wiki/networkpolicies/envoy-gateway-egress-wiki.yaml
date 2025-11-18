@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-wiki
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: envoy-gateway
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: envoy-gateway
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: wiki
+            component: wiki
+            "k8s:io.kubernetes.pod.namespace": wiki
+      toPorts:
+        - ports:
+            - port: "3000"
+              protocol: TCP

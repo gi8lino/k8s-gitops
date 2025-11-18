@@ -9,8 +9,8 @@ spec:
   driftDetection:
     mode: enabled
   dependsOn:
-    - name: ingress-nginx
-      namespace: ingress-nginx
+    - name: envoy-gateway
+      namespace: network
   chart:
     spec:
       chart: kube-prometheus-stack
@@ -90,19 +90,7 @@ spec:
                 - business_hours
                 - weekend
       ingress:
-        enabled: true
-        annotations:
-          nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
-          nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
-          nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
-          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE_V4},${POD_NETWORK_RANGE_V4}
-          cloudflare-operator.io/ignore: "true"
-        hosts:
-          - alertmanager.local.${BASE_DOMAIN}
-        ingressClassName: nginx
-        pathType: Prefix
-        paths:
-          - /
+        enabled: false
     defaultRules:
       rules:
         etcd: false
@@ -142,19 +130,7 @@ spec:
           searchNamespace: ALL
           resource: configmap
       ingress:
-        enabled: true
-        annotations:
-          nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
-          nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
-          nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
-          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE_V4},${POD_NETWORK_RANGE_V4}
-          cloudflare-operator.io/ignore: "true"
-        hosts:
-          - grafana.local.${BASE_DOMAIN}
-        ingressClassName: nginx
-        pathType: Prefix
-        paths:
-          - /
+        enabled: false
       plugins:
         - grafana-piechart-panel
         - grafana-worldmap-panel
@@ -190,19 +166,7 @@ spec:
       enabled: false
     prometheus:
       ingress:
-        enabled: true
-        annotations:
-          nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
-          nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
-          nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
-          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE_V4},${POD_NETWORK_RANGE_V4}
-          cloudflare-operator.io/ignore: "true"
-        hosts:
-          - prometheus.local.${BASE_DOMAIN}
-        ingressClassName: nginx
-        pathType: Prefix
-        paths:
-          - /
+        enabled: false
       prometheusSpec:
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false

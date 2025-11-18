@@ -4,7 +4,8 @@ kind: Kustomization
 resources:
   - networkpolicies
   - deployment.yaml
-  - ingress.yaml
+  - dnsrecord.yaml
+  - httproute.yaml
   - scheduledbackup.yaml
   - service.yaml
 labels:

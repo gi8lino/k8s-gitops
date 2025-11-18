@@ -1,0 +1,21 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-flux-webhook-receiver
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: envoy-gateway
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: envoy-gateway
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: notification-controller
+            "k8s:io.kubernetes.pod.namespace": flux-system
+      toPorts:
+        - ports:
+            - port: "9292"
+              protocol: TCP

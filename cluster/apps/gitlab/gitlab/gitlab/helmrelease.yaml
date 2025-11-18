@@ -94,10 +94,7 @@ spec:
           name: registry.local.${BASE_DOMAIN}
       ingress:
         configureCertmanager: false
-        enabled: true
-        class: nginx
-        tls:
-          enabled: false
+        enabled: false
       smtp:
         authentication: login
         enabled: true
@@ -121,9 +118,7 @@ spec:
         enabled: true
     registry:
       ingress:
-        annotations:
-          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE_V4},${POD_NETWORK_RANGE_V4}
-          cloudflare-operator.io/ignore: "true"
+        enabled: false
       hpa:
         maxReplicas: 1
         minReplicas: 1
@@ -132,9 +127,7 @@ spec:
           enabled: false
     minio:
       ingress:
-        annotations:
-          nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE_V4},${POD_NETWORK_RANGE_V4}
-          cloudflare-operator.io/ignore: "true"
+        enabled: false
   install:
     crds: Skip
   upgrade:

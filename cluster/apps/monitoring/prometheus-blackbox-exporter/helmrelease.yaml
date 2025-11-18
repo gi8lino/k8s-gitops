@@ -37,19 +37,7 @@ spec:
             preferred_ip_protocol: "ip4"
             fail_if_body_not_matches_regexp: ["${NEWSNAB_REGEX}"]
     ingress:
-      enabled: true
-      className: nginx
-      annotations:
-        nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/auth"
-        nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.${BASE_DOMAIN}/oauth2/start?rd=$scheme://$best_http_host$request_uri"
-        nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-access-token"
-        nginx.ingress.kubernetes.io/whitelist-source-range: ${LAN_NETWORK_RANGE_V4},${POD_NETWORK_RANGE_V4}
-        cloudflare-operator.io/ignore: "true"
-      hosts:
-        - host: blackbox.local.${BASE_DOMAIN}
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
+      enabled: false
     serviceMonitor:
       enabled: true
       defaults:
