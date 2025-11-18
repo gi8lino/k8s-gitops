@@ -17,7 +17,7 @@ spec:
       name: ${BASE_DOMAIN/./-}-sso-client-secret
   jwt:
     providers:
-      - name: ${BASE_DOMAIN/./-}-sso
+      - name: healthchecks-sso
         issuer: https://sso.${BASE_DOMAIN}/realms/master
         remoteJWKS:
           uri: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/certs
