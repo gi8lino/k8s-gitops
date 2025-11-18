@@ -44,7 +44,7 @@ spec:
         - ports:
             - port: "80" # Nextcloud Healthcheck
               protocol: TCP
-            - port: "443" # OIDC
+            - port: "10443" # OIDC
               protocol: TCP
     - toEndpoints:
         - matchLabels:
