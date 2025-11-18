@@ -54,6 +54,15 @@ spec:
         - cluster
     - toEndpoints:
         - matchLabels:
+            app: keycloak
+            component: keycloak
+            "k8s:io.kubernetes.pod.namespace": keycloak
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
             app.kubernetes.io/instance: envoy-gateway
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
