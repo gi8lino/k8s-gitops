@@ -36,8 +36,7 @@ spec:
         - cluster
     - toEndpoints:
         - matchLabels:
-            gateway.envoyproxy.io/owning-gateway-name: envoy-external
-            gateway.envoyproxy.io/owning-gateway-namespace: network
+            app.kubernetes.io/instance: envoy-gateway
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
