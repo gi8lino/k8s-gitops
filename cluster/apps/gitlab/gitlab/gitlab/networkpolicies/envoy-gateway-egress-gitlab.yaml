@@ -17,7 +17,7 @@ spec:
             "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
-            - port: "10022"
+            - port: "2222"
               protocol: TCP
     - toEndpoints:
         - matchLabels:
