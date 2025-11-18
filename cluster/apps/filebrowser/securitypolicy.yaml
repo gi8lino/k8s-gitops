@@ -15,3 +15,16 @@ spec:
     clientID: envoy-gateway
     clientSecret:
       name: ${BASE_DOMAIN/./-}-sso-client-secret
+  jwt:
+    providers:
+      - name: ${BASE_DOMAIN/./-}-sso
+        issuer: https://sso.${BASE_DOMAIN}/realms/master
+        remoteJWKS:
+          uri: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/certs
+        extractFrom:
+          headers:
+            - name: Authorization
+              valuePrefix: "Bearer "
+        claimToHeaders:
+          - claim: email
+            header: X-Auth-Request-Email

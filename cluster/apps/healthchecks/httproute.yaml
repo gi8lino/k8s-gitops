@@ -18,9 +18,16 @@ spec:
         - path:
             type: PathPrefix
             value: /
+      filters:
+        - type: RequestHeaderModifier
+          requestHeaderModifier:
+            remove:
+              - Authorization
+              - Cookie
       backendRefs:
         - name: healthchecks
           port: 8000
+
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
