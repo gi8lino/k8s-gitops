@@ -6,7 +6,7 @@ metadata:
   namespace: nextcloud
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.6
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.7
   storage:
     size: 20Gi
   bootstrap:
