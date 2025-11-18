@@ -8,18 +8,5 @@ spec:
   provider:
     type: Kubernetes
     kubernetes:
-      envoyDeployment:
-        replicas: 1
-        pod:
-          labels:
-            app.kubernetes.io/name: envoy-gateway
-            app.kubernetes.io/instance: envoy-gateway
-            app.kubernetes.io/component: controller
-            networking.containeroo.ch/role: envoy-proxy
       envoyService:
         externalTrafficPolicy: Local
-  logging:
-    level:
-      default: info
-  shutdown:
-    drainTimeout: 180s
