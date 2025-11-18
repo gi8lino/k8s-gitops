@@ -27,7 +27,7 @@ spec:
         - 197.234.240.0/22
         - 198.41.128.0/17
     - fromCIDR:
-        - 10.0.0.0/23
+        - ${LAN_NETWORK_RANGE_V4}
       toPorts:
         - ports:
             - port: "10022"
@@ -38,14 +38,6 @@ spec:
               protocol: TCP
     - fromEntities:
         - cluster
-      toPorts:
-        - ports:
-            - port: "10022"
-              protocol: TCP
-            - port: "10080"
-              protocol: TCP
-            - port: "10443"
-              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
