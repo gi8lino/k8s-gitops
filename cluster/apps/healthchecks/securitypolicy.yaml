@@ -15,4 +15,3 @@ spec:
     clientID: envoy-gateway
     clientSecret:
       name: ${BASE_DOMAIN/./-}-sso-client-secret
-    passThroughAuthHeader: true

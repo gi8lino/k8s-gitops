@@ -9,5 +9,5 @@ spec:
   type: CNAME
   content: ${BASE_DOMAIN}
   proxied: true
-  ttl: 120
+  ttl: 1
   interval: 5m0s
