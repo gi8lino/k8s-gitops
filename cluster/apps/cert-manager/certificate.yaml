@@ -9,6 +9,7 @@ spec:
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
+  commonName: ${BASE_DOMAIN}
   dnsNames:
     - "*.${BASE_DOMAIN}"
 ---
@@ -22,5 +23,6 @@ spec:
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
+  commonName: ${BASE_DOMAIN}
   dnsNames:
     - "*.local.${BASE_DOMAIN}"
