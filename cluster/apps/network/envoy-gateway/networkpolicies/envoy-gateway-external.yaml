@@ -52,3 +52,11 @@ spec:
               - matchPattern: "*"
     - toEntities:
         - cluster
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: envoy-gateway
+            "k8s:io.kubernetes.pod.namespace": network
+      toPorts:
+        - ports:
+            - port: "18000"
+              protocol: TCP
