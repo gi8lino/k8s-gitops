@@ -16,9 +16,8 @@ spec:
             app.kubernetes.io/name: prometheus
             "k8s:io.kubernetes.pod.namespace": monitoring
         - matchLabels:
-            app.kubernetes.io/name: envoy-gateway
-            app.kubernetes.io/component: controller
-            app.kubernetes.io/instance: envoy-gateway
+            gateway.envoyproxy.io/owning-gateway-name: envoy-external
+            gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
@@ -50,9 +49,8 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: envoy-gateway
-            app.kubernetes.io/instance: envoy-gateway
-            app.kubernetes.io/component: controller
+            gateway.envoyproxy.io/owning-gateway-name: envoy-external
+            gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
