@@ -7,12 +7,14 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: {}
+    matchLabels:
+      app: whoami
   strategy:
     type: Recreate
   template:
     metadata:
-      labels: {}
+      labels:
+        app: whoami
     spec:
       containers:
         - name: whoami
