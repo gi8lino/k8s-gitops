@@ -50,3 +50,9 @@ spec:
               protocol: TCP
     - toEntities:
         - cluster
+    - toFQDNs:
+        - matchName: sso.${BASE_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP

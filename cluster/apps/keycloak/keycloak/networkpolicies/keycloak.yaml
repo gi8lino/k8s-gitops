@@ -12,13 +12,11 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: envoy-gateway
-            app.kubernetes.io/component: controller
             app.kubernetes.io/instance: envoy-gateway
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
-            - port: "8080"
+            - port: "443"
               protocol: TCP
   egress:
     - toEndpoints:
