@@ -18,6 +18,15 @@ spec:
         - ports:
             - port: "443"
               protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            gateway.envoyproxy.io/owning-gateway-name: envoy-external
+            gateway.envoyproxy.io/owning-gateway-namespace: network
+            "k8s:io.kubernetes.pod.namespace": network
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
