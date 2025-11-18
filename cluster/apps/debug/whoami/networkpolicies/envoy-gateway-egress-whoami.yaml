@@ -2,7 +2,27 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: envoy-gateway-egress-whoami
+  name: envoy-gateway-egress-whoami-internal
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      gateway.envoyproxy.io/owning-gateway-name: envoy-internal
+      gateway.envoyproxy.io/owning-gateway-namespace: network
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: whoami
+            "k8s:io.kubernetes.pod.namespace": debug
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-whoami-external
   namespace: network
 spec:
   endpointSelector:

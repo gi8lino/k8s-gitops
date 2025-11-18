@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: whoami
+  name: whoami-internal
   namespace: debug
 spec:
   endpointSelector:
@@ -12,6 +12,10 @@ spec:
     - fromEndpoints:
         - matchLabels:
             gateway.envoyproxy.io/owning-gateway-name: envoy-external
+            gateway.envoyproxy.io/owning-gateway-namespace: network
+            "k8s:io.kubernetes.pod.namespace": network
+        - matchLabels:
+            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
