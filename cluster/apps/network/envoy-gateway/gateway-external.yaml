@@ -25,11 +25,11 @@ spec:
       tls:
         certificateRefs:
           - name: external-${BASE_DOMAIN/./-}-tls
-    - allowedRoutes:
+    - name: ssh
+      allowedRoutes:
         namespaces:
           from: All
         kinds:
           - kind: TCPRoute
-      name: ssh
       port: 22
       protocol: TCP
