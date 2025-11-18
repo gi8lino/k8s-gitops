@@ -2,7 +2,7 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
-  name: ${BASE_DOMAIN/./-}-sso
+  name: kube-prometheus-stack-sso
   namespace: monitoring
 spec:
   targetRefs:
