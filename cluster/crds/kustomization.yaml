@@ -5,6 +5,5 @@ resources:
   - cert-manager
   - cloudflare-operator
   - cloudnative-pg
-  - envoy-gateway
   - k8up
   - kube-prometheus-stack
