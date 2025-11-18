@@ -7,8 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      networking.containeroo.ch/role: envoy-proxy
       gateway.envoyproxy.io/owning-gateway-name: envoy-internal
+      gateway.envoyproxy.io/owning-gateway-namespace: network
   ingress:
     - fromCIDR:
         - ${LAN_NETWORK_RANGE_V4}
