@@ -47,6 +47,9 @@ spec:
         - ports:
             - port: "10022" # to access git.${BASE_DOMAIN} with ssh
               protocol: TCP
+        - ports:
+            - port: "10443" # to access git.${BASE_DOMAIN}
+              protocol: TCP
     - toEndpoints:
         - matchLabels:
             gateway.envoyproxy.io/owning-gateway-name: envoy-internal
