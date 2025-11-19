@@ -1,3 +1,4 @@
+---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: EnvoyPatchPolicy
 metadata:
@@ -14,7 +15,7 @@ spec:
       name: network/envoy-external/https
       operation:
         op: add
-        jsonPath: "..virtual_hosts[?match(@.name, '.*(son|rad)arr_${BASE_DOMAIN/./_}')]"
+        jsonPath: "..virtual_hosts[?match(@.name, '.*(son|rad)arr\\.${BASE_DOMAIN}')]"
         path: "typed_per_filter_config/envoy.filters.http.rbac.admin"
         value:
           "@type": type.googleapis.com/envoy.extensions.filters.http.rbac.v3.RBACPerRoute
@@ -35,7 +36,7 @@ spec:
       name: network/envoy-external/https
       operation:
         op: add
-        jsonPath: "..virtual_hosts[?match(@.name, '.*sabnzbd_${BASE_DOMAIN/./_}')]"
+        jsonPath: "..virtual_hosts[?match(@.name, '.*sabnzbd\\.${BASE_DOMAIN}')]"
         path: "typed_per_filter_config/envoy.filters.http.rbac.admin"
         value:
           "@type": type.googleapis.com/envoy.extensions.filters.http.rbac.v3.RBACPerRoute
