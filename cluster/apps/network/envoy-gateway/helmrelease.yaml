@@ -17,3 +17,8 @@ spec:
     kind: OCIRepository
     name: envoy-gateway
     namespace: flux-system
+  values:
+    config:
+      envoyGateway:
+        extensionApis:
+          enableEnvoyPatchPolicy: true
