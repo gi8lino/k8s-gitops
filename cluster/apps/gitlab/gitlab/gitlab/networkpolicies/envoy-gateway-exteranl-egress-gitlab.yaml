@@ -1,0 +1,32 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-external-egress-gitlab
+  namespace: network
+spec:
+  endpointSelector:
+    matchLabels:
+      gateway.envoyproxy.io/owning-gateway-name: envoy-external
+      gateway.envoyproxy.io/owning-gateway-namespace: network
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app: gitlab-shell
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "2222"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app: webservice
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
+            - port: "8181"
+              protocol: TCP

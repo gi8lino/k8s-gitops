@@ -15,10 +15,6 @@ spec:
             gateway.envoyproxy.io/owning-gateway-name: envoy-external
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
-        - matchLabels:
-            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
-            gateway.envoyproxy.io/owning-gateway-namespace: network
-            "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
             - port: "8080"
@@ -70,10 +66,6 @@ spec:
     - toEndpoints:
         - matchLabels:
             gateway.envoyproxy.io/owning-gateway-name: envoy-external
-            gateway.envoyproxy.io/owning-gateway-namespace: network
-            "k8s:io.kubernetes.pod.namespace": network
-        - matchLabels:
-            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
