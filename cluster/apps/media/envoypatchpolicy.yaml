@@ -36,7 +36,7 @@ spec:
       name: network/envoy-external/https
       operation:
         op: add
-        jsonPath: "..virtual_hosts[?(@.name == 'network/envoy-external/https/sabnzbd_${BASE_DOMAIN/./_}')]"
+        jsonPath: "..virtual_hosts[?match(@.name, '.*sabnzbd_${BASE_DOMAIN/./_}')]"
         path: "typed_per_filter_config/envoy.filters.http.rbac.admin"
         value:
           "@type": type.googleapis.com/envoy.extensions.filters.http.rbac.v3.RBACPerRoute
