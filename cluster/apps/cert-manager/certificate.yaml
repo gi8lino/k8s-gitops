@@ -11,6 +11,7 @@ spec:
     kind: ClusterIssuer
   commonName: ${BASE_DOMAIN}
   dnsNames:
+    - ${BASE_DOMAIN}
     - "*.${BASE_DOMAIN}"
 ---
 apiVersion: cert-manager.io/v1
@@ -25,4 +26,5 @@ spec:
     kind: ClusterIssuer
   commonName: ${BASE_DOMAIN}
   dnsNames:
+    - ${BASE_DOMAIN}
     - "*.local.${BASE_DOMAIN}"
