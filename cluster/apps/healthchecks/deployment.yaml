@@ -9,12 +9,14 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: {}
+    matchLabels:
+      app: healthchecks
   strategy:
     type: Recreate
   template:
     metadata:
-      labels: {}
+      labels:
+        app: healthchecks
     spec:
       containers:
         - name: healthchecks

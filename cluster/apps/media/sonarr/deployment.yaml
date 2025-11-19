@@ -9,12 +9,14 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: {}
+    matchLabels:
+      app: sonarr
   strategy:
     type: Recreate
   template:
     metadata:
-      labels: {}
+      labels:
+        app: sonarr
     spec:
       initContainers:
         - name: configarr

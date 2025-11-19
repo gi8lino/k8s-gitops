@@ -9,12 +9,16 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: {}
+    matchLabels:
+      app: nextcloud
+      component: fpm-nginx
   strategy:
     type: Recreate
   template:
     metadata:
-      labels: {}
+      labels:
+        app: nextcloud
+        component: fpm-nginx
     spec:
       initContainers:
         - name: never

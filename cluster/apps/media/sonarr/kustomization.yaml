@@ -8,7 +8,3 @@ resources:
   - httproute.yaml
   - persistentvolumeclaim.yaml
   - service.yaml
-labels:
-  - includeSelectors: true
-    pairs:
-      app: sonarr

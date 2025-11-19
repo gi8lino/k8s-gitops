@@ -7,12 +7,14 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: {}
+    matchLabels:
+      app: plex
   strategy:
     type: Recreate
   template:
     metadata:
-      labels: {}
+      labels:
+        app: plex
     spec:
       securityContext:
         supplementalGroups:

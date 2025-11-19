@@ -6,10 +6,12 @@ metadata:
   namespace: vimbin
 spec:
   selector:
-    matchLabels: {}
+    matchLabels:
+      app: vimbin
   template:
     metadata:
-      labels: {}
+      labels:
+        app: vimbin
     spec:
       containers:
         - name: vimbin

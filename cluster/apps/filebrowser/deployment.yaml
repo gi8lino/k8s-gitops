@@ -9,12 +9,14 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: {}
+    matchLabels:
+      app: filebrowser
   strategy:
     type: Recreate
   template:
     metadata:
-      labels: {}
+      labels:
+        app: filebrowser
     spec:
       containers:
         - name: filebrowser

@@ -7,12 +7,16 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: {}
+    matchLabels:
+      app: wiki
+      component: wiki
   strategy:
     type: RollingUpdate
   template:
     metadata:
-      labels: {}
+      labels:
+        app: wiki
+        component: wiki
     spec:
       initContainers:
         - name: never

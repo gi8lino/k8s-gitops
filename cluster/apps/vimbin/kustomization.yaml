@@ -9,7 +9,3 @@ resources:
   - secret.yaml
   - securitypolicy.yaml
   - service.yaml
-labels:
-  - includeSelectors: true
-    pairs:
-      app: vimbin

@@ -10,3 +10,5 @@ spec:
       port: 8000
       targetPort: http
   type: ClusterIP
+  selector:
+    app: healthchecks

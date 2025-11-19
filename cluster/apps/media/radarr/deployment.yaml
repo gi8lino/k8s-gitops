@@ -9,12 +9,14 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: {}
+    matchLabels:
+      app: radarr
   strategy:
     type: Recreate
   template:
     metadata:
-      labels: {}
+      labels:
+        app: radarr
     spec:
       initContainers:
         - name: configarr

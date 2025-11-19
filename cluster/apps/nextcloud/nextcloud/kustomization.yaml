@@ -11,8 +11,3 @@ resources:
   - persistentvolumeclaim.yaml
   - secret.yaml
   - service.yaml
-labels:
-  - includeSelectors: true
-    pairs:
-      app: nextcloud
-      component: fpm-nginx

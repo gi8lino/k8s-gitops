@@ -51,7 +51,3 @@ patches:
         path: "/metadata/annotations"
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
-labels:
-  - includeSelectors: true
-    pairs:
-      app: healthchecks

@@ -6,7 +6,3 @@ resources:
   - deployment.yaml
   - service.yaml
   - servicemonitor.yaml
-labels:
-  - includeSelectors: true
-    pairs:
-      app: kthxbye

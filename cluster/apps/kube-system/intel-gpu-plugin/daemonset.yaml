@@ -6,10 +6,12 @@ metadata:
   namespace: kube-system
 spec:
   selector:
-    matchLabels: {}
+    matchLabels:
+      app: intel-gpu-plugin
   template:
     metadata:
-      labels: {}
+      labels:
+        app: intel-gpu-plugin
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64
