@@ -21,4 +21,4 @@ spec:
     config:
       envoyGateway:
         extensionApis:
-          enableEnvoyPatchPolicy: true
+          enableEnvoyPatchPolicy: false
