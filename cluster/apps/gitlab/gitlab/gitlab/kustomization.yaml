@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - networkpolicies
   - dnsrecord.yaml
+  - envoypatchpolicy.yaml
   - helmrelease.yaml
   - httproute.yaml
   - secret.yaml

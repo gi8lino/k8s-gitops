@@ -8,6 +8,7 @@ resources:
   - sabnzbd
   - sonarr
   - tautulli
+  - envoypatchpolicy.yaml
   - schedule.yaml
   - secret.yaml
   - securitypolicy.yaml
