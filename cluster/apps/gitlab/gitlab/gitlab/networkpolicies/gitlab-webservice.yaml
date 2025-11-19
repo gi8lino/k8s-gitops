@@ -78,7 +78,7 @@ spec:
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
-            - port: "443" # OIDC
+            - port: "10443" # OIDC
               protocol: TCP
     - toEndpoints:
         - matchLabels:
