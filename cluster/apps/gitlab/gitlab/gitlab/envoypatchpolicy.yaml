@@ -12,7 +12,7 @@ spec:
   type: JSONPatch
   jsonPatches:
     - type: "type.googleapis.com/envoy.config.route.v3.RouteConfiguration"
-      name: envoy-gateway-system/external/external-https
+      name: envoy-gateway-system/external/https
       operation:
         op: add
         jsonPath: "..virtual_hosts[?match(@.name, '.*git_${BASE_DOMAIN/./_}')]"

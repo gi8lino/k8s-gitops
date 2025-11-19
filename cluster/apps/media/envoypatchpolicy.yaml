@@ -11,7 +11,7 @@ spec:
   type: JSONPatch
   jsonPatches:
     - type: "type.googleapis.com/envoy.config.route.v3.RouteConfiguration"
-      name: envoy-gateway-system/external/external-https
+      name: envoy-gateway-system/external/https
       operation:
         op: add
         jsonPath: "..virtual_hosts[?match(@.name, '.*(son|rad)arr_${BASE_DOMAIN/./_}')]"
@@ -32,7 +32,7 @@ spec:
                   principals:
                     - any: true
     - type: "type.googleapis.com/envoy.config.route.v3.RouteConfiguration"
-      name: envoy-gateway-system/external/external-https
+      name: envoy-gateway-system/external/https
       operation:
         op: add
         jsonPath: "..virtual_hosts[?match(@.name, '.*sabnzbd_${BASE_DOMAIN/./_}')]"
