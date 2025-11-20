@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - networkpolicies
   - clienttrafficpolicy.yaml
+  - envoypatchpolicy.yaml
   - envoyproxy.yaml
   - gateway-external.yaml
   - gateway-internal.yaml
