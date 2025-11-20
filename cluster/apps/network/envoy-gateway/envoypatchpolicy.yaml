@@ -15,7 +15,7 @@ spec:
       name: network/envoy-external/https
       operation:
         op: add
-        path: /filter_chains/0/filters/0/typed_config/http_filters/2
+        path: /filter_chains/0/filters/0/typed_config/http_filters/1
         value:
           name: envoy.filters.http.rbac.admin
           typed_config:
