@@ -14,6 +14,8 @@ spec:
         - ${LAN_NETWORK_RANGE_V4}
       toPorts:
         - ports:
+            - port: "10022"
+              protocol: TCP
             - port: "10080"
               protocol: TCP
             - port: "10443"
