@@ -2,7 +2,7 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: EnvoyPatchPolicy
 metadata:
-  name: block-nextcloud-admin-access
+  name: block-wiki-admin-access
   namespace: network
 spec:
   targetRef:
@@ -15,7 +15,7 @@ spec:
       name: network/envoy-external/https
       operation:
         op: add
-        jsonPath: "..virtual_hosts[?match(@.name, '.*cloud_${BASE_DOMAIN/./_}')]"
+        jsonPath: "..virtual_hosts[?match(@.name, '.*wiki_${BASE_DOMAIN/./_}')]"
         path: "typed_per_filter_config/envoy.filters.http.rbac.admin"
         value:
           "@type": type.googleapis.com/envoy.extensions.filters.http.rbac.v3.RBACPerRoute
@@ -29,7 +29,7 @@ spec:
                         name: ":path"
                         safe_regex_match:
                           google_re2: {}
-                          regex: "^/settings/admin.*"
+                          regex: "^/a/.*"
                   principals:
                     - not_id:
                         remote_ip:

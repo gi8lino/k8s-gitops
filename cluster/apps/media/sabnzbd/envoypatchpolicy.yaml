@@ -31,4 +31,7 @@ spec:
                           google_re2: {}
                           regex: "^/config.*"
                   principals:
-                    - any: true
+                    - not_id:
+                        remote_ip:
+                          address_prefix: "${LAN_NETWORK_RANGE_V4%%/*}"
+                          prefix_len: ${LAN_NETWORK_RANGE_V4##*/}

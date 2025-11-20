@@ -1,0 +1,25 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyExtensionPolicy
+metadata:
+  name: disable-direct-login
+  namespace: gitlab
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: gitlab
+  lua:
+    - type: Inline
+      inline: |
+        function envoy_on_request(request_handle)
+          if request_handle:headers():get(":path") == "/users/sign_in?auto_sign_in=false" then
+            request_handle:respond(
+              {
+                [":status"] = "301",
+                ["location"] = "https://git.${BASE_DOMAIN}"
+              },
+              "Direct login is blocked."
+            )
+          end
+        end

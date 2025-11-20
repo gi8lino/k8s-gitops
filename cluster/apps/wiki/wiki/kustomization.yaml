@@ -5,6 +5,7 @@ resources:
   - networkpolicies
   - deployment.yaml
   - dnsrecord.yaml
+  - envoyextensionpolicy.yaml
   - httproute.yaml
   - scheduledbackup.yaml
   - service.yaml
