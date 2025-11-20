@@ -5,8 +5,12 @@ metadata:
   name: envoy-gateway-egress-gitlab
   namespace: network
 spec:
+  description: "Allow all gateway egress traffic to gitlab"
   endpointSelector:
     matchLabels:
+      app.kubernetes.io/name: envoy
+      app.kubernetes.io/component: proxy
+      app.kubernetes.io/managed-by: envoy-gateway
       gateway.envoyproxy.io/owning-gateway-namespace: network
   egress:
     - toEndpoints:
