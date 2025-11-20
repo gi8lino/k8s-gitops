@@ -21,8 +21,6 @@ spec:
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
-            - port: "8080"
-              protocol: TCP
             - port: "8181"
               protocol: TCP
     - fromEndpoints:
