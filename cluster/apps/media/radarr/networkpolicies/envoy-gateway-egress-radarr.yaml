@@ -5,9 +5,12 @@ metadata:
   name: envoy-gateway-egress-radarr
   namespace: network
 spec:
+  description: "Allow all gateway egress traffic to radarr"
   endpointSelector:
     matchLabels:
-      gateway.envoyproxy.io/owning-gateway-name: envoy-external
+      app.kubernetes.io/name: envoy
+      app.kubernetes.io/component: proxy
+      app.kubernetes.io/managed-by: envoy-gateway
       gateway.envoyproxy.io/owning-gateway-namespace: network
   egress:
     - toEndpoints:
