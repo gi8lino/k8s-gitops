@@ -25,7 +25,8 @@ jobs:
 
           # cilium network policy
           cilium_nets=$(printf '"%s", ' ${nets[@]})  # add quotes and commas for yq
-          /tmp/yq --inplace ".spec.ingress[0].fromCIDR = [ ${cilium_nets%,*} ]" cluster/apps/ingress-nginx/networkpolicies/ingress-nginx-controller.yaml
+          /tmp/yq --inplace ".spec.ingress[0].fromCIDR = [ ${cilium_nets%,*} ]" cluster/apps/network/envoy-gatway/networkpolicies/envoy-gateway-external.yaml
+          /tmp/yq --inplace ".spec.ingress[0].fromCIDR = [ ${cilium_nets%,*} ]" cluster/apps/network/envoy-gatway/networkpolicies/envoy-gateway-internal.yaml
 
       - name: Create pull request for cloudflare network range update
         uses: peter-evans/create-pull-request@v7
