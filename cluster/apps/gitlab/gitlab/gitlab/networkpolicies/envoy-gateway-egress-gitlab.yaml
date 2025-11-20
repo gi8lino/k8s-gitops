@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: envoy-gateway-external-egress-gitlab
+  name: envoy-gateway-egress-gitlab
   namespace: network
 spec:
   endpointSelector:

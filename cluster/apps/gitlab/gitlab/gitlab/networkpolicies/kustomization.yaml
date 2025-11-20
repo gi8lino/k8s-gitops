@@ -6,7 +6,7 @@ resources:
   - egress-gitlab-migrations.yaml
   - egress-gitlab-shared-secrets.yaml
   - egress-gitlab-upgrade-check.yaml
-  - envoy-gateway-exteranl-egress-gitlab.yaml
+  - envoy-gateway-egress-gitlab.yaml
   - envoy-gateway-internal-egress-gitlab.yaml
   - gitlab-gitaly.yaml
   - gitlab-minio.yaml
