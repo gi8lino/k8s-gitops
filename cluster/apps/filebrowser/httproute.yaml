@@ -12,7 +12,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - filebrowser.local.${BASE_DOMAIN}
+    - filebrowser.${BASE_DOMAIN}
   rules:
     - matches:
         - path:

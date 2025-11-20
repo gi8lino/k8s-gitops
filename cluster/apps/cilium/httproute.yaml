@@ -12,7 +12,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - hubble.local.${BASE_DOMAIN}
+    - hubble.${BASE_DOMAIN}
   rules:
     - matches:
         - path:

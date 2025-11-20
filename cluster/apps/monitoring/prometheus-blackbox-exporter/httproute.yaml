@@ -12,7 +12,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - blackbox.local.${BASE_DOMAIN}
+    - blackbox.${BASE_DOMAIN}
   rules:
     - matches:
         - path:

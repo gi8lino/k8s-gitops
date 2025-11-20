@@ -12,7 +12,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - prowlarr.local.${BASE_DOMAIN}
+    - prowlarr.${BASE_DOMAIN}
   rules:
     - matches:
         - path:

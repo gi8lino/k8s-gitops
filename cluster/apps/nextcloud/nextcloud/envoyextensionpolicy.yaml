@@ -2,24 +2,36 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: EnvoyExtensionPolicy
 metadata:
-  name: disable-direct-login
+  name: external-access-controls
   namespace: nextcloud
 spec:
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
-      name: nextcloud
+      name: nextcloud-external
   lua:
     - type: Inline
       inline: |
         function envoy_on_request(request_handle)
-          if request_handle:headers():get(":path") == "/login?direct=1" then
+          local path = request_handle:headers():get(":path")
+
+          if path == "/login?direct=1" then
             request_handle:respond(
               {
                 [":status"] = "301",
                 ["location"] = "https://cloud.${BASE_DOMAIN}"
               },
               "Direct login is blocked."
+            )
+            return
+          end
+
+          if string.match(path, "^/settings/admin") then
+            request_handle:respond(
+              {
+                [":status"] = "403",
+              },
+              "Admin page access is blocked."
             )
           end
         end

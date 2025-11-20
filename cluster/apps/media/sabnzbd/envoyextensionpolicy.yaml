@@ -2,18 +2,18 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: EnvoyExtensionPolicy
 metadata:
-  name: block-admin-page
-  namespace: keycloak
+  name: sabnzbd-disable-admin-page
+  namespace: usenet
 spec:
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
-      name: keycloak-external
+      name: sabnzbd-external
   lua:
     - type: Inline
       inline: |
         function envoy_on_request(request_handle)
-          if string.match(request_handle:headers():get(":path"), "^/admin") then
+          if string.match(request_handle:headers():get(":path"), "^/config") then
             request_handle:respond(
               {
                 [":status"] = "403",

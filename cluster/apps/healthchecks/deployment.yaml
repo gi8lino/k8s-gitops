@@ -32,7 +32,7 @@ spec:
             - name: SITE_NAME
               value: Healthchecks
             - name: SITE_ROOT
-              value: https://healthchecks.local.${BASE_DOMAIN}
+              value: https://healthchecks.${BASE_DOMAIN}
             - name: DEBUG
               value: "False"
             - name: REGISTRATION_OPEN

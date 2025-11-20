@@ -2,7 +2,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: gitlab-web
+  name: gitlab-web-external
   namespace: gitlab
   annotations:
     cloudflare-operator.io/type: CNAME
@@ -10,6 +10,30 @@ metadata:
 spec:
   parentRefs:
     - name: envoy-external
+      namespace: network
+      sectionName: https
+  hostnames:
+    - git.${BASE_DOMAIN}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: gitlab-webservice-default
+          port: 8181
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: gitlab-web-internal
+  namespace: gitlab
+  annotations:
+    cloudflare-operator.io/type: CNAME
+    cloudflare-operator.io/content: ${BASE_DOMAIN}
+spec:
+  parentRefs:
+    - name: envoy-internal
       namespace: network
       sectionName: https
   hostnames:
@@ -36,7 +60,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - registry.local.${BASE_DOMAIN}
+    - registry.${BASE_DOMAIN}
   rules:
     - matches:
         - path:
@@ -59,7 +83,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - gitlab-minio.local.${BASE_DOMAIN}
+    - gitlab-minio.${BASE_DOMAIN}
   rules:
     - matches:
         - path:

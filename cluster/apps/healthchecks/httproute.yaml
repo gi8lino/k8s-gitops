@@ -12,7 +12,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - healthchecks.local.${BASE_DOMAIN}
+    - healthchecks.${BASE_DOMAIN}
   rules:
     - matches:
         - path:
@@ -42,7 +42,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - healthchecks.local.${BASE_DOMAIN}
+    - healthchecks.${BASE_DOMAIN}
   rules:
     - matches:
         - path:

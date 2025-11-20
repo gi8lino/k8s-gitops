@@ -119,7 +119,7 @@ spec:
           signout_redirect_url: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/logout
           role_attribute_path: contains(roles[*], 'admins') && 'Admin' || 'Viewer'
         server:
-          root_url: https://grafana.local.${BASE_DOMAIN}
+          root_url: https://grafana.${BASE_DOMAIN}
       sidecar:
         dashboards:
           enabled: true

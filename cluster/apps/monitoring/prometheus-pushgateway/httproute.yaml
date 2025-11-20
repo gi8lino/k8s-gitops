@@ -12,7 +12,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - pushgateway.local.${BASE_DOMAIN}
+    - pushgateway.${BASE_DOMAIN}
   rules:
     - matches:
         - path:

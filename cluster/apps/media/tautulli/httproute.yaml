@@ -12,7 +12,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - tautulli.local.${BASE_DOMAIN}
+    - tautulli.${BASE_DOMAIN}
   rules:
     - matches:
         - path:

@@ -12,7 +12,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - falco.local.${BASE_DOMAIN}
+    - falco.${BASE_DOMAIN}
   rules:
     - matches:
         - path:

@@ -7,7 +7,6 @@ resources:
   - deployment.yaml
   - dnsrecord.yaml
   - envoyextensionpolicy.yaml
-  - envoypatchpolicy.yaml
   - httproute.yaml
   - persistentvolumeclaim.yaml
   - secret.yaml

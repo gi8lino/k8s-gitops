@@ -12,7 +12,7 @@ spec:
       namespace: network
       sectionName: https
   hostnames:
-    - snapraid.local.${BASE_DOMAIN}
+    - snapraid.${BASE_DOMAIN}
   rules:
     - matches:
         - path:

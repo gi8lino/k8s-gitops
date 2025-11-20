@@ -2,35 +2,6 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: whoami-local
-  namespace: debug
-  annotations:
-    cloudflare-operator.io/ignore: "true"
-spec:
-  parentRefs:
-    - name: envoy-internal
-      namespace: network
-      sectionName: https
-  hostnames:
-    - whoami.local.${BASE_DOMAIN}
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      filters:
-        - type: RequestHeaderModifier
-          requestHeaderModifier:
-            remove:
-              - Authorization
-              - Cookie
-      backendRefs:
-        - name: whoami
-          port: 80
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
   name: whoami-external
   namespace: debug
   annotations:
