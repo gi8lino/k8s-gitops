@@ -7,31 +7,52 @@ on: # yamllint disable-line rule:truthy
 jobs:
   sync:
     runs-on: ubuntu-latest
+
     steps:
       - name: Check out code
-        uses: actions/checkout@v6
-      - name: Process YAML
+        uses: actions/checkout@v4
+
+      - name: Update Cloudflare ranges in YAML
         run: |
+          set -euo pipefail
+
           # renovate depName=mikefarah/yq
           wget -O /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
           chmod +x /tmp/yq
 
-          readarray -d '' nets < <(curl -sS https://www.cloudflare.com/ips-v4/ | sort) || (echo "Error reading and processing data returned by curl" && exit 1)
-          # check if nets is not empty
-          if [ -z "${nets[@]}" ]; then
-            echo "ERROR: No data returned by curl"
+          CF_URL_V4="https://www.cloudflare.com/ips-v4/"
+
+          # Fetch IPv4 networks (sorted, one per line)
+          mapfile -t nets < <(curl -fsSL "${CF_URL_V4}" | sort)
+
+          if [ "${#nets[@]}" -eq 0 ]; then
+            echo "ERROR: No data returned by curl from ${CF_URL_V4}"
             exit 1
           fi
 
-          # cilium network policy
-          cilium_nets=$(printf '"%s", ' ${nets[@]})  # add quotes and commas for yq
-          /tmp/yq --inplace ".spec.ingress[0].fromCIDR = [ ${cilium_nets%,*} ]" cluster/apps/network/envoy-gateway/networkpolicies/envoy-gateway-external.yaml
+          # Build quoted, comma-separated list for yq
+          cilium_nets=$(printf '"%s", ' "${nets[@]}")
+          cilium_nets="${cilium_nets%, }"
+
+          /tmp/yq --inplace \
+            ".spec.ingress[0].fromCIDR = [ ${cilium_nets} ]" \
+            cluster/apps/network/envoy-gateway/networkpolicies/envoy-gateway-external.yaml
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Create pull request for cloudflare network range update
+        if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "cf/update-nets"
+          branch: cf/update-nets
           delete-branch: true
           title: "update cloudflare network ranges"
           signoff: true
