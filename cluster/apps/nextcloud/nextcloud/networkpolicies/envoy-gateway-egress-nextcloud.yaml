@@ -7,7 +7,6 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      gateway.envoyproxy.io/owning-gateway-name: envoy-external
       gateway.envoyproxy.io/owning-gateway-namespace: network
   egress:
     - toEndpoints:
