@@ -8,12 +8,15 @@ spec:
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
-      name: wiki
+      name: wiki-external
   lua:
     - type: Inline
       inline: |
         function envoy_on_request(request_handle)
-          if request_handle:headers():get(":path") == "/login?all=*" then
+
+          local path = request_handle:headers():get(":path")
+
+          if path == "/login?all=*" then
             request_handle:respond(
               {
                 [":status"] = "301",
