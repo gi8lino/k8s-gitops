@@ -3,7 +3,7 @@ apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: EnvoyExtensionPolicy
 metadata:
   name: sabnzbd-disable-admin-page
-  namespace: usenet
+  namespace: media
 spec:
   targetRefs:
     - group: gateway.networking.k8s.io
