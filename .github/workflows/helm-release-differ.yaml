@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Filter Helm Releases
         uses: dorny/paths-filter@v3
@@ -36,10 +36,10 @@ jobs:
         file: ${{ fromJSON(needs.detect-file-changes.outputs.yaml_files) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Checkout default branch
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: master
           path: default
