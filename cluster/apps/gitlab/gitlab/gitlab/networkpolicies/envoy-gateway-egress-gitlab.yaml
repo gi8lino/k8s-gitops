@@ -29,7 +29,5 @@ spec:
             "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
-            - port: "8080"
-              protocol: TCP
-            - port: "8181"
+            - port: "8181" # http-workhorse
               protocol: TCP
