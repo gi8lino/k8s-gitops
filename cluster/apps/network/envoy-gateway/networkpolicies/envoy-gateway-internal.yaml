@@ -20,6 +20,16 @@ spec:
               protocol: TCP
             - port: "10443"
               protocol: TCP
+    - fromEntities:
+        - cluster
+      toPorts:
+        - ports:
+            - port: "10022"
+              protocol: TCP
+            - port: "10080"
+              protocol: TCP
+            - port: "10443"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:
