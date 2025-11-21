@@ -29,8 +29,7 @@ metadata:
   name: gitlab-web-internal
   namespace: gitlab
   annotations:
-    cloudflare-operator.io/type: CNAME
-    cloudflare-operator.io/content: ${BASE_DOMAIN}
+    cloudflare-operator.io/ignore: "true"
 spec:
   parentRefs:
     - name: envoy-internal
