@@ -25,6 +25,7 @@ spec:
       tls:
         certificateRefs:
           - name: ${BASE_DOMAIN/./-}-tls
+            kind: Secret
     - name: ssh
       allowedRoutes:
         namespaces:
