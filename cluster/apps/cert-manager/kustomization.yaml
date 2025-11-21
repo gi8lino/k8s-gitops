@@ -12,7 +12,7 @@ configMapGenerator:
   - name: grafana-dashboard-cert-manager-dashboard
     namespace: cert-manager
     files:
-      - cert-manager-dashboard.json=https://raw.githubusercontent.com/monitoring-mixins/website/refs/heads/master/assets/cert-manager/dashboards/overview.json
+      - cert-manager-dashboard.json=https://raw.githubusercontent.com/monitoring-mixins/website/refs/heads/master/assets/cert-manager/dashboards/cert-manager-overview.json
 generatorOptions:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
