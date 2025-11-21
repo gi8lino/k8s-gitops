@@ -9,6 +9,9 @@ metadata:
     cloudflare-operator.io/content: ${BASE_DOMAIN}
 spec:
   parentRefs:
+    - name: envoy-internal
+      namespace: network
+      sectionName: https
     - name: envoy-external
       namespace: network
       sectionName: https
