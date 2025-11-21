@@ -24,7 +24,7 @@ spec:
           from: All
       tls:
         certificateRefs:
-          - name: external-${BASE_DOMAIN/./-}-tls
+          - name: ${BASE_DOMAIN/./-}-tls
     - name: ssh
       allowedRoutes:
         namespaces:
