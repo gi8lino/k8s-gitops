@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - envoy-gateway-egress-falco.yaml
   - falco-k8s-metacollector.yaml
-  - falco-redis.yaml
+  - falco-sidekick-ui-redis.yaml
   - falco-sidekick-ui.yaml
   - falco-sidekick.yaml
   - falco.yaml

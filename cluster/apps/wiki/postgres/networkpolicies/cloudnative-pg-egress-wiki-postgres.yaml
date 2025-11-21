@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: cloudnative-pg-wiki-postgres-egress
+  name: cloudnative-pg-egress-wiki-postgres
   namespace: cnpg-system
 spec:
   endpointSelector:

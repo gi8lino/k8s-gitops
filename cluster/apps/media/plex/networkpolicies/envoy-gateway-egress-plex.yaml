@@ -5,7 +5,7 @@ metadata:
   name: envoy-gateway-egress-plex
   namespace: network
 spec:
-  description: "Allow all gateway egress traffic to plex"
+  description: Allow all gateway egress traffic to plex
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: envoy

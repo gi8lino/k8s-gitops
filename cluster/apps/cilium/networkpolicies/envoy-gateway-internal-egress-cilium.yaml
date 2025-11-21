@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: envoy-gateway-egress-cilium
+  name: envoy-gateway-internal-egress-cilium
   namespace: network
 spec:
   endpointSelector:

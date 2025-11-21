@@ -5,7 +5,7 @@ metadata:
   name: envoy-gateway-egress-wiki
   namespace: network
 spec:
-  description: "Allow all gateway egress traffic to wiki"
+  description: Allow all gateway egress traffic to wiki
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: envoy

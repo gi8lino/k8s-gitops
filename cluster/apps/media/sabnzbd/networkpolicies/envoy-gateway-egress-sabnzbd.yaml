@@ -5,7 +5,7 @@ metadata:
   name: envoy-gateway-egress-sabnzbd
   namespace: network
 spec:
-  description: "Allow all gateway egress traffic to sabnzbd"
+  description: Allow all gateway egress traffic to sabnzbd
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: envoy

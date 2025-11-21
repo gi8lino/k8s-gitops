@@ -5,7 +5,7 @@ metadata:
   name: gitlab-registry-cleanup
   namespace: gitlab
 spec:
-  description: "Allow gitlab registry cleanup"
+  description: Allow gitlab registry cleanup
   endpointSelector:
     matchLabels:
       app: gitlab-registry-cleanup

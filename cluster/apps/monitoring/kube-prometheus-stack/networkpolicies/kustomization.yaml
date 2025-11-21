@@ -6,10 +6,10 @@ resources:
   - alertmanager.yaml
   - egress-kube-prometheus-stack-admission-create-job.yaml
   - egress-kube-prometheus-stack-admission-patch-job.yaml
+  - egress-kube-prometheus-stack-operator.yaml
+  - egress-kube-state-metrics.yaml
   - envoy-gateway-egress-alertmanager.yaml
   - envoy-gateway-egress-grafana.yaml
   - envoy-gateway-egress-prometheus.yaml
   - grafana.yaml
-  - kube-prometheus-stack-operator.yaml
-  - kube-state-metrics.yaml
   - prometheus.yaml

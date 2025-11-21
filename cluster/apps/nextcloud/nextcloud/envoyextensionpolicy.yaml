@@ -27,11 +27,49 @@ spec:
           end
 
           if string.match(path, "^/settings/admin") then
+            local html = [[
+              <!DOCTYPE html>
+              <html lang="en">
+              <head>
+                <meta charset="UTF-8">
+                <title>403 – Access Blocked</title>
+                <style>
+                  body {
+                    font-family: sans-serif;
+                    background: #fafafa;
+                    padding: 60px;
+                    text-align: center;
+                    color: #333;
+                  }
+                  .card {
+                    display: inline-block;
+                    background: white;
+                    padding: 35px 45px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                  }
+                  h1 {
+                    color: #cc0000;
+                    margin-bottom: 0.6em;
+                  }
+                </style>
+              </head>
+              <body>
+                <div class="card">
+                  <h1>403 – Admin Access Blocked</h1>
+                  <p>You do not have permission to access the admin settings.</p>
+                </div>
+              </body>
+              </html>
+            ]]
+
             request_handle:respond(
               {
                 [":status"] = "403",
+                ["content-type"] = "text/html",
               },
-              "Admin page access is blocked."
+              html
             )
+            return
           end
         end

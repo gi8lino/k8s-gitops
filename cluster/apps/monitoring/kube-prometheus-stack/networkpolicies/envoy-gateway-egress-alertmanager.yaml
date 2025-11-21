@@ -5,7 +5,7 @@ metadata:
   name: envoy-gateway-egress-alertmanager
   namespace: network
 spec:
-  description: "Allow all gateway egress traffic to alertmanager"
+  description: Allow all gateway egress traffic to alertmanager
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: envoy

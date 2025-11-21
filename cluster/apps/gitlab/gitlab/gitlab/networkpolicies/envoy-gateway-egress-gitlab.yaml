@@ -5,7 +5,7 @@ metadata:
   name: envoy-gateway-egress-gitlab
   namespace: network
 spec:
-  description: "Allow all gateway egress traffic to gitlab"
+  description: Allow all gateway egress traffic to gitlab
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: envoy

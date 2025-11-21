@@ -5,7 +5,7 @@ metadata:
   name: envoy-gateway-egress-vimbin
   namespace: network
 spec:
-  description: "Allow all gateway egress traffic to vimbin"
+  description: Allow all gateway egress traffic to vimbin
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: envoy

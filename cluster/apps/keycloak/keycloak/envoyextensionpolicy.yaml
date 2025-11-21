@@ -13,12 +13,49 @@ spec:
     - type: Inline
       inline: |
         function envoy_on_request(request_handle)
-          if string.match(request_handle:headers():get(":path"), "^/admin") then
+          local path = request_handle:headers():get(":path")
+          if path and string.match(path, "^/admin") then
+            local html = [[
+              <!DOCTYPE html>
+              <html lang="en">
+              <head>
+                <meta charset="UTF-8">
+                <title>Access Blocked</title>
+                <style>
+                  body {
+                    font-family: Arial, sans-serif;
+                    background: #fafafa;
+                    padding: 50px;
+                    text-align: center;
+                    color: #333;
+                  }
+                  .card {
+                    display: inline-block;
+                    background: white;
+                    padding: 30px 40px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                  }
+                  h1 {
+                    color: #c00;
+                  }
+                </style>
+              </head>
+              <body>
+                <div class="card">
+                  <h1>403 – Admin Access Blocked</h1>
+                  <p>You are not allowed to access the admin area.</p>
+                </div>
+              </body>
+              </html>
+            ]]
+
             request_handle:respond(
               {
                 [":status"] = "403",
+                ["content-type"] = "text/html"
               },
-              "Admin page access is blocked."
+              html
             )
           end
         end

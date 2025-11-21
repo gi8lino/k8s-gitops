@@ -44,13 +44,11 @@ These directories are not tracked by Flux but are useful nonetheless:
 
 ### Gateways
 
-Ports `80/443` forward to the two Envoy Gateway data planes: `envoy-external` serves public FQDNs while `envoy-internal` handles `*.local.${BASE_DOMAIN}`. Cloudflare fronts the external Gateway, and dedicated Cilium network policies only permit traffic originating from Cloudflare's published ranges (plus `${LAN_NETWORK_RANGE_V4}` for LAN access); everything else is dropped before it reaches Envoy.
+Ports `80/443` forward to the two Envoy Gateway data planes: `envoy-external` serves public FQDNs while `envoy-internal` handles internal-only services. Cloudflare fronts the external Gateway, and dedicated Cilium network policies only permit traffic originating from Cloudflare's published ranges; everything else is dropped before it reaches Envoy. My router port-forwards those public ports to the `gateway-external` gateway, while internal services stay behind `gateway-internal`.
 
 ### Internal DNS
 
-For internal DNS i use the built-in [dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html) of [pihole](https://pi-hole.net) deployed on a raspberry pi.
-
-For adblocking, I have [pihole](https://pi-hole.net) deployed on a raspberry pi.
+Internal DNS relies on the built-in [dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html) of [pihole](https://pi-hole.net) deployed on a raspberry pi, which forwards every lookup to `gateway-internal` so internal applications are reachable only via the internal gateway. Pi-hole also handles ad blocking.
 
 ### External DNS
 

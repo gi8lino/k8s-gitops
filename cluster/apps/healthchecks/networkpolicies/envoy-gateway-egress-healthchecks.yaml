@@ -5,7 +5,7 @@ metadata:
   name: envoy-gateway-egress-healthchecks
   namespace: network
 spec:
-  description: "Allow all gateway egress traffic to healthchecks"
+  description: Allow all gateway egress traffic to healthchecks
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: envoy

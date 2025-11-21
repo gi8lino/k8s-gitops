@@ -5,7 +5,7 @@ metadata:
   name: envoy-gateway-egress-sonarr
   namespace: network
 spec:
-  description: "Allow all gateway egress traffic to sonarr"
+  description: Allow all gateway egress traffic to sonarr
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: envoy

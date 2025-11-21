@@ -5,7 +5,7 @@ metadata:
   name: minio-ingress-mirrio
   namespace: minio
 spec:
-  description: "Allow mirrio to connect to minio"
+  description: Allow mirrio to connect to minio
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: minio

@@ -5,7 +5,7 @@ metadata:
   name: envoy-gateway-egress-whoami
   namespace: network
 spec:
-  description: "Allow all gateway egress traffic to whoami"
+  description: Allow all gateway egress traffic to whoami
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: envoy

@@ -5,7 +5,7 @@ metadata:
   name: minio-ingress-k8up-jobs
   namespace: minio
 spec:
-  description: "Allow k8up jobs to connect to minio"
+  description: Allow k8up jobs to connect to minio
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: minio

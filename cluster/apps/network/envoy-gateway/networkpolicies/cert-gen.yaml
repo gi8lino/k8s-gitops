@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: cert-geny
+  name: cert-gen
   namespace: network
 spec:
   endpointSelector:
