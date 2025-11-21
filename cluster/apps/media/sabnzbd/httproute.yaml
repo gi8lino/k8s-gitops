@@ -29,8 +29,7 @@ metadata:
   name: sabnzbd-internal
   namespace: media
   annotations:
-    cloudflare-operator.io/type: CNAME
-    cloudflare-operator.io/content: ${BASE_DOMAIN}
+    cloudflare-operator.io/ignore: "true"
 spec:
   parentRefs:
     - name: envoy-internal
@@ -52,6 +51,8 @@ kind: HTTPRoute
 metadata:
   name: sabnzbd-api
   namespace: media
+  annotations:
+    cloudflare-operator.io/ignore: "true"
 spec:
   parentRefs:
     - name: envoy-internal
