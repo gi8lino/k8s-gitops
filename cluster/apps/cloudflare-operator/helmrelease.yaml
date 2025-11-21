@@ -26,6 +26,8 @@ spec:
         enabled: true
       prometheusRule:
         enabled: true
+    gatewayAPI:
+      enabled: true
   install:
     crds: Skip
   upgrade:

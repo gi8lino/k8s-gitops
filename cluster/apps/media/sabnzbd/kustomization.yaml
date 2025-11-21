@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - networkpolicies
   - deployment.yaml
-  - dnsrecord.yaml
   - envoyextensionpolicy.yaml
   - httproute.yaml
   - persistentvolumeclaim.yaml
