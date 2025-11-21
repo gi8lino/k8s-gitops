@@ -7,11 +7,17 @@
 This repository contains my entire Kubernetes cluster setup built on K3s and managed by Flux v2.\
 Secrets are encrypted and managed with [SOPS](https://github.com/mozilla/sops).
 
-For initial deploy see this manuals:
+See these manuals for an initial deployment:
 
 - [Install pre-commit Hooks](./.github/docs/precommit.md)
 - [Setting up GnuPG keys](./.github/docs/gpg.md)
 - [Initial flux deployment](./.github/docs/flux.md)
+
+## 🧰 Prerequisites
+
+- `flux` command-line tools for bootstrap and reconciliation.
+- `kubectl` configured against the target K3s cluster.
+- `age`/GnuPG plus the SOPS configuration used for secrets.
 
 ---
 
@@ -21,7 +27,7 @@ For initial deploy see this manuals:
 
 [Renovate](https://github.com/renovatebot/renovate) is a very useful tool that when configured will start to create PRs in your GitHub repository when Docker images, Helm charts or anything else that can be tracked has a newer version. The configuration for Renovate is located [here](./.github/renovate.json5)
 
-There are also a couple GitHub workflows included in this repository that will help automate some processes. See [here](.github/workflows/README.md) fore more information.
+There are also a couple GitHub workflows included in this repository that will help automate some processes. See [here](.github/workflows/README.md) for more information.
 
 ## :open_file_folder:&nbsp; Repository Structure
 
@@ -35,8 +41,8 @@ This Git Repository contains the following directories and are ordered below by 
 These directories are not tracked by Flux but are useful nonetheless:
 
 - **.github** directory contains GitHub related files
-- **.taskfiles** directory contains [go-taks](https://github.com/go-task/task) related files
-- **hack** directory contains useful scrips
+- **.taskfiles** directory contains [go-task](https://github.com/go-task/task) related files
+- **hack** directory contains useful scripts
 
 ---
 
@@ -44,7 +50,28 @@ These directories are not tracked by Flux but are useful nonetheless:
 
 ### Gateways
 
-Ports `80/443` forward to the two Envoy Gateway data planes: `envoy-external` serves public FQDNs while `envoy-internal` handles internal-only services. Cloudflare fronts the external Gateway, and dedicated Cilium network policies only permit traffic originating from Cloudflare's published ranges; everything else is dropped before it reaches Envoy. My router port-forwards those public ports to the `gateway-external` gateway, while internal services stay behind `gateway-internal`.
+Ports `80/443` forward to the two Envoy Gateway data planes: `gateway-internal` serves my home network plus services that need both internal and tightly scoped external access, whereas `gateway-external` is reserved for fully public workloads. Cloudflare fronts the external Gateway, and dedicated Cilium network policies only permit traffic originating from Cloudflare's published ranges; everything else is dropped before it reaches Envoy. The external Gateway also blocks admin portals and direct login endpoints so only sanctioned entry points reach the services, and my router port-forwards the public ports to `gateway-external` while internal-only traffic stays within `gateway-internal`.
+
+- `gateway-internal`: LAN access, internal workloads, and hybrid services exposed through Pi-hole's dnsmasq.
+- `gateway-external`: Cloudflare-facing public endpoints, owner-managed blocks on sensitive admin traffic, and router port-forwards for the internet.
+
+```mermaid
+flowchart LR
+    Cloudflare --> Router
+    Router[Home Router]
+    Router --> GatewayExternal(gateway-external) --> ExternalServices
+    Lan --> Router
+    Router --> Pihole --> GatewayInternal --> InternalServices
+    GatewayInternal --> ExternalServices
+    linkStyle 0 stroke:#1f77b4,stroke-width:2px
+    linkStyle 1 stroke:#1f77b4,stroke-width:2px
+    linkStyle 2 stroke:#1f77b4,stroke-width:2px
+    linkStyle 3 stroke:#2ca02c,stroke-width:2px
+    linkStyle 4 stroke:#2ca02c,stroke-width:2px
+    linkStyle 5 stroke:#2ca02c,stroke-width:2px
+    linkStyle 6 stroke:#2ca02c,stroke-width:2px
+    linkStyle 7 stroke:#2ca02c,stroke-width:2px
+```
 
 ### Internal DNS
 
