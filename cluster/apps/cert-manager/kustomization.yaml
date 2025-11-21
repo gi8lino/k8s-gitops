@@ -9,10 +9,10 @@ resources:
   - prometheusrule.yaml
   - secret.yaml
 configMapGenerator:
-  - files:
-      - cert-manager-dashboard.json=https://raw.githubusercontent.com/monitoring-mixins/website/refs/heads/master/assets/cert-manager/dashboards/overview.json
-    name: grafana-dashboard-cert-manager-dashboard
+  - name: grafana-dashboard-cert-manager-dashboard
     namespace: cert-manager
+    files:
+      - cert-manager-dashboard.json=https://raw.githubusercontent.com/monitoring-mixins/website/refs/heads/master/assets/cert-manager/dashboards/overview.json
 generatorOptions:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
