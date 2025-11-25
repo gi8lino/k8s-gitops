@@ -11,3 +11,8 @@ tasks:
     cmds:
       - ./hack/generate_secret_templates.sh
     silent: true
+  check-selectors:
+    desc: Check that network policy matchLabels selectors match live pods
+    cmds:
+      - python3 ./hack/check-policy-selectors.py
+    silent: true
