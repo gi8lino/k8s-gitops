@@ -14,11 +14,11 @@ spec:
             * on(instance) group_left(nodename)
             node_uname_info
             ) != 1
-          annotations:
-            description: Device «{{ $labels.device }}» on node «{{ $labels.nodename }}» is not healthy.
-            summary: Device «{{ $labels.device }}» is not healthy.
           labels:
             severity: critical
+          annotations:
+            summary: Device «{{ $labels.device }}» is not healthy
+            description: Device «{{ $labels.device }}» on node «{{ $labels.nodename }}» is not healthy (SMART health != 1).
 
         - alert: DeviceHasErrors
           expr: (
@@ -26,18 +26,15 @@ spec:
             * on(instance) group_left(nodename)
             node_uname_info
             ) > 0
-          annotations:
-            description: Device «{{ $labels.device }}» on node «{{ $labels.nodename }}» has {{ $value }} errors.
-            summary: Device «{{ $labels.device }}» has errors.
           labels:
             severity: critical
+          annotations:
+            summary: Device «{{ $labels.device }}» has errors
+            description: Device «{{ $labels.device }}» on node «{{ $labels.nodename }}» has {{ $value }} recorded errors.
 
-    # --------------------
-    # HDD temperature
-    # --------------------
+    # HDD temperature (rotational=1)
     - name: disk-temperature-hdd
       rules:
-        # Critical: HDD very hot (short spike)
         - alert: HostHddTooHot
           expr: (
             max_over_time(
@@ -53,10 +50,9 @@ spec:
             severity: critical
             disk_class: hdd
           annotations:
-            summary: 'HDD «{{ $labels.device }}» at {{ printf "%.1f" $value }} °C (5m max)'
+            summary: 'HDD «{{ $labels.device }}» too hot: {{ printf "%.1f" $value }} °C (5m max)'
             description: "HDD «{{ $labels.device }}» on node «{{ $labels.nodename }}» is too hot (5m max > 60 °C)."
 
-        # Warning: HDD sustained elevated temp
         - alert: HostHddTempElevated
           expr: (
             avg_over_time(
@@ -74,7 +70,6 @@ spec:
             summary: 'HDD «{{ $labels.device }}» elevated temp {{ printf "%.1f" $value }} °C (2h avg)'
             description: "HDD «{{ $labels.device }}» on node «{{ $labels.nodename }}» has sustained elevated temperature (> 50 °C 2h avg)."
 
-        # Info: HDD mildly warm for a long time
         - alert: HostHddWarmLong
           expr: (
             avg_over_time(
@@ -89,15 +84,12 @@ spec:
             severity: info
             disk_class: hdd
           annotations:
-            summary: 'HDD «{{ $labels.device }}» warm for long: {{ printf "%.1f" $value }} °C (12h avg)'
+            summary: 'HDD «{{ $labels.device }}» warm long-term: {{ printf "%.1f" $value }} °C (12h avg)'
             description: "HDD «{{ $labels.device }}» on node «{{ $labels.nodename }}» is warm over 12h (> 45 °C 12h avg). Consider airflow/placement."
 
-    # --------------------
-    # SATA SSD temperature (non-NVMe)
-    # --------------------
+    # SATA SSD temperature (rotational=0, non-NVMe)
     - name: disk-temperature-ssd
       rules:
-        # Critical: SSD very hot short-term
         - alert: HostSsdTooHot
           expr: (
             max_over_time(
@@ -113,10 +105,9 @@ spec:
             severity: critical
             disk_class: ssd
           annotations:
-            summary: 'SSD «{{ $labels.device }}» at {{ printf "%.1f" $value }} °C (5m max)'
+            summary: 'SSD «{{ $labels.device }}» too hot: {{ printf "%.1f" $value }} °C (5m max)'
             description: "SSD «{{ $labels.device }}» on node «{{ $labels.nodename }}» is too hot (5m max > 70 °C)."
 
-        # Warning: SSD sustained high temp
         - alert: HostSsdTempElevated
           expr: (
             avg_over_time(
@@ -134,7 +125,6 @@ spec:
             summary: 'SSD «{{ $labels.device }}» elevated temp {{ printf "%.1f" $value }} °C (2h avg)'
             description: "SSD «{{ $labels.device }}» on node «{{ $labels.nodename }}» has sustained high temperature (> 60 °C 2h avg)."
 
-        # Info: SSD warm long-term
         - alert: HostSsdWarmLong
           expr: (
             avg_over_time(
@@ -149,15 +139,12 @@ spec:
             severity: info
             disk_class: ssd
           annotations:
-            summary: 'SSD «{{ $labels.device }}» warm for long: {{ printf "%.1f" $value }} °C (12h avg)'
-            description: "SSD «{{ $labels.device }}» on node «{{ $labels.nodename }}» is warm over 12h (> 50 °C 12h avg). Check airflow and chassis temp."
+            summary: 'SSD «{{ $labels.device }}» warm long-term: {{ printf "%.1f" $value }} °C (12h avg)'
+            description: "SSD «{{ $labels.device }}» on node «{{ $labels.nodename }}» is warm over 12h (> 50 °C 12h avg)."
 
-    # --------------------
-    # NVMe temperature
-    # --------------------
+    # NVMe temperature (device name nvme*)
     - name: disk-temperature-nvme
       rules:
-        # Critical: NVMe very hot short-term
         - alert: HostNvmeTooHot
           expr: (
             max_over_time(
@@ -173,10 +160,9 @@ spec:
             severity: critical
             disk_class: nvme
           annotations:
-            summary: 'NVMe «{{ $labels.device }}» at {{ printf "%.1f" $value }} °C (5m max)'
+            summary: 'NVMe «{{ $labels.device }}» too hot: {{ printf "%.1f" $value }} °C (5m max)'
             description: "NVMe drive «{{ $labels.device }}» on node «{{ $labels.nodename }}» is too hot (5m max > 80 °C, likely throttling)."
 
-        # Warning: NVMe sustained high temp
         - alert: HostNvmeTempElevated
           expr: (
             avg_over_time(
@@ -194,7 +180,6 @@ spec:
             summary: 'NVMe «{{ $labels.device }}» elevated temp {{ printf "%.1f" $value }} °C (2h avg)'
             description: "NVMe drive «{{ $labels.device }}» on node «{{ $labels.nodename }}» has sustained high temperature (> 70 °C 2h avg)."
 
-        # Info: NVMe warm long-term
         - alert: HostNvmeWarmLong
           expr: (
             avg_over_time(
@@ -209,45 +194,5 @@ spec:
             severity: info
             disk_class: nvme
           annotations:
-            summary: 'NVMe «{{ $labels.device }}» warm for long: {{ printf "%.1f" $value }} °C (12h avg)'
-            description: "NVMe drive «{{ $labels.device }}» on node «{{ $labels.nodename }}» is warm over 12h (> 55 °C 12h avg). Consider cooling if frequent."
-
-    # --------------------
-    # CPU temperature
-    # --------------------
-    - name: cpu-temperature
-      rules:
-        - alert: HostCpuTooHot
-          expr: (
-            max_over_time(
-            node_hwmon_temp_celsius{
-            job="node-exporter",
-            chip=~"coretemp.*|k10temp.*"
-            }[5m]
-            )
-            * on(instance) group_left(nodename)
-            node_uname_info
-            ) > 90
-          for: 5m
-          labels:
-            severity: critical
-          annotations:
-            summary: 'CPU on «{{ $labels.nodename }}» too hot: {{ printf "%.1f" $value }} °C (5m max)'
-            description: "CPU temperature on «{{ $labels.nodename }}» has been above 90 °C for at least 5 minutes (possible throttling)."
-
-        - alert: HostCpuTempHigh
-          expr: (
-            avg_over_time(
-            node_hwmon_temp_celsius{
-            job="node-exporter",
-            chip=~"coretemp.*|k10temp.*"
-            }[15m]
-            )
-            * on(instance) group_left(nodename)
-            node_uname_info
-            ) > 85
-          labels:
-            severity: warning
-          annotations:
-            summary: 'CPU on «{{ $labels.nodename }}» running hot: {{ printf "%.1f" $value }} °C (15m avg)'
-            description: "CPU on «{{ $labels.nodename }}» has a sustained high temperature (> 85 °C 15m avg). Check cooling and sustained load."
+            summary: 'NVMe «{{ $labels.device }}» warm long-term: {{ printf "%.1f" $value }} °C (12h avg)'
+            description: "NVMe drive «{{ $labels.device }}» on node «{{ $labels.nodename }}» is warm over 12h (> 55 °C 12h avg)."

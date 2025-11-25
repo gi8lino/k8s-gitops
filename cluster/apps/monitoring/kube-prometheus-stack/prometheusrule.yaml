@@ -9,26 +9,109 @@ spec:
     - name: apt-packages
       rules:
         - alert: NodeRebootRequired
-          annotations:
-            description: Node «{{ $labels.nodename }}» needs to reboot.
-            summary: Reboot needed.
           expr: node_reboot_required * on(instance) group_left(nodename) (node_uname_info) > 0
           for: 24h
           labels:
             severity: warning
-        - alert: NodePackageUpdatesAvailable
           annotations:
-            description: Updates for «{{ $labels.nodename }}» available.
-            summary: Updates available.
+            summary: Reboot needed
+            description: Node «{{ $labels.nodename }}» needs to reboot.
+
+        - alert: NodePackageUpdatesAvailable
           expr: apt_upgrades_pending * on(instance) group_left(nodename) (node_uname_info) > 0
           for: 24h
           labels:
             severity: warning
-        - alert: NodeAutoremovePackagePending
           annotations:
-            description: Autoremove packages for «{{ $labels.nodename }}» have been pending for 48h.
-            summary: Orphaned packages available for cleanup.
+            summary: Updates available
+            description: Updates for «{{ $labels.nodename }}» available.
+
+        - alert: NodeAutoremovePackagePending
           expr: apt_autoremove_pending * on(instance) group_left(nodename) (node_uname_info) > 0
           for: 48h
           labels:
             severity: warning
+          annotations:
+            summary: Autoremove packages pending
+            description: Autoremove packages for «{{ $labels.nodename }}» have been pending for 48h.
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: hwmon
+  namespace: monitoring
+spec:
+  groups:
+    - name: hwmon
+      rules:
+        - alert: HostNodeOvertemperatureAlarm
+          expr: (
+            node_hwmon_temp_crit_alarm_celsius
+            * on(instance) group_left(nodename)
+            node_uname_info
+            ) == 1
+          labels:
+            severity: critical
+          annotations:
+            summary: Host «{{ $labels.nodename }}» overtemperature alarm
+            description: |
+              Hardware overtemperature alarm is active.
+              VALUE = {{ $value }}
+              LABELS = {{ $labels }}
+
+        - alert: HostCpuTempHigh
+          expr: (
+            avg_over_time(
+            node_hwmon_temp_celsius{chip=~"platform_coretemp.*"}[15m]
+            )
+            * on(instance) group_left(nodename)
+            node_uname_info
+            ) > 85
+          labels:
+            severity: warning
+          annotations:
+            summary: 'Host «{{ $labels.nodename }}» CPU running hot: {{ printf "%.1f" $value }} °C'
+            description: "CPU «{{ $labels.chip }}» on «{{ $labels.nodename }}» has a sustained high temperature (> 85 °C 15m avg)."
+
+        - alert: HostCpuTooHot
+          expr: (
+            max_over_time(
+            node_hwmon_temp_celsius{chip=~"platform_coretemp.*"}[5m]
+            )
+            * on(instance) group_left(nodename)
+            node_uname_info
+            ) > 90
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: 'Host «{{ $labels.nodename }}» CPU too hot: {{ printf "%.1f" $value }} °C'
+            description: "CPU «{{ $labels.chip }}» on «{{ $labels.nodename }}» has been above 90 °C for at least 5 minutes."
+
+        - alert: HostNvmeControllerTooHot
+          expr: (
+            max_over_time(
+            node_hwmon_temp_celsius{chip=~"nvme.*"}[5m]
+            )
+            * on(instance) group_left(nodename)
+            node_uname_info
+            ) > 75
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: 'Host «{{ $labels.nodename }}» NVMe controller hot: {{ printf "%.1f" $value }} °C'
+            description: "NVMe controller «{{ $labels.chip }}» on «{{ $labels.nodename }}» is hot (> 75 °C 5m max)."
+
+        - alert: RaspberryTooHot
+          expr: (
+            node_hwmon_temp_celsius{chip=~"thermal_thermal_zone.*"}
+            * on(instance) group_left(nodename)
+            node_uname_info
+            ) > 75
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: 'Raspberry «{{ $labels.nodename }}» CPU too hot: {{ printf "%.1f" $value }} °C'
+            description: "Raspberry SoC on «{{ $labels.nodename }}» is hot (> 75 °C 5m max)."
