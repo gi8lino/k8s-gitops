@@ -14,8 +14,8 @@ spec:
       targetPort: health
   type: ClusterIP
   selector:
-    app: keycloak
-    component: keycloak
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/component: keycloak
 ---
 apiVersion: v1
 kind: Service
@@ -33,5 +33,5 @@ spec:
       targetPort: http
       protocol: TCP
   selector:
-    app: keycloak
-    component: keycloak
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/component: keycloak

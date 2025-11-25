@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - gitlab
   - gitlab-backup-mirror
-  - gitlab-registry-cleanup
   - gitlab-runner

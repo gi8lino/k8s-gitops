@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: snapraid
+      app.kubernetes.io/name: snapraid
   template:
     metadata:
       labels:
-        app: snapraid
+        app.kubernetes.io/name: snapraid
     spec:
       containers:
         - name: snapraid

@@ -7,7 +7,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: snapraid
+      app.kubernetes.io/name: snapraid
   ingress:
     - fromEndpoints:
         - matchLabels:

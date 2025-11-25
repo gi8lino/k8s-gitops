@@ -33,8 +33,8 @@ spec:
             release: gitlab
             "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
-            app: gitlab-backup-mirror
-            component: job
+            app.kubernetes.io/name: gitlab-backup-mirror
+            app.kubernetes.io/component: job
             "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app: minio

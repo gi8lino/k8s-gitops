@@ -8,13 +8,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kthxbye
+      app.kubernetes.io/name: kthxbye
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: kthxbye
+        app.kubernetes.io/name: kthxbye
     spec:
       containers:
         - name: kthxbye

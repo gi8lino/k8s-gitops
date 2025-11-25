@@ -12,7 +12,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: filebrowser
+            app.kubernetes.io/name: filebrowser
             "k8s:io.kubernetes.pod.namespace": filebrowser
       toPorts:
         - ports:

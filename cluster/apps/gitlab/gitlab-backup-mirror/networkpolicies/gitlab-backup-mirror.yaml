@@ -8,8 +8,8 @@ spec:
   description: Allow mirrIO to connect to gitlab-minio and minIO and push status to prometheus pushgateway
   endpointSelector:
     matchLabels:
-      app: gitlab-backup-mirror
-      component: job
+      app.kubernetes.io/name: gitlab-backup-mirror
+      app.kubernetes.io/component: job
   egress:
     - toEndpoints:
         - matchLabels:

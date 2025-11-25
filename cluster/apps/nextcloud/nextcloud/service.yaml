@@ -11,5 +11,5 @@ spec:
       targetPort: http
   type: ClusterIP
   selector:
-    app: nextcloud
-    component: fpm-nginx
+    app.kubernetes.io/name: nextcloud
+    app.kubernetes.io/component: fpm-nginx

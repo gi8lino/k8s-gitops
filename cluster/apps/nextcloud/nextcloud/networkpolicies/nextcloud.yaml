@@ -7,8 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: nextcloud
-      component: fpm-nginx
+      app.kubernetes.io/name: nextcloud
+      app.kubernetes.io/component: fpm-nginx
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -20,8 +20,8 @@ spec:
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
         - matchLabels:
-            app: nextcloud
-            component: cronjob
+            app.kubernetes.io/name: nextcloud
+            app.kubernetes.io/component: cronjob
             "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:
@@ -67,8 +67,8 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app: nextcloud
-            component: valkey
+            app.kubernetes.io/name: nextcloud
+            app.kubernetes.io/component: valkey
             "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:

@@ -15,7 +15,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: radarr
+            app.kubernetes.io/name: radarr
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:

@@ -11,4 +11,4 @@ spec:
       targetPort: http
   type: ClusterIP
   selector:
-    app: filebrowser
+    app.kubernetes.io/name: filebrowser

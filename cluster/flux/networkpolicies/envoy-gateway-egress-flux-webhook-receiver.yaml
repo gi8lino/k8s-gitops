@@ -12,7 +12,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: notification-controller
+            app.kubernetes.io/component: notification-controller
             "k8s:io.kubernetes.pod.namespace": flux-system
       toPorts:
         - ports:

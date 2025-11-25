@@ -7,8 +7,8 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: wiki
-      component: wiki
+      app.kubernetes.io/name: wiki
+      app.kubernetes.io/component: wiki
   ingress:
     - fromEndpoints:
         - matchLabels:

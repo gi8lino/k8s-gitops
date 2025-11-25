@@ -15,4 +15,4 @@ spec:
       - monitoring
   selector:
     matchLabels:
-      app: kthxbye
+      app.kubernetes.io/name: kthxbye

@@ -12,7 +12,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: snapraid
+            app.kubernetes.io/name: snapraid
             "k8s:io.kubernetes.pod.namespace": snapraid
       toPorts:
         - ports:

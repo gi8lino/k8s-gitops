@@ -11,4 +11,4 @@ spec:
       targetPort: http
   type: ClusterIP
   selector:
-    app: healthchecks
+    app.kubernetes.io/name: healthchecks

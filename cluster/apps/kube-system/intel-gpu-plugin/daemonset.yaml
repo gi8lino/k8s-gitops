@@ -7,11 +7,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: intel-gpu-plugin
+      app.kubernetes.io/name: intel-gpu-plugin
   template:
     metadata:
       labels:
-        app: intel-gpu-plugin
+        app.kubernetes.io/name: intel-gpu-plugin
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64

@@ -7,13 +7,13 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: nextcloud
-      component: valkey
+      app.kubernetes.io/name: nextcloud
+      app.kubernetes.io/component: valkey
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app: nextcloud
-            component: fpm-nginx
+            app.kubernetes.io/name: nextcloud
+            app.kubernetes.io/component: fpm-nginx
       toPorts:
         - ports:
             - port: "6379"

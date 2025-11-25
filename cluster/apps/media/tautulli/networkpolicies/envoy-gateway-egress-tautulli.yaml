@@ -12,7 +12,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: tautulli
+            app.kubernetes.io/name: tautulli
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:

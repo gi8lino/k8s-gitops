@@ -7,14 +7,14 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: source-controller
+      app.kubernetes.io/component: source-controller
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app: kustomize-controller
+            app.kubernetes.io/component: kustomize-controller
             "k8s:io.kubernetes.pod.namespace": flux-system
         - matchLabels:
-            app: helm-controller
+            app.kubernetes.io/component: helm-controller
             "k8s:io.kubernetes.pod.namespace": flux-system
       toPorts:
         - ports:
@@ -31,8 +31,8 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
+            "k8s:io.kubernetes.pod.namespace": kube-system
       toPorts:
         - ports:
             - port: "53"
@@ -48,7 +48,7 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app: notification-controller
+            app.kubernetes.io/component: notification-controller
             "k8s:io.kubernetes.pod.namespace": flux-system
       toPorts:
         - ports:

@@ -15,7 +15,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: plex
+            app.kubernetes.io/name: plex
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:

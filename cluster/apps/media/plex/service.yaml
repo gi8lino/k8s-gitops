@@ -11,4 +11,4 @@ spec:
       targetPort: http
   type: ClusterIP
   selector:
-    app: plex
+    app.kubernetes.io/name: plex

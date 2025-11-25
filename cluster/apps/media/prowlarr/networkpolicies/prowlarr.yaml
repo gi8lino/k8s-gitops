@@ -7,7 +7,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: prowlarr
+      app.kubernetes.io/name: prowlarr
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -15,10 +15,10 @@ spec:
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
         - matchLabels:
-            app: sonarr
+            app.kubernetes.io/name: sonarr
             "k8s:io.kubernetes.pod.namespace": media
         - matchLabels:
-            app: radarr
+            app.kubernetes.io/name: radarr
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:
@@ -51,7 +51,7 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app: radarr
+            app.kubernetes.io/name: radarr
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:
@@ -59,7 +59,7 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app: sonarr
+            app.kubernetes.io/name: sonarr
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:
@@ -67,7 +67,7 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app: sabnzbd
+            app.kubernetes.io/name: sabnzbd
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:

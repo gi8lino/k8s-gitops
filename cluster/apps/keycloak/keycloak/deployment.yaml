@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,15 +8,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: keycloak
-      component: keycloak
+      app.kubernetes.io/name: keycloak
+      app.kubernetes.io/component: keycloak
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: keycloak
-        component: keycloak
+        app.kubernetes.io/name: keycloak
+        app.kubernetes.io/component: keycloak
     spec:
       serviceAccountName: keycloak
       securityContext:

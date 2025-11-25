@@ -15,7 +15,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: sabnzbd
+            app.kubernetes.io/name: sabnzbd
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:

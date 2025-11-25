@@ -7,7 +7,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: tautulli
+      app.kubernetes.io/name: tautulli
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -32,7 +32,7 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - matchLabels:
-            app: plex
+            app.kubernetes.io/name: plex
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:

@@ -81,6 +81,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app: kube-prometheus-stack-operator
+            app.kubernetes.io/name: kube-prometheus-stack-operator
             release: kube-prometheus-stack
             "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:

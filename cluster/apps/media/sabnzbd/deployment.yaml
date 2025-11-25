@@ -10,13 +10,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sabnzbd
+      app.kubernetes.io/name: sabnzbd
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: sabnzbd
+        app.kubernetes.io/name: sabnzbd
     spec:
       containers:
         - name: sabnzbd

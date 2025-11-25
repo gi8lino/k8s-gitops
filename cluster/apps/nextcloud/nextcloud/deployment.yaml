@@ -10,15 +10,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nextcloud
-      component: fpm-nginx
+      app.kubernetes.io/name: nextcloud
+      app.kubernetes.io/component: fpm-nginx
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: nextcloud
-        component: fpm-nginx
+        app.kubernetes.io/name: nextcloud
+        app.kubernetes.io/component: fpm-nginx
     spec:
       initContainers:
         - name: never

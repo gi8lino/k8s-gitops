@@ -7,11 +7,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: vimbin
+      app.kubernetes.io/name: vimbin
   template:
     metadata:
       labels:
-        app: vimbin
+        app.kubernetes.io/name: vimbin
     spec:
       containers:
         - name: vimbin

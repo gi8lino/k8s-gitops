@@ -24,7 +24,7 @@ spec:
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
         - matchLabels:
-            app: kthxbye
+            app.kubernetes.io/name: kthxbye
             "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:

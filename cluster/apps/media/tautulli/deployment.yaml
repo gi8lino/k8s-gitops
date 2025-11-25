@@ -10,13 +10,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tautulli
+      app.kubernetes.io/name: tautulli
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: tautulli
+        app.kubernetes.io/name: tautulli
     spec:
       containers:
         - name: tautulli

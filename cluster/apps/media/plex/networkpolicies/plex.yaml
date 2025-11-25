@@ -7,7 +7,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: plex
+      app.kubernetes.io/name: plex
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -19,13 +19,13 @@ spec:
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
         - matchLabels:
-            app: sonarr
+            app.kubernetes.io/name: sonarr
             "k8s:io.kubernetes.pod.namespace": media
         - matchLabels:
-            app: radarr
+            app.kubernetes.io/name: radarr
             "k8s:io.kubernetes.pod.namespace": media
         - matchLabels:
-            app: tautulli
+            app.kubernetes.io/name: tautulli
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:

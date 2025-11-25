@@ -15,8 +15,8 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: wiki
-            component: wiki
+            app.kubernetes.io/name: wiki
+            app.kubernetes.io/component: wiki
             "k8s:io.kubernetes.pod.namespace": wiki
       toPorts:
         - ports:

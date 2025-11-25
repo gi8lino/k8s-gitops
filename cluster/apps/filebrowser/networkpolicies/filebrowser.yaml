@@ -7,7 +7,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: filebrowser
+      app.kubernetes.io/name: filebrowser
   ingress:
     - fromEndpoints:
         - matchLabels:

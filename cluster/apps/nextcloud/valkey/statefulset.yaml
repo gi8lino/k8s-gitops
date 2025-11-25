@@ -9,13 +9,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nextcloud
-      component: valkey
+      app.kubernetes.io/name: nextcloud
+      app.kubernetes.io/component: valkey
   template:
     metadata:
       labels:
-        app: nextcloud
-        component: valkey
+        app.kubernetes.io/name: nextcloud
+        app.kubernetes.io/component: valkey
     spec:
       containers:
         - name: valkey

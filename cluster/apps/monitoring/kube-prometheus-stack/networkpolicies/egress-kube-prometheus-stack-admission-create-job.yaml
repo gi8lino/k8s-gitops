@@ -8,6 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       app: kube-prometheus-stack-admission-create
+      app.kubernetes.io/name: kube-prometheus-stack-admission-create
   egress:
     - toEntities:
         - host

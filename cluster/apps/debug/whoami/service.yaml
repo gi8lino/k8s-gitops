@@ -12,3 +12,4 @@ spec:
   type: ClusterIP
   selector:
     app: whoami
+    app.kubernetes.io/name: whoami

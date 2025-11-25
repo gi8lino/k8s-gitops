@@ -8,6 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       app: whoami
+      app.kubernetes.io/name: whoami
   ingress:
     - fromEndpoints:
         - matchLabels:

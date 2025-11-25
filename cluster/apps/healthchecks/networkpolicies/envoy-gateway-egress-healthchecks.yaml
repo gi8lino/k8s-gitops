@@ -15,7 +15,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: healthchecks
+            app.kubernetes.io/name: healthchecks
             "k8s:io.kubernetes.pod.namespace": healthchecks
       toPorts:
         - ports:

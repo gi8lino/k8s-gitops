@@ -8,13 +8,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: plex
+      app.kubernetes.io/name: plex
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: plex
+        app.kubernetes.io/name: plex
     spec:
       securityContext:
         supplementalGroups:

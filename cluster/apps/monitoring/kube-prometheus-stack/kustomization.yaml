@@ -13,6 +13,10 @@ configMapGenerator:
       - dashboards/node-exporter-full.json
     name: grafana-dashboard-node-exporter-full
     namespace: monitoring
+  - files:
+      - dashboards/logs-generic.json
+    name: grafana-dashboard-logs-generic
+    namespace: monitoring
 generatorOptions:
   disableNameSuffixHash: true
 patches:
@@ -28,3 +32,15 @@ patches:
     target:
       kind: ConfigMap
       name: grafana-dashboard-node-exporter-full
+  - patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: "1"
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: grafana-dashboard-logs-generic

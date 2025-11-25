@@ -50,8 +50,8 @@ spec:
         - cluster
     - toEndpoints:
         - matchLabels:
-            app: keycloak
-            component: keycloak
+            app.kubernetes.io/name: keycloak
+            app.kubernetes.io/component: keycloak
             "k8s:io.kubernetes.pod.namespace": keycloak
       toPorts:
         - ports:

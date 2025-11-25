@@ -12,7 +12,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: kthxbye
+            app.kubernetes.io/name: kthxbye
             "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:

@@ -11,5 +11,5 @@ spec:
       port: 6379
       targetPort: valkey
   selector:
-    app: nextcloud
-    component: valkey
+    app.kubernetes.io/name: nextcloud
+    app.kubernetes.io/component: valkey

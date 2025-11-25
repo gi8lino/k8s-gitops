@@ -15,7 +15,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: sonarr
+            app.kubernetes.io/name: sonarr
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:

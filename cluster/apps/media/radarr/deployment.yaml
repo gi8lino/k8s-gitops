@@ -10,13 +10,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: radarr
+      app.kubernetes.io/name: radarr
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: radarr
+        app.kubernetes.io/name: radarr
     spec:
       initContainers:
         - name: configarr

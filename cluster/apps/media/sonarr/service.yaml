@@ -11,4 +11,4 @@ spec:
       targetPort: http
   type: ClusterIP
   selector:
-    app: sonarr
+    app.kubernetes.io/name: sonarr

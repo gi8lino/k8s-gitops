@@ -11,4 +11,4 @@ spec:
       targetPort: metrics
   type: ClusterIP
   selector:
-    app: kthxbye
+    app.kubernetes.io/name: kthxbye

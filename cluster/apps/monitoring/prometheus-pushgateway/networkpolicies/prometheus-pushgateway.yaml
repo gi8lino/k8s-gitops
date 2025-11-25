@@ -16,8 +16,8 @@ spec:
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
         - matchLabels:
-            app: gitlab-backup-mirror
-            component: job
+            app.kubernetes.io/name: gitlab-backup-mirror
+            app.kubernetes.io/component: job
             "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus

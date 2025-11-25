@@ -15,7 +15,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: whoami
+            app.kubernetes.io/name: whoami
             "k8s:io.kubernetes.pod.namespace": debug
       toPorts:
         - ports:

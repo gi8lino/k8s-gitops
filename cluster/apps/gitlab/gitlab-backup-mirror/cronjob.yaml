@@ -5,8 +5,8 @@ metadata:
   name: gitlab-backup-mirror
   namespace: gitlab
   labels:
-    app: gitlab-backup-mirror
-    component: job
+    app.kubernetes.io/name: gitlab-backup-mirror
+    app.kubernetes.io/component: job
 spec:
   schedule: 0 2 * * *
   timeZone: Europe/Zurich
@@ -18,8 +18,8 @@ spec:
       template:
         metadata:
           labels:
-            app: gitlab-backup-mirror
-            component: job
+            app.kubernetes.io/name: gitlab-backup-mirror
+            app.kubernetes.io/component: job
         spec:
           containers:
             - name: gitlab-backup-mirror

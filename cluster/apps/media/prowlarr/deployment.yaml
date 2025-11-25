@@ -10,13 +10,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: prowlarr
+      app.kubernetes.io/name: prowlarr
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: prowlarr
+        app.kubernetes.io/name: prowlarr
     spec:
       initContainers:
         - name: configarr

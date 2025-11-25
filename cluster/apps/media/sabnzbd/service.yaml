@@ -11,4 +11,4 @@ spec:
       targetPort: http
   type: ClusterIP
   selector:
-    app: sabnzbd
+    app.kubernetes.io/name: sabnzbd

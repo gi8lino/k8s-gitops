@@ -12,7 +12,7 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: prowlarr
+            app.kubernetes.io/name: prowlarr
             "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:

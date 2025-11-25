@@ -15,8 +15,8 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app: nextcloud
-            component: fpm-nginx
+            app.kubernetes.io/name: nextcloud
+            app.kubernetes.io/component: fpm-nginx
             "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:

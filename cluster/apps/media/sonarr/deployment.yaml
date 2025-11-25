@@ -10,13 +10,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sonarr
+      app.kubernetes.io/name: sonarr
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: sonarr
+        app.kubernetes.io/name: sonarr
     spec:
       initContainers:
         - name: configarr
