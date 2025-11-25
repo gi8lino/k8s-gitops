@@ -7,10 +7,10 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: kube-prometheus-stack-operator
-      app.kubernetes.io/name: kube-prometheus-stack-operator
-      release: kube-prometheus-stack
+      app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
+      app.kubernetes.io/component: prometheus-operator
       app.kubernetes.io/instance: kube-prometheus-stack
+      app.kubernetes.io/part-of: kube-prometheus-stack
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -18,7 +18,7 @@ spec:
             app.kubernetes.io/name: prometheus
             "k8s:io.kubernetes.pod.namespace": monitoring
         - matchLabels:
-            app: kustomize-controller # validationwebhook
+            app.kubernetes.io/component: kustomize-controller # validationwebhook
             app.kubernetes.io/name: kustomize-controller # validationwebhook
             "k8s:io.kubernetes.pod.namespace": flux-system
       toPorts:

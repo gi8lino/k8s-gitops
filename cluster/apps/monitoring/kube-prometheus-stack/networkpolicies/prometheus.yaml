@@ -60,8 +60,8 @@ spec:
             - port: "10259" # kube-scheduler
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
             app.kubernetes.io/name: alertmanager
+            app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
             "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
@@ -80,9 +80,10 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app: kube-prometheus-stack-operator
-            app.kubernetes.io/name: kube-prometheus-stack-operator
-            release: kube-prometheus-stack
+            app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
+            app.kubernetes.io/component: prometheus-operator
+            app.kubernetes.io/instance: kube-prometheus-stack
+            app.kubernetes.io/part-of: kube-prometheus-stack
             "k8s:io.kubernetes.pod.namespace": monitoring
       toPorts:
         - ports:
