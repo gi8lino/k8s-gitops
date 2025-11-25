@@ -69,15 +69,6 @@ spec:
               protocol: TCP
     - fromEndpoints:
         - matchLabels:
-            app: gitlab
-            component: gitlab
-            "k8s:io.kubernetes.pod.namespace": gitlab
-      toPorts:
-        - ports:
-            - port: "5432"
-              protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
             app: webservice
             release: gitlab
             "k8s:io.kubernetes.pod.namespace": gitlab
