@@ -31,7 +31,13 @@ spec:
           - match:
               selector: '{k8s_app=~"cilium|hubble-relay|hubble-ui"}'
               stages:
-                - logfmt: {}
+                - logfmt:
+                    mapping:
+                      time: time
+                      level: level
+                      msg: msg
+                      subsys: subsys
+                      module: module
                 - labels:
                     level:
                     subsys:
