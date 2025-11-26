@@ -27,17 +27,3 @@ spec:
         - ports:
             - port: "6443" # kube api
               protocol: TCP
-    - toEndpoints:
-        - matchLabels:
-            "k8s:io.kubernetes.pod.namespace": flux-system
-    # - toEndpoints:
-    #    - matchLabels:
-    #        app.kubernetes.io/component: source-controller
-    #        "k8s:io.kubernetes.pod.namespace": flux-system
-    #    - matchLabels:
-    #        app.kubernetes.io/component: notification-controller
-    #        "k8s:io.kubernetes.pod.namespace": flux-system
-    #  toPorts:
-    #    - ports:
-    #        - port: "9090"
-    #          protocol: TCP
