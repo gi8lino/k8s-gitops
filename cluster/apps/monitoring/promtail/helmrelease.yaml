@@ -80,7 +80,7 @@ spec:
                       controller: controller
                       controllerGroup: controllerGroup
                       controllerKind: controllerKind
-                      worker_count: 'worker count'
+                      worker_count: worker
                     source: context
                     action_on_failure: skip
                 - output:
