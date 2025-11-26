@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - networkpolicies
   - helmrelease.yaml
-  - httproute.yaml
+  #  - httproute.yaml
   - secret.yaml
