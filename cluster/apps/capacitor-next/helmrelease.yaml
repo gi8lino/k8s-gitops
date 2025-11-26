@@ -15,6 +15,10 @@ spec:
     kind: OCIRepository
     name: capacitor-next
     namespace: flux-system
+  valuesFrom:
+    - kind: Secret
+      name: capacitor-next-helm-values
+      optional: false
   values:
     auth:
       method: noauth
