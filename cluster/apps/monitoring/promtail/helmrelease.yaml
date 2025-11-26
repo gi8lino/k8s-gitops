@@ -29,6 +29,57 @@ spec:
         pipelineStages:
           - cri: {}
           - match:
+              selector: '{k8s_app=~"cilium|hubble-relay|hubble-ui"}'
+              stages:
+                - logfmt: {}
+                - labels:
+                    level:
+                    subsys:
+                    module:
+                - timestamp:
+                    source: time
+                    format: RFC3339Nano
+                    action_on_failure: skip
+                - output:
+                    source: msg
+          - match:
+              selector: '{app_kubernetes_io_name=~"cert-manager|cert-manager-webhook|cert-manager-cainjector"}'
+              stages:
+                - regex:
+                    expression: '^(?P<level>[IWEF])(?P<date>\d{4}) (?P<time>\d{2}:\d{2}:\d{2}\.\d{6})\s+\d+\s+(?P<msg>.*)$'
+                - labels:
+                    level:
+                - template:
+                    source: klog_ts
+                    template: '{{.date}} {{.time}}'
+                - timestamp:
+                    source: klog_ts
+                    format: "0102 15:04:05.000000"
+                    action_on_failure: skip
+                - output:
+                    source: msg
+          - match:
+              selector: '{app_kubernetes_io_name=~"cloudflare-operator|envoy-gateway|k8up|local-path-provisioner|nfs-subdir-external-provisioner|snapraid|kthxbye"}'
+              stages:
+                - regex:
+                    expression: '^(?P<ts>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)\t(?P<level>[A-Z]+)\t(?P<msg>[^\t]+)\t?(?P<context>.*)$'
+                - labels:
+                    level:
+                - timestamp:
+                    source: ts
+                    format: RFC3339
+                    action_on_failure: skip
+                - json:
+                    expressions:
+                      controller: controller
+                      controllerGroup: controllerGroup
+                      controllerKind: controllerKind
+                      worker_count: 'worker count'
+                    source: context
+                    action_on_failure: skip
+                - output:
+                    source: msg
+          - match:
               selector: '{app_kubernetes_io_component="valkey"}'
               stages:
                 - regex:
