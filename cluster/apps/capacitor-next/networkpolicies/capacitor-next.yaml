@@ -1,0 +1,43 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: capacitor-next
+  namespace: flux-system
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: capacitor-next
+      app.kubernetes.io/name: capacitor-next
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443" # kube api
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": flux-system
+    # - toEndpoints:
+    #    - matchLabels:
+    #        app.kubernetes.io/component: source-controller
+    #        "k8s:io.kubernetes.pod.namespace": flux-system
+    #    - matchLabels:
+    #        app.kubernetes.io/component: notification-controller
+    #        "k8s:io.kubernetes.pod.namespace": flux-system
+    #  toPorts:
+    #    - ports:
+    #        - port: "9090"
+    #          protocol: TCP
