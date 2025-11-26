@@ -9,10 +9,8 @@ spec:
   driftDetection:
     mode: enabled
   dependsOn:
-    - name: cilium
-      namespace: cilium
-    - name: cert-manager
-      namespace: cert-manager
+    - name: envoy-gateway
+      namespace: network
   chartRef:
     kind: OCIRepository
     name: capacitor-next
