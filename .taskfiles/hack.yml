@@ -16,3 +16,13 @@ tasks:
     cmds:
       - python3 ./hack/check-policy-selectors.py
     silent: true
+  list-hr-namespaces:
+    desc: List namespaces referenced by HelmRelease manifests
+    cmds:
+      - ./hack/list_helmrelease_namespaces.sh {{.CLI_ARGS}}
+    silent: true
+  update-hr-alert:
+    desc: Update Slack HelmRelease alert namespaces
+    cmds:
+      - ./hack/update_slack_helmrelease_alert.sh --alert-file cluster/flux/notifications/slack/alert.yaml {{.CLI_ARGS}}
+    silent: true

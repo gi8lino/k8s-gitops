@@ -7,6 +7,8 @@ This directory contains useful scripts.
 - **cleanup_k8up_jobs.sh** cleanup stucked k8up jobs
 - **generate_kustomizations.sh** generates `kustomization.yaml` files
 - **generate_secret_template.sh** generates `secret.template` files for SOPS-encrypted Kubernetes secrets
+- **list_helmrelease_namespaces.sh** prints namespaces used by HelmRelease manifests
+- **update_slack_helmrelease_alert.sh** updates HelmRelease alert eventSources with discovered namespaces
 
 ## cleanup_k8up_jobs
 
@@ -55,6 +57,26 @@ Unencrypted secret will be automatically decrypted!
 
 -f, --force         override existing templates
 -h, --help          display this help and exit
+```
+
+## list_helmrelease_namespaces
+
+```console
+Usage: list_helmrelease_namespaces.sh [PATH ...]
+
+Prints the unique namespaces used by HelmRelease manifests under the given
+paths (defaults to ./cluster).
+```
+
+## update_slack_helmrelease_alert
+
+```console
+Usage: update_slack_helmrelease_alert.sh --alert-file ALERT_FILE [PATH ...]
+
+Finds HelmRelease manifests under the given paths (defaults to ./cluster),
+collects their namespaces, and updates the HelmRelease Alert eventSources
+in the provided ALERT_FILE.
+```
 ```
 
 ## schema
