@@ -19,6 +19,8 @@ spec:
       name: "*"
   exclusionList:
     - InternalError.*failed to call webhook.*EOF
+    - "dial tcp: lookup.*server misbehaving"
+    - dependency.*not ready
   suspend: false
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
@@ -75,4 +77,7 @@ spec:
       name: "*"
   exclusionList:
     - InternalError.*failed to call webhook.*EOF
+    - "dial tcp: lookup.*server misbehaving"
+    - dependency.*not ready
+    - no such file or directory
   suspend: false
