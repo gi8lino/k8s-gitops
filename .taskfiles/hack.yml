@@ -4,7 +4,7 @@ tasks:
   k:
     desc: Run generate_kustomizations.sh script
     cmds:
-      - ./hack/generate_kustomizations.sh cluster --ignore-folders ".img,dashboards,scripts" --flux-system-folder "cluster/flux/config"
+      - kustomizer -s ".img,dashboards,scripts" -s "flux/config/*" --no-dir-slash cluster
     silent: true
   s:
     desc: Run generate_secret_templates.sh script
