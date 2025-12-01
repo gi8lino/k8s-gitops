@@ -2,12 +2,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - plex
-  - prowlarr
-  - radarr
-  - sabnzbd
-  - sonarr
-  - tautulli
+  - plex/
+  - prowlarr/
+  - radarr/
+  - sabnzbd/
+  - sonarr/
+  - tautulli/
   - schedule.yaml
   - secret.yaml
   - securitypolicy.yaml

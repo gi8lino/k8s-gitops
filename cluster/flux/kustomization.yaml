@@ -2,10 +2,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - config
-  - namespaces
-  - networkpolicies
-  - notifications
-  - repositories
-  - vars
-  - webhook
+  - config/
+  - namespaces/
+  - networkpolicies/
+  - notifications/
+  - repositories/
+  - vars/
+  - webhook/

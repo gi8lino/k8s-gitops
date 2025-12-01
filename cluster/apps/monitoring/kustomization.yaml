@@ -2,14 +2,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - flux-system
-  - kthxbye
-  - kube-prometheus-stack
-  - loki
-  - prometheus-blackbox-exporter
-  - prometheus-pushgateway
-  - prometheus-smartctl-exporter
-  - promtail
-  - tools-server
-  - vpn-server
+  - flux-system/
+  - kthxbye/
+  - kube-prometheus-stack/
+  - loki/
+  - prometheus-blackbox-exporter/
+  - prometheus-pushgateway/
+  - prometheus-smartctl-exporter/
+  - promtail/
+  - tools-server/
+  - vpn-server/
   - secret.yaml
