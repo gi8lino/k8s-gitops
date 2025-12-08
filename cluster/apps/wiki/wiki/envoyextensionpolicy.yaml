@@ -26,7 +26,7 @@ spec:
             return
           end
 
-          if string.match(path, "^/a/") then
+          if string.match(path, "^/a/*") then
             local html = [[
               <!DOCTYPE html>
               <html lang="en">
