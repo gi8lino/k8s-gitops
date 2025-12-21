@@ -26,3 +26,8 @@ tasks:
     cmds:
       - ./hack/update_slack_helmrelease_alert.sh --alert-file cluster/flux/notifications/slack/alert.yaml {{.CLI_ARGS}}
     silent: true
+  renovate-app-scopes:
+    desc: Generate renovate appScopes.json5 file
+    cmds:
+      - ./hack/generate_renovate_app_scopes.sh
+    silent: true

@@ -5,6 +5,7 @@ This directory contains useful scripts.
 ## Contents
 
 - **cleanup_k8up_jobs.sh** cleanup stucked k8up jobs
+- **generate_renovate_app_scopes.sh** generates Renovate app-scoped package rules for Docker updates
 - **generate_kustomizations.sh** generates `kustomization.yaml` files
 - **generate_secret_template.sh** generates `secret.template` files for SOPS-encrypted Kubernetes secrets
 - **list_helmrelease_namespaces.sh** prints namespaces used by HelmRelease manifests
@@ -57,6 +58,15 @@ Unencrypted secret will be automatically decrypted!
 
 -f, --force         override existing templates
 -h, --help          display this help and exit
+```
+
+## generate_renovate_app_scopes
+
+```console
+Usage: generate_renovate_app_scopes.sh [OUTPUT_FILE]
+
+Builds .github/renovate/appScopes.json5 with per-app Docker scope rules.
+Scopes come from the app.kubernetes.io/name label in deployment/statefulset/daemonset manifests.
 ```
 
 ## list_helmrelease_namespaces

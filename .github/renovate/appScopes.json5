@@ -1,0 +1,120 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    {
+      "description": "App scope: cascader",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/cascader/**"],
+      "semanticCommitScope": "cascader"
+    },
+    {
+      "description": "App scope: whoami",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/debug/whoami/**"],
+      "semanticCommitScope": "whoami"
+    },
+    {
+      "description": "App scope: filebrowser",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/filebrowser/**"],
+      "semanticCommitScope": "filebrowser"
+    },
+    {
+      "description": "App scope: healthchecks",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/healthchecks/**"],
+      "semanticCommitScope": "healthchecks"
+    },
+    {
+      "description": "App scope: keycloak",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/keycloak/keycloak/**"],
+      "semanticCommitScope": "keycloak"
+    },
+    {
+      "description": "App scope: intel-gpu-plugin",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/kube-system/intel-gpu-plugin/**"],
+      "semanticCommitScope": "intel-gpu-plugin"
+    },
+    {
+      "description": "App scope: plex",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/media/plex/**"],
+      "semanticCommitScope": "plex"
+    },
+    {
+      "description": "App scope: prowlarr",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/media/prowlarr/**"],
+      "semanticCommitScope": "prowlarr"
+    },
+    {
+      "description": "App scope: radarr",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/media/radarr/**"],
+      "semanticCommitScope": "radarr"
+    },
+    {
+      "description": "App scope: sabnzbd",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/media/sabnzbd/**"],
+      "semanticCommitScope": "sabnzbd"
+    },
+    {
+      "description": "App scope: sonarr",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/media/sonarr/**"],
+      "semanticCommitScope": "sonarr"
+    },
+    {
+      "description": "App scope: tautulli",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/media/tautulli/**"],
+      "semanticCommitScope": "tautulli"
+    },
+    {
+      "description": "App scope: kthxbye",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/monitoring/kthxbye/**"],
+      "semanticCommitScope": "kthxbye"
+    },
+    {
+      "description": "App scope: nextcloud",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/nextcloud/nextcloud/**"],
+      "semanticCommitScope": "nextcloud"
+    },
+    {
+      "description": "App scope: nextcloud",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/nextcloud/valkey/**"],
+      "semanticCommitScope": "nextcloud"
+    },
+    {
+      "description": "App scope: renovate",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/renovate/valkey/**"],
+      "semanticCommitScope": "renovate"
+    },
+    {
+      "description": "App scope: snapraid",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/snapraid/**"],
+      "semanticCommitScope": "snapraid"
+    },
+    {
+      "description": "App scope: vimbin",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/vimbin/**"],
+      "semanticCommitScope": "vimbin"
+    },
+    {
+      "description": "App scope: wiki",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/wiki/wiki/**"],
+      "semanticCommitScope": "wiki"
+    }
+
+  ]
+}
