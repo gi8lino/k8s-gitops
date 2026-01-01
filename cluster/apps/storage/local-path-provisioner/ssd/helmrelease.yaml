@@ -34,6 +34,6 @@ spec:
       defaultClass: false
       name: ssd
     nodePathMap:
-      - node: k3s.srv.${BASE_DOMAIN}
+      - node: DEFAULT_PATH_FOR_NON_LISTED_NODES
         paths:
           - /mnt/disk6/appdata
