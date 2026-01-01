@@ -29,13 +29,14 @@ spec:
       name: kube-prometheus-stack-helm-values
       optional: false
   values:
+    prometheusOperator:
+      fullnameOverride: prometheus-operator
     alertmanagerSpec:
       secrets:
         - alertmanager-slack-webhook
       configSecret:
         name: alertmanager-slack-webhook
     alertmanager:
-      fullnameOverride: alertmanager
       ingress:
         enabled: false
       route:
@@ -195,6 +196,7 @@ spec:
     kubeEtcd:
       enabled: false
     prometheus:
+      fullnameOverride: prometheus
       ingress:
         enabled: false
       route:
