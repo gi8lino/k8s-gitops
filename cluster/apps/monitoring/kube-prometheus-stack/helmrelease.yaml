@@ -37,6 +37,7 @@ spec:
       configSecret:
         name: alertmanager-slack-webhook
     alertmanager:
+      fullnameOverride: alertmanager
       ingress:
         enabled: false
       route:
