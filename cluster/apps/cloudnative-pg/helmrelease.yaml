@@ -23,7 +23,7 @@ spec:
   values:
     crds:
       create: false
-    observability:
+    monitoring:
       podMonitorEnabled: true
       grafanaDashboard:
         create: true
