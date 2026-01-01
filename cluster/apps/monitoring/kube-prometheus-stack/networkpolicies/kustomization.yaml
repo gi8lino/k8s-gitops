@@ -5,7 +5,6 @@ resources:
   - alertmanager-egress-heartbeats.yaml
   - alertmanager.yaml
   - egress-kube-prometheus-stack-admission-create-job.yaml
-  - egress-kube-prometheus-stack-admission-create.yaml
   - egress-kube-prometheus-stack-admission-patch-job.yaml
   - egress-kube-prometheus-stack-operator.yaml
   - egress-kube-state-metrics.yaml
