@@ -33,6 +33,19 @@ spec:
       secrets:
         - alertmanager-slack-webhook
     alertmanager:
+      ingress:
+        enabled: false
+      route:
+        main:
+          enabled: true
+          hostnames:
+            - alertmanager.${BASE_DOMAIN}
+          annotations:
+            cloudflare-operator.io/ignore: "true"
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
+              sectionName: https
       config:
         global:
           resolve_timeout: 10m
@@ -93,12 +106,23 @@ spec:
               active_time_intervals:
                 - business_hours
                 - weekend
-      ingress:
-        enabled: false
     defaultRules:
       rules:
         etcd: false
     grafana:
+      ingress:
+        enabled: false
+      route:
+        main:
+          enabled: true
+          hostnames:
+            - grafana.${BASE_DOMAIN}
+          annotations:
+            cloudflare-operator.io/ignore: "true"
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
+              sectionName: https
       assertNoLeakedSecrets: false
       defaultDashboardsTimezone: browser
       envFromSecret: kube-prometheus-stack-grafana-settings
@@ -133,8 +157,6 @@ spec:
           enabled: true
           searchNamespace: ALL
           resource: configmap
-      ingress:
-        enabled: false
       plugins:
         - grafana-piechart-panel
         - grafana-worldmap-panel
@@ -171,6 +193,16 @@ spec:
     prometheus:
       ingress:
         enabled: false
+      route:
+        main:
+          enabled: true
+          hostnames:
+            - prometheus.${BASE_DOMAIN}
+          annotations:
+            cloudflare-operator.io/ignore: "true"
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
       prometheusSpec:
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
