@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kthxbye
+  namespace: observability
+spec:
+  ports:
+    - name: metrics
+      port: 8080
+      targetPort: metrics
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: kthxbye

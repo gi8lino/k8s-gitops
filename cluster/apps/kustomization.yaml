@@ -18,9 +18,9 @@ resources:
   - kube-system/
   - media/
   - minio/
-  - monitoring/
   - network/
   - nextcloud/
+  - observability/
   - reloader/
   - renovate/
   - snapraid/

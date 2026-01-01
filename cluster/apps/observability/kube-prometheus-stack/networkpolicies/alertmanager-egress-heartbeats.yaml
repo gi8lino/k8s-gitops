@@ -1,0 +1,17 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: alertmanager-egress-heartbeats
+  namespace: observability
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: alertmanager
+      app.kubernetes.io/instance: kube-prometheus-stack-alertmanager
+  egress:
+    - toFQDNs:
+        - matchName: heartbeats.tools.${BASE_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "443"

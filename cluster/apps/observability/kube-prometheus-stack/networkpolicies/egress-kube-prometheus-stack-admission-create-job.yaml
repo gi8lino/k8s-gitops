@@ -1,0 +1,17 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: egress-kube-prometheus-stack-admission-create-job
+  namespace: observability
+spec:
+  endpointSelector:
+    matchLabels:
+      app: kube-prometheus-stack-admission-create
+  egress:
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443" # kube api
+              protocol: TCP

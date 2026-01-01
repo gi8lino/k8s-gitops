@@ -23,7 +23,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack-prometheus
-            "k8s:io.kubernetes.pod.namespace": monitoring
+            "k8s:io.kubernetes.pod.namespace": observability
       toPorts:
         - ports:
             - port: "8080"

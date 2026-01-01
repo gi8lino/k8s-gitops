@@ -23,11 +23,11 @@ spec:
   values:
     crds:
       create: false
-    monitoring:
+    observability:
       podMonitorEnabled: true
       grafanaDashboard:
         create: true
-        namespace: monitoring
+        namespace: observability
         annotations:
           kustomize.toolkit.fluxcd.io/substitute: disabled
   install:

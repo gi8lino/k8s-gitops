@@ -1,0 +1,44 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - networkpolicies/
+  - helmrelease.yaml
+  - httproute.yaml
+  - securitypolicy.yaml
+configMapGenerator:
+  - files:
+      - dashboards/Blackbox-Exporter-Quick-Overview.json
+    name: grafana-dashboard-blackbox-exporter-quick-overview
+    namespace: observability
+  - files:
+      - dashboards/SSL-Certificate-Monitor.json
+    name: grafana-dashboard-ssl-certificate-monitor
+    namespace: observability
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: "1"
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: grafana-dashboard-blackbox-exporter-quick-overview
+  - patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: "1"
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: grafana-dashboard-ssl-certificate-monitor

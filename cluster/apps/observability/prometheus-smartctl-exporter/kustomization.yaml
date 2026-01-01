@@ -1,0 +1,27 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - networkpolicies/
+  - helmrelease.yaml
+  - prometheusrule.yaml
+configMapGenerator:
+  - files:
+      - dashboards/node-temperatures.json
+    name: grafana-dashboard-node-temperatures
+    namespace: observability
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - patch: |-
+      - op: add
+        path: "/metadata/labels"
+        value:
+          grafana_dashboard: "1"
+      - op: add
+        path: "/metadata/annotations"
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: grafana-dashboard-node-temperatures

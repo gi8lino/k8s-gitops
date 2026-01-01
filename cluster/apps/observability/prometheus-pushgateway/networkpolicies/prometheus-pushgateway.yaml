@@ -1,0 +1,50 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-pushgateway
+  namespace: observability
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus-pushgateway
+      app.kubernetes.io/instance: prometheus-pushgateway
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
+            gateway.envoyproxy.io/owning-gateway-namespace: network
+            "k8s:io.kubernetes.pod.namespace": network
+        - matchLabels:
+            app.kubernetes.io/name: gitlab-backup-mirror
+            app.kubernetes.io/component: job
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            app.kubernetes.io/name: prometheus
+            "k8s:io.kubernetes.pod.namespace": observability
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": healthchecks
+            k8upjob: "true"
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": filebrowser
+            k8upjob: "true"
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": k8up
+            k8upjob: "true"
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": media
+            k8upjob: "true"
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": nextcloud
+            k8upjob: "true"
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": wiki
+            k8upjob: "true"
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": keycloak
+            k8upjob: "true"
+      toPorts:
+        - ports:
+            - port: "9091"
+              protocol: TCP

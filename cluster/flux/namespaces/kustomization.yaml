@@ -16,10 +16,10 @@ resources:
   - media.yaml
   - minio.yaml
   - miracle.yaml
-  - monitoring.yaml
   - namespace.yaml
   - network.yaml
   - nextcloud.yaml
+  - observability.yaml
   - reloader.yaml
   - renovate.yaml
   - snapraid.yaml

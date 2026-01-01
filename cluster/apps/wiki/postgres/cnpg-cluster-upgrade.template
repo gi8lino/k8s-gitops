@@ -34,7 +34,7 @@ spec:
       data:
         compression: gzip
     retentionPolicy: 3d
-  monitoring:
+  observability:
     enablePodMonitor: true
   externalClusters:
     - name: wiki-postgres

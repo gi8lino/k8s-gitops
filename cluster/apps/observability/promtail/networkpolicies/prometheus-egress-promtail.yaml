@@ -1,0 +1,21 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-promtail
+  namespace: observability
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: promtail
+            app.kubernetes.io/name: promtail
+            "k8s:io.kubernetes.pod.namespace": observability
+      toPorts:
+        - ports:
+            - port: "3101"
+              protocol: TCP

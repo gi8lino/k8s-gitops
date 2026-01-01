@@ -1,0 +1,157 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: promtail
+  namespace: observability
+spec:
+  interval: 20m
+  driftDetection:
+    mode: enabled
+  chart:
+    spec:
+      chart: promtail
+      version: 6.17.1
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+      interval: 30m
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip
+  values:
+    config:
+      clients:
+        - url: http://loki-headless:3100/loki/api/v1/push
+      snippets:
+        pipelineStages:
+          - cri: {}
+          - match:
+              selector: '{k8s_app=~"cilium|hubble-relay|hubble-ui"}'
+              stages:
+                - logfmt:
+                    mapping:
+                      time: time
+                      level: level
+                      msg: msg
+                      subsys: subsys
+                      module: module
+                - labels:
+                    level:
+                    subsys:
+                    module:
+                - timestamp:
+                    source: time
+                    format: RFC3339Nano
+                    action_on_failure: skip
+                - output:
+                    source: msg
+          - match:
+              selector: '{app_kubernetes_io_name=~"cert-manager|cert-manager-webhook|cert-manager-cainjector"}'
+              stages:
+                - regex:
+                    expression: '^(?P<level>[IWEF])(?P<date>\d{4}) (?P<time>\d{2}:\d{2}:\d{2}\.\d{6})\s+\d+\s+(?P<msg>.*)$'
+                - labels:
+                    level:
+                - template:
+                    source: klog_ts
+                    template: "{{.date}} {{.time}}"
+                - timestamp:
+                    source: klog_ts
+                    format: "0102 15:04:05.000000"
+                    action_on_failure: skip
+                - output:
+                    source: msg
+          - match:
+              selector: '{app_kubernetes_io_name=~"cloudflare-operator|envoy-gateway|k8up|local-path-provisioner|nfs-subdir-external-provisioner|snapraid|kthxbye"}'
+              stages:
+                - regex:
+                    expression: '^(?P<ts>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)\t(?P<level>[A-Z]+)\t(?P<msg>[^\t]+)\t?(?P<context>.*)$'
+                - labels:
+                    level:
+                - timestamp:
+                    source: ts
+                    format: RFC3339
+                    action_on_failure: skip
+                - json:
+                    expressions:
+                      controller: controller
+                      controllerGroup: controllerGroup
+                      controllerKind: controllerKind
+                      worker_count: worker
+                    source: context
+                    action_on_failure: skip
+                - output:
+                    source: msg
+          - match:
+              selector: '{app_kubernetes_io_component="valkey"}'
+              stages:
+                - regex:
+                    expression: '^(?P<pid>\d+):(?P<role>[A-Z])\s+(?P<ts>\d{2}\s+\w{3}\s+\d{4}\s+\d{2}:\d{2}:\d{2}\.\d{3})\s+(?P<level_symbol>.)\s+(?P<msg>.*)$'
+                - timestamp:
+                    source: ts
+                    format: "02 Jan 2006 15:04:05.000"
+                    action_on_failure: skip
+                - labels:
+                    pid:
+                    role:
+                    level_symbol:
+                - output:
+                    source: msg
+          - match:
+              selector: '{namespace="nextcloud", app_kubernetes_io_component="fpm-nginx"}'
+              stages:
+                - regex:
+                    expression: '^(?:(?P<svc>[^:]+):\s*)?(?P<remote_addr>\S+)\s+-\s+(?P<user>\S*)\s+\[(?P<ts>[^\]]+)\]\s+"(?P<method>\S+)\s+(?P<path>[^"]*)\s+(?P<protocol>[^"]+)"\s+(?P<status>\d{3})\s+(?P<body_bytes_sent>\d+)\s+"(?P<referer>[^"]*)"\s+"(?P<agent>[^"]*)"\s+"(?P<upstream_addr>[^"]*)"'
+                - timestamp:
+                    source: ts
+                    format: "02/Jan/2006:15:04:05 -0700"
+                    action_on_failure: skip
+                - labels:
+                    svc:
+                    method:
+                    status:
+                - template:
+                    source: log_text
+                    template: "{{.method}} {{.path}} -> {{.status}} {{if .user}}{{.user}}{{end}} {{.remote_addr}}"
+                - output:
+                    source: log_text
+          - match:
+              selector: '{cnpg_io_cluster!=""}'
+              stages:
+                - json:
+                    expressions:
+                      level: level
+                      ts: ts
+                      logger: logger
+                      msg: msg
+                      logging_pod: logging_pod
+                      record: record
+                - labels:
+                    level:
+                    logger:
+                    logging_pod:
+                - timestamp:
+                    source: ts
+                    format: RFC3339Nano
+                    action_on_failure: skip
+                - template:
+                    source: log_text
+                    template: "{{if .record.message}}{{.record.message}}{{else}}{{.msg}}{{end}}"
+                - output:
+                    source: log_text
+          - regex:
+              expression: "^(?:(?P<ts>[^|]+)\\|(?P<level>[^|]+)\\|(?P<component>[^|]+)\\|)?(?P<msg>.*)$"
+          - labels:
+              level:
+              component:
+          - timestamp:
+              source: ts
+              format: "2006-01-02 15:04:05.000"
+              action_on_failure: skip
+          - output:
+              source: msg
+    serviceMonitor:
+      enabled: true

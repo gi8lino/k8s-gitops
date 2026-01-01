@@ -35,7 +35,7 @@ spec:
     metrics:
       prometheusRule:
         enabled: true
-        namespace: monitoring
+        namespace: observability
       serviceMonitor:
         enabled: true
-        namespace: monitoring
+        namespace: observability

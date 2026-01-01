@@ -29,7 +29,7 @@ spec:
       enabled: true
       servicemonitor:
         enabled: true
-        namespace: monitoring
+        namespace: observability
     podDnsPolicy: None
     podDnsConfig:
       nameservers:

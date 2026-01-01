@@ -1,0 +1,246 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: observability
+spec:
+  interval: 20m
+  driftDetection:
+    mode: enabled
+  dependsOn:
+    - name: envoy-gateway
+      namespace: network
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: 80.9.2
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+      interval: 30m
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip
+  valuesFrom:
+    - kind: Secret
+      name: kube-prometheus-stack-helm-values
+      optional: false
+  values:
+    prometheusOperator:
+      fullnameOverride: prometheus-operator
+    alertmanager:
+      fullnameOverride: alertmanager
+      ingress:
+        enabled: false
+      route:
+        main:
+          enabled: true
+          hostnames:
+            - alertmanager.${BASE_DOMAIN}
+          annotations:
+            cloudflare-operator.io/ignore: "true"
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
+              sectionName: https
+      config:
+        global:
+          resolve_timeout: 10m
+        time_intervals:
+          - name: business_hours
+            time_intervals:
+              - weekdays: ["monday:friday"]
+                times:
+                  - start_time: 07:30
+                    end_time: 22:30
+          - name: weekend
+            time_intervals:
+              - weekdays: ["saturday", "sunday"]
+                times:
+                  - start_time: 09:00
+                    end_time: 23:30
+        receivers:
+          - name: heartbeats
+            webhook_configs:
+              - send_resolved: true
+                url: https://heartbeats.tools.${BASE_DOMAIN}/bump/watchdog-prometheus
+          - name: slack
+            slack_configs:
+              - channel: "#alertmanager"
+                send_resolved: true
+                username: Alertmanager
+                icon_url: https://github.com/gi8lino/dashboard-icons/raw/master/png/alertmanager.png
+                text: |-
+                  {{ range .Alerts }}
+                    *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+                    *Description:* {{ .Annotations.description }}
+                    *Details:*
+                    {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+                    {{ end }}
+                  {{ end }}
+                title: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Monitoring Event Notification'
+          - name: blackhole
+        route:
+          group_by:
+            - job
+          group_interval: 2m
+          group_wait: 60s
+          receiver: slack # default receiver
+          repeat_interval: 2h
+          routes:
+            - receiver: heartbeats
+              matchers:
+                - alertname = Watchdog
+              repeat_interval: 15m
+              group_wait: 0s # no wait
+              group_interval: 10s
+            - receiver: blackhole
+              matchers:
+                - alertname = InfoInhibitor
+                - severity =~ none|info
+            - receiver: slack
+              active_time_intervals:
+                - business_hours
+                - weekend
+    defaultRules:
+      rules:
+        etcd: false
+    grafana:
+      fullnameOverride: grafana
+      ingress:
+        enabled: false
+      route:
+        main:
+          enabled: true
+          hostnames:
+            - grafana.${BASE_DOMAIN}
+          annotations:
+            cloudflare-operator.io/ignore: "true"
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
+              sectionName: https
+      assertNoLeakedSecrets: false
+      defaultDashboardsTimezone: browser
+      envFromSecret: kube-prometheus-stack-grafana-settings
+      grafana.ini:
+        analytics:
+          check_for_updates: false
+        auth:
+          disable_login_form: true
+          oauth_auto_login: true
+        auth.basic:
+          enabled: true
+        auth.generic_oauth:
+          enabled: true
+          allow_sign_up: true
+          name: SSO
+          client_id: $__env{GRAFANA_AUTH_CLIENT_ID}
+          client_secret: $__env{GRAFANA_AUTH_CLIENT_SECRET}
+          auth_url: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/auth
+          token_url: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/token
+          api_url: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/userinfo
+          scopes: openid profile email
+          signout_redirect_url: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/logout
+          role_attribute_path: contains(roles[*], 'admins') && 'Admin' || 'Viewer'
+        server:
+          root_url: https://grafana.${BASE_DOMAIN}
+      sidecar:
+        dashboards:
+          enabled: true
+          searchNamespace: ALL
+          resource: configmap
+        datasources:
+          enabled: true
+          searchNamespace: ALL
+          resource: configmap
+      plugins:
+        - grafana-piechart-panel
+        - grafana-worldmap-panel
+      serviceMonitor:
+        enabled: true
+    kubeControllerManager:
+      enabled: true
+      endpoints:
+        - ${HOST_IP_V4}
+      service:
+        enabled: true
+        port: 10257
+        targetPort: 10257
+      serviceMonitor:
+        enabled: true
+        https: true
+        insecureSkipVerify: true
+    kubeScheduler:
+      enabled: true
+      endpoints:
+        - ${HOST_IP_V4}
+      service:
+        enabled: true
+        port: 10259
+        targetPort: 10259
+      serviceMonitor:
+        enabled: true
+        https: true
+        insecureSkipVerify: true
+    kubeProxy:
+      enabled: false
+    kubeEtcd:
+      enabled: false
+    prometheus:
+      fullnameOverride: prometheus
+      ingress:
+        enabled: false
+      route:
+        main:
+          enabled: true
+          hostnames:
+            - prometheus.${BASE_DOMAIN}
+          annotations:
+            cloudflare-operator.io/ignore: "true"
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
+      prometheusSpec:
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 10Gi
+        additionalScrapeConfigs:
+          - job_name: node-exporter
+            static_configs:
+              - targets:
+                  - vpn.srv.${BASE_DOMAIN}:9100
+                  - tools.srv.${BASE_DOMAIN}:9100
+          - job_name: smartctl-exporter
+            static_configs:
+              - targets:
+                  - vpn.srv.${BASE_DOMAIN}:9633
+                  - tools.srv.${BASE_DOMAIN}:9633
+          - job_name: heartbeats
+            static_configs:
+              - targets:
+                  - heartbeats.tools.${BASE_DOMAIN}
+    kube-state-metrics:
+      fullnameOverride: kube-state-metrics
+    prometheus-node-exporter:
+      fullnameOverride: node-exporter
+      extraArgs:
+        - --collector.filesystem.mount-points-exclude=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
+        - --collector.textfile.directory=/run/prometheus
+      extraHostVolumeMounts:
+        - name: node-exporter-textfile-collector-scripts
+          hostPath: /run/prometheus
+          mountPath: /run/prometheus
+          readOnly: true

@@ -25,7 +25,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: prometheus-pushgateway
             app.kubernetes.io/name: prometheus-pushgateway
-            "k8s:io.kubernetes.pod.namespace": monitoring
+            "k8s:io.kubernetes.pod.namespace": observability
       toPorts:
         - ports:
             - port: "9091"

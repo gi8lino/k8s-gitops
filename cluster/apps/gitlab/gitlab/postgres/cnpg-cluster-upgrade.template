@@ -35,7 +35,7 @@ spec:
       data:
         compression: gzip
     retentionPolicy: 10d
-  monitoring:
+  observability:
     enablePodMonitor: true
   externalClusters:
     - name: gitlab-postgres

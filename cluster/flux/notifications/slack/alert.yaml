@@ -37,46 +37,46 @@ spec:
   eventSources:
     - kind: HelmRelease
       namespace: cert-manager
-      name: '*'
+      name: "*"
     - kind: HelmRelease
       namespace: cilium
-      name: '*'
+      name: "*"
     - kind: HelmRelease
       namespace: cloudflare-operator
-      name: '*'
+      name: "*"
     - kind: HelmRelease
       namespace: cnpg-system
-      name: '*'
+      name: "*"
     - kind: HelmRelease
       namespace: falco
-      name: '*'
+      name: "*"
     - kind: HelmRelease
       namespace: flux-system
-      name: '*'
+      name: "*"
     - kind: HelmRelease
       namespace: gitlab
-      name: '*'
+      name: "*"
     - kind: HelmRelease
       namespace: k8up
-      name: '*'
+      name: "*"
     - kind: HelmRelease
       namespace: kube-system
-      name: '*'
+      name: "*"
     - kind: HelmRelease
       namespace: minio
-      name: '*'
+      name: "*"
     - kind: HelmRelease
-      namespace: monitoring
-      name: '*'
+      namespace: observability
+      name: "*"
     - kind: HelmRelease
       namespace: network
-      name: '*'
+      name: "*"
     - kind: HelmRelease
       namespace: reloader
-      name: '*'
+      name: "*"
     - kind: HelmRelease
       namespace: storage-system
-      name: '*'
+      name: "*"
   exclusionList:
     - InternalError.*failed to call webhook.*EOF
     - "dial tcp: lookup.*server misbehaving"
