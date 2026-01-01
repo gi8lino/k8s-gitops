@@ -9,15 +9,15 @@ configMapGenerator:
   - name: grafana-dashboard-flux-cluster
     namespace: flux-system
     files:
-      - flux-cluster-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2-observability-example/main/observability/configs/dashboards/cluster.json
+      - flux-cluster-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
   - name: grafana-dashboard-flux-control-plane
     namespace: flux-system
     files:
-      - flux-control-plane-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2-observability-example/main/observability/configs/dashboards/control-plane.json
+      - flux-control-plane-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/control-plane.json
   - name: grafana-dashboard-flux-logs
     namespace: flux-system
     files:
-      - flux-logs-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2-observability-example/main/observability/configs/dashboards/logs.json
+      - flux-logs-dashboard.json=https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/logs.json
 generatorOptions:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
