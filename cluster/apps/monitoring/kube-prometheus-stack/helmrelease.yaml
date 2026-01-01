@@ -31,11 +31,6 @@ spec:
   values:
     prometheusOperator:
       fullnameOverride: prometheus-operator
-    alertmanagerSpec:
-      secrets:
-        - alertmanager-slack-webhook
-      configSecret:
-        name: alertmanager-slack-webhook
     alertmanager:
       fullnameOverride: alertmanager
       ingress:
@@ -75,7 +70,6 @@ spec:
           - name: slack
             slack_configs:
               - channel: "#alertmanager"
-                api_url_file: /etc/alertmanager/config/alertmanager-slack-webhook/slack_api_url
                 send_resolved: true
                 username: Alertmanager
                 icon_url: https://github.com/gi8lino/dashboard-icons/raw/master/png/alertmanager.png
