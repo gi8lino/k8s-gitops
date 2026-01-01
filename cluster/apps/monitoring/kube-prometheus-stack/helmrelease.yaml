@@ -29,6 +29,9 @@ spec:
       name: kube-prometheus-stack-helm-values
       optional: false
   values:
+    alertmanagerSpec:
+      secrets:
+        - alertmanager-slack-webhook
     alertmanager:
       config:
         global:
@@ -54,6 +57,7 @@ spec:
           - name: slack
             slack_configs:
               - channel: "#alertmanager"
+                api_url_file: /etc/alertmanager/secrets/alertmanager-slack-webhook/slack_api_url
                 send_resolved: true
                 username: Alertmanager
                 icon_url: https://github.com/gi8lino/dashboard-icons/raw/master/png/alertmanager.png
