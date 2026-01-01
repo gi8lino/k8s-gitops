@@ -32,7 +32,6 @@ spec:
     prometheusOperator:
       fullnameOverride: prometheus-operator
     alertmanager:
-      fullnameOverride: alertmanager
       ingress:
         enabled: false
       route:
@@ -191,7 +190,6 @@ spec:
     kubeEtcd:
       enabled: false
     prometheus:
-      fullnameOverride: prometheus
       ingress:
         enabled: false
       route:
@@ -204,6 +202,7 @@ spec:
           parentRefs:
             - name: envoy-internal
               namespace: network
+              sectionName: https
       prometheusSpec:
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
