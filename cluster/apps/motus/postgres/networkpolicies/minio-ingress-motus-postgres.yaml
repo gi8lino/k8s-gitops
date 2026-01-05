@@ -1,0 +1,21 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: minio-ingress-motus-postgres
+  namespace: minio
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: minio
+      app.kubernetes.io/name: minio
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            cnpg.io/cluster: motus-postgres-17
+            cnpg.io/podRole: instance
+            "k8s:io.kubernetes.pod.namespace": motus
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP

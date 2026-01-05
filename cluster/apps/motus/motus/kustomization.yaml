@@ -1,0 +1,7 @@
+---
+resources:
+  - networkpolicies/
+  - deployment.yaml
+  - httproute.yaml
+  - securitypolicy.yaml
+  - service.yaml

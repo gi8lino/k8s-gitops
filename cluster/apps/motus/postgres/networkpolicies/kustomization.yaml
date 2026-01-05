@@ -1,0 +1,9 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - cloudnative-pg-egress-motus-postgres.yaml
+  - cnpg-postgres-initdb.yaml
+  - cnpg-postgres.yaml
+  - minio-ingress-motus-postgres.yaml
+  - prometheus-egress-motus-postgres.yaml

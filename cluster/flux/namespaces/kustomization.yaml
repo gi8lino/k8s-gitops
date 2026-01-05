@@ -16,6 +16,7 @@ resources:
   - media.yaml
   - minio.yaml
   - miracle.yaml
+  - motus.yaml
   - namespace.yaml
   - network.yaml
   - nextcloud.yaml

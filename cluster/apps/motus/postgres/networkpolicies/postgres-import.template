@@ -1,0 +1,36 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: cnpg-postgres-import
+  namespace: motus
+spec:
+  endpointSelector:
+    matchLabels:
+      cnpg.io/jobRole: import
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: kube-dns
+            io.kubernetes.pod.namespace: kube-system
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443" # kube-api
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: motus
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP
+# vi: ft=yaml

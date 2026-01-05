@@ -18,6 +18,7 @@ resources:
   - kube-system/
   - media/
   - minio/
+  - motus/
   - network/
   - nextcloud/
   - observability/

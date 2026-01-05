@@ -1,0 +1,32 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: motus-postgres-17
+  namespace: motus
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.1
+  storage:
+    size: 20Gi
+  bootstrap:
+    initdb:
+      database: motus
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://db-backups
+      endpointURL: http://minio.minio.svc.cluster.local:9000
+      s3Credentials:
+        accessKeyId:
+          name: db-backup
+          key: accessKey
+        secretAccessKey:
+          name: db-backup
+          key: secretKey
+      wal:
+        compression: gzip
+      data:
+        compression: gzip
+    retentionPolicy: 10d
+  monitoring:
+    enablePodMonitor: true

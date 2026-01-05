@@ -1,0 +1,10 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: motus-postgres-17
+  namespace: motus
+spec:
+  schedule: "0 0 2 * * *"
+  cluster:
+    name: motus-postgres-17

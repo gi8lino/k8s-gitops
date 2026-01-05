@@ -1,0 +1,76 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: cnpg-postgres
+  namespace: motus
+spec:
+  endpointSelector:
+    matchLabels:
+      cnpg.io/cluster: motus-postgres-17
+      cnpg.io/podRole: instance
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: kube-dns
+            io.kubernetes.pod.namespace: kube-system
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - host
+      toPorts:
+        - ports:
+            - port: "6443" # kube-api
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: minio
+            app.kubernetes.io/instance: minio
+            io.kubernetes.pod.namespace: minio
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: prometheus
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            "k8s:io.kubernetes.pod.namespace": observability
+      toPorts:
+        - ports:
+            - port: "9187"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: cloudnative-pg
+            app.kubernetes.io/instance: cloudnative-pg
+            "k8s:io.kubernetes.pod.namespace": cnpg-system
+      toPorts:
+        - ports:
+            - port: "8000"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: motus
+            app.kubernetes.io/component: motus
+            "k8s:io.kubernetes.pod.namespace": motus
+        # when joining, we need to allow the joining pod to connect to the instance
+        # - matchLabels:
+        #     cnpg.io/jobRole: join
+        #     "k8s:io.kubernetes.pod.namespace": motus
+        # allow the instance to connect to itself
+        # - matchLabels:
+        #     cnpg.io/cluster: motus-psql
+        #     cnpg.io/podRole: instance
+        #     "k8s:io.kubernetes.pod.namespace": motus
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP
+            - port: "8000" # /healthz endpoint
+              protocol: TCP

@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: motus
+  namespace: motus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: motus
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: motus
+    spec:
+      initContainers:
+        - name: never
+          image: ghcr.io/containeroo/never:v0.8.7
+          args:
+            - --http.postgres.address=https://motus-postgres-17-healthz:8000/healthz
+            - --http.postgres.skip-tls-verify=true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: motus
+          image: ghcr.io/gi8lino/motus:v0.0.3
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Europe/Zurich
+            - name: MOTUS_AUTH_HEADER
+              value: X-Auth-Request-Email
+            - name: MOTUS_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: motus-postgres-17-app
+                  key: jdbc-uri
+          ports:
+            - name: http
+              containerPort: 8080
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            failureThreshold: 30
+            timeoutSeconds: 2
+            periodSeconds: 2
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            failureThreshold: 2
+            periodSeconds: 30
+          resources:
+            requests:
+              memory: 256Mi
+              cpu: 100m
+            limits:
+              memory: 256Mi
+              cpu: 100m
+      restartPolicy: Always
+      automountServiceAccountToken: false
