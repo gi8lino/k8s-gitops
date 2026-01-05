@@ -12,3 +12,4 @@ spec:
   type: ClusterIP
   selector:
     app.kubernetes.io/name: motus
+    app.kubernetes.io/component: motus
