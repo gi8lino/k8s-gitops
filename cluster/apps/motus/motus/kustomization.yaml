@@ -3,5 +3,6 @@ resources:
   - networkpolicies/
   - deployment.yaml
   - httproute.yaml
+  - secret.yaml
   - securitypolicy.yaml
   - service.yaml
