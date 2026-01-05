@@ -39,7 +39,7 @@ spec:
             - name: TZ
               value: Europe/Zurich
             - name: MOTUS_AUTH_HEADER
-              value: X_AUTH_REQUEST_EMAIL
+              value: X-Auth-Request-Email
             - name: MOTUS_DATABASE_URL
               valueFrom:
                 secretKeyRef:
