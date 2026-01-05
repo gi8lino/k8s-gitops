@@ -22,7 +22,7 @@ spec:
         - name: never
           image: ghcr.io/containeroo/never:v0.8.7
           args:
-            - --http.postgres.address=https://motus-postgres-17-healthz:8000/healthz
+            - --http.postgres.address=https://motus-postgres-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true
           resources:
             requests:
