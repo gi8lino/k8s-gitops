@@ -26,4 +26,4 @@ spec:
               - Cookie
       backendRefs:
         - name: motus
-          port: 8000
+          port: 8080
