@@ -36,7 +36,7 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - matchLabels:
-            cnpg.io/cluster: motus-postgres-17
+            cnpg.io/cluster: motus-postgres
             cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": motus
       toPorts:

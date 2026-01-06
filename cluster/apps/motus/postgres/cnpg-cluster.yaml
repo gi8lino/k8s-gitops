@@ -2,7 +2,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: motus-postgres-17
+  name: motus-postgres
   namespace: motus
 spec:
   instances: 1

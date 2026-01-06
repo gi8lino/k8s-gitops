@@ -12,5 +12,5 @@ spec:
       protocol: TCP
       targetPort: 8000
   selector:
-    cnpg.io/cluster: motus-postgres-17
+    cnpg.io/cluster: motus-postgres
     cnpg.io/instanceRole: primary

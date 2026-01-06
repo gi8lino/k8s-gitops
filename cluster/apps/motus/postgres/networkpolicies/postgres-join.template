@@ -28,7 +28,7 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            cnpg.io/cluster: motus-postgres-17
+            cnpg.io/cluster: motus-postgres
             cnpg.io/podRole: instance
             io.kubernetes.pod.namespace: motus
       toPorts:
