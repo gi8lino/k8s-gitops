@@ -62,9 +62,8 @@ spec:
           url: https://ds.local.${BASE_DOMAIN}
           scrapeTimeout: 2m
           module: http_2xx_higher_timeout
-        # - name: newsnab
-        #   url: "${NEWSNAB_DOMAIN}"
-        #   scrapeTimeout: 2m
+        - name: newsnab
+          url: "${NEWSNAB_DOMAIN}"
     prometheusRule:
       enabled: true
       rules:
