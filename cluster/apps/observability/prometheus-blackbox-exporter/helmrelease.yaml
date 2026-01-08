@@ -61,21 +61,13 @@ spec:
         - name: diskstation
           url: https://ds.local.${BASE_DOMAIN}
           scrapeTimeout: 2m
-          interval: 60m
           module: http_2xx_higher_timeout
+        - name: newsnab
+          url: "${NEWSNAB_DOMAIN}"
+          scrapeTimeout: 2m
     prometheusRule:
       enabled: true
       rules:
-        - alert: SSLCertExpiringSoon
-          expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 29
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: |-
-              SSL certificate «{{ $labels.instance }}» expires soon
-            description: |-
-              SSL certificate will expire in {{ $value | humanizeDuration }} (instance {{ $labels.instance }})
         - alert: Newsnab
           expr: last_over_time(probe_failed_due_to_regex{target="newsnab"}[60m]) == 1
           for: 5m
@@ -84,11 +76,37 @@ spec:
           annotations:
             summary: Newsnab API is expired
             description: Newsnab API for «{{ $labels.target }}» is expired
+        - alert: SSLCertExpiringSoon
+          annotations:
+            description: SSL certificate will expire in {{ $value | humanizeDuration }} (instance {{ $labels.instance }})
+            summary: SSL certificate «{{ $labels.instance }}» expires soon
+          expr: |
+            (
+              last_over_time(probe_ssl_earliest_cert_expiry[1h]) - time()
+            )
+            and
+            (
+              last_over_time(probe_ssl_earliest_cert_expiry[1h]) > 0
+              and
+              (last_over_time(probe_ssl_earliest_cert_expiry[1h]) - time()) < 29 * 86400
+            )
+          for: 5m
+          labels:
+            severity: warning
         - alert: BlackboxProbeFailed
-          expr: last_over_time(probe_success[15m]) == 0
+          annotations:
+            description: The host «{{ $labels.instance }}» is currently unreachable
+            summary: Host is unreachable
+          expr: |
+            min_over_time(probe_success[40m]) == 0
           for: 5m
           labels:
             severity: critical
+        - alert: BlackboxProbeNoData
           annotations:
-            summary: Host is unreachable
-            description: The host «{{ $labels.target }}» is currently unreachable
+            description: No probe data received for «{{ $labels.instance }}»
+            summary: Blackbox probe has no data
+          expr: absent_over_time(probe_success[40m])
+          for: 10m
+          labels:
+            severity: critical

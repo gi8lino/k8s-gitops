@@ -19,5 +19,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: prometheus-blackbox-exporter
+        - name: blackbox-exporter
           port: 9115
