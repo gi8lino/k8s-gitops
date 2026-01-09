@@ -4,8 +4,6 @@ kind: HelmRelease
 metadata:
   name: nvme
   namespace: storage-system
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
   interval: 20m
   driftDetection:
@@ -28,8 +26,8 @@ spec:
       teardown: |-
         #!/bin/sh
 
-        archived_path="$(dirname ${VOL_DIR})/archived-$(basename ${VOL_DIR})"
-        mv ${VOL_DIR} ${archived_path}
+        archived_path="$(dirname $${VOL_DIR})/archived-$(basename $${VOL_DIR})"
+        mv $${VOL_DIR} $${archived_path}
     storageClass:
       defaultClass: true
       name: nvme
