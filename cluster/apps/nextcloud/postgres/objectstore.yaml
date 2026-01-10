@@ -1,0 +1,22 @@
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: nextcloud
+  namespace: nextcloud
+spec:
+  retentionPolicy: 3d
+  configuration:
+    destinationPath: s3://db-backups
+    endpointURL: http://minio.minio.svc.cluster.local:9000
+    s3Credentials:
+      accessKeyId:
+        name: db-backup
+        key: accessKey
+      secretAccessKey:
+        name: db-backup
+        key: secretKey
+    wal:
+      compression: gzip
+    data:
+      compression: gzip

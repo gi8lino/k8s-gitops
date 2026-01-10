@@ -1,3 +1,4 @@
 ---
 resources:
+  - networkpolicies/
   - helmrelease.yaml
