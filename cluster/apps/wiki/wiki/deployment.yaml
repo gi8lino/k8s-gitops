@@ -38,23 +38,23 @@ spec:
             - name: DB_TYPE
               value: postgres
             - name: DB_HOST
-              value: wiki-postgres-17-rw.wiki.svc.cluster.local
+              value: wiki-postgres-rw.wiki.svc.cluster.local
             - name: DB_PORT
               value: "5432"
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: wiki-postgres-17-app
+                  name: wiki-postgres-app
                   key: dbname
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: wiki-postgres-17-app
+                  name: wiki-postgres-app
                   key: username
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
-                  name: wiki-postgres-17-app
+                  name: wiki-postgres-app
                   key: password
           ports:
             - name: http

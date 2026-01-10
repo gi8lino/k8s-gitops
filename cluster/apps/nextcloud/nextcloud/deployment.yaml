@@ -25,7 +25,7 @@ spec:
           image: ghcr.io/containeroo/never:v0.8.7
           args:
             - --tcp.valkey.address=valkey.nextcloud.svc.cluster.local:6379
-            - --http.postgres.address=https://nextcloud-postgres-17-healthz:8000/healthz
+            - --http.postgres.address=https://nextcloud-postgres-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true
           resources:
             requests:
@@ -77,21 +77,21 @@ spec:
           image: nextcloud:32.0.3-fpm-alpine
           env:
             - name: POSTGRES_HOST
-              value: nextcloud-postgres-17-rw.nextcloud.svc.cluster.local
+              value: nextcloud-postgres-rw.nextcloud.svc.cluster.local
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-postgres-17-app
+                  name: nextcloud-postgres-app
                   key: username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-postgres-17-app
+                  name: nextcloud-postgres-app
                   key: password
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-postgres-17-app
+                  name: nextcloud-postgres-app
                   key: dbname
             - name: NEXTCLOUD_TRUSTED_DOMAINS
               value: cloud.${BASE_DOMAIN}

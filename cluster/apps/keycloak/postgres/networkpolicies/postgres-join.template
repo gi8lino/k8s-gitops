@@ -28,7 +28,7 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            cnpg.io/cluster: keycloak-postgres-17
+            cnpg.io/cluster: keycloak-postgres
             cnpg.io/podRole: instance
             io.kubernetes.pod.namespace: keycloak
       toPorts:

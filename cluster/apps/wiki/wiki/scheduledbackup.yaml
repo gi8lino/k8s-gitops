@@ -2,9 +2,9 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: wiki-postgres-17
+  name: wiki-postgres
   namespace: wiki
 spec:
   schedule: "0 10 2 * * *"
   cluster:
-    name: wiki-postgres-17
+    name: wiki-postgres

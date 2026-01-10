@@ -12,7 +12,7 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            cnpg.io/cluster: nextcloud-postgres-17
+            cnpg.io/cluster: nextcloud-postgres
             cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:

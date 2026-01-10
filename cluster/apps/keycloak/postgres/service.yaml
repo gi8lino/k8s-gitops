@@ -12,5 +12,5 @@ spec:
       protocol: TCP
       targetPort: 8000
   selector:
-    cnpg.io/cluster: keycloak-postgres-17
+    cnpg.io/cluster: keycloak-postgres
     cnpg.io/instanceRole: primary
