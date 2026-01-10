@@ -2,12 +2,12 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: keycloak-postgres
-  namespace: keycloak
+  name: wiki-postgres
+  namespace: wiki
 spec:
   schedule: "0 0 3 * * *"
   cluster:
-    name: keycloak-postgres
+    name: wiki-postgres
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io

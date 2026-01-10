@@ -2,7 +2,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: keycloak-postgres-17
+  name: keycloak-postgres
   namespace: keycloak
 spec:
   instances: 1
@@ -12,21 +12,10 @@ spec:
   bootstrap:
     initdb:
       database: keycloak
-  backup:
-    barmanObjectStore:
-      destinationPath: s3://db-backups
-      endpointURL: http://minio.minio.svc.cluster.local:9000
-      s3Credentials:
-        accessKeyId:
-          name: db-backup
-          key: accessKey
-        secretAccessKey:
-          name: db-backup
-          key: secretKey
-      wal:
-        compression: gzip
-      data:
-        compression: gzip
-    retentionPolicy: 10d
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: keycloak
   monitoring:
     enablePodMonitor: true

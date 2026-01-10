@@ -5,6 +5,9 @@ metadata:
   name: motus-postgres
   namespace: motus
 spec:
-  schedule: "0 0 2 * * *"
+  schedule: "0 0 3 * * *"
   cluster:
     name: motus-postgres
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
