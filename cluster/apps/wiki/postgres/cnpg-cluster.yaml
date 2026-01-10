@@ -11,7 +11,7 @@ spec:
     size: 20Gi
   bootstrap:
     initdb:
-      database: wiki
+      database: wikijs
     # restore from backup, initdb must be disabled
     # apply ./networkpolicies/postgres-recovery.yaml.template first
     # recovery:
