@@ -9,6 +9,16 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: cnpg-plugin-barman-cloud
       app.kubernetes.io/name: plugin-barman-cloud
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: cloudnative-pg
+            app.kubernetes.io/instance: cloudnative-pg
+            "k8s:io.kubernetes.pod.namespace": observability
+      toPorts:
+        - ports:
+            - port: "9090"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:

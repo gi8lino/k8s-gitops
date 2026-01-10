@@ -43,3 +43,12 @@ spec:
             - port: "6443" # kube-api
         - ports:
             - port: "9443" # webhook
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: cnpg-plugin-barman-cloud
+            app.kubernetes.io/name: plugin-barman-cloud
+            "k8s:io.kubernetes.pod.namespace": cnpg-system
+      toPorts:
+        - ports:
+            - port: "9090"
+              protocol: TCP
