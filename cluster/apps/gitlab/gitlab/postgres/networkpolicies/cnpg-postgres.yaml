@@ -7,7 +7,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      cnpg.io/cluster: gitlab-postgres-16
+      cnpg.io/cluster: gitlab-postgres
       cnpg.io/podRole: instance
   egress:
     - toEndpoints:

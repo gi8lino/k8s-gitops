@@ -24,7 +24,7 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - matchLabels:
-            cnpg.io/cluster: gitlab-postgres-16
+            cnpg.io/cluster: gitlab-postgres
             cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
