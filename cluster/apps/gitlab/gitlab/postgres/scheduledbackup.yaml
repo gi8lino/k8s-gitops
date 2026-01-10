@@ -2,9 +2,12 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: gitlab-postgres-16
+  name: gitlab-postgres
   namespace: gitlab
 spec:
-  schedule: "0 30 2 * * *"
+  schedule: "0 0 5 * * *"
   cluster:
-    name: gitlab-postgres-16
+    name: gitlab-postgres
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io

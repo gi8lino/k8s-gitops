@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - networkpolicies/
   - cnpg-cluster.yaml
+  - objectstore.yaml
   - scheduledbackup.yaml
   - secret.yaml
