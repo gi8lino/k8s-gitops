@@ -7,14 +7,14 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: cnpg-plugin-barman-cloud
       app.kubernetes.io/name: plugin-barman-cloud
+      app.kubernetes.io/instance: cnpg-plugin-barman-cloud
   ingress:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/name: cloudnative-pg
             app.kubernetes.io/instance: cloudnative-pg
-            "k8s:io.kubernetes.pod.namespace": observability
+            "k8s:io.kubernetes.pod.namespace": cnpg-system
       toPorts:
         - ports:
             - port: "9090"
