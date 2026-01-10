@@ -1,0 +1,26 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cnpg-plugin-barman-cloud
+  namespace: cnpg-system
+spec:
+  interval: 20m
+  driftDetection:
+    mode: enabled
+  dependsOn:
+    - name: cloudnative-pg
+      namespace: cnpg-system
+  chart:
+    spec:
+      chart: plugin-barman-cloud
+      version: 0.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: cloudnative-pg
+        namespace: flux-system
+      interval: 30m
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip

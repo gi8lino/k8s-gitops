@@ -5,5 +5,6 @@ resources:
   - cert-manager/
   - cloudflare-operator/
   - cloudnative-pg/
+  - cnpg-plugin-barman-cloud/
   - k8up/
   - kube-prometheus-stack/
