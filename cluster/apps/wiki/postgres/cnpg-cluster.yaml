@@ -12,6 +12,12 @@ spec:
   bootstrap:
     initdb:
       database: wiki
+    # restore from backup, initdb must be disabled
+    # apply ./networkpolicies/postgres-recovery.yaml.template first
+    # recovery:
+    #   database: wikijs
+    #   backup:
+    #     name: wiki-postgres-17-20260110021000 # kubectl get backups.postgresql.cnpg.io
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true

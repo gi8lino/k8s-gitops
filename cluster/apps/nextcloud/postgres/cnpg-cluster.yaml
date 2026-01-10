@@ -12,6 +12,12 @@ spec:
   bootstrap:
     initdb:
       database: nextcloud
+    # restore from backup, initdb must be disabled
+    # apply ./networkpolicies/postgres-recovery.yaml.template first
+    # recovery:
+    #   database: nextcloud
+    #   backup:
+    #     name: nextcloud-postgres-17-20260110020500 # kubectl get backups.postgresql.cnpg.io
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
