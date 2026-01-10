@@ -6,5 +6,4 @@ resources:
   - deployment.yaml
   - envoyextensionpolicy.yaml
   - httproute.yaml
-  - scheduledbackup.yaml
   - service.yaml
