@@ -12,6 +12,7 @@ spec:
   bootstrap:
     initdb:
       database: wikijs
+      owner: wikijs
     # restore from backup, initdb must be disabled
     # apply ./networkpolicies/postgres-recovery.yaml.template first
     # recovery:
