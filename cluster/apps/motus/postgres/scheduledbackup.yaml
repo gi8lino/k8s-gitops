@@ -5,7 +5,7 @@ metadata:
   name: motus-postgres
   namespace: motus
 spec:
-  schedule: "0 0 3 * * *"
+  schedule: "0 30 3 * * *"
   cluster:
     name: motus-postgres
   method: plugin
