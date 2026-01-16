@@ -50,8 +50,6 @@ spec:
           env:
             - name: KC_HOSTNAME
               value: sso.${BASE_DOMAIN}
-            - name: KC_CACHE_STACK
-              value: kubernetes
             - name: KC_PROXY_HEADERS
               value: xforwarded
             - name: KC_HTTP_ENABLED
