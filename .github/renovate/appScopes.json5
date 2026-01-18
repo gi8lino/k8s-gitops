@@ -74,10 +74,10 @@
       "semanticCommitScope": "tautulli"
     },
     {
-      "description": "App scope: kthxbye",
+      "description": "App scope: motus",
       "matchDatasources": ["docker"],
-      "matchPaths": ["cluster/apps/monitoring/kthxbye/**"],
-      "semanticCommitScope": "kthxbye"
+      "matchPaths": ["cluster/apps/motus/motus/**"],
+      "semanticCommitScope": "motus"
     },
     {
       "description": "App scope: nextcloud",
@@ -90,6 +90,12 @@
       "matchDatasources": ["docker"],
       "matchPaths": ["cluster/apps/nextcloud/valkey/**"],
       "semanticCommitScope": "nextcloud"
+    },
+    {
+      "description": "App scope: kthxbye",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/observability/kthxbye/**"],
+      "semanticCommitScope": "kthxbye"
     },
     {
       "description": "App scope: renovate",
