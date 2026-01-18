@@ -31,3 +31,13 @@ tasks:
     cmds:
       - ./hack/generate_renovate_app_scopes.sh
     silent: true
+  cleanup-images-dry:
+    desc: Cleanup CRI images
+    cmds:
+      - ./hack/cleanup_cri_images.py --sudo
+    silent: true
+  cleanup-images-run:
+    desc: Cleanup CRI images
+    cmds:
+      - ./hack/cleanup_cri_images.py --sudo --apply
+    silent: true
