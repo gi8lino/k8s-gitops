@@ -41,3 +41,8 @@ tasks:
     cmds:
       - ./hack/cleanup_cri_images.py --sudo --apply
     silent: true
+  quotes:
+    desc: Remove unnecessary quotes from YAML files
+    cmds:
+      - ./hack/yaml_quote_format.py -i ./cluster/
+    silent: true
