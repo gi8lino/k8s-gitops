@@ -28,14 +28,14 @@ spec:
           http:
             valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
             follow_redirects: true
-            preferred_ip_protocol: "ip4"
+            preferred_ip_protocol: ip4
         newsnab:
           prober: http
           timeout: 5s
           http:
             valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
             follow_redirects: true
-            preferred_ip_protocol: "ip4"
+            preferred_ip_protocol: ip4
             fail_if_body_not_matches_regexp: ["${NEWSNAB_REGEX}"]
     ingress:
       enabled: false

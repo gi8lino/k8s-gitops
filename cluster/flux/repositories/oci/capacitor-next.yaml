@@ -8,4 +8,4 @@ spec:
   url: oci://ghcr.io/gimlet-io/charts/capacitor-next
   interval: 20m
   ref:
-    tag: "2025-11.1-patch2"
+    tag: 2025-11.1-patch2

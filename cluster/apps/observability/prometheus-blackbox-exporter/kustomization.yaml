@@ -20,11 +20,11 @@ generatorOptions:
 patches:
   - patch: |-
       - op: add
-        path: "/metadata/labels"
+        path: /metadata/labels
         value:
           grafana_dashboard: "1"
       - op: add
-        path: "/metadata/annotations"
+        path: /metadata/annotations
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
     target:
@@ -32,11 +32,11 @@ patches:
       name: grafana-dashboard-blackbox-exporter-quick-overview
   - patch: |-
       - op: add
-        path: "/metadata/labels"
+        path: /metadata/labels
         value:
           grafana_dashboard: "1"
       - op: add
-        path: "/metadata/annotations"
+        path: /metadata/annotations
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
     target:

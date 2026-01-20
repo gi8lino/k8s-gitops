@@ -39,7 +39,7 @@ spec:
                   value: /renovate/config.json
               volumeMounts:
                 - name: renovate-ssh
-                  mountPath: "/home/ubuntu/.ssh"
+                  mountPath: /home/ubuntu/.ssh
                   readOnly: true
                 - name: renovate-config
                   mountPath: /renovate/

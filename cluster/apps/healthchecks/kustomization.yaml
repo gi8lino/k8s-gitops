@@ -32,7 +32,7 @@ patches:
       name: logo
     patch: |-
       - op: add
-        path: "/metadata/annotations"
+        path: /metadata/annotations
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
   - target:
@@ -40,7 +40,7 @@ patches:
       name: prunes
     patch: |-
       - op: add
-        path: "/metadata/annotations"
+        path: /metadata/annotations
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
   - target:
@@ -48,6 +48,6 @@ patches:
       name: startup
     patch: |-
       - op: add
-        path: "/metadata/annotations"
+        path: /metadata/annotations
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
