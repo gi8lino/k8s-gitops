@@ -33,6 +33,7 @@ spec:
         - matchName: download.falco.org
         - matchName: falcosecurity.github.io # falco indexes
         - matchName: ghcr.io
+        - matchName: github.com
         - matchName: mirrors.edge.kernel.org
         - matchName: pkg-containers.githubusercontent.com
         - matchName: tuf-repo-cdn.sigstore.dev
