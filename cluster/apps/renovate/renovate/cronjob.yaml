@@ -33,7 +33,7 @@ spec:
                   memory: 16Mi
           containers:
             - name: renovate
-              image: renovate/renovate:42.90.2
+              image: renovate/renovate:42.92.1
               env:
                 - name: RENOVATE_CONFIG_FILE
                   value: /renovate/config.json
