@@ -24,7 +24,7 @@ spec:
       serviceAccountName: cascader
       containers:
         - name: cascader
-          image: ghcr.io/thurgauerkb/cascader:v0.3.6
+          image: ghcr.io/thurgauerkb/cascader:v0.3.7
           ports:
             - name: metrics
               containerPort: 8443
