@@ -20,7 +20,7 @@ spec:
     spec:
       initContainers:
         - name: never
-          image: ghcr.io/containeroo/never:v0.8.8
+          image: ghcr.io/containeroo/never:v0.8.9
           args:
             - --http.postgres.address=https://motus-postgres-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true
