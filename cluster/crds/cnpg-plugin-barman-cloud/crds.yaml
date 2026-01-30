@@ -9,7 +9,7 @@ spec:
   url: https://github.com/cloudnative-pg/plugin-barman-cloud.git
   ref:
     # renovate: datasource=github-releases depName=cloudnative-pg/plugin-barman-cloud
-    tag: v0.10.0
+    tag: v0.11.0
   ignore: |
     # exclude all
     /*
