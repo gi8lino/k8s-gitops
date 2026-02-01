@@ -20,6 +20,9 @@ spec:
         name: cloudnative-pg
         namespace: flux-system
       interval: 30m
+  values:
+    crds:
+      create: false
   install:
     crds: Skip
   upgrade:
