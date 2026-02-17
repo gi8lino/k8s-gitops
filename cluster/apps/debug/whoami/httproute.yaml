@@ -30,4 +30,4 @@ spec:
               - Cookie
       backendRefs:
         - name: whoami
-          port: 80
+          port: 8080
