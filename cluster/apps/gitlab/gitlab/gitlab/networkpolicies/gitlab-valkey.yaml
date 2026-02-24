@@ -2,13 +2,13 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: gitlab-redis
+  name: gitlab-valkey
   namespace: gitlab
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: gitlab
-      app.kubernetes.io/name: redis
+      app.kubernetes.io/name: valkey
+      app.kubernetes.io/instance: valkey
   ingress:
     - fromEndpoints:
         - matchLabels:

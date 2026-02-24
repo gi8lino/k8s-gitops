@@ -63,8 +63,8 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: nextcloud
-            app.kubernetes.io/component: valkey
+            app.kubernetes.io/name: valkey
+            app.kubernetes.io/instance: valkey
             "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:

@@ -10,9 +10,9 @@ resources:
   - envoy-gateway-internal-egress-gitlab.yaml
   - gitlab-gitaly.yaml
   - gitlab-minio.yaml
-  - gitlab-redis.yaml
   - gitlab-registry.yaml
   - gitlab-shell.yaml
   - gitlab-sidekiq.yaml
   - gitlab-toolbox.yaml
+  - gitlab-valkey.yaml
   - gitlab-webservice.yaml
