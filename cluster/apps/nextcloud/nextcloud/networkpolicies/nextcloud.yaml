@@ -64,7 +64,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/name: valkey
-            app.kubernetes.io/instance: valkey
+            app.kubernetes.io/instance: nextcloud-valkey
             "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:

@@ -32,7 +32,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/name: valkey
-            app.kubernetes.io/instance: valkey
+            app.kubernetes.io/instance: renovate-valkey
             "k8s:io.kubernetes.pod.namespace": renovate
       toPorts:
         - ports:

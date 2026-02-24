@@ -100,7 +100,7 @@ spec:
             - name: OVERWRITEPROTOCOL
               value: https
             - name: REDIS_HOST
-              value: valkey.nextcloud.svc.cluster.local
+              value: nextcloud-valkey.nextcloud.svc.cluster.local
             - name: TZ
               value: Europe/Zurich
             - name: DEFAULT_PHONE_REGION

@@ -23,7 +23,7 @@ spec:
             - name: never
               image: ghcr.io/containeroo/never:v0.8.9
               args:
-                - --tcp.valkey.address=valkey.renovate.svc.cluster.local:6379
+                - --tcp.valkey.address=renovate-valkey.renovate.svc.cluster.local:6379
               resources:
                 requests:
                   cpu: 10m
