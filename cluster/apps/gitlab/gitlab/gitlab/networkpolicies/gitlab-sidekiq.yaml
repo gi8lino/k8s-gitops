@@ -66,7 +66,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/name: valkey
-            app.kubernetes.io/instance: valkey
+            app.kubernetes.io/instance: gitlab-valkey
             "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
