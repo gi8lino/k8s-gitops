@@ -24,7 +24,7 @@ spec:
         - name: never
           image: ghcr.io/containeroo/never:v0.8.9
           args:
-            - --tcp.valkey.address=valkey.nextcloud.svc.cluster.local:6379
+            - --tcp.valkey.address=nextcloud-valkey.nextcloud.svc.cluster.local:6379
             - --http.postgres.address=https://nextcloud-postgres-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true
           resources:
