@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: gitlab-minio
+  name: gitlab-garage
   namespace: gitlab
 spec:
   endpointSelector:
