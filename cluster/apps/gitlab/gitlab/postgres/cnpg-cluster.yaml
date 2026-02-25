@@ -13,6 +13,12 @@ spec:
     initdb:
       database: gitlabhq_production
       owner: gitlab
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS pg_trgm;
+        - CREATE EXTENSION IF NOT EXISTS btree_gist;
+        - CREATE EXTENSION IF NOT EXISTS plpgsql;
+        - CREATE EXTENSION IF NOT EXISTS amcheck;
+        - CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
