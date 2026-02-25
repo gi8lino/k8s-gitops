@@ -1,0 +1,53 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: gitlab-minio
+  namespace: gitlab
+spec:
+  endpointSelector:
+    matchLabels:
+      app: minio
+      component: app
+      release: gitlab
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
+            gateway.envoyproxy.io/owning-gateway-namespace: network
+            "k8s:io.kubernetes.pod.namespace": network
+        - matchLabels:
+            app: webservice
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app: sidekiq
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app: registry
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app: toolbox
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app.kubernetes.io/name: gitlab-backup-mirror
+            app.kubernetes.io/component: job
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app: minio
+            component: create-buckets
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
+            app: migrations
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        # cnpg: migration
+        # - matchLabels:
+        #     cnpg.io/jobRole: import
+        #     "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "3900"
+              protocol: TCP

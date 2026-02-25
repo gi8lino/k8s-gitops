@@ -1,3 +1,4 @@
 ---
 resources:
+  - networkpolicie/
   - helmchart.yaml

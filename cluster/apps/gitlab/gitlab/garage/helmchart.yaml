@@ -21,6 +21,7 @@ spec:
       replicaCount: 1
     garage:
       replicationFactor: "1"
+      rpcBindAddr: ":3901"
     persistence:
       data:
         size: 5Gi
