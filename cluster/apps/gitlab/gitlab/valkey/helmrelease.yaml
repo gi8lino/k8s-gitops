@@ -5,7 +5,7 @@ metadata:
   name: gitlab-valkey
   namespace: gitlab
 spec:
-  interval: 5m
+  interval: 20m
   driftDetection:
     mode: enabled
   chart:
@@ -16,8 +16,12 @@ spec:
         kind: HelmRepository
         name: valkey
         namespace: flux-system
-      interval: 5m
+      interval: 30m
   values:
     dataStorage:
       enabled: true
       requestedSize: 2Gi
+  valuesFrom:
+    - kind: Secret
+      name: valkey-helm-values
+      optional: false
