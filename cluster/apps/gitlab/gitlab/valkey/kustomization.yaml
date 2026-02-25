@@ -1,4 +1,5 @@
 ---
 resources:
+  - networkpolicies/
   - helmrelease.yaml
   - secret.yaml

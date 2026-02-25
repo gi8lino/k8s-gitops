@@ -14,5 +14,4 @@ resources:
   - gitlab-shell.yaml
   - gitlab-sidekiq.yaml
   - gitlab-toolbox.yaml
-  - gitlab-valkey.yaml
   - gitlab-webservice.yaml
