@@ -65,7 +65,7 @@ spec:
         port: 6379
         auth:
           enabled: true
-          secret: valkey-auth
+          secret: gitlab-valkey-auth
           key: default-password
       kas:
         enabled: false
