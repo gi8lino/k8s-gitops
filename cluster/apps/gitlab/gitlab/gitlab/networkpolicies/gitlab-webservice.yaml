@@ -90,15 +90,6 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: gitlab-garage
-            app.kubernetes.io/name: garage
-            "k8s:io.kubernetes.pod.namespace": gitlab
-      toPorts:
-        - ports:
-            - port: "3900"
-              protocol: TCP
-    - toEndpoints:
-        - matchLabels:
             cnpg.io/cluster: gitlab-postgres
             cnpg.io/podRole: instance
             "k8s:io.kubernetes.pod.namespace": gitlab

@@ -67,6 +67,7 @@ spec:
             "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
             app: migrations
+            release: gitlab
             "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
