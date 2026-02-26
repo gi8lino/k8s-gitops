@@ -1,0 +1,11 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: gitlab-registry
+  namespace: gitlab
+spec:
+  name: registry
+  owner: registry
+  cluster:
+    name: gitlab-postgres

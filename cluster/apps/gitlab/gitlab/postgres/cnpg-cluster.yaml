@@ -19,6 +19,12 @@ spec:
         - CREATE EXTENSION IF NOT EXISTS plpgsql;
         - CREATE EXTENSION IF NOT EXISTS amcheck;
         - CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+  managed:
+    roles:
+      - name: registry
+        login: true
+        passwordSecret:
+          name: gitlab-postgres-registry
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
