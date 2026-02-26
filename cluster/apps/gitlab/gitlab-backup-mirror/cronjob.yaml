@@ -8,6 +8,7 @@ metadata:
     app.kubernetes.io/name: gitlab-backup-mirror
     app.kubernetes.io/component: job
 spec:
+  suspend: false
   schedule: 0 2 * * *
   timeZone: Europe/Zurich
   failedJobsHistoryLimit: 1
@@ -28,19 +29,9 @@ spec:
                 - name: TZ
                   value: Europe/Zurich
                 - name: SOURCE_URL
-                  value: http://gitlab-minio-svc.gitlab.svc.cluster.local:9000
+                  value: http://gitlab-garage.gitlab.svc.cluster.local:3900
                 - name: SOURCE_BUCKET
                   value: gitlab-backups
-                - name: SOURCE_ACCESSKEY
-                  valueFrom:
-                    secretKeyRef:
-                      key: accesskey
-                      name: gitlab-minio-secret
-                - name: SOURCE_SECRETKEY
-                  valueFrom:
-                    secretKeyRef:
-                      key: secretkey
-                      name: gitlab-minio-secret
                 - name: DESTINATION_URL
                   value: http://minio.minio.svc.cluster.local:9000
                 - name: DESTINATION_BUCKET
