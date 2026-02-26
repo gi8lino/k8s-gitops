@@ -62,6 +62,10 @@ spec:
             app.kubernetes.io/component: job
             "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
+            app.kubernetes.io/instance: gitlab-garage
+            app.kubernetes.io/name: garage
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
             app: minio
             component: create-buckets
             "k8s:io.kubernetes.pod.namespace": gitlab
