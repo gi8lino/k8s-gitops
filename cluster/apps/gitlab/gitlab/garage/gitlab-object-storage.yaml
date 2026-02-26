@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitlab-object-storage
+  namespace: gitlab
+type: Opaque
+data:
+  config: ENC[AES256_GCM,data:QImuh85//YMSktaHgG2kHuRxYDfijOOFc3Ad+BwzBNqqg0wYx5jO/h41KbsOPiaMZwCCrBCgCBKYaSskG84PYuDpy+JOqvgs89eQTe85//bY6Iqgo4j/SlcIlnIVIsji9pyUn0oUPkeCO40j2LUYuwJzLJvaRqJfJwjKFjTw0NgZovl3exGiM0MuGi64hRLBkat2pmMQijDDrY3IGKcIrXRu4pBIVps/NteqJnoSD7w5QCveyBDFmH251u0nk4Ymbd2UXtAQBm9GPhZ+1EEh6hrA/6vG7t3MygHX0xmtPT4wErwOnuik+gRk3IvKvUYRkma9baVd+ZC4g41ZxGJsL3IDLdKM0PdY63m9+gy4C/3YAU6kPxcwuGso58KQTbh+6f+USv1hbbRwtYsYOkePuYg1i7tHPINA,iv:drPEkKXsvQGfy/Du63FlE2u272ITPca70s8I/KvhgyU=,tag:MCIMk/64hoqNApD/ZRN83Q==,type:str]
+sops:
+  lastmodified: "2026-02-26T15:58:40Z"
+  mac: ENC[AES256_GCM,data:p6TtKolVySIrNYwmqdd4L5Hj9EHkvtQzca/WL+qnx+52niV1yU1j/h9qJ0A4Jck9bv8yHmuqZDFhYyJoHkwAtn9GE9SSh5KSGns6MN3OFzM5PeWUqm2wV1+R2AmKWmPcCfeN1V3BMaBkxm9Eowl93RHe3iZKmj7gIZ+7Olj+6SQ=,iv:h45YJ+sv0Fvkxa3sG7c+DtgjBlc1KEnbMJivGINsHTQ=,tag:RfLmuSIfF5Y9tPiSNW1NDg==,type:str]
+  pgp:
+    - created_at: "2026-02-26T15:58:40Z"
+      enc: |-
+        -----BEGIN PGP MESSAGE-----
+
+        hQIMAxCiAiPlgInVAQ//RmbkafEaoXQJ4WYnD+zkpLNY5seVnRkPK2tpKVTO6EyM
+        6wtq04gKzByZsEF/1YFpWlPc26N/yRslmIaFh3TTBdS/6ZCazyJdXdogKDalzx85
+        TnGuCNGkwWH+KYwDoExhoKmT96uw15q6otihyZ97eZeTtn5cv+oHwtIziu/Fe+pi
+        K/SX1GAQ5YX7TbiILVXqpHOTKXlXb+Fxx5/BrZQl6gJnZoIEX9pSWacZsMa+SNWI
+        T+OGlQUY9qNOzT7tLmGhDAcOtbAdIw/t8r1Is5AfvIH0TuHNe1DoY4hAQ8Ysx82U
+        YmgSA40hWs5egT0e4hjfTlKL7rWut0VQPBfXzip7fUMFAQifHvrd+ZSTnAwGrz0P
+        dF3QZrHHpCB2kncJuLrRhXpuZnZLYpdBlj4yuSQp748uBUGIeUQEp+CAbCF+WlWg
+        S+gLkB9TzqjbxY8lmmYalAjBBxDHPnkyPD+NLQor/sOFMfjeneSDa526yfYZ+uz8
+        4ceLZ/0fONsav5xAYCE79NfwZdd66cXY9dqnQLGLqTC88MuqybnqKC+n4mQP33oY
+        2ifJ9O/H2LgvecKenS2nATeB5K24kb9fQvIuUvugXevxWqO9dqXQYOev+Tp39Rkx
+        kW9E3QbeDoqKCkRLNVWmwYzsSO+mTWMFZK244o84v4NhJjTdw1YHhQlYTHhkcELU
+        ZgEJAhDSaJsMIL4mFgNbfI7evo8RJtrj8jCjvAInFY43qFL0/rUCzQqcTNXkYElV
+        37Sc68ImXOF9eXTFTeWriHruw1yFXQ+7lQ0LFYyvRUaTd7KLkD/bh7w+NFCwunXe
+        vDSNwMDyyw==
+        =Kb3h
+        -----END PGP MESSAGE-----
+      fp: 3AE9F6BBA8327432196EF588637ED0A1DCC83334
+  encrypted_regex: ^(data|stringData|customRequestHeaders)$
+  version: 3.12.1

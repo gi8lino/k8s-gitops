@@ -35,6 +35,10 @@ spec:
         minReplicas: 1
       toolbox:
         backups:
+          objectStorage:
+            config:
+              secret: gitlab-object-storage-s3cmd
+              key: config
           cron:
             enabled: true
             schedule: 0 1 * * *
@@ -70,6 +74,13 @@ spec:
       kas:
         enabled: false
       appConfig:
+        object_store:
+          enabled: true
+          connection:
+            secret: gitlab-object-storage
+            key: config
+        terraformState:
+          enabled: true
         omniauth:
           enabled: true
           allowSingleSignOn:
@@ -95,8 +106,6 @@ spec:
         domain: ${BASE_DOMAIN}
         gitlab:
           name: git.${BASE_DOMAIN}
-        minio:
-          name: gitlab-minio.${BASE_DOMAIN}
         registry:
           name: registry.${BASE_DOMAIN}
       ingress:
@@ -130,8 +139,12 @@ spec:
         readonly:
           enabled: false
     minio:
-      ingress:
-        enabled: false
+      enabled: false
+      persistence:
+        annotations:
+          helm.sh/resource-policy: "keep"
+          ingress:
+            enabled: false
   install:
     crds: Skip
   upgrade:

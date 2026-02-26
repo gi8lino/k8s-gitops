@@ -1,4 +1,6 @@
 ---
 resources:
-  - networkpolicie/
+  - networkpolicies/
+  - gitlab-object-storage-s3cmd.yaml
+  - gitlab-object-storage.yaml
   - helmchart.yaml

@@ -7,15 +7,40 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: minio
-      component: app
-      release: gitlab
+      app.kubernetes.io/instance: gitlab-garage
+      app.kubernetes.io/name: garage
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - host
+        - kube-apiserver
+      toPorts:
+        - ports:
+            - port: "443" # kube api service
+              protocol: TCP
+            - port: "6443" # kube api
+              protocol: TCP
   ingress:
     - fromEndpoints:
         - matchLabels:
             gateway.envoyproxy.io/owning-gateway-name: envoy-internal
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
+      toPorts:
+        - ports:
+            - port: "3902"
+              protocol: TCP
+    - fromEndpoints:
         - matchLabels:
             app: webservice
             release: gitlab
@@ -43,10 +68,6 @@ spec:
         - matchLabels:
             app: migrations
             "k8s:io.kubernetes.pod.namespace": gitlab
-        # cnpg: migration
-        # - matchLabels:
-        #     cnpg.io/jobRole: import
-        #     "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "3900"
