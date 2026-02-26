@@ -73,6 +73,8 @@ spec:
           key: default-password
       kas:
         enabled: false
+      minio:
+        enabled: false
       appConfig:
         object_store:
           enabled: true
@@ -138,13 +140,6 @@ spec:
       maintenance:
         readonly:
           enabled: false
-    minio:
-      enabled: false
-      persistence:
-        annotations:
-          helm.sh/resource-policy: "keep"
-          ingress:
-            enabled: false
   install:
     crds: Skip
   upgrade:
