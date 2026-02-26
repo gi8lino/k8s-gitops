@@ -8,6 +8,51 @@ spec:
   interval: 20m
   driftDetection:
     mode: enabled
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: ConfigMap
+              name: gitlab-garage-config
+            patch: |
+              - op: replace
+                path: /data/garage.toml
+                value: |
+                  metadata_dir = "/mnt/meta"
+                  data_dir = "/mnt/data"
+
+                  db_engine = "lmdb"
+
+                  block_size = 1048576
+
+                  replication_factor = 1
+                  consistency_mode = "consistent"
+
+                  compression_level = 1
+
+                  rpc_bind_addr = "0.0.0.0:3901"
+                  # rpc_secret will be populated by the init container from a k8s secret object
+                  rpc_secret = "__RPC_SECRET_REPLACE__"
+
+                  bootstrap_peers = [ ]
+
+                  [kubernetes_discovery]
+                  namespace = "gitlab"
+                  service_name = "gitlab-garage"
+                  skip_crd = false
+
+                  [s3_api]
+                  s3_region = "garage"
+                  api_bind_addr = "0.0.0.0:3900"
+                  root_domain = ".s3.${BASE_DOMAIN}"
+
+                  [s3_web]
+                  bind_addr = "0.0.0.0:3902"
+                  root_domain = ".web.${BASE_DOMAIN}"
+                  index = "index.html"
+
+                  [admin]
+                  api_bind_addr = "0.0.0.0:3903"
   chart:
     spec:
       chart: ./script/helm/garage
