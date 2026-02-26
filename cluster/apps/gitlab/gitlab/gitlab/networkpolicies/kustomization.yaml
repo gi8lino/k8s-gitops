@@ -2,14 +2,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - egress-gitlab-create-buckets.yaml
   - egress-gitlab-migrations.yaml
   - egress-gitlab-shared-secrets.yaml
   - egress-gitlab-upgrade-check.yaml
   - envoy-gateway-egress-gitlab.yaml
   - envoy-gateway-internal-egress-gitlab.yaml
   - gitlab-gitaly.yaml
-  - gitlab-minio.yaml
   - gitlab-registry.yaml
   - gitlab-shell.yaml
   - gitlab-sidekiq.yaml

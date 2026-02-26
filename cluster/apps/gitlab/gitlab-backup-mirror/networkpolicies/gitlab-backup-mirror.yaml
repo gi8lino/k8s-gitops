@@ -33,15 +33,6 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            release: gitlab
-            app: minio
-            "k8s:io.kubernetes.pod.namespace": gitlab
-      toPorts:
-        - ports:
-            - port: "9000" # gitlab uses a old version of minio => port is for web-ui and api
-              protocol: TCP
-    - toEndpoints:
-        - matchLabels:
             app.kubernetes.io/instance: minio
             app.kubernetes.io/name: minio
             "k8s:io.kubernetes.pod.namespace": minio
