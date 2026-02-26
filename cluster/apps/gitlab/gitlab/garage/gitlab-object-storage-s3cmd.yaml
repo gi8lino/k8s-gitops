@@ -1,35 +1,34 @@
----
 apiVersion: v1
 kind: Secret
 metadata:
   name: gitlab-object-storage-s3cmd
   namespace: gitlab
 type: Opaque
-data:
-  config: ENC[AES256_GCM,data:/Ye1I0ohYRXmGKZFDSuXtGobdxOOPUFqw9ZfJ2fTH22QmqxY3f4KYmf4WUmtJwDo0mUm4pYnNrfTJ4FGHyfr6lAYZW38IwhENE6PjrSUwjckY67k2ZpPURcagjT7cU0D/ZcXjTBHP4t+5pl2xsjIJ1My0Mg/NkZV7JGJZigY2tXQ+PMpF4aS74QCcVpnXLsJg2Cm0jk+h6fbxQ4SiQfVSh/sysDW3C8fMXFdv4yEC3sDmdjXaUwlS26a8g8mrmhFxNOqZ6CLc+PlTIeMYLUH+UQ9m+eNgVVNykHzU142hevKGL5rFshMcWy0bsIRsRq2FYzmNDDDls+RAD93mpj2WZP9iAfbKUwmG6NSSgV9TN+vjbmHvrz7AwTX9NXIAd1DaW5qFOn/YtH5t5giAh7dluzZd2CRrtR9+ttYVwCR+TEVFdTU12O6Q01l9bY=,iv:5d/NnErk+b1l4XF22VFUveiogBS+yysJuAcbGOjtnjY=,tag:7GL4jWUaEYTt5YyGRpyprg==,type:str]
+stringData:
+  config: ENC[AES256_GCM,data:tch/BM7sebVEtXJh14e89FGUJh/uMrnq2gsiKMp8m+bunecEwM3QkI8uP5sCaH7Bs7w4MudeEwWLt9v9VwNK+M5N1GIZLbFN0+wkPcqFy9Lpxd39NUWvzee475JICgSM9PNhVlzW8bdM3wbYUMBVM29a3dvsC/A7W5WiAQFVTtXsqsW7z5NXdn+LasIK/z0G+BHiHMji/oWlpcYCJVOpsd2baeft1AWhK9o4PPhC22vrxDTazmxOyechy5XG/YL6ojLSgUuaTXdf/fB0uxY0wm2lvjIUHSsZaDdXr18T3phE7RVS6hdKOOlJA6TcvPyOSC5ZtkrVyXrI9c9itYw4cbucpn8=,iv:gWNtl55973GbL183/zHRv7LFATcrKuptoLxTHS/6buE=,tag:ejwnHQaR/uxnG4UDtqJxyQ==,type:str]
 sops:
-  lastmodified: "2026-02-26T15:58:45Z"
-  mac: ENC[AES256_GCM,data:TuT8TQ0RgZ6PXRIHVStEaLKX4b5vVDL0kYb/cZ8037EiK+7AruzIt9lFHctbNd703poElJ/tGVDvpwDRwHPZNe1tSTJeVJK7S9wA3R86Cqpso+3oId4V8gmFhvw5ebSnxHbzxvO+kuUZl20VDhoxEXXGNFRTM3BET606RXmpeP0=,iv:TErwksbfhG5YCzcmg+d4Coyo0oeHrHqs49OB4F7w6ks=,tag:ySd4U2EmdAdvGwpw1Dqk6w==,type:str]
+  lastmodified: "2026-02-26T16:35:17Z"
+  mac: ENC[AES256_GCM,data:glWMGG9oAmcOvUWLqmGpWX+07iZK/txsfJQpLqKOaYaclzJVNihfD7i0bSEmTDcw/dtwJ5i9MPPrHsJa6abWRRyqjpAEBZ6+uR50OYpOzZOMngxqPmPdgluHISqQP3BCANQ4WwiYcL1euLOkFHi4szUz41dyMYzv1fjd0i2CATw=,iv:BHJo/fCMS+Yo209RbEamQZOJZNdZzbF6oCUmrY40j2I=,tag:rjvP4Cjy/A3F7N3YTL5ToQ==,type:str]
   pgp:
-    - created_at: "2026-02-26T15:58:45Z"
+    - created_at: "2026-02-26T16:35:17Z"
       enc: |-
         -----BEGIN PGP MESSAGE-----
 
-        hQIMAxCiAiPlgInVARAAztLY0yuDKjRHsGtFmOA2bhLRGLEiSMczk5CzpaDk3C3f
-        xQVszSYbOcn7ZNUG/QuZjb7i6WicNLrFARhOIIf0ZeiMmDJRKVjI7YqLzjZm06VW
-        fQJKHimu7iXDKFM0rCxSe3LBcUK02BvOXcpCGa8pdE4S7oA6tjP/01a4yJZfylJP
-        12bPqTInFIiBD0oeCdCKfNzbyEKStp+dzw4mlZEiF+VnLlg5inftOvNcvWpYd+MF
-        5t+zW6+XHYETf25SwR/L0RVuYjmSYRPVlr7WpzV5ueZXpNR0NCMyLkFBHy1ZT/3t
-        IIWl+tQjA+o1Jf2fyOCNF5sHllf9JNA8iakBbqJqMlV050wqru33BPYDwthDKfAi
-        0Blv9o8N3sWNkLHbziSot10LRFnUkJPkMe0LxOAAuwlE47pnJ5sHeu4qWIG37TKj
-        C2Uacy/+kxvjqAMTC/KTPQcdB+sTiRPbKI0GZKlWiz53nPkWkl/u06GXTwjMH6xx
-        t6i5Y2X2LGfkesvX+osDLurWIUHNU/1DEaQqd8S5fIEXiwpAQ1xPCsIeMQKQ4S0a
-        MvREKNIeqtfD9xxp836cpS/V4O583pb/mvh4KsTOLQBY337aH83HWtKt6LHbTa2g
-        U7z0ygF+7BAqsIcuh+KKfZwlWT2DnlJHLrD7NFZB1tQWyJ9bXwUo6xSKxFgfaOvU
-        aAEJAhCmZfQlImRDlGvjuRqFlIhJeMX+uIhYxbVP31Q+5SYjDMlCg5mZurTCOCX0
-        aq15TQqknXUP1H2CTXizOXZ1g4xhmO5ShJXd1dtwxGkurqnmyngE93gsZvdegSSz
-        n4r6ZI5gSCN4
-        =Ijah
+        hQIMAxCiAiPlgInVAQ/+K/bsJh6Y/GgA7TwxWT6/jHXUoSYLtH5XCnkH+vPwr9kj
+        NYn0vg3yCbZ9CfzqbG/RJGdxzpsSyPXJPd9WOyoYWmarShbLZyT10SFluLsN3PMJ
+        kd7dWclWQf9Ho7HSNC+GMrkOtXNNS9fej9MO1hVyNE6xk/KzGTDJqiNrKGynwwH0
+        gkDpGZsnOY/ng8Kqw67EQ+7CwByDDk0qV64M5GY7UyLL4+36g3Ecqo0IaGkOF+kP
+        FOxQgugoEWO46+Lcz7+imRNnnpWI4nEqomPcDfbG5g8yYKifvZdCmAGZDH+VAvKU
+        cqqpYsdsO/JE7jewI9+BJXT/Msz8qzc6SYxVMqnHSwRigcR+nMK9MXqkxL+xwsuM
+        1A1+YKzk5OS+TeLIQVWM1Aa0xjaqhmMvMUmVqrDTe633kXL0iXK+adWHa9Cx67Bq
+        KrcA/R8SSjuQDaTTw5O/WSEnMHw0+nWMW25IFfUywVR4BQgfQROGHEHlS//1NcvB
+        PPxDOx54nvt2W8YjtC10vl23w236s6HncoPpipwA9yg12IoWDd/6LgzGiJWFV2YS
+        /HxGBGJP+vnfTymtnG2FttIFMtWYhDr0FVlqMOd6rei4kgrTy/HECXaUIGzZ6ysE
+        L97vsAmOuQ239LQnMidkT0dqA5BoiNe+Mm8WarqaeBt6sAoVimRvm8rr/qS8FE3U
+        ZgEJAhAmOFD7WWxNJ5GgJSY0KXLXJFVViDIJgaB0O/Ryc0rH5VjUxgs32Mvqurj9
+        VrwKgphhsk+0rkxLaV53D4ss8LgFSzP62K8KE6TbYNZSb3CmQ1T/alpmdE7j/Lxh
+        8q0jMHYipQ==
+        =2ncg
         -----END PGP MESSAGE-----
       fp: 3AE9F6BBA8327432196EF588637ED0A1DCC83334
   encrypted_regex: ^(data|stringData|customRequestHeaders)$

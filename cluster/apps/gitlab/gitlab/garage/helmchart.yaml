@@ -48,7 +48,7 @@ spec:
 
                   [s3_web]
                   bind_addr = "0.0.0.0:3902"
-                  root_domain = ".web.${BASE_DOMAIN}"
+                  root_domain = ".garage.${BASE_DOMAIN}"
                   index = "index.html"
 
                   [admin]
