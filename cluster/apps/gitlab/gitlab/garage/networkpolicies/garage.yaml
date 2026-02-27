@@ -23,22 +23,12 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
-        - host
         - kube-apiserver
       toPorts:
         - ports:
             - port: "6443"
               protocol: TCP
   ingress:
-    - fromEndpoints:
-        - matchLabels:
-            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
-            gateway.envoyproxy.io/owning-gateway-namespace: network
-            "k8s:io.kubernetes.pod.namespace": network
-      toPorts:
-        - ports:
-            - port: "3902"
-              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app: webservice
