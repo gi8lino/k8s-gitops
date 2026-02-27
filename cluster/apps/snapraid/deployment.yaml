@@ -20,6 +20,18 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+          startupProbe:
+            tcpSocket:
+              port: http
+            failureThreshold: 30
+            periodSeconds: 3
+            timeoutSeconds: 1
+          livenessProbe:
+            tcpSocket:
+              port: http
+            failureThreshold: 3
+            periodSeconds: 30
+            timeoutSeconds: 3
           volumeMounts:
             - name: output
               mountPath: /output

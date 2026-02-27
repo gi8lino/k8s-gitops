@@ -26,6 +26,18 @@ spec:
           ports:
             - name: metrics
               containerPort: 8080
+          startupProbe:
+            tcpSocket:
+              port: metrics
+            failureThreshold: 30
+            periodSeconds: 3
+            timeoutSeconds: 1
+          livenessProbe:
+            tcpSocket:
+              port: metrics
+            failureThreshold: 3
+            periodSeconds: 30
+            timeoutSeconds: 3
           resources:
             requests:
               memory: 50Mi
