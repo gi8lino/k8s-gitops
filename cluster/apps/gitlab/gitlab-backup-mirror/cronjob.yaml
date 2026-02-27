@@ -42,7 +42,7 @@ spec:
                 - name: RETENTION
                   value: 7d0h0m
                 - name: PUSHGATEWAY_URL
-                  value: http://prometheus-pushgateway.observability.svc.cluster.local:9091
+                  value: http://pushgateway.observability.svc.cluster.local:9091
               envFrom:
                 - secretRef:
                     name: gitlab-backup-mirror
