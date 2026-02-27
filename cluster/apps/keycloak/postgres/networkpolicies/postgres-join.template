@@ -12,7 +12,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             k8s-app: kube-dns
-            io.kubernetes.pod.namespace: kube-system
+            "k8s:io.kubernetes.pod.namespace": kube-system
       toPorts:
         - ports:
             - port: "53"
@@ -30,7 +30,7 @@ spec:
         - matchLabels:
             cnpg.io/cluster: keycloak-postgres
             cnpg.io/podRole: instance
-            io.kubernetes.pod.namespace: keycloak
+            "k8s:io.kubernetes.pod.namespace": keycloak
       toPorts:
         - ports:
             - port: "5432"
