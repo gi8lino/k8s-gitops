@@ -8,9 +8,6 @@ spec:
   interval: 20m
   driftDetection:
     mode: enabled
-  dependsOn:
-    - name: cilium
-      namespace: cilium
   chart:
     spec:
       chart: cert-manager

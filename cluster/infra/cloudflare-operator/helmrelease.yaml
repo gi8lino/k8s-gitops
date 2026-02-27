@@ -8,9 +8,6 @@ spec:
   interval: 20m
   driftDetection:
     mode: enabled
-  dependsOn:
-    - name: envoy-gateway
-      namespace: network
   chart:
     spec:
       chart: cloudflare-operator

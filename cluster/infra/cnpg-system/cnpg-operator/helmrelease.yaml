@@ -8,9 +8,6 @@ spec:
   interval: 20m
   driftDetection:
     mode: enabled
-  dependsOn:
-    - name: minio
-      namespace: minio
   chart:
     spec:
       chart: cloudnative-pg
