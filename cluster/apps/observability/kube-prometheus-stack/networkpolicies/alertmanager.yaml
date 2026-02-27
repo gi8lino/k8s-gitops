@@ -5,6 +5,7 @@ metadata:
   name: alertmanager
   namespace: observability
 spec:
+  description: "Policy for alertmanager"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-alertmanager

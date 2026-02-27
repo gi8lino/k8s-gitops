@@ -5,6 +5,7 @@ metadata:
   name: falco-sidekick-ui
   namespace: falco
 spec:
+  description: "Policy for falco-sidekick-ui"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: falcosidekick

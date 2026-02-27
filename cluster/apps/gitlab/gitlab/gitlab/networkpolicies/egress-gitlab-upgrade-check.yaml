@@ -5,6 +5,7 @@ metadata:
   name: egress-gitlab-upgrade-check
   namespace: gitlab
 spec:
+  description: "Policy for egress-gitlab-upgrade-check"
   endpointSelector:
     matchLabels:
       app: gitlab

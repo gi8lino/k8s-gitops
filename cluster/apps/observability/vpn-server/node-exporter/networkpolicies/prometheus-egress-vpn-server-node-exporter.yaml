@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-vpn-server-node-exporter
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-vpn-server-node-exporter"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus

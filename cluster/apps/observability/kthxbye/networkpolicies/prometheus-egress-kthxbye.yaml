@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-kthxbye
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-kthxbye"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus

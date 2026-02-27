@@ -5,6 +5,7 @@ metadata:
   name: prometheus-pushgateway
   namespace: observability
 spec:
+  description: "Policy for prometheus-pushgateway"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: prometheus-pushgateway

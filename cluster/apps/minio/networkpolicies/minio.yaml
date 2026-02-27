@@ -5,6 +5,7 @@ metadata:
   name: minio
   namespace: minio
 spec:
+  description: "Policy for minio"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: minio

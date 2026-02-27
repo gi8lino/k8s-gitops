@@ -5,6 +5,7 @@ metadata:
   name: renovate
   namespace: renovate
 spec:
+  description: "Policy for renovate"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: renovate

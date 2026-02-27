@@ -5,6 +5,7 @@ metadata:
   name: snapraid
   namespace: snapraid
 spec:
+  description: "Policy for snapraid"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: snapraid

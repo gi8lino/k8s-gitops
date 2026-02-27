@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-cloudnative-pg
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-cloudnative-pg"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus

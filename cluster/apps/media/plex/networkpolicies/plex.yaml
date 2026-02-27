@@ -5,6 +5,7 @@ metadata:
   name: plex
   namespace: media
 spec:
+  description: "Policy for plex"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: plex

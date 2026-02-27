@@ -5,6 +5,7 @@ metadata:
   name: k8up
   namespace: k8up
 spec:
+  description: "Policy for k8up"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: k8up
@@ -31,8 +32,8 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
-            - port: "6443" # kube-api
+            - port: "6443"
               protocol: TCP

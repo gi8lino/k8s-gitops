@@ -5,6 +5,7 @@ metadata:
   name: envoy-gateway-egress-blackbox-exporter
   namespace: network
 spec:
+  description: "Policy for envoy-gateway-egress-blackbox-exporter"
   endpointSelector:
     matchLabels:
       gateway.envoyproxy.io/owning-gateway-name: envoy-internal

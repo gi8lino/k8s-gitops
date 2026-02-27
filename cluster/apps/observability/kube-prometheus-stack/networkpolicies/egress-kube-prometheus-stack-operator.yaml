@@ -5,6 +5,7 @@ metadata:
   name: egress-kube-prometheus-stack-operator
   namespace: observability
 spec:
+  description: "Policy for egress-kube-prometheus-stack-operator"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
@@ -38,8 +39,8 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
-            - port: "6443" # kube api
+            - port: "6443"
               protocol: TCP

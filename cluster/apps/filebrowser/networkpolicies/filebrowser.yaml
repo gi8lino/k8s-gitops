@@ -5,6 +5,7 @@ metadata:
   name: filebrowser
   namespace: filebrowser
 spec:
+  description: "Policy for filebrowser"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: filebrowser

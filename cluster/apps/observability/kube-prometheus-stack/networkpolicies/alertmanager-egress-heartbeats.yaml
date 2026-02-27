@@ -5,6 +5,7 @@ metadata:
   name: alertmanager-egress-heartbeats
   namespace: observability
 spec:
+  description: "Policy for alertmanager-egress-heartbeats"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: alertmanager

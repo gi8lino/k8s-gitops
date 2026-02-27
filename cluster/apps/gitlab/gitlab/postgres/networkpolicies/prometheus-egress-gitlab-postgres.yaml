@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-gitlab-postgres
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-gitlab-postgres"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus

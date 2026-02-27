@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-flux-system
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-flux-system"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus

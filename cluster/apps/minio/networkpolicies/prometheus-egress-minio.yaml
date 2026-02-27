@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-minio
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-minio"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus

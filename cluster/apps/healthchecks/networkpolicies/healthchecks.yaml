@@ -5,6 +5,7 @@ metadata:
   name: healthchecks
   namespace: healthchecks
 spec:
+  description: "Policy for healthchecks"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: healthchecks

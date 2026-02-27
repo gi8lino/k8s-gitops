@@ -5,6 +5,7 @@ metadata:
   name: sabnzbd
   namespace: media
 spec:
+  description: "Policy for sabnzbd"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: sabnzbd

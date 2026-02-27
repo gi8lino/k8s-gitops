@@ -5,6 +5,7 @@ metadata:
   name: nextcloud
   namespace: nextcloud
 spec:
+  description: "Policy for nextcloud"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: nextcloud

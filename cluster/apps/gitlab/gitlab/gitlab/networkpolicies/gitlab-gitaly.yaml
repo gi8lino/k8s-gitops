@@ -5,6 +5,7 @@ metadata:
   name: gitlab-gitaly
   namespace: gitlab
 spec:
+  description: "Policy for gitlab-gitaly"
   endpointSelector:
     matchLabels:
       app: gitaly

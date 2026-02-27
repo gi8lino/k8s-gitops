@@ -5,6 +5,7 @@ metadata:
   name: gitlab-valkey
   namespace: gitlab
 spec:
+  description: "Policy for gitlab-valkey"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: valkey

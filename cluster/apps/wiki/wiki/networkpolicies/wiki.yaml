@@ -5,6 +5,7 @@ metadata:
   name: wiki
   namespace: wiki
 spec:
+  description: "Policy for wiki"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: wiki

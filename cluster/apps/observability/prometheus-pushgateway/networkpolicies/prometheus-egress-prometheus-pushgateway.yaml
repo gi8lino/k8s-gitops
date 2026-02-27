@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-prometheus-pushgateway
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-prometheus-pushgateway"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus

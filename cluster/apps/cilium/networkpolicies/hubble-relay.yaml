@@ -5,6 +5,7 @@ metadata:
   name: hubble-relay
   namespace: cilium
 spec:
+  description: "Policy for hubble-relay"
   endpointSelector:
     matchLabels:
       k8s-app: hubble-relay

@@ -5,6 +5,7 @@ metadata:
   name: prometheus
   namespace: observability
 spec:
+  description: "Policy for prometheus"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: prometheus
@@ -46,10 +47,10 @@ spec:
             - port: "9153" # coreDNS
               protocol: TCP
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
-            - port: "6443" # kube-api
+            - port: "6443"
             - port: "9100" # prometheus node exporter
             - port: "9633"
             - port: "9962" # cilium metrics

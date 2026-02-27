@@ -5,6 +5,7 @@ metadata:
   name: tautulli
   namespace: media
 spec:
+  description: "Policy for tautulli"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: tautulli

@@ -5,6 +5,7 @@ metadata:
   name: radarr
   namespace: media
 spec:
+  description: "Policy for radarr"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: radarr

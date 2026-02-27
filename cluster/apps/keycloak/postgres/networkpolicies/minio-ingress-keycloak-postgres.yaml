@@ -5,6 +5,7 @@ metadata:
   name: minio-ingress-keycloak-postgres
   namespace: minio
 spec:
+  description: "Policy for minio-ingress-keycloak-postgres"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: minio

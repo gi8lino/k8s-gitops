@@ -5,6 +5,7 @@ metadata:
   name: gitlab-runner-ci-job
   namespace: gitlab
 spec:
+  description: "Policy for gitlab-runner-ci-job"
   endpointSelector:
     matchLabels:
       gitlab-runner: ci-job

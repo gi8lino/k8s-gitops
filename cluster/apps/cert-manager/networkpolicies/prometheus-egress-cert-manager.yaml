@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-cert-manager
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-cert-manager"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus

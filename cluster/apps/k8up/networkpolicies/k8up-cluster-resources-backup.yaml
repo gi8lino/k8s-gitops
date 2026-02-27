@@ -5,6 +5,7 @@ metadata:
   name: k8up-cluster-resources-backup
   namespace: k8up
 spec:
+  description: "Policy for k8up-cluster-resources-backup"
   endpointSelector:
     matchLabels:
       io.cilium.k8s.namespace.labels.k8up: backup-enabled
@@ -22,8 +23,8 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
-            - port: "6443" # kube-api
+            - port: "6443"
               protocol: TCP

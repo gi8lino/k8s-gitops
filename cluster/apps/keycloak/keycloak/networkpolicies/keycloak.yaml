@@ -5,6 +5,7 @@ metadata:
   name: keycloak
   namespace: keycloak
 spec:
+  description: "Policy for keycloak"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: keycloak

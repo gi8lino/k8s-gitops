@@ -5,6 +5,7 @@ metadata:
   name: gitlab-sidekiq
   namespace: gitlab
 spec:
+  description: "Policy for gitlab-sidekiq"
   endpointSelector:
     matchLabels:
       app: sidekiq

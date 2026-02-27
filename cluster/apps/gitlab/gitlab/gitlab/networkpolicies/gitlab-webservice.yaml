@@ -5,6 +5,7 @@ metadata:
   name: gitlab-webservice
   namespace: gitlab
 spec:
+  description: "Policy for gitlab-webservice"
   endpointSelector:
     matchLabels:
       app: webservice

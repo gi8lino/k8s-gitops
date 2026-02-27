@@ -5,6 +5,7 @@ metadata:
   name: cloudnative-pg-egress-motus-postgres
   namespace: cnpg-system
 spec:
+  description: "Policy for cloudnative-pg-egress-motus-postgres"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: cloudnative-pg

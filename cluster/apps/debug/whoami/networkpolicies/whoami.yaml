@@ -5,6 +5,7 @@ metadata:
   name: whoami
   namespace: debug
 spec:
+  description: "Policy for whoami"
   endpointSelector:
     matchLabels:
       app: whoami

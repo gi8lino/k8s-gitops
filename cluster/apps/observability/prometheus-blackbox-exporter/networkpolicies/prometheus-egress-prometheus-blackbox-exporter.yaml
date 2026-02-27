@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-prometheus-blackbox-exporter
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-prometheus-blackbox-exporter"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus

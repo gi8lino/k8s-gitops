@@ -5,6 +5,7 @@ metadata:
   name: falco-k8s-metacollector
   namespace: falco
 spec:
+  description: "Policy for falco-k8s-metacollector"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: k8s-metacollector
@@ -21,8 +22,8 @@ spec:
               protocol: TCP
   egress:
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
-            - port: "6443" # kube-api
+            - port: "6443"
               protocol: TCP

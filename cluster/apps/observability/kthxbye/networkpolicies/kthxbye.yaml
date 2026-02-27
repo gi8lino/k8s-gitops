@@ -5,6 +5,7 @@ metadata:
   name: kthxbye
   namespace: observability
 spec:
+  description: "Policy for kthxbye"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: kthxbye

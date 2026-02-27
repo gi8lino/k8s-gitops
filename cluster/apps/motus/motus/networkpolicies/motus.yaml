@@ -5,6 +5,7 @@ metadata:
   name: motus
   namespace: motus
 spec:
+  description: "Policy for motus"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: motus

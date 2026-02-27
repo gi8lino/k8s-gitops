@@ -5,6 +5,7 @@ metadata:
   name: envoy-gateway-controller
   namespace: network
 spec:
+  description: "Policy for envoy-gateway-controller"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: envoy-gateway
@@ -48,7 +49,7 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
             - port: "6443"

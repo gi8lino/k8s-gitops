@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-prometheus-smartctl-exporter
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-prometheus-smartctl-exporter"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus

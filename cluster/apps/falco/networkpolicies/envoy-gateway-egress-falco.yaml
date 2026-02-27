@@ -5,6 +5,7 @@ metadata:
   name: envoy-gateway-egress-falco
   namespace: network
 spec:
+  description: "Policy for envoy-gateway-egress-falco"
   endpointSelector:
     matchLabels:
       gateway.envoyproxy.io/owning-gateway-name: envoy-internal

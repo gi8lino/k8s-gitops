@@ -5,6 +5,7 @@ metadata:
   name: cleanup-gitlab-runner
   namespace: gitlab
 spec:
+  description: "Policy for cleanup-gitlab-runner"
   endpointSelector:
     matchLabels:
       job: cleanup-gitlab-runner

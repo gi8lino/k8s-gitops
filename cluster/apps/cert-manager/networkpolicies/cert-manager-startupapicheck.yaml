@@ -5,6 +5,7 @@ metadata:
   name: cert-manager-startupapicheck
   namespace: cert-manager
 spec:
+  description: "Policy for cert-manager-startupapicheck"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: startupapicheck
@@ -23,10 +24,10 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
-            - port: "6443" # kube-api
+            - port: "6443"
               protocol: TCP
     - toEndpoints:
         - matchLabels:

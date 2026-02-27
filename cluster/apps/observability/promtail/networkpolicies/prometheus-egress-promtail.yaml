@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-promtail
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-promtail"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: prometheus

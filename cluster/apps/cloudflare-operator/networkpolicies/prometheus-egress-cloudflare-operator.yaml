@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-cloudflare-operator
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-cloudflare-operator"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: kube-prometheus-stack-prometheus

@@ -5,6 +5,7 @@ metadata:
   name: gitlab-registry
   namespace: gitlab
 spec:
+  description: "Policy for gitlab-registry"
   endpointSelector:
     matchLabels:
       app: registry

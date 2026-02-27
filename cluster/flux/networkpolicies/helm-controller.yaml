@@ -5,6 +5,7 @@ metadata:
   name: helm-controller
   namespace: flux-system
 spec:
+  description: "Policy for helm-controller"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/component: helm-controller
@@ -30,10 +31,10 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
-            - port: "6443" # kube api
+            - port: "6443"
               protocol: TCP
     - toEndpoints:
         - matchLabels:

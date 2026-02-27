@@ -5,6 +5,7 @@ metadata:
   name: envoy-gateway-egress-filebrowser
   namespace: network
 spec:
+  description: "Policy for envoy-gateway-egress-filebrowser"
   endpointSelector:
     matchLabels:
       gateway.envoyproxy.io/owning-gateway-name: envoy-internal

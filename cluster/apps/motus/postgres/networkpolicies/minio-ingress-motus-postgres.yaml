@@ -5,6 +5,7 @@ metadata:
   name: minio-ingress-motus-postgres
   namespace: minio
 spec:
+  description: "Policy for minio-ingress-motus-postgres"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: minio

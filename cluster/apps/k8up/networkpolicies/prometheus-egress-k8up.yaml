@@ -5,6 +5,7 @@ metadata:
   name: prometheus-egress-k8up
   namespace: observability
 spec:
+  description: "Policy for prometheus-egress-k8up"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: prometheus

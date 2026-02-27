@@ -5,6 +5,7 @@ metadata:
   name: gitlab-shell
   namespace: gitlab
 spec:
+  description: "Policy for gitlab-shell"
   endpointSelector:
     matchLabels:
       app: gitlab-shell

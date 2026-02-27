@@ -5,6 +5,7 @@ metadata:
   name: gitlab-garage
   namespace: gitlab
 spec:
+  description: "Policy for gitlab-garage"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: gitlab-garage
@@ -26,9 +27,7 @@ spec:
         - kube-apiserver
       toPorts:
         - ports:
-            - port: "443" # kube api service
-              protocol: TCP
-            - port: "6443" # kube api
+            - port: "6443"
               protocol: TCP
   ingress:
     - fromEndpoints:

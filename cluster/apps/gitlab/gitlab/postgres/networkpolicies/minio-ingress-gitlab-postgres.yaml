@@ -5,6 +5,7 @@ metadata:
   name: minio-ingress-gitlab-postgres
   namespace: minio
 spec:
+  description: "Policy for minio-ingress-gitlab-postgres"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: minio

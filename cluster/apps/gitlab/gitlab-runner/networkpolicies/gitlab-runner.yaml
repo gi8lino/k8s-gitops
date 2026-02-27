@@ -5,6 +5,7 @@ metadata:
   name: gitlab-runner
   namespace: gitlab
 spec:
+  description: "Policy for gitlab-runner"
   endpointSelector:
     matchLabels:
       app: gitlab-runner
@@ -30,10 +31,10 @@ spec:
             - port: "443"
               protocol: TCP
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
-            - port: "6443" # kube-api
+            - port: "6443"
               protocol: TCP
     - toEndpoints:
         - matchLabels:

@@ -5,6 +5,7 @@ metadata:
   name: sonarr
   namespace: media
 spec:
+  description: "Policy for sonarr"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: sonarr

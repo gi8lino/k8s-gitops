@@ -5,6 +5,7 @@ metadata:
   name: vimbin
   namespace: vimbin
 spec:
+  description: "Policy for vimbin"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: vimbin

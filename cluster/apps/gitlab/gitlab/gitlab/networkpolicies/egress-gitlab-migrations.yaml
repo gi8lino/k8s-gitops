@@ -5,6 +5,7 @@ metadata:
   name: egress-gitlab-migrations
   namespace: gitlab
 spec:
+  description: "Policy for egress-gitlab-migrations"
   endpointSelector:
     matchLabels:
       app: migrations

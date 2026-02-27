@@ -5,6 +5,7 @@ metadata:
   name: promtail
   namespace: observability
 spec:
+  description: "Policy for promtail"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: promtail
@@ -36,10 +37,10 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
-            - port: "6443" # kube-api
+            - port: "6443"
               protocol: TCP
     - toEndpoints:
         - matchLabels:

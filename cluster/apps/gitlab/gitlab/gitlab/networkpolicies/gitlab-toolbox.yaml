@@ -5,6 +5,7 @@ metadata:
   name: gitlab-toolbox
   namespace: gitlab
 spec:
+  description: "Policy for gitlab-toolbox"
   endpointSelector:
     matchLabels:
       app: toolbox

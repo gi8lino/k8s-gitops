@@ -5,6 +5,7 @@ metadata:
   name: envoy-gateway-internal-egress-gitlab
   namespace: network
 spec:
+  description: "Policy for envoy-gateway-internal-egress-gitlab"
   endpointSelector:
     matchLabels:
       gateway.envoyproxy.io/owning-gateway-name: envoy-internal

@@ -5,6 +5,7 @@ metadata:
   name: cnpg-postgres-initdb
   namespace: nextcloud
 spec:
+  description: "Policy for cnpg-postgres-initdb"
   endpointSelector:
     matchLabels:
       cnpg.io/jobRole: initdb
@@ -21,10 +22,10 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
-            - port: "6443" # kube-api
+            - port: "6443"
               protocol: TCP
   ingress:
     - fromEndpoints:

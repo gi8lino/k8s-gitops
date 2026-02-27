@@ -5,6 +5,7 @@ metadata:
   name: valkey
   namespace: nextcloud
 spec:
+  description: "Policy for valkey"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: valkey

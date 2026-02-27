@@ -5,6 +5,7 @@ metadata:
   name: minio-job
   namespace: minio
 spec:
+  description: "Policy for minio-job"
   endpointSelector:
     matchLabels:
       app: minio-job

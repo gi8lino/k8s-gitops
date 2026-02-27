@@ -5,6 +5,7 @@ metadata:
   name: cert-manager-webhook
   namespace: cert-manager
 spec:
+  description: "Policy for cert-manager-webhook"
   endpointSelector:
     matchLabels:
       app.kubernetes.io/instance: cert-manager
@@ -56,8 +57,8 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
-        - host
+        - kube-apiserver
       toPorts:
         - ports:
-            - port: "6443" # kube-api
+            - port: "6443"
               protocol: TCP
