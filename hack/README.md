@@ -87,7 +87,6 @@ Finds HelmRelease manifests under the given paths (defaults to ./cluster),
 collects their namespaces, and updates the HelmRelease Alert eventSources
 in the provided ALERT_FILE.
 ```
-```
 
 ## schema
 

@@ -16,6 +16,17 @@ tasks:
     cmds:
       - python3 ./hack/check-policy-selectors.py
     silent: true
+  check-flux-deps:
+    desc: Check Flux dependsOn graph and generate Graphviz dependency files
+    cmds:
+      - python3 ./hack/check_flux_dependencies.py --check --write-dot cluster/flux/dependencies.dot --write-readme cluster/flux/DEPENDENCIES.md
+      - |
+        if command -v dot >/dev/null 2>&1; then
+          python3 ./hack/check_flux_dependencies.py --no-check --write-dot cluster/flux/dependencies.dot --write-svg cluster/flux/dependencies.svg
+        else
+          echo "WARN: graphviz 'dot' not found, skipped dependencies.svg render"
+        fi
+    silent: true
   list-hr-namespaces:
     desc: List namespaces referenced by HelmRelease manifests
     cmds:

@@ -1,0 +1,67 @@
+digraph flux_dependencies {
+  rankdir=LR;
+  graph [fontname="Helvetica"];
+  node [shape=box, style="rounded,filled", fillcolor="#f7f7f7", fontname="Helvetica"];
+  edge [fontname="Helvetica"];
+
+  subgraph cluster_kustomization {
+    label="Kustomization";
+    color="#cccccc";
+    Kustomization_flux_system_apps [label="flux-system/apps", color="#3b82f6"];
+    Kustomization_flux_system_cloudnative_pg_crds [label="flux-system/cloudnative-pg-crds", color="#3b82f6"];
+    Kustomization_flux_system_cluster [label="flux-system/cluster", color="#3b82f6"];
+    Kustomization_flux_system_cnpg_plugin_barman_cloud_crds [label="flux-system/cnpg-plugin-barman-cloud-crds", color="#3b82f6"];
+    Kustomization_flux_system_crds [label="flux-system/crds", color="#3b82f6"];
+    Kustomization_flux_system_infra [label="flux-system/infra", color="#3b82f6"];
+    Kustomization_flux_system_kube_prometheus_stack_crds [label="flux-system/kube-prometheus-stack-crds", color="#3b82f6"];
+    Kustomization_flux_system_networkpolicies [label="flux-system/networkpolicies", color="#3b82f6"];
+  }
+
+  subgraph cluster_helmrelease {
+    label="HelmRelease";
+    color="#cccccc";
+    HelmRelease_cert_manager_cert_manager [label="cert-manager/cert-manager", color="#16a34a"];
+    HelmRelease_cilium_cilium [label="cilium/cilium", color="#16a34a"];
+    HelmRelease_cloudflare_operator_cloudflare_operator [label="cloudflare-operator/cloudflare-operator", color="#16a34a"];
+    HelmRelease_cnpg_system_cloudnative_pg [label="cnpg-system/cloudnative-pg", color="#16a34a"];
+    HelmRelease_cnpg_system_cnpg_plugin_barman_cloud [label="cnpg-system/cnpg-plugin-barman-cloud", color="#16a34a"];
+    HelmRelease_falco_falco [label="falco/falco", color="#16a34a"];
+    HelmRelease_flux_system_capacitor_next [label="flux-system/capacitor-next", color="#16a34a"];
+    HelmRelease_gitlab_gitlab [label="gitlab/gitlab", color="#16a34a"];
+    HelmRelease_gitlab_gitlab_garage [label="gitlab/gitlab-garage", color="#16a34a"];
+    HelmRelease_gitlab_gitlab_runner [label="gitlab/gitlab-runner", color="#16a34a"];
+    HelmRelease_gitlab_gitlab_valkey [label="gitlab/gitlab-valkey", color="#16a34a"];
+    HelmRelease_k8up_k8up [label="k8up/k8up", color="#16a34a"];
+    HelmRelease_kube_system_coredns [label="kube-system/coredns", color="#16a34a"];
+    HelmRelease_kube_system_metrics_server [label="kube-system/metrics-server", color="#16a34a"];
+    HelmRelease_minio_minio [label="minio/minio", color="#16a34a"];
+    HelmRelease_network_envoy_gateway [label="network/envoy-gateway", color="#16a34a"];
+    HelmRelease_nextcloud_nextcloud_valkey [label="nextcloud/nextcloud-valkey", color="#16a34a"];
+    HelmRelease_observability_kube_prometheus_stack [label="observability/kube-prometheus-stack", color="#16a34a"];
+    HelmRelease_observability_loki [label="observability/loki", color="#16a34a"];
+    HelmRelease_observability_prometheus_blackbox_exporter [label="observability/prometheus-blackbox-exporter", color="#16a34a"];
+    HelmRelease_observability_prometheus_pushgateway [label="observability/prometheus-pushgateway", color="#16a34a"];
+    HelmRelease_observability_prometheus_smartctl_exporter [label="observability/prometheus-smartctl-exporter", color="#16a34a"];
+    HelmRelease_observability_promtail [label="observability/promtail", color="#16a34a"];
+    HelmRelease_reloader_reloader [label="reloader/reloader", color="#16a34a"];
+    HelmRelease_renovate_renovate_valkey [label="renovate/renovate-valkey", color="#16a34a"];
+    HelmRelease_storage_system_backup [label="storage-system/backup", color="#16a34a"];
+    HelmRelease_storage_system_hdd [label="storage-system/hdd", color="#16a34a"];
+    HelmRelease_storage_system_nvme [label="storage-system/nvme", color="#16a34a"];
+    HelmRelease_storage_system_ssd [label="storage-system/ssd", color="#16a34a"];
+  }
+
+  Kustomization_flux_system_crds -> Kustomization_flux_system_cluster;
+  Kustomization_flux_system_infra -> Kustomization_flux_system_crds;
+  Kustomization_flux_system_networkpolicies -> Kustomization_flux_system_apps;
+  Kustomization_flux_system_apps -> Kustomization_flux_system_infra;
+  HelmRelease_network_envoy_gateway -> HelmRelease_cilium_cilium;
+  HelmRelease_network_envoy_gateway -> HelmRelease_cert_manager_cert_manager;
+  HelmRelease_cnpg_system_cnpg_plugin_barman_cloud -> HelmRelease_cnpg_system_cloudnative_pg;
+  HelmRelease_observability_kube_prometheus_stack -> HelmRelease_network_envoy_gateway;
+  HelmRelease_observability_prometheus_pushgateway -> HelmRelease_network_envoy_gateway;
+  HelmRelease_minio_minio -> HelmRelease_storage_system_backup;
+  HelmRelease_minio_minio -> HelmRelease_network_envoy_gateway;
+  HelmRelease_flux_system_capacitor_next -> HelmRelease_network_envoy_gateway;
+  HelmRelease_falco_falco -> HelmRelease_cilium_cilium;
+}
