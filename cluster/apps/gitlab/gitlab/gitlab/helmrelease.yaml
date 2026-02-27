@@ -42,7 +42,7 @@ spec:
           cron:
             enabled: true
             schedule: 0 1 * * *
-            successfulJobsHistoryLimit: 1
+            successfulJobsHistoryLimit: 2
       webservice:
         deployment:
           strategy:
