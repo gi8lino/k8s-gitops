@@ -36,7 +36,7 @@ jobs:
 
           /tmp/yq --inplace \
             ".spec.ingress[0].fromCIDR = [ ${cilium_nets} ]" \
-            cluster/apps/network/envoy-gateway/networkpolicies/envoy-gateway-external.yaml
+            cluster/infra/network/envoy-gateway/networkpolicies/envoy-gateway-external.yaml
 
       - name: Check for changes
         id: diff
