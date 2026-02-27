@@ -24,16 +24,19 @@
   kubernetes: {
     managerFilePatterns: [
       '/cluster/apps/.+/(cronjob|daemonset|deployment|statefulset)\\.ya?ml$/',
+      '/cluster/infra/.+/(cronjob|daemonset|deployment|statefulset)\\.ya?ml$/',
     ],
   },
   'helm-values': {
     managerFilePatterns: [
       '/cluster/apps/.+/helmrelease\\.ya?ml$/',
+      '/cluster/infra/.+/helmrelease\\.ya?ml$/',
     ],
   },
   flux: {
     managerFilePatterns: [
       '/cluster/apps/.+/helmrelease\\.ya?ml$/',
+      '/cluster/infra/.+/helmrelease\\.ya?ml$/',
       '/cluster/flux/repositories/helm/.*\\.ya?ml$/',
     ],
   },
@@ -43,6 +46,7 @@
       description: 'dependencies cloudnative-pg postgres databases',
       managerFilePatterns: [
         '/cluster/apps/.+/cnpg-cluster\\.yaml$/',
+        '/cluster/infra/.+/cnpg-cluster\\.yaml$/',
       ],
       matchStrings: [
         'imageName:\\s*(?<depName>\\S+):(?<currentValue>\\S+)',
@@ -92,6 +96,7 @@
       customType: 'regex',
       managerFilePatterns: [
         '/cluster/apps/.+/kustomization\\.ya?ml$/',
+        '/cluster/infra/.+/kustomization\\.ya?ml$/',
       ],
       matchStrings: [
         'https://raw\\.githubusercontent\\.com/(?<depName>[\\w\\-]+/[\\w\\-]+)/(?:v?(?<currentValue>[\\w\\.\\-_]+))/',
