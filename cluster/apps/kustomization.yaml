@@ -3,27 +3,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - capacitor-next/
-  - cert-manager/
-  - cilium/
-  - cloudflare-operator/
-  - cnpg-system/
   - debug/
   - falco/
   - filebrowser/
   - gitlab/
   - healthchecks/
-  - k8up/
   - keycloak/
-  - kube-system/
   - media/
   - minio/
   - motus/
-  - network/
   - nextcloud/
-  - observability/
-  - reloader/
   - renovate/
   - snapraid/
-  - storage/
   - vimbin/
   - wiki/

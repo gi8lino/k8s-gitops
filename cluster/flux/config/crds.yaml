@@ -10,6 +10,7 @@ spec:
   interval: 20m
   path: ./cluster/crds
   prune: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: cluster

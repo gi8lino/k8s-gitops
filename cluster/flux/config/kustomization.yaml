@@ -4,8 +4,9 @@ kind: Kustomization
 resources:
   - cluster.yaml
   - gotk-components.yaml
-  - apps.yaml
   - crds.yaml
+  - infra.yaml
+  - apps.yaml
   - networkpolicies.yaml
 patches:
   # Remove the network policies that does not work with k3s

@@ -18,6 +18,9 @@ spec:
       name: apps
       apiVersion: kustomize.toolkit.fluxcd.io/v1
     - kind: Kustomization
+      name: infra
+      apiVersion: kustomize.toolkit.fluxcd.io/v1
+    - kind: Kustomization
       name: cluster
       apiVersion: kustomize.toolkit.fluxcd.io/v1
     - kind: Kustomization
