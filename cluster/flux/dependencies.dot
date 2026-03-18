@@ -26,7 +26,6 @@ digraph flux_dependencies {
     HelmRelease_cnpg_system_cloudnative_pg [label="cnpg-system/cloudnative-pg", color="#16a34a"];
     HelmRelease_cnpg_system_cnpg_plugin_barman_cloud [label="cnpg-system/cnpg-plugin-barman-cloud", color="#16a34a"];
     HelmRelease_falco_falco [label="falco/falco", color="#16a34a"];
-    HelmRelease_flux_system_capacitor_next [label="flux-system/capacitor-next", color="#16a34a"];
     HelmRelease_gitlab_gitlab [label="gitlab/gitlab", color="#16a34a"];
     HelmRelease_gitlab_gitlab_garage [label="gitlab/gitlab-garage", color="#16a34a"];
     HelmRelease_gitlab_gitlab_runner [label="gitlab/gitlab-runner", color="#16a34a"];
@@ -62,6 +61,5 @@ digraph flux_dependencies {
   HelmRelease_observability_prometheus_pushgateway -> HelmRelease_network_envoy_gateway;
   HelmRelease_minio_minio -> HelmRelease_storage_system_backup;
   HelmRelease_minio_minio -> HelmRelease_network_envoy_gateway;
-  HelmRelease_flux_system_capacitor_next -> HelmRelease_network_envoy_gateway;
   HelmRelease_falco_falco -> HelmRelease_cilium_cilium;
 }

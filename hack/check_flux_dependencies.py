@@ -135,7 +135,13 @@ def edge_lines(kind, resources, edges):
 
 
 def write_readme(path, dot_path, svg_path, resources, edges_by_kind):
-    """Write markdown documentation that references generated graph artifacts."""
+    """Write markdown documentation for the validated dependency graph.
+
+    The README always links to the DOT source because it is the canonical graph
+    stored in git. The rendered SVG is included only when the target file
+    exists, which avoids pointing readers to stale or missing generated output
+    on machines where Graphviz is not installed.
+    """
     dot_ref = os.path.relpath(dot_path, os.path.dirname(path)) if dot_path else "dependencies.dot"
     svg_ref = os.path.relpath(svg_path, os.path.dirname(path)) if svg_path else "dependencies.svg"
     content = [
@@ -153,15 +159,17 @@ def write_readme(path, dot_path, svg_path, resources, edges_by_kind):
         "```",
         "",
         f"- DOT source: `{dot_ref}`",
-        f"- Rendered graph: `{svg_ref}`",
-        "",
-        f"![Flux dependency graph]({svg_ref})",
         "",
         f"- Total Flux resources: **{len(resources)}**",
         f"- Kustomization dependsOn edges: **{len(edges_by_kind['Kustomization'])}**",
         f"- HelmRelease dependsOn edges: **{len(edges_by_kind['HelmRelease'])}**",
         "",
     ]
+    if svg_path and os.path.exists(svg_path):
+        content.insert(9, f"- Rendered graph: `{svg_ref}`")
+        content.insert(11, f"![Flux dependency graph]({svg_ref})")
+        content.insert(12, "")
+
     content.extend(edge_lines("Kustomization", resources, edges_by_kind["Kustomization"]))
     content.extend(edge_lines("HelmRelease", resources, edges_by_kind["HelmRelease"]))
 

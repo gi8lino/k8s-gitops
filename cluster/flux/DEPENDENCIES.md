@@ -12,13 +12,10 @@ python3 ./hack/check_flux_dependencies.py --check \
 ```
 
 - DOT source: `dependencies.dot`
-- Rendered graph: `dependencies.svg`
 
-![Flux dependency graph](dependencies.svg)
-
-- Total Flux resources: **37**
+- Total Flux resources: **36**
 - Kustomization dependsOn edges: **4**
-- HelmRelease dependsOn edges: **9**
+- HelmRelease dependsOn edges: **8**
 
 ### Kustomization edges
 
@@ -31,7 +28,6 @@ python3 ./hack/check_flux_dependencies.py --check \
 
 - `cnpg-system/cnpg-plugin-barman-cloud` -> `cnpg-system/cloudnative-pg`
 - `falco/falco` -> `cilium/cilium`
-- `flux-system/capacitor-next` -> `network/envoy-gateway`
 - `minio/minio` -> `network/envoy-gateway`
 - `minio/minio` -> `storage-system/backup`
 - `network/envoy-gateway` -> `cert-manager/cert-manager`
