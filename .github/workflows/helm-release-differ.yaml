@@ -45,7 +45,7 @@ jobs:
           path: default
 
       - name: Install Helm
-        uses: azure/setup-helm@v4
+        uses: azure/setup-helm@v5
         with:
           # renovate depName=helm/helm
           version: v4.1.3
