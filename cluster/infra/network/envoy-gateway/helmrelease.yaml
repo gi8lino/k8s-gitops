@@ -22,3 +22,4 @@ spec:
       envoyGateway:
         extensionApis:
           enableEnvoyPatchPolicy: true
+          enableBackend: true
