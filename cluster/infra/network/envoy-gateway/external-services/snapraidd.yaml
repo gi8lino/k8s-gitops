@@ -3,7 +3,7 @@ apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: Backend
 metadata:
   name: snapraid
-  namespace: envoy-gateway-system
+  namespace: network
 spec:
   endpoints:
     - fqdn:
@@ -14,7 +14,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: snapraid
-  namespace: envoy-gateway-system
+  namespace: network
 spec:
   parentRefs:
     - name: envoy-internal
