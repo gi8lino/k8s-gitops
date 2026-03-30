@@ -23,7 +23,6 @@ spec:
           requestHeaderModifier:
             remove:
               - Authorization
-              - Cookie
       backendRefs:
         - name: healthchecks
           port: 8000

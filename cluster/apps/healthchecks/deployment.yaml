@@ -31,8 +31,6 @@ spec:
               value: "2000"
             - name: SITE_NAME
               value: Healthchecks
-            - name: SITE_ROOT
-              value: https://healthchecks.${BASE_DOMAIN}
             - name: DEBUG
               value: "False"
             - name: REGISTRATION_OPEN
@@ -49,8 +47,14 @@ spec:
               value: linuxserver/mods:universal-cron
             - name: HAS_IPV6
               value: "false"
+            - name: SITE_ROOT
+              value: https://healthchecks.${BASE_DOMAIN}
+            - name: SECURE_PROXY_SSL_HEADER
+              value: HTTP_X_FORWARDED_PROTO,https
             - name: ALLOWED_HOSTS
-              value: "*"
+              value: healthchecks.${BASE_DOMAIN}
+            - name: CSRF_TRUSTED_ORIGINS
+              value: https://healthchecks.${BASE_DOMAIN}
           envFrom:
             - secretRef:
                 name: healthchecks-prunes-healthchecks-url
@@ -68,7 +72,7 @@ spec:
                 - bash
                 - -c
                 - /scripts/startup
-            initialDelaySeconds: 30
+            initialDelaySeconds: 10
             failureThreshold: 90
             timeoutSeconds: 5
             periodSeconds: 3
@@ -76,6 +80,9 @@ spec:
             httpGet:
               path: /api/v1/status/
               port: http
+              httpHeaders:
+                - name: Host
+                  value: healthchecks.${BASE_DOMAIN}
             initialDelaySeconds: 30
             failureThreshold: 5
             periodSeconds: 30
