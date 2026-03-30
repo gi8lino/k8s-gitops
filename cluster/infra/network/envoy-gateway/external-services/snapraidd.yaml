@@ -7,7 +7,7 @@ metadata:
 spec:
   endpoints:
     - fqdn:
-        hostname: ${HOST_IP_V4}
+        hostname: k3s.srv.${BASE_DOMAIN}
         port: 7627
 ---
 apiVersion: gateway.networking.k8s.io/v1
