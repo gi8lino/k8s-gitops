@@ -41,6 +41,8 @@ spec:
               value: "True"
             - name: REMOTE_USER_HEADER
               value: HTTP_X_AUTH_REQUEST_EMAIL
+            - name: SECURE_PROXY_SSL_HEADER
+              value: HTTP_X_FORWARDED_PROTO,https
             - name: SITE_LOGO_URL
               value: /static/img/logo.svg
             - name: DOCKER_MODS
