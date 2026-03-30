@@ -84,6 +84,7 @@ spec:
     - toFQDNs:
         - matchName: hooks.slack.com
         - matchName: version.gitlab.com
+        - matchName: cdn.web-ide.gitlab-static.net
       toPorts:
         - ports:
             - port: "443"
