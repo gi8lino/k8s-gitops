@@ -13,6 +13,5 @@ resources:
   - motus/
   - nextcloud/
   - renovate/
-  - snapraid/
   - vimbin/
   - wiki/
