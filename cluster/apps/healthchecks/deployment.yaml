@@ -50,7 +50,7 @@ spec:
             - name: SECURE_PROXY_SSL_HEADER
               value: HTTP_X_FORWARDED_PROTO,https
             - name: ALLOWED_HOSTS
-              value: healthchecks.${BASE_DOMAIN}
+              value: "*"
             - name: CSRF_TRUSTED_ORIGINS
               value: https://healthchecks.${BASE_DOMAIN}
           envFrom:
