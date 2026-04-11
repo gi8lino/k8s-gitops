@@ -8,8 +8,8 @@ spec:
   description: "Policy for cnpg-plugin-barman-cloud"
   endpointSelector:
     matchLabels:
-      # Upstream plugin pods are labeled `app=barman-cloud`.
-      app: barman-cloud
+      app.kubernetes.io/name: plugin-barman-cloud
+      app.kubernetes.io/instance: cnpg-plugin-barman-cloud
   ingress:
     - fromEndpoints:
         - matchLabels:

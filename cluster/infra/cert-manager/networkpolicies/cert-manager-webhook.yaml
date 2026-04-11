@@ -18,6 +18,14 @@ spec:
         - ports:
             - port: "6080"
               protocol: TCP
+            - port: "10250" # validationwebhook
+              protocol: TCP
+    - fromEntities:
+        - kube-apiserver
+      toPorts:
+        - ports:
+            - port: "10250" # validationwebhook
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
             app: kustomize-controller
@@ -34,6 +42,8 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+              protocol: TCP
+            - port: "10250" # validationwebhook
               protocol: TCP
     - fromEndpoints:
         - matchLabels:
