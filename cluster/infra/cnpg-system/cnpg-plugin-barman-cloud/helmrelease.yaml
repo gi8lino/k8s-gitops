@@ -23,6 +23,9 @@ spec:
   values:
     crds:
       create: false
+    certificate:
+      # Renew 30 days before expiry so this internal cert clears the 21-day alert window.
+      renewBefore: 720h
   install:
     crds: Skip
   upgrade:
