@@ -49,6 +49,9 @@ spec:
             app.kubernetes.io/name: plugin-barman-cloud
             app.kubernetes.io/instance: cnpg-plugin-barman-cloud
             "k8s:io.kubernetes.pod.namespace": cnpg-system
+        - matchLabels:
+            app: barman-cloud
+            "k8s:io.kubernetes.pod.namespace": cnpg-system
       toPorts:
         - ports:
             - port: "9090"
