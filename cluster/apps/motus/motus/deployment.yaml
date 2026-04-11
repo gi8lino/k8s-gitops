@@ -38,9 +38,9 @@ spec:
           env:
             - name: TZ
               value: Europe/Zurich
-            - name: MOTUS_AUTH_HEADER
+            - name: MOTUS__AUTH_HEADER
               value: X-Auth-Request-Email
-            - name: MOTUS_DATABASE_URL
+            - name: MOTUS__DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: motus-postgres-app
