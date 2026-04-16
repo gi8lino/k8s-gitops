@@ -42,6 +42,15 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
+            app: gitaly
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "8075"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
             app.kubernetes.io/instance: gitlab-garage
             app.kubernetes.io/name: garage
             "k8s:io.kubernetes.pod.namespace": gitlab
