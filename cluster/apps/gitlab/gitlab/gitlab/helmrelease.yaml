@@ -98,7 +98,7 @@ spec:
             - secret: gitlab-oidc-sso
       edition: ce
       email:
-        display_name: GitLab@${BASE_DOMAIN}
+        display_name: gitlab@${BASE_DOMAIN}
         from: git@${BASE_DOMAIN}
         reply_to: git@${BASE_DOMAIN}
         subject_suffix: null
