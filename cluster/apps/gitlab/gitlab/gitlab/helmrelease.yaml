@@ -81,6 +81,8 @@ spec:
           connection:
             secret: gitlab-object-storage
             key: config
+        dependencyProxy:
+          bucket: gitlab-dependency-proxy
         terraformState:
           enabled: true
         omniauth:
