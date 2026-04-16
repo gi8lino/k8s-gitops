@@ -82,6 +82,7 @@ spec:
             secret: gitlab-object-storage
             key: config
         dependencyProxy:
+          enabled: true
           bucket: gitlab-dependency-proxy
         terraformState:
           enabled: true
