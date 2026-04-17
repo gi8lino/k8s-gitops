@@ -12,16 +12,3 @@ spec:
   proxied: true
   ttl: 1
   interval: 5m
----
-apiVersion: cloudflare-operator.io/v1
-kind: DNSRecord
-metadata:
-  name: vpn-${BASE_DOMAIN/./-}
-  namespace: cloudflare-operator
-spec:
-  name: vpn.${BASE_DOMAIN}
-  type: CNAME
-  content: ${BASE_DOMAIN}
-  proxied: false
-  ttl: 1
-  interval: 5m
