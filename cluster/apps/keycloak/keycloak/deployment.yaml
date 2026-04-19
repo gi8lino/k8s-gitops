@@ -58,10 +58,12 @@ spec:
               value: "true"
             - name: KC_HEALTH_ENABLED
               value: "true"
+            - name: KC_CACHE
+              value: local
             - name: TZ
               value: Europe/Zurich
-            - name: JAVA_OPTS_APPEND
-              value: -Djgroups.dns.query=keycloak-headless
+            - name: JAVA_OPTS_KC_HEAP
+              value: -XX:InitialRAMPercentage=30 -XX:MinRAMPercentage=30 -XX:MaxRAMPercentage=65
             - name: KC_DB
               value: postgres
             - name: KC_DB_URL
@@ -99,7 +101,13 @@ spec:
               port: health
             initialDelaySeconds: 10
             timeoutSeconds: 1
-          resources: {}
+          resources:
+            requests:
+              cpu: 250m
+              memory: 1Gi
+            limits:
+              cpu: "2"
+              memory: 2Gi
           volumeMounts:
             - name: keycloak-providers
               mountPath: /opt/keycloak/providers
