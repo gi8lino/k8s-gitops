@@ -36,8 +36,22 @@ spec:
             - name: renovate
               image: renovate/renovate:43.130.1
               env:
+                - name: LOG_LEVEL
+                  value: debug
+                - name: RENOVATE_ENDPOINT
+                  value: https://git.${BASE_DOMAIN}/api/v4/
+                - name: RENOVATE_AUTODISCOVER
+                  value: "true"
                 - name: RENOVATE_CONFIG_FILE
                   value: /renovate/config.json
+                - name: RENOVATE_ONBOARDING
+                  value: "false"
+                - name: RENOVATE_PLATFORM
+                  value: gitlab
+                - name: RENOVATE_REDIS_URL
+                  value: redis://renovate-valkey.renovate.svc.cluster.local
+                - name: RENOVATE_CONFIG_MIGRATION
+                  value: "true"
               volumeMounts:
                 - name: renovate-ssh
                   mountPath: /home/ubuntu/.ssh
