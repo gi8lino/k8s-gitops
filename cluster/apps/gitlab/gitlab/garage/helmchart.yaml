@@ -11,6 +11,7 @@ spec:
   chart:
     spec:
       chart: ./script/helm/garage
+      reconcileStrategy: Revision
       sourceRef:
         kind: GitRepository
         name: garage
