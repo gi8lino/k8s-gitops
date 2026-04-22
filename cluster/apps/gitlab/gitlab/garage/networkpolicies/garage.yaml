@@ -8,8 +8,8 @@ spec:
   description: "Policy for gitlab-garage"
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: gitlab-garage
       app.kubernetes.io/name: garage
+      app.kubernetes.io/instance: gitlab-garage
   egress:
     - toEndpoints:
         - matchLabels:
@@ -61,4 +61,15 @@ spec:
       toPorts:
         - ports:
             - port: "3900"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: garage-webui
+            app.kubernetes.io/component: webui
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "3900"
+              protocol: TCP
+            - port: "3903"
               protocol: TCP

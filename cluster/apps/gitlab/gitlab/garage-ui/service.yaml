@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: garage-webui
+  namespace: gitlab
+spec:
+  ports:
+    - name: http
+      port: 3909
+      targetPort: http
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: garage-webui
+    app.kubernetes.io/component: webui
