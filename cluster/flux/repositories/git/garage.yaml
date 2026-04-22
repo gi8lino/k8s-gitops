@@ -7,6 +7,4 @@ metadata:
 spec:
   interval: 30m
   url: https://git.deuxfleurs.fr/Deuxfleurs/garage.git
-  ref:
-    tag: v2.3.0
   timeout: 3m
