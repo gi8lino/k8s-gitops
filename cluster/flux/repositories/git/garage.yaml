@@ -10,8 +10,3 @@ spec:
   ref:
     tag: v2.3.0
   timeout: 3m
-  ignore: |
-    # exclude all
-    /*
-    # include deploy crds dir
-    !/script/helm/garage
