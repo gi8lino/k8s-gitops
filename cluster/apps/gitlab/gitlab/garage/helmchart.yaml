@@ -34,28 +34,28 @@ spec:
         size: 5Gi
       meta:
         size: 250Mi
-  postRenderers:
-    - kustomize:
-        patches:
-          - patch: |
-              apiVersion: apps/v1
-              kind: StatefulSet
-              metadata:
-                name: gitlab-garage
-              spec:
-                template:
-                  spec:
-                    initContainers:
-                      - name: garage-init
-                        command:
-                          - sh
-                          - -c
-                          - |
-                            sed "s/__RPC_SECRET_REPLACE__/$RPC_SECRET/" /mnt/garage.toml > /mnt/etc/garage.toml
-                            printf '\nadmin_token = "%s"\n' "$ADMIN_TOKEN" >> /mnt/etc/garage.toml
-                        env:
-                          - name: ADMIN_TOKEN
-                            valueFrom:
-                              secretKeyRef:
-                                name: gitlab-garage-admin
-                                key: adminToken
+  # postRenderers:
+  #   - kustomize:
+  #       patches:
+  #         - patch: |
+  #             apiVersion: apps/v1
+  #             kind: StatefulSet
+  #             metadata:
+  #               name: gitlab-garage
+  #             spec:
+  #               template:
+  #                 spec:
+  #                   initContainers:
+  #                     - name: garage-init
+  #                       command:
+  #                         - sh
+  #                         - -c
+  #                         - |
+  #                           sed "s/__RPC_SECRET_REPLACE__/$RPC_SECRET/" /mnt/garage.toml > /mnt/etc/garage.toml
+  #                           printf '\nadmin_token = "%s"\n' "$ADMIN_TOKEN" >> /mnt/etc/garage.toml
+  #                       env:
+  #                         - name: ADMIN_TOKEN
+  #                           valueFrom:
+  #                             secretKeyRef:
+  #                               name: gitlab-garage-admin
+  #                               key: adminToken
