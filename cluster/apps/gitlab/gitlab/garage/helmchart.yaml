@@ -43,7 +43,6 @@ spec:
               kind: StatefulSet
               metadata:
                 name: gitlab-garage
-                namespace: gitlab
               spec:
                 template:
                   spec:
