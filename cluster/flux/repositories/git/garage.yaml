@@ -8,5 +8,6 @@ spec:
   interval: 30m
   url: https://git.deuxfleurs.fr/Deuxfleurs/garage.git
   ref:
-    branch: main-v2
+    # renovate: datasource=github-releases depName=deuxfleurs-org/garage
+    tag: v2.3.0
   timeout: 3m
