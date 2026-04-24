@@ -19,5 +19,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: prometheus-pushgateway
+        - name: pushgateway
           port: 9091
