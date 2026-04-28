@@ -62,8 +62,6 @@ spec:
               value: local
             - name: TZ
               value: Europe/Zurich
-            - name: JAVA_OPTS_KC_HEAP
-              value: -XX:InitialRAMPercentage=30 -XX:MinRAMPercentage=30 -XX:MaxRAMPercentage=65
             - name: KC_DB
               value: postgres
             - name: KC_DB_URL
