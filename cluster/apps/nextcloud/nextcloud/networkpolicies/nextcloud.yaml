@@ -41,14 +41,19 @@ spec:
             gateway.envoyproxy.io/owning-gateway-name: envoy-internal
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
+      toPorts:
+        - ports:
+            - port: "10080" # Nextcloud Healthcheck
+              protocol: TCP
+            - port: "10443" # OIDC
+              protocol: TCP
+    - toEndpoints:
         - matchLabels:
             gateway.envoyproxy.io/owning-gateway-name: envoy-external
             gateway.envoyproxy.io/owning-gateway-namespace: network
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
-            - port: "80" # Nextcloud Healthcheck
-              protocol: TCP
             - port: "10443" # OIDC
               protocol: TCP
     - toEndpoints:
