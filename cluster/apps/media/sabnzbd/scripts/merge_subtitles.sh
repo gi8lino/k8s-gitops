@@ -84,21 +84,13 @@ SAB_STATE="${SAB_STATUS:-}"
 [[ -d "$DEST_DIR" ]] || die "destination directory does not exist: $DEST_DIR"
 
 case "$PP_STATUS" in
-    ""|0)
+    0)
+        ;;
+    "")
+        skip "SABnzbd post-processing status is missing; skipping for safety"
         ;;
     *)
         skip "SABnzbd post-processing failed; skipping. SAB_PP_STATUS=$PP_STATUS SAB_STATUS=${SAB_STATE:-unknown} SAB_FAIL_MSG=${SAB_FAIL_MSG:-none}"
-        ;;
-esac
-
-case "${SAB_STATE,,}" in
-    ""|completed)
-        ;;
-    failed|running)
-        skip "SABnzbd job is not completed successfully; skipping. SAB_STATUS=$SAB_STATE SAB_FAIL_MSG=${SAB_FAIL_MSG:-none}"
-        ;;
-    *)
-        log "warning: unknown SAB_STATUS=$SAB_STATE; continuing because SAB_PP_STATUS is OK"
         ;;
 esac
 
