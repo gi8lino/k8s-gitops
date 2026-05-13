@@ -1,0 +1,24 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-kube-ephemeral-container-exporter
+  namespace: observability
+  labels:
+    app.kubernetes.io/name: kube-ephemeral-container-exporter
+    app.kubernetes.io/component: controller
+spec:
+  description: "Policy for prometheus-egress-kube-ephemeral-container-exporter"
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+      app.kubernetes.io/name: prometheus
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: kube-ephemeral-container-exporter
+            app.kubernetes.io/component: controller
+            "k8s:io.kubernetes.pod.namespace": observability
+      toPorts:
+        - ports:
+            - port: "8443"

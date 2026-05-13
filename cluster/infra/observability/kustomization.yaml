@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - flux-system/
   - kthxbye/
+  - kube-ephemeral-container-exporter/
   - kube-prometheus-stack/
   - loki/
   - prometheus-blackbox-exporter/
