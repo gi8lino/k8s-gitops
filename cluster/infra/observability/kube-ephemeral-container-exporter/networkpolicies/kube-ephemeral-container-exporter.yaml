@@ -3,6 +3,7 @@ apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: kube-ephemeral-container-exporter
+  namespace: observability
   labels:
     app.kubernetes.io/name: kube-ephemeral-container-exporter
     app.kubernetes.io/component: controller
