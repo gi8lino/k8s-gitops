@@ -4,6 +4,4 @@ kind: Kustomization
 resources:
   - networkpolicies/
   - secret.yaml
-  - gitlab-object-storage-s3cmd.yaml
-  - gitlab-object-storage.yaml
   - helmchart.yaml
