@@ -8,6 +8,11 @@ spec:
   interval: 20m
   driftDetection:
     mode: enabled
+  dependsOn:
+    - name: gitlab-garage
+      namespace: gitlab
+    - name: gitlab-valkey
+      namespace: gitlab
   chart:
     spec:
       chart: gitlab
@@ -41,21 +46,15 @@ spec:
               key: config
           cron:
             enabled: true
+            timeZone: Europe/Zurich
             schedule: 0 1 * * *
-            successfulJobsHistoryLimit: 2
+            successfulJobsHistoryLimit: 1
       webservice:
         deployment:
           strategy:
             type: Recreate
         maxReplicas: 1
         minReplicas: 1
-        deployments:
-          default:
-            ingress:
-              annotations:
-                cloudflare-operator.io/content: ${BASE_DOMAIN}
-                cloudflare-operator.io/type: CNAME
-              path: /
     gitlab-runner:
       install: false
     global:
@@ -68,22 +67,22 @@ spec:
         host: gitlab-valkey.gitlab.svc.cluster.local
         port: 6379
         auth:
-          enabled: true
-          secret: gitlab-valkey-auth
-          key: default-password
+          enabled: false
+      gatewayApi:
+        configureCertmanager: false
+        enabled: false
+        installEnvoy: false
       kas:
         enabled: false
-      minio:
-        enabled: false
       appConfig:
+        dependencyProxy:
+          enabled: true
+          bucket: gitlab-dependency-proxy
         object_store:
           enabled: true
           connection:
             secret: gitlab-object-storage
             key: config
-        dependencyProxy:
-          enabled: true
-          bucket: gitlab-dependency-proxy
         terraformState:
           enabled: true
         omniauth:
@@ -113,9 +112,8 @@ spec:
           name: git.${BASE_DOMAIN}
         registry:
           name: registry.${BASE_DOMAIN}
-      ingress:
-        configureCertmanager: false
-        enabled: false
+      registry:
+        bucket: registry
       smtp:
         authentication: login
         enabled: true
@@ -126,19 +124,9 @@ spec:
         port: 587
         starttls_auto: true
       time_zone: Europe/Zurich
-    nginx-ingress:
-      enabled: false
-    postgresql:
-      install: false
     prometheus:
       install: false
-    redis:
-      install: false
     registry:
-      enabled: true
-      maintenance:
-        readonly:
-          enabled: false
       database:
         enabled: true
         name: registry
@@ -146,10 +134,9 @@ spec:
         password:
           secret: gitlab-postgres-registry
           key: password
-        migrations:
-          enabled: true
-      ingress:
-        enabled: false
+      storage:
+        secret: gitlab-registry-storage
+        key: config
       hpa:
         maxReplicas: 1
         minReplicas: 1
@@ -164,14 +151,6 @@ spec:
   postRenderers:
     - kustomize:
         patches:
-          - patch: |
-              apiVersion: batch/v1
-              kind: CronJob
-              metadata:
-                name: gitlab-toolbox-backup
-                namespace: gitlab
-              spec:
-                timeZone: Europe/Zurich
           - patch: |-
               apiVersion: autoscaling/v2
               kind: HorizontalPodAutoscaler
