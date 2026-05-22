@@ -67,7 +67,9 @@ spec:
         host: gitlab-valkey.gitlab.svc.cluster.local
         port: 6379
         auth:
-          enabled: false
+          enabled: true
+          secret: gitlab-valkey-auth
+          key: default-password
       gatewayApi:
         configureCertmanager: false
         enabled: false
