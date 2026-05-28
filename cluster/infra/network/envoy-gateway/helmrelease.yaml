@@ -17,6 +17,10 @@ spec:
     kind: OCIRepository
     name: envoy-gateway
     namespace: flux-system
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip
   values:
     config:
       envoyGateway:
