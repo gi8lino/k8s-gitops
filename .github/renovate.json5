@@ -38,6 +38,8 @@
       '/cluster/apps/.+/helmrelease\\.ya?ml$/',
       '/cluster/infra/.+/helmrelease\\.ya?ml$/',
       '/cluster/flux/repositories/helm/.*\\.ya?ml$/',
+      '/cluster/flux/repositories/oci/.*\\.ya?ml$/',
+      '/cluster/flux/repositories/git/.*\\.ya?ml$/',
     ],
   },
   customManagers: [
