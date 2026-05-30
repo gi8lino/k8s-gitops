@@ -25,6 +25,10 @@ spec:
               image: ghcr.io/containeroo/never:v0.8.13
               args:
                 - --tcp.valkey.address=renovate-valkey.renovate.svc.cluster.local:6379
+                - --http.gitlab.address=https://git.${BASE_DOMAIN}/-/readiness?all=1
+                - --http.gitlab.expected-status-codes=200
+                - --http.gitlab.timeout=5s
+                - --http.gitlab.interval=5s
               resources:
                 requests:
                   cpu: 10m
