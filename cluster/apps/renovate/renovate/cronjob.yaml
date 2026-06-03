@@ -57,9 +57,6 @@ spec:
                 - name: RENOVATE_CONFIG_MIGRATION
                   value: "true"
               volumeMounts:
-                - name: renovate-ssh
-                  mountPath: /home/ubuntu/.ssh
-                  readOnly: true
                 - name: renovate-config
                   mountPath: /renovate/
           restartPolicy: Never
@@ -68,6 +65,3 @@ spec:
             - name: renovate-config
               secret:
                 secretName: renovate-config
-            - name: renovate-ssh
-              secret:
-                secretName: renovate-ssh
