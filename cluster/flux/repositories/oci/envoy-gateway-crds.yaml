@@ -8,4 +8,4 @@ spec:
   url: oci://docker.io/envoyproxy/gateway-crds-helm
   interval: 5m0s
   ref:
-    tag: "1.8.0"
+    tag: "1.8.1"
