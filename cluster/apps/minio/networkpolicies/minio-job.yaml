@@ -8,7 +8,7 @@ spec:
   description: "Policy for minio-job"
   endpointSelector:
     matchLabels:
-      app: minio-post-job
+      app: minio-job
   egress:
     - toEndpoints:
         - matchLabels:
