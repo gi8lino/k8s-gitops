@@ -23,18 +23,18 @@ spec:
             dns:
               - matchPattern: "*"
     - toEntities:
+        - kube-apiserver
+      toPorts:
+        - ports:
+            - port: "6443"
+              protocol: TCP
+    - toEntities:
         - world
       toPorts:
         - ports:
             - port: "80"
               protocol: TCP
             - port: "443"
-              protocol: TCP
-    - toEntities:
-        - kube-apiserver
-      toPorts:
-        - ports:
-            - port: "6443"
               protocol: TCP
     - toEndpoints:
         - matchLabels:
@@ -44,4 +44,13 @@ spec:
       toPorts:
         - ports:
             - port: "10443"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: garage
+            app.kubernetes.io/instance: gitlab-garage
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "3900"
               protocol: TCP
