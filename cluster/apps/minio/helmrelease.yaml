@@ -43,7 +43,7 @@ spec:
       enabled: false
     metrics:
       serviceMonitor:
-        enabled: true
+        enabled: false
     environment:
       TZ: Europe/Zurich
       MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090
