@@ -37,7 +37,7 @@ cleanup() {
 
   rm -rf "${TMPDIR:-}"
 }
-trap cleanup EXIT
+trap cleanup EXIT INT TERM
 
 need kubectl
 need yq
