@@ -33,7 +33,7 @@ spec:
               mountPath: /config
       containers:
         - name: sonarr
-          image: ghcr.io/linuxserver/sonarr:4.0.17.2952-ls313
+          image: ghcr.io/linuxserver/sonarr:4.0.17.2952-ls314
           env:
             - name: TZ
               value: Europe/Zurich
