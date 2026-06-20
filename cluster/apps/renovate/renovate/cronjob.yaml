@@ -22,7 +22,7 @@ spec:
         spec:
           initContainers:
             - name: never
-              image: ghcr.io/containeroo/never:v0.8.17
+              image: ghcr.io/containeroo/never:v0.8.18
               args:
                 - --tcp.valkey.address=renovate-valkey.renovate.svc.cluster.local:6379
                 - --http.gitlab.address=https://git.${BASE_DOMAIN}/-/readiness?all=1
