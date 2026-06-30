@@ -20,7 +20,7 @@ spec:
             "k8s:io.kubernetes.pod.namespace": observability
         - matchLabels:
             app.kubernetes.io/component: kustomize-controller # validationwebhook
-            app.kubernetes.io/name: kustomize-controller # validationwebhook
+            app: kustomize-controller # validationwebhook
             "k8s:io.kubernetes.pod.namespace": flux-system
       toPorts:
         - ports:
