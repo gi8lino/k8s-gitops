@@ -61,6 +61,8 @@ data:
         customCSS: /home/filebrowser/data/custom.css
     auth:
       methods:
+        password:
+          enabled: false
         oidc:
           enabled: true
           clientId: filebrowser
