@@ -61,7 +61,7 @@ data:
         customCSS: /home/filebrowser/data/custom.css
     userDefaults:
       permissions:
-        admin: true
+        admin: false
         api: true
         modify: true
         share: true
@@ -79,7 +79,8 @@ data:
           issuerUrl: https://sso.${BASE_DOMAIN}/realms/master
           scopes: openid email profile
           userIdentifier: preferred_username
-          groupsClaim: groups
+          groupsClaim: roles
+          adminGroup: admins
     http:
       trustedHeaders:
         - X-Forwarded-For

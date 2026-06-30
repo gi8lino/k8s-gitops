@@ -56,9 +56,6 @@ spec:
       config:
         slack:
           minimumpriority: notice
-        loki:
-          grafanaDashboard:
-            enabled: true
       webui:
         enabled: true
         replicaCount: 1
