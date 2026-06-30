@@ -13,9 +13,9 @@ python3 ./hack/check_flux_dependencies.py --check \
 
 - DOT source: `dependencies.dot`
 
-- Total Flux resources: **36**
+- Total Flux resources: **33**
 - Kustomization dependsOn edges: **4**
-- HelmRelease dependsOn edges: **8**
+- HelmRelease dependsOn edges: **9**
 
 ### Kustomization edges
 
@@ -27,6 +27,8 @@ python3 ./hack/check_flux_dependencies.py --check \
 ### HelmRelease edges
 
 - `cnpg-system/cnpg-plugin-barman-cloud` -> `cnpg-system/cloudnative-pg`
+- `gitlab/gitlab` -> `gitlab/gitlab-garage`
+- `gitlab/gitlab` -> `gitlab/gitlab-valkey`
 - `minio/minio` -> `network/envoy-gateway`
 - `minio/minio` -> `storage-system/backup`
 - `network/envoy-gateway` -> `cert-manager/cert-manager`

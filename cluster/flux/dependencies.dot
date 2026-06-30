@@ -25,7 +25,6 @@ digraph flux_dependencies {
     HelmRelease_cloudflare_operator_cloudflare_operator [label="cloudflare-operator/cloudflare-operator", color="#16a34a"];
     HelmRelease_cnpg_system_cloudnative_pg [label="cnpg-system/cloudnative-pg", color="#16a34a"];
     HelmRelease_cnpg_system_cnpg_plugin_barman_cloud [label="cnpg-system/cnpg-plugin-barman-cloud", color="#16a34a"];
-    HelmRelease_falco_falco [label="falco/falco", color="#16a34a"];
     HelmRelease_gitlab_gitlab [label="gitlab/gitlab", color="#16a34a"];
     HelmRelease_gitlab_gitlab_garage [label="gitlab/gitlab-garage", color="#16a34a"];
     HelmRelease_gitlab_gitlab_runner [label="gitlab/gitlab-runner", color="#16a34a"];
@@ -37,11 +36,9 @@ digraph flux_dependencies {
     HelmRelease_network_envoy_gateway [label="network/envoy-gateway", color="#16a34a"];
     HelmRelease_nextcloud_nextcloud_valkey [label="nextcloud/nextcloud-valkey", color="#16a34a"];
     HelmRelease_observability_kube_prometheus_stack [label="observability/kube-prometheus-stack", color="#16a34a"];
-    HelmRelease_observability_loki [label="observability/loki", color="#16a34a"];
     HelmRelease_observability_prometheus_blackbox_exporter [label="observability/prometheus-blackbox-exporter", color="#16a34a"];
     HelmRelease_observability_prometheus_pushgateway [label="observability/prometheus-pushgateway", color="#16a34a"];
     HelmRelease_observability_prometheus_smartctl_exporter [label="observability/prometheus-smartctl-exporter", color="#16a34a"];
-    HelmRelease_observability_promtail [label="observability/promtail", color="#16a34a"];
     HelmRelease_reloader_reloader [label="reloader/reloader", color="#16a34a"];
     HelmRelease_renovate_renovate_valkey [label="renovate/renovate-valkey", color="#16a34a"];
     HelmRelease_storage_system_backup [label="storage-system/backup", color="#16a34a"];
@@ -59,7 +56,8 @@ digraph flux_dependencies {
   HelmRelease_cnpg_system_cnpg_plugin_barman_cloud -> HelmRelease_cnpg_system_cloudnative_pg;
   HelmRelease_observability_kube_prometheus_stack -> HelmRelease_network_envoy_gateway;
   HelmRelease_observability_prometheus_pushgateway -> HelmRelease_network_envoy_gateway;
+  HelmRelease_gitlab_gitlab -> HelmRelease_gitlab_gitlab_garage;
+  HelmRelease_gitlab_gitlab -> HelmRelease_gitlab_gitlab_valkey;
   HelmRelease_minio_minio -> HelmRelease_storage_system_backup;
   HelmRelease_minio_minio -> HelmRelease_network_envoy_gateway;
-  HelmRelease_falco_falco -> HelmRelease_cilium_cilium;
 }
