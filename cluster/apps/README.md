@@ -9,7 +9,6 @@ This directory contains infrastructure applications.
 - **cloudflare-operator** Kubernetes operator for managing Cloudflare DNS records
 - **cloudnative-pg** Kubernetes operator for managing PostgreSQL databases
 - **debug** tools for debugging the cluster
-- **falco** is a runtime security tool that detects abnormal behavior
 - **filebrowser** browse files from the web
 - **gitlab** contains gitlab and other gitlab related applications
 - **healthchecks** observability regularly running tasks such as cron jobs

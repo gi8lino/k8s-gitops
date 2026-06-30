@@ -6,7 +6,6 @@ resources:
   - cloudnative-pg.yaml
   - containeroo.yaml
   - coredns.yaml
-  - falcosecurity.yaml
   - gitlab.yaml
   - grafana.yaml
   - jetstack.yaml

@@ -7,7 +7,6 @@ resources:
   - cloudflare-operator.yaml
   - cnpg-system.yaml
   - debug.yaml
-  - falco.yaml
   - filebrowser.yaml
   - gitlab.yaml
   - healthchecks.yaml

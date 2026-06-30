@@ -27,7 +27,6 @@ python3 ./hack/check_flux_dependencies.py --check \
 ### HelmRelease edges
 
 - `cnpg-system/cnpg-plugin-barman-cloud` -> `cnpg-system/cloudnative-pg`
-- `falco/falco` -> `cilium/cilium`
 - `minio/minio` -> `network/envoy-gateway`
 - `minio/minio` -> `storage-system/backup`
 - `network/envoy-gateway` -> `cert-manager/cert-manager`

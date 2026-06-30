@@ -48,9 +48,6 @@ spec:
       namespace: cnpg-system
       name: "*"
     - kind: HelmRelease
-      namespace: falco
-      name: "*"
-    - kind: HelmRelease
       namespace: flux-system
       name: "*"
     - kind: HelmRelease
