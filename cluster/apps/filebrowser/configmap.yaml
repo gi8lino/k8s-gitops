@@ -59,6 +59,16 @@ data:
     frontend:
       styling:
         customCSS: /home/filebrowser/data/custom.css
+    userDefaults:
+      permissions:
+        admin: true
+        api: true
+        modify: true
+        share: true
+        realtime: true
+        delete: true
+        create: true
+        download: true
     auth:
       methods:
         password:
@@ -67,7 +77,7 @@ data:
           enabled: true
           clientId: filebrowser
           issuerUrl: https://sso.${BASE_DOMAIN}/realms/master
-          scopes: openid email profile groups
+          scopes: openid email profile
           userIdentifier: preferred_username
           groupsClaim: groups
     http:
