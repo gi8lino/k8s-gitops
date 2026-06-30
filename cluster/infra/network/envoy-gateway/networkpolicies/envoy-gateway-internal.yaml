@@ -43,6 +43,14 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            k8s-app: kube-dns
+      icmps:
+        - fields:
+            - type: 3 # Destination Unreachable
+              family: IPv4
     - toEntities:
         - cluster
     - toEndpoints:
