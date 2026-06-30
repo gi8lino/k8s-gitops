@@ -14,7 +14,6 @@ resources:
   - keyclaok.yaml
   - media.yaml
   - minio.yaml
-  - miracle.yaml
   - motus.yaml
   - network.yaml
   - nextcloud.yaml
