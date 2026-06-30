@@ -5,7 +5,7 @@ metadata:
   name: custom-themes
   namespace: filebrowser
 data:
-  catppuccin-frappe.css: |
+  custom.css: |
     :root {
       --main-bg-color: #303446;
 
@@ -37,3 +37,38 @@ data:
       --gitea-color-primary-dark-4: 148, 226, 213;
       --overseerr-gradient: linear-gradient(180deg, rgba(48, 52, 70, 0.17) 0%, rgba(48, 52, 70) 100%);
     }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: filebrowser-config
+  namespace: filebrowser
+data:
+  config.yaml: |
+    server:
+      port: 8080
+      database: /home/filebrowser/data/database.db
+      cacheDir: /home/filebrowser/data/tmp
+      externalUrl: https://filebrowser.${BASE_DOMAIN}
+      sources:
+        - path: /data
+          name: Data
+          config:
+            defaultEnabled: true
+            defaultUserScope: /
+    frontend:
+      styling:
+        customCSS: /home/filebrowser/data/custom.css
+    auth:
+      methods:
+        oidc:
+          enabled: true
+          clientId: filebrowser
+          issuerUrl: https://sso.${BASE_DOMAIN}/realms/master
+          scopes: openid email profile groups
+          userIdentifier: preferred_username
+          groupsClaim: groups
+    http:
+      trustedHeaders:
+        - X-Forwarded-For
+        - X-Real-IP

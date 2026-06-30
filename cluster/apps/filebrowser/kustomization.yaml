@@ -9,5 +9,4 @@ resources:
   - persistentvolumeclaim.yaml
   - schedule.yaml
   - secret.yaml
-  - securitypolicy.yaml
   - service.yaml

@@ -20,14 +20,24 @@ spec:
     spec:
       containers:
         - name: filebrowser
-          image: filebrowser/filebrowser:v2.63.17
+          image: ghcr.io/gtsteffaniak/filebrowser:1.4-stable-slim
           env:
             - name: TZ
               value: Europe/Zurich
-            - name: FB_DATABASE
-              value: /db/database.db
-            - name: FB_ADDRESS
-              value: 0.0.0.0
+            - name: FILEBROWSER_CONFIG
+              value: /home/filebrowser/data/config.yaml
+            - name: FILEBROWSER_OIDC_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: filebrowser-oidc
+                  key: client-id
+                  optional: true
+            - name: FILEBROWSER_OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: filebrowser-oidc
+                  key: client-secret
+                  optional: true
           ports:
             - name: http
               containerPort: 8080
@@ -51,35 +61,28 @@ spec:
             - name: data
               mountPath: /data
             - name: db
-              mountPath: /db
-            - name: settings
-              mountPath: /config/settings.json
-              subPath: settings.json
-            - name: users
-              mountPath: /config/.users.json
-              subPath: .users.json
+              mountPath: /home/filebrowser/data
+            - name: config
+              mountPath: /home/filebrowser/data/config.yaml
+              subPath: config.yaml
             - name: branding
-              mountPath: /branding/custom.css
+              mountPath: /home/filebrowser/data/custom.css
               subPath: custom.css
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
         - name: data
-          hostPath:
-            path: /mnt/disk5/appdata/filebrowser-data
-            type: Directory
+          persistentVolumeClaim:
+            claimName: filebrowser-data
         - name: db
           persistentVolumeClaim:
             claimName: filebrowser-db
-        - name: settings
-          secret:
-            secretName: filebrowser-settings
-        - name: users
-          secret:
-            secretName: users
+        - name: config
+          configMap:
+            name: filebrowser-config
         - name: branding
           configMap:
             name: custom-themes
             items:
-              - key: catppuccin-frappe.css
+              - key: custom.css
                 path: custom.css

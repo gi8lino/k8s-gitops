@@ -18,12 +18,6 @@ spec:
         - path:
             type: PathPrefix
             value: /
-      filters:
-        - type: RequestHeaderModifier
-          requestHeaderModifier:
-            remove:
-              - Authorization
-              - Cookie
       backendRefs:
         - name: filebrowser
           port: 8080
