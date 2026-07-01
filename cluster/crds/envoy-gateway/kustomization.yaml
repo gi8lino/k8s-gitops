@@ -5,4 +5,4 @@ resources:
   # renovate: datasource=github-releases depName=kubernetes-sigs/gateway-api
   - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.6.0/experimental-install.yaml
   # renovate: datasource=github-releases depName=envoyproxy/gateway
-  - https://github.com/envoyproxy/gateway/releases/download/v1.8.1/envoy-gateway-crds.yaml
+  - https://github.com/envoyproxy/gateway/releases/download/v1.8.2/envoy-gateway-crds.yaml
