@@ -27,5 +27,5 @@ kubectl apply -f cluster/flux/vars/cluster-settings.yaml
 7. Bootstrap cluster
 
 ```bash
-kubectl apply --kustomize=./cluster/flux/config
+kubectl apply --kustomize=./cluster/flux
 ```
