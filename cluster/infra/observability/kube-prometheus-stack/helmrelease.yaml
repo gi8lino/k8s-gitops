@@ -119,10 +119,11 @@ spec:
         kubeApiserverHistogram: false
         kubeApiserverSlos: false
         kubeControllerManager: false
+        kubelet: false
         kubeProxy: false
+        kubernetesSystem: false
         kubeSchedulerAlerting: false
         kubeSchedulerRecording: false
-        kubelet: false
 
     grafana:
       fullnameOverride: grafana
