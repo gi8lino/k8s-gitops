@@ -5,45 +5,46 @@ metadata:
   name: cluster-resources-backup
   namespace: k8up
 spec:
-  backupCommand: >-
+  backupCommand: |-
     sh -c '
       set -eu
+
       rm -rf /tmp/k8s-object-dump
       mkdir -p /tmp/k8s-object-dump
 
-      k8s-object-dumper
-      -dir /tmp/k8s-object-dump
-      -ignore=.+mutators
-      -ignore=.+reviews
-      -ignore=.+validators
-      -ignore=deploymentconfigrollbacks.*
-      -ignore=imagesignatures.*
-      -ignore=imagestreamimages.*
-      -ignore=imagestreamimports.*
-      -ignore=imagestreammappings.*
-      -ignore=mutations.*
-      -ignore=projectrequests.*
-      -ignore=useridentitymappings.*
-      -ignore=validations.*
-      -must-exist=configmaps
-      -must-exist=daemonsets.apps
-      -must-exist=deployments.apps
-      -must-exist=endpoints
-      -must-exist=horizontalpodautoscalers.autoscaling
-      -must-exist=ingresses.networking.k8s.io
-      -must-exist=jobs.batch
-      -must-exist=limitranges
-      -must-exist=namespaces
-      -must-exist=nodes
-      -must-exist=persistentvolumeclaims
-      -must-exist=persistentvolumes
-      -must-exist=replicasets.apps
-      -must-exist=resourcequotas
-      -must-exist=roles.rbac.authorization.k8s.io
-      -must-exist=secrets
-      -must-exist=serviceaccounts
-      -must-exist=services
-      -must-exist=statefulsets.apps
+      k8s-object-dumper \
+        -dir /tmp/k8s-object-dump \
+        -ignore=.+mutators \
+        -ignore=.+reviews \
+        -ignore=.+validators \
+        -ignore=deploymentconfigrollbacks.* \
+        -ignore=imagesignatures.* \
+        -ignore=imagestreamimages.* \
+        -ignore=imagestreamimports.* \
+        -ignore=imagestreammappings.* \
+        -ignore=mutations.* \
+        -ignore=projectrequests.* \
+        -ignore=useridentitymappings.* \
+        -ignore=validations.* \
+        -must-exist=configmaps \
+        -must-exist=daemonsets.apps \
+        -must-exist=deployments.apps \
+        -must-exist=endpoints \
+        -must-exist=horizontalpodautoscalers.autoscaling \
+        -must-exist=ingresses.networking.k8s.io \
+        -must-exist=jobs.batch \
+        -must-exist=limitranges \
+        -must-exist=namespaces \
+        -must-exist=nodes \
+        -must-exist=persistentvolumeclaims \
+        -must-exist=persistentvolumes \
+        -must-exist=replicasets.apps \
+        -must-exist=resourcequotas \
+        -must-exist=roles.rbac.authorization.k8s.io \
+        -must-exist=secrets \
+        -must-exist=serviceaccounts \
+        -must-exist=services \
+        -must-exist=statefulsets.apps
 
       tar -czf - -C /tmp k8s-object-dump
     '
@@ -53,8 +54,9 @@ spec:
       serviceAccountName: cluster-resources-backup
       containers:
         - name: cluster-resources-backup
-          image: ghcr.io/projectsyn/k8s-object-dumper:v0.3.0
+          image: projectsyn/k8s-object-dumper:v0.3.0
           imagePullPolicy: IfNotPresent
           command:
-            - sleep
-            - infinity
+            - sh
+            - -c
+            - sleep 365d
