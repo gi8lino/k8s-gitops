@@ -54,7 +54,7 @@ spec:
       serviceAccountName: cluster-resources-backup
       containers:
         - name: cluster-resources-backup
-          image: projectsyn/k8s-object-dumper:v0.3.0
+          image: ghcr.io/projectsyn/k8s-object-dumper:v0.3.0
           imagePullPolicy: IfNotPresent
           command:
             - sh
