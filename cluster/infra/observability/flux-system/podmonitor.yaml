@@ -14,3 +14,7 @@ spec:
         operator: Exists
   podMetricsEndpoints:
     - port: http-prom
+      metricRelabelings:
+        - action: drop
+          sourceLabels: [__name__]
+          regex: "gotk_reconcile_duration_seconds_(bucket|sum|count)|controller_runtime_reconcile_time_seconds_(bucket|sum|count)|workqueue_(queue|work)_duration_seconds_(bucket|sum|count)"
