@@ -8,8 +8,8 @@ spec:
   description: "Policy for k8up cluster resources backup command pod"
   endpointSelector:
     matchLabels:
-      k8up.io/backupcommandpod: "true"
-      k8up.io/prebackuppod: cluster-resources-backup
+      k8up.io/backupCommandPod: "true"
+      k8up.io/preBackupPod: cluster-resources-backup
   egress:
     - toEndpoints:
         - matchLabels:

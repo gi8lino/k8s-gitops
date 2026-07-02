@@ -5,9 +5,10 @@ metadata:
   name: cluster-resources-backup-cluster-reader
 rules:
   - apiGroups:
-      - '*'
+      - "*"
     resources:
-      - '*'
+      - "*"
     verbs:
-      - view
+      - get
       - list
+      - watch
