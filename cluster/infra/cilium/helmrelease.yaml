@@ -20,6 +20,7 @@ spec:
   values:
     envoy:
       enabled: false
+
     hubble:
       enabled: true
       metrics:
@@ -43,42 +44,49 @@ spec:
               enabled: false
         ingress:
           enabled: false
+
     operator:
       replicas: 1
       prometheus:
-        enabled: true
+        enabled: false
         serviceMonitor:
-          enabled: true
+          enabled: false
       dashboards:
-        enabled: true
-        annotations:
-          grafana_folder: Cilium
+        enabled: false
+
     ipam:
       operator:
         clusterPoolIPv4MaskSize: 24
         clusterPoolIPv4PodCIDRList:
           - ${POD_NETWORK_RANGE_V4}
+
     kubeProxyReplacement: true
     k8sServiceHost: k3s.srv.${BASE_DOMAIN}
     k8sServicePort: 6443
+
     nodeinit:
       enabled: true
+
     nodePort:
       enabled: false
+
     l2announcements:
       enabled: true
+
     externalIPs:
       enabled: true
+
     ipv6:
       enabled: false
+
     bpf:
       masquerade: true
+
     prometheus:
-      enabled: true
+      enabled: false
       serviceMonitor:
-        enabled: true
+        enabled: false
         trustCRDsExist: true
+
     dashboards:
-      enabled: true
-      annotations:
-        grafana_folder: Cilium
+      enabled: false
