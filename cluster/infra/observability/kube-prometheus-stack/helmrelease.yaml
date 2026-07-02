@@ -122,6 +122,7 @@ spec:
         kubeProxy: false
         kubeSchedulerAlerting: false
         kubeSchedulerRecording: false
+        kubelet: false
 
     grafana:
       fullnameOverride: grafana
