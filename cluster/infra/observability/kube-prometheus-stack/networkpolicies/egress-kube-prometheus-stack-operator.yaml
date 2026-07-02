@@ -13,18 +13,20 @@ spec:
       app.kubernetes.io/instance: kube-prometheus-stack
       app.kubernetes.io/part-of: kube-prometheus-stack
   ingress:
+    - fromEntities:
+        - kube-apiserver
+      toPorts:
+        - ports:
+            - port: "10250" # admission webhook
+              protocol: TCP
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack-prometheus # kubelet
-            app.kubernetes.io/name: prometheus
-            "k8s:io.kubernetes.pod.namespace": observability
-        - matchLabels:
-            app.kubernetes.io/component: kustomize-controller # validationwebhook
-            app: kustomize-controller # validationwebhook
+            app.kubernetes.io/component: kustomize-controller
+            app: kustomize-controller
             "k8s:io.kubernetes.pod.namespace": flux-system
       toPorts:
         - ports:
-            - port: "10250" # kubelet metrics, validationwebhook
+            - port: "10250" # validation webhook fallback from Flux context
               protocol: TCP
   egress:
     - toEndpoints:

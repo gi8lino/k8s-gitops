@@ -263,12 +263,9 @@ spec:
         # Keep your existing broad discovery so blackbox, smartctl, kthxbye,
         # kube-ephemeral-container-exporter, CNPG, Flux, etc. keep working.
         serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         ruleSelectorNilUsesHelmValues: false
-
-        # Restrict PodMonitors first. Your Flux PodMonitor was not huge, but
-        # PodMonitors are easier to accidentally over-scrape.
-        podMonitorSelectorNilUsesHelmValues: true
 
         resources:
           requests:

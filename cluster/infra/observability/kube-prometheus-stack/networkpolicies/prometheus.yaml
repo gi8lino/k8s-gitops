@@ -38,6 +38,8 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+
+    # CoreDNS metrics.
     - toEndpoints:
         - matchLabels:
             k8s-app: kube-dns
@@ -46,19 +48,30 @@ spec:
         - ports:
             - port: "9153" # coreDNS
               protocol: TCP
+
+    # Kubernetes API discovery.
     - toEntities:
         - kube-apiserver
       toPorts:
         - ports:
             - port: "6443"
-            - port: "9100" # prometheus node exporter
-            - port: "9633"
-            - port: "9962" # cilium metrics
-            - port: "9963" # cilium metrics
-            - port: "9965" # cilium metrics
-            - port: "10250" # kubelet
-            - port: "10257" # kube-controller-manager
-            - port: "10259" # kube-scheduler
+              protocol: TCP
+
+    # Host-networked metrics such as node-exporter and Cilium agent/Hubble metrics.
+    - toEntities:
+        - host
+        - remote-node
+      toPorts:
+        - ports:
+            - port: "9100" # node-exporter
+              protocol: TCP
+            - port: "9962" # cilium-agent metrics
+              protocol: TCP
+            - port: "9963" # cilium-operator metrics, if exposed on node/host networking
+              protocol: TCP
+            - port: "9965" # hubble metrics
+              protocol: TCP
+
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/name: alertmanager
@@ -66,10 +79,9 @@ spec:
             "k8s:io.kubernetes.pod.namespace": observability
       toPorts:
         - ports:
-            - port: "8080"
-              protocol: TCP
             - port: "9093"
               protocol: TCP
+
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack
@@ -79,23 +91,12 @@ spec:
         - ports:
             - port: "8080"
               protocol: TCP
+
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
-            app.kubernetes.io/component: prometheus-operator
-            app.kubernetes.io/instance: kube-prometheus-stack
-            app.kubernetes.io/part-of: kube-prometheus-stack
-            "k8s:io.kubernetes.pod.namespace": observability
+            k8s-app: hubble-relay
+            "k8s:io.kubernetes.pod.namespace": cilium
       toPorts:
         - ports:
-            - port: "10250" # kubelet
-              protocol: TCP
-    - toEndpoints:
-        - matchLabels:
-            app.kubernetes.io/instance: kube-prometheus-stack
-            app.kubernetes.io/name: grafana
-            "k8s:io.kubernetes.pod.namespace": observability
-      toPorts:
-        - ports:
-            - port: "3000"
+            - port: "9966"
               protocol: TCP
