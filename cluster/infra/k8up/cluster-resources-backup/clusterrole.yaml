@@ -9,6 +9,5 @@ rules:
     resources:
       - "*"
     verbs:
-      - get
+      - view
       - list
-      - watch
