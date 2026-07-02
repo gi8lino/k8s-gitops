@@ -10,6 +10,7 @@ spec:
       set -eu
       rm -rf /tmp/k8s-object-dump
       mkdir -p /tmp/k8s-object-dump
+
       k8s-object-dumper
       -dir /tmp/k8s-object-dump
       -ignore=.+mutators
@@ -43,6 +44,7 @@ spec:
       -must-exist=serviceaccounts
       -must-exist=services
       -must-exist=statefulsets.apps
+
       tar -czf - -C /tmp k8s-object-dump
     '
   fileExtension: .tar.gz
@@ -51,9 +53,8 @@ spec:
       serviceAccountName: cluster-resources-backup
       containers:
         - name: cluster-resources-backup
-          image: ghcr.io/projectsyn/k8s-object-dumper:v0.3.0
+          image: projectsyn/k8s-object-dumper:v0.3.0
           imagePullPolicy: IfNotPresent
           command:
-            - tail
-            - -f
-            - /dev/null-
+            - sleep
+            - infinity
