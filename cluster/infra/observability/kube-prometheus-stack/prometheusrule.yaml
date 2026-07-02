@@ -115,3 +115,66 @@ spec:
           annotations:
             summary: 'Raspberry «{{ $labels.nodename }}» CPU too hot: {{ printf "%.1f" $value }} °C'
             description: "Raspberry SoC on «{{ $labels.nodename }}» is hot (> 75 °C 5m max)."
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: kubernetes-basic
+  namespace: observability
+spec:
+  groups:
+    - name: kubernetes-basic
+      rules:
+        - alert: BasicKubeNodeNotReady
+          expr: kube_node_status_condition{condition="Ready",status="true"} == 0
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            summary: Node «{{ $labels.node }}» is not ready
+            description: Node «{{ $labels.node }}» has been not ready for 15 minutes.
+
+        - alert: BasicKubeNodePressure
+          expr: kube_node_status_condition{condition=~"MemoryPressure|DiskPressure|PIDPressure",status="true"} == 1
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: Node «{{ $labels.node }}» has {{ $labels.condition }}
+            description: Node «{{ $labels.node }}» reports {{ $labels.condition }} for 15 minutes.
+
+        - alert: BasicKubePodCrashLooping
+          expr: max_over_time(kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff"}[10m]) >= 1
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: Pod «{{ $labels.namespace }}/{{ $labels.pod }}» is crash-looping
+            description: Container «{{ $labels.container }}» has been in CrashLoopBackOff.
+
+        - alert: BasicKubeDeploymentReplicasMismatch
+          expr: kube_deployment_spec_replicas != kube_deployment_status_replicas_available
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            summary: Deployment «{{ $labels.namespace }}/{{ $labels.deployment }}» is not fully available
+            description: Deployment replicas have been unavailable for 30 minutes.
+
+        - alert: BasicKubeStatefulSetReplicasMismatch
+          expr: kube_statefulset_replicas != kube_statefulset_status_replicas_ready
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            summary: StatefulSet «{{ $labels.namespace }}/{{ $labels.statefulset }}» is not fully ready
+            description: StatefulSet replicas have been unavailable for 30 minutes.
+
+        - alert: BasicKubePersistentVolumeClaimPending
+          expr: kube_persistentvolumeclaim_status_phase{phase="Pending"} == 1
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: PVC «{{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }}» is pending
+            description: PersistentVolumeClaim has been pending for 15 minutes.

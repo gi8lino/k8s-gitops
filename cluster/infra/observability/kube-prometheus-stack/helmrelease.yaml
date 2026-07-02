@@ -113,17 +113,44 @@ spec:
     defaultRules:
       create: true
       rules:
-        etcd: false
-        kubeApiserverAvailability: false
-        kubeApiserverBurnrate: false
-        kubeApiserverHistogram: false
-        kubeApiserverSlos: false
-        kubeControllerManager: false
-        kubelet: false
-        kubeProxy: false
-        kubernetesSystem: false
-        kubeSchedulerAlerting: false
-        kubeSchedulerRecording: false
+        alertmanager: true # alert routing health
+        configReloaders: false # low value
+        etcd: false # no etcd scraping
+        general: true # watchdog/info rules
+        k8sContainerCpuLimits: false # dashboard recording
+        k8sContainerCpuRequests: false # dashboard recording
+        k8sContainerCpuUsageSecondsTotal: false # dashboard recording
+        k8sContainerMemoryCache: false # dashboard recording
+        k8sContainerMemoryLimits: false # dashboard recording
+        k8sContainerMemoryRequests: false # dashboard recording
+        k8sContainerMemoryRss: false # dashboard recording
+        k8sContainerMemorySwap: false # dashboard recording
+        k8sContainerMemoryWorkingSetBytes: false # dashboard recording
+        k8sContainerResource: false # dashboard recording
+        k8sPodOwner: false # dashboard recording
+        kubeApiserverAvailability: false # heavy SLO math
+        kubeApiserverBurnrate: false # heavy SLO math
+        kubeApiserverHistogram: false # heavy SLO math
+        kubeApiserverSlos: false # heavy SLO math
+        kubeControllerManager: false # no scrape target
+        kubelet: false # no kubelet scrape
+        kubePrometheusGeneral: false # replaced by basic rules
+        kubePrometheusNodeRecording: false # dashboard recording
+        kubeProxy: false # no scrape target
+        kubeSchedulerAlerting: false # no scrape target
+        kubeSchedulerRecording: false # no scrape target
+        kubeStateMetrics: true # exporter health
+        kubernetesApps: false # replaced by basic rules
+        kubernetesResources: false # noisy capacity rules
+        kubernetesStorage: false # needs kubelet metrics
+        kubernetesSystem: false # noisy kubelet rules
+        network: false # not useful here
+        node: true # host basics
+        nodeExporterAlerting: true # disk/cpu/memory basics
+        nodeExporterRecording: false # dashboard recording
+        prometheus: true # Prometheus health
+        prometheusOperator: true # operator health
+        windows: false # no Windows nodes
 
     grafana:
       fullnameOverride: grafana
