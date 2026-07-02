@@ -32,3 +32,4 @@ spec:
         barmanObjectName: gitlab
   monitoring:
     enablePodMonitor: true
+    disableDefaultQueries: true

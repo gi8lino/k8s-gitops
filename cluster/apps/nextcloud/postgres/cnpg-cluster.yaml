@@ -25,3 +25,4 @@ spec:
         barmanObjectName: nextcloud
   monitoring:
     enablePodMonitor: true
+    disableDefaultQueries: true
