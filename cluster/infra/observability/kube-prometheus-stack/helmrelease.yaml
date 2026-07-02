@@ -31,6 +31,9 @@ spec:
   values:
     prometheusOperator:
       fullnameOverride: prometheus-operator
+      serviceMonitor:
+        selfMonitor: false
+
     alertmanager:
       ingress:
         enabled: false
@@ -45,6 +48,8 @@ spec:
             - name: envoy-internal
               namespace: network
               sectionName: https
+      serviceMonitor:
+        selfMonitor: false
       config:
         global:
           resolve_timeout: 10m
@@ -104,9 +109,22 @@ spec:
               active_time_intervals:
                 - business_hours
                 - weekend
+
+    # Keep the default rule set, but disable the noisy control-plane parts
+    # which reference metrics we no longer scrape.
     defaultRules:
+      create: true
       rules:
         etcd: false
+        kubeApiserverAvailability: false
+        kubeApiserverBurnrate: false
+        kubeApiserverHistogram: false
+        kubeApiserverSlos: false
+        kubeControllerManager: false
+        kubeProxy: false
+        kubeSchedulerAlerting: false
+        kubeSchedulerRecording: false
+
     grafana:
       fullnameOverride: grafana
       ingress:
@@ -160,35 +178,67 @@ spec:
         - grafana-piechart-panel
         - grafana-worldmap-panel
       serviceMonitor:
-        enabled: true
+        enabled: false
+
+    # Biggest offenders from your TSDB output.
+    # Disable full apiserver metrics/histograms.
+    kubeApiServer:
+      enabled: false
+
+    # Disable kubelet/cAdvisor. This removes container-level CPU/memory metrics,
+    # but kube-state-metrics still gives pod status, restarts, waiting reasons,
+    # deployment readiness, etc.
+    kubelet:
+      enabled: false
+
+    # These were each ~87k samples per scrape in your output.
     kubeControllerManager:
-      enabled: true
-      endpoints:
-        - ${HOST_IP_V4}
-      service:
-        enabled: true
-        port: 10257
-        targetPort: 10257
-      serviceMonitor:
-        enabled: true
-        https: true
-        insecureSkipVerify: true
+      enabled: false
+
     kubeScheduler:
-      enabled: true
-      endpoints:
-        - ${HOST_IP_V4}
-      service:
-        enabled: true
-        port: 10259
-        targetPort: 10259
-      serviceMonitor:
-        enabled: true
-        https: true
-        insecureSkipVerify: true
+      enabled: false
+
     kubeProxy:
       enabled: false
+
     kubeEtcd:
       enabled: false
+
+    # CoreDNS is small enough to keep. Disable if you want to go even leaner.
+    coreDns:
+      enabled: true
+      serviceMonitor:
+        interval: 60s
+
+    kubeDns:
+      enabled: false
+
+    # Keep this. It is what you need for pod/deployment/statefulset status,
+    # CrashLoopBackOff, ImagePullBackOff, restart counts, etc.
+    kube-state-metrics:
+      fullnameOverride: kube-state-metrics
+      prometheus:
+        monitor:
+          enabled: true
+          interval: 60s
+
+    # Keep this. Your node-exporter job was not the real problem, and your repo
+    # includes a node-exporter dashboard.
+    prometheus-node-exporter:
+      fullnameOverride: node-exporter
+      prometheus:
+        monitor:
+          enabled: true
+          interval: 60s
+      extraArgs:
+        - --collector.filesystem.mount-points-exclude=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
+        - --collector.textfile.directory=/run/prometheus
+      extraHostVolumeMounts:
+        - name: node-exporter-textfile-collector-scripts
+          hostPath: /run/prometheus
+          mountPath: /run/prometheus
+          readOnly: true
+
     prometheus:
       ingress:
         enabled: false
@@ -203,11 +253,28 @@ spec:
             - name: envoy-internal
               namespace: network
               sectionName: https
+
       prometheusSpec:
-        podMonitorSelectorNilUsesHelmValues: false
+        retention: 3d
+        retentionSize: 8GB
+        scrapeInterval: 60s
+        evaluationInterval: 60s
+
+        # Keep your existing broad discovery so blackbox, smartctl, kthxbye,
+        # kube-ephemeral-container-exporter, CNPG, Flux, etc. keep working.
+        serviceMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         ruleSelectorNilUsesHelmValues: false
-        serviceMonitorSelectorNilUsesHelmValues: false
+
+        # Restrict PodMonitors first. Your Flux PodMonitor was not huge, but
+        # PodMonitors are easier to accidentally over-scrape.
+        podMonitorSelectorNilUsesHelmValues: true
+
+        resources:
+          requests:
+            cpu: 100m
+            memory: 512Mi
+
         storageSpec:
           volumeClaimTemplate:
             spec:
@@ -216,30 +283,24 @@ spec:
               resources:
                 requests:
                   storage: 10Gi
+
         additionalScrapeConfigs:
           - job_name: node-exporter
+            scrape_interval: 60s
             static_configs:
               - targets:
                   - vpn.srv.${BASE_DOMAIN}:9100
                   - tools.srv.${BASE_DOMAIN}:9100
+
           - job_name: smartctl-exporter
+            scrape_interval: 5m
             static_configs:
               - targets:
                   - vpn.srv.${BASE_DOMAIN}:9633
                   - tools.srv.${BASE_DOMAIN}:9633
+
           - job_name: heartbeats
+            scrape_interval: 60s
             static_configs:
               - targets:
                   - heartbeats.tools.${BASE_DOMAIN}
-    kube-state-metrics:
-      fullnameOverride: kube-state-metrics
-    prometheus-node-exporter:
-      fullnameOverride: node-exporter
-      extraArgs:
-        - --collector.filesystem.mount-points-exclude=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
-        - --collector.textfile.directory=/run/prometheus
-      extraHostVolumeMounts:
-        - name: node-exporter-textfile-collector-scripts
-          hostPath: /run/prometheus
-          mountPath: /run/prometheus
-          readOnly: true
