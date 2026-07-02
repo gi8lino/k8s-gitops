@@ -41,6 +41,7 @@ spec:
   fileExtension: .jsonl
   pod:
     spec:
+      serviceAccountName: cluster-resources-backup
       containers:
         - name: cluster-resources-backup
           image: projectsyn/k8s-object-dumper:v0.3.0
@@ -49,4 +50,3 @@ spec:
             - tail
             - -f
             - /dev/null
-      serviceAccountName: cluster-resources-backup
