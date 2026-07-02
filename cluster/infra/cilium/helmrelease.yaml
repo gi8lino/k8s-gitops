@@ -23,27 +23,18 @@ spec:
     hubble:
       enabled: true
       metrics:
-        enabled:
-          - dns:query
-          - drop
-          - flow
-          - http
-          - icmp
-          - port-distribution
-          - tcp
+        enabled: []
         serviceMonitor:
-          enabled: true
+          enabled: false
         dashboards:
-          enabled: true
-          annotations:
-            grafana_folder: Cilium
+          enabled: false
       observe:
         enabled: true
       relay:
         enabled: true
         prometheus:
           serviceMonitor:
-            enabled: true
+            enabled: false
       ui:
         enabled: true
         frontend:

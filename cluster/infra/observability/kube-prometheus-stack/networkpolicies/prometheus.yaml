@@ -39,14 +39,13 @@ spec:
             dns:
               - matchPattern: "*"
 
-    # CoreDNS metrics.
     - toEndpoints:
         - matchLabels:
             k8s-app: kube-dns
             "k8s:io.kubernetes.pod.namespace": kube-system
       toPorts:
         - ports:
-            - port: "9153" # coreDNS
+            - port: "9153" # CoreDNS metrics
               protocol: TCP
 
     # Kubernetes API discovery.
@@ -67,9 +66,7 @@ spec:
               protocol: TCP
             - port: "9962" # cilium-agent metrics
               protocol: TCP
-            - port: "9963" # cilium-operator metrics, if exposed on node/host networking
-              protocol: TCP
-            - port: "9965" # hubble metrics
+            - port: "9963" # cilium-operator metrics
               protocol: TCP
 
     - toEndpoints:
@@ -90,13 +87,4 @@ spec:
       toPorts:
         - ports:
             - port: "8080"
-              protocol: TCP
-
-    - toEndpoints:
-        - matchLabels:
-            k8s-app: hubble-relay
-            "k8s:io.kubernetes.pod.namespace": cilium
-      toPorts:
-        - ports:
-            - port: "9966"
               protocol: TCP

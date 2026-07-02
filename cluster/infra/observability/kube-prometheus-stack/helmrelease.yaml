@@ -110,8 +110,6 @@ spec:
                 - business_hours
                 - weekend
 
-    # Keep the default rule set, but disable the noisy control-plane parts
-    # which reference metrics we no longer scrape.
     defaultRules:
       create: true
       rules:
@@ -180,18 +178,12 @@ spec:
       serviceMonitor:
         enabled: false
 
-    # Biggest offenders from your TSDB output.
-    # Disable full apiserver metrics/histograms.
     kubeApiServer:
       enabled: false
 
-    # Disable kubelet/cAdvisor. This removes container-level CPU/memory metrics,
-    # but kube-state-metrics still gives pod status, restarts, waiting reasons,
-    # deployment readiness, etc.
     kubelet:
       enabled: false
 
-    # These were each ~87k samples per scrape in your output.
     kubeControllerManager:
       enabled: false
 
@@ -204,7 +196,6 @@ spec:
     kubeEtcd:
       enabled: false
 
-    # CoreDNS is small enough to keep. Disable if you want to go even leaner.
     coreDns:
       enabled: true
       serviceMonitor:
@@ -213,17 +204,16 @@ spec:
     kubeDns:
       enabled: false
 
-    # Keep this. It is what you need for pod/deployment/statefulset status,
-    # CrashLoopBackOff, ImagePullBackOff, restart counts, etc.
     kube-state-metrics:
       fullnameOverride: kube-state-metrics
+      metricDenylist:
+        - kube_replicaset_.*
       prometheus:
         monitor:
           enabled: true
-          interval: 60s
+          http:
+            interval: 60s
 
-    # Keep this. Your node-exporter job was not the real problem, and your repo
-    # includes a node-exporter dashboard.
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       prometheus:
@@ -260,8 +250,6 @@ spec:
         scrapeInterval: 60s
         evaluationInterval: 60s
 
-        # Keep your existing broad discovery so blackbox, smartctl, kthxbye,
-        # kube-ephemeral-container-exporter, CNPG, Flux, etc. keep working.
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
