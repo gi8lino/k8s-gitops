@@ -54,6 +54,7 @@ spec:
       serviceAccountName: cluster-resources-backup
       containers:
         - name: cluster-resources-backup
+          # renovate: datasource=github-releases depName=projectsyn/k8s-object-dumper
           image: ghcr.io/projectsyn/k8s-object-dumper:v0.3.0
           imagePullPolicy: IfNotPresent
           command:
