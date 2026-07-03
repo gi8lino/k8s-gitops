@@ -24,7 +24,7 @@
   kubernetes: {
     managerFilePatterns: [
       '/cluster/apps/.+/(cronjob|daemonset|deployment|statefulset)\\.ya?ml$/',
-      '/cluster/infra/.+/(cronjob|daemonset|deployment|statefulset)\\.ya?ml$/',
+      '/cluster/infra/.+/(cronjob|daemonset|deployment|statefulset|prebackuppod)\\.ya?ml$/',
     ],
   },
   'helm-values': {
