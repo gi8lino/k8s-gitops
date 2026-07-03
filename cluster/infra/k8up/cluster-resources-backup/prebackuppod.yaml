@@ -59,4 +59,4 @@ spec:
           command:
             - sh
             - -c
-            - sleep 365d
+            - sleep infinite
