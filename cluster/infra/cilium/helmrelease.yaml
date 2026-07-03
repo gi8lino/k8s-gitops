@@ -24,7 +24,7 @@ spec:
     hubble:
       enabled: false
       metrics:
-        enabled: false
+        enabled: []
         serviceMonitor:
           enabled: false
         dashboards:
