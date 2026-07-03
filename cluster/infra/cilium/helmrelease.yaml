@@ -22,7 +22,7 @@ spec:
       enabled: false
 
     hubble:
-      enabled: false
+      enabled: true
       metrics:
         enabled: []
         serviceMonitor:
@@ -30,9 +30,9 @@ spec:
         dashboards:
           enabled: false
       observe:
-        enabled: false
+        enabled: true
       relay:
-        enabled: false
+        enabled: true
         prometheus:
           serviceMonitor:
             enabled: false
