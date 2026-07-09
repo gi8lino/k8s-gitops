@@ -24,7 +24,7 @@ spec:
       serviceAccountName: kube-ephemeral-container-exporter
       containers:
         - name: kube-ephemeral-container-exporter
-          image: ghcr.io/containeroo/kube-ephemeral-container-exporter:v0.0.13
+          image: ghcr.io/containeroo/kube-ephemeral-container-exporter:v0.0.14
           imagePullPolicy: Always
           ports:
             - name: metrics
