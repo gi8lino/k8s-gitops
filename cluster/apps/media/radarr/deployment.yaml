@@ -33,7 +33,7 @@ spec:
               mountPath: /config
       containers:
         - name: radarr
-          image: ghcr.io/linuxserver/radarr:6.2.1.10461-ls309
+          image: ghcr.io/linuxserver/radarr:6.3.0.10514-ls311
           env:
             - name: TZ
               value: Europe/Zurich
