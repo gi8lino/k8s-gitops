@@ -22,6 +22,12 @@ spec:
       enabled: false
 
     hubble:
+      tls:
+        auto:
+          enabled: true
+          method: cronJob
+          certValidityDuration: 365
+          schedule: "0 0 1 */4 *"
       enabled: true
       metrics:
         enabled: []
