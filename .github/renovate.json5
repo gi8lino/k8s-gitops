@@ -190,6 +190,22 @@
     {
       "matchPackageNames": ["kubernetes-sigs/gateway-api"],
       "prCreation": "status-success"
+    },
+    {
+      "matchPackageNames": [
+        "cloudnative-pg/cloudnative-pg",
+        "cloudnative-pg/plugin-barman-cloud",
+        "quay.io/keycloak/keycloak",
+        "requarks/wiki",
+        "nextcloud",
+      ],
+      "prCreation": "status-success"
+    },
+    {
+      "groupName": "GitLab and GitLab Runner",
+      "matchDatasources": ["helm"],
+      "matchPackageNames": ["gitlab", "gitlab-runner"],
+      "prCreation": "status-success"
     }
   ],
   'pre-commit': {

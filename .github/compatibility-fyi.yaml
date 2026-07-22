@@ -31,6 +31,104 @@ gates:
         value: spec.imageName
         extract: ":(?<version>[^@]+)$"
 
+  - id: barman-cloud-cloudnativepg
+    project:
+      id: barman-cloud-plugin
+      version:
+        files:
+          - cluster/crds/cnpg-plugin-barman-cloud/crds.yaml
+        document:
+          apiVersion: source.toolkit.fluxcd.io/v1
+          kind: GitRepository
+          metadata.name: cnpg-plugin-barman-cloud
+        value: spec.ref.tag
+
+    dependency:
+      id: cloudnativepg
+      versions:
+        files:
+          - cluster/crds/cloudnative-pg/crds.yaml
+        document:
+          apiVersion: source.toolkit.fluxcd.io/v1
+          kind: GitRepository
+          metadata.name: cloudnative-pg
+        value: spec.ref.tag
+
+  - id: keycloak-postgresql
+    project:
+      id: keycloak
+      version:
+        files:
+          - cluster/apps/keycloak/keycloak/deployment.yaml
+        document:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata.name: keycloak
+        value: spec.template.spec.containers.0.image
+        extract: ":(?<version>[^@]+)$"
+
+    dependency:
+      id: postgresql
+      versions:
+        files:
+          - cluster/apps/keycloak/postgres/cnpg-cluster.yaml
+        document:
+          apiVersion: postgresql.cnpg.io/v1
+          kind: Cluster
+          metadata.name: keycloak-postgres
+        value: spec.imageName
+        extract: ":(?<version>[^@]+)$"
+
+  - id: nextcloud-postgresql
+    project:
+      id: nextcloud
+      version:
+        files:
+          - cluster/apps/nextcloud/nextcloud/deployment.yaml
+        document:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata.name: nextcloud
+        value: spec.template.spec.containers.1.image
+        extract: ':(?<version>[0-9]+\.[0-9]+\.[0-9]+)'
+
+    dependency:
+      id: postgresql
+      versions:
+        files:
+          - cluster/apps/nextcloud/postgres/cnpg-cluster.yaml
+        document:
+          apiVersion: postgresql.cnpg.io/v1
+          kind: Cluster
+          metadata.name: nextcloud-postgres
+        value: spec.imageName
+        extract: ":(?<version>[^@]+)$"
+
+  - id: wikijs-postgresql
+    project:
+      id: wikijs
+      version:
+        files:
+          - cluster/apps/wiki/wiki/deployment.yaml
+        document:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata.name: wiki
+        value: spec.template.spec.containers.0.image
+        extract: ":(?<version>[^@]+)$"
+
+    dependency:
+      id: postgresql
+      versions:
+        files:
+          - cluster/apps/wiki/postgres/cnpg-cluster.yaml
+        document:
+          apiVersion: postgresql.cnpg.io/v1
+          kind: Cluster
+          metadata.name: wiki-postgres
+        value: spec.imageName
+        extract: ":(?<version>[^@]+)$"
+
   - id: gitlab-postgresql
     project:
       id: gitlab-helm
@@ -54,6 +152,29 @@ gates:
           metadata.name: gitlab-postgres
         value: spec.imageName
         extract: ":(?<version>[^@]+)$"
+
+  - id: gitlab-runner-gitlab
+    project:
+      id: gitlab-runner-helm
+      version:
+        files:
+          - cluster/apps/gitlab/gitlab-runner/helmrelease.yaml
+        document:
+          apiVersion: helm.toolkit.fluxcd.io/v2
+          kind: HelmRelease
+          metadata.name: gitlab-runner
+        value: spec.chart.spec.version
+
+    dependency:
+      id: gitlab-helm
+      versions:
+        files:
+          - cluster/apps/gitlab/gitlab/gitlab/helmrelease.yaml
+        document:
+          apiVersion: helm.toolkit.fluxcd.io/v2
+          kind: HelmRelease
+          metadata.name: gitlab
+        value: spec.chart.spec.version
 
   - id: envoy-gateway-api
     project:
