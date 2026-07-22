@@ -1,0 +1,79 @@
+---
+version: 1
+
+defaults:
+  unknown: block
+  apiError: block
+  minimumConfidence: high
+  maximumEvidenceAgeDays: 180
+
+gates:
+  - id: cloudnativepg-postgresql
+    project:
+      id: cloudnativepg
+      version:
+        files:
+          - cluster/crds/cloudnative-pg/crds.yaml
+        document:
+          apiVersion: source.toolkit.fluxcd.io/v1
+          kind: GitRepository
+          metadata.name: cloudnative-pg
+        value: spec.ref.tag
+
+    dependency:
+      id: postgresql
+      versions:
+        files:
+          - cluster/apps/**/postgres/*.yaml
+        document:
+          apiVersion: postgresql.cnpg.io/v1
+          kind: Cluster
+        value: spec.imageName
+        extract: ":(?<version>[^@]+)$"
+
+  - id: gitlab-postgresql
+    project:
+      id: gitlab-helm
+      version:
+        files:
+          - cluster/apps/gitlab/gitlab/gitlab/helmrelease.yaml
+        document:
+          apiVersion: helm.toolkit.fluxcd.io/v2
+          kind: HelmRelease
+          metadata.name: gitlab
+        value: spec.chart.spec.version
+
+    dependency:
+      id: postgresql
+      versions:
+        files:
+          - cluster/apps/gitlab/gitlab/postgres/cnpg-cluster.yaml
+        document:
+          apiVersion: postgresql.cnpg.io/v1
+          kind: Cluster
+          metadata.name: gitlab-postgres
+        value: spec.imageName
+        extract: ":(?<version>[^@]+)$"
+
+  - id: envoy-gateway-api
+    project:
+      id: envoy-gateway
+      version:
+        files:
+          - cluster/flux/repositories/oci/envoy-gateway.yaml
+        document:
+          apiVersion: source.toolkit.fluxcd.io/v1
+          kind: OCIRepository
+          metadata.name: envoy-gateway
+        value: spec.ref.tag
+
+    dependency:
+      id: gateway-api
+      versions:
+        files:
+          - cluster/crds/envoy-gateway/kustomization.yaml
+        document:
+          apiVersion: kustomize.config.k8s.io/v1beta1
+          kind: Kustomization
+        value: resources.0
+        extract: /download/v(?<version>[^/]+)/

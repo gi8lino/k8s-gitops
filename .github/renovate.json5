@@ -182,6 +182,10 @@
         'renovate/renovate',
       ],
     },
+    {
+      "matchPackageNames": ["kubernetes-sigs/gateway-api"],
+      "prCreation": "status-success"
+    },
   ],
   'pre-commit': {
     enabled: true,
