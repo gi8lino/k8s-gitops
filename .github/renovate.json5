@@ -183,9 +183,14 @@
       ],
     },
     {
-      "matchPackageNames": ["kubernetes-sigs/gateway-api"],
+      "matchPackageNames": ["ghcr.io/cloudnative-pg/postgresql"],
+      "additionalBranchPrefix": "{{packageFileDir}}-",
       "prCreation": "status-success"
     },
+    {
+      "matchPackageNames": ["kubernetes-sigs/gateway-api"],
+      "prCreation": "status-success"
+    }
   ],
   'pre-commit': {
     enabled: true,
