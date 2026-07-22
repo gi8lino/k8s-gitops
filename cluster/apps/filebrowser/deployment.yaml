@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: filebrowser
-          image: ghcr.io/gtsteffaniak/filebrowser:1.4-stable-slim
+          image: ghcr.io/gtsteffaniak/filebrowser:1.5-stable-slim
           env:
             - name: TZ
               value: Europe/Zurich
