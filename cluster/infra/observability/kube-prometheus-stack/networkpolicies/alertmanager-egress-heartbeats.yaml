@@ -13,6 +13,7 @@ spec:
   egress:
     - toFQDNs:
         - matchName: heartbeats.tools.${BASE_DOMAIN}
+        - matchName: overdue.tools.${BASE_DOMAIN}
       toPorts:
         - ports:
             - port: "443"

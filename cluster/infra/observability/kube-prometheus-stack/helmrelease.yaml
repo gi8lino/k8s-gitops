@@ -71,6 +71,8 @@ spec:
             webhook_configs:
               - send_resolved: true
                 url: https://heartbeats.tools.${BASE_DOMAIN}/api/heartbeat/watchdog-prometheus
+              - send_resolved: true
+                url: https://overdue.tools.${BASE_DOMAIN}/watchdog/checkin
           - name: slack
             slack_configs:
               - channel: "#alertmanager"
