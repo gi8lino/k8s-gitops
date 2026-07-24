@@ -29,6 +29,12 @@ spec:
               value: "k8s"
             - name: DOZZLE_AUTH_PROVIDER
               value: forward-proxy
+            - name: DOZZLE_AUTH_HEADER_USER
+              value: "X-Auth-Request-Email"
+            - name: DOZZLE_AUTH_HEADER_EMAIL
+              value: "X-Auth-Request-Email"
+            - name: DOZZLE_AUTH_HEADER_NAME
+              value: "X-Auth-Request-Email"
           volumeMounts:
             - name: data
               mountPath: /data
