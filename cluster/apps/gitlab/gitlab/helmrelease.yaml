@@ -110,7 +110,7 @@ spec:
         enabled: false
       appConfig:
         backups:
-          bucket: gitlab
+          bucket: gitlab-backups
           tmpBucket: gitlab-tmp
         dependencyProxy:
           enabled: true
