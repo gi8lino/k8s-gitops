@@ -8,7 +8,7 @@ spec:
   description: Allow gitlab backups access to minio
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/component: job
+      app: toolbox
       "k8s:io.kubernetes.pod.namespace": gitlab
   egress:
     - toEndpoints:

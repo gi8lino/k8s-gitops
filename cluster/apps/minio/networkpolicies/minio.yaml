@@ -19,7 +19,7 @@ spec:
         - matchLabels:
             app: minio-job
         - matchLabels:
-            app.kubernetes.io/component: job
+            app: toolbox
             "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
