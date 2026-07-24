@@ -110,12 +110,6 @@
       "semanticCommitScope": "snapraid"
     },
     {
-      "description": "App scope: vimbin",
-      "matchDatasources": ["docker"],
-      "matchPaths": ["cluster/apps/vimbin/**"],
-      "semanticCommitScope": "vimbin"
-    },
-    {
       "description": "App scope: wiki",
       "matchDatasources": ["docker"],
       "matchPaths": ["cluster/apps/wiki/wiki/**"],
