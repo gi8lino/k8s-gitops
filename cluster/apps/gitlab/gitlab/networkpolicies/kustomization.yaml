@@ -7,6 +7,7 @@ resources:
   - egress-gitlab-upgrade-check.yaml
   - envoy-gateway-egress-gitlab.yaml
   - envoy-gateway-internal-egress-gitlab.yaml
+  - gitlab-egress-minio.yaml
   - gitlab-gitaly.yaml
   - gitlab-registry.yaml
   - gitlab-shell.yaml

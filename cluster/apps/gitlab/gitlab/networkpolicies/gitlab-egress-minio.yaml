@@ -1,0 +1,33 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: gitlab-egress-minio
+  namespace: gitlab
+spec:
+  description: Allow gitlab backups access to minio
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/component: job
+      "k8s:io.kubernetes.pod.namespace": gitlab
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: minio
+            app.kubernetes.io/name: minio
+            "k8s:io.kubernetes.pod.namespace": minio
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP
