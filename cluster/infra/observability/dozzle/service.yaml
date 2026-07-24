@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dozzle
+  namespace: observability
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: dozzle
+    app.kubernetes.io/instance: dozzle
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP

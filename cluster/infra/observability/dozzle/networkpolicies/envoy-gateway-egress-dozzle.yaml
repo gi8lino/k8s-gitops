@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-dozzle
+  namespace: network
+spec:
+  description: "Policy for envoy-gateway-egress-dozzle"
+  endpointSelector:
+    matchLabels:
+      gateway.envoyproxy.io/owning-gateway-name: envoy-internal
+      gateway.envoyproxy.io/owning-gateway-namespace: network
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: dozzle
+            app.kubernetes.io/instance: dozzle
+            "k8s:io.kubernetes.pod.namespace": observability
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP

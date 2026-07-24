@@ -1,0 +1,14 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - networkpolicies/
+  - backendtrafficpolicy.yaml
+  - clusterrole.yaml
+  - clusterrolebinding.yaml
+  - deployment.yaml
+  - httproute.yaml
+  - persistentvolumeclaim.yaml
+  - securitypolicy.yaml
+  - service.yaml
+  - serviceaccount.yaml
