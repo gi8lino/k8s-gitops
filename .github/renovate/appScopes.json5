@@ -8,6 +8,13 @@
       "semanticCommitScope": "cascader"
     },
     {
+      "description": "App scope: dozzle",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/dozzle/**"],
+      "semanticCommitScope": "dozzle"
+    },
+    {
+    {
       "description": "App scope: whoami",
       "matchDatasources": ["docker"],
       "matchPaths": ["cluster/apps/debug/whoami/**"],
