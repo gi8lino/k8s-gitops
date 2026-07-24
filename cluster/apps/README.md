@@ -23,5 +23,4 @@ This directory contains infrastructure applications.
 - **reloader** is a Kubernetes controller to watch changes in `ConfigMap` and `Secret` and do rolling upgrades on Pods with their associated `Deployments`, `Daemonsets` `Statefulsets` and `Rollouts`
 - **renovate** dependency updater
 - **storage** contains tools about storage
-- **vimbin** self-hosted pastebin for with vim motions
 - **wiki** self-hosted wiki for internal documentation

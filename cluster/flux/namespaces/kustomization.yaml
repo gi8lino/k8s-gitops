@@ -22,5 +22,4 @@ resources:
   - renovate.yaml
   - storage-system.yaml
   - syncflaer.yaml
-  - vimbin.yaml
   - wiki.yaml
