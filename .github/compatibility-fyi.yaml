@@ -134,7 +134,7 @@ gates:
       id: gitlab-helm
       version:
         files:
-          - cluster/apps/gitlab/gitlab/gitlab/helmrelease.yaml
+          - cluster/apps/gitlab/gitlab/helmrelease.yaml
         document:
           apiVersion: helm.toolkit.fluxcd.io/v2
           kind: HelmRelease
@@ -145,7 +145,7 @@ gates:
       id: postgresql
       versions:
         files:
-          - cluster/apps/gitlab/gitlab/postgres/cnpg-cluster.yaml
+          - cluster/apps/gitlab/postgres/cnpg-cluster.yaml
         document:
           apiVersion: postgresql.cnpg.io/v1
           kind: Cluster
@@ -169,7 +169,7 @@ gates:
       id: gitlab-helm
       versions:
         files:
-          - cluster/apps/gitlab/gitlab/gitlab/helmrelease.yaml
+          - cluster/apps/gitlab/gitlab/helmrelease.yaml
         document:
           apiVersion: helm.toolkit.fluxcd.io/v2
           kind: HelmRelease
