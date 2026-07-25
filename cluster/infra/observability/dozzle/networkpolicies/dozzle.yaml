@@ -38,7 +38,10 @@ spec:
             - port: "10443"
               protocol: TCP
     - toFQDNs:
+        - matchName: api.github.com
+        - matchName: b.dozzle.dev
         - matchName: gravatar.com
+        - matchName: i2.wp.com
       toPorts:
         - ports:
             - port: "443"
