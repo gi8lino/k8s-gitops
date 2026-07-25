@@ -37,6 +37,12 @@ spec:
         - ports:
             - port: "10443"
               protocol: TCP
+    - toFQDNs:
+        - matchName: gravatar.com
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
   ingress:
     - fromEndpoints:
         - matchLabels:
