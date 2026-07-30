@@ -1,5 +1,5 @@
 ---
-apiVersion: cilium.io/v2alpha1
+apiVersion: cilium.io/v2
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: default
@@ -9,7 +9,7 @@ spec:
     - start: ${CILIUM_LB_DEFAULT_RANGE_START_V4}
       stop: ${CILIUM_LB_DEFAULT_RANGE_END_V4}
 ---
-apiVersion: cilium.io/v2alpha1
+apiVersion: cilium.io/v2
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: envoy-external
@@ -21,7 +21,7 @@ spec:
     matchLabels:
       gateway.envoyproxy.io/owning-gateway-name: envoy-external
 ---
-apiVersion: cilium.io/v2alpha1
+apiVersion: cilium.io/v2
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: envoy-internal
