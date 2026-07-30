@@ -20,6 +20,7 @@ spec:
   values:
     envoy:
       enabled: false
+      xdsMode: ads
 
     hubble:
       tls:
