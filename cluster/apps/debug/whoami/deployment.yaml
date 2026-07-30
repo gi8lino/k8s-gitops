@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: whoami
-          image: ghcr.io/traefik/whoami:v1.11.0
+          image: ghcr.io/traefik/whoami:v1.12.0
           imagePullPolicy: IfNotPresent
           env:
             - name: WHOAMI_PORT_NUMBER
