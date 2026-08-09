@@ -40,7 +40,7 @@ spec:
               - matchPattern: "*"
     - toFQDNs:
         - matchName: artworks.thetvdb.com
-        - matchName: file.${USENET_INDEXER_DOMAIN}
+        - matchName: ${USENET_INDEXER_DOMAIN}
         - matchName: ghcr.io # catppuccin theme
         - matchName: hooks.slack.com
         - matchName: pkg-containers.githubusercontent.com # catppucin theme
