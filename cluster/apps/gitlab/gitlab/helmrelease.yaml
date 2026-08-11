@@ -36,6 +36,8 @@ spec:
         deployment:
           strategy:
             type: Recreate
+        extraEnv:
+          GITLAB_PRODUCT_USAGE_DATA_ENABLED: "false"
         maxReplicas: 1
         minReplicas: 1
       toolbox:
@@ -85,6 +87,8 @@ spec:
         deployment:
           strategy:
             type: Recreate
+        extraEnv:
+          GITLAB_PRODUCT_USAGE_DATA_ENABLED: "false"
         maxReplicas: 1
         minReplicas: 1
     gitlab-runner:
