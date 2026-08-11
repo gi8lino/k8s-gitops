@@ -23,6 +23,7 @@ spec:
       xdsMode: ads
 
     hubble:
+      eventBufferCapacity: "32767"
       tls:
         auto:
           enabled: true
