@@ -74,7 +74,7 @@ spec:
         - matchName: files.pythonhosted.org
         - matchName: ghcr.io # catppuccin theme
         - matchName: hooks.slack.com
-        - matchName: pkg-containers.githubusercontent.com # catppucin theme
+        - matchName: pkg-containers.githubusercontent.com # catppuccin theme
         - matchName: production.cloudflare.docker.com
         - matchName: pypi.org
         - matchName: raw.githubusercontent.com

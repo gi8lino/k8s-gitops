@@ -11,7 +11,7 @@ resources:
   - gitlab.yaml
   - healthchecks.yaml
   - k8up.yaml
-  - keyclaok.yaml
+  - keycloak.yaml
   - media.yaml
   - minio.yaml
   - motus.yaml

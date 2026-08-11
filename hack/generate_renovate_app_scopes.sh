@@ -4,32 +4,47 @@ set -euo pipefail
 
 # Resolve repo root and output target.
 repo_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
-apps_root="$repo_root/cluster/apps"
+search_roots=(
+  "$repo_root/cluster/apps"
+  "$repo_root/cluster/infra"
+)
 output_file="${1:-$repo_root/.github/renovate/appScopes.json5}"
 
-if [[ ! -d "$apps_root" ]]; then
-  echo "apps root not found: $apps_root" >&2
-  exit 1
-fi
+for search_root in "${search_roots[@]}"; do
+  if [[ ! -d "$search_root" ]]; then
+    echo "workload root not found: $search_root" >&2
+    exit 1
+  fi
+done
 
-# extract_label: read app.kubernetes.io/name from a manifest file (first match).
-extract_label() {
+# extract_scope: prefer app.kubernetes.io/name, then derive HelmRelease scope.
+extract_scope() {
   local file="$1"
   local value
   # Keep parsing minimal; YAML parsing is out of scope here.
   value=$(awk -F: '/app.kubernetes.io\/name:/ {print $2; exit}' "$file" | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//; s/^"//; s/"$//; s/^'\''//; s/'\''$//')
+  if [[ -z "$value" && "$(basename "$file")" == "helmrelease.yaml" ]]; then
+    case "$file" in
+      "$repo_root"/cluster/apps/*)
+        value=$(awk '/^metadata:/{metadata=1; next} metadata && /^  namespace:/{print $2; exit}' "$file")
+        ;;
+      *)
+        value=$(awk '/^metadata:/{metadata=1; next} metadata && /^  name:/{print $2; exit}' "$file")
+        ;;
+    esac
+  fi
   if [[ -n "$value" ]]; then
     echo "$value"
   fi
 }
 
-declare -A seen_rules
+seen_rules=$'\n'
 scopes=()
 paths=()
 
 # Collect unique (scope, path) pairs from workload manifests.
 while IFS= read -r file; do
-  label=$(extract_label "$file" || true)
+  label=$(extract_scope "$file" || true)
   if [[ -z "$label" ]]; then
     continue
   fi
@@ -37,14 +52,18 @@ while IFS= read -r file; do
   dir=$(dirname "$file")
   rel_dir="${dir#$repo_root/}"
   rule_key="${label}::${rel_dir}"
-  if [[ -n "${seen_rules[$rule_key]:-}" ]]; then
-    continue
-  fi
+  case "$seen_rules" in
+    *$'\n'"$rule_key"$'\n'*) continue ;;
+  esac
 
-  seen_rules["$rule_key"]=1
+  seen_rules="${seen_rules}${rule_key}"$'\n'
   scopes+=("$label")
   paths+=("$rel_dir")
-done < <(find "$apps_root" -type f \( -name deployment.yaml -o -name statefulset.yaml -o -name daemonset.yaml \) | sort)
+done < <(
+  find "${search_roots[@]}" -type f \
+    \( -name deployment.yaml -o -name statefulset.yaml -o -name daemonset.yaml -o -name cronjob.yaml -o -name helmrelease.yaml \) \
+    | sort
+)
 
 # Render Renovate rules in JSON5.
 {

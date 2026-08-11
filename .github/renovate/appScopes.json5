@@ -2,18 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
-      "description": "App scope: cascader",
-      "matchDatasources": ["docker"],
-      "matchPaths": ["cluster/apps/cascader/**"],
-      "semanticCommitScope": "cascader"
-    },
-    {
-      "description": "App scope: dozzle",
-      "matchDatasources": ["docker"],
-      "matchPaths": ["cluster/apps/dozzle/**"],
-      "semanticCommitScope": "dozzle"
-    },
-    {
       "description": "App scope: whoami",
       "matchDatasources": ["docker"],
       "matchPaths": ["cluster/apps/debug/whoami/**"],
@@ -26,6 +14,24 @@
       "semanticCommitScope": "filebrowser"
     },
     {
+      "description": "App scope: gitlab",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/gitlab/gitlab-runner/**"],
+      "semanticCommitScope": "gitlab"
+    },
+    {
+      "description": "App scope: gitlab",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/gitlab/gitlab/**"],
+      "semanticCommitScope": "gitlab"
+    },
+    {
+      "description": "App scope: gitlab",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/gitlab/valkey/**"],
+      "semanticCommitScope": "gitlab"
+    },
+    {
       "description": "App scope: healthchecks",
       "matchDatasources": ["docker"],
       "matchPaths": ["cluster/apps/healthchecks/**"],
@@ -36,12 +42,6 @@
       "matchDatasources": ["docker"],
       "matchPaths": ["cluster/apps/keycloak/keycloak/**"],
       "semanticCommitScope": "keycloak"
-    },
-    {
-      "description": "App scope: intel-gpu-plugin",
-      "matchDatasources": ["docker"],
-      "matchPaths": ["cluster/apps/kube-system/intel-gpu-plugin/**"],
-      "semanticCommitScope": "intel-gpu-plugin"
     },
     {
       "description": "App scope: plex",
@@ -80,6 +80,12 @@
       "semanticCommitScope": "tautulli"
     },
     {
+      "description": "App scope: minio",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/apps/minio/**"],
+      "semanticCommitScope": "minio"
+    },
+    {
       "description": "App scope: motus",
       "matchDatasources": ["docker"],
       "matchPaths": ["cluster/apps/motus/motus/**"],
@@ -98,10 +104,10 @@
       "semanticCommitScope": "nextcloud"
     },
     {
-      "description": "App scope: kthxbye",
+      "description": "App scope: renovate",
       "matchDatasources": ["docker"],
-      "matchPaths": ["cluster/apps/observability/kthxbye/**"],
-      "semanticCommitScope": "kthxbye"
+      "matchPaths": ["cluster/apps/renovate/renovate/**"],
+      "semanticCommitScope": "renovate"
     },
     {
       "description": "App scope: renovate",
@@ -110,16 +116,142 @@
       "semanticCommitScope": "renovate"
     },
     {
-      "description": "App scope: snapraid",
-      "matchDatasources": ["docker"],
-      "matchPaths": ["cluster/apps/snapraid/**"],
-      "semanticCommitScope": "snapraid"
-    },
-    {
       "description": "App scope: wiki",
       "matchDatasources": ["docker"],
       "matchPaths": ["cluster/apps/wiki/wiki/**"],
       "semanticCommitScope": "wiki"
+    },
+    {
+      "description": "App scope: cert-manager",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/cert-manager/**"],
+      "semanticCommitScope": "cert-manager"
+    },
+    {
+      "description": "App scope: cilium",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/cilium/**"],
+      "semanticCommitScope": "cilium"
+    },
+    {
+      "description": "App scope: cloudflare-operator",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/cloudflare-operator/**"],
+      "semanticCommitScope": "cloudflare-operator"
+    },
+    {
+      "description": "App scope: cloudnative-pg",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/cnpg-system/cnpg-operator/**"],
+      "semanticCommitScope": "cloudnative-pg"
+    },
+    {
+      "description": "App scope: cnpg-plugin-barman-cloud",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/cnpg-system/cnpg-plugin-barman-cloud/**"],
+      "semanticCommitScope": "cnpg-plugin-barman-cloud"
+    },
+    {
+      "description": "App scope: k8up",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/k8up/**"],
+      "semanticCommitScope": "k8up"
+    },
+    {
+      "description": "App scope: coredns",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/kube-system/coredns/**"],
+      "semanticCommitScope": "coredns"
+    },
+    {
+      "description": "App scope: intel-gpu-plugin",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/kube-system/intel-gpu-plugin/**"],
+      "semanticCommitScope": "intel-gpu-plugin"
+    },
+    {
+      "description": "App scope: metrics-server",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/kube-system/metrics-server/**"],
+      "semanticCommitScope": "metrics-server"
+    },
+    {
+      "description": "App scope: envoy-gateway",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/network/envoy-gateway/**"],
+      "semanticCommitScope": "envoy-gateway"
+    },
+    {
+      "description": "App scope: dozzle",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/observability/dozzle/**"],
+      "semanticCommitScope": "dozzle"
+    },
+    {
+      "description": "App scope: kthxbye",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/observability/kthxbye/**"],
+      "semanticCommitScope": "kthxbye"
+    },
+    {
+      "description": "App scope: kube-ephemeral-container-exporter",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/observability/kube-ephemeral-container-exporter/**"],
+      "semanticCommitScope": "kube-ephemeral-container-exporter"
+    },
+    {
+      "description": "App scope: kube-prometheus-stack",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/observability/kube-prometheus-stack/**"],
+      "semanticCommitScope": "kube-prometheus-stack"
+    },
+    {
+      "description": "App scope: prometheus-blackbox-exporter",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/observability/prometheus-blackbox-exporter/**"],
+      "semanticCommitScope": "prometheus-blackbox-exporter"
+    },
+    {
+      "description": "App scope: prometheus-pushgateway",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/observability/prometheus-pushgateway/**"],
+      "semanticCommitScope": "prometheus-pushgateway"
+    },
+    {
+      "description": "App scope: prometheus-smartctl-exporter",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/observability/prometheus-smartctl-exporter/**"],
+      "semanticCommitScope": "prometheus-smartctl-exporter"
+    },
+    {
+      "description": "App scope: reloader",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/reloader/**"],
+      "semanticCommitScope": "reloader"
+    },
+    {
+      "description": "App scope: hdd",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/storage/local-path-provisioner/hdd/**"],
+      "semanticCommitScope": "hdd"
+    },
+    {
+      "description": "App scope: nvme",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/storage/local-path-provisioner/nvme/**"],
+      "semanticCommitScope": "nvme"
+    },
+    {
+      "description": "App scope: ssd",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/storage/local-path-provisioner/ssd/**"],
+      "semanticCommitScope": "ssd"
+    },
+    {
+      "description": "App scope: backup",
+      "matchDatasources": ["docker"],
+      "matchPaths": ["cluster/infra/storage/nfs-subdir-external-provisioner/backup/**"],
+      "semanticCommitScope": "backup"
     }
 
   ]

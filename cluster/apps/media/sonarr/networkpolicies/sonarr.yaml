@@ -44,7 +44,7 @@ spec:
         - matchName: file.${USENET_INDEXER_DOMAIN}
         - matchName: ghcr.io # catppuccin theme
         - matchName: hooks.slack.com
-        - matchName: pkg-containers.githubusercontent.com # catppucin theme
+        - matchName: pkg-containers.githubusercontent.com # catppuccin theme
         - matchName: plex.tv
         - matchName: raw.githubusercontent.com # catppuccin theme
         - matchName: thexem.info

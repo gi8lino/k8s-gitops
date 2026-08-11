@@ -9,8 +9,8 @@ ORANGE='\033[0;33m'
 
 ShowHelp() {
     printf "
-Usage: generate_secret_template.sh [-f|--force]
-                                   | [-h|--help]
+Usage: generate_secret_templates.sh [-f|--force]
+                                    | [-h|--help]
 
 Generates 'secret.template' files for SOPS-encrypted Kubernetes secrets.
 Unencrypted secret will be automatically decrypted!

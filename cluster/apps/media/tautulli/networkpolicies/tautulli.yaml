@@ -42,7 +42,7 @@ spec:
     - toFQDNs:
         - matchName: api.github.com
         - matchName: ghcr.io # catppuccin theme
-        - matchName: pkg-containers.githubusercontent.com # catppucin theme
+        - matchName: pkg-containers.githubusercontent.com # catppuccin theme
         - matchName: plex.tv
         - matchName: raw.githubusercontent.com # catppuccin theme
         - matchName: secure.gravatar.com

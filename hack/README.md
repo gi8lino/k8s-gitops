@@ -6,8 +6,8 @@ This directory contains useful scripts.
 
 - **cleanup_k8up_jobs.sh** cleanup stucked k8up jobs
 - **generate_renovate_app_scopes.sh** generates Renovate app-scoped package rules for Docker updates
-- **generate_kustomizations.sh** generates `kustomization.yaml` files
-- **generate_secret_template.sh** generates `secret.template` files for SOPS-encrypted Kubernetes secrets
+- **`task hack:k`** generates `kustomization.yaml` files with `kustomizer`
+- **generate_secret_templates.sh** generates `secret.template` files for SOPS-encrypted Kubernetes secrets
 - **list_helmrelease_namespaces.sh** prints namespaces used by HelmRelease manifests
 - **update_slack_helmrelease_alert.sh** updates HelmRelease alert eventSources with discovered namespaces
 
@@ -25,33 +25,20 @@ the pod will be deleted.
 -h, --help             display this help and exit
 ```
 
-## generate_kustomizations
+## generate kustomizations
 
 ```console
-Usage: generate_kustomizations.sh [-i|--ignore-folders "FOLDER, ..."]
-                                  | [-h|--help]
-                                  FOLDER [FOLDER ...]
-
-Iterates recursively over each FOLDER and generates or updates
-resources in the corresponding 'kustomization.yaml' files.
-If a 'kustomization.yaml' has the key 'patchesStrategicMerge', the corresponding
-'kustomization.yaml' will not be updated.
-
-positional arguments:
-FOLDER [FOLDER ...]                      one or more directories to iterate over recursively
-
-optional parameters:
--i, --ignore-folders "[Folder] ..."      folders which should be skipped
-                                         list of strings, separatet by a comma (case sensitive!)
--f, --flux-system-folder                 skip updating flux-system kustomization.yaml
--h, --help                               display this help and exit
+task hack:k
 ```
+
+Runs `kustomizer` across the `cluster` tree while excluding generated and
+configuration-only directories.
 
 ## generate_secret_templates
 
 ```console
-Usage: generate_secret_template.sh [-f|--force]
-                                   | [-h|--help]
+Usage: generate_secret_templates.sh [-f|--force]
+                                    | [-h|--help]
 
 Generates 'secret.template' files for SOPS-encrypted Kubernetes secrets.
 Unencrypted secret will be automatically decrypted!
@@ -66,7 +53,8 @@ Unencrypted secret will be automatically decrypted!
 Usage: generate_renovate_app_scopes.sh [OUTPUT_FILE]
 
 Builds .github/renovate/appScopes.json5 with per-app Docker scope rules.
-Scopes come from the app.kubernetes.io/name label in deployment/statefulset/daemonset manifests.
+Scopes come from workload labels and HelmRelease metadata under `cluster/apps`
+and `cluster/infra`.
 ```
 
 ## list_helmrelease_namespaces
