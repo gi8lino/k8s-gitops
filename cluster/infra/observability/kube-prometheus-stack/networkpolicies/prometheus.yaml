@@ -56,17 +56,25 @@ spec:
             - port: "6443"
               protocol: TCP
 
-    # Host-networked metrics such as node-exporter and Cilium agent/Hubble metrics.
+    # Host-networked Cilium agent/Hubble metrics.
     - toEntities:
         - host
         - remote-node
       toPorts:
         - ports:
-            - port: "9100" # node-exporter
-              protocol: TCP
             - port: "9962" # cilium-agent metrics
               protocol: TCP
             - port: "9963" # cilium-operator metrics
+              protocol: TCP
+
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: kube-prometheus-stack
+            app.kubernetes.io/name: prometheus-node-exporter
+            "k8s:io.kubernetes.pod.namespace": observability
+      toPorts:
+        - ports:
+            - port: "9100"
               protocol: TCP
 
     - toEndpoints:

@@ -247,6 +247,7 @@ spec:
 
     prometheus-node-exporter:
       fullnameOverride: node-exporter
+      hostNetwork: false
       prometheus:
         monitor:
           enabled: true

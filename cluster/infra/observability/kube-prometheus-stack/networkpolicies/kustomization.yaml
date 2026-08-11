@@ -12,4 +12,5 @@ resources:
   - envoy-gateway-egress-grafana.yaml
   - envoy-gateway-egress-prometheus.yaml
   - grafana.yaml
+  - node-exporter.yaml
   - prometheus.yaml
