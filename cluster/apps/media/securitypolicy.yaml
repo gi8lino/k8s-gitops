@@ -17,7 +17,10 @@ spec:
       name: prowlarr
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
-      name: sabnzbd
+      name: sabnzbd-external
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: sabnzbd-internal
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
       name: tautulli
