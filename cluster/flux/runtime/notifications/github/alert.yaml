@@ -10,7 +10,17 @@ spec:
   eventSeverity: info
   eventSources:
     - kind: Kustomization
-      name: "*"
+      name: apps
+    - kind: Kustomization
+      name: cluster
+    - kind: Kustomization
+      name: crds
+    - kind: Kustomization
+      name: flux-runtime
+    - kind: Kustomization
+      name: infra
+    - kind: Kustomization
+      name: networkpolicies
   exclusionList:
     - InternalError.*failed to call webhook.*EOF
   suspend: false
