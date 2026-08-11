@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: dozzle-data
   namespace: observability
+  annotations:
+    k8up.io/backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce

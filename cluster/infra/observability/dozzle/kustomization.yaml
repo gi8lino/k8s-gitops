@@ -9,6 +9,7 @@ resources:
   - deployment.yaml
   - httproute.yaml
   - persistentvolumeclaim.yaml
+  - schedule.yaml
   - securitypolicy.yaml
   - service.yaml
   - serviceaccount.yaml

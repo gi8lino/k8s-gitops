@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: keycloak-providers
   namespace: keycloak
+  annotations:
+    k8up.io/backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce

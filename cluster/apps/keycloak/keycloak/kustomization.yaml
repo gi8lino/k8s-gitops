@@ -7,6 +7,7 @@ resources:
   - envoyextensionpolicy.yaml
   - httproute.yaml
   - persistentvolumeclaim.yaml
+  - schedule.yaml
   - secret.yaml
   - service.yaml
   - serviceaccount.yaml

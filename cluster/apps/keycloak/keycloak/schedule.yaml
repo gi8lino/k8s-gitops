@@ -1,0 +1,27 @@
+---
+apiVersion: k8up.io/v1
+kind: Schedule
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  podSecurityContext:
+    runAsUser: 0
+  backend:
+    s3:
+      bucket: k8up-keycloak
+  backup:
+    schedule: 0 6 * * 0 # every sunday at 06:00
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
+  check:
+    schedule: 0 3 * * 1 # every monday at 03:00
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
+  prune:
+    retention:
+      keepDaily: 1
+      keepLast: 7
+    schedule: 0 9 * * 1 # every monday at 09:00
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
