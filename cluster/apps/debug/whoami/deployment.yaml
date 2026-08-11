@@ -18,6 +18,9 @@ spec:
         app: whoami
         app.kubernetes.io/name: whoami
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: whoami
           image: ghcr.io/traefik/whoami:v1.12.0
@@ -40,6 +43,18 @@ spec:
             failureThreshold: 3
             periodSeconds: 30
             timeoutSeconds: 3
-          resources: {}
+          readinessProbe:
+            tcpSocket:
+              port: http
+            failureThreshold: 3
+            periodSeconds: 10
+            timeoutSeconds: 1
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
       restartPolicy: Always
       automountServiceAccountToken: false

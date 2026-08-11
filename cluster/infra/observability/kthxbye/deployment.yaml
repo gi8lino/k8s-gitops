@@ -16,6 +16,9 @@ spec:
       labels:
         app.kubernetes.io/name: kthxbye
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: kthxbye
           image: ghcr.io/prymitive/kthxbye:v0.16
@@ -38,6 +41,12 @@ spec:
             failureThreshold: 3
             periodSeconds: 30
             timeoutSeconds: 3
+          readinessProbe:
+            tcpSocket:
+              port: metrics
+            failureThreshold: 3
+            periodSeconds: 10
+            timeoutSeconds: 1
           resources:
             requests:
               memory: 50Mi

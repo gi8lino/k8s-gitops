@@ -18,6 +18,9 @@ spec:
         app.kubernetes.io/name: wiki
         app.kubernetes.io/component: wiki
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       initContainers:
         - name: never
           image: ghcr.io/containeroo/never:v0.9.4
@@ -74,6 +77,19 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 3
             periodSeconds: 30
-          resources: {}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            failureThreshold: 3
+            timeoutSeconds: 3
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 50m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
       restartPolicy: Always
       automountServiceAccountToken: false

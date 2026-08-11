@@ -18,6 +18,9 @@ spec:
       labels:
         app.kubernetes.io/name: healthchecks
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: healthchecks
           image: ghcr.io/linuxserver/healthchecks:4.3.20260803
@@ -84,6 +87,15 @@ spec:
             initialDelaySeconds: 30
             failureThreshold: 5
             periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /api/v1/status/
+              port: http
+              httpHeaders:
+                - name: Host
+                  value: healthchecks.${BASE_DOMAIN}
+            failureThreshold: 3
+            periodSeconds: 10
           lifecycle:
             postStart:
               exec:
@@ -91,7 +103,13 @@ spec:
                   - /bin/sh
                   - -c
                   - crond
-          resources: {}
+          resources:
+            requests:
+              cpu: 50m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
           volumeMounts:
             - name: healthchecks-data
               mountPath: /config

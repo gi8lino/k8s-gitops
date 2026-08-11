@@ -18,6 +18,9 @@ spec:
         app.kubernetes.io/name: motus
         app.kubernetes.io/component: motus
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       initContainers:
         - name: never
           image: ghcr.io/containeroo/never:v0.9.4
@@ -61,6 +64,13 @@ spec:
               port: http
             failureThreshold: 2
             periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            failureThreshold: 3
+            timeoutSeconds: 2
+            periodSeconds: 10
           resources:
             requests:
               memory: 256Mi

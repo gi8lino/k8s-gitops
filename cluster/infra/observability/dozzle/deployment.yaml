@@ -18,12 +18,33 @@ spec:
         app.kubernetes.io/instance: dozzle
     spec:
       serviceAccountName: pod-viewer
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: dozzle
           image: amir20/dozzle:v10.7.1
           ports:
             - name: http
               containerPort: 8080
+          startupProbe:
+            tcpSocket:
+              port: http
+            failureThreshold: 30
+            periodSeconds: 3
+            timeoutSeconds: 1
+          livenessProbe:
+            tcpSocket:
+              port: http
+            failureThreshold: 3
+            periodSeconds: 30
+            timeoutSeconds: 3
+          readinessProbe:
+            tcpSocket:
+              port: http
+            failureThreshold: 3
+            periodSeconds: 10
+            timeoutSeconds: 1
           env:
             - name: DOZZLE_MODE
               value: "k8s"
@@ -35,6 +56,13 @@ spec:
               value: "X-Auth-Request-Email"
             - name: DOZZLE_AUTH_HEADER_NAME
               value: "X-Auth-Request-Email"
+          resources:
+            requests:
+              cpu: 20m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
           volumeMounts:
             - name: data
               mountPath: /data

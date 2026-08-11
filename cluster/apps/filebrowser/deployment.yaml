@@ -18,6 +18,9 @@ spec:
       labels:
         app.kubernetes.io/name: filebrowser
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: filebrowser
           image: ghcr.io/gtsteffaniak/filebrowser:1.5-stable-slim
@@ -56,7 +59,20 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 3
             periodSeconds: 30
-          resources: {}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            failureThreshold: 3
+            timeoutSeconds: 3
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 25m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
           volumeMounts:
             - name: data
               mountPath: /data

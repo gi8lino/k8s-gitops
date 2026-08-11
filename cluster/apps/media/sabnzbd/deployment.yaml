@@ -18,6 +18,9 @@ spec:
       labels:
         app.kubernetes.io/name: sabnzbd
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: sabnzbd
           image: ghcr.io/linuxserver/sabnzbd:5.1.0-ls266
@@ -60,7 +63,19 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 5
             periodSeconds: 30
-          resources: {}
+          readinessProbe:
+            tcpSocket:
+              port: http
+            failureThreshold: 3
+            timeoutSeconds: 3
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "2"
+              memory: 2Gi
           volumeMounts:
             - name: data
               mountPath: /config

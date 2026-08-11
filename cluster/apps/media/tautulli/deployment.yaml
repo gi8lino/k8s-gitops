@@ -18,6 +18,9 @@ spec:
       labels:
         app.kubernetes.io/name: tautulli
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: tautulli
           image: ghcr.io/linuxserver/tautulli:v2.17.2-ls233
@@ -54,7 +57,20 @@ spec:
             failureThreshold: 5
             timeoutSeconds: 3
             periodSeconds: 30
-          resources: {}
+          readinessProbe:
+            httpGet:
+              path: /status
+              port: http
+            failureThreshold: 3
+            timeoutSeconds: 3
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 25m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
           volumeMounts:
             - name: data
               mountPath: /config

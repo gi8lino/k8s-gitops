@@ -18,6 +18,9 @@ spec:
       labels:
         app.kubernetes.io/name: sonarr
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       initContainers:
         - name: configarr
           image: ghcr.io/gi8lino/configarr:0.0.6
@@ -28,6 +31,13 @@ spec:
               value: "False"
             - name: CONFIGARR__AUTHENTICATIONMETHOD
               value: External
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
           volumeMounts:
             - name: data
               mountPath: /config
@@ -65,7 +75,20 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 3
             periodSeconds: 30
-          resources: {}
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: http
+            failureThreshold: 3
+            timeoutSeconds: 3
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 50m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 2Gi
           volumeMounts:
             - name: data
               mountPath: /config

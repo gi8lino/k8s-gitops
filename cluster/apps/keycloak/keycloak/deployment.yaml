@@ -21,6 +21,8 @@ spec:
       serviceAccountName: keycloak
       securityContext:
         fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
       restartPolicy: Always
       initContainers:
         - name: never
@@ -40,6 +42,10 @@ spec:
           image: quay.io/keycloak/keycloak:26.7.1
           imagePullPolicy: IfNotPresent
           securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
             runAsNonRoot: true
             runAsUser: 1000
           args:
@@ -99,7 +105,13 @@ spec:
               port: health
             initialDelaySeconds: 10
             timeoutSeconds: 1
-          resources: {}
+          resources:
+            requests:
+              cpu: 100m
+              memory: 768Mi
+            limits:
+              cpu: "1"
+              memory: 2Gi
           volumeMounts:
             - name: keycloak-providers
               mountPath: /opt/keycloak/providers
