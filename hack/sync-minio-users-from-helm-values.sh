@@ -15,6 +15,7 @@ CLEANUP_NETWORK_POLICIES="${CLEANUP_NETWORK_POLICIES:-0}"
 
 SYNC_APP_LABEL="${SYNC_APP_LABEL:-minio-user-sync}"
 POD="minio-user-sync-$(date +%s)"
+MINIO_SYNC_TMP_DIR=""
 
 need() {
   command -v "$1" >/dev/null 2>&1 || {
@@ -35,7 +36,9 @@ cleanup() {
     kubectl -n "$MINIO_NS" delete ciliumnetworkpolicy minio-ingress-user-sync --ignore-not-found=true >/dev/null 2>&1 || true
   fi
 
-  rm -rf "${TMPDIR:-}"
+  if [[ -n "$MINIO_SYNC_TMP_DIR" && -d "$MINIO_SYNC_TMP_DIR" ]]; then
+    rm -rf -- "$MINIO_SYNC_TMP_DIR"
+  fi
 }
 trap cleanup EXIT INT TERM
 
@@ -43,8 +46,8 @@ need kubectl
 need yq
 need base64
 
-TMPDIR="$(mktemp -d)"
-VALUES_FILE="$TMPDIR/values.yaml"
+MINIO_SYNC_TMP_DIR="$(mktemp -d)"
+VALUES_FILE="$MINIO_SYNC_TMP_DIR/values.yaml"
 
 echo "Applying temporary Cilium network policies..."
 
