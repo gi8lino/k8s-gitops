@@ -51,8 +51,6 @@ spec:
         - fields:
             - type: 3 # Destination Unreachable
               family: IPv4
-    - toEntities:
-        - cluster
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: envoy-gateway

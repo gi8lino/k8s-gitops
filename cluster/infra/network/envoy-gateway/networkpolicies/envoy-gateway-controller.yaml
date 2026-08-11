@@ -54,8 +54,6 @@ spec:
         - ports:
             - port: "6443"
               protocol: TCP
-    - toEntities:
-        - cluster
     - toFQDNs:
         - matchName: sso.${BASE_DOMAIN}
       toPorts:
