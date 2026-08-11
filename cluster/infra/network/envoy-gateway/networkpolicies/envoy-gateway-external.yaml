@@ -57,6 +57,15 @@ spec:
               family: IPv4
     - toEndpoints:
         - matchLabels:
+            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
+            gateway.envoyproxy.io/owning-gateway-namespace: network
+            "k8s:io.kubernetes.pod.namespace": network
+      toPorts:
+        - ports:
+            - port: "10443"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
             app.kubernetes.io/name: keycloak
             app.kubernetes.io/component: keycloak
             "k8s:io.kubernetes.pod.namespace": keycloak
