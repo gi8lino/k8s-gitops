@@ -86,6 +86,10 @@ spec:
             release: gitlab
             "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
+            app: registry-migrations
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
             app: registry
             release: gitlab
             "k8s:io.kubernetes.pod.namespace": gitlab

@@ -8,8 +8,13 @@ spec:
   description: "Policy for egress-gitlab-migrations"
   endpointSelector:
     matchLabels:
-      app: migrations
       release: gitlab
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - migrations
+          - registry-migrations
   egress:
     - toEndpoints:
         - matchLabels:
