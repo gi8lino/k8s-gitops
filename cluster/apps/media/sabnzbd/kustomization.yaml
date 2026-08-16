@@ -17,6 +17,11 @@ configMapGenerator:
       - ./scripts/startup.sh
     name: sabnzbd-startup
     namespace: media
+  - files:
+      - ./scripts/inject-theme-fix.sh
+      - ./scripts/theme-fix.html
+    name: sabnzbd-theme-fix
+    namespace: media
 generatorOptions:
   disableNameSuffixHash: true
 patches:
@@ -36,3 +41,11 @@ patches:
     target:
       kind: ConfigMap
       name: sabnzbd-startup
+  - patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: sabnzbd-theme-fix

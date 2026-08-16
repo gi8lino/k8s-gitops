@@ -91,6 +91,14 @@ spec:
             - name: startup
               mountPath: /app/sabnzbd/startup
               subPath: startup
+            - name: theme-fix
+              mountPath: /custom-cont-init.d/99-sabnzbd-theme-fix
+              subPath: inject-theme-fix.sh
+              readOnly: true
+            - name: theme-fix
+              mountPath: /opt/sabnzbd/theme-fix.html
+              subPath: theme-fix.html
+              readOnly: true
             - name: modcache
               mountPath: /modcache
       restartPolicy: Always
@@ -122,6 +130,17 @@ spec:
               - key: startup.sh
                 path: startup
             defaultMode: 0755
+        - name: theme-fix
+          configMap:
+            name: sabnzbd-theme-fix
+            defaultMode: 0444
+            items:
+              - key: inject-theme-fix.sh
+                path: inject-theme-fix.sh
+                mode: 0555
+              - key: theme-fix.html
+                path: theme-fix.html
+                mode: 0444
         - name: modcache
           persistentVolumeClaim:
             claimName: sabnzbd-modcache
