@@ -4,46 +4,64 @@ kind: Deployment
 metadata:
   name: plex
   namespace: media
+
 spec:
   replicas: 1
+
   selector:
     matchLabels:
       app.kubernetes.io/name: plex
+
   strategy:
     type: Recreate
+
   template:
     metadata:
       labels:
         app.kubernetes.io/name: plex
+
     spec:
+      automountServiceAccountToken: false
+
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+
         supplementalGroups:
           - 44
           - 103
           - 109
+
       containers:
         - name: plex
           image: ghcr.io/linuxserver/plex:1.43.3.10861-07dfddaeb-ls320
+
           env:
             - name: TZ
               value: Europe/Zurich
+
             - name: PGID
               value: "2000"
+
             - name: PUID
               value: "2000"
+
             - name: VERSION
               value: latest
+
             - name: DOCKER_MODS
               value: ghcr.io/themepark-dev/theme.park:plex
+
             - name: TP_THEME
               value: catppuccin-frappe
+
             - name: TP_COMMUNITY_THEME
               value: "true"
+
           ports:
             - name: http
               containerPort: 32400
+
           startupProbe:
             httpGet:
               path: /identity
@@ -52,6 +70,7 @@ spec:
             failureThreshold: 60
             timeoutSeconds: 3
             periodSeconds: 3
+
           livenessProbe:
             httpGet:
               path: /identity
@@ -59,6 +78,7 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 3
             periodSeconds: 30
+
           readinessProbe:
             httpGet:
               path: /identity
@@ -66,42 +86,54 @@ spec:
             failureThreshold: 3
             timeoutSeconds: 3
             periodSeconds: 10
+
           resources:
             requests:
               cpu: 100m
               memory: 512Mi
               gpu.intel.com/i915: 1
+
             limits:
               cpu: "2"
               memory: 4Gi
               gpu.intel.com/i915: 1
+
           volumeMounts:
             - name: data
               mountPath: /config
+
             - name: backup
               mountPath: /backup
+
             - name: transcode
               mountPath: /transcode
+
             - name: media
               mountPath: /media
+
             - name: modcache
               mountPath: /modcache
+
       restartPolicy: Always
-      automountServiceAccountToken: false
+
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: plex-data
+
         - name: backup
           persistentVolumeClaim:
             claimName: plex-backup
+
         - name: transcode
           emptyDir:
             medium: Memory
+
         - name: media
           hostPath:
             path: /mnt/storage
             type: Directory
+
         - name: modcache
           persistentVolumeClaim:
             claimName: plex-modcache

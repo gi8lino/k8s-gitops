@@ -8,33 +8,55 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: intel-gpu-plugin
+
   template:
     metadata:
       labels:
         app.kubernetes.io/name: intel-gpu-plugin
+
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64
-      # Start this infrastructure component with high priority.
+
+      # Start the device plugin as early as possible during node startup.
       priorityClassName: system-node-critical
+
+      automountServiceAccountToken: false
+
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+
       initContainers:
         - name: wait-for-gpu
           image: busybox:1.37
           command:
             - sh
-            - -c
+            - -ec
             - |
-              echo "Waiting for Intel GPU device..."
-              until ls /dev/dri/renderD* >/dev/null 2>&1; do
+              echo "Waiting for Intel GPU..."
+
+              until \
+                ls /dev/dri/renderD* >/dev/null 2>&1 &&
+                ls /dev/dri/card* >/dev/null 2>&1 &&
+                find /sys/class/drm -path '*/device/driver' -type l | grep -q .
+              do
+                echo "Intel GPU not ready yet..."
                 sleep 1
               done
-              echo "Intel GPU device is available."
+
+              echo "Intel GPU device and driver are available."
+
+              echo "/dev/dri:"
+              ls -la /dev/dri
+
+              echo "DRM devices:"
+              find /sys/class/drm -maxdepth 2 -type l -print || true
+
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
+
           resources:
             requests:
               cpu: 1m
@@ -42,46 +64,30 @@ spec:
             limits:
               cpu: 10m
               memory: 16Mi
+
           volumeMounts:
             - name: devfs
               mountPath: /dev/dri
               readOnly: true
+
+            - name: sysfs
+              mountPath: /sys/class/drm
+              readOnly: true
+
       containers:
         - name: intel-gpu-plugin
           image: intel/intel-gpu-plugin:0.36.0
+
           env:
             - name: NODE_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-          volumeMounts:
-            - name: devfs
-              mountPath: /dev/dri
-              readOnly: true
-            - name: sysfs
-              mountPath: /sys/class/drm
-              readOnly: true
-            - name: kubeletsockets
-              mountPath: /var/lib/kubelet/device-plugins
+
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
-          startupProbe:
-            exec:
-              command:
-                - sh
-                - -c
-                - test -e /dev/dri/renderD128
-            periodSeconds: 2
-            failureThreshold: 30
-          livenessProbe:
-            exec:
-              command:
-                - sh
-                - -c
-                - test -e /dev/dri/renderD128
-            periodSeconds: 30
-            failureThreshold: 3
+
           resources:
             requests:
               cpu: 10m
@@ -89,17 +95,40 @@ spec:
             limits:
               cpu: 100m
               memory: 128Mi
-      automountServiceAccountToken: false
+
+          volumeMounts:
+            - name: devfs
+              mountPath: /dev/dri
+              readOnly: true
+
+            - name: sysfs
+              mountPath: /sys/class/drm
+              readOnly: true
+
+            - name: kubeletsockets
+              mountPath: /var/lib/kubelet/device-plugins
+
+            # Intel GPU plugin writes CDI specifications here.
+            - name: cdi
+              mountPath: /var/run/cdi
+
       volumes:
         - name: devfs
           hostPath:
             path: /dev/dri
             type: Directory
+
         - name: sysfs
           hostPath:
             path: /sys/class/drm
             type: Directory
+
         - name: kubeletsockets
           hostPath:
             path: /var/lib/kubelet/device-plugins
             type: Directory
+
+        - name: cdi
+          hostPath:
+            path: /var/run/cdi
+            type: DirectoryOrCreate
