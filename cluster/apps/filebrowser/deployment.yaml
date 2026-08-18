@@ -21,6 +21,21 @@ spec:
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+      initContainers:
+        - name: never
+          image: ghcr.io/containeroo/never:v0.9.4
+          args:
+            - --http.keycloak.address=https://sso.${BASE_DOMAIN}/realms/master/.well-known/openid-configuration
+            - --http.keycloak.expected-status-codes=200
+            - --http.keycloak.timeout=5s
+            - --http.keycloak.interval=5s
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
       containers:
         - name: filebrowser
           image: ghcr.io/gtsteffaniak/filebrowser:1.5-stable-slim
