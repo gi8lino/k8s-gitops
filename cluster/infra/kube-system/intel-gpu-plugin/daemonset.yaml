@@ -15,9 +15,37 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64
+      # Start this infrastructure component with high priority.
+      priorityClassName: system-node-critical
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+      initContainers:
+        - name: wait-for-gpu
+          image: busybox:1.37
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for Intel GPU device..."
+              until ls /dev/dri/renderD* >/dev/null 2>&1; do
+                sleep 1
+              done
+              echo "Intel GPU device is available."
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+          resources:
+            requests:
+              cpu: 1m
+              memory: 4Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+          volumeMounts:
+            - name: devfs
+              mountPath: /dev/dri
+              readOnly: true
       containers:
         - name: intel-gpu-plugin
           image: intel/intel-gpu-plugin:0.36.0
@@ -38,6 +66,22 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
+          startupProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - test -e /dev/dri/renderD128
+            periodSeconds: 2
+            failureThreshold: 30
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - test -e /dev/dri/renderD128
+            periodSeconds: 30
+            failureThreshold: 3
           resources:
             requests:
               cpu: 10m
@@ -50,9 +94,12 @@ spec:
         - name: devfs
           hostPath:
             path: /dev/dri
+            type: Directory
         - name: sysfs
           hostPath:
             path: /sys/class/drm
+            type: Directory
         - name: kubeletsockets
           hostPath:
             path: /var/lib/kubelet/device-plugins
+            type: Directory
