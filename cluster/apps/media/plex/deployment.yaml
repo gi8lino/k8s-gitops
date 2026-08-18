@@ -91,12 +91,10 @@ spec:
             requests:
               cpu: 100m
               memory: 512Mi
-              gpu.intel.com/i915: 1
 
             limits:
               cpu: "2"
               memory: 4Gi
-              gpu.intel.com/i915: 1
 
           volumeMounts:
             - name: data
@@ -113,6 +111,10 @@ spec:
 
             - name: modcache
               mountPath: /modcache
+
+            - name: dri
+              mountPath: /dev/dri
+              readOnly: true
 
       restartPolicy: Always
 
@@ -137,3 +139,8 @@ spec:
         - name: modcache
           persistentVolumeClaim:
             claimName: plex-modcache
+
+        - name: dri
+          hostPath:
+            path: /dev/dri
+            type: Directory
