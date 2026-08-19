@@ -28,6 +28,9 @@ spec:
         - matchLabels:
             app.kubernetes.io/name: tautulli
             "k8s:io.kubernetes.pod.namespace": media
+        - matchLabels:
+            app.kubernetes.io/name: screendeck
+            "k8s:io.kubernetes.pod.namespace": media
       toPorts:
         - ports:
             - port: "32400"

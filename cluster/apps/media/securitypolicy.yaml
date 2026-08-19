@@ -23,6 +23,9 @@ spec:
       name: sabnzbd-internal
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
+      name: screendeck
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
       name: tautulli
   oidc:
     provider:

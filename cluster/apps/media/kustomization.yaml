@@ -6,6 +6,7 @@ resources:
   - prowlarr/
   - radarr/
   - sabnzbd/
+  - screendeck/
   - sonarr/
   - tautulli/
   - schedule.yaml
