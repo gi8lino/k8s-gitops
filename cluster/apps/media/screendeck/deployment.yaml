@@ -36,8 +36,6 @@ spec:
               value: /data/auth.key
             - name: SCREENDECK__PLEX_URL_OVERRIDE
               value: http://plex:32400
-            - name: SCREENDECK__LOG_FORMAT
-              value: json
           ports:
             - name: http
               containerPort: 8080
