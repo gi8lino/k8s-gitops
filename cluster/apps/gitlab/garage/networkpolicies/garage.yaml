@@ -55,6 +55,9 @@ spec:
             release: gitlab
             "k8s:io.kubernetes.pod.namespace": gitlab
         - matchLabels:
+            gitlab-runner: ci-job
+            "k8s:io.kubernetes.pod.namespace": gitlab
+        - matchLabels:
             app: gitlab-runner
             release: gitlab-runner
             "k8s:io.kubernetes.pod.namespace": gitlab
