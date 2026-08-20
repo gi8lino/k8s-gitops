@@ -23,7 +23,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: screendeck
-          image: ghcr.io/gi8lino/screendeck:v0.0.6
+          image: ghcr.io/gi8lino/screendeck:v0.0.7
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
