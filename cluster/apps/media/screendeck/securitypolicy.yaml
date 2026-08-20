@@ -1,0 +1,17 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: ${BASE_DOMAIN/./-}-family-sso
+  namespace: media
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: screendeck
+  oidc:
+    provider:
+      issuer: https://sso.${BASE_DOMAIN}/realms/master
+    clientID: envoy-family
+    clientSecret:
+      name: ${BASE_DOMAIN/./-}-family-sso-client-secret
