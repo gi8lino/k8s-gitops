@@ -5,10 +5,14 @@ metadata:
   name: screendeck
   namespace: media
   annotations:
-    cloudflare-operator.io/ignore: "true"
+    cloudflare-operator.io/type: CNAME
+    cloudflare-operator.io/content: ${BASE_DOMAIN}
 spec:
   parentRefs:
     - name: envoy-internal
+      namespace: network
+      sectionName: https
+    - name: envoy-external
       namespace: network
       sectionName: https
   hostnames:
