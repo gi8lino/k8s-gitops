@@ -16,11 +16,6 @@ spec:
       labels:
         app.kubernetes.io/name: screendeck
     spec:
-      securityContext:
-        fsGroup: 0
-        fsGroupChangePolicy: OnRootMismatch
-        seccompProfile:
-          type: RuntimeDefault
       containers:
         - name: screendeck
           image: ghcr.io/gi8lino/screendeck:v0.0.7
@@ -53,13 +48,6 @@ spec:
             failureThreshold: 3
             timeoutSeconds: 2
             periodSeconds: 30
-          readinessProbe:
-            httpGet:
-              path: /healthz
-              port: http
-            failureThreshold: 3
-            timeoutSeconds: 2
-            periodSeconds: 10
           resources:
             requests:
               cpu: 10m
@@ -67,25 +55,12 @@ spec:
             limits:
               cpu: 200m
               memory: 128Mi
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - ALL
-            readOnlyRootFilesystem: true
-            runAsGroup: 0
-            runAsNonRoot: true
-            runAsUser: 65532
           volumeMounts:
             - name: data
               mountPath: /data
-            - name: tmp
-              mountPath: /tmp
       restartPolicy: Always
       automountServiceAccountToken: false
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: screendeck-data
-        - name: tmp
-          emptyDir: {}
