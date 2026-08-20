@@ -18,13 +18,15 @@ spec:
     spec:
       containers:
         - name: screendeck
-          image: ghcr.io/gi8lino/screendeck:v0.0.7
+          image: ghcr.io/gi8lino/screendeck:v0.0.8
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
               value: Europe/Zurich
             - name: SCREENDECK__BASE_URL
               value: https://screendeck.${BASE_DOMAIN}
+            - name: SCREENDECK__EXCLUDE_LIBRARIES
+              value: Fitness
             - name: SCREENDECK__DATABASE_PATH
               value: /data/screendeck.db
             - name: SCREENDECK__AUTH_KEY_PATH
