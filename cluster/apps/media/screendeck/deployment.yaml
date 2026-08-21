@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: screendeck
-          image: ghcr.io/gi8lino/screendeck:v0.0.10
+          image: ghcr.io/gi8lino/screendeck:v0.0.11
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
