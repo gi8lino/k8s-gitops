@@ -15,6 +15,6 @@ spec:
   oidc:
     provider:
       issuer: https://sso.${BASE_DOMAIN}/realms/master
-    clientID: envoy-gateway
+    clientID: envoy-primary
     clientSecret:
       name: ${BASE_DOMAIN/./-}-sso-client-secret
