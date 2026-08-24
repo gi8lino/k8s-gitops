@@ -45,6 +45,7 @@ spec:
               protocol: TCP
     - toFQDNs:
         - matchName: clients.plex.tv
+        - matchName: images.plex.tv
       toPorts:
         - ports:
             - port: "443"
