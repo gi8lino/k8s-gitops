@@ -23,7 +23,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: tautulli
-          image: ghcr.io/linuxserver/tautulli:v2.17.2-ls233
+          image: ghcr.io/linuxserver/tautulli:v2.18.0-ls242
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
