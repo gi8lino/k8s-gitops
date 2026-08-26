@@ -14,6 +14,6 @@ jobs:
     permissions:
       contents: read
       statuses: write
-    uses: compatibility-fyi/compatibility-gate/.github/workflows/gate.yml@c70e132dad832f45f4f6daa6943e2ec675433f6e # v1.1.3
+    uses: compatibility-fyi/compatibility-gate/.github/workflows/gate.yml@6a53cb55a0a52eca73b57efb63d5bafbd72756d9 # v1.2.0
     with:
       mode: ${{ github.event_name == 'push' && 'current' || 'all' }}
