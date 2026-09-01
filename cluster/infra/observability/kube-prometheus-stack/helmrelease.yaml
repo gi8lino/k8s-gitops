@@ -186,11 +186,11 @@ spec:
           name: SSO
           client_id: $__env{GRAFANA_AUTH_CLIENT_ID}
           client_secret: $__env{GRAFANA_AUTH_CLIENT_SECRET}
-          auth_url: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/auth
-          token_url: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/token
-          api_url: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/userinfo
+          auth_url: https://sso.${BASE_DOMAIN}/realms/hq/protocol/openid-connect/auth
+          token_url: https://sso.${BASE_DOMAIN}/realms/hq/protocol/openid-connect/token
+          api_url: https://sso.${BASE_DOMAIN}/realms/hq/protocol/openid-connect/userinfo
           scopes: openid profile email
-          signout_redirect_url: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/logout
+          signout_redirect_url: https://sso.${BASE_DOMAIN}/realms/hq/protocol/openid-connect/logout
           role_attribute_path: contains(roles[*], 'admins') && 'Admin' || 'Viewer'
         server:
           root_url: https://grafana.${BASE_DOMAIN}

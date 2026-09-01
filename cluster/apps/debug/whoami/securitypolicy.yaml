@@ -11,7 +11,7 @@ spec:
       name: whoami
   oidc:
     provider:
-      issuer: https://sso.${BASE_DOMAIN}/realms/master
+      issuer: https://sso.${BASE_DOMAIN}/realms/hq
     clientID: envoy-primary
     clientSecret:
       name: ${BASE_DOMAIN/./-}-sso-client-secret
@@ -20,9 +20,9 @@ spec:
   jwt:
     providers:
       - name: whoami-sso
-        issuer: https://sso.${BASE_DOMAIN}/realms/master
+        issuer: https://sso.${BASE_DOMAIN}/realms/hq
         remoteJWKS:
-          uri: https://sso.${BASE_DOMAIN}/realms/master/protocol/openid-connect/certs
+          uri: https://sso.${BASE_DOMAIN}/realms/hq/protocol/openid-connect/certs
         extractFrom:
           headers:
             - name: Authorization

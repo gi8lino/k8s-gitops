@@ -11,7 +11,7 @@ spec:
       name: prometheus-pushgateway
   oidc:
     provider:
-      issuer: https://sso.${BASE_DOMAIN}/realms/master
+      issuer: https://sso.${BASE_DOMAIN}/realms/hq
     clientID: envoy-primary
     clientSecret:
       name: ${BASE_DOMAIN/./-}-sso-client-secret

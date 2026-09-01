@@ -76,7 +76,7 @@ data:
         oidc:
           enabled: true
           clientId: filebrowser
-          issuerUrl: https://sso.${BASE_DOMAIN}/realms/master
+          issuerUrl: https://sso.${BASE_DOMAIN}/realms/hq
           scopes: openid email profile
           userIdentifier: preferred_username
           groupsClaim: roles
