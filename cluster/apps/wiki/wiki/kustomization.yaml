@@ -7,3 +7,12 @@ resources:
   - envoyextensionpolicy.yaml
   - httproute.yaml
   - service.yaml
+
+configMapGenerator:
+  - name: wiki-external-access-controls
+    namespace: wiki
+    files:
+      - lua=scripts/external-access-controls.lua
+
+generatorOptions:
+  disableNameSuffixHash: true
