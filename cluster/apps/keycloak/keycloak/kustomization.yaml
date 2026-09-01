@@ -11,3 +11,12 @@ resources:
   - secret.yaml
   - service.yaml
   - serviceaccount.yaml
+
+configMapGenerator:
+  - name: keycloak-block-admin
+    namespace: keycloak
+    files:
+      - lua=scripts/block-external-admin-access.lua
+
+generatorOptions:
+  disableNameSuffixHash: true
