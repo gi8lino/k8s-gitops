@@ -8,3 +8,12 @@ resources:
   - httproute.yaml
   - secret.yaml
   - tcproute.yaml
+
+configMapGenerator:
+  - name: gitlab-external-access-controls
+    namespace: gitlab
+    files:
+      - lua=scripts/external-access-controls.lua
+
+generatorOptions:
+  disableNameSuffixHash: true

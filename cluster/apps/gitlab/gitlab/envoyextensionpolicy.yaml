@@ -9,66 +9,8 @@ spec:
       kind: HTTPRoute
       name: gitlab-webservice-external
   lua:
-    - type: Inline
-      inline: |
-        function envoy_on_request(request_handle)
-          local path = request_handle:headers():get(":path")
-          if path == "/users/sign_in?auto_sign_in=false" then
-            request_handle:respond(
-              {
-                [":status"] = "301",
-                ["location"] = "https://git.${BASE_DOMAIN}"
-              },
-              "Direct login is blocked."
-            )
-            return
-          end
-
-          if string.match(path, "^/admin") then
-            local html = [[
-              <!DOCTYPE html>
-              <html lang="en">
-              <head>
-                <meta charset="UTF-8">
-                <title>403 – Access Blocked</title>
-                <style>
-                  body {
-                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                    background: #fafafa;
-                    padding: 60px;
-                    text-align: center;
-                    color: #333;
-                  }
-                  .card {
-                    display: inline-block;
-                    background: white;
-                    padding: 40px 50px;
-                    border-radius: 12px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                  }
-                  h1 {
-                    color: #e24329;
-                    margin-bottom: 0.6em;
-                    font-size: 1.8em;
-                  }
-                </style>
-              </head>
-              <body>
-                <div class="card">
-                  <h1>403 – Admin Access Blocked</h1>
-                  <p>You do not have permission to access GitLab's admin interface.</p>
-                </div>
-              </body>
-              </html>
-            ]]
-
-            request_handle:respond(
-              {
-                [":status"] = "403",
-                ["content-type"] = "text/html",
-              },
-              html
-            )
-            return
-          end
-        end
+    - type: ValueRef
+      valueRef:
+        group: v1
+        kind: ConfigMap
+        name: gitlab-external-access-controls
