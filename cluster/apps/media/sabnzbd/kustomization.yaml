@@ -10,6 +10,10 @@ resources:
   - service.yaml
 configMapGenerator:
   - files:
+      - lua=./scripts/external-access-controls.lua
+    name: sabnzbd-external-access-controls
+    namespace: media
+  - files:
       - ./scripts/merge_subtitles.sh
     name: merge-subtitles
     namespace: media

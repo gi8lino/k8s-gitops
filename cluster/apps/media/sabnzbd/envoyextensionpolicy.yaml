@@ -10,15 +10,8 @@ spec:
       kind: HTTPRoute
       name: sabnzbd-external
   lua:
-    - type: Inline
-      inline: |
-        function envoy_on_request(request_handle)
-          if string.match(request_handle:headers():get(":path"), "^/config") then
-            request_handle:respond(
-              {
-                [":status"] = "403",
-              },
-              "Admin page access is blocked."
-            )
-          end
-        end
+    - type: ValueRef
+      valueRef:
+        group: v1
+        kind: ConfigMap
+        name: sabnzbd-external-access-controls
