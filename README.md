@@ -46,6 +46,30 @@ These directories are not tracked by Flux but are useful nonetheless:
 
 ---
 
+## 🔐 Identity and Access
+
+Keycloak provides one SSO realm, while application authorization is divided
+into two independent access profiles:
+
+- `primary` protects personal, operational, and infrastructure applications
+  intended for the main homelab operators.
+- `family` contains applications that are safe to share with household
+  members.
+
+Users can belong to either profile or to both; `family` is not a child or a
+less-privileged version of `primary`. Each profile has its own realm role,
+restricted authentication flow, and shared Envoy OIDC client (`envoy-primary`
+or `envoy-family`). Applications are assigned to a profile, and Keycloak checks
+the corresponding role during login. This makes onboarding a user or sharing a
+new application a group-level change instead of a collection of per-user
+permissions.
+
+Administrative privileges use a separate `admins` group. Being allowed to use
+an application therefore never grants permission to administer that application
+or the Keycloak realm.
+
+---
+
 ## 🌐 DNS
 
 ### Gateways
