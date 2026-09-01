@@ -17,11 +17,24 @@ spec:
   rules:
     - matches:
         - path:
+            type: Exact
+            value: /
+      filters:
+        - type: RequestRedirect
+          requestRedirect:
+            path:
+              type: ReplaceFullPath
+              replaceFullPath: /realms/hq/account
+            statusCode: 302
+
+    - matches:
+        - path:
             type: PathPrefix
             value: /
       backendRefs:
         - name: keycloak
           port: 8080
+
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -38,6 +51,18 @@ spec:
   hostnames:
     - sso.${BASE_DOMAIN}
   rules:
+    - matches:
+        - path:
+            type: Exact
+            value: /
+      filters:
+        - type: RequestRedirect
+          requestRedirect:
+            path:
+              type: ReplaceFullPath
+              replaceFullPath: /realms/hq/account
+            statusCode: 302
+
     - matches:
         - path:
             type: PathPrefix
