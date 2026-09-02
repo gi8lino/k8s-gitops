@@ -23,7 +23,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: dozzle
-          image: amir20/dozzle:v10.8.0
+          image: amir20/dozzle:v10.9.0
           ports:
             - name: http
               containerPort: 8080
