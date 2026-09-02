@@ -27,3 +27,4 @@ spec:
         extensionApis:
           enableEnvoyPatchPolicy: true
           enableBackend: true
+          enableLua: true
