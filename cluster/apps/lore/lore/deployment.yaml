@@ -50,6 +50,9 @@ spec:
               value: https://lore.${BASE_DOMAIN}
             - name: LORE__AUTH_MODE
               value: oidc
+          envFrom:
+            - secretRef:
+                name: lore
           ports:
             - name: http
               containerPort: 8080
