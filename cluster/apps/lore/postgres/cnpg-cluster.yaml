@@ -11,8 +11,8 @@ spec:
     size: 20Gi
   bootstrap:
     initdb:
-      database: lorejs
-      owner: lorejs
+      database: lore
+      owner: lore
     # restore from backup, initdb must be disabled
     # apply ./networkpolicies/postgres-recovery.yaml.template first
     # recovery:
