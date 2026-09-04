@@ -36,7 +36,7 @@ spec:
               memory: 16Mi
       containers:
         - name: lore
-          image: ghcr.io/gi8lino/lore:v0.0.6
+          image: ghcr.io/gi8lino/lore:v0.0.7
           imagePullPolicy: Always
           env:
             - name: LORE__DATABASE_URL
