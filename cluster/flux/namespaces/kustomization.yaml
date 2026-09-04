@@ -12,6 +12,7 @@ resources:
   - healthchecks.yaml
   - k8up.yaml
   - keycloak.yaml
+  - lore.yaml
   - media.yaml
   - minio.yaml
   - motus.yaml
