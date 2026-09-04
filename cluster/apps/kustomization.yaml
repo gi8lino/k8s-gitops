@@ -7,6 +7,7 @@ resources:
   - gitlab/
   - healthchecks/
   - keycloak/
+  - lore/
   - media/
   - minio/
   - motus/
