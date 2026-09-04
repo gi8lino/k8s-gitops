@@ -1,0 +1,69 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lore
+  namespace: lore
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: lore
+      app.kubernetes.io/component: lore
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: lore
+        app.kubernetes.io/component: lore
+    spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        - name: never
+          image: ghcr.io/containeroo/never:v0.9.4
+          args:
+            - --http.postgres.address=https://lore-postgres-healthz:8000/healthz
+            - --http.postgres.skip-tls-verify=true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: lore
+          image: ghcr.io/gi8lino/lore:0.0.1
+          imagePullPolicy: Always
+          env:
+            - name: LORE__DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: lore-postgres-app
+                  key: jdbc-uri
+            - name: LORE__LISTEN_ADDRESS
+              value: 0.0.0.0:8080
+            - name: LORE__PUBLIC_URL
+              value: https://lore.${BASE_DOMAIN}
+            - name: LORE__AUTH_MODE
+              value: oidc
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 2
+            failureThreshold: 30
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 30
+            timeoutSeconds: 3
+            failureThreshold: 3

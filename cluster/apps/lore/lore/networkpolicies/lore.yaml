@@ -1,0 +1,74 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: lore
+  namespace: lore
+spec:
+  description: "Policy for lore"
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: lore
+      app.kubernetes.io/component: lore
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            gateway.envoyproxy.io/owning-gateway-name: envoy-external
+            gateway.envoyproxy.io/owning-gateway-namespace: network
+            "k8s:io.kubernetes.pod.namespace": network
+        - matchLabels:
+            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
+            gateway.envoyproxy.io/owning-gateway-namespace: network
+            "k8s:io.kubernetes.pod.namespace": network
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEndpoints:
+        - matchLabels:
+            cnpg.io/cluster: lore-postgres
+            cnpg.io/podRole: instance
+            "k8s:io.kubernetes.pod.namespace": lore
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP
+            - port: "8000" # /healthz endpoint
+              protocol: TCP
+    - toFQDNs:
+        - matchName: ${SMTP_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "587"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
+            gateway.envoyproxy.io/owning-gateway-namespace: network
+            "k8s:io.kubernetes.pod.namespace": network
+        - matchLabels:
+            gateway.envoyproxy.io/owning-gateway-name: envoy-external
+            gateway.envoyproxy.io/owning-gateway-namespace: network
+            "k8s:io.kubernetes.pod.namespace": network
+      toPorts:
+        - ports:
+            - port: "10443" # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
+              protocol: TCP
+    - toFQDNs:
+        - matchName: graph.requarks.io
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP

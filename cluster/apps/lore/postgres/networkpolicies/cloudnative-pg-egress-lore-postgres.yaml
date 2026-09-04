@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: cloudnative-pg-egress-lore-postgres
+  namespace: cnpg-system
+spec:
+  description: "Policy for cloudnative-pg-egress-lore-postgres"
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: cloudnative-pg
+      app.kubernetes.io/instance: cloudnative-pg
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            cnpg.io/cluster: lore-postgres
+            cnpg.io/podRole: instance
+            "k8s:io.kubernetes.pod.namespace": lore
+      toPorts:
+        - ports:
+            - port: "8000"
+              protocol: TCP

@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lore
+  namespace: lore
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: lore
+    app.kubernetes.io/component: lore

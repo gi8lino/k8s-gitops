@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: minio-ingress-lore-postgres
+  namespace: minio
+spec:
+  description: "Policy for minio-ingress-lore-postgres"
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: minio
+      app.kubernetes.io/name: minio
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            cnpg.io/cluster: lore-postgres
+            cnpg.io/podRole: instance
+            "k8s:io.kubernetes.pod.namespace": lore
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP

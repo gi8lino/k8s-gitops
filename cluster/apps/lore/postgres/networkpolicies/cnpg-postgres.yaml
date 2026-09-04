@@ -1,0 +1,79 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: cnpg-postgres
+  namespace: lore
+spec:
+  description: "Policy for cnpg-postgres"
+  endpointSelector:
+    matchLabels:
+      cnpg.io/cluster: lore-postgres
+      cnpg.io/podRole: instance
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: kube-dns
+            "k8s:io.kubernetes.pod.namespace": kube-system
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - kube-apiserver
+      toPorts:
+        - ports:
+            - port: "6443"
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: minio
+            app.kubernetes.io/instance: minio
+            "k8s:io.kubernetes.pod.namespace": minio
+      toPorts:
+        - ports:
+            - port: "9000"
+              protocol: TCP
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: prometheus
+            app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            "k8s:io.kubernetes.pod.namespace": observability
+      toPorts:
+        - ports:
+            - port: "9187"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: cloudnative-pg
+            app.kubernetes.io/instance: cloudnative-pg
+            "k8s:io.kubernetes.pod.namespace": cnpg-system
+      toPorts:
+        - ports:
+            - port: "8000"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: lore
+            app.kubernetes.io/component: lore
+            "k8s:io.kubernetes.pod.namespace": lore
+        # # when joining, we need to allow the joining pod to connect to the instance
+        # - matchLabels:
+        #     cnpg.io/jobRole: import
+        #     "k8s:io.kubernetes.pod.namespace": lore
+        # - matchLabels:
+        #     cnpg.io/jobRole: join
+        #     "k8s:io.kubernetes.pod.namespace": lore
+        # # allow the instance to connect to itself
+        # - matchLabels:
+        #     cnpg.io/podRole: instance
+        #     "k8s:io.kubernetes.pod.namespace": lore
+      toPorts:
+        - ports:
+            - port: "5432"
+              protocol: TCP
+            - port: "8000" # /healthz endpoint
+              protocol: TCP

@@ -1,0 +1,29 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: lore-postgres
+  namespace: lore
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.6
+  storage:
+    size: 20Gi
+  bootstrap:
+    initdb:
+      database: lorejs
+      owner: lorejs
+    # restore from backup, initdb must be disabled
+    # apply ./networkpolicies/postgres-recovery.yaml.template first
+    # recovery:
+    #   database: lorejs
+    #   backup:
+    #     name: lore-postgres-17-20260110021000 # kubectl get backups.postgresql.cnpg.io
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: lore
+  monitoring:
+    enablePodMonitor: true
+    disableDefaultQueries: true

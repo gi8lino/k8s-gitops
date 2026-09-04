@@ -1,0 +1,27 @@
+---
+apiVersion: k8up.io/v1
+kind: Schedule
+metadata:
+  name: lore
+  namespace: lore
+spec:
+  podSecurityContext:
+    runAsUser: 0
+  backend:
+    s3:
+      bucket: k8up-lore
+  backup:
+    schedule: 0 1 * * *
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
+  check:
+    schedule: 0 3 * * *
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
+  prune:
+    retention:
+      keepDaily: 2
+      keepLast: 4
+    schedule: 0 5 * * *
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1

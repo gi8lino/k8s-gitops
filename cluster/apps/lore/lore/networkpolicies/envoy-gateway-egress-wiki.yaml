@@ -1,0 +1,24 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-lore
+  namespace: network
+spec:
+  description: Allow all gateway egress traffic to lore
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: envoy
+      app.kubernetes.io/component: proxy
+      app.kubernetes.io/managed-by: envoy-gateway
+      gateway.envoyproxy.io/owning-gateway-namespace: network
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: lore
+            app.kubernetes.io/component: lore
+            "k8s:io.kubernetes.pod.namespace": lore
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
