@@ -1,0 +1,17 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyExtensionPolicy
+metadata:
+  name: disable-direct-login
+  namespace: lore
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: lore-external
+  lua:
+    - type: ValueRef
+      valueRef:
+        group: v1
+        kind: ConfigMap
+        name: lore-external-access-controls
