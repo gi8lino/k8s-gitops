@@ -43,7 +43,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: lore-postgres-app
-                  key: jdbc-uri
+                  key: uri
             - name: LORE__LISTEN_ADDRESS
               value: 0.0.0.0:8080
             - name: LORE__PUBLIC_URL
