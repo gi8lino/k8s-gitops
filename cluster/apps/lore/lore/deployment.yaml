@@ -37,7 +37,6 @@ spec:
       containers:
         - name: lore
           image: ghcr.io/gi8lino/lore:v0.0.10
-          imagePullPolicy: Always
           env:
             - name: LORE__DATABASE_URL
               valueFrom:

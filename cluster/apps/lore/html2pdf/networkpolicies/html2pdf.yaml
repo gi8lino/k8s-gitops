@@ -1,0 +1,21 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: html2pdf
+  namespace: lore
+spec:
+  description: "Policy for html2pdf"
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: html2pdf
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: lore
+            app.kubernetes.io/component: lore
+            "k8s:io.kubernetes.pod.namespace": lore
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP

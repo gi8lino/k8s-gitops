@@ -47,12 +47,6 @@ spec:
               protocol: TCP
             - port: "8000" # /healthz endpoint
               protocol: TCP
-    - toFQDNs:
-        - matchName: ${SMTP_DOMAIN}
-      toPorts:
-        - ports:
-            - port: "587"
-              protocol: TCP
     - toEndpoints:
         - matchLabels:
             gateway.envoyproxy.io/owning-gateway-name: envoy-internal
@@ -66,9 +60,11 @@ spec:
         - ports:
             - port: "10443" # oidc: to access load balancer (https://auth.${BASE_DOMAIN})
               protocol: TCP
-    - toFQDNs:
-        - matchName: graph.requarks.io
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: html2pdf
+            "k8s:io.kubernetes.pod.namespace": lore
       toPorts:
         - ports:
-            - port: "443"
+            - port: "8080"
               protocol: TCP
