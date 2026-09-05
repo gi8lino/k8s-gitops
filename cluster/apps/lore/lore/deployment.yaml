@@ -27,6 +27,8 @@ spec:
           args:
             - --http.postgres.address=https://lore-postgres-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true
+            - --http.html2pdf.address=http://html2pdf:8080/healthz
+            - --http.html2pdf.skip-tls-verify=true
           resources:
             requests:
               cpu: 10m
@@ -47,6 +49,8 @@ spec:
               value: 0.0.0.0:8080
             - name: LORE__PUBLIC_URL
               value: https://lore.${BASE_DOMAIN}
+            - name: LORE__PDF_URL
+              value: http://html2pdf:8080/render
             - name: LORE__AUTH_MODE
               value: oidc
           envFrom:
