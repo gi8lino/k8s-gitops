@@ -25,7 +25,7 @@ spec:
           type: RuntimeDefault
       initContainers:
         - name: never
-          image: ghcr.io/containeroo/never:v0.9.4
+          image: ghcr.io/containeroo/never:v0.11.1
           args:
             - --tcp.valkey.address=nextcloud-valkey.nextcloud.svc.cluster.local:6379
             - --http.postgres.address=https://nextcloud-postgres-healthz:8000/healthz

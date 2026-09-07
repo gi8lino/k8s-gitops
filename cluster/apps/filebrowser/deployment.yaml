@@ -23,7 +23,7 @@ spec:
           type: RuntimeDefault
       initContainers:
         - name: never
-          image: ghcr.io/containeroo/never:v0.9.4
+          image: ghcr.io/containeroo/never:v0.11.1
           args:
             - --http.keycloak.address=https://sso.${BASE_DOMAIN}/realms/hq/.well-known/openid-configuration
             - --http.keycloak.expected-status-codes=200
