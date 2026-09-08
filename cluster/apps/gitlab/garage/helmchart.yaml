@@ -17,8 +17,6 @@ spec:
         namespace: flux-system
       interval: 30m
   values:
-    image:
-      tag: v2.3.0
     deployment:
       replicaCount: 1
     garage:
