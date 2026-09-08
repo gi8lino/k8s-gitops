@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: html2pdf
-          image: ghcr.io/gi8lino/html2pdf:v0.1.3
+          image: ghcr.io/gi8lino/html2pdf:v0.1.4
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
