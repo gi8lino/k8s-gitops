@@ -35,7 +35,7 @@ spec:
               memory: 16Mi
       containers:
         - name: lore
-          image: ghcr.io/gi8lino/lore:v0.5.1
+          image: ghcr.io/gi8lino/lore:v0.7.1
           env:
             - name: LORE__DATABASE_URL
               valueFrom:
@@ -52,7 +52,9 @@ spec:
               value: oidc
           envFrom:
             - secretRef:
-                name: lore
+                name: lore-config
+            - secretRef:
+                name: lore-oidc
           ports:
             - name: http
               containerPort: 8080
