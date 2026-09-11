@@ -7,10 +7,12 @@ tasks:
       - |
         karma \
           -s ".img,dashboards,scripts" \
+          --preserve-kustomization "kustomization.yaml" \
+          --preserve-kustomization "flux/kustomization.yaml" \
+          --preserve-kustomization "flux/config/kustomization.yaml" \
           --opaque "flux/bootstrap" \
-          --preserve-kustomization "kustomization.yaml,flux/config/kustomization.yaml" \
-          --mute \
           --suffix \
+          --mute \
           cluster/
     silent: true
   s:
