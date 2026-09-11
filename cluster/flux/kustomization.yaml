@@ -7,4 +7,5 @@ resources:
   - namespaces/
   - networkpolicies/
   - repositories/
+  - runtime/
   - vars/

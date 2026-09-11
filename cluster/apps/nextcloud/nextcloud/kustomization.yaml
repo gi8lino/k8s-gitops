@@ -10,12 +10,10 @@ resources:
   - persistentvolumeclaim.yaml
   - secret.yaml
   - service.yaml
-
 configMapGenerator:
   - name: nextcloud-external-access-controls
     namespace: nextcloud
     files:
       - lua=scripts/external-access-controls.lua
-
 generatorOptions:
   disableNameSuffixHash: true

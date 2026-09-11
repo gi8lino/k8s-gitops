@@ -4,15 +4,14 @@ kind: Kustomization
 resources:
   - networkpolicies/
   - deployment.yaml
+  - envoyextensionpolicy.yaml
   - httproute.yaml
   - secret.yaml
   - service.yaml
-
 configMapGenerator:
   - name: lore-external-access-controls
     namespace: lore
     files:
       - lua=scripts/external-access-controls.lua
-
 generatorOptions:
   disableNameSuffixHash: true
