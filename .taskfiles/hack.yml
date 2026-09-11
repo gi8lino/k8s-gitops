@@ -2,9 +2,16 @@
 version: "3"
 tasks:
   k:
-    desc: Run generate_kustomizations.sh script
+    desc: Run karma
     cmds:
-      - kustomizer -s ".img,dashboards,scripts" -s "flux/config/*" --silent cluster/
+      - |
+        karma \
+          -s ".img,dashboards,scripts" \
+          --opaque "flux/bootstrap" \
+          --preserve-kustomization "kustomization.yaml,flux/config/kustomization.yaml" \
+          --mute \
+          --suffix \
+          cluster/
     silent: true
   s:
     desc: Run generate_secret_templates.sh script
