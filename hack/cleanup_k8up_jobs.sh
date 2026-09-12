@@ -1,65 +1,48 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-set -o errexit
+usage() {
+  cat <<'HELP'
+Usage: cleanup_k8up_jobs.sh [-A|--all-namespaces] [-h|--help]
 
-NOFORMAT='\033[0m'
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
+Delete Jobs owning terminating pods labeled 'k8upjob=true', then remove
+those pods' finalizers. Defaults to the current kubectl namespace.
 
-ShowHelp() {
-    printf "
-Usage: cleanup_k8up_jobs.sh [-A|--all-namespaces]
-                            [-h|--help]
-
-Searches for pods in current namespace with status 'Terminating' and label
-'k8upjob', delete the related job and remove the finalizer of the pod so
-the pod will be deleted.
-
--A, --all-namespaces   search in all namespaces for pod with status 'Terminating'
+-A, --all-namespaces   search in all namespaces
 -h, --help             display this help and exit
-\n"
-    exit 0
+HELP
 }
 
-while [ $# -gt 0 ]; do
-    key="${1}"
-    case $key in
-        -A|--all-namespaces)
-        ALLNAMESPACES="all-namespaces"
-        shift
-        ;;
-        -h|--help)
-        ShowHelp
-        ;;
-        *)  # unknown option
-        printf "%s\n" \
-          "$(basename $BASH_SOURCE): invalid option -- '$1'" \
-          "Try '$(basename $BASH_SOURCE) --help' for more information."
-        exit 1
-        ;;
-    esac
+namespace_args=()
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -A|--all-namespaces)
+      namespace_args=(--all-namespaces)
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      printf '%s\n' "$(basename "$0"): invalid option -- '$1'" >&2
+      exit 1
+      ;;
+  esac
+  shift
 done
 
-[ -n "${ALLNAMESPACES}" ] && \
-  readarray -d '' namespaces < <(kubectl get ns -ojsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}')
+# Let kubectl resolve the current namespace (including its default fallback).
+# Capture the result directly so API errors stop the script before any deletion.
+# Only Job owner references qualify; a job-name label alone is not ownership.
+pods=$(kubectl get pods ${namespace_args[@]+"${namespace_args[@]}"} \
+  --selector=k8upjob=true \
+  -o 'jsonpath={range .items[?(@.metadata.deletionTimestamp)]}{.metadata.namespace}{"\t"}{.metadata.name}{"\t"}{.metadata.ownerReferences[?(@.kind=="Job")].name}{"\n"}{end}')
 
-[ -z "${namespaces}" ] && \
-  readarray -d '' namespaces < <(kubectl config view --minify --output 'jsonpath={..namespace}')
+while IFS=$'\t' read -r namespace pod job_name; do
+  [[ -n "$namespace" && -n "$pod" && -n "$job_name" ]] || continue
 
-for namespace in ${namespaces[@]}; do
-  readarray -d '' pods < <(kubectl get pods --ignore-not-found --no-headers --namespace ${namespace} | awk '$3=="Terminating" {print $1}')
-
-  [ -z "${pods[@]}" ] && \
-    continue
-
-  for pod in ${pods[*]}; do
-    job_name=$(kubectl get pod "${pod}" --namespace "${namespace}" -ojsonpath='{.metadata.labels.job-name}')
-
-    [ -z "${job_name}" ] && \
-      continue
-
-    printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl delete job --namespace "${namespace}" ${job_name})"
-    printf "${GREEN}[INFO      ]${NOFORMAT} %s\n" "$(kubectl patch pod ${pod} --namespace "${namespace}" --patch='{"metadata":{"finalizers":null}}')"
-  done
-done
+  # Do not wait for Job deletion: its pods may need their finalizers removed.
+  kubectl delete job "$job_name" --namespace "$namespace" --wait=false --ignore-not-found
+  kubectl patch pod "$pod" --namespace "$namespace" \
+    --type=merge --patch='{"metadata":{"finalizers":null}}'
+done <<< "$pods"

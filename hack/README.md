@@ -4,7 +4,7 @@ This directory contains useful scripts.
 
 ## Contents
 
-- **cleanup_k8up_jobs.sh** cleanup stucked k8up jobs
+- **cleanup_k8up_jobs.sh** cleans up stuck k8up jobs
 - **generate_renovate_app_scopes.sh** generates Renovate app-scoped package rules for Docker updates
 - **`task hack:k`** generates `kustomization.yaml` files with `kustomizer`
 - **generate_secret_templates.sh** generates `secret.template` files for SOPS-encrypted Kubernetes secrets
@@ -14,14 +14,12 @@ This directory contains useful scripts.
 ## cleanup_k8up_jobs
 
 ```console
-Usage: cleanup_k8up_jobs.sh [-A|--all-namespaces]
-                            [-h|--help]
+Usage: cleanup_k8up_jobs.sh [-A|--all-namespaces] [-h|--help]
 
-Searches for pods in current namespace with status 'Terminating' and label
-'k8upjob', delete the related job and remove the finalizer of the pod so
-the pod will be deleted.
+Delete Jobs owning terminating pods labeled 'k8upjob=true', then remove
+those pods' finalizers. Defaults to the current kubectl namespace.
 
--A, --all-namespaces   search in all namespaces for pod with status 'Terminating'
+-A, --all-namespaces   search in all namespaces
 -h, --help             display this help and exit
 ```
 
