@@ -2,7 +2,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cloudnative-pg-egress-kumbuka-postgres.yaml
+  - cloudnative-pg-egress-lore-postgres.yaml
   - cnpg-postgres.yaml
-  - minio-ingress-kumbuka-postgres.yaml
-  - prometheus-egress-kumbuka-postgres.yaml
+  - minio-ingress-lore-postgres.yaml
+  - prometheus-egress-lore-postgres.yaml
