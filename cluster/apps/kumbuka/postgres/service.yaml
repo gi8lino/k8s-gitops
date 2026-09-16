@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kumbuka-postgres-healthz
+  namespace: kumbuka
+spec:
+  type: ClusterIP
+  ports:
+    - name: healthz
+      port: 8000
+      protocol: TCP
+      targetPort: 8000
+  selector:
+    cnpg.io/cluster: kumbuka-postgres
+    cnpg.io/instanceRole: primary

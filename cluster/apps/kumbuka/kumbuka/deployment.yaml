@@ -1,0 +1,74 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kumbuka
+  namespace: kumbuka
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: kumbuka
+      app.kubernetes.io/component: kumbuka
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: kumbuka
+        app.kubernetes.io/component: kumbuka
+    spec:
+      initContainers:
+        - name: never
+          image: ghcr.io/containeroo/never:v0.11.1
+          args:
+            - --http.postgres.address=https://kumbuka-postgres-healthz:8000/healthz
+            - --http.postgres.skip-tls-verify=true
+            - --http.html2pdf.address=http://html2pdf:8080/healthz
+            - --http.html2pdf.skip-tls-verify=true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: kumbuka
+          image: ghcr.io/gi8lino/kumbuka:v0.16.0
+          env:
+            - name: KUMBUKA__DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: kumbuka-postgres-app
+                  key: uri
+            - name: KUMBUKA__LISTEN_ADDRESS
+              value: 0.0.0.0:8080
+            - name: KUMBUKA__PUBLIC_URL
+              value: https://kumbuka.${BASE_DOMAIN}
+            - name: KUMBUKA__PDF_URL
+              value: http://html2pdf:8080/render
+            - name: KUMBUKA__AUTH_MODE
+              value: oidc
+          envFrom:
+            - secretRef:
+                name: kumbuka-config
+            - secretRef:
+                name: kumbuka-oidc
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 2
+            failureThreshold: 30
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 30
+            timeoutSeconds: 3
+            failureThreshold: 3

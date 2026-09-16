@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: prometheus-egress-kumbuka-postgres
+  namespace: observability
+spec:
+  description: "Policy for prometheus-egress-kumbuka-postgres"
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+      app.kubernetes.io/name: prometheus
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            cnpg.io/cluster: kumbuka-postgres
+            cnpg.io/podRole: instance
+            "k8s:io.kubernetes.pod.namespace": kumbuka
+      toPorts:
+        - ports:
+            - port: "9187"
+              protocol: TCP

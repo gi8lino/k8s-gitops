@@ -1,0 +1,29 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: kumbuka-postgres
+  namespace: kumbuka
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.6
+  storage:
+    size: 20Gi
+  bootstrap:
+    initdb:
+      database: kumbuka
+      owner: kumbuka
+    # restore from backup, initdb must be disabled
+    # apply ./networkpolicies/postgres-recovery.yaml.template first
+    # recovery:
+    #   database: kumbukajs
+    #   backup:
+    #     name: kumbuka-postgres-17-20260110021000 # kubectl get backups.postgresql.cnpg.io
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: kumbuka
+  monitoring:
+    enablePodMonitor: true
+    disableDefaultQueries: true
