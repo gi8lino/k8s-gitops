@@ -13,7 +13,6 @@ resources:
   - k8up.yaml
   - keycloak.yaml
   - kumbuka.yaml
-  - lore.yaml
   - media.yaml
   - minio.yaml
   - motus.yaml

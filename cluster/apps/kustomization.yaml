@@ -8,7 +8,6 @@ resources:
   - healthchecks/
   - keycloak/
   - kumbuka/
-  - lore/
   - media/
   - minio/
   - motus/
