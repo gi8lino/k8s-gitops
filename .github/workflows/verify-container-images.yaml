@@ -1,0 +1,23 @@
+---
+name: Image platform gate
+
+"on":
+  push:
+    branches:
+      - "renovate/**"
+
+  schedule:
+    - cron: "*/15 * * * *"
+
+  workflow_dispatch:
+
+jobs:
+  gate:
+    permissions:
+      contents: read
+      statuses: write
+
+    uses: gi8lino/image-platform-check/.github/workflows/gate.yml@v1
+    with:
+      mode: ${{ github.event_name == 'push' && 'current' || 'all' }}
+      platforms: linux/amd64
