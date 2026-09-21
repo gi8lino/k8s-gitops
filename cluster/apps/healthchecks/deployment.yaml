@@ -23,7 +23,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: healthchecks
-          image: ghcr.io/linuxserver/healthchecks:4.4.20260907
+          image: ghcr.io/linuxserver/healthchecks:4.4.20260921
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
