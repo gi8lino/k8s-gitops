@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: mailbridge
-          image: ghcr.io/kumbuka-me/mailbridge:v0.2.0
+          image: ghcr.io/kumbuka-me/mailbridge:v0.2.1
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
