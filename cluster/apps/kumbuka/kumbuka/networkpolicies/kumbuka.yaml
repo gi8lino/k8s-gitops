@@ -68,3 +68,10 @@ spec:
         - ports:
             - port: "8080"
               protocol: TCP
+    - toFQDNs:
+        - matchName: kumbuka.me # Plugins Catalog
+        - matchName: api.github.com # Plugins
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
