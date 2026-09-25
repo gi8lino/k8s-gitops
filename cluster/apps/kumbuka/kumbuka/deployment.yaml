@@ -35,7 +35,7 @@ spec:
               memory: 16Mi
       containers:
         - name: kumbuka
-          image: ghcr.io/kumbuka-me/kumbuka:v0.29.1
+          image: ghcr.io/kumbuka-me/kumbuka:v0.30.0
           env:
             - name: KUMBUKA__DATABASE_URL
               valueFrom:
