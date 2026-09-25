@@ -1,0 +1,21 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: mailbridge
+  namespace: kumbuka
+spec:
+  description: "Policy for mailbridge"
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: mailbridge
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: kumbuka
+            app.kubernetes.io/component: kumbuka
+            "k8s:io.kubernetes.pod.namespace": kumbuka
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
