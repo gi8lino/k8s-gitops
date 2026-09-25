@@ -18,6 +18,9 @@ spec:
         - name: mailbridge
           image: ghcr.io/kumbuka-me/mailbridge:v0.3.0
           imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: mailbridge-config
           ports:
             - name: http
               containerPort: 8080
