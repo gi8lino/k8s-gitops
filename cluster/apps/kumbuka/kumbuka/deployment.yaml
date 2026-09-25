@@ -24,6 +24,8 @@ spec:
           args:
             - --http.postgres.address=https://kumbuka-postgres-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true
+            - --http.mailbridge.address=http://mailbridge:8080/healthz
+            - --http.mailbridge.skip-tls-verify=true
             - --http.html2pdf.address=http://html2pdf:8080/healthz
             - --http.html2pdf.skip-tls-verify=true
           resources:
