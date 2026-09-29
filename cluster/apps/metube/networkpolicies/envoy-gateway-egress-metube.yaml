@@ -17,7 +17,7 @@ spec:
         - matchLabels:
             app.kubernetes.io/name: metube
             app.kubernetes.io/component: web
-            "k8s:io.kubernetes.pod.namespace": metbube
+            "k8s:io.kubernetes.pod.namespace": metube
       toPorts:
         - ports:
             - port: "8081"
