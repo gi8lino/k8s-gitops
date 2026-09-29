@@ -9,6 +9,7 @@ resources:
   - keycloak/
   - kumbuka/
   - media/
+  - metube/
   - minio/
   - motus/
   - nextcloud/

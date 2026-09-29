@@ -4,5 +4,7 @@ kind: Kustomization
 resources:
   - networkpolicies/
   - deployment.yaml
-  - secret.yaml
+  - httproute.yaml
+  - persistenvolumeclaim.yaml
+  - schedule.yaml
   - service.yaml

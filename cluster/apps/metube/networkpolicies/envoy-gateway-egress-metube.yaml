@@ -1,0 +1,24 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: envoy-gateway-egress-metbube
+  namespace: network
+spec:
+  description: Allow all gateway egress traffic to metbube
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: envoy
+      app.kubernetes.io/component: proxy
+      app.kubernetes.io/managed-by: envoy-gateway
+      gateway.envoyproxy.io/owning-gateway-namespace: network
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: metube
+            app.kubernetes.io/component: web
+            "k8s:io.kubernetes.pod.namespace": metbube
+      toPorts:
+        - ports:
+            - port: "8081"
+              protocol: TCP

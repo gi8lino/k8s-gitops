@@ -14,6 +14,7 @@ resources:
   - keycloak.yaml
   - kumbuka.yaml
   - media.yaml
+  - metube.yaml
   - minio.yaml
   - motus.yaml
   - network.yaml

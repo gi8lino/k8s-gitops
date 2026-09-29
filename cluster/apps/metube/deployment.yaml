@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metube
+  namespace: metube
+  labels:
+    app.kubernetes.io/name: metube
+    app.kubernetes.io/component: web
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: metube
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: metube
+        app.kubernetes.io/component: web
+    spec:
+      containers:
+        - name: metube
+          image: ghcr.io/alexta69/metube:2026.09.27
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: UID
+              value: "1000"
+            - name: GID
+              value: "1000"
+            - name: UMASK
+              value: "022"
+            - name: HOST
+              value: "0.0.0.0"
+            - name: PORT
+              value: "8081"
+            - name: DOWNLOAD_DIR
+              value: /downloads
+            - name: AUDIO_DOWNLOAD_DIR
+              value: /downloads/audio
+            - name: STATE_DIR
+              value: /downloads/.metube
+            - name: TEMP_DIR
+              value: /downloads/.tmp
+            - name: DEFAULT_THEME
+              value: auto
+            - name: MAX_CONCURRENT_DOWNLOADS
+              value: "3"
+            - name: DEFAULT_OPTION_PLAYLIST_ITEM_LIMIT
+              value: "0"
+            - name: OUTPUT_TEMPLATE
+              value: "%(title)s.%(ext)s"
+            - name: OUTPUT_TEMPLATE_PLAYLIST
+              value: "%(playlist_title)s/%(playlist_index)03d - %(title)s.%(ext)s"
+            - name: OUTPUT_TEMPLATE_CHANNEL
+              value: "%(channel)s/%(title)s.%(ext)s"
+            - name: CUSTOM_DIRS
+              value: "true"
+            - name: CREATE_CUSTOM_DIRS
+              value: "true"
+            - name: DOWNLOAD_DIRS_INDEXABLE
+              value: "false"
+            - name: ALLOW_PRIVATE_ADDRESSES
+              value: "false"
+            - name: ALLOW_YTDL_OPTIONS_OVERRIDES
+              value: "false"
+          ports:
+            - name: http
+              containerPort: 8081
+              protocol: TCP
+          volumeMounts:
+            - name: downloads
+              mountPath: /downloads
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "2"
+              memory: 2Gi
+          startupProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -ec
+                - curl -fsS http://127.0.0.1:8081/ >/dev/null
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 30
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -ec
+                - curl -fsS http://127.0.0.1:8081/ >/dev/null
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+      volumes:
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: metube-downloads
