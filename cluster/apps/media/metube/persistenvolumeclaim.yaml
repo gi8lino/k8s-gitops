@@ -24,7 +24,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: hdd
+  storageClassName: nvme
   resources:
     requests:
       storage: 1Gi
