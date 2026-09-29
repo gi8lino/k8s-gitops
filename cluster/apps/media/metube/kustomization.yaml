@@ -6,5 +6,4 @@ resources:
   - deployment.yaml
   - httproute.yaml
   - persistenvolumeclaim.yaml
-  - schedule.yaml
   - service.yaml

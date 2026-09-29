@@ -1,8 +1,9 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: metube
-  namespace: metube
+  namespace: media
   labels:
     app.kubernetes.io/name: metube
     app.kubernetes.io/component: web
@@ -19,29 +20,46 @@ spec:
         app.kubernetes.io/name: metube
         app.kubernetes.io/component: web
     spec:
+      automountServiceAccountToken: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        fsGroup: 2000
+        fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: metube
           image: ghcr.io/alexta69/metube:2026.09.28
           imagePullPolicy: IfNotPresent
           env:
-            - name: UID
-              value: "1000"
-            - name: GID
-              value: "1000"
+            - name: PUID
+              value: "2000"
+            - name: PGID
+              value: "2000"
             - name: UMASK
               value: "022"
+            # Do not let the MeTube entrypoint recursively chown
+            # the Plex music directory.
+            - name: CHOWN_DIRS
+              value: "false"
             - name: HOST
               value: "0.0.0.0"
             - name: PORT
               value: "8081"
+            # Normal/video downloads.
+            #
+            # Since this deployment is primarily for music, these
+            # go to a temporary download directory.
             - name: DOWNLOAD_DIR
               value: /downloads
+            # Final audio files go directly into Plex storage.
             - name: AUDIO_DOWNLOAD_DIR
-              value: /downloads/audio
+              value: /music
+            # Persistent MeTube application state.
             - name: STATE_DIR
-              value: /downloads/.metube
+              value: /state
+            # Temporary yt-dlp/ffmpeg working files.
             - name: TEMP_DIR
-              value: /downloads/.tmp
+              value: /tmp/metube
             - name: DEFAULT_THEME
               value: auto
             - name: MAX_CONCURRENT_DOWNLOADS
@@ -67,17 +85,19 @@ spec:
           ports:
             - name: http
               containerPort: 8081
-              protocol: TCP
           volumeMounts:
+            - name: state
+              mountPath: /state
+            - name: temp
+              mountPath: /tmp/metube
             - name: downloads
               mountPath: /downloads
+            - name: music
+              mountPath: /music
           resources:
-            requests:
-              cpu: 100m
-              memory: 256Mi
             limits:
-              cpu: "2"
               memory: 2Gi
+              ephemeral-storage: 45Gi
           startupProbe:
             exec:
               command:
@@ -97,6 +117,17 @@ spec:
             timeoutSeconds: 5
             failureThreshold: 3
       volumes:
-        - name: downloads
+        - name: state
           persistentVolumeClaim:
-            claimName: metube-downloads
+            claimName: metube-state
+        - name: temp
+          emptyDir:
+            sizeLimit: 20Gi
+        # Only used if you accidentally/intentionally download video.
+        # It does not need to survive pod replacement in a music-only setup.
+        - name: downloads
+          emptyDir:
+            sizeLimit: 20Gi
+        - name: music
+          persistentVolumeClaim:
+            claimName: music

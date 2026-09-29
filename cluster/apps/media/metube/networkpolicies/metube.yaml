@@ -2,7 +2,7 @@ apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: metube
-  namespace: metube
+  namespace: media
 spec:
   description: >-
     Allow MeTube to receive traffic only through the Cilium Gateway and

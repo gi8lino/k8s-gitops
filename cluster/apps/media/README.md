@@ -4,6 +4,7 @@ This directory contains applications related to movies and tv shows.
 
 ## Contents
 
+- **metube** is a self-hosted video platform that allows users to download videos from YouTube
 - **plex** streams movies and tv shows to any device
 - **prowlarr** Usenet/BitTorrent proxy for sonarr & radarr
 - **radarr** automatically search movies via Usenet/BitTorrent and download them
