@@ -20,4 +20,4 @@ spec:
             value: /
       backendRefs:
         - name: metube
-          port: 8010
+          port: 8081
