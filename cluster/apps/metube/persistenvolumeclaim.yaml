@@ -9,6 +9,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: hdd
   resources:
     requests:
-      storage: 100Gi
+      storage: 200Gi
