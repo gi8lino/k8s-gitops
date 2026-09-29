@@ -60,17 +60,17 @@ spec:
             app.kubernetes.io/name: kumbuka
             app.kubernetes.io/component: kumbuka
             "k8s:io.kubernetes.pod.namespace": kumbuka
-        # # when joining, we need to allow the joining pod to connect to the instance
-        # - matchLabels:
-        #     cnpg.io/jobRole: import
-        #     "k8s:io.kubernetes.pod.namespace": kumbuka
-        # - matchLabels:
-        #     cnpg.io/jobRole: join
-        #     "k8s:io.kubernetes.pod.namespace": kumbuka
-        # # allow the instance to connect to itself
-        # - matchLabels:
-        #     cnpg.io/podRole: instance
-        #     "k8s:io.kubernetes.pod.namespace": kumbuka
+            # # when joining, we need to allow the joining pod to connect to the instance
+            # - matchLabels:
+            #     cnpg.io/jobRole: import
+            #     "k8s:io.kubernetes.pod.namespace": kumbuka
+            # - matchLabels:
+            #     cnpg.io/jobRole: join
+            #     "k8s:io.kubernetes.pod.namespace": kumbuka
+            # # allow the instance to connect to itself
+            # - matchLabels:
+            #     cnpg.io/podRole: instance
+            #     "k8s:io.kubernetes.pod.namespace": kumbuka
       toPorts:
         - ports:
             - port: "5432"

@@ -1,3 +1,4 @@
+---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
@@ -5,8 +6,7 @@ metadata:
   namespace: media
 spec:
   description: >-
-    Allow MeTube to receive traffic only through the Cilium Gateway and
-    access DNS plus the public internet for yt-dlp downloads.
+    Allow MeTube to receive traffic only through the Cilium Gateway and access DNS plus the public internet for yt-dlp downloads.
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: metube

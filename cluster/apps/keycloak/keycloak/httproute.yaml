@@ -26,7 +26,6 @@ spec:
               type: ReplaceFullPath
               replaceFullPath: /realms/hq/account
             statusCode: 302
-
     - matches:
         - path:
             type: PathPrefix
@@ -34,7 +33,6 @@ spec:
       backendRefs:
         - name: keycloak
           port: 8080
-
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -62,7 +60,6 @@ spec:
               type: ReplaceFullPath
               replaceFullPath: /realms/hq/account
             statusCode: 302
-
     - matches:
         - path:
             type: PathPrefix

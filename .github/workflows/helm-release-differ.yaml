@@ -1,13 +1,11 @@
 ---
 name: Helm Release Differ
-
 on: # yamllint disable-line rule:truthy
   pull_request:
     branches:
       - master
     paths:
       - cluster/apps/**.yaml
-
 jobs:
   detect-file-changes:
     name: Detect File Changes
@@ -15,7 +13,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-
       - name: Filter Helm Releases
         uses: dorny/paths-filter@v4
         id: filter
@@ -26,7 +23,6 @@ jobs:
               - added|modified: "cluster/apps/**/helmrelease.yaml"
     outputs:
       yaml_files: ${{ steps.filter.outputs.yaml_files }}
-
   helm-release-differ:
     name: Helm Release Differ
     runs-on: ubuntu-latest
@@ -37,19 +33,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-
       - name: Checkout default branch
         uses: actions/checkout@v7
         with:
           ref: master
           path: default
-
       - name: Install Helm
         uses: azure/setup-helm@v5
         with:
           # renovate depName=helm/helm
           version: v4.3.0
-
       - name: Helm Release Differ
         id: diff
         run: |
@@ -59,14 +52,12 @@ jobs:
           diff="${diff//$'\n'/'%0A'}"
           diff="${diff//$'\r'/'%0D'}"
           echo "::set-output name=diff::$(echo ${diff})"
-
       - name: Find Comment
         uses: peter-evans/find-comment@v4
         id: find-comment
         with:
           issue-number: "${{ github.event.pull_request.number }}"
           body-includes: "${{ matrix.file }}"
-
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v5
         with:

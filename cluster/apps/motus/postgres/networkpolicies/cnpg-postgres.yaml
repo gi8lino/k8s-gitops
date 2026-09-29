@@ -60,15 +60,15 @@ spec:
             app.kubernetes.io/name: motus
             app.kubernetes.io/component: motus
             "k8s:io.kubernetes.pod.namespace": motus
-        # when joining, we need to allow the joining pod to connect to the instance
-        # - matchLabels:
-        #     cnpg.io/jobRole: join
-        #     "k8s:io.kubernetes.pod.namespace": motus
-        # allow the instance to connect to itself
-        # - matchLabels:
-        #     cnpg.io/cluster: motus-psql
-        #     cnpg.io/podRole: instance
-        #     "k8s:io.kubernetes.pod.namespace": motus
+            # when joining, we need to allow the joining pod to connect to the instance
+            # - matchLabels:
+            #     cnpg.io/jobRole: join
+            #     "k8s:io.kubernetes.pod.namespace": motus
+            # allow the instance to connect to itself
+            # - matchLabels:
+            #     cnpg.io/cluster: motus-psql
+            #     cnpg.io/podRole: instance
+            #     "k8s:io.kubernetes.pod.namespace": motus
       toPorts:
         - ports:
             - port: "5432"

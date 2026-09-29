@@ -60,17 +60,17 @@ spec:
             app.kubernetes.io/name: wiki
             app.kubernetes.io/component: wiki
             "k8s:io.kubernetes.pod.namespace": wiki
-        # # when joining, we need to allow the joining pod to connect to the instance
-        # - matchLabels:
-        #     cnpg.io/jobRole: import
-        #     "k8s:io.kubernetes.pod.namespace": wiki
-        # - matchLabels:
-        #     cnpg.io/jobRole: join
-        #     "k8s:io.kubernetes.pod.namespace": wiki
-        # # allow the instance to connect to itself
-        # - matchLabels:
-        #     cnpg.io/podRole: instance
-        #     "k8s:io.kubernetes.pod.namespace": wiki
+            # # when joining, we need to allow the joining pod to connect to the instance
+            # - matchLabels:
+            #     cnpg.io/jobRole: import
+            #     "k8s:io.kubernetes.pod.namespace": wiki
+            # - matchLabels:
+            #     cnpg.io/jobRole: join
+            #     "k8s:io.kubernetes.pod.namespace": wiki
+            # # allow the instance to connect to itself
+            # - matchLabels:
+            #     cnpg.io/podRole: instance
+            #     "k8s:io.kubernetes.pod.namespace": wiki
       toPorts:
         - ports:
             - port: "5432"

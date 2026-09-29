@@ -16,7 +16,6 @@ spec:
           annotations:
             summary: Reboot needed
             description: Node «{{ $labels.nodename }}» needs to reboot.
-
         - alert: NodePackageUpdatesAvailable
           expr: apt_upgrades_pending * on(instance) group_left(nodename) (node_uname_info) > 0
           for: 24h
@@ -25,7 +24,6 @@ spec:
           annotations:
             summary: Updates available
             description: Updates for «{{ $labels.nodename }}» available.
-
         - alert: NodeAutoremovePackagePending
           expr: apt_autoremove_pending * on(instance) group_left(nodename) (node_uname_info) > 0
           for: 48h
@@ -45,11 +43,7 @@ spec:
     - name: hwmon
       rules:
         - alert: HostNodeOvertemperatureAlarm
-          expr: (
-            node_hwmon_temp_crit_alarm_celsius
-            * on(instance) group_left(nodename)
-            node_uname_info
-            ) == 1
+          expr: ( node_hwmon_temp_crit_alarm_celsius * on(instance) group_left(nodename) node_uname_info ) == 1
           labels:
             severity: critical
           annotations:
@@ -58,57 +52,31 @@ spec:
               Hardware overtemperature alarm is active.
               VALUE = {{ $value }}
               LABELS = {{ $labels }}
-
         - alert: HostCpuTempHigh
-          expr: (
-            avg_over_time(
-            node_hwmon_temp_celsius{chip=~"platform_coretemp.*"}[15m]
-            )
-            * on(instance) group_left(nodename)
-            node_uname_info
-            ) > 85
+          expr: ( avg_over_time( node_hwmon_temp_celsius{chip=~"platform_coretemp.*"}[15m] ) * on(instance) group_left(nodename) node_uname_info ) > 85
           labels:
             severity: warning
           annotations:
             summary: 'Host «{{ $labels.nodename }}» CPU running hot: {{ printf "%.1f" $value }} °C'
             description: "CPU «{{ $labels.chip }}» on «{{ $labels.nodename }}» has a sustained high temperature (> 85 °C 15m avg)."
-
         - alert: HostCpuTooHot
-          expr: (
-            max_over_time(
-            node_hwmon_temp_celsius{chip=~"platform_coretemp.*"}[5m]
-            )
-            * on(instance) group_left(nodename)
-            node_uname_info
-            ) > 90
+          expr: ( max_over_time( node_hwmon_temp_celsius{chip=~"platform_coretemp.*"}[5m] ) * on(instance) group_left(nodename) node_uname_info ) > 90
           for: 5m
           labels:
             severity: critical
           annotations:
             summary: 'Host «{{ $labels.nodename }}» CPU too hot: {{ printf "%.1f" $value }} °C'
             description: "CPU «{{ $labels.chip }}» on «{{ $labels.nodename }}» has been above 90 °C for at least 5 minutes."
-
         - alert: HostNvmeControllerTooHot
-          expr: (
-            max_over_time(
-            node_hwmon_temp_celsius{chip=~"nvme.*"}[5m]
-            )
-            * on(instance) group_left(nodename)
-            node_uname_info
-            ) > 75
+          expr: ( max_over_time( node_hwmon_temp_celsius{chip=~"nvme.*"}[5m] ) * on(instance) group_left(nodename) node_uname_info ) > 75
           for: 5m
           labels:
             severity: warning
           annotations:
             summary: 'Host «{{ $labels.nodename }}» NVMe controller hot: {{ printf "%.1f" $value }} °C'
             description: "NVMe controller «{{ $labels.chip }}» on «{{ $labels.nodename }}» is hot (> 75 °C 5m max)."
-
         - alert: RaspberryTooHot
-          expr: (
-            node_hwmon_temp_celsius{chip=~"thermal_thermal_zone.*"}
-            * on(instance) group_left(nodename)
-            node_uname_info
-            ) > 75
+          expr: ( node_hwmon_temp_celsius{chip=~"thermal_thermal_zone.*"} * on(instance) group_left(nodename) node_uname_info ) > 75
           for: 5m
           labels:
             severity: warning
@@ -133,7 +101,6 @@ spec:
           annotations:
             summary: Node «{{ $labels.node }}» is not ready
             description: Node «{{ $labels.node }}» has been not ready for 15 minutes.
-
         - alert: BasicKubeNodePressure
           expr: kube_node_status_condition{condition=~"MemoryPressure|DiskPressure|PIDPressure",status="true"} == 1
           for: 15m
@@ -142,7 +109,6 @@ spec:
           annotations:
             summary: Node «{{ $labels.node }}» has {{ $labels.condition }}
             description: Node «{{ $labels.node }}» reports {{ $labels.condition }} for 15 minutes.
-
         - alert: BasicKubePodCrashLooping
           expr: max_over_time(kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff"}[10m]) >= 1
           for: 15m
@@ -151,7 +117,6 @@ spec:
           annotations:
             summary: Pod «{{ $labels.namespace }}/{{ $labels.pod }}» is crash-looping
             description: Container «{{ $labels.container }}» has been in CrashLoopBackOff.
-
         - alert: BasicKubeDeploymentReplicasMismatch
           expr: kube_deployment_spec_replicas != kube_deployment_status_replicas_available
           for: 30m
@@ -160,7 +125,6 @@ spec:
           annotations:
             summary: Deployment «{{ $labels.namespace }}/{{ $labels.deployment }}» is not fully available
             description: Deployment replicas have been unavailable for 30 minutes.
-
         - alert: BasicKubeStatefulSetReplicasMismatch
           expr: kube_statefulset_replicas != kube_statefulset_status_replicas_ready
           for: 30m
@@ -169,7 +133,6 @@ spec:
           annotations:
             summary: StatefulSet «{{ $labels.namespace }}/{{ $labels.statefulset }}» is not fully ready
             description: StatefulSet replicas have been unavailable for 30 minutes.
-
         - alert: BasicKubePersistentVolumeClaimPending
           expr: kube_persistentvolumeclaim_status_phase{phase="Pending"} == 1
           for: 15m

@@ -76,12 +76,7 @@ spec:
             timeZone: Europe/Zurich
             schedule: 0 1 * * *
             extraArgs: >-
-              --backend-data s3
-              --backend-backup s3
-              --s3tool-data s3cmd
-              --s3tool-backup s3cmd
-              --s3config /etc/gitlab/backup-object-storage.s3cfg
-              --maximum-backups 3
+              --backend-data s3 --backend-backup s3 --s3tool-data s3cmd --s3tool-backup s3cmd --s3config /etc/gitlab/backup-object-storage.s3cfg --maximum-backups 3
             successfulJobsHistoryLimit: 1
       webservice:
         deployment:

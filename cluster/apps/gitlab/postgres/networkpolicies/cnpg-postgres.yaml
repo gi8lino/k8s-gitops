@@ -98,9 +98,9 @@ spec:
             job-name: gitlab-gitlab-upgrade-check
             release: gitlab
             "k8s:io.kubernetes.pod.namespace": gitlab
-        # when joining, we need to allow the joining pod to connect to the instance
-        # - matchLabels:
-        #     "k8s:io.kubernetes.pod.namespace": gitlab
+            # when joining, we need to allow the joining pod to connect to the instance
+            # - matchLabels:
+            #     "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:
             - port: "5432"

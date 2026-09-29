@@ -38,7 +38,6 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-
     - toEndpoints:
         - matchLabels:
             k8s-app: kube-dns
@@ -47,7 +46,6 @@ spec:
         - ports:
             - port: "9153" # CoreDNS metrics
               protocol: TCP
-
     # Kubernetes API discovery.
     - toEntities:
         - kube-apiserver
@@ -55,7 +53,6 @@ spec:
         - ports:
             - port: "6443"
               protocol: TCP
-
     # Host-networked Cilium agent/Hubble metrics.
     - toEntities:
         - host
@@ -66,7 +63,6 @@ spec:
               protocol: TCP
             - port: "9963" # cilium-operator metrics
               protocol: TCP
-
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack
@@ -76,7 +72,6 @@ spec:
         - ports:
             - port: "9100"
               protocol: TCP
-
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/name: alertmanager
@@ -86,7 +81,6 @@ spec:
         - ports:
             - port: "9093"
               protocol: TCP
-
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: kube-prometheus-stack

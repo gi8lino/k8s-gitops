@@ -1,12 +1,10 @@
 ---
 version: 1
-
 defaults:
   unknown: block
   apiError: block
   minimumConfidence: high
   maximumEvidenceAgeDays: 180
-
 gates:
   - id: cloudnativepg-postgresql
     project:
@@ -19,7 +17,6 @@ gates:
           kind: GitRepository
           metadata.name: cloudnative-pg
         value: spec.ref.tag
-
     dependency:
       id: postgresql
       versions:
@@ -30,7 +27,6 @@ gates:
           kind: Cluster
         value: spec.imageName
         extract: ":(?<version>[^@]+)$"
-
   - id: barman-cloud-cloudnativepg
     project:
       id: barman-cloud-plugin
@@ -42,7 +38,6 @@ gates:
           kind: GitRepository
           metadata.name: cnpg-plugin-barman-cloud
         value: spec.ref.tag
-
     dependency:
       id: cloudnativepg
       versions:
@@ -53,7 +48,6 @@ gates:
           kind: GitRepository
           metadata.name: cloudnative-pg
         value: spec.ref.tag
-
   - id: keycloak-postgresql
     project:
       id: keycloak
@@ -66,7 +60,6 @@ gates:
           metadata.name: keycloak
         value: spec.template.spec.containers.0.image
         extract: ":(?<version>[^@]+)$"
-
     dependency:
       id: postgresql
       versions:
@@ -78,7 +71,6 @@ gates:
           metadata.name: keycloak-postgres
         value: spec.imageName
         extract: ":(?<version>[^@]+)$"
-
   - id: nextcloud-postgresql
     project:
       id: nextcloud
@@ -91,7 +83,6 @@ gates:
           metadata.name: nextcloud
         value: spec.template.spec.containers.1.image
         extract: ':(?<version>[0-9]+\.[0-9]+\.[0-9]+)'
-
     dependency:
       id: postgresql
       versions:
@@ -103,7 +94,6 @@ gates:
           metadata.name: nextcloud-postgres
         value: spec.imageName
         extract: ":(?<version>[^@]+)$"
-
   - id: wikijs-postgresql
     project:
       id: wikijs
@@ -116,7 +106,6 @@ gates:
           metadata.name: wiki
         value: spec.template.spec.containers.0.image
         extract: ":(?<version>[^@]+)$"
-
     dependency:
       id: postgresql
       versions:
@@ -128,7 +117,6 @@ gates:
           metadata.name: wiki-postgres
         value: spec.imageName
         extract: ":(?<version>[^@]+)$"
-
   - id: gitlab-postgresql
     project:
       id: gitlab-helm
@@ -140,7 +128,6 @@ gates:
           kind: HelmRelease
           metadata.name: gitlab
         value: spec.chart.spec.version
-
     dependency:
       id: postgresql
       versions:
@@ -152,7 +139,6 @@ gates:
           metadata.name: gitlab-postgres
         value: spec.imageName
         extract: ":(?<version>[^@]+)$"
-
   - id: gitlab-runner-gitlab
     project:
       id: gitlab-runner-helm
@@ -164,7 +150,6 @@ gates:
           kind: HelmRelease
           metadata.name: gitlab-runner
         value: spec.chart.spec.version
-
     dependency:
       id: gitlab-helm
       versions:
@@ -175,7 +160,6 @@ gates:
           kind: HelmRelease
           metadata.name: gitlab
         value: spec.chart.spec.version
-
   - id: envoy-gateway-api
     project:
       id: envoy-gateway
@@ -187,7 +171,6 @@ gates:
           kind: OCIRepository
           metadata.name: envoy-gateway
         value: spec.ref.tag
-
     dependency:
       id: gateway-api
       versions:

@@ -22,7 +22,6 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-
     - toEntities:
         - kube-apiserver
       toPorts:

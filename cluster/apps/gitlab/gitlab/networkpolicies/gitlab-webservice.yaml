@@ -83,7 +83,6 @@ spec:
         - matchLabels:
             app.kubernetes.io/instance: gitlab-garage
             app.kubernetes.io/name: garage
-
             "k8s:io.kubernetes.pod.namespace": gitlab
       toPorts:
         - ports:

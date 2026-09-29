@@ -7,11 +7,9 @@ on: # yamllint disable-line rule:truthy
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out code
         uses: actions/checkout@v7
-
       - name: Update Cloudflare ranges in YAML
         run: |
           set -euo pipefail
@@ -37,7 +35,6 @@ jobs:
           /tmp/yq --inplace \
             ".spec.ingress[0].fromCIDR = [ ${cilium_nets} ]" \
             cluster/infra/network/envoy-gateway/networkpolicies/envoy-gateway-external.yaml
-
       - name: Check for changes
         id: diff
         run: |
@@ -46,7 +43,6 @@ jobs:
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
-
       - name: Create pull request for cloudflare network range update
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v8
