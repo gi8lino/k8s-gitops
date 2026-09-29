@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: metube
+  namespace: media
+data:
+  PUID: "2000"
+  PGID: "2000"
+  UMASK: "022"
+  CHOWN_DIRS: "false"
+  HOST: "0.0.0.0"
+  PORT: "8081"
+  DOWNLOAD_DIR: /downloads
+  AUDIO_DOWNLOAD_DIR: /music
+  STATE_DIR: /state
+  TEMP_DIR: /tmp/metube
+  DEFAULT_THEME: auto
+  MAX_CONCURRENT_DOWNLOADS: "3"
+  DEFAULT_OPTION_PLAYLIST_ITEM_LIMIT: "0"
+  OUTPUT_TEMPLATE: "%(title)s.%(ext)s"
+  OUTPUT_TEMPLATE_PLAYLIST: "%(playlist_title)s/%(playlist_index)03d - %(title)s.%(ext)s"
+  OUTPUT_TEMPLATE_CHANNEL: "%(channel)s/%(title)s.%(ext)s"
+  CUSTOM_DIRS: "true"
+  CREATE_CUSTOM_DIRS: "true"
+  DOWNLOAD_DIRS_INDEXABLE: "false"
+  ALLOW_PRIVATE_ADDRESSES: "false"
+  ALLOW_YTDL_OPTIONS_OVERRIDES: "false"

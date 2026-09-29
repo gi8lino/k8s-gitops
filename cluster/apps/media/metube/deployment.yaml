@@ -30,61 +30,13 @@ spec:
         - name: metube
           image: ghcr.io/alexta69/metube:2026.09.28
           imagePullPolicy: IfNotPresent
-          env:
-            - name: PUID
-              value: "2000"
-            - name: PGID
-              value: "2000"
-            - name: UMASK
-              value: "022"
-            # Do not let the MeTube entrypoint recursively chown
-            # the Plex music directory.
-            - name: CHOWN_DIRS
-              value: "false"
-            - name: HOST
-              value: "0.0.0.0"
-            - name: PORT
-              value: "8081"
-            # Normal/video downloads.
-            #
-            # Since this deployment is primarily for music, these
-            # go to a temporary download directory.
-            - name: DOWNLOAD_DIR
-              value: /downloads
-            # Final audio files go directly into Plex storage.
-            - name: AUDIO_DOWNLOAD_DIR
-              value: /music
-            # Persistent MeTube application state.
-            - name: STATE_DIR
-              value: /state
-            # Temporary yt-dlp/ffmpeg working files.
-            - name: TEMP_DIR
-              value: /tmp/metube
-            - name: DEFAULT_THEME
-              value: auto
-            - name: MAX_CONCURRENT_DOWNLOADS
-              value: "3"
-            - name: DEFAULT_OPTION_PLAYLIST_ITEM_LIMIT
-              value: "0"
-            - name: OUTPUT_TEMPLATE
-              value: "%(title)s.%(ext)s"
-            - name: OUTPUT_TEMPLATE_PLAYLIST
-              value: "%(playlist_title)s/%(playlist_index)03d - %(title)s.%(ext)s"
-            - name: OUTPUT_TEMPLATE_CHANNEL
-              value: "%(channel)s/%(title)s.%(ext)s"
-            - name: CUSTOM_DIRS
-              value: "true"
-            - name: CREATE_CUSTOM_DIRS
-              value: "true"
-            - name: DOWNLOAD_DIRS_INDEXABLE
-              value: "false"
-            - name: ALLOW_PRIVATE_ADDRESSES
-              value: "false"
-            - name: ALLOW_YTDL_OPTIONS_OVERRIDES
-              value: "false"
+          envFrom:
+            - configMapRef:
+                name: metube
           ports:
             - name: http
               containerPort: 8081
+              protocol: TCP
           volumeMounts:
             - name: state
               mountPath: /state
@@ -123,8 +75,6 @@ spec:
         - name: temp
           emptyDir:
             sizeLimit: 20Gi
-        # Only used if you accidentally/intentionally download video.
-        # It does not need to survive pod replacement in a music-only setup.
         - name: downloads
           emptyDir:
             sizeLimit: 20Gi
