@@ -4,8 +4,8 @@ name: Image platform gate
   push:
     branches:
       - "renovate/**"
-  schedule:
-    - cron: "*/15 * * * *"
+  # schedule:
+  #   - cron: "*/15 * * * *"
   workflow_dispatch:
 jobs:
   gate:
