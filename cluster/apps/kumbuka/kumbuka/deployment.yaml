@@ -48,6 +48,8 @@ spec:
                   key: uri
             - name: KUMBUKA__LISTEN_ADDRESS
               value: 0.0.0.0:8080
+            - name: KUMBUKA__MANAGEMENT_LISTEN_ADDRESS
+              value: 0.0.0.0:8081
             - name: KUMBUKA__PUBLIC_URL
               value: https://kumbuka.${BASE_DOMAIN}
             - name: KUMBUKA__PDF_URL
