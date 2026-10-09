@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: html2pdf
-          image: ghcr.io/kumbuka-me/html2pdf:v0.4.1
+          image: ghcr.io/kumbuka-me/html2pdf:v0.5.0
           imagePullPolicy: IfNotPresent
           envFrom:
             - secretRef:
