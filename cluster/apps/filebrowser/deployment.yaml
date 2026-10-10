@@ -22,34 +22,6 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       initContainers:
-        - name: migrate-v1-database
-          image: busybox:1.37.0
-          command:
-            - /bin/sh
-            - -ec
-            - |
-              legacy=/home/filebrowser/data/database.db
-              migration_source=/home/filebrowser/data/database.db.old
-              backup=/home/filebrowser/data/database.db.pre-v2-backup
-              sqlite=/home/filebrowser/data/filebrowser.sqlite
-
-              if [ -e "$sqlite" ] || [ -e "$migration_source" ]; then
-                exit 0
-              fi
-
-              test -f "$legacy"
-              cp -p "$legacy" "$backup"
-              mv "$legacy" "$migration_source"
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - ALL
-            runAsNonRoot: true
-            runAsUser: 1000
-          volumeMounts:
-            - name: db
-              mountPath: /home/filebrowser/data
         - name: never
           image: ghcr.io/containeroo/never:v0.12.3
           args:

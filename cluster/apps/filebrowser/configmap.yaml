@@ -49,7 +49,6 @@ data:
       cacheDir: /home/filebrowser/data/tmp
       database:
         path: /home/filebrowser/data/filebrowser.sqlite
-        migrateFrom: /home/filebrowser/data/database.db.old
       sources:
         - path: /data
           name: Data
