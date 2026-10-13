@@ -43,6 +43,8 @@ spec:
               value: Europe/Zurich
             - name: MOTUS__TRUSTED_PROXY_USER_HEADER
               value: X-Auth-Request-Email
+            - name: MOTUS__AUTH_MODE
+              value: trusted-proxy
             - name: MOTUS__DATABASE_URL
               valueFrom:
                 secretKeyRef:
