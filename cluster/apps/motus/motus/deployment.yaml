@@ -41,7 +41,7 @@ spec:
           env:
             - name: TZ
               value: Europe/Zurich
-            - name: MOTUS__AUTH_HEADER
+            - name: MOTUS__TRUSTED_PROXY_USER_HEADER
               value: X-Auth-Request-Email
             - name: MOTUS__DATABASE_URL
               valueFrom:
