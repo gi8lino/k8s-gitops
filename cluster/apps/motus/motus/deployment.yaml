@@ -36,7 +36,7 @@ spec:
               memory: 16Mi
       containers:
         - name: motus
-          image: ghcr.io/gi8lino/motus:v0.7.4
+          image: ghcr.io/gi8lino/motus:v0.9.0
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
