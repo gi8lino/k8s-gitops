@@ -41,10 +41,14 @@ spec:
           env:
             - name: TZ
               value: Europe/Zurich
-            - name: MOTUS__TRUSTED_PROXY_USER_HEADER
-              value: X-Auth-Request-Email
             - name: MOTUS__AUTH_MODE
-              value: trusted-proxy
+              value: proxy
+            - name: MOTUS__TRUSTED_PROXY_CIDRS
+              value: "*"
+            - name: MOTUS__TRUSTED_USERNAME_HEADERS
+              value: ""
+            - name: MOTUS__TRUSTED_EMAIL_HEADERS
+              value: X-Auth-Request-Email
             - name: MOTUS__DATABASE_URL
               valueFrom:
                 secretKeyRef:
