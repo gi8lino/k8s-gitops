@@ -5,5 +5,5 @@ resources:
   - cloudnative-pg-egress-motus-postgres.yaml
   - cnpg-postgres-initdb.yaml
   - cnpg-postgres.yaml
-  - minio-ingress-motus-postgres.yaml
+  - garage-backup-ingress-motus-postgres.yaml
   - prometheus-egress-motus-postgres.yaml

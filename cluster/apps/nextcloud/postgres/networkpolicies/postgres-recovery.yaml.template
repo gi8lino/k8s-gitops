@@ -29,25 +29,25 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: minio
-            app.kubernetes.io/name: minio
-            "k8s:io.kubernetes.pod.namespace": minio
+            app.kubernetes.io/instance: garage-backup
+            app.kubernetes.io/name: garage
+            "k8s:io.kubernetes.pod.namespace": garage-backup
       toPorts:
         - ports:
-            - port: "9000"
+            - port: "3900"
               protocol: TCP
 ---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: minio-nextcloud-recovery
-  namespace: minio
+  name: garage-backup-ingress-nextcloud-recovery
+  namespace: garage-backup
 spec:
-  description: "Policy for minio-nextcloud-recovery"
+  description: Allow Nextcloud PostgreSQL recovery traffic
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: minio
-      app.kubernetes.io/name: minio
+      app.kubernetes.io/instance: garage-backup
+      app.kubernetes.io/name: garage
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -55,6 +55,6 @@ spec:
             "k8s:io.kubernetes.pod.namespace": nextcloud
       toPorts:
         - ports:
-            - port: "9000"
+            - port: "3900"
               protocol: TCP
 # vi: ft=yaml

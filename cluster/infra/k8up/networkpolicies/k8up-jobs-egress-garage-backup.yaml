@@ -2,9 +2,9 @@
 apiVersion: cilium.io/v2
 kind: CiliumClusterwideNetworkPolicy
 metadata:
-  name: k8up-jobs-egress-minio
+  name: k8up-jobs-egress-garage-backup
 spec:
-  description: Allow k8up jobs to connect to minio
+  description: Allow K8up jobs to connect to Garage backup storage
   endpointSelector:
     matchLabels:
       io.cilium.k8s.namespace.labels.k8up: backup-enabled
@@ -29,10 +29,10 @@ spec:
               protocol: TCP
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: minio
-            app.kubernetes.io/name: minio
-            "k8s:io.kubernetes.pod.namespace": minio
+            app.kubernetes.io/instance: garage-backup
+            app.kubernetes.io/name: garage
+            "k8s:io.kubernetes.pod.namespace": garage-backup
       toPorts:
         - ports:
-            - port: "9000"
+            - port: "3900"
               protocol: TCP

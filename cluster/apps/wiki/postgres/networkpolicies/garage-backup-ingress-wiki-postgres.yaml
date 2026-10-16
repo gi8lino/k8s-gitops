@@ -2,14 +2,14 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: minio-ingress-wiki-postgres
-  namespace: minio
+  name: garage-backup-ingress-wiki-postgres
+  namespace: garage-backup
 spec:
-  description: "Policy for minio-ingress-wiki-postgres"
+  description: Allow Wiki PostgreSQL backup traffic
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/instance: minio
-      app.kubernetes.io/name: minio
+      app.kubernetes.io/instance: garage-backup
+      app.kubernetes.io/name: garage
   ingress:
     - fromEndpoints:
         - matchLabels:
@@ -18,5 +18,5 @@ spec:
             "k8s:io.kubernetes.pod.namespace": wiki
       toPorts:
         - ports:
-            - port: "9000"
+            - port: "3900"
               protocol: TCP
