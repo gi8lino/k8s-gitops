@@ -1,0 +1,41 @@
+---
+# The ClientTrafficPolicies below set a canonical X-Forwarded-For value early
+# in request processing.  Prevent the HTTP connection manager from appending
+# the same direct peer IP a second time afterwards.
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyPatchPolicy
+metadata:
+  name: disable-xff-append-external
+  namespace: network
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: Gateway
+    name: envoy-external
+  type: JSONPatch
+  jsonPatches:
+    - type: type.googleapis.com/envoy.config.listener.v3.Listener
+      name: network/envoy-external/https
+      operation:
+        op: add
+        path: /filter_chains/0/filters/0/typed_config/skip_xff_append
+        value: true
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyPatchPolicy
+metadata:
+  name: disable-xff-append-internal
+  namespace: network
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: Gateway
+    name: envoy-internal
+  type: JSONPatch
+  jsonPatches:
+    - type: type.googleapis.com/envoy.config.listener.v3.Listener
+      name: network/envoy-internal/https
+      operation:
+        op: add
+        path: /filter_chains/0/filters/0/typed_config/skip_xff_append
+        value: true
