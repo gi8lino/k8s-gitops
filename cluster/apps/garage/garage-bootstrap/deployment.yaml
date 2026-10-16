@@ -25,7 +25,7 @@ spec:
         - name: never
           image: ghcr.io/containeroo/never:v0.12.3
           args:
-            - --tcp.garage.address=tcp://garage-backup-admin.garage-backup.svc.cluster.local:3903
+            - --tcp.garage.address=garage-backup-admin.garage-backup.svc.cluster.local:3903
           resources:
             requests:
               cpu: 10m
@@ -41,7 +41,7 @@ spec:
             - name: GARAGE_BOOTSTRAP_ADMIN_URL
               value: http://garage-backup-admin.garage-backup.svc.cluster.local:3903
             - name: GARAGE_BOOTSTRAP_CONFIG
-              value: /config/bootstrap.yaml
+              value: /app/bootstrap.yaml
             - name: GARAGE_BOOTSTRAP_ADMIN_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -69,7 +69,7 @@ spec:
             failureThreshold: 3
           volumeMounts:
             - name: bootstrap-config
-              mountPath: /config
+              mountPath: /app
               readOnly: true
       volumes:
         - name: bootstrap-config
