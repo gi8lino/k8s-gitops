@@ -1,0 +1,23 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: garage-backup-ingress-webui
+  namespace: garage-backup
+spec:
+  description: Allow the Garage Web UI to access Garage APIs
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: garage-backup
+      app.kubernetes.io/name: garage
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: garage-webui
+            "k8s:io.kubernetes.pod.namespace": garage-backup
+      toPorts:
+        - ports:
+            - port: "3900"
+              protocol: TCP
+            - port: "3903"
+              protocol: TCP

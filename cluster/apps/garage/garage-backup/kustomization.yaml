@@ -4,6 +4,6 @@ kind: Kustomization
 namespace: garage-backup
 resources:
   - networkpolicies/
+  - admin-service.yaml
   - helmrelease.yaml
   - secret.yaml
-  - admin-service.yaml
