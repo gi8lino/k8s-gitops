@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - cloudnative-pg-egress-kumbuka-postgres.yaml
   - cnpg-postgres.yaml
-  - minio-ingress-kumbuka-postgres.yaml
+  - garage-backup-ingress-kumbuka.yaml
   - prometheus-egress-kumbuka-postgres.yaml

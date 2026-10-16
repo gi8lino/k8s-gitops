@@ -8,6 +8,7 @@ resources:
   - cnpg-system.yaml
   - debug.yaml
   - filebrowser.yaml
+  - garage-backup.yaml
   - gitlab.yaml
   - healthchecks.yaml
   - k8up.yaml

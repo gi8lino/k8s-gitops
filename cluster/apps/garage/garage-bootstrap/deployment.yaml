@@ -1,0 +1,81 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: garage-bootstrap
+  namespace: garage-backup
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/name: garage-bootstrap
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: garage-bootstrap
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: garage-bootstrap
+    spec:
+      automountServiceAccountToken: false
+      initContainers:
+        - name: never
+          image: ghcr.io/containeroo/never:v0.12.3
+          args:
+            - --http.garage.address=http://garage-backup-admin.garage-backup.svc.cluster.local:3903/health
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: garage-bootstrap
+          image: ghcr.io/containeroo/garage-bootstrap:v0.0.1
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: GARAGE_BOOTSTRAP_ADMIN_URL
+              value: http://garage-backup-admin.garage-backup.svc.cluster.local:3903
+            - name: GARAGE_BOOTSTRAP_CONFIG
+              value: /config/bootstrap.yaml
+            - name: GARAGE_BOOTSTRAP_ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: garage-backup-admin
+                  key: adminToken
+            - name: GARAGE_BOOTSTRAP_LISTEN_ADDRESS
+              value: ":8080"
+          ports:
+            - name: health
+              containerPort: 8080
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: health
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 60
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: health
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          volumeMounts:
+            - name: bootstrap-config
+              mountPath: /config
+              readOnly: true
+      volumes:
+        - name: bootstrap-config
+          secret:
+            secretName: garage-bootstrap
+            items:
+              - key: bootstrap.yaml
+                path: bootstrap.yaml
+                mode: 0440

@@ -1,0 +1,39 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: garage-backup
+  namespace: garage-backup
+spec:
+  description: Allow Garage discovery and bootstrap admin traffic
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: garage-backup
+      app.kubernetes.io/name: garage
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: kube-dns
+            "k8s:io.kubernetes.pod.namespace": kube-system
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - kube-apiserver
+      toPorts:
+        - ports:
+            - port: "6443"
+              protocol: TCP
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: garage-bootstrap
+            "k8s:io.kubernetes.pod.namespace": garage-backup
+      toPorts:
+        - ports:
+            - port: "3903"
+              protocol: TCP

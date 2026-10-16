@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - debug/
   - filebrowser/
+  - garage/
   - gitlab/
   - healthchecks/
   - keycloak/

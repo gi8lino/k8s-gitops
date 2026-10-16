@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: garage-backup-admin
+  namespace: garage-backup
+  labels:
+    app.kubernetes.io/instance: garage-backup
+    app.kubernetes.io/name: garage
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/instance: garage-backup
+    app.kubernetes.io/name: garage
+  ports:
+    - name: admin
+      port: 3903
+      targetPort: admin
+      protocol: TCP

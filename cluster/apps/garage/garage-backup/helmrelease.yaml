@@ -1,0 +1,49 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: garage-backup
+  namespace: garage-backup
+spec:
+  interval: 20m
+  driftDetection:
+    mode: enabled
+  chart:
+    spec:
+      chart: ./script/helm/garage
+      sourceRef:
+        kind: GitRepository
+        name: garage
+        namespace: flux-system
+      interval: 30m
+  values:
+    environment:
+      - name: GARAGE_ADMIN_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: garage-backup-admin
+            key: adminToken
+    deployment:
+      replicaCount: 1
+    garage:
+      replicationFactor: "1"
+      dbEngine: sqlite
+      kubernetesSkipCrd: true
+      metadataAutoSnapshotInterval: 1h
+      additionalTopLevelConfig: |-
+        metadata_fsync = true
+        data_fsync = true
+        metadata_snapshots_dir = "/mnt/data/recovery/snapshots"
+    persistence:
+      data:
+        storageClass: backup
+        size: 500Gi
+      meta:
+        storageClass: nvme
+        size: 5Gi
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        memory: 2Gi
