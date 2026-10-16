@@ -25,7 +25,7 @@ spec:
         - name: never
           image: ghcr.io/containeroo/never:v0.12.3
           args:
-            - --http.garage.address=http://garage-backup-admin.garage-backup.svc.cluster.local:3903/health
+            - --tcp.garage.address=tcp://garage-backup-admin.garage-backup.svc.cluster.local:3903
           resources:
             requests:
               cpu: 10m

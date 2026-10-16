@@ -16,6 +16,9 @@ spec:
       secretAccessKey:
         name: db-backup
         key: secretKey
+      region:
+        name: db-backup
+        key: region
     wal:
       compression: gzip
     data:
