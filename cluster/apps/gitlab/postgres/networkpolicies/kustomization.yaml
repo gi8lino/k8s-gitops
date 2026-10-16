@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - cloudnative-pg-egress-gitlab-postgres.yaml
   - cnpg-postgres.yaml
-  - minio-ingress-gitlab-postgres.yaml
+  - garage-backup-ingress-gitlab-postgres.yaml
   - prometheus-egress-gitlab-postgres.yaml
