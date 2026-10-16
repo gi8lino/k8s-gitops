@@ -35,7 +35,7 @@ spec:
               memory: 16Mi
       containers:
         - name: garage-bootstrap
-          image: ghcr.io/containeroo/garage-bootstrap:v0.1.0
+          image: ghcr.io/containeroo/garage-bootstrap:v0.2.0
           imagePullPolicy: IfNotPresent
           env:
             - name: GARAGE_BOOTSTRAP_ADMIN_URL
