@@ -8,7 +8,6 @@ spec:
   path:
     escapedSlashesAction: KeepUnchanged
   clientIPDetection:
-    xForwardedFor: null
     customHeader:
       name: CF-Connecting-IP
       failClosed: true
@@ -26,7 +25,6 @@ spec:
   path:
     escapedSlashesAction: KeepUnchanged
   clientIPDetection:
-    xForwardedFor: null
     directSourceIP: {}
   http3: {}
   targetRefs:
