@@ -5,5 +5,5 @@ resources:
   - cloudnative-pg-egress-keycloak-postgres.yaml
   - cnpg-postgres-initdb.yaml
   - cnpg-postgres.yaml
-  - minio-ingress-keycloak-postgres.yaml
+  - garage-backup-ingress-keycloak-postgres.yaml
   - prometheus-egress-keycloak-postgres.yaml
