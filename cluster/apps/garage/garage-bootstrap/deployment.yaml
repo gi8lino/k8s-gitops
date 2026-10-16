@@ -78,4 +78,4 @@ spec:
             items:
               - key: bootstrap.yaml
                 path: bootstrap.yaml
-                mode: 0440
+                mode: 0444
