@@ -8,8 +8,10 @@ spec:
   path:
     escapedSlashesAction: KeepUnchanged
   clientIPDetection:
-    xForwardedFor:
-      numTrustedHops: 1
+    xForwardedFor: null
+    customHeader:
+      name: CF-Connecting-IP
+      failClosed: true
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
@@ -24,8 +26,8 @@ spec:
   path:
     escapedSlashesAction: KeepUnchanged
   clientIPDetection:
-    xForwardedFor:
-      numTrustedHops: 1
+    xForwardedFor: null
+    directSourceIP: {}
   http3: {}
   targetRefs:
     - group: gateway.networking.k8s.io
