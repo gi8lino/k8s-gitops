@@ -2,37 +2,16 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: plex-internal
-  namespace: media
-spec:
-  parentRefs:
-    - name: envoy-internal
-      namespace: network
-      sectionName: https
-  hostnames:
-    - plex.${BASE_DOMAIN}
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      timeouts:
-        request: 0s
-        backendRequest: 0s
-      backendRefs:
-        - name: plex
-          port: 32400
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: plex-external
+  name: plex
   namespace: media
   annotations:
     cloudflare-operator.io/type: CNAME
     cloudflare-operator.io/content: ${BASE_DOMAIN}
 spec:
   parentRefs:
+    - name: envoy-internal
+      namespace: network
+      sectionName: https
     - name: envoy-external
       namespace: network
       sectionName: https
@@ -43,12 +22,6 @@ spec:
         - path:
             type: PathPrefix
             value: /
-      filters:
-        - type: RequestHeaderModifier
-          requestHeaderModifier:
-            set:
-              - name: X-Forwarded-For
-                value: "%REQ(CF-CONNECTING-IP)%"
       timeouts:
         request: 0s
         backendRequest: 0s
