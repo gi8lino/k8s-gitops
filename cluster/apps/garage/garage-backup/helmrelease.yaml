@@ -27,9 +27,17 @@ spec:
       replicaCount: 1
     garage:
       replicationFactor: "1"
+      rpcBindAddr: "0.0.0.0:3901"
       dbEngine: sqlite
       kubernetesSkipCrd: true
       metadataAutoSnapshotInterval: 1h
+      s3:
+        api:
+          bindAddr: "0.0.0.0:3900"
+        web:
+          bindAddr: "0.0.0.0:3902"
+      admin:
+        apiBindAddr: "0.0.0.0:3903"
       additionalTopLevelConfig: |-
         metadata_fsync = true
         data_fsync = true
