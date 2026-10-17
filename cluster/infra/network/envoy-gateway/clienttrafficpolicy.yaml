@@ -10,7 +10,7 @@ spec:
   clientIPDetection:
     customHeader:
       name: CF-Connecting-IP
-      failClosed: true
+      failClosed: false
   headers:
     earlyRequestHeaders:
       set:
