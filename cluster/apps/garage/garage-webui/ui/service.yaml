@@ -9,6 +9,5 @@ spec:
     app.kubernetes.io/name: garage-webui
   ports:
     - name: http
-      port: 3909
-      protocol: TCP
+      port: 8080
       targetPort: http

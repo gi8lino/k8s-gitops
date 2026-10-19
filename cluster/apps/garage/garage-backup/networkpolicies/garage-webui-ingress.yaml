@@ -21,3 +21,21 @@ spec:
               protocol: TCP
             - port: "3903"
               protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
+            gateway.envoyproxy.io/owning-gateway-namespace: network
+            "k8s:io.kubernetes.pod.namespace": network
+      toPorts:
+        - ports:
+            - port: "3900"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            cnpg.io/cluster: garage-webui-postgres
+            cnpg.io/podRole: instance
+            "k8s:io.kubernetes.pod.namespace": garage-backup
+      toPorts:
+        - ports:
+            - port: "3900"
+              protocol: TCP

@@ -2,10 +2,10 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: envoy-gateway-egress-garage-webui
+  name: envoy-gateway-egress-garage-s3
   namespace: network
 spec:
-  description: Allow the internal Gateway to reach the Garage Web UI
+  description: Allow the internal Gateway to reach the Garage S3 API
   endpointSelector:
     matchLabels:
       gateway.envoyproxy.io/owning-gateway-name: envoy-internal
@@ -13,9 +13,10 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: garage-webui
+            app.kubernetes.io/instance: garage-backup
+            app.kubernetes.io/name: garage
             "k8s:io.kubernetes.pod.namespace": garage-backup
       toPorts:
         - ports:
-            - port: "3909"
+            - port: "3900"
               protocol: TCP

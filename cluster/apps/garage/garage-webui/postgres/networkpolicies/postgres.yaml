@@ -2,22 +2,31 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: garage-webui
+  name: garage-webui-postgres
   namespace: garage-backup
 spec:
-  description: Allow internal Gateway access to the Garage Web UI
+  description: Allow the Web UI and CloudNativePG to access its database
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/name: garage-webui
+      cnpg.io/cluster: garage-webui-postgres
+      cnpg.io/podRole: instance
   ingress:
     - fromEndpoints:
         - matchLabels:
-            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
-            gateway.envoyproxy.io/owning-gateway-namespace: network
-            "k8s:io.kubernetes.pod.namespace": network
+            app.kubernetes.io/name: garage-webui
+            "k8s:io.kubernetes.pod.namespace": garage-backup
       toPorts:
         - ports:
-            - port: "3909"
+            - port: "5432"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: cloudnative-pg
+            app.kubernetes.io/instance: cloudnative-pg
+            "k8s:io.kubernetes.pod.namespace": cnpg-system
+      toPorts:
+        - ports:
+            - port: "8000"
               protocol: TCP
   egress:
     - toEndpoints:
@@ -31,6 +40,12 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toEntities:
+        - kube-apiserver
+      toPorts:
+        - ports:
+            - port: "6443"
+              protocol: TCP
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: garage-backup
@@ -39,6 +54,4 @@ spec:
       toPorts:
         - ports:
             - port: "3900"
-              protocol: TCP
-            - port: "3903"
               protocol: TCP

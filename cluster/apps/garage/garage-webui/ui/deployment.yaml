@@ -1,0 +1,74 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: garage-webui
+  namespace: garage-backup
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: garage-webui
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: garage-webui
+    spec:
+      initContainers:
+        - name: never
+          image: ghcr.io/containeroo/never:v0.12.3
+          args:
+            - --tcp.postgres.address=garage-webui-postgres-rw:5432
+            - --tcp.garage.address=garage-backup-admin:3903
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 10m
+              memory: 16Mi
+      containers:
+        - name: garage-webui
+          image: ghcr.io/containeroo/garage-webui:v0.0.1
+          args:
+            - "--listen-address=0.0.0.0:8080"
+            - "--management-listen-address=0.0.0.0:8081"
+          env:
+            - name: GARAGE_WEBUI__DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: garage-webui-postgres-app
+                  key: uri
+            - name: GARAGE_WEBUI__GARAGE_URL
+              value: http://garage-backup-admin:3903
+            - name: GARAGE_WEBUI__GARAGE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: garage-backup-admin
+                  key: adminToken
+            - name: GARAGE_WEBUI__PUBLIC_URL
+              value: https://garage.${BASE_DOMAIN}
+            - name: GARAGE_WEBUI__S3_PUBLIC_URL
+              value: https://garage-s3.${BASE_DOMAIN}
+            - name: GARAGE_WEBUI__S3_REGION
+              value: garage
+            - name: GARAGE_WEBUI__AUTH_MODE
+              value: oidc
+          envFrom:
+            - secretRef:
+                name: garage-webui-oidc
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: management
+              containerPort: 8081
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: management
+            initialDelaySeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: management
+            initialDelaySeconds: 5

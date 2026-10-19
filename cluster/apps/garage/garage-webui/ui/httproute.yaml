@@ -20,4 +20,23 @@ spec:
             value: /
       backendRefs:
         - name: garage-webui
-          port: 3909
+          port: 8080
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: garage-webui-s3
+  namespace: garage-backup
+  annotations:
+    cloudflare-operator.io/ignore: "true"
+spec:
+  parentRefs:
+    - name: envoy-internal
+      namespace: network
+      sectionName: https
+  hostnames:
+    - garage-s3.${BASE_DOMAIN}
+  rules:
+    - backendRefs:
+        - name: garage-backup
+          port: 3900
