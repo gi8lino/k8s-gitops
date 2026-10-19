@@ -18,7 +18,6 @@ spec:
         - name: never
           image: ghcr.io/containeroo/never:v0.12.3
           args:
-            - --tcp.postgres.address=garage-webui-postgres-rw:5432
             - --tcp.garage.address=garage-backup-admin:3903
           resources:
             requests:
