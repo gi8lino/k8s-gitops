@@ -48,6 +48,9 @@ spec:
               value: https://garage-s3.${BASE_DOMAIN}
             - name: GARAGE_WEBUI__S3_REGION
               value: garage
+          envFrom:
+            - secretRef:
+                name: garage-webui-config
           ports:
             - name: http
               containerPort: 8080
