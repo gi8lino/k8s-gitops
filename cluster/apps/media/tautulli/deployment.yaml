@@ -64,13 +64,7 @@ spec:
             failureThreshold: 3
             timeoutSeconds: 3
             periodSeconds: 10
-          resources:
-            requests:
-              cpu: 25m
-              memory: 128Mi
-            limits:
-              cpu: 500m
-              memory: 1Gi
+          resources: {}
           volumeMounts:
             - name: data
               mountPath: /config

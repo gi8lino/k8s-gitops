@@ -76,12 +76,6 @@ spec:
               port: management
             failureThreshold: 2
             periodSeconds: 30
-          resources:
-            requests:
-              memory: 256Mi
-              cpu: 100m
-            limits:
-              memory: 256Mi
-              cpu: 100m
+          resources: {}
       restartPolicy: Always
       automountServiceAccountToken: false

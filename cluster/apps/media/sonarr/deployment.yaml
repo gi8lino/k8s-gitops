@@ -31,13 +31,7 @@ spec:
               value: "False"
             - name: CONFIGARR__AUTHENTICATIONMETHOD
               value: External
-          resources:
-            requests:
-              cpu: 10m
-              memory: 32Mi
-            limits:
-              cpu: 100m
-              memory: 128Mi
+          resources: {}
           volumeMounts:
             - name: data
               mountPath: /config
@@ -82,13 +76,7 @@ spec:
             failureThreshold: 3
             timeoutSeconds: 3
             periodSeconds: 10
-          resources:
-            requests:
-              cpu: 50m
-              memory: 256Mi
-            limits:
-              cpu: "1"
-              memory: 2Gi
+          resources: {}
           volumeMounts:
             - name: data
               mountPath: /config
