@@ -1,0 +1,19 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: garage-webui-postgres-initdb
+  namespace: garage-backup
+spec:
+  description: Allow Garage Web UI PostgreSQL initialization to reach the Kubernetes API
+  endpointSelector:
+    matchLabels:
+      cnpg.io/cluster: garage-webui-postgres
+      cnpg.io/jobRole: initdb
+  egress:
+    - toEntities:
+        - kube-apiserver
+      toPorts:
+        - ports:
+            - port: "6443"
+              protocol: TCP
