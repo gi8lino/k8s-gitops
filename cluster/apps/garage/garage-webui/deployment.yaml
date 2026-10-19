@@ -29,16 +29,13 @@ spec:
               memory: 16Mi
       containers:
         - name: garage-webui
-          image: ghcr.io/containeroo/garage-webui:v0.2.0
+          image: ghcr.io/containeroo/garage-webui:v0.5.0
           args:
             - "--listen-address=0.0.0.0:8080"
             - "--management-listen-address=0.0.0.0:8081"
           env:
             - name: GARAGE_WEBUI__DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: garage-webui-postgres-app
-                  key: uri
+              value: sqlite:///data/garage-webui.db
             - name: GARAGE_WEBUI__GARAGE_URL
               value: http://garage-backup-admin:3903
             - name: GARAGE_WEBUI__GARAGE_TOKEN
@@ -52,11 +49,6 @@ spec:
               value: https://garage-s3.${BASE_DOMAIN}
             - name: GARAGE_WEBUI__S3_REGION
               value: garage
-            - name: GARAGE_WEBUI__AUTH_MODE
-              value: oidc
-          envFrom:
-            - secretRef:
-                name: garage-webui-oidc
           ports:
             - name: http
               containerPort: 8080
@@ -67,8 +59,10 @@ spec:
               path: /healthz
               port: management
             initialDelaySeconds: 5
-          readinessProbe:
-            httpGet:
-              path: /readyz
-              port: management
-            initialDelaySeconds: 5
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: garage-webui-data
