@@ -37,11 +37,6 @@ spec:
               value: sqlite:///data/garage-webui.db
             - name: GARAGE_WEBUI__GARAGE_URL
               value: http://garage-backup-admin:3903
-            - name: GARAGE_WEBUI__GARAGE_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: garage-backup-admin
-                  key: adminToken
             - name: GARAGE_WEBUI__PUBLIC_URL
               value: https://garage.${BASE_DOMAIN}
             - name: GARAGE_WEBUI__S3_PUBLIC_URL

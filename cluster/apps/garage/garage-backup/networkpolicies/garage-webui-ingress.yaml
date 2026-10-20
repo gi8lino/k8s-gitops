@@ -30,12 +30,3 @@ spec:
         - ports:
             - port: "3900"
               protocol: TCP
-    - fromEndpoints:
-        - matchLabels:
-            cnpg.io/cluster: garage-webui-postgres
-            cnpg.io/podRole: instance
-            "k8s:io.kubernetes.pod.namespace": garage-backup
-      toPorts:
-        - ports:
-            - port: "3900"
-              protocol: TCP
