@@ -10,7 +10,7 @@ resources:
   - keycloak/
   - kumbuka/
   - media/
+  - minio/
   - motus/
   - nextcloud/
   - renovate/
-  - wiki/

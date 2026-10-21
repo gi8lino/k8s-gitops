@@ -23,4 +23,3 @@ resources:
   - renovate.yaml
   - storage-system.yaml
   - syncflaer.yaml
-  - wiki.yaml
