@@ -42,3 +42,9 @@ spec:
               protocol: TCP
             - port: "3903"
               protocol: TCP
+    - toFQDNs:
+        - matchName: garage-s3.${BASE_DOMAIN}
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
