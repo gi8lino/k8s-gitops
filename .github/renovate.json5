@@ -8,6 +8,7 @@
   ],
   semanticCommits: 'enabled',
   dependencyDashboard: true,
+  prCreation: 'immediate',
   separateMajorMinor: true,
   timezone: 'Europe/Zurich',
   assignees: [
@@ -184,28 +185,12 @@
     },
     {
       "matchPackageNames": ["ghcr.io/cloudnative-pg/postgresql"],
-      "additionalBranchPrefix": "{{packageFileDir}}-",
-      "prCreation": "status-success"
-    },
-    {
-      "matchPackageNames": ["kubernetes-sigs/gateway-api"],
-      "prCreation": "status-success"
-    },
-    {
-      "matchPackageNames": [
-        "cloudnative-pg/cloudnative-pg",
-        "cloudnative-pg/plugin-barman-cloud",
-        "quay.io/keycloak/keycloak",
-        "requarks/wiki",
-        "nextcloud",
-      ],
-      "prCreation": "status-success"
+      "additionalBranchPrefix": "{{packageFileDir}}-"
     },
     {
       "groupName": "GitLab and GitLab Runner",
       "matchDatasources": ["helm"],
-      "matchPackageNames": ["gitlab", "gitlab-runner"],
-      "prCreation": "status-success"
+      "matchPackageNames": ["gitlab", "gitlab-runner"]
     }
   ],
   'pre-commit': {
