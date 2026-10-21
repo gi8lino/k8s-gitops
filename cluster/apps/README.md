@@ -17,7 +17,7 @@ This directory contains infrastructure applications.
 - **keycloak** identity and access management
 - **kube-system** contains essential system components
 - **media** usenet-stack containing plex, prowlarr, radarr, sabnzbd, sonarr and tautulli
-- **minio** s3 compatible object storage
+- **garage** S3-compatible backup storage and its management UI
 - **observability** contains kube-prometheus-stack and prometheus-pushgateway for cluster observability
 - **nextcloud** self-hosted cloud similar to iCloud
 - **reloader** is a Kubernetes controller to watch changes in `ConfigMap` and `Secret` and do rolling upgrades on Pods with their associated `Deployments`, `Daemonsets` `Statefulsets` and `Rollouts`

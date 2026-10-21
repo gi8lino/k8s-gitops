@@ -19,9 +19,6 @@ spec:
         - matchLabels:
             app.kubernetes.io/name: grafana
             "k8s:io.kubernetes.pod.namespace": observability
-        - matchLabels:
-            app.kubernetes.io/name: minio
-            "k8s:io.kubernetes.pod.namespace": minio
       toPorts:
         - ports:
             - port: "9090"

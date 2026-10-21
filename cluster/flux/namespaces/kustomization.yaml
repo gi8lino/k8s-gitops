@@ -15,7 +15,6 @@ resources:
   - keycloak.yaml
   - kumbuka.yaml
   - media.yaml
-  - minio.yaml
   - motus.yaml
   - network.yaml
   - nextcloud.yaml

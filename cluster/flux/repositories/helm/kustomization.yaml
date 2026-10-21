@@ -11,7 +11,6 @@ resources:
   - jetstack.yaml
   - k8up-io.yaml
   - metrics-server.yaml
-  - minio.yaml
   - nfs-subdir-external-provisioner.yaml
   - prometheus-community.yaml
   - stakater.yaml

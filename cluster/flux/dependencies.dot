@@ -12,6 +12,7 @@ digraph flux_dependencies {
     Kustomization_flux_system_cluster [label="flux-system/cluster", color="#3b82f6"];
     Kustomization_flux_system_cnpg_plugin_barman_cloud_crds [label="flux-system/cnpg-plugin-barman-cloud-crds", color="#3b82f6"];
     Kustomization_flux_system_crds [label="flux-system/crds", color="#3b82f6"];
+    Kustomization_flux_system_flux_runtime [label="flux-system/flux-runtime", color="#3b82f6"];
     Kustomization_flux_system_infra [label="flux-system/infra", color="#3b82f6"];
     Kustomization_flux_system_kube_prometheus_stack_crds [label="flux-system/kube-prometheus-stack-crds", color="#3b82f6"];
     Kustomization_flux_system_networkpolicies [label="flux-system/networkpolicies", color="#3b82f6"];
@@ -25,6 +26,7 @@ digraph flux_dependencies {
     HelmRelease_cloudflare_operator_cloudflare_operator [label="cloudflare-operator/cloudflare-operator", color="#16a34a"];
     HelmRelease_cnpg_system_cloudnative_pg [label="cnpg-system/cloudnative-pg", color="#16a34a"];
     HelmRelease_cnpg_system_cnpg_plugin_barman_cloud [label="cnpg-system/cnpg-plugin-barman-cloud", color="#16a34a"];
+    HelmRelease_garage_backup_garage_backup [label="garage-backup/garage-backup", color="#16a34a"];
     HelmRelease_gitlab_gitlab [label="gitlab/gitlab", color="#16a34a"];
     HelmRelease_gitlab_gitlab_garage [label="gitlab/gitlab-garage", color="#16a34a"];
     HelmRelease_gitlab_gitlab_runner [label="gitlab/gitlab-runner", color="#16a34a"];
@@ -32,9 +34,9 @@ digraph flux_dependencies {
     HelmRelease_k8up_k8up [label="k8up/k8up", color="#16a34a"];
     HelmRelease_kube_system_coredns [label="kube-system/coredns", color="#16a34a"];
     HelmRelease_kube_system_metrics_server [label="kube-system/metrics-server", color="#16a34a"];
-    HelmRelease_minio_minio [label="minio/minio", color="#16a34a"];
     HelmRelease_network_envoy_gateway [label="network/envoy-gateway", color="#16a34a"];
     HelmRelease_nextcloud_nextcloud_valkey [label="nextcloud/nextcloud-valkey", color="#16a34a"];
+    HelmRelease_observability_kube_ephemeral_container_exporter [label="observability/kube-ephemeral-container-exporter", color="#16a34a"];
     HelmRelease_observability_kube_prometheus_stack [label="observability/kube-prometheus-stack", color="#16a34a"];
     HelmRelease_observability_prometheus_blackbox_exporter [label="observability/prometheus-blackbox-exporter", color="#16a34a"];
     HelmRelease_observability_prometheus_pushgateway [label="observability/prometheus-pushgateway", color="#16a34a"];
@@ -50,14 +52,14 @@ digraph flux_dependencies {
   Kustomization_flux_system_crds -> Kustomization_flux_system_cluster;
   Kustomization_flux_system_infra -> Kustomization_flux_system_crds;
   Kustomization_flux_system_networkpolicies -> Kustomization_flux_system_apps;
+  Kustomization_flux_system_flux_runtime -> Kustomization_flux_system_infra;
   Kustomization_flux_system_apps -> Kustomization_flux_system_infra;
   HelmRelease_network_envoy_gateway -> HelmRelease_cilium_cilium;
   HelmRelease_network_envoy_gateway -> HelmRelease_cert_manager_cert_manager;
   HelmRelease_cnpg_system_cnpg_plugin_barman_cloud -> HelmRelease_cnpg_system_cloudnative_pg;
   HelmRelease_observability_kube_prometheus_stack -> HelmRelease_network_envoy_gateway;
   HelmRelease_observability_prometheus_pushgateway -> HelmRelease_network_envoy_gateway;
+  HelmRelease_gitlab_gitlab -> HelmRelease_garage_backup_garage_backup;
   HelmRelease_gitlab_gitlab -> HelmRelease_gitlab_gitlab_garage;
   HelmRelease_gitlab_gitlab -> HelmRelease_gitlab_gitlab_valkey;
-  HelmRelease_minio_minio -> HelmRelease_storage_system_backup;
-  HelmRelease_minio_minio -> HelmRelease_network_envoy_gateway;
 }
