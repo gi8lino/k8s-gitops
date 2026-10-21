@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: garage-backup-ingress-gitlab
+  namespace: garage-backup
+spec:
+  description: Allow GitLab toolbox backup and restore traffic
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: garage-backup
+      app.kubernetes.io/name: garage
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: toolbox
+            release: gitlab
+            "k8s:io.kubernetes.pod.namespace": gitlab
+      toPorts:
+        - ports:
+            - port: "3900"
+              protocol: TCP

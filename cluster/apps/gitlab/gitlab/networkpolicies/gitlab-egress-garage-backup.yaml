@@ -2,10 +2,10 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: gitlab-egress-minio
+  name: gitlab-egress-garage-backup
   namespace: gitlab
 spec:
-  description: Allow gitlab backups access to minio
+  description: Allow GitLab application backups to access Garage backup storage
   endpointSelector:
     matchLabels:
       app: toolbox
@@ -24,10 +24,10 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - matchLabels:
-            app.kubernetes.io/instance: minio
-            app.kubernetes.io/name: minio
-            "k8s:io.kubernetes.pod.namespace": minio
+            app.kubernetes.io/instance: garage-backup
+            app.kubernetes.io/name: garage
+            "k8s:io.kubernetes.pod.namespace": garage-backup
       toPorts:
         - ports:
-            - port: "9000"
+            - port: "3900"
               protocol: TCP
