@@ -5,7 +5,7 @@ metadata:
   name: garage-webui
   namespace: garage-backup
 spec:
-  description: Allow internal Gateway access to the Garage Web UI
+  description: Allow Gateway ingress and direct Garage API egress
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: garage-webui
@@ -31,6 +31,7 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    # S3_URL and GARAGE_URL connect directly; no public Gateway egress is needed.
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: garage-backup
@@ -41,10 +42,4 @@ spec:
             - port: "3900"
               protocol: TCP
             - port: "3903"
-              protocol: TCP
-    - toFQDNs:
-        - matchName: garage-s3.${BASE_DOMAIN}
-      toPorts:
-        - ports:
-            - port: "443"
               protocol: TCP

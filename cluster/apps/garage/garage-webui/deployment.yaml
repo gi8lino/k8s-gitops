@@ -30,7 +30,7 @@ spec:
               memory: 16Mi
       containers:
         - name: garage-webui
-          image: ghcr.io/containeroo/garage-webui:v0.7.0
+          image: ghcr.io/containeroo/garage-webui:v0.9.0
           args:
             - "--listen-address=0.0.0.0:8080"
             - "--management-listen-address=0.0.0.0:8081"
@@ -41,6 +41,8 @@ spec:
               value: http://garage-backup-admin:3903
             - name: GARAGE_WEBUI__PUBLIC_URL
               value: https://garage.${BASE_DOMAIN}
+            - name: GARAGE_WEBUI__S3_URL
+              value: http://garage-backup:3900
             - name: GARAGE_WEBUI__S3_PUBLIC_URL
               value: https://garage-s3.${BASE_DOMAIN}
             - name: GARAGE_WEBUI__S3_REGION
