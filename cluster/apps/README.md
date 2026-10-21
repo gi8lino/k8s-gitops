@@ -10,17 +10,17 @@ This directory contains infrastructure applications.
 - **cloudnative-pg** Kubernetes operator for managing PostgreSQL databases
 - **debug** tools for debugging the cluster
 - **filebrowser** browse files from the web
+- **garage** S3-compatible backup storage and its management UI
 - **gitlab** contains gitlab and other gitlab related applications
 - **healthchecks** observability regularly running tasks such as cron jobs
-- **network** deploys Envoy Gateway for Gateway API-based ingress with dedicated internal/external data planes
 - **k8up** is a Kubernetes backup operator created by VSHN
 - **keycloak** identity and access management
 - **kube-system** contains essential system components
+- **kumbuka** self-hosted wiki for internal documentation
 - **media** usenet-stack containing plex, prowlarr, radarr, sabnzbd, sonarr and tautulli
-- **garage** S3-compatible backup storage and its management UI
-- **observability** contains kube-prometheus-stack and prometheus-pushgateway for cluster observability
+- **network** deploys Envoy Gateway for Gateway API-based ingress with dedicated internal/external data planes
 - **nextcloud** self-hosted cloud similar to iCloud
+- **observability** contains kube-prometheus-stack and prometheus-pushgateway for cluster observability
 - **reloader** is a Kubernetes controller to watch changes in `ConfigMap` and `Secret` and do rolling upgrades on Pods with their associated `Deployments`, `Daemonsets` `Statefulsets` and `Rollouts`
 - **renovate** dependency updater
 - **storage** contains tools about storage
-- **wiki** self-hosted wiki for internal documentation
