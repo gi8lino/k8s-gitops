@@ -22,7 +22,7 @@ spec:
     spec:
       initContainers:
         - name: never
-          image: ghcr.io/containeroo/never:v0.12.3
+          image: ghcr.io/containeroo/never:v0.12.4
           args:
             - --http.postgres.address=https://kumbuka-postgres-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true
