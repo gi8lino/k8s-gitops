@@ -23,7 +23,7 @@ spec:
           type: RuntimeDefault
       initContainers:
         - name: configarr
-          image: ghcr.io/gi8lino/configarr:0.1.0
+          image: ghcr.io/gi8lino/configarr:0.2.0
           args:
             - /config/config.xml
           env:
