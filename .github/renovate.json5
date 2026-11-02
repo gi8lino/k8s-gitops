@@ -69,17 +69,6 @@
       datasourceTemplate: 'github-releases',
     },
     {
-      description: 'dependencies for helm-release-differ',
-      customType: 'regex',
-      managerFilePatterns: [
-        '/.github/workflows/helm-release-differ\\.ya?ml$/',
-      ],
-      matchStrings: [
-        'depName=(?<depName>\\S+)\\s.*version:\\s*(?<currentValue>\\S+)',
-      ],
-      datasourceTemplate: 'github-releases',
-    },
-    {
       description: 'Process CRD dependencies',
       customType: 'regex',
       managerFilePatterns: [
