@@ -27,6 +27,8 @@ spec:
           args:
             - /config/config.xml
           env:
+            - name: CONFIGARR__SHOW_VALUES
+              value: "true"
             - name: CONFIGARR__UPDATE_LAUNCHBROWSER_PATH
               value: /Config/LaunchBrowser
             - name: CONFIGARR__UPDATE_LAUNCHBROWSER_VALUE
