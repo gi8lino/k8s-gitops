@@ -23,14 +23,18 @@ spec:
           type: RuntimeDefault
       initContainers:
         - name: configarr
-          image: ghcr.io/gi8lino/configarr:0.0.6
+          image: ghcr.io/gi8lino/configarr:0.1.0
           args:
-            - --debug
+            - /config/config.xml
           env:
-            - name: CONFIGARR__LAUNCHBROWSER
-              value: LaunchBrowser=False
-            - name: CONFIGARR__AUTHENTICATIONMETHOD
-              value: AuthenticationMethod=External
+            - name: CONFIGARR__UPDATE_LAUNCHBROWSER_PATH
+              value: /Config/LaunchBrowser
+            - name: CONFIGARR__UPDATE_LAUNCHBROWSER_VALUE
+              value: "False"
+            - name: CONFIGARR__UPDATE_AUTHENTICATIONMETHOD_PATH
+              value: /Config/AuthenticationMethod
+            - name: CONFIGARR__UPDATE_AUTHENTICATIONMETHOD_VALUE
+              value: External
           resources:
             requests:
               cpu: 10m
