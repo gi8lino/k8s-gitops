@@ -23,7 +23,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: sabnzbd
-          image: ghcr.io/linuxserver/sabnzbd:5.1.3-ls279
+          image: ghcr.io/linuxserver/sabnzbd:5.1.3-ls280
           env:
             - name: TZ
               value: Europe/Zurich
