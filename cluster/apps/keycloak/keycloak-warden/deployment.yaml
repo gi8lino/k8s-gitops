@@ -56,6 +56,8 @@ spec:
                 secretKeyRef:
                   name: keycloak-warden
                   key: WARDEN__ADMIN_TOKEN
+            - name: KC_SPI_EVENTS_LISTENER__SNITCH__EVENT_TYPES
+              value: LOGIN_ERROR
           ports:
             - name: http
               containerPort: 8080
