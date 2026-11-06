@@ -46,7 +46,7 @@ spec:
             "k8s:io.kubernetes.pod.namespace": keycloak
       toPorts:
         - ports:
-            - port: "8000"
+            - port: "8080" # Warden events API
               protocol: TCP
     - toEndpoints:
         - matchLabels:
