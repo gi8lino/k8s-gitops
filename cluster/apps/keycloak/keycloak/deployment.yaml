@@ -55,6 +55,8 @@ spec:
           envFrom:
             - secretRef:
                 name: keycloak
+            - secretRef:
+                name: keycloak-snitch
           env:
             - name: KC_HOSTNAME
               value: sso.${BASE_DOMAIN}
@@ -77,6 +79,8 @@ spec:
                 secretKeyRef:
                   name: keycloak-postgres-app
                   key: jdbc-uri
+            - name: KC_SPI_EVENTS_LISTENER__SNITCH__WEBHOOK_URL
+              value: "http://keycloak-warden:8080/events"
           ports:
             - name: http
               containerPort: 8080
