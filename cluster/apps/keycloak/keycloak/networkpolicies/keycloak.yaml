@@ -27,6 +27,15 @@ spec:
         - ports:
             - port: "8080"
               protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: keycloak-warden
+            app.kubernetes.io/component: keycloak-warden
+            "k8s:io.kubernetes.pod.namespace": keycloak
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
   egress:
     - toEndpoints:
         - matchLabels:

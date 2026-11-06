@@ -1,0 +1,49 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: keycloak-warden
+  namespace: keycloak
+spec:
+  description: "Policy for keycloak warden"
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: keycloak-warden
+      app.kubernetes.io/component: keycloak-warden
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: keycloak
+            app.kubernetes.io/component: keycloak
+            "k8s:io.kubernetes.pod.namespace": keycloak
+      toPorts:
+        - ports:
+            - port: "8080"
+              protocol: TCP
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: keycloak
+            app.kubernetes.io/component: keycloak
+            "k8s:io.kubernetes.pod.namespace": keycloak
+      toPorts:
+        - ports:
+            - port: "8000" # /healthz endpoint
+              protocol: TCP
+    - toFQDNs:
+        - matchName: api.cloudflare.com
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP

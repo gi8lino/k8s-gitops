@@ -8,12 +8,12 @@ metadata:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app.kubernetes.io/name: keycloak-warden
       app.kubernetes.io/component: keycloak-warden
-  strategy:
-    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -21,39 +21,41 @@ spec:
         app.kubernetes.io/component: keycloak-warden
     spec:
       securityContext:
-        fsGroup: 1000
+        fsGroup: 0
+        fsGroupChangePolicy: OnRootMismatch
         seccompProfile:
           type: RuntimeDefault
-      restartPolicy: Always
-      initContainers:
-        - name: never
-          image: ghcr.io/containeroo/never:v0.12.5
-          args:
-            - --http.keycloak.address=https://keycloak:9000/health/started
-            - --http.keycloak.skip-tls-verify=true
-          resources:
-            requests:
-              cpu: 10m
-              memory: 16Mi
-            limits:
-              cpu: 10m
-              memory: 16Mi
       containers:
         - name: keycloak-warden
           image: ghcr.io/gi8lino/keycloak-warden:v0.0.1
           imagePullPolicy: IfNotPresent
+          args:
+            - serve
+            - --config=/config/warden.yaml
+            - --database=/data/warden.db
+            - --listen-address=:8080
+            - --management-listen-address=:8081
+            - --metrics
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
               drop:
                 - ALL
+            readOnlyRootFilesystem: true
             runAsNonRoot: true
-            runAsUser: 1000
-          envFrom:
-            - secretRef:
-                name: keycloak-snitch
-            - secretRef:
-                name: keycloak-warden
+            runAsUser: 65532
+            runAsGroup: 0
+          env:
+            - name: WARDEN__SNITCH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-snitch
+                  key: KC_SPI_EVENTS_LISTENER__SNITCH__WEBHOOK_SECRET
+            - name: WARDEN__ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-warden
+                  key: WARDEN__ADMIN_TOKEN
           ports:
             - name: http
               containerPort: 8080
@@ -65,12 +67,41 @@ spec:
             httpGet:
               path: /healthz
               port: management
-            initialDelaySeconds: 7
-            timeoutSeconds: 1
-            failureThreshold: 60
-            periodSeconds: 5
+            periodSeconds: 2
+            timeoutSeconds: 2
+            failureThreshold: 30
           readinessProbe:
             httpGet:
-              path: /ready
+              path: /readyz
               port: management
-            timeoutSeconds: 1
+            periodSeconds: 10
+            timeoutSeconds: 2
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: management
+            periodSeconds: 30
+            timeoutSeconds: 2
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          volumeMounts:
+            - name: config
+              mountPath: /config
+              readOnly: true
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: config
+          secret:
+            secretName: keycloak-warden
+            items:
+              - key: warden.yaml
+                path: warden.yaml
+        - name: data
+          persistentVolumeClaim:
+            claimName: keycloak-warden-data
