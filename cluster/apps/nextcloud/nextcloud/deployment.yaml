@@ -93,7 +93,7 @@ spec:
               name: user-data
               readOnly: true
         - name: nextcloud
-          image: nextcloud:35.0.2-fpm-alpine@sha256:40d00cfb2c32c3c5640a4f2255d7624ed070774bbc5cb489935d50bfb2e5dd24
+          image: nextcloud:35.0.2-fpm-alpine@sha256:94ac3e2b538dbf165e7c1751c7287107e2b93c4c8cd8335cfccb88aaae4d739d
           env:
             - name: POSTGRES_HOST
               value: nextcloud-postgres-rw.nextcloud.svc.cluster.local
