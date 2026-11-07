@@ -24,6 +24,9 @@ spec:
   values:
     config:
       envoyGateway:
+        runtimeFlags:
+          disabled:
+            - OIDCTokenCookieChunking
         extensionApis:
           enableEnvoyPatchPolicy: true
           enableBackend: true
