@@ -78,3 +78,10 @@ spec:
         - ports:
             - port: "10443"
               protocol: TCP
+    - toFQDNs:
+        - matchName: github.com
+        - matchName: release-assets.githubusercontent.com
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
