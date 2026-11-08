@@ -40,7 +40,7 @@ spec:
               cpu: 10m
               memory: 16Mi
         - name: snitch
-          image: curlimages/curl:8.21.0
+          image: curlimages/curl:8.23.0
           command: ["/bin/sh", "-ec"]
           env:
             - name: SNITCH_VERSION
