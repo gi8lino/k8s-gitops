@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 version="${SNITCH_VERSION#v}"
@@ -6,7 +6,7 @@ jar="/providers/keycloak-snitch.jar"
 marker="/providers/.snitch-version"
 
 if [ -s "$jar" ] &&
-   [ "$(cat "$marker" 2>/dev/null)" = "$SNITCH_VERSION" ]; then
+  [ "$(cat "$marker" 2>/dev/null)" = "$SNITCH_VERSION" ]; then
   echo "Snitch $SNITCH_VERSION already installed"
   exit 0
 fi
@@ -21,6 +21,6 @@ test -s "${jar}.tmp"
 rm -f /providers/keycloak-snitch-*.jar
 
 mv "${jar}.tmp" "$jar"
-printf '%s\n' "$SNITCH_VERSION" > "$marker"
+printf '%s\n' "$SNITCH_VERSION" >"$marker"
 
 echo "Snitch $SNITCH_VERSION installed"
