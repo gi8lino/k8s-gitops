@@ -27,7 +27,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: keycloak-warden
-          image: ghcr.io/gi8lino/keycloak-warden:v0.3.4
+          image: ghcr.io/gi8lino/keycloak-warden:v0.4.0
           imagePullPolicy: IfNotPresent
           args:
             - serve
@@ -51,13 +51,9 @@ spec:
                 secretKeyRef:
                   name: keycloak-snitch
                   key: KC_SPI_EVENTS_LISTENER__SNITCH__WEBHOOK_SECRET
-            - name: WARDEN__ADMIN_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-warden
-                  key: WARDEN__ADMIN_TOKEN
-            - name: KC_SPI_EVENTS_LISTENER__SNITCH__EVENT_TYPES
-              value: LOGIN_ERROR
+          envFrom:
+            - secretRef:
+                name: keycloak-warden
           ports:
             - name: http
               containerPort: 8080
@@ -72,12 +68,6 @@ spec:
             periodSeconds: 2
             timeoutSeconds: 2
             failureThreshold: 30
-          readinessProbe:
-            httpGet:
-              path: /readyz
-              port: management
-            periodSeconds: 10
-            timeoutSeconds: 2
           livenessProbe:
             httpGet:
               path: /healthz
@@ -99,11 +89,8 @@ spec:
               mountPath: /data
       volumes:
         - name: config
-          secret:
-            secretName: keycloak-warden
-            items:
-              - key: warden.yaml
-                path: warden.yaml
+          configMap:
+            name: keycloak-warden-config
         - name: data
           persistentVolumeClaim:
             claimName: keycloak-warden-data
