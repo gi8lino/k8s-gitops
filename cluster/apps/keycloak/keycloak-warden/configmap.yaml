@@ -11,8 +11,7 @@ data:
       window: 1m
       ban: 15m
     targets:
-      receiver:
-        enabled: true
-        provider: cloudflare
-        zone-id: "env:CLOUDFLARE_ZONE_ID"
-        secret: "env:CLOUDFLARE_API_TOKEN"
+      cloudflare:
+        edge:
+          zone-id: env:CLOUDFLARE_ZONE_ID
+          api-token: env:CLOUDFLARE_API_TOKEN
