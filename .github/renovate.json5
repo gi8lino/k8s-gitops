@@ -1,188 +1,168 @@
 {
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: [
-    'github>gi8lino/k8s-gitops//.github/renovate/commitMessage.json5',
-    'github>gi8lino/k8s-gitops//.github/renovate/labels.json5',
-    'github>gi8lino/k8s-gitops//.github/renovate/appScopes.json5',
-    'github>gi8lino/k8s-gitops//.github/renovate/semanticCommits.json5',
+    "github>gi8lino/k8s-gitops//.github/renovate/commitMessage.json5",
+    "github>gi8lino/k8s-gitops//.github/renovate/labels.json5",
+    "github>gi8lino/k8s-gitops//.github/renovate/appScopes.json5",
+    "github>gi8lino/k8s-gitops//.github/renovate/semanticCommits.json5",
   ],
-  semanticCommits: 'enabled',
+  semanticCommits: "enabled",
   dependencyDashboard: true,
-  prCreation: 'immediate',
+  prCreation: "immediate",
   separateMajorMinor: true,
-  timezone: 'Europe/Zurich',
-  assignees: [
-    'gi8lino',
-  ],
+  timezone: "Europe/Zurich",
+  assignees: ["gi8lino"],
   ignoreDeps: [
-    'ghcr.io/fluxcd/helm-controller',
-    'ghcr.io/fluxcd/image-automation-controller',
-    'ghcr.io/fluxcd/image-reflector-controller',
-    'ghcr.io/fluxcd/kustomize-controller',
-    'ghcr.io/fluxcd/notification-controller',
-    'ghcr.io/fluxcd/source-controller',
+    "ghcr.io/fluxcd/helm-controller",
+    "ghcr.io/fluxcd/image-automation-controller",
+    "ghcr.io/fluxcd/image-reflector-controller",
+    "ghcr.io/fluxcd/kustomize-controller",
+    "ghcr.io/fluxcd/notification-controller",
+    "ghcr.io/fluxcd/source-controller",
   ],
   kubernetes: {
     managerFilePatterns: [
-      '/cluster/apps/.+/(cronjob|daemonset|deployment|statefulset)\\.ya?ml$/',
-      '/cluster/infra/.+/(cronjob|daemonset|deployment|statefulset|prebackuppod)\\.ya?ml$/',
+      "/cluster/apps/.+/(cronjob|daemonset|deployment|statefulset)\\.ya?ml$/",
+      "/cluster/infra/.+/(cronjob|daemonset|deployment|statefulset|prebackuppod)\\.ya?ml$/",
     ],
   },
-  'helm-values': {
+  "helm-values": {
     managerFilePatterns: [
-      '/cluster/apps/.+/helmrelease\\.ya?ml$/',
-      '/cluster/infra/.+/helmrelease\\.ya?ml$/',
+      "/cluster/apps/.+/helmrelease\\.ya?ml$/",
+      "/cluster/infra/.+/helmrelease\\.ya?ml$/",
     ],
   },
   flux: {
     managerFilePatterns: [
-      '/cluster/apps/.+/helmrelease\\.ya?ml$/',
-      '/cluster/infra/.+/helmrelease\\.ya?ml$/',
-      '/cluster/flux/repositories/helm/.*\\.ya?ml$/',
-      '/cluster/flux/repositories/oci/.*\\.ya?ml$/',
-      '/cluster/flux/repositories/git/.*\\.ya?ml$/',
+      "/cluster/apps/.+/helmrelease\\.ya?ml$/",
+      "/cluster/infra/.+/helmrelease\\.ya?ml$/",
+      "/cluster/flux/repositories/helm/.*\\.ya?ml$/",
+      "/cluster/flux/repositories/oci/.*\\.ya?ml$/",
+      "/cluster/flux/repositories/git/.*\\.ya?ml$/",
     ],
   },
   customManagers: [
     {
-      customType: 'regex',
-      description: 'dependencies cloudnative-pg postgres databases',
+      customType: "regex",
+      description: "dependencies cloudnative-pg postgres databases",
       managerFilePatterns: [
-        '/cluster/apps/.+/cnpg-cluster\\.yaml$/',
-        '/cluster/infra/.+/cnpg-cluster\\.yaml$/',
+        "/cluster/apps/.+/cnpg-cluster\\.yaml$/",
+        "/cluster/infra/.+/cnpg-cluster\\.yaml$/",
       ],
-      matchStrings: [
-        'imageName:\\s*(?<depName>\\S+):(?<currentValue>\\S+)',
-      ],
-      datasourceTemplate: 'docker',
-      versioningTemplate: 'redhat',
+      matchStrings: ["imageName:\\s*(?<depName>\\S+):(?<currentValue>\\S+)"],
+      datasourceTemplate: "docker",
+      versioningTemplate: "redhat",
     },
     {
-      description: 'dependencies for sync-cloudflare-nets',
-      customType: 'regex',
+      description: "dependencies for sync-cloudflare-nets",
+      customType: "regex",
       managerFilePatterns: [
-        '/.github/workflows/sync-cloudflare-nets\\.ya?ml$/',
+        "/.github/workflows/sync-cloudflare-nets\\.ya?ml$/",
       ],
-      matchStrings: [
-        'depName=(?<depName>\\S+)\\s.*/(?<currentValue>[^/]+?)/',
-      ],
-      datasourceTemplate: 'github-releases',
+      matchStrings: ["depName=(?<depName>\\S+)\\s.*/(?<currentValue>[^/]+?)/"],
+      datasourceTemplate: "github-releases",
     },
     {
-      description: 'Process CRD dependencies',
-      customType: 'regex',
-      managerFilePatterns: [
-        '/cluster/crds/.+\\.ya?ml$/',
-      ],
+      description: "Process CRD dependencies",
+      customType: "regex",
+      managerFilePatterns: ["/cluster/crds/.+\\.ya?ml$/"],
       matchStrings: [
-        'registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\\s.*\\/k8up-(?<currentValue>[^/]+)\\/',
-        'registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?v?(?<currentValue>[^-\\s]*)\n',
-        'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s.*tag:\\s(?<currentValue>.+)',
-        'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s.*https:\\/\\/github\\.com\\/[^\\n]+\\/releases\\/download\\/(?<currentValue>v?\\d+\\.\\d+\\.\\d+)\\/'
+        "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\\s.*\\/k8up-(?<currentValue>[^/]+)\\/",
+        "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?v?(?<currentValue>[^-\\s]*)\n",
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s.*tag:\\s(?<currentValue>.+)",
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s.*https:\\/\\/github\\.com\\/[^\\n]+\\/releases\\/download\\/(?<currentValue>v?\\d+\\.\\d+\\.\\d+)\\/",
       ],
-      datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}',
-      versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}',
+      datasourceTemplate: "{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}",
+      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
     },
     {
-      description: 'Process raw GitHub URLs',
-      customType: 'regex',
+      description: "Process raw GitHub URLs",
+      customType: "regex",
       managerFilePatterns: [
-        '/cluster/apps/.+/kustomization\\.ya?ml$/',
-        '/cluster/infra/.+/kustomization\\.ya?ml$/',
+        "/cluster/apps/.+/kustomization\\.ya?ml$/",
+        "/cluster/infra/.+/kustomization\\.ya?ml$/",
       ],
       matchStrings: [
-        'https://raw\\.githubusercontent\\.com/(?<depName>[\\w\\-]+/[\\w\\-]+)/(?:v?(?<currentValue>[\\w\\.\\-_]+))/',
+        "https://raw\\.githubusercontent\\.com/(?<depName>[\\w\\-]+/[\\w\\-]+)/(?:v?(?<currentValue>[\\w\\.\\-_]+))/",
       ],
-      datasourceTemplate: 'github-releases',
-      versioningTemplate: 'semver',
+      datasourceTemplate: "github-releases",
+      versioningTemplate: "semver",
     },
     {
-      description: 'Process postRenderer patches with images',
-      customType: 'regex',
+      description: "Process postRenderer patches with images",
+      customType: "regex",
       managerFilePatterns: [
-        '/cluster/apps/oauth2-proxy/oauth2-proxy/helmrelease\\.ya?ml$/',
+        "/cluster/apps/oauth2-proxy/oauth2-proxy/helmrelease\\.ya?ml$/",
       ],
       matchStrings: [
-        '# renovate\\s*image:\\s+(?<depName>\\S+):v?(?<currentValue>\\S+)',
+        "# renovate\\s*image:\\s+(?<depName>\\S+):v?(?<currentValue>\\S+)",
       ],
-      datasourceTemplate: 'docker',
+      datasourceTemplate: "docker",
+    },
+    {
+      customType: "regex",
+      managerFilePatterns: ["/(^|/)keycloak\\.ya?ml$/"],
+      matchStrings: [
+        "# renovate: datasource=github-releases depName=gi8lino/keycloak-snitch\\s+- name: SNITCH_VERSION\\s+value: [\"']?(?<currentValue>v\\d+\\.\\d+\\.\\d+)",
+      ],
+      datasourceTemplate: "github-releases",
+      depNameTemplate: "gi8lino/keycloak-snitch",
     },
   ],
   packageRules: [
     {
-      description: 'Separate cnpg-cluster releases',
-      matchPackageNames: [
-        'ghcr.io/cloudnative-pg/postgresql',
-      ],
-      additionalBranchPrefix: '{{packageFileDir}}-',
+      description: "Separate cnpg-cluster releases",
+      matchPackageNames: ["ghcr.io/cloudnative-pg/postgresql"],
+      additionalBranchPrefix: "{{packageFileDir}}-",
       major: {
         enabled: true,
       },
     },
     {
-      description: 'Separate valkey releases',
-      matchPackageNames: [
-        'valkey/valkey',
-      ],
-      additionalBranchPrefix: '{{packageFileDir}}-',
+      description: "Separate valkey releases",
+      matchPackageNames: ["valkey/valkey"],
+      additionalBranchPrefix: "{{packageFileDir}}-",
     },
     {
-      description: 'Special versioning for linuxserver.io sabnzbd image',
-      matchDatasources: [
-        'docker',
-      ],
-      versioning: 'regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ls(?<build>\\d+)$',
-      matchPackageNames: [
-        '/^ghcr\\.io\\/linuxserver\\/sabnzbd$/',
-      ],
+      description: "Special versioning for linuxserver.io sabnzbd image",
+      matchDatasources: ["docker"],
+      versioning: "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ls(?<build>\\d+)$",
+      matchPackageNames: ["/^ghcr\\.io\\/linuxserver\\/sabnzbd$/"],
     },
     {
-      description: 'Special versioning for linuxserver.io images',
-      matchDatasources: [
-        'docker',
-      ],
-      versioning: 'regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.?(?<build>\\d+)?(?:.*)?-ls(?<revision>\\d+)$',
+      description: "Special versioning for linuxserver.io images",
+      matchDatasources: ["docker"],
+      versioning: "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.?(?<build>\\d+)?(?:.*)?-ls(?<revision>\\d+)$",
       matchPackageNames: [
-        '/^ghcr\\.io\\/linuxserver\\/(plex|prowlarr|radarr|sonarr|tautulli)$/',
+        "/^ghcr\\.io\\/linuxserver\\/(plex|prowlarr|radarr|sonarr|tautulli)$/",
       ],
     },
     {
-      description: 'Special versioning for minio images',
-      matchDatasources: [
-        'docker',
-      ],
-      versioning: 'regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$',
-      matchPackageNames: [
-        'quay.io/minio/minio',
-      ],
+      description: "Special versioning for minio images",
+      matchDatasources: ["docker"],
+      versioning: "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
+      matchPackageNames: ["quay.io/minio/minio"],
     },
     {
-      description: 'Auto merge containers',
-      matchDatasources: [
-        'docker',
-      ],
+      description: "Auto merge containers",
+      matchDatasources: ["docker"],
       automerge: true,
-      automergeType: 'branch',
+      automergeType: "branch",
       ignoreTests: true,
-      matchUpdateTypes: [
-        'minor',
-        'patch',
-      ],
-      matchPackageNames: [
-        'renovate/renovate',
-      ],
+      matchUpdateTypes: ["minor", "patch"],
+      matchPackageNames: ["renovate/renovate"],
     },
     {
-      "matchPackageNames": ["ghcr.io/cloudnative-pg/postgresql"],
-      "additionalBranchPrefix": "{{packageFileDir}}-"
+      matchPackageNames: ["ghcr.io/cloudnative-pg/postgresql"],
+      additionalBranchPrefix: "{{packageFileDir}}-",
     },
     {
-      "groupName": "GitLab and GitLab Runner",
-      "matchDatasources": ["helm"],
-      "matchPackageNames": ["gitlab", "gitlab-runner"]
-    }
+      groupName: "GitLab and GitLab Runner",
+      matchDatasources: ["helm"],
+      matchPackageNames: ["gitlab", "gitlab-runner"],
+    },
   ],
-  'pre-commit': {
+  "pre-commit": {
     enabled: true,
   },
 }
