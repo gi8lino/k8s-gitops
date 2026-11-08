@@ -16,5 +16,18 @@ configMapGenerator:
     namespace: keycloak
     files:
       - lua=scripts/block-external-admin-access.lua
+  - name: keycloak-snitch-init
+    namespace: keycloak
+    files:
+      - scripts/install-snitch.sh
 generatorOptions:
   disableNameSuffixHash: true
+patches:
+  - patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: keycloak-snitch-init
