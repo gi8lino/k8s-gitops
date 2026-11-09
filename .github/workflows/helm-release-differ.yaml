@@ -30,7 +30,7 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: echo "FLATE_BASE=$(git merge-base "$BASE_SHA" HEAD)" >> "$GITHUB_ENV"
       - name: Set up flate
-        uses: home-operations/flate/action@43b92e26b196c6ca7eb1933b5b2c9074ff0ad1b7 # v0.7.1
+        uses: home-operations/flate/action@8e5612988989a8b3e0f93acf40c4ff8cc9a62d12 # v0.7.2
         with:
           base: ${{ env.FLATE_BASE }}
           cache: true
