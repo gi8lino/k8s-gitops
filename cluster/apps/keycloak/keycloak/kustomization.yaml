@@ -23,11 +23,11 @@ configMapGenerator:
 generatorOptions:
   disableNameSuffixHash: true
 patches:
-  - patch: |-
+  - target:
+      kind: ConfigMap
+      name: keycloak-snitch-init
+    patch: |-
       - op: add
         path: /metadata/annotations
         value:
           kustomize.toolkit.fluxcd.io/substitute: disabled
-    target:
-      kind: ConfigMap
-      name: keycloak-snitch-init
