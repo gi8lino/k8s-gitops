@@ -100,13 +100,17 @@
       datasourceTemplate: "docker",
     },
     {
+      description: "Keycloak Snitch GitHub releases",
       customType: "regex",
-      managerFilePatterns: ["/(^|/)keycloak\\.ya?ml$/"],
+      managerFilePatterns: [
+        "/cluster/apps/keycloak/keycloak/deployment\\.ya?ml$/",
+      ],
       matchStrings: [
-        "# renovate: datasource=github-releases depName=gi8lino/keycloak-snitch\\s+- name: SNITCH_VERSION\\s+value: [\"']?(?<currentValue>v\\d+\\.\\d+\\.\\d+)",
+        "# renovate: datasource=github-releases depName=gi8lino/keycloak-snitch\\s+- name: SNITCH_VERSION\\s+value: [\"'](?<currentValue>v\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?)[\"']",
       ],
       datasourceTemplate: "github-releases",
       depNameTemplate: "gi8lino/keycloak-snitch",
+      versioningTemplate: "semver",
     },
   ],
   packageRules: [
