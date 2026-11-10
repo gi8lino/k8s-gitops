@@ -45,7 +45,7 @@ spec:
           env:
             # renovate: datasource=github-releases depName=gi8lino/keycloak-snitch
             - name: SNITCH_VERSION
-              value: "v0.2.0"
+              value: "v1.0.0"
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000
