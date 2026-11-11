@@ -40,7 +40,7 @@ spec:
               cpu: 10m
               memory: 16Mi
         - name: snitch
-          image: ghcr.io/containeroo/alpine-toolbox:3.2.14
+          image: ghcr.io/containeroo/alpine-toolbox:3.2.15
           command: ["/bin/bash", "/scripts/install-snitch.sh"]
           env:
             # renovate: datasource=github-releases depName=gi8lino/keycloak-snitch
