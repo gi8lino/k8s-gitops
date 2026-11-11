@@ -28,7 +28,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: metube
-          image: ghcr.io/alexta69/metube:2026.11.06
+          image: ghcr.io/alexta69/metube:2026.11.10
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
