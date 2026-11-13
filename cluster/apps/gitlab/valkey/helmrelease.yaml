@@ -19,6 +19,7 @@ spec:
       interval: 30m
   values:
     persistence:
+      enabled: true
       size: 2Gi
   valuesFrom:
     - kind: Secret
