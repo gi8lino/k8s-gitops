@@ -18,9 +18,8 @@ spec:
         namespace: flux-system
       interval: 30m
   values:
-    dataStorage:
-      enabled: true
-      requestedSize: 2Gi
+    persistence:
+      size: 2Gi
   valuesFrom:
     - kind: Secret
       name: valkey-helm-values
