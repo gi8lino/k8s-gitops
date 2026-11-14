@@ -11,8 +11,10 @@ generatorOptions:
   disableNameSuffixHash: true
 configMapGenerator:
   - name: keycloak-warden-config
+    namespace: keycloak
     files:
       - files/warden.yaml
   - name: keycloak-warden-templates
+    namespace: keycloak
     files:
       - files/slack-bot.json.tmpl
