@@ -7,15 +7,16 @@ targets:
     edge:
       zone-id: env:CLOUDFLARE_ZONE_ID
       api-token: env:CLOUDFLARE_API_TOKEN
-  slack-bot:
-    url: https://slack.com/api/chat.postMessage
-    headers:
-      Authorization: env:SLACK_AUTHORIZATION
-    body-template: file:/config/templates/slack-bot.json.tmpl
-    template-vars:
-      channel: env:SLACK_CHANNEL
-    response:
-      json:
-        pointer: /ok
-        equals: true
-        error-pointer: /error
+  webhook:
+    slack-bot:
+      url: https://slack.com/api/chat.postMessage
+      headers:
+        Authorization: env:SLACK_AUTHORIZATION
+      body-template: file:/config/templates/slack-bot.json.tmpl
+      template-vars:
+        channel: env:SLACK_CHANNEL
+      response:
+        json:
+          pointer: /ok
+          equals: true
+          error-pointer: /error
