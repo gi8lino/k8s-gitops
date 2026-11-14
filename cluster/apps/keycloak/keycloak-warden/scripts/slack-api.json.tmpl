@@ -1,0 +1,47 @@
+{{/* Slack webhook payload for Keycloak Warden */}}
+{
+  "text": {{ if eq .State "banned" }}{{ printf "🚨 Warden banned IP %s" .IP | json }}{{ else }}{{ printf "✅ Warden released IP %s" .IP | json }}{{ end }},
+  "channel": {{ .Vars.channel | json }}
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": {{ if eq .State "banned" }}{{ "🚨 IP Banned" | json }}{{ else }}{{ "✅ IP Released" | json }}{{ end }},
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": {{ printf "*IP Address:* `%s`" .IP | json }}
+        },
+        {
+          "type": "mrkdwn",
+          "text": {{ printf "*State:* %s" .State | json }}
+        },
+        {
+          "type": "mrkdwn",
+          "text": {{ printf "*Revision:* %d" .Revision | json }}
+        }
+        {{- if eq .State "banned" }},
+        {
+          "type": "mrkdwn",
+          "text": {{ printf "*Expires At:* %s" (.ExpiresAt.UTC.Format "2006-01-02 15:04:05 UTC") | json }}
+        }
+        {{- end }}
+      ]
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": {{ printf "Warden decision: `%s`" .ID | json }}
+        }
+      ]
+    }
+  ]
+}

@@ -8,3 +8,11 @@ resources:
   - persistenvolumeclaim.yaml
   - secret.yaml
   - service.yaml
+generatorOptions:
+  disableNameSuffixHash: true
+configMapGenerator:
+  - name: keycloak-warden-templates
+    files:
+      - templates/slack-api.json.tmpl
+      - templates/slack-bot.json.tmpl
+      - templates/msteams.json.tmpl
