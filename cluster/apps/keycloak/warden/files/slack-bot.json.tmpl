@@ -1,7 +1,7 @@
 {{/* Slack webhook payload for Keycloak Warden */}}
 {
   "text": {{ if eq .State "banned" }}{{ printf "🚨 Warden banned IP %s" .IP | json }}{{ else }}{{ printf "✅ Warden released IP %s" .IP | json }}{{ end }},
-  "channel": {{ .Vars.channel | json }}
+  "channel": {{ .Vars.channel | json }},
   "blocks": [
     {
       "type": "header",
