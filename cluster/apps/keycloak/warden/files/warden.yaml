@@ -1,3 +1,4 @@
+---
 rule:
   threshold: 5
   window: 1m

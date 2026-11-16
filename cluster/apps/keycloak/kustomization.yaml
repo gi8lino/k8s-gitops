@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - keycloak/
   - postgres/
+  - warden-webui/
   - warden/
