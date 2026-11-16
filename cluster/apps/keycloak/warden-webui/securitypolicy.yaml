@@ -9,20 +9,6 @@ spec:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
       name: keycloak-warden-webui
-  authorization:
-    defaultAction: Deny
-    rules:
-      - name: warden-admins
-        action: Allow
-        principal:
-          jwt:
-            provider: keycloak-warden-webui-sso
-            claims:
-              - name: groups
-                valueType: StringArray
-                values:
-                  - warden-admins
-                  - /warden-admins
   oidc:
     provider:
       issuer: https://sso.${BASE_DOMAIN}/realms/hq
