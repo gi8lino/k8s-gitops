@@ -46,6 +46,7 @@ spec:
               protocol: TCP
     - toFQDNs:
         - matchName: api.cloudflare.com
+        - matchName: slack.com
       toPorts:
         - ports:
             - port: "443"
