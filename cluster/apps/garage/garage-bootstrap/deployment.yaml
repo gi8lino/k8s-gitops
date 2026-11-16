@@ -35,7 +35,7 @@ spec:
               memory: 16Mi
       containers:
         - name: garage-bootstrap
-          image: ghcr.io/containeroo/garage-bootstrap:v0.6.0
+          image: ghcr.io/containeroo/garage-bootstrap:v0.7.1
           imagePullPolicy: IfNotPresent
           env:
             - name: GARAGE_BOOTSTRAP_ADMIN_URL
@@ -47,8 +47,6 @@ spec:
                 secretKeyRef:
                   name: garage-backup-admin
                   key: adminToken
-            - name: GARAGE_BOOTSTRAP_LISTEN_ADDRESS
-              value: ":8080"
           ports:
             - name: health
               containerPort: 8080
