@@ -45,7 +45,9 @@ spec:
             - name: WARDEN_WEBUI__TRUSTED_PROXY_CIDRS
               value: "*"
             - name: WARDEN_WEBUI__TRUSTED_USERNAME_HEADERS
-              value: ""
+              value: X-Auth-Request-Email
+            - name: WARDEN_WEBUI__SETUP_SUBJECT
+              value: giottolino@gmail.com
             - name: WARDEN_WEBUI__TRUSTED_EMAIL_HEADERS
               value: X-Auth-Request-Email
           ports:
