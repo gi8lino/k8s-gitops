@@ -50,8 +50,6 @@ spec:
               value: "*"
             - name: WARDEN_WEBUI__TRUSTED_USERNAME_HEADERS
               value: X-Auth-Request-Email
-            - name: WARDEN_WEBUI__SETUP_SUBJECT
-              value: giottolino@gmail.com
             - name: WARDEN_WEBUI__TRUSTED_EMAIL_HEADERS
               value: X-Auth-Request-Email
           ports:
