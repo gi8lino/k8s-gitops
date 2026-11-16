@@ -13,12 +13,12 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: keycloak-warden
-      app.kubernetes.io/component: keycloak-warden
+      app.kubernetes.io/component: warden
   template:
     metadata:
       labels:
         app.kubernetes.io/name: keycloak-warden
-        app.kubernetes.io/component: keycloak-warden
+        app.kubernetes.io/component: warden
     spec:
       securityContext:
         fsGroup: 0

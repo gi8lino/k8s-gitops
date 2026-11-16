@@ -9,7 +9,7 @@ spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: keycloak-warden
-      app.kubernetes.io/component: keycloak-warden
+      app.kubernetes.io/component: warden
   ingress:
     - fromEndpoints:
         - matchLabels:

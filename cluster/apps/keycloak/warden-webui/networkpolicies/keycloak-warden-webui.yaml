@@ -18,7 +18,7 @@ spec:
             "k8s:io.kubernetes.pod.namespace": network
       toPorts:
         - ports:
-            - port: "8080"
+            - port: "8082"
               protocol: TCP
   egress:
     - toEndpoints:
@@ -40,4 +40,13 @@ spec:
       toPorts:
         - ports:
             - port: "8080"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            gateway.envoyproxy.io/owning-gateway-name: envoy-internal
+            gateway.envoyproxy.io/owning-gateway-namespace: network
+            "k8s:io.kubernetes.pod.namespace": network
+      toPorts:
+        - ports:
+            - port: "10443"
               protocol: TCP

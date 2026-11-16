@@ -16,7 +16,7 @@ spec:
     - toEndpoints:
         - matchLabels:
             app.kubernetes.io/name: keycloak-warden-webui
-            app.kubernetes.io/component: keycloak-warden-webui
+            app.kubernetes.io/component: webui
             "k8s:io.kubernetes.pod.namespace": keycloak
       toPorts:
         - ports:
