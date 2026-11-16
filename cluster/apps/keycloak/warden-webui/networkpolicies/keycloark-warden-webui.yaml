@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: keycloak-warden
+  name: keycloak-warden-webui
   namespace: keycloak
 spec:
   description: "Policy for keycloak warden webui"
