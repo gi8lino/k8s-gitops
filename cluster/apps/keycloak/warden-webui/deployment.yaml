@@ -40,6 +40,10 @@ spec:
                 secretKeyRef:
                   name: keycloak-warden
                   key: WARDEN__ADMIN_TOKEN
+            - name: WARDEN_WEBUI__PUBLIC_URL
+              value: https://warden.${BASE_DOMAIN}
+            - name: WARDEN_WEBUI__TRUSTED_GROUP_HEADERS
+              value: X-Warden-Verified-Group
             - name: WARDEN_WEBUI__AUTH_MODE
               value: proxy
             - name: WARDEN_WEBUI__TRUSTED_PROXY_CIDRS

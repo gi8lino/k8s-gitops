@@ -21,6 +21,9 @@ spec:
       filters:
         - type: RequestHeaderModifier
           requestHeaderModifier:
+            set:
+              - name: X-Warden-Verified-Group
+                value: warden-admins
             remove:
               - Authorization
               - Cookie
