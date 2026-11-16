@@ -6,7 +6,7 @@ tasks:
     cmds:
       - |
         karma \
-          -s ".img,dashboards,scripts" \
+          -s ".img,dashboards,scripts,files" \
           --preserve-kustomization "kustomization.yaml" \
           --preserve-kustomization "flux/kustomization.yaml" \
           --preserve-kustomization "flux/config/kustomization.yaml" \
