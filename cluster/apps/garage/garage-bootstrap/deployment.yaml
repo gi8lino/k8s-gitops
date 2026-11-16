@@ -35,14 +35,14 @@ spec:
               memory: 16Mi
       containers:
         - name: garage-bootstrap
-          image: ghcr.io/containeroo/garage-bootstrap:v0.7.2
+          image: ghcr.io/containeroo/garage-bootstrap:v0.8.0
           imagePullPolicy: IfNotPresent
           env:
-            - name: GARAGE_BOOTSTRAP_ADMIN_URL
+            - name: GARAGE_BOOTSTRAP__ADMIN_URL
               value: http://garage-backup-admin.garage-backup.svc.cluster.local:3903
-            - name: GARAGE_BOOTSTRAP_CONFIG
+            - name: GARAGE_BOOTSTRAP__CONFIG
               value: /app/bootstrap.yaml
-            - name: GARAGE_BOOTSTRAP_ADMIN_TOKEN
+            - name: GARAGE_BOOTSTRAP__ADMIN_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: garage-backup-admin
