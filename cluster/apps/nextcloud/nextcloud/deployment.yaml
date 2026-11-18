@@ -39,7 +39,7 @@ spec:
               memory: 16Mi
       containers:
         - name: nginx
-          image: ghcr.io/nginxinc/nginx-unprivileged:1.27.4
+          image: ghcr.io/nginx/nginx-unprivileged:1.30.7@sha256:18414dbd7b0e5664ff8774fdbc0a09446019b9a0ff3e451cf56e500bda74afdc
           ports:
             - name: http
               containerPort: 8080
