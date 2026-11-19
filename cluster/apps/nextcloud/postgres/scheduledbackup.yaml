@@ -4,6 +4,8 @@ kind: ScheduledBackup
 metadata:
   name: nextcloud-postgres
   namespace: nextcloud
+  annotations:
+    monitoring.gitops/backup-max-age-seconds: "691200"
 spec:
   schedule: 0 5 2 * * SUN
   cluster:

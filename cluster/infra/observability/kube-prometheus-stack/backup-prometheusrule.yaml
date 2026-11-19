@@ -1,0 +1,54 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: backup-health
+  namespace: observability
+spec:
+  groups:
+    - name: backup-health
+      rules:
+        - record: backup:schedule_max_age_seconds
+          expr: max by (backup_namespace, backup_schedule) (kube_k8up_schedule_max_age_seconds or kube_cnpg_schedule_max_age_seconds)
+        - record: backup:schedule_created_timestamp_seconds
+          expr: max by (backup_namespace, backup_schedule) (kube_k8up_schedule_created_timestamp_seconds or kube_cnpg_schedule_created_timestamp_seconds)
+        - record: backup:created_timestamp_seconds
+          expr: max by (backup_namespace, backup_schedule, backup_name) (kube_k8up_backup_created_timestamp_seconds{backup_schedule!=""} or kube_cnpg_backup_created_timestamp_seconds{backup_schedule!=""})
+        - record: backup:completed_timestamp_seconds
+          expr: max by (backup_namespace, backup_schedule, backup_name) (kube_k8up_backup_completed_timestamp_seconds{completed="True",backup_schedule!=""} or kube_cnpg_backup_completed_timestamp_seconds{completed="completed",backup_schedule!=""})
+        - record: backup:finished
+          expr: max by (backup_namespace, backup_schedule, backup_name) (kube_k8up_backup_finished{backup_schedule!=""} or kube_cnpg_backup_phase{phase=~"completed|failed",backup_schedule!=""})
+        - record: backup:last_success_timestamp_seconds
+          expr: max by (backup_namespace, backup_schedule) (backup:completed_timestamp_seconds > 0)
+        - alert: ScheduledBackupOverdue
+          expr: (time() - (backup:last_success_timestamp_seconds or on (backup_namespace, backup_schedule) backup:schedule_created_timestamp_seconds)) > on (backup_namespace, backup_schedule) backup:schedule_max_age_seconds
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            summary: Scheduled backup is overdue
+            description: No recent successful backup for {{ $labels.backup_namespace }}/{{ $labels.backup_schedule }}.
+        - alert: BackupStuck
+          expr: (time() - backup:created_timestamp_seconds > 3600) unless on (backup_namespace, backup_schedule, backup_name) (backup:finished == 1)
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: Backup has not finished
+            description: Backup {{ $labels.backup_namespace }}/{{ $labels.backup_name }} has not reached a terminal state for over one hour.
+        - alert: BackupMonitoringPolicyMissing
+          expr: backup:schedule_max_age_seconds <= 0
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: Backup schedule has no monitoring deadline
+            description: Set monitoring.gitops/backup-max-age-seconds on {{ $labels.backup_namespace }}/{{ $labels.backup_schedule }}.
+        - alert: BackupScheduleMetricsMissing
+          expr: absent(kube_k8up_schedule_created_timestamp_seconds) or absent(kube_cnpg_schedule_created_timestamp_seconds)
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            summary: Backup schedule metrics are missing
+            description: Kube-state-metrics is not reporting the expected backup schedules.

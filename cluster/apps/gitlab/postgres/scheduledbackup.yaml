@@ -4,6 +4,8 @@ kind: ScheduledBackup
 metadata:
   name: gitlab-postgres
   namespace: gitlab
+  annotations:
+    monitoring.gitops/backup-max-age-seconds: "93600"
 spec:
   schedule: "0 0 5 * * *"
   cluster:

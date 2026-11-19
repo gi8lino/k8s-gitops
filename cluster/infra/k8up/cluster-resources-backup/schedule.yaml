@@ -4,6 +4,8 @@ kind: Schedule
 metadata:
   name: cluster-resources-backup
   namespace: k8up
+  annotations:
+    monitoring.gitops/backup-max-age-seconds: "50400"
 spec:
   podSecurityContext:
     runAsUser: 0

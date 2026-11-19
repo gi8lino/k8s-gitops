@@ -4,6 +4,8 @@ kind: Schedule
 metadata:
   name: media
   namespace: media
+  annotations:
+    monitoring.gitops/backup-max-age-seconds: "93600"
 spec:
   podSecurityContext:
     runAsUser: 0

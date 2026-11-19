@@ -4,6 +4,8 @@ kind: Schedule
 metadata:
   name: filebrowser
   namespace: filebrowser
+  annotations:
+    monitoring.gitops/backup-max-age-seconds: "691200"
 spec:
   podSecurityContext:
     runAsUser: 0
