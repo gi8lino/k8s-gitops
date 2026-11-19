@@ -16,6 +16,7 @@ spec:
       labels:
         app.kubernetes.io/name: garage-webui
     spec:
+      automountServiceAccountToken: false
       initContainers:
         - name: never
           image: ghcr.io/containeroo/never:v0.12.9
