@@ -276,6 +276,9 @@ spec:
             memory: 512Mi
         storageSpec:
           volumeClaimTemplate:
+            metadata:
+              annotations:
+                k8up.io/backup: "false"
             spec:
               accessModes:
                 - ReadWriteOnce
