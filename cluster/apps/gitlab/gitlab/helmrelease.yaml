@@ -43,6 +43,15 @@ spec:
         maxReplicas: 1
         minReplicas: 1
       toolbox:
+        # Chart 10.6 mounts toolbox-secrets read-only; generated backup config
+        # needs its own writable volume shared with the toolbox and backup Job.
+        extraVolumes: |
+          - name: backup-object-storage
+            emptyDir: {}
+        extraVolumeMounts: |
+          - name: backup-object-storage
+            mountPath: /backup-object-storage
+            readOnly: true
         extraInitContainers: |
           - name: configure-backup-object-storage
             image: busybox:1.38.0
@@ -61,13 +70,13 @@ spec:
                   'host_bucket = garage-backup.garage-backup.svc.cluster.local:3900' \
                   'use_https = False' \
                   'preserve_attrs = False' \
-                  > /init-secrets/backup-object-storage.s3cfg
+                  > /backup-object-storage/config
             envFrom:
               - secretRef:
                   name: gitlab-backups
             volumeMounts:
-              - name: toolbox-secrets
-                mountPath: /init-secrets
+              - name: backup-object-storage
+                mountPath: /backup-object-storage
         backups:
           objectStorage:
             config:
@@ -78,7 +87,7 @@ spec:
             timeZone: Europe/Zurich
             schedule: 0 1 * * *
             extraArgs: >-
-              --backend-data s3 --backend-backup s3 --s3tool-data s3cmd --s3tool-backup s3cmd --s3config /etc/gitlab/backup-object-storage.s3cfg --maximum-backups 3
+              --backend-data s3 --backend-backup s3 --s3tool-data s3cmd --s3tool-backup s3cmd --s3config /backup-object-storage/config --maximum-backups 3
             successfulJobsHistoryLimit: 1
       webservice:
         deployment:
