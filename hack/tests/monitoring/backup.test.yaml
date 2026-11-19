@@ -1,0 +1,91 @@
+rule_files:
+  - backup.rules.yaml
+evaluation_interval: 1m
+tests:
+  - name: daily and weekly deadlines, new schedule grace, namespace isolation and failed backup
+    interval: 1m
+    input_series:
+      - series: kube_k8up_schedule_max_age_seconds{backup_namespace="daily",backup_schedule="backup"}
+        values: 93600+0x14000
+      - series: kube_k8up_schedule_created_timestamp_seconds{backup_namespace="daily",backup_schedule="backup"}
+        values: 0+0x14000
+      - series: kube_k8up_backup_completed_timestamp_seconds{backup_namespace="daily",backup_schedule="backup",backup_name="successful",completed="True"}
+        values: 3600+0x14000
+      - series: kube_cnpg_schedule_max_age_seconds{backup_namespace="weekly",backup_schedule="backup"}
+        values: 691200+0x14000
+      - series: kube_cnpg_schedule_created_timestamp_seconds{backup_namespace="weekly",backup_schedule="backup"}
+        values: 0+0x14000
+      - series: kube_cnpg_backup_completed_timestamp_seconds{backup_namespace="weekly",backup_schedule="backup",backup_name="successful",completed="completed"}
+        values: 3600+0x14000
+      - series: kube_k8up_schedule_max_age_seconds{backup_namespace="healthy",backup_schedule="backup"}
+        values: 93600+0x14000
+      - series: kube_k8up_schedule_created_timestamp_seconds{backup_namespace="healthy",backup_schedule="backup"}
+        values: 0+0x14000
+      - series: kube_k8up_backup_completed_timestamp_seconds{backup_namespace="healthy",backup_schedule="backup",backup_name="successful",completed="True"}
+        values: 0+60x14000
+      - series: kube_k8up_schedule_max_age_seconds{backup_namespace="new",backup_schedule="backup"}
+        values: 93600+0x14000
+      - series: kube_k8up_schedule_created_timestamp_seconds{backup_namespace="new",backup_schedule="backup"}
+        values: 100000+0x14000
+      - series: kube_k8up_backup_completed_timestamp_seconds{backup_namespace="daily",backup_schedule="backup",backup_name="failed",completed="False"}
+        values: 0+60x14000
+    alert_rule_test:
+      - eval_time: 30h
+        alertname: ScheduledBackupOverdue
+        exp_alerts:
+          - exp_labels:
+              backup_namespace: daily
+              backup_schedule: backup
+              severity: critical
+            exp_annotations:
+              summary: Scheduled backup is overdue
+              description: No recent successful backup for daily/backup.
+      - eval_time: 216h
+        alertname: ScheduledBackupOverdue
+        exp_alerts:
+          - exp_labels:
+              backup_namespace: daily
+              backup_schedule: backup
+              severity: critical
+            exp_annotations:
+              summary: Scheduled backup is overdue
+              description: No recent successful backup for daily/backup.
+          - exp_labels:
+              backup_namespace: weekly
+              backup_schedule: backup
+              severity: critical
+            exp_annotations:
+              summary: Scheduled backup is overdue
+              description: No recent successful backup for weekly/backup.
+          - exp_labels:
+              backup_namespace: new
+              backup_schedule: backup
+              severity: critical
+            exp_annotations:
+              summary: Scheduled backup is overdue
+              description: No recent successful backup for new/backup.
+  - name: stuck before a Job exists, with completed and failed terminal objects excluded
+    interval: 1m
+    input_series:
+      - series: kube_k8up_backup_created_timestamp_seconds{backup_namespace="stuck",backup_schedule="backup",backup_name="example"}
+        values: 0+0x180
+      - series: kube_k8up_backup_created_timestamp_seconds{backup_namespace="complete",backup_schedule="backup",backup_name="example"}
+        values: 0+0x180
+      - series: kube_k8up_backup_finished{backup_namespace="complete",backup_schedule="backup",backup_name="example"}
+        values: 1+0x180
+      - series: kube_cnpg_backup_created_timestamp_seconds{backup_namespace="failed",backup_schedule="backup",backup_name="example"}
+        values: 0+0x180
+      - series: kube_cnpg_backup_phase{backup_namespace="failed",backup_schedule="backup",backup_name="example",phase="failed"}
+        values: 1+0x180
+    alert_rule_test:
+      - eval_time: 2h
+        alertname: BackupStuck
+        exp_alerts:
+          - exp_labels:
+              backup_namespace: stuck
+              backup_schedule: backup
+              backup_name: example
+              severity: warning
+            exp_annotations:
+              summary: Backup has not finished
+              description: Backup stuck/example has not reached a terminal state for over one hour.

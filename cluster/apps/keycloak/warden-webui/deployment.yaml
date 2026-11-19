@@ -18,6 +18,7 @@ spec:
         app.kubernetes.io/name: keycloak-warden-webui
         app.kubernetes.io/component: webui
     spec:
+      automountServiceAccountToken: false
       securityContext:
         fsGroup: 0
         fsGroupChangePolicy: OnRootMismatch

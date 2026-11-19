@@ -20,6 +20,7 @@ spec:
         app.kubernetes.io/name: keycloak
         app.kubernetes.io/component: keycloak
     spec:
+      automountServiceAccountToken: false
       serviceAccountName: keycloak
       securityContext:
         fsGroup: 1000

@@ -56,12 +56,14 @@ spec:
           - name: business_hours
             time_intervals:
               - weekdays: ["monday:friday"]
+                location: Europe/Zurich
                 times:
                   - start_time: 07:30
                     end_time: 22:30
           - name: weekend
             time_intervals:
               - weekdays: ["saturday", "sunday"]
+                location: Europe/Zurich
                 times:
                   - start_time: 09:00
                     end_time: 23:30
@@ -224,6 +226,233 @@ spec:
     kubeDns:
       enabled: false
     kube-state-metrics:
+      customResourceState:
+        enabled: true
+        config:
+          kind: CustomResourceStateMetrics
+          spec:
+            resources:
+              - groupVersionKind:
+                  group: k8up.io
+                  version: v1
+                  kind: Schedule
+                metricNamePrefix: kube_k8up
+                labelsFromPath:
+                  backup_namespace:
+                    - metadata
+                    - namespace
+                  backup_schedule:
+                    - metadata
+                    - name
+                metrics:
+                  - name: schedule_max_age_seconds
+                    help: Maximum permitted age of a successful scheduled backup.
+                    each:
+                      type: Gauge
+                      gauge:
+                        path:
+                          - metadata
+                          - annotations
+                          - monitoring.gitops/backup-max-age-seconds
+                        nilIsZero: true
+                  - name: schedule_created_timestamp_seconds
+                    help: Creation time of a backup schedule.
+                    each:
+                      type: Gauge
+                      gauge:
+                        path:
+                          - metadata
+                          - creationTimestamp
+              - groupVersionKind:
+                  group: postgresql.cnpg.io
+                  version: v1
+                  kind: ScheduledBackup
+                metricNamePrefix: kube_cnpg
+                labelsFromPath:
+                  backup_namespace:
+                    - metadata
+                    - namespace
+                  backup_schedule:
+                    - metadata
+                    - name
+                metrics:
+                  - name: schedule_max_age_seconds
+                    help: Maximum permitted age of a successful scheduled backup.
+                    each:
+                      type: Gauge
+                      gauge:
+                        path:
+                          - metadata
+                          - annotations
+                          - monitoring.gitops/backup-max-age-seconds
+                        nilIsZero: true
+                  - name: schedule_created_timestamp_seconds
+                    help: Creation time of a backup schedule.
+                    each:
+                      type: Gauge
+                      gauge:
+                        path:
+                          - metadata
+                          - creationTimestamp
+              - groupVersionKind:
+                  group: k8up.io
+                  version: v1
+                  kind: Backup
+                metricNamePrefix: kube_k8up
+                labelsFromPath:
+                  backup_namespace:
+                    - metadata
+                    - namespace
+                  backup_name:
+                    - metadata
+                    - name
+                  backup_schedule:
+                    - metadata
+                    - labels
+                    - k8up.io/schedule-name
+                metrics:
+                  - name: backup_created_timestamp_seconds
+                    help: Creation time of a backup object.
+                    each:
+                      type: Gauge
+                      gauge:
+                        path:
+                          - metadata
+                          - creationTimestamp
+                  - name: backup_completed_timestamp_seconds
+                    help: Completion time of a backup; select completed=True for success.
+                    labelsFromPath:
+                      completed:
+                        - status
+                        - conditions
+                        - '[type=Completed]'
+                        - status
+                    each:
+                      type: Gauge
+                      gauge:
+                        path:
+                          - status
+                          - conditions
+                          - '[type=Completed]'
+                          - lastTransitionTime
+                        nilIsZero: true
+                  - name: backup_finished
+                    help: Whether a backup has reached a terminal state.
+                    each:
+                      type: Gauge
+                      gauge:
+                        path:
+                          - status
+                          - finished
+                        nilIsZero: true
+              - groupVersionKind:
+                  group: postgresql.cnpg.io
+                  version: v1
+                  kind: Backup
+                metricNamePrefix: kube_cnpg
+                labelsFromPath:
+                  backup_namespace:
+                    - metadata
+                    - namespace
+                  backup_name:
+                    - metadata
+                    - name
+                  backup_schedule:
+                    - metadata
+                    - labels
+                    - cnpg.io/scheduled-backup
+                metrics:
+                  - name: backup_created_timestamp_seconds
+                    help: Creation time of a backup object.
+                    each:
+                      type: Gauge
+                      gauge:
+                        path:
+                          - metadata
+                          - creationTimestamp
+                  - name: backup_completed_timestamp_seconds
+                    help: Completion time of a backup; select completed=completed for success.
+                    labelsFromPath:
+                      completed:
+                        - status
+                        - phase
+                    each:
+                      type: Gauge
+                      gauge:
+                        path:
+                          - status
+                          - stoppedAt
+                        nilIsZero: true
+                  - name: backup_phase
+                    help: Current backup phase.
+                    each:
+                      type: StateSet
+                      stateSet:
+                        path:
+                          - status
+                          - phase
+                        labelName: phase
+                        list:
+                          - pending
+                          - running
+                          - started
+                          - completed
+                          - failed
+              - groupVersionKind:
+                  group: monitoring.coreos.com
+                  version: v1
+                  kind: ServiceMonitor
+                metricNamePrefix: kube_blackbox
+                labelsFromPath:
+                  monitor_namespace:
+                    - metadata
+                    - namespace
+                  monitor_name:
+                    - metadata
+                    - name
+                  exporter:
+                    - metadata
+                    - labels
+                    - app.kubernetes.io/name
+                metrics:
+                  - name: target_info
+                    help: Expected blackbox probe URLs from configured ServiceMonitor targets.
+                    each:
+                      type: Info
+                      info:
+                        path:
+                          - spec
+                          - endpoints
+                        labelsFromPath:
+                          target_url:
+                            - params
+                            - target
+                            - "0"
+      rbac:
+        extraRules:
+          - apiGroups:
+              - k8up.io
+            resources:
+              - backups
+              - schedules
+            verbs:
+              - list
+              - watch
+          - apiGroups:
+              - postgresql.cnpg.io
+            resources:
+              - backups
+              - scheduledbackups
+            verbs:
+              - list
+              - watch
+          - apiGroups:
+              - monitoring.coreos.com
+            resources:
+              - servicemonitors
+            verbs:
+              - list
+              - watch
       fullnameOverride: kube-state-metrics
       metricDenylist:
         - kube_replicaset_.*
@@ -276,6 +505,9 @@ spec:
             memory: 512Mi
         storageSpec:
           volumeClaimTemplate:
+            metadata:
+              annotations:
+                k8up.io/backup: "false"
             spec:
               accessModes:
                 - ReadWriteOnce

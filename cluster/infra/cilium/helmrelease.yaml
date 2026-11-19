@@ -36,8 +36,6 @@ spec:
           enabled: false
         dashboards:
           enabled: false
-      observe:
-        enabled: true
       relay:
         enabled: true
         prometheus:
@@ -69,11 +67,7 @@ spec:
     k8sServicePort: 6443
     nodeinit:
       enabled: true
-    nodePort:
-      enabled: false
     l2announcements:
-      enabled: true
-    externalIPs:
       enabled: true
     ipv6:
       enabled: false

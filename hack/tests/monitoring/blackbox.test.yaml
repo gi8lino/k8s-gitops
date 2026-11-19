@@ -1,0 +1,93 @@
+rule_files:
+  - blackbox.rules.yaml
+evaluation_interval: 1m
+tests:
+  - name: one missing target remains visible beside healthy probes, recovery clears failures
+    interval: 1m
+    input_series:
+      - series: kube_blackbox_target_info{target_url="https://healthy.example.test",exporter="prometheus-blackbox-exporter",monitor_name="healthy"}
+        values: 1+0x120
+      - series: probe_success{instance="https://healthy.example.test",job="blackbox-exporter"}
+        values: 1+0x120
+      - series: kube_blackbox_target_info{target_url="https://missing.example.test",exporter="prometheus-blackbox-exporter",monitor_name="missing"}
+        values: 1+0x120
+      - series: kube_blackbox_target_info{target_url="https://recovered.example.test",exporter="prometheus-blackbox-exporter",monitor_name="recovered"}
+        values: 1+0x120
+      - series: probe_success{instance="https://recovered.example.test",job="blackbox-exporter"}
+        values: 0x9 1+0x110
+      - series: kube_blackbox_target_info{target_url="https://failed.example.test",exporter="prometheus-blackbox-exporter",monitor_name="failed"}
+        values: 1+0x120
+      - series: probe_success{instance="https://failed.example.test",job="blackbox-exporter"}
+        values: 0+0x120
+    alert_rule_test:
+      - eval_time: 60m
+        alertname: BlackboxProbeNoData
+        exp_alerts:
+          - exp_labels:
+              instance: https://missing.example.test
+              severity: critical
+            exp_annotations:
+              description: No probe data received for «https://missing.example.test»
+              summary: Blackbox probe has no data
+      - eval_time: 60m
+        alertname: BlackboxProbeFailed
+        exp_alerts:
+          - exp_labels:
+              instance: https://failed.example.test
+              job: blackbox-exporter
+              severity: critical
+            exp_annotations:
+              description: The host «https://failed.example.test» is currently unreachable
+              summary: Host is unreachable
+  - name: complete exporter outage still identifies each configured target
+    interval: 1m
+    input_series:
+      - series: kube_blackbox_target_info{target_url="https://healthy.example.test",exporter="prometheus-blackbox-exporter",monitor_name="healthy"}
+        values: 1+0x120
+      - series: kube_blackbox_target_info{target_url="https://missing.example.test",exporter="prometheus-blackbox-exporter",monitor_name="missing"}
+        values: 1+0x120
+      - series: kube_blackbox_target_info{target_url="https://recovered.example.test",exporter="prometheus-blackbox-exporter",monitor_name="recovered"}
+        values: 1+0x120
+      - series: kube_blackbox_target_info{target_url="https://failed.example.test",exporter="prometheus-blackbox-exporter",monitor_name="failed"}
+        values: 1+0x120
+    alert_rule_test:
+      - eval_time: 60m
+        alertname: BlackboxProbeNoData
+        exp_alerts:
+          - exp_labels:
+              instance: https://healthy.example.test
+              severity: critical
+            exp_annotations:
+              description: No probe data received for «https://healthy.example.test»
+              summary: Blackbox probe has no data
+          - exp_labels:
+              instance: https://missing.example.test
+              severity: critical
+            exp_annotations:
+              description: No probe data received for «https://missing.example.test»
+              summary: Blackbox probe has no data
+          - exp_labels:
+              instance: https://recovered.example.test
+              severity: critical
+            exp_annotations:
+              description: No probe data received for «https://recovered.example.test»
+              summary: Blackbox probe has no data
+          - exp_labels:
+              instance: https://failed.example.test
+              severity: critical
+            exp_annotations:
+              description: No probe data received for «https://failed.example.test»
+              summary: Blackbox probe has no data
+  - name: missing expected-target collector is not silently healthy
+    interval: 1m
+    input_series: []
+    alert_rule_test:
+      - eval_time: 20m
+        alertname: BlackboxTargetInventoryMissing
+        exp_alerts:
+          - exp_labels:
+              severity: critical
+              exporter: prometheus-blackbox-exporter
+            exp_annotations:
+              summary: Blackbox target inventory is missing
+              description: Kube-state-metrics is not reporting the configured blackbox targets.

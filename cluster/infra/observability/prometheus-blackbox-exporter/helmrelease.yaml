@@ -19,7 +19,6 @@ spec:
       interval: 30m
   values:
     fullnameOverride: blackbox-exporter
-    pspEnabled: false
     config:
       modules:
         http_2xx_higher_timeout:
@@ -44,7 +43,6 @@ spec:
       defaults:
         interval: 15m
         scrapeTimeout: 30s
-        follow_redirects: false
       targets:
         - name: ${BASE_DOMAIN/./-}
           url: https://sso.${BASE_DOMAIN}
@@ -65,6 +63,14 @@ spec:
     prometheusRule:
       enabled: true
       rules:
+        - record: blackbox:expected_target:info
+          expr: |
+            max by (instance) (
+              label_replace(
+                kube_blackbox_target_info{exporter="prometheus-blackbox-exporter",target_url!=""},
+                "instance", "$1", "target_url", "(.+)"
+              )
+            )
         - alert: Newsnab
           expr: last_over_time(probe_failed_due_to_regex{target="newsnab"}[60m]) == 1
           for: 5m
@@ -95,7 +101,7 @@ spec:
             description: The host «{{ $labels.instance }}» is currently unreachable
             summary: Host is unreachable
           expr: |
-            min_over_time(probe_success[40m]) == 0
+            max_over_time(probe_success{job="blackbox-exporter"}[40m]) == 0
           for: 5m
           labels:
             severity: critical
@@ -103,7 +109,18 @@ spec:
           annotations:
             description: No probe data received for «{{ $labels.instance }}»
             summary: Blackbox probe has no data
-          expr: absent_over_time(probe_success[40m])
+          expr: |
+            blackbox:expected_target:info
+            unless on (instance)
+            max_over_time(probe_success{job="blackbox-exporter"}[40m])
           for: 10m
           labels:
             severity: critical
+        - alert: BlackboxTargetInventoryMissing
+          expr: absent(kube_blackbox_target_info{exporter="prometheus-blackbox-exporter",target_url!=""})
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: Blackbox target inventory is missing
+            description: Kube-state-metrics is not reporting the configured blackbox targets.
