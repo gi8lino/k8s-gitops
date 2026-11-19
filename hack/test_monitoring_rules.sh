@@ -11,3 +11,9 @@ yq '.spec' "$repo_root/cluster/infra/observability/kube-prometheus-stack/backup-
 cp "$repo_root/hack/tests/monitoring/backup.test.yaml" "$monitoring_test_dir/"
 "$promtool_bin" check rules "$monitoring_test_dir/backup.rules.yaml"
 "$promtool_bin" test rules "$monitoring_test_dir/backup.test.yaml"
+
+# Expected targets come from ServiceMonitor objects, not from successful scrapes.
+yq '{"groups": [{"name": "blackbox", "rules": .spec.values.prometheusRule.rules}]}' "$repo_root/cluster/infra/observability/prometheus-blackbox-exporter/helmrelease.yaml" > "$monitoring_test_dir/blackbox.rules.yaml"
+cp "$repo_root/hack/tests/monitoring/blackbox.test.yaml" "$monitoring_test_dir/"
+"$promtool_bin" check rules "$monitoring_test_dir/blackbox.rules.yaml"
+"$promtool_bin" test rules "$monitoring_test_dir/blackbox.test.yaml"

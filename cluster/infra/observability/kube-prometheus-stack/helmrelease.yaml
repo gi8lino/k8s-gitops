@@ -396,6 +396,36 @@ spec:
                           - started
                           - completed
                           - failed
+              - groupVersionKind:
+                  group: monitoring.coreos.com
+                  version: v1
+                  kind: ServiceMonitor
+                metricNamePrefix: kube_blackbox
+                labelsFromPath:
+                  monitor_namespace:
+                    - metadata
+                    - namespace
+                  monitor_name:
+                    - metadata
+                    - name
+                  exporter:
+                    - metadata
+                    - labels
+                    - app.kubernetes.io/name
+                metrics:
+                  - name: target_info
+                    help: Expected blackbox probe URLs from configured ServiceMonitor targets.
+                    each:
+                      type: Info
+                      info:
+                        path:
+                          - spec
+                          - endpoints
+                        labelsFromPath:
+                          target_url:
+                            - params
+                            - target
+                            - "0"
       rbac:
         extraRules:
           - apiGroups:
@@ -411,6 +441,13 @@ spec:
             resources:
               - backups
               - scheduledbackups
+            verbs:
+              - list
+              - watch
+          - apiGroups:
+              - monitoring.coreos.com
+            resources:
+              - servicemonitors
             verbs:
               - list
               - watch
