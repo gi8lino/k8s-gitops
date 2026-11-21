@@ -23,7 +23,7 @@ spec:
       automountServiceAccountToken: false
       initContainers:
         - name: never
-          image: ghcr.io/containeroo/never:v0.12.9
+          image: ghcr.io/containeroo/never:v0.13.0
           args:
             - --http.postgres.address=https://kumbuka-postgres-healthz:8000/healthz
             - --http.postgres.skip-tls-verify=true
