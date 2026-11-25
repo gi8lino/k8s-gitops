@@ -28,15 +28,8 @@ spec:
           type: RuntimeDefault
       containers:
         - name: keycloak-warden
-          image: ghcr.io/gi8lino/keycloak-warden:v0.32.0
+          image: ghcr.io/gi8lino/keycloak-warden:v0.35.0
           imagePullPolicy: IfNotPresent
-          args:
-            - serve
-            - --config=/config/warden.yaml
-            - --database=/data/warden.db
-            - --listen-address=:8080
-            - --management-listen-address=:8081
-            - --metrics
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
@@ -47,6 +40,8 @@ spec:
             runAsUser: 65532
             runAsGroup: 0
           env:
+            - name: WARDEN__METRICS
+              value: "true"
             - name: WARDEN__SNITCH_SECRET
               valueFrom:
                 secretKeyRef:
