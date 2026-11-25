@@ -31,7 +31,7 @@ spec:
               memory: 16Mi
       containers:
         - name: garage-webui
-          image: ghcr.io/containeroo/garage-webui:v0.14.5
+          image: ghcr.io/containeroo/garage-webui:v0.14.7
           args:
             - "--listen-address=0.0.0.0:8080"
             - "--management-listen-address=0.0.0.0:8081"
