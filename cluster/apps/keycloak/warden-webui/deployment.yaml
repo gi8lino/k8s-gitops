@@ -26,7 +26,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: warden-webui
-          image: ghcr.io/gi8lino/keycloak-warden-webui:v0.10.0
+          image: ghcr.io/gi8lino/keycloak-warden-webui:v0.12.1
           imagePullPolicy: IfNotPresent
           envFrom:
             - secretRef:
