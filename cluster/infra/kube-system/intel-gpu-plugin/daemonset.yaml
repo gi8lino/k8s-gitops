@@ -23,7 +23,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: intel-gpu-plugin
-          image: intel/intel-gpu-plugin:0.37.1
+          image: intel/intel-gpu-plugin:0.37.2
           env:
             - name: NODE_NAME
               valueFrom:
