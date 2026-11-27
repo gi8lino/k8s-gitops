@@ -468,8 +468,10 @@ spec:
         monitor:
           enabled: true
           interval: 60s
+      defaultArgs:
+        - --collector.filesystem.mount-points-exclude=^/(mnt|dev|proc|sys|run/containerd/.+|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
+        - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs|erofs)$
       extraArgs:
-        - --collector.filesystem.mount-points-exclude=^/(mnt|dev|proc|sys|var/lib/docker/.+)($|/)
         - --collector.textfile.directory=/run/prometheus
       extraHostVolumeMounts:
         - name: node-exporter-textfile-collector-scripts
