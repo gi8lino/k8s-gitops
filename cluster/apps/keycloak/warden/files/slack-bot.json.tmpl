@@ -1,13 +1,13 @@
 {{/* Slack webhook payload for Keycloak Warden */}}
 {
-  "text": {{ if eq .State "banned" }}{{ printf "🚨 Warden banned IP %s" .IP | json }}{{ else }}{{ printf "✅ Warden released IP %s" .IP | json }}{{ end }},
+  "text": {{ if eq .Payload.State "banned" }}{{ printf "🚨 Warden banned IP %s" .Payload.IP | json }}{{ else }}{{ printf "✅ Warden released IP %s" .Payload.IP | json }}{{ end }},
   "channel": {{ .Vars.channel | json }},
   "blocks": [
     {
       "type": "header",
       "text": {
         "type": "plain_text",
-        "text": {{ if eq .State "banned" }}{{ "🚨 IP Banned" | json }}{{ else }}{{ "✅ IP Released" | json }}{{ end }},
+        "text": {{ if eq .Payload.State "banned" }}{{ "🚨 IP Banned" | json }}{{ else }}{{ "✅ IP Released" | json }}{{ end }},
         "emoji": true
       }
     },
@@ -16,20 +16,20 @@
       "fields": [
         {
           "type": "mrkdwn",
-          "text": {{ printf "*IP Address:* `%s`" .IP | json }}
+          "text": {{ printf "*IP Address:* `%s`" .Payload.IP | json }}
         },
         {
           "type": "mrkdwn",
-          "text": {{ printf "*State:* %s" .State | json }}
+          "text": {{ printf "*State:* %s" .Payload.State | json }}
         },
         {
           "type": "mrkdwn",
-          "text": {{ printf "*Revision:* %d" .Revision | json }}
+          "text": {{ printf "*Revision:* %d" .Payload.Revision | json }}
         }
-        {{- if eq .State "banned" }},
+        {{- if eq .Payload.State "banned" }},
         {
           "type": "mrkdwn",
-          "text": {{ printf "*Expires At:* %s" (.ExpiresAt.UTC.Format "2006-01-02 15:04:05 UTC") | json }}
+          "text": {{ printf "*Expires At:* %s" (.Payload.ExpiresAt.UTC.Format "2006-01-02 15:04:05 UTC") | json }}
         }
         {{- end }}
       ]
@@ -39,7 +39,7 @@
       "elements": [
         {
           "type": "mrkdwn",
-          "text": {{ printf "Warden decision: `%s`" .ID | json }}
+          "text": {{ printf "Warden decision: `%s`" .Payload.ID | json }}
         }
       ]
     }

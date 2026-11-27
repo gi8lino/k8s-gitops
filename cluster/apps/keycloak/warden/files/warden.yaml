@@ -1,9 +1,16 @@
 ---
-rule:
-  threshold: 5
-  window: 1m
-  ban: 15m
-targets:
+rules:
+  brute-force:
+    selector:
+      kind: user
+      events: [LOGIN_ERROR]
+    aggregation:
+      group-by: ip
+      threshold: 5
+      window: 1m
+    actions:
+      ban: 15m
+enforcements:
   cloudflare:
     edge:
       zone-id: env:CLOUDFLARE_ZONE_ID
