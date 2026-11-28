@@ -10,6 +10,25 @@ rules:
       window: 1m
     actions:
       ban: 15m
+  password-spraying:
+    selector:
+      kind: user
+      events: [LOGIN_ERROR]
+    aggregation:
+      group-by: ip
+      distinct: user-id
+      threshold: 10
+      window: 5m
+  distributed-attack:
+    selector:
+      kind: user
+      events: [LOGIN_ERROR]
+    aggregation:
+      group-by: user-id
+      distinct: ip
+      threshold: 10
+      window: 5m
+
 enforcements:
   cloudflare:
     edge:
